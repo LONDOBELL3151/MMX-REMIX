@@ -1,38 +1,137 @@
 {%- liquid
   assign s = section.settings
+  assign has_blocks = false
+  for block in section.blocks
+    assign has_blocks = true
+  endfor
 -%}
 
-<section class="newsletter" {{ section.shopify_attributes }}>
-  <div class="container newsletter__grid">
-    <div class="newsletter__copy">
-      <h2 class="newsletter__title">
-        {%- if s.title != blank -%}
-          {{ s.title }}
-        {%- else -%}
-          SEE DEALS FIRST
-        {%- endif -%}
-      </h2>
-      {%- if s.subtitle != blank -%}
-        <p class="newsletter__sub">{{ s.subtitle }}</p>
-      {%- endif -%}
-    </div>
+{%- if has_blocks -%}
+  {{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+  {{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
 
-    {%- assign form_id = 'newsletter-' | append: section.id -%}
-    {% form 'customer', id: form_id, class: 'newsletter__form' %}
-      <input type="hidden" name="contact[tags]" value="prospect,newsletter">
-      {%- if s.show_first_name -%}
-        <input type="text" name="contact[first_name]" placeholder="First name" autocomplete="given-name">
-      {%- endif -%}
-      <input type="email" name="contact[email]" placeholder="{{ s.placeholder | default: 'Your email' }}" required>
-      <button type="submit" class="btn btn--primary">
-        {{ s.button_label | default: 'Subscribe' }}
-      </button>
-      {%- if s.disclaimer -%}
-        <p class="newsletter__disclaimer">{{ s.disclaimer }}</p>
-      {%- endif -%}
-    {% endform %}
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ s.padding_top | default: 40 | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ s.padding_bottom | default: 52 | times: 0.75 | round: 0 }}px;
+    }
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ s.padding_top | default: 40 }}px;
+        padding-bottom: {{ s.padding_bottom | default: 52 }}px;
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="newsletter center {% if s.full_width == false %}newsletter--narrow page-width{% endif %}">
+    <div class="newsletter__wrapper color-{{ s.color_scheme | default: 'background-1' }} gradient content-container isolate{% if s.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+          {%- when 'heading' -%}
+            <h2 class="inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+              {{ block.settings.heading }}
+            </h2>
+          {%- when 'paragraph' -%}
+            <div class="newsletter__subheading rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+          {%- when 'email_form' -%}
+            <div {{ block.shopify_attributes }}>
+              {% form 'customer', class: 'newsletter-form' %}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="Newsletter-error--{{ section.id }}"
+                      {% elsif form.posted_successfully? %}
+                        aria-describedby="Newsletter-success--{{ section.id }}"
+                      {% endif %}
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      {% render 'icon-arrow' %}
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+                      {%- render 'icon-error' -%}
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </small>
+                  {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <h3
+                    class="newsletter-form__message newsletter-form__message--success form__message"
+                    id="Newsletter-success--{{ section.id }}"
+                    tabindex="-1"
+                    autofocus
+                  >
+                    {% render 'icon-success' -%}
+                    {{- 'newsletter.success' | t }}
+                  </h3>
+                {%- endif -%}
+              {% endform %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
   </div>
-</section>
+{%- else -%}
+  <section class="newsletter" {{ section.shopify_attributes }}>
+    <div class="container newsletter__grid">
+      <div class="newsletter__copy">
+        <h2 class="newsletter__title">
+          {%- if s.title != blank -%}
+            {{ s.title }}
+          {%- else -%}
+            SEE DEALS FIRST
+          {%- endif -%}
+        </h2>
+        {%- if s.subtitle != blank -%}
+          <p class="newsletter__sub">{{ s.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- assign form_id = 'newsletter-' | append: section.id -%}
+      {% form 'customer', id: form_id, class: 'newsletter__form' %}
+        <input type="hidden" name="contact[tags]" value="prospect,newsletter">
+        {%- if s.show_first_name -%}
+          <input type="text" name="contact[first_name]" placeholder="First name" autocomplete="given-name">
+        {%- endif -%}
+        <input type="email" name="contact[email]" placeholder="{{ s.placeholder | default: 'Your email' }}" required>
+        <button type="submit" class="btn btn--primary">
+          {{ s.button_label | default: 'Subscribe' }}
+        </button>
+        {%- if s.disclaimer -%}
+          <p class="newsletter__disclaimer">{{ s.disclaimer }}</p>
+        {%- endif -%}
+      {% endform %}
+    </div>
+  </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -81,6 +180,89 @@
       "id": "bg_color",
       "label": "Background color",
       "default": "#FFC000"
+    },
+    {
+      "type": "header",
+      "content": "Block mode (legacy)"
+    },
+    {
+      "type": "color",
+      "id": "color_scheme",
+      "label": "Color scheme (block mode)",
+      "default": "background-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width (block mode)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (block mode)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (block mode)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Subscribe to our emails",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" }
+          ],
+          "default": "h1",
+          "label": "Heading size"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Be the first to know about new collections and exclusive offers.</p>",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "Email form",
+      "limit": 1
+    },
+    {
+      "type": "@app"
     }
   ],
   "presets": [
