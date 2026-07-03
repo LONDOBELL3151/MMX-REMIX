@@ -1,0 +1,184 @@
+.swiperGraphic_section , .swiperGraphic_section *{
+    padding: 0;
+    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    line-height: initial;
+}
+.swiperGraphic_section {
+    max-width: 1920px;
+    width: 100%;
+    margin: auto;
+    background-color: rgb(250 250 250);
+    color: #000;
+    padding: 50px 0;
+    position: relative;
+}
+.swiperGraphic_title {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.swiperGraphic_title h5 {
+    font-weight: 700;
+    font-size: 60px;
+}
+.swiperGraphic_title .fontBgColor {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right, #ff5a24 0, #fff), linear-gradient(to right, #ff5a24 0, #fff);
+}
+.swiperGraphic_button {
+    display: flex;
+    gap: 20px;
+}
+.swiperGraphic_button button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow .5s cubic-bezier(.3,1,.3,1), opacity .3s cubic-bezier(.7,0,.3,1);
+    border: 1px solid #000;
+    color: #000;
+}
+.swiperGraphic_button .activeBtn {
+    background: #ff5a1e;
+    color: #fff;
+    border-color: #ff5a1e;
+    cursor: pointer;
+    pointer-events: visible;
+}
+.swiperGraphic_button  .disabledBtn {
+    opacity: .3;
+    pointer-events: none;
+}
+.swiperGraphic_content {
+    max-width: 1600px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin: auto;
+    overflow: hidden;
+}
+.swiperGraphic_content img{
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    backface-visibility: hidden;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 15px;
+}
+.swiperGraphic_content .swiper-slide {
+    max-width: 430px;
+    width: 100%;
+}
+.swiperGraphic_content h6 {
+    font-weight: 700;
+    font-size: 30px;
+    margin: 30px 0 25px;
+    white-space: pre-line;
+}
+.swiperGraphic_content p {
+    font-size: 20px;
+    color: #333333;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    white-space: pre-line;
+}
+.swiperGraphic_content figcaption {
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.swiper-pc {
+    display: block!important;
+}
+.swiper-phone {
+    display: none!important;
+}
+@media only screen and (max-width: 1700px) {
+    .swiperGraphic_content  {
+        max-width: fit-content;
+        padding: 0 10px;
+        box-sizing: border-box;
+        margin: auto;
+        justify-content: center;
+    }
+    .swiperGraphic_title {
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    .swiperGraphic_content h6 {
+        margin: 20px 0 10px;
+    }
+}
+@media only screen and (max-width: 1050px)  {
+    .swiperGraphic_button {
+        display: none;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .swiper-pc {
+        display: none!important;
+    }
+    .swiper-phone {
+        display: block!important;
+    }
+    .swiperGraphic_content p {
+        overflow: auto;
+        -webkit-box-orient: inherit;
+        -webkit-line-clamp: initial;
+    }
+    .swiperGraphic_title h5 {
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .swiperGraphic_content h6 {
+        font-size: 25px;
+    }
+    .swiperGraphic_title h5 {
+        font-size: 45px;
+    }
+}
+@media only screen and (max-width: 650px)  {
+    .swiperGraphic_content h6 {
+        font-size: 20px;
+    }
+    .swiperGraphic_title h5 {
+        font-size: 40px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .swiperGraphic_content p {
+        font-size: 17px;
+    }
+    .swiperGraphic_title h5 {
+        font-size: 35px;
+    }
+}

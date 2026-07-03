@@ -1,0 +1,833 @@
+
+
+.impact-featured-collection-buy,.impact-featured-collection-buy * {
+    margin: 0;
+    padding: 0;
+}
+.impact-featured-collection-buy a {
+    color: #212121;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+}
+.impact-featured-collection-buy img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    margin: auto;
+}
+.impact-featured-collection-buy .sr-only {
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+}
+.impact-featured-collection-buy svg {
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+}
+.impact-featured-collection-buy svg:not(:root) {
+    overflow: hidden;
+}
+.impact-featured-collection-buy button:focus, 
+.impact-featured-collection-buy input:focus, 
+.impact-featured-collection-buy select:focus, 
+.impact-featured-collection-buy textarea:focus,
+.impact-featured-collection-buy input:focus-visible{
+    outline: none;
+    box-shadow: none;
+}
+.impactFeaturedCollectionBuy_width {
+    max-width: 1610px;
+    width: 100%;
+    margin: auto;
+    padding: 4px 10px;
+    box-sizing: border-box;
+}
+.impact-featured-collection-buy {
+    font-size: 20px;
+    color: #1a1a1a;
+}
+.impactFeaturedCollectionBuy_module-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+.impactFeaturedCollectionBuy_module-title.left {
+    justify-content: start;
+}
+.impactFeaturedCollectionBuy_module-title.space-between {
+    justify-content: space-between;
+}
+.impactFeaturedCollectionBuy_module-title.right {
+    justify-content: end;
+}
+.impactFeaturedCollectionBuy_module-title h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+.impactFeaturedCollectionBuy_module-title .view_all {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+.impactFeaturedCollectionBuy_module-title .view_all-text {
+    text-underline: none;
+    background: linear-gradient(to right, currentColor, currentColor) 0 min(100%, 1.35em) / 0 1px no-repeat;
+    transition: background-size .3s ease-in-out;
+}
+.impactFeaturedCollectionBuy_module-title .view_all:hover .view_all-text {
+    background-size: 100% 1px;
+}
+.impactFeaturedCollectionBuy_module-title .view_all-icon{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #1a1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease-in-out;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.impactFeaturedCollectionBuy_module-title .view_all:hover .view_all-icon {
+    background: #1a1a1a;
+    color: #f0f0f0;
+}
+.impactFeaturedCollectionBuy_slider {
+    max-width: 382px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px #0000000d;
+    color: #1a1a1a;
+
+}
+.impactFeaturedCollectionBuy_product-list {
+    display: flex;
+    gap: .3rem;
+    flex-direction: column;
+    overflow: hidden;
+}
+.impactFeaturedCollectionBuy_product-list .figure {
+    display: inline-block;
+    max-height: 382px;
+    height: auto;
+    position: relative;
+}
+.impactFeaturedCollectionBuy_product-list .placeholder_image {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    --text-primary: 26 26 26;
+    background: rgb(var(--text-primary) / .15);
+    fill: rgb(var(--text-primary) / .7);
+    color: rgb(var(--text-primary) / .7);
+    display: block;
+    border-top-left-radius: .375rem;
+    border-top-right-radius: .375rem;
+}
+.impactFeaturedCollectionBuy_product-img {
+    object-fit: contain;
+    object-position: center;
+    border-top-left-radius: .375rem;
+    border-top-right-radius: .375rem;
+    transition: transform .3s ease, opacity .3s ease-in-out;
+}
+.impactFeaturedCollectionBuy_product-list .figure:hover .impactFeaturedCollectionBuy_product-img {
+    transform: scale(1.03);
+}
+.impact-product-card_badge-list {
+    gap: .5rem;
+    pointer-events: none;
+    z-index: 5;
+    display: grid;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+.impact-product-card_badge-list p {
+    width: max-content;
+    font-size: 1.35rem;
+    padding-block-start: .125rem;
+    padding-block-end: .125rem;
+    font-weight: 700;
+    border-radius: 5px;
+    background: #f83a3a;
+    color: #fff;
+    padding: 3px .5rem;
+}
+.impactFeaturedCollectionBuy_product-list .info {
+    display: grid;
+    gap: .5rem;
+    padding: 1.5rem 2rem 2rem;
+    box-sizing: border-box;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+}
+.impactFeaturedCollectionBuy_product-list .name {
+    font-weight: 700;
+    line-height: 1.5;
+}
+.impactFeaturedCollectionBuy_price-list {
+    display: flex;
+    align-items: baseline;
+    gap: .25rem .8rem;
+    flex-wrap: wrap;
+}
+.impactFeaturedCollectionBuy_price-list .sale-price {
+    color: #f83a3a;
+    font-weight: 700;
+}
+.impactFeaturedCollectionBuy_price-list .regular-price{
+    color: #1a1a1ab3;
+    text-decoration: line-through;
+}
+.impactFeaturedCollectionBuy_product-list .product-form__input--swatch .swatch-input__input+.swatch-input__label {
+    --swatch-input--size: 2.5rem;
+}
+.impactFeaturedCollectionBuy_iconContent {
+    padding: 2rem 1rem 1.5rem;
+    box-sizing: border-box;
+    margin-top: auto;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+.impactFeaturedCollectionBuy_iconContent::before {
+    content: "";
+    width: 90%;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+}
+.impactFeaturedCollectionBuy_iconContent .icon_list {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.impactFeaturedCollectionBuy_iconContent img{
+    max-width: 30px;
+}
+.impactFeaturedCollectionBuy_iconContent p {
+    font-size: 1.35rem;
+    text-align: center;
+    line-height: 1.35;
+}
+.impact-featured-collection-buy .arrow {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    border-radius: 50%;
+    place-items: center;
+    transition: opacity .15s ease-in;
+    box-shadow: 0 0 0 1px #4d4d4d;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+}
+.impact-featured-collection-buy .arrow--right {
+    right: 10px;
+}
+.impact-featured-collection-buy .arrow--left {
+    right: 85px;
+    transform: rotate(180deg);
+}
+.impact-featured-collection-buy .arrow--disabled {
+    opacity: .5;
+    pointer-events: none;
+    cursor: default;
+}
+.impact-featured-collection-buy .arrow:before, .impact-featured-collection-buy .arrow:after {
+    content: "";
+    grid-area: 1 / -1;
+    transition: all .2s ease-in-out;
+    border-style: solid;
+    border-width: 0;
+    box-sizing: border-box;
+}
+.impact-featured-collection-buy .arrow:before {
+    border-block-start-width: 2px;
+    border-inline-end-width: 2px;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    border-color: currentColor;
+    position: relative;
+    left: -1px;
+}
+.impactFeaturedCollectionBuy_products.pc_piece + .arrow--left,
+.impactFeaturedCollectionBuy_products.pc_piece + .arrow--left + .arrow--right {
+    display: none;
+}
+
+.impactFeaturedCollectionBuy_products.model_piece + .arrow--left,
+.impactFeaturedCollectionBuy_products.model_piece + .arrow--left + .arrow--right {
+    display: none;
+}
+.impactFeaturedCollectionBuy_products.model_piece ,
+.impactFeaturedCollectionBuy_products.model_piece.phone_scroll{
+    display: grid;
+    grid: auto / repeat(4, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    gap: 3rem 1.5rem;
+}
+.impactFeaturedCollectionBuy_products.model_piece >div,
+.impactFeaturedCollectionBuy_products.model_piece.phone_scroll >div {
+    min-width: inherit !important;
+    max-width: 382px !important;
+    transform: none !important;
+} 
+
+@media screen and (min-width: 751px) {
+    .impactFeaturedCollectionBuy_products.pc_piece,
+    .impactFeaturedCollectionBuy_products.pc_piece.phone_scroll,
+    .impactFeaturedCollectionBuy_products.not_scroll_is_piece{
+        display: grid;
+        grid: auto / repeat(4, minmax(0, 1fr));
+        grid-template-rows: auto auto;
+        gap: 3rem 1.5rem;
+    }
+    .impactFeaturedCollectionBuy_products.pc_piece >div,
+    .impactFeaturedCollectionBuy_products.pc_piece.phone_scroll >div {
+        min-width: inherit !important;
+        max-width: 382px !important;
+        transform: none !important;
+    }
+    .impact-featured-collection-buy .navigation-wrapper{
+        position: relative;
+        max-width: 1610px;
+        width: 100%;
+        margin: auto;
+        padding-bottom: 65px;
+    }
+}
+@media screen and (min-width: 751px) and (max-width: 1230px) {
+    .impactFeaturedCollectionBuy_products.pc_piece,
+    .impactFeaturedCollectionBuy_products.pc_piece.phone_scroll,
+    .impactFeaturedCollectionBuy_products.not_scroll_is_piece,
+    .impactFeaturedCollectionBuy_products.model_piece,
+    .impactFeaturedCollectionBuy_products.model_piece.phone_scroll {
+        grid: auto / repeat(3, minmax(0, 1fr));
+    }
+}
+@media only screen and (max-width: 1230px) {
+    .impact-featured-collection-buy .arrow--right {
+        right: 10px;
+    }
+    .impact-featured-collection-buy .arrow--left {
+        right: 85px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .impactFeaturedCollectionBuy_product-list .product-form__input--swatch .swatch-input__input+.swatch-input__label {
+        --swatch-input--size: 2.0rem;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .impactFeaturedCollectionBuy_products.phone_piece,
+    .impactFeaturedCollectionBuy_products.phone_piece.pc_scroll,
+    .impactFeaturedCollectionBuy_products.model_piece,
+    .impactFeaturedCollectionBuy_products.model_piece.phone_scroll
+    .impactFeaturedCollectionBuy_products.not_scroll_is_piece
+     {
+        display: grid;
+        grid: auto / repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto auto;
+        gap: 3rem 1rem;
+    }
+    .impactFeaturedCollectionBuy_products.phone_piece >div,
+    .impactFeaturedCollectionBuy_products.phone_piece.pc_scroll >div {
+        min-width: inherit !important;
+        max-width: 382px !important;
+        transform: none !important;
+    }
+    .impact-featured-collection-buy .arrow {
+        display: none;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .impactFeaturedCollectionBuy_iconContent {
+        padding: 1.5rem 1rem 1rem;
+        display: grid;
+        grid: auto / repeat(3, minmax(0, 1fr));
+        grid-template-rows: auto auto;
+        gap: 1rem 0.5rem;
+    }
+    .impactFeaturedCollectionBuy_module-title h2 {
+        font-size: 25px;
+    }
+    .impactFeaturedCollectionBuy_module-title {
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    .impactFeaturedCollectionBuy_product-list .info{
+        padding: 1rem 1.5rem 1.5rem;
+        gap: .35rem;
+    }
+    .impactFeaturedCollectionBuy_product-list .product-form__input--swatch .swatch-input__input+.swatch-input__label {
+        --swatch-input--size: 1.7rem;
+    }
+    .impact-featured-collection-buy {
+        font-size: 18px;
+    }
+    .impact-card-quick-buy .impact-quick-shop_trigger {
+        width: 28px;
+        height: 28px;
+    }
+    .impact-card-quick-buy .impact-quick-shop_trigger svg {
+        width: 17px;
+        height: 17px;
+    }
+    .impactFeaturedCollectionBuy_product-list .impact-card-quick-buy {
+        height: calc(25px + 1.8rem);
+        width: calc(25px + 1.8rem);
+    }
+    .impactFeaturedCollectionBuy_iconContent img {
+        max-width: 25px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .impact-featured-collection-buy .arrow {
+        width: 35px;
+        height: 35px;
+    }
+    .impact-featured-collection-buy .arrow--left {
+        right: 70px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .impactFeaturedCollectionBuy_iconContent {
+        grid: auto / repeat(2, minmax(0, 1fr));
+    }
+    .impactFeaturedCollectionBuy_product-list .product-form__input--swatch .swatch-input__input+.swatch-input__label {
+        --swatch-input--size: 1.5rem;
+    }
+}
+
+fieldset.product-form__input {
+    border: none;
+}
+.active.swatch-input__input+.swatch-input__label {
+    outline: .1rem solid rgb(18,18,18);
+}
+/* .swatch-input__input:disabled+.swatch-input__label>.swatch:after, 
+.swatch-input__input.visually-disabled+.swatch-input__label>.swatch:after {
+    content: '';
+    display: none;
+}
+.swatch-input__input:disabled+.swatch-input__label>.swatch, .swatch-input__input.visually-disabled+.swatch-input__label>.swatch {
+    opacity: 1;
+    background: linear-gradient(to bottom right, transparent calc(50% - 1px), rgb(255 255 255) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)), var(--swatch--background) center / cover;
+} */
+
+/* impact-card-quick-buy --start*/
+.impact-card-quick-buy {
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    border: 0px;
+    border-radius: 0;
+    padding: 2px;
+    position: absolute;
+    bottom: 0;
+    color: #222;
+    height: calc(35px + 1.8rem);
+    right: 0;
+    width: calc(35px + 1.8rem);
+    cursor: pointer;
+}
+.impact-quick-shop_trigger {
+    display: grid;
+    place-items: center;
+    border: none;
+    border: 1px solid transparent;
+    width: 35px;
+    height: 35px;
+    -webkit-box-shadow: 0 0 4px rgba(19, 19, 19, 0.2);
+    box-shadow: 0 0 4px rgba(19, 19, 19, 0.2);
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.impact-quick-shop_trigger svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+    background: #fff;
+}
+.impact-quick-shop_trigger:hover{
+    border-color: #000;
+}
+.impact-quick-shop_trigger .icon-loading-spinner.hidden{
+    display: none;
+}
+.impact-quick-shop_trigger .icon-quickbuy.hidden {
+    display: none;
+} 
+.impact-quick-shop_trigger.loading:hover {
+    border-color: transparent;
+}
+/* impact-card-quick-buy --end*/
+
+.impact-featured-collection-buy .impact-quick-shop_trigger::after {
+    display: none;
+}
+.impact-card-quick-buy .impact-quick-shop_trigger {
+    min-height: auto;
+    min-width: auto;
+    padding: 0;
+}
+
+.impactFeaturedCollectionBuy_product-list .sell_out {
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+    font-size: 12px;
+    background: rgb(243.9, 244.2, 244.8);
+    border: 1px solid rgb(232.8, 233.4, 234.6);
+    box-sizing: border-box;
+    border-radius: 4px;
+    white-space: nowrap;
+    height: 24px;
+    padding: 0 9px;
+    line-height: 1;
+    color: #909399;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 弹窗-start */
+div.imapct-cart-drawer-overlay {
+    display: none;
+    background: #0006;
+    min-height: 100lvh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    transition: .8s cubic-bezier(.7,0,.2,1);
+    transition-property: opacity, visibility;
+    opacity: 0;
+}
+.impact-quick-buy-pop.quick-add-modal {
+    position: initial;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    z-index: 101;
+}
+.impact-quick-buy-pop[open_] div.imapct-cart-drawer-overlay{
+    opacity: 1;
+    display: block;
+}
+.impact-quick-buy-pop .quick-add-modal__content {
+    --width: 580px;
+    max-height: 100%;
+    margin-top: 0;
+    transform: inherit;
+    max-width: initial;
+    position: fixed;
+    left: auto;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    width: var(--width);
+    max-width: calc(100% - 24px);
+    height: 100%;
+    overflow: hidden;
+    translate: 100%;
+    background: transparent;
+    border: none;
+    border-radius: inherit;
+    box-shadow: none;
+    color: #212121;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition-property: transform, opacity, visibility;
+    transition-duration: .7s;
+    transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}
+.impact-quick-buy-pop[open_] .quick-add-modal__content {
+    animation: slideInRight .7s cubic-bezier(.445,.05,.55,.95) both;
+}
+.impact-quick-buy-pop[close_] .quick-add-modal__content {
+    animation: slideOutRight .7s cubic-bezier(.445,.05,.55,.95) both;
+}
+.impact-quick-buy-pop .quick-add-modal__content-info {
+    display: block;
+    padding: 2rem 4rem;
+    box-sizing: border-box;
+    background: #fff;
+    height: 100%;
+    border-radius: .375rem;
+}
+.impact-quick-buy-pop .quick-add-modal__toggle {
+    right: 2.25rem;
+    top: 2.25rem;
+    position: fixed;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-appearance: button;
+    text-align: inherit;
+    background-color: #0000;
+    background-image: none;
+    text-transform: none;
+    border: none;
+    padding: 0;
+    color: initial;
+}
+.impact-quick-buy-pop .quick-add-modal__toggle svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+.impact-quick-buy-pop_content .page-width {
+    max-width: 100%;
+}
+.impact-quick-buy-pop_content .page-width .product.grid {
+    flex-direction: column;
+}
+.impact-quick-buy-pop_content .product__media-wrapper{
+    max-width: 100%!important;
+    width: 100%!important;
+    background: #f9f9f9;
+    margin: 20px auto 20px auto;
+}
+.impact-quick-buy-pop_content .product__media-wrapper .product__column-sticky{
+    display: block;
+    max-width: 350px;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.impact-quick-buy-pop_content .product__info-wrapper {
+    padding: 0!important;
+    max-width: 100%!important;
+    width: 100%!important;
+}
+.impact-quick-buy-pop_content .product__info-container{
+    max-width: 100%;
+    padding: 0;
+}
+.impact-quick-buy-pop_content .product__info-container .product__text,
+.impact-quick-buy-pop_content .product__info-container .price-per-item__container {
+    display: none;
+}
+
+.impact-quick-buy-pop_content .product__info-container .h1 {
+    font-size: 3rem;
+    line-height: 1.25;
+}
+
+.impact-quick-buy-pop_content .product__info-container form.installment,
+.impact-quick-buy-pop_content .product__info-container .product__tax.caption.rte,
+.impact-quick-buy-pop_content .product__info-container .hidden_,
+.impact-quick-buy-pop_content .product__info-container ul.icon-with-text,
+.impact-quick-buy-pop_content .product__info-container .product-form__quantity{
+    display: none!important;
+}
+
+.impact-quick-buy-pop_content .price-item--sale{
+    font-weight: 700;
+}
+.impact-quick-buy-pop_content legend.form__label {
+    font-weight: 600;
+}
+.impact-quick-buy-pop_content legend.form__label span {
+    color: #2121218c;
+    margin-left: 5px;
+}
+.impact-quick-buy-pop_content .product-form__input--pill input[type=radio]+label {
+    border-radius: 3px;
+}
+.impact-quick-buy-pop_content .product-form__input{
+    margin: 0 0 2.2rem;
+}
+.impact-quick-buy-pop_content .product-form__buttons .product-form__submit::after,
+.impact-quick-buy-pop_content .shopify-payment-button__button,
+.impact-quick-buy-pop_content .shopify-payment-button__button--unbranded:after {
+    border-radius: 25px;
+}
+.impact-quick-buy-pop_content .product-form__error-message-wrapper:not([hidden]) {
+    font-size: 1.5rem;
+    font-weight: 400;
+    background: #ffebe8;
+    padding: 3px 6px;
+    color: #d12328;
+    justify-content: center;
+}
+.impact-quick-buy-pop_content .product-form__error-message-wrapper .icon-error {
+    display: none;
+}
+@media only screen and (max-width: 1000px) {
+    .impact-quick-buy-pop .quick-add-modal__content {
+        --width: 480px;
+    }
+    .impact-quick-buy-pop_content .product__media-wrapper .product__column-sticky {
+        max-width: 300px;
+    }
+    .impact-quick-buy-pop .quick-add-modal__content-info {
+        padding: 20px;
+    }
+    .impact-quick-buy-pop_content .product__info-wrapper {
+        padding: 15px !important;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .impact-quick-buy-pop_content .product-form__input--swatch .swatch-input__input+.swatch-input__label {
+        --swatch-input--size: 2.8rem;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .impact-quick-buy-pop_content .product__media-wrapper .product__column-sticky {
+        width: 250px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .impact-quick-buy-pop .quick-add-modal__content {
+        --width: 400px;
+    }
+    .impact-quick-buy-pop_content .product__media-wrapper .product__column-sticky {
+        width: 230px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .impact-quick-buy-pop .quick-add-modal__content {
+        --width: 350px;
+    }
+    .impact-quick-buy-pop_content .product__media-wrapper .product__column-sticky {
+        width: 200px;
+    }
+    .impact-quick-buy-pop_content .product-form__input--swatch .swatch-input__input+.swatch-input__label {
+        --swatch-input--size: 2.3rem;
+    }
+    .impact-quick-buy-pop_content .product-form__input--pill input[type=radio]+label {
+        padding: 0.7rem 1.5rem;
+        font-size: 1.3rem;
+    }
+    .impactFeaturedCollectionBuy_products.phone_piece, .impactFeaturedCollectionBuy_products.phone_piece.pc_scroll, .impactFeaturedCollectionBuy_products.model_piece, .impactFeaturedCollectionBuy_products.model_piece.phone_scroll .impactFeaturedCollectionBuy_products.not_scroll_is_piece {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .impactFeaturedCollectionBuy_products.phone_piece>div, .impactFeaturedCollectionBuy_products.phone_piece.pc_scroll>div {
+        max-width: 100% !important;
+    }
+}
+/* 弹窗-end */
+
+
+/* =========================================================
+   自定义产品列表响应式布局 (手机 2列 / 平板竖屏 3列)
+========================================================= */
+
+/* 1. 基础防护：确保所有网格内的产品和图片自适应，绝不撑宽屏幕（全局生效） */
+.impactFeaturedCollectionBuy_products .impactFeaturedCollectionBuy_slider {
+  width: 100% !important;
+  min-width: 0 !important; /* 防止 Grid 子元素溢出 */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.impactFeaturedCollectionBuy_products impact-product-card {
+  width: 100% !important;
+  display: block;
+  box-sizing: border-box;
+}
+
+.impactFeaturedCollectionBuy_products .figure {
+  width: 100%;
+  position: relative;
+}
+
+.impactFeaturedCollectionBuy_products .impactFeaturedCollectionBuy_product-img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain; /* 保证图片完整显示 */
+  display: block;
+}
+
+.impactFeaturedCollectionBuy_products .info .name {
+  word-wrap: break-word;
+  white-space: normal;
+  display: block;
+}
+
+/* 2. 手机端：一行展示 2 个产品 (屏幕宽度 <= 767px) */
+@media screen and (max-width: 767px) {
+  .impactFeaturedCollectionBuy_products.phone_piece {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+    justify-content: start !important; /* 核心修复：强制左对齐，解决第二行乱跑问题 */
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 核心修复：抵消 Keen Slider 轮播插件强加的位移和固定宽度 */
+  .impactFeaturedCollectionBuy_products.phone_piece .keen-slider__slide {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    transform: none !important; /* 清除插件生成的位移干扰 */
+    position: relative !important;
+  }
+}
+
+/* 3. 平板端（仅竖屏 Portrait）：一行展示 3 个产品 (768px - 1024px) */
+/* 注：平板横屏时此段失效，将自动读取主题原本的电脑端布局 */
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .impactFeaturedCollectionBuy_products.pc_piece,
+  .impactFeaturedCollectionBuy_products.phone_piece {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    justify-content: start !important; /* 核心修复：强制左对齐 */
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 核心修复：抵消 Keen Slider 轮播插件强加的位移和固定宽度 */
+  .impactFeaturedCollectionBuy_products.pc_piece .keen-slider__slide,
+  .impactFeaturedCollectionBuy_products.phone_piece .keen-slider__slide {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    transform: none !important; /* 清除插件生成的位移干扰，防止第三个溢出 */
+    position: relative !important;
+  }
+}

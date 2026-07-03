@@ -1,0 +1,707 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --mf-gallery-background: {{ section.settings.background_color }};
+    --mf-gallery-title-color: {{ section.settings.title_color }};
+    --mf-gallery-card-width: {{ section.settings.mobile_card_width }};
+    --mf-gallery-dot-color: {{ section.settings.dot_color }};
+    --mf-gallery-hotspot-bg: {{ section.settings.hotspot_color }};
+    --mf-gallery-hotspot-text: {{ section.settings.hotspot_text_color }};
+    --mf-gallery-popup-bg: {{ section.settings.popup_background }};
+    --mf-gallery-popup-text: {{ section.settings.popup_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery {
+    background: var(--mf-gallery-background);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__title {
+    margin: 0;
+    color: var(--mf-gallery-title-color);
+    font-size: {{ section.settings.title_size_mobile }}px;
+    line-height: 1.1;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    padding: 0 0.2rem 0.75rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__item {
+    position: relative;
+    flex: 0 0 calc(var(--mf-gallery-card-width) * 1%);
+    width: calc(var(--mf-gallery-card-width) * 1%);
+    min-width: 15rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: visible;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    box-shadow: 0 18px 40px rgba(17, 24, 39, 0.08);
+    background: #ececec;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__media img,
+  #shopify-section-{{ section.id }} .mf-gallery__placeholder {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__placeholder {
+    aspect-ratio: 4 / 5;
+    fill: rgba(255, 255, 255, 0.28);
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+    --mf-gallery-popup-shift-x: 0px;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot-button {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--mf-gallery-hotspot-bg);
+    color: var(--mf-gallery-hotspot-text);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.18);
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot-button:hover {
+    transform: scale(1.06);
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot-popup {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.75rem);
+    width: min(17rem, calc(100vw - 3rem));
+    max-width: calc(100vw - 3rem);
+    transform: translate(calc(-50% + var(--mf-gallery-popup-shift-x)), 0);
+    background: var(--mf-gallery-popup-bg);
+    color: var(--mf-gallery-popup-text);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 20px 36px rgba(15, 23, 42, 0.16);
+    z-index: 3;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot.is-align-left .mf-gallery__hotspot-popup {
+    left: 0;
+    transform: translate(var(--mf-gallery-popup-shift-x), 0);
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot.is-align-right .mf-gallery__hotspot-popup {
+    left: auto;
+    right: 0;
+    transform: translate(var(--mf-gallery-popup-shift-x), 0);
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot.is-flip-up .mf-gallery__hotspot-popup {
+    top: auto;
+    bottom: calc(100% + 0.75rem);
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot:not(.is-open) .mf-gallery__hotspot-popup {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot-title {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: inherit;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__hotspot-price {
+    margin: 0 0 0.75rem;
+    color: inherit;
+    opacity: 0.7;
+    font-size: 0.95rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__quick-add .button {
+    width: 100%;
+    min-height: 0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__quick-add .button::before,
+  #shopify-section-{{ section.id }} .mf-gallery__quick-add .button::after {
+    content: none;
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__quick-add .button:focus,
+  #shopify-section-{{ section.id }} .mf-gallery__quick-add .button:focus-visible,
+  #shopify-section-{{ section.id }} .mf-gallery__quick-add .button.focused {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__dots {
+    margin-top: 0.25rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    border: 0;
+    background: var(--mf-gallery-dot-color);
+    opacity: 0.24;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .mf-gallery__dot.is-active {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .mf-gallery__title {
+      font-size: {{ section.settings.title_size_desktop }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .mf-gallery__track {
+      display: block;
+      column-count: 3;
+      column-gap: 1.5rem;
+      overflow: visible;
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .mf-gallery__item {
+      width: auto;
+      min-width: 0;
+      margin-bottom: 1.5rem;
+      break-inside: avoid;
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .mf-gallery__dots {
+      display: none;
+    }
+  }
+{%- endstyle -%}
+
+<section class="mf-gallery">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="mf-gallery__header">
+        <h2 class="mf-gallery__title">{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="mf-gallery__track" data-gallery-track>
+      {% for block in section.blocks %}
+        {%- liquid
+          assign has_hotspot = false
+          if block.settings.hotspot_1_product != blank or block.settings.hotspot_2_product != blank or block.settings.hotspot_3_product != blank
+            assign has_hotspot = true
+          endif
+        -%}
+        <article class="mf-gallery__item" data-gallery-card {{ block.shopify_attributes }}>
+          <div class="mf-gallery__media">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1600
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '550, 750, 900, 1200, 1600',
+                  sizes: '(min-width: 990px) 30vw, 84vw',
+                  alt: block.settings.image.alt | default: block.settings.alt | escape
+              }}
+            {% elsif block.settings.image_url != blank %}
+              <img src="{{ block.settings.image_url }}" alt="{{ block.settings.alt | escape }}" loading="lazy">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'mf-gallery__placeholder' }}
+            {% endif %}
+          </div>
+
+          {% if has_hotspot %}
+            <div class="mf-gallery__overlay">
+              {% for hotspot_index in (1..3) %}
+                {%- liquid
+                  assign product_key = 'hotspot_' | append: hotspot_index | append: '_product'
+                  assign top_key = 'hotspot_' | append: hotspot_index | append: '_top'
+                  assign left_key = 'hotspot_' | append: hotspot_index | append: '_left'
+                  assign hotspot_product = block.settings[product_key]
+                -%}
+                {% if hotspot_product != blank %}
+                  {%- assign hotspot_product_title = hotspot_product.title | split: '|' | first | strip -%}
+                  <div
+                    class="mf-gallery__hotspot"
+                    data-hotspot
+                    style="top: {{ block.settings[top_key] }}%; left: {{ block.settings[left_key] }}%;"
+                  >
+                    <button
+                      type="button"
+                      class="mf-gallery__hotspot-button"
+                      data-hotspot-trigger
+                      aria-expanded="false"
+                      aria-label="Open {{ hotspot_product.title | escape }}"
+                    >
+                      +
+                    </button>
+                    <div class="mf-gallery__hotspot-popup" data-hotspot-popup>
+                      <h3 class="mf-gallery__hotspot-title">{{ hotspot_product_title | escape }}</h3>
+                      <p class="mf-gallery__hotspot-price">
+                        {{ hotspot_product.selected_or_first_available_variant.price | money }}
+                      </p>
+                      <div class="mf-gallery__quick-add">
+                        {% render 'mf-quick-add-form',
+                          product: hotspot_product,
+                          button_label: 'Add to cart',
+                          button_class: 'button button--primary',
+                          section_id: section.id,
+                          id_suffix: block.id | append: '-' | append: hotspot_index
+                        %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if section.blocks.size > 1 %}
+      <div class="mf-gallery__dots" data-gallery-dots>
+        {% for block in section.blocks %}
+          <button
+            type="button"
+            class="mf-gallery__dot{% if forloop.first %} is-active{% endif %}"
+            data-gallery-dot="{{ forloop.index0 }}"
+            aria-label="Go to gallery image {{ forloop.index }}"
+          ></button>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  (() => {
+    const sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    const track = sectionRoot.querySelector('[data-gallery-track]');
+    const cards = track ? Array.from(track.querySelectorAll('[data-gallery-card]')) : [];
+    const dots = Array.from(sectionRoot.querySelectorAll('[data-gallery-dot]'));
+
+    const resetHotspotPlacement = (hotspot) => {
+      hotspot.classList.remove('is-align-left', 'is-align-right', 'is-flip-up');
+      hotspot.style.setProperty('--mf-gallery-popup-shift-x', '0px');
+
+      const popup = hotspot.querySelector('[data-hotspot-popup]');
+      if (popup) {
+        popup.style.removeProperty('width');
+      }
+    };
+
+    const updateHotspotPlacement = (hotspot) => {
+      const popup = hotspot.querySelector('[data-hotspot-popup]');
+      const media = hotspot.closest('[data-gallery-card]')?.querySelector('.mf-gallery__media');
+      if (!popup || !media) return;
+
+      resetHotspotPlacement(hotspot);
+
+      const safePadding = 12;
+      const mediaRect = media.getBoundingClientRect();
+      let popupRect = popup.getBoundingClientRect();
+      const availableWidth = Math.max(0, mediaRect.width - safePadding * 2);
+
+      if (availableWidth > 0 && popupRect.width > availableWidth) {
+        popup.style.width = `${availableWidth}px`;
+        popupRect = popup.getBoundingClientRect();
+      }
+
+      if (popupRect.right > mediaRect.right - safePadding) {
+        hotspot.classList.add('is-align-right');
+      } else if (popupRect.left < mediaRect.left + safePadding) {
+        hotspot.classList.add('is-align-left');
+      }
+
+      popupRect = popup.getBoundingClientRect();
+
+      if (popupRect.bottom > mediaRect.bottom - safePadding) {
+        hotspot.classList.add('is-flip-up');
+        popupRect = popup.getBoundingClientRect();
+
+        if (popupRect.top < mediaRect.top + safePadding) {
+          hotspot.classList.remove('is-flip-up');
+          popupRect = popup.getBoundingClientRect();
+        }
+      }
+
+      let shiftX = 0;
+
+      if (popupRect.left < mediaRect.left + safePadding) {
+        shiftX = mediaRect.left + safePadding - popupRect.left;
+      } else if (popupRect.right > mediaRect.right - safePadding) {
+        shiftX = mediaRect.right - safePadding - popupRect.right;
+      }
+
+      hotspot.style.setProperty('--mf-gallery-popup-shift-x', `${shiftX}px`);
+    };
+
+    const updateOpenHotspots = () => {
+      sectionRoot.querySelectorAll('[data-hotspot].is-open').forEach((hotspot) => {
+        updateHotspotPlacement(hotspot);
+      });
+    };
+
+    const closeHotspots = () => {
+      sectionRoot.querySelectorAll('[data-hotspot]').forEach((hotspot) => {
+        resetHotspotPlacement(hotspot);
+        hotspot.classList.remove('is-open');
+        const trigger = hotspot.querySelector('[data-hotspot-trigger]');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    sectionRoot.querySelectorAll('[data-hotspot-trigger]').forEach((trigger) => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const hotspot = trigger.closest('[data-hotspot]');
+        const willOpen = !hotspot.classList.contains('is-open');
+
+        closeHotspots();
+
+        if (willOpen) {
+          hotspot.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          window.requestAnimationFrame(() => updateHotspotPlacement(hotspot));
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('#shopify-section-{{ section.id }} [data-hotspot]')) {
+        closeHotspots();
+      }
+    });
+
+    sectionRoot.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeHotspots();
+      }
+    });
+
+    window.addEventListener('resize', updateOpenHotspots);
+
+    if (!track || !dots.length || cards.length < 2) return;
+
+    const mobileView = window.matchMedia('(max-width: 989px)');
+
+    const setActiveDot = () => {
+      if (!mobileView.matches) return;
+
+      let activeIndex = 0;
+      let smallestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        const distance = Math.abs(card.offsetLeft - track.scrollLeft);
+        if (distance < smallestDistance) {
+          smallestDistance = distance;
+          activeIndex = index;
+        }
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('is-active', index === activeIndex);
+      });
+    };
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const targetIndex = Number(dot.dataset.galleryDot);
+        const targetCard = cards[targetIndex];
+        if (!targetCard) return;
+
+        track.scrollTo({
+          left: targetCard.offsetLeft,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    let scrollTimer;
+    track.addEventListener('scroll', () => {
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(setActiveDot, 80);
+    });
+
+    mobileView.addEventListener('change', setActiveDot);
+    window.addEventListener('resize', setActiveDot);
+    setActiveDot();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "MF PDP Gallery",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Gallery of Adventure"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile title size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "min": 70,
+      "max": 95,
+      "step": 1,
+      "unit": "%",
+      "label": "Mobile card width",
+      "default": 84
+    },
+    {
+      "type": "color",
+      "id": "hotspot_color",
+      "label": "Hotspot color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hotspot_text_color",
+      "label": "Hotspot icon color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "popup_background",
+      "label": "Popup background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "popup_text_color",
+      "label": "Popup text color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_item",
+      "name": "Gallery image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "Fallback image URL"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Image alt text"
+        },
+        {
+          "type": "product",
+          "id": "hotspot_1_product",
+          "label": "Hotspot 1 product"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_1_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 1 top",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "hotspot_1_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 1 left",
+          "default": 20
+        },
+        {
+          "type": "product",
+          "id": "hotspot_2_product",
+          "label": "Hotspot 2 product"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_2_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 2 top",
+          "default": 70
+        },
+        {
+          "type": "range",
+          "id": "hotspot_2_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 2 left",
+          "default": 75
+        },
+        {
+          "type": "product",
+          "id": "hotspot_3_product",
+          "label": "Hotspot 3 product"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_3_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 3 top",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_3_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Hotspot 3 left",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF PDP Gallery"
+    }
+  ]
+}
+{% endschema %}

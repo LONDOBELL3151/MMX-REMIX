@@ -1,0 +1,195 @@
+{%- assign accessories_product = block.settings.accessories_product -%}
+
+{% liquid
+  assign title = accessories_product.title | default: ''
+
+  assign first_variant = accessories_product.first_available_variant | default: accessories_product.variants.first
+
+  if block.settings.accessories_link != blank
+    assign link = block.settings.accessories_link
+  else
+    assign link = accessories_product.url
+  endif
+%}
+
+{%- capture item_text_box -%}
+  <div class="product_item-img">
+    {%- if accessories_product.featured_media -%}
+      {{-
+        accessories_product.featured_media
+        | image_url: width: accessories_product.featured_media.width
+        | image_tag
+      -}}
+      {%- else -%}
+      {{
+        'hero-apparel-1'
+        | placeholder_svg_tag: 'placeholder'
+        | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"'
+      }}
+    {%- endif -%}
+  </div>
+  <div class="product_item-text">
+    <p>{{ title }}</p>
+  </div>
+{%- endcapture -%}
+
+{%- capture item_text_link -%}
+  <div class="product_item-img">
+    <a href="{{ link }}" aria-label="{{ title }}">
+      {%- if block.settings.accessories_image != blank -%}
+        {{-
+          block.settings.accessories_image
+          | image_url: width: block.settings.accessories_image.width
+          | image_tag
+        -}}
+      {%- elsif accessories_product.featured_media -%}
+        {{-
+          accessories_product.featured_media
+          | image_url: width: accessories_product.featured_media.width
+          | image_tag
+        -}}
+      {%- else -%}
+        {{
+          'hero-apparel-1'
+          | placeholder_svg_tag: 'placeholder'
+          | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"'
+        }}
+      {%- endif -%}
+    </a>
+  </div>
+  <div class="product_item-text">
+    <a href="{{ link }}" aria-label="{{ title }}"> <p>{{ title }}</p></a>
+  </div>
+{%- endcapture -%}
+
+<div
+  class="impact-accessories-product-item {{ variant_class | default: '' }} {% if accessories_product.available == false %}sold-out{%- endif -%}"
+
+  {%- if accessories_product.available == true -%}
+    data-id="{{ accessories_product.variants.first.id }}"
+  {%- endif -%}
+
+  {% if block.settings.accessories_is_link == 'yes' %}
+    data-link="{{ link }}"
+  {% endif %}
+>
+  <div class="product_item_checkbox">
+    {%- if accessories_product.available == true -%}
+      <input
+        type="checkbox"
+        value="{{ accessories_product.id }}"
+        id="{{ accessories_product.id }}"
+        class="product-item_checkbox {% if accessories_product.available == true %}product-item_check-selest{%- endif -%}"
+        name="{{ title }}"
+        {% if block.settings.accessories_is_checed == 'yes' %}
+          checked
+        {% endif %}
+
+        {% if accessories_product.has_only_default_variant == true %}
+          {% if accessories_product.price == 0 %}
+            data-price="{{ accessories_product.compare_at_price | money }}"
+          {% else %}
+            data-price="{{ accessories_product.price | money }}"
+          {% endif %}
+        {% endif %}
+
+        {% if accessories_product.has_only_default_variant == false %}
+          {% if first_variant.price == 0 %}
+            data-price="{{ first_variant.compare_at_price | money }}"
+          {% else %}
+            data-price="{{ first_variant.price | money }}"
+          {% endif %}
+        {% endif %}
+      >
+    {%- else -%}
+      <input
+        type="checkbox"
+        value="{{ accessories_product.id }}"
+        name="{{ title }}"
+        class="product-item_checkbox"
+        disabled="disabled"
+      >
+    {%- endif -%}
+  </div>
+
+  {%- if block.settings.accessories_link == blank -%}
+    {%- if block.settings.accessories_is_link == 'no' -%}
+      {{ item_text_box }}
+    {%- else -%}
+      {{ item_text_link }}
+    {%- endif -%}
+  {%- else -%}
+    {{ item_text_link }}
+  {%- endif -%}
+
+  {%- if accessories_product.has_only_default_variant == false -%}
+    <div class="product_item_sku is_close">
+      <div class="item_sku-btn">
+        <div class="item_sku-label">
+          <p>Type:</p>
+        </div>
+        <div class="item_sku-selected">
+          <span>{{ first_variant.title }}</span>
+        </div>
+        <div class="item_sku-icon">
+          <svg
+            data-v-d2e47025=""
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1024 1024"
+          >
+            <path fill="currentColor" d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z">
+            </path>
+          </svg>
+        </div>
+      </div>
+      <div class="item_sku-selectList">
+        <div class="item_sku-selectList-option">
+          {%- for selectItem in accessories_product.variants -%}
+            <p
+              class="sku-select-option {% if forloop.first and selectItem.available == true %}selected-option{% endif %} {% if selectItem.available == false %}sku-select-option_disabled{% endif %}"
+              data-id="{{ selectItem.id }}"
+              data-option="{{ selectItem.title }}"
+              {% if selectItem.price == 0 or selectItem.price == '0' %}
+                data-free-text="{{ block.settings.accessories_price_text | escape }}"
+                data-price="{{ selectItem.price }}"
+              {% else %}
+                data-price="{{ selectItem.price | money }}"
+              {% endif %}
+
+              {% if selectItem.compare_at_price != blank %}
+                data-compare-price="{{ selectItem.compare_at_price | money }}"
+              {% endif %}
+            >
+              {{ selectItem.title }}
+            </p>
+          {%- endfor -%}
+        </div>
+        <span class="item_sku-selectList-arrow"></span>
+      </div>
+    </div>
+
+    <div class="product_item_price {% if first_variant.compare_at_price != blank %}product_item_price_compare{%- endif -%}">
+      {%- if first_variant.price == 0 or first_variant.price == '0' -%}
+        <p class="customize_price">FREE</p>
+      {%- else -%}
+        <p class="price">{{ first_variant.price | money }}</p>
+      {%- endif -%}
+      {%- if first_variant.compare_at_price != blank -%}
+        <p class="compare_at_price">{{ first_variant.compare_at_price | money }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {% if accessories_product.variants_count == 1 %}
+    <div class="product_item_price {% if accessories_product.compare_at_price != blank %}product_item_price_compare{%- endif -%}">
+      {% if accessories_product.price == 0 or accessories_product.price == '0' %}
+        <p class="customize_price">FREE</p>
+      {%- else -%}
+        <p class="price">{{ accessories_product.price | money }}</p>
+      {% endif %}
+      {%- if accessories_product.compare_at_price != blank -%}
+        <p class="compare_at_price">{{ accessories_product.compare_at_price | money }}</p>
+      {%- endif -%}
+    </div>
+  {% endif %}
+</div>

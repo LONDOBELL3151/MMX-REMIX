@@ -1,0 +1,110 @@
+.bicycle-tabs{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.bicycle-tabs-titles {
+    display: flex;
+    align-items: center;
+    scroll-behavior: smooth;
+    overflow: visible;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.bicycle-tabs-titles button {
+    padding: 0;
+    overflow: visible;
+    background: 0 0;
+    border: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+.bicycle-tabs-titles button:focus-visible,
+.bicycle-tabs-titles button:focus{
+  outline: none;
+    box-shadow: none;
+}
+.bicycle-tabs-titles button {
+    flex: 1;
+    padding: 10px 10px 12px 10px;
+    font-size: 18px;
+    border-bottom: 2px solid rgba(255, 192, 0, 0.1);
+    color: #595959;
+    font-weight: 600;
+    scroll-margin: 10px;
+}
+.bicycle-tabs-titles .titleActive {
+    border-color: hsl(45deg 100% 50%);
+    color: #000;
+}
+.bicycle-tabs-listItem {
+    display: none;
+}
+.bicycle-tabs-listItem figure{
+    display: grid;
+    grid-template-rows: 1fr;
+    margin-top: 48px;
+    grid-template-columns: 2fr 1fr;
+    gap: 0px 32px;
+    grid-auto-flow: row;
+    grid-template-areas: "tab-image tab-content";
+}
+.bicycle-tabs-listItem img {
+    border-radius: 12px;
+    grid-area: tab-image;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+    vertical-align: top;
+}
+.bicycle-tabs-listItem header {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 130%;
+}
+.bicycle-tabs-listItem p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #595959;
+    line-height: 150%;
+    margin-top: 15px;
+}
+.bicycle-tabs-list > .bicycle-tabs-listItem.listItemActive {
+    display: block;
+}
+@media only screen and (max-width: 1000px) {
+    .bicycle-tabs {
+        max-width: 1000px;
+    }
+    .bicycle-tabs-listItem figure {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: 24px 0px;
+        grid-auto-flow: column;
+        grid-template-areas:
+            "tab-image"
+            "tab-content";
+    }
+    .bicycle-tabs-titles button {
+        font-size: 16px;
+    }
+    
+    .bicycle-tabs-listItem header {
+        font-size: 18px;
+    }
+    .bicycle-tabs-titles {
+        overflow-x: scroll
+    }
+    .bicycle-tabs-titles::-webkit-scrollbar {
+        display: none;
+    }
+}

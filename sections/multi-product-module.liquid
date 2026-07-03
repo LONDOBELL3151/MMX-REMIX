@@ -1,0 +1,274 @@
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	.accessories {
+		max-width:{{ section.settings.max_width }};
+		margin: {{ section.settings.pc_margin_top }} auto {{ section.settings.pc_margin_bottom }};
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.trike-page {
+		/* position: relative; */
+		overflow: hidden;
+	}
+
+	.trike {
+		width: 50%;
+		position: relative;
+	}
+
+	.trike ul {
+		list-style: none;
+		width: 1000%;
+		overflow: hidden;
+	}
+
+	.trike ul li {
+		width: 10%;
+		float: left;
+	}
+
+	.trike ul li img {
+		width: 100%;
+		display: block;
+	}
+
+	.trike ul li .trike-text {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 10px;
+		align-items: center;
+	}
+
+	.trike ul li .trike-text p {
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.trike ul li .trike-text span {
+		background: #000;
+		color: #fff;
+		padding: 5px 10px;
+	}
+
+	.trike ul li .trike-text span a {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.access {
+		width: 45%;
+		margin-left: 15px;
+	}
+
+	.trike .prev,
+	.trike .next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 24px;
+		cursor: pointer;
+	}
+
+	.trike .prev {
+		left: -25px;
+	}
+
+	.trike .next {
+		right: -25px;
+	}
+
+	@media screen and (max-width: 767px) {
+		.accessories {
+			display: block;
+			margin: {{ section.settings.mb_margin_top }} auto {{ section.settings.mb_margin_bottom }};
+		}
+
+		.trike,
+		.access {
+			width: 100%;
+		}
+	}
+</style>
+
+<div class="accessories">
+	<div class="trike">
+		<div class="trike-page">
+			<ul>
+				{% for block in section.blocks %}
+					{% if block.settings.product_item != blank %}
+						{% assign product_item = block.settings.product_item %}
+						<li>
+							<img src="{{ product_item.featured_image | img_url: 'master' }}" alt="{{ product_item.featured_imag.alt}}">
+							<div class="trike-text">
+								<p>{{ product_item.title }}</p>
+								<span>
+									<a href="{{ product_item.url }}">
+										{{ forloop.index }}
+									</a> </span>
+							</div>
+						</li>
+					{% else %}
+						<li>
+							{{ 'product-1' | placeholder_svg_tag }}
+							<div class="trike-text">
+								<p>rearview Mirror</p>
+								<span>
+									<a href="">
+										1
+									</a> </span>
+							</div>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="prev">
+			< </div> <div class="next"> >
+		</div>
+	</div>
+	<div class="access">
+		{% if section.settings.main_title != blank %}
+			<h2>
+				{{ section.settings.main_title }}
+			</h2>
+		{% endif %}
+		{% if section.settings.text != blank %}
+			<p>
+				{{ section.settings.text }}
+			</p>
+		{% endif %}
+	</div>
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script>
+	var index = 0
+	var lis = $('.trike li').length - 1
+	var next = document.querySelector('.trike next')
+	var $lunbo = $('.trike ul').eq(0)
+
+	function nexts() {
+		if (index > lis) {
+			$lunbo.css({
+				'margin-left': 0 * $('.trike li').width() + "px"
+			})
+			index = 1;
+		}
+		$lunbo.stop(true, false).animate({
+			marginLeft: -index * $('.trike li').width() + 'px'
+		});
+	}
+	$('.trike .next').on('click', function () {
+		index++
+		nexts()
+	})
+
+	function prevs() {
+
+		if (index < 0) {
+			$lunbo.css({
+				'margin-left': -lis * $('.trike li').width() + "px"
+			})
+			index = lis - 1;
+		}
+		$lunbo.stop(true, false).animate({
+			marginLeft: -index * $('.trike li').width() + 'px'
+		});
+	}
+	$('.trike .prev').on('click', function () {
+		index--
+		prevs()
+	})
+</script>
+
+
+{% schema %}
+{
+	"name": "Multi Product",
+	"tag": "section",
+	"class": "section",
+	"max_blocks": 10,
+	"settings": [
+		{
+			"id":"max_width",
+			"type": "text",
+			"default": "1400px",
+			"label":"请设置模块最大宽度:"
+		},
+		{
+			"type": "text",
+			"id":"main_title",
+			"default": "Built For More Riders",
+			"label":"请输入主标题："
+		},
+		{
+			"id":"text",
+			"type": "textarea",
+			"default": "<strong>Free Shipping</strong><br />Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+			"label":"请输入文本："
+		},
+		{
+			"id":"pc_margin_top",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在PC端的顶部边距:"
+		},
+		{
+			"id":"pc_margin_bottom",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在PC端的底部边距:"
+		},
+		{
+			"id":"mb_margin_top",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在移动端的顶部边距:"
+		},
+		{
+			"id":"mb_margin_bottom",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在移动端的底部边距:"
+		}
+	],
+	"blocks":[
+		{
+			"name": "Item",
+			"type":"slide",
+			"settings": [
+				{
+					"id":"product_item",
+					"type": "product",
+					"label":"请选择产品"
+				}
+				
+			]
+		}	
+	],
+	"presets": [
+		{
+			"name": "Multi Product",
+			"blocks": [
+				{
+					"type": "slide"
+				},
+				{
+					"type": "slide"
+				},
+				{
+					"type": "slide"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,182 @@
+{{ 'bike-spec-info.css' | asset_url | stylesheet_tag }}
+
+<div class="bikeSpecInfo_content">
+  <div data-id="0" class="bikeSpecInfo_header" onclick="toggleTableVisibility(this)">
+    <h5>{{ section.settings.bikeSpecInfo_title }}</h5>
+    <span class="push active">
+      <svg data-v-d2e47025="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"></path></svg>
+    </span>
+    <span class="cut">
+      <svg data-v-d2e47025="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path fill="currentColor" d="M128 544h768a32 32 0 1 0 0-64H128a32 32 0 0 0 0 64"></path></svg>
+    </span>
+  </div>
+
+  <div class="bikeSpecInfo_table hide bikeSpecInfo-{{ section.id }} {% if section.settings.bikeSpecInfo_img %}bikeSpecInfo_table_img {% else %}bikeSpecInfo_table_list{% endif %}">
+
+    {% if section.settings.bikeSpecInfo_img and section.settings.bikeSpecInfo_imgPosition == 'left' %}
+      <div class="bikeSpecInfo_img">
+        <img
+          src="{{ section.settings.bikeSpecInfo_img | image_url: width: 1558 }}"
+          alt="{{ section.settings.bikeSpecInfo_imgAlt }}"
+          width="779"
+          height="{{ 779 | divided_by: section.settings.bikeSpecInfo_img.aspect_ratio | ceil }}"
+        >
+      </div>
+    {% endif %}
+    
+    {% assign currentTitle = '' %}
+    {% assign contentArr = "" | split: ',' %}
+    <table border="0" cellpadding="0" cellspacing="0">
+      {% for item in section.blocks %}
+        {% if currentTitle != item.settings.bikeSpecInfo_Item_title %}
+          {% if currentTitle != '' %}
+            <tr class="{% if contentArr.size >= 2 %}tr_more{% endif %}">
+              <th>{{ currentTitle }}</th>
+              {% for son in contentArr %}
+                <td>{{ son }}</td>
+              {% endfor %}
+            </tr>
+          {% endif %}
+          
+          {% assign currentTitle = item.settings.bikeSpecInfo_Item_title %}
+          {% assign contentArr = item.settings.bikeSpecInfo_Item_value | split: ',' %}
+        {% else %}
+          {% assign newContent = item.settings.bikeSpecInfo_Item_value | split: ',' %}
+          {% assign contentArr = contentArr | concat: newContent %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if contentArr.size > 0 %}
+        <tr class="{% if contentArr.size >= 2 %}tr_more{% endif %}">
+          <th>{{ currentTitle }}</th>
+          {% for son in contentArr %}
+            <td>{{ son }}</td>
+          {% endfor %}
+        </tr>
+      {% endif %}
+    </table>
+    
+    {% if section.settings.bikeSpecInfo_img and section.settings.bikeSpecInfo_imgPosition == 'right' %}
+      <div class="bikeSpecInfo_img">
+        <img
+          src="{{ section.settings.bikeSpecInfo_img | image_url: width: 1558 }}"
+          alt="{{ section.settings.bikeSpecInfo_imgAlt }}"
+          width="779"
+          height="{{ 779 | divided_by: section.settings.bikeSpecInfo_img.aspect_ratio | ceil }}"
+        >
+      </div>
+    {% endif %}
+  </div>
+  
+</div>
+
+<script>
+  function toggleTableVisibility(header) {
+
+    const selectedArr = Array.from(document.querySelectorAll('.bikeSpecInfo_header')).filter(item => item.dataset.id == 1);
+    if(selectedArr.length >0 && !(selectedArr.includes(header))) {
+      selectedArr.forEach(item => {
+        item.nextElementSibling.classList.add('hide');
+        Array.from(item.children)[1].classList.add('active');
+        Array.from(item.children)[2].classList.remove('active');
+        item.dataset.id = 0;
+        item.nextElementSibling.style.maxHeight = 0;
+      })
+    }
+
+    const table = header.nextElementSibling;
+    const push = Array.from(header.children)[1];
+    const cut = Array.from(header.children)[2];
+
+    if (table.classList.contains('hide')) {
+      table.classList.remove('hide');
+      push.classList.remove('active');
+      cut.classList.add('active');
+      header.dataset.id = 1;
+       const element = Array.from(table.children)[1] ?  Array.from(table.children)[0].offsetHeight + Array.from(table.children)[1].offsetHeight + 46 : Array.from(table.children)[0].offsetHeight + 46;
+       table.style.maxHeight =  `${element}px`;
+     
+    } else {
+      table.style.maxHeight = 0;
+      table.classList.add('hide');
+      push.classList.add('active');
+      cut.classList.remove('active');
+      header.dataset.id = 0;
+    }
+    
+  }
+</script>
+
+{% schema %}
+{
+  "name": "bike-spec-info",
+  "tag": "section",
+  "class": "bikeSpecInfo_section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "bikeSpecInfo_title",
+      "label": "Title",
+      "default": "Size & Fit"
+    },{
+      "type": "image_picker",
+      "id": "bikeSpecInfo_img",
+      "label": "Picture"
+    },
+    {
+      "type": "text",
+      "id": "bikeSpecInfo_imgAlt",
+      "label": "Picture-Alt",
+    },
+    {
+      "type": "radio",
+      "id": "bikeSpecInfo_imgPosition",
+      "label": "图片位置",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    }
+  ],
+    "blocks": [
+    {
+      "type": "bikeSpecInfoBox",
+      "name": "bikeSpecInfoBox",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bikeSpecInfo_Item_title",
+          "label": "Heading",
+          "default": "Size & Fit"
+        },
+        {
+          "type": "textarea",
+          "id": "bikeSpecInfo_Item_value",
+          "label": "Value",
+          "default": "aa"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bike-spec-info",
+       "blocks": [
+        {
+          "type": "bikeSpecInfoBox"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

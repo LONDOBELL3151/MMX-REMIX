@@ -1,0 +1,175 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{{ 'maxfoot-default-collection.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign featured_product = collection.products.first
+  assign hero_media = blank
+
+  if section.settings.show_collection_image and collection.image
+    assign hero_media = collection.image
+  elsif featured_product and featured_product.featured_media
+    assign hero_media = featured_product.featured_media
+  endif
+
+  assign hero_alt = collection.title | append: ' collection image'
+  if hero_media and hero_media.alt != blank
+    assign hero_alt = hero_media.alt
+  endif
+
+  assign featured_savings = 0
+  if featured_product and featured_product.compare_at_price > featured_product.price
+    assign featured_savings = featured_product.compare_at_price | minus: featured_product.price
+  endif
+-%}
+
+<div class="collection-hero maxfoot-collection-hero{% if hero_media != blank %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection-hero__inner page-width">
+    <div class="collection-hero__text-wrapper">
+      <p class="maxfoot-collection-hero__eyebrow">Ride Electric</p>
+      <h1 class="collection-hero__title">
+        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+        {{- collection.title | escape -}}
+      </h1>
+
+      <div class="collection-hero__description rte">
+        {%- if section.settings.show_collection_description and collection.description != blank -%}
+          {{ collection.description }}
+        {%- else -%}
+          <p>
+            Compare design, pricing and current availability across the lineup, then jump straight into the model that fits your ride style.
+          </p>
+        {%- endif -%}
+      </div>
+
+      <div class="maxfoot-collection-hero__meta">
+        <!--  第1条：原版产品数量 -->
+        <span class="maxfoot-collection-hero__meta-item">
+          {{ collection.products_count }} models to compare
+        </span>
+
+        <!--  第2条：元字段1，无值回退 -->
+        <span class="maxfoot-collection-hero__meta-item">
+          {%- if collection.metafields.custom.collection_page_keyword_1 != blank -%}
+            {{ collection.metafields.custom.collection_page_keyword_1 }}
+          {%- else -%}
+            Maxfoot ebike & etrike
+          {%- endif -%}
+        </span>
+
+        <!--  第3条：元字段2，无值回退 -->
+        <span class="maxfoot-collection-hero__meta-item">
+          {%- if collection.metafields.custom.collection_page_keyword_2 != blank -%}
+            {{ collection.metafields.custom.collection_page_keyword_2 }}
+          {%- else -%}
+            Built to the highest safety standards
+          {%- endif -%}
+        </span>
+
+        <!--  第4条：原版折扣金额 -->
+        {%- if featured_savings > 0 -%}
+          <span class="maxfoot-collection-hero__meta-item">
+            Featured savings {{ featured_savings | money }}
+          </span>
+        {%- endif -%}
+      </div>
+
+      <!-- 
+      <div class="maxfoot-collection-hero__meta">
+        <span class="maxfoot-collection-hero__meta-item">{{ collection.products_count }} models to compare</span>
+        <span class="maxfoot-collection-hero__meta-item">Designed for fast side-by-side browsing</span>
+        {%- if featured_savings > 0 -%}
+          <span class="maxfoot-collection-hero__meta-item">Featured savings {{ featured_savings | money }}</span>
+        {%- endif -%}
+      </div>  
+    -->
+
+      <div class="maxfoot-collection-hero__actions">
+        <a href="#ProductGridContainer" class="button button--primary">Shop collection</a>
+        {%- if featured_product != blank -%}
+          <a href="{{ featured_product.url }}" class="button button--secondary">Explore featured bike</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if hero_media != blank -%}
+      <div class="maxfoot-collection-hero__visual">
+        <div class="maxfoot-collection-hero__visual-frame">
+          <div class="maxfoot-collection-hero__image-container media gradient">
+            {{
+              hero_media
+              | image_url: width: 1070
+              | image_tag:
+                widths: '165,360,535,750,1070,1500',
+                sizes: '(min-width: 1200px) calc((100vw - 10rem) / 2), (min-width: 990px) calc(42vw - 4rem), calc(100vw - 4rem)',
+                loading: 'eager',
+                alt: hero_alt
+            }}
+          </div>
+
+          {%- if featured_product != blank -%}
+            <div class="maxfoot-collection-hero__visual-copy">
+              <span class="maxfoot-collection-hero__visual-label">Featured model</span>
+              <strong>{{ featured_product.title | escape }}</strong>
+              <span>{{ featured_product.price | money }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.all.colors.accent_1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.all.colors.accent_2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.all.colors.background_1.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.all.colors.background_2.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.all.colors.inverse.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.all.colors.label"
+    }
+  ]
+}
+{% endschema %}

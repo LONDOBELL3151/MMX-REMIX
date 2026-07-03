@@ -1,0 +1,610 @@
+{% assign heading_font = section.settings.heading_font.family %}
+{% assign content_font = section.settings.content_font.family %}
+{% assign item_width = 100 | divided_by: section.settings.item_quantity %}
+
+<style>
+  {{ section.settings.heading_font | font_face }}
+  {{ section.settings.content_font | font_face }}
+
+  .shogun-accordion-wrapper {
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .shogun-accordion-wrapper{
+  	width: 100%;
+  	max-width: {{ section.settings.max_width }};
+  	margin: {{ section.settings.pc_margin_top }}px auto {{ section.settings.pc_margin_bottom }}px;
+  }
+  .shogun-accordion {
+  	border: 1px solid #ddd;
+  	margin-top: 5px;
+  	border-radius: 4px;
+  	box-shadow: 0 1px 1px rgb(0, 0, 0, .05);
+  	overflow: hidden;
+  }
+
+  .shogun-accordion-header {
+  	background: #f5f5f5;
+  	padding: 10px;
+  	cursor: pointer;
+  	display: flex;
+  	align-items: center;
+  	justify-content: space-between;
+  	position: relative;
+  	box-sizing: border-box;
+  	font-family: {{ heading_font }};
+  }
+
+  .shogun-accordion-title {
+  	color: #000;
+  	font-weight: bold;
+  	font-family: {{ heading_font }};
+  	font-size: 20px;
+  }
+
+  .shogun-accordion-icon span {
+  	color: #000;
+  	font-size: 25px;
+  	line-height: 25px;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	transition: 0.3s transform;
+  	font-family: {{ heading_font }};
+  }
+
+  .shogun-accordion-icon span::after {
+  	content: "▸";
+  }
+
+  .shogun-accordion-icon.shogun-icon-chevron span {
+  	transform: rotate(90deg);
+  	/* transition: 0.3s transform; */
+  }
+
+
+  .shogun-accordion-body {
+  	border-top: 1px solid #ddd;
+  	background-color: #fff;
+  	opacity: 0;
+  	transition: all .5s linear;
+  	overflow: hidden;
+  	height: 0;
+  }
+
+  .accordion-page {
+  	display: flex;
+  	align-items: flex-start;
+  	justify-content: flex-start;
+  	flex-wrap: wrap;
+  	padding: 20px;
+  	height: auto;
+  	box-sizing: border-box;
+    gap: 5px;
+  }
+
+  .shogun-content {
+  	/* width: calc({{ item_width }}% - 20px);
+  	flex-shrink: 0; */
+    width: 33%
+  }
+
+  .shogun-accordion-active {
+  	opacity: 1;
+  	/* height: auto; */
+  	visibility: visible;
+
+  }
+
+  .shg-theme-text-content {
+  	font-size: 18px;
+  	line-height: 24px;
+  	margin-bottom: 18px;
+  	color: #3c3c3c;
+  	font-family: {{ content_font }};
+  }
+
+  .shg-theme-text-content:last-of-type {
+  	font-size: 14px;
+  	margin-bottom: 42px;
+  }
+
+  @media only screen and (max-width: 1038px) {
+    .shogun-content {
+      flex:auto;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+  	.shogun-accordion-wrapper{
+  		margin: {{ section.settings.mb_margin_top }}px auto {{ section.settings.mb_margin_bottom }}px;
+  	}
+
+  	.accordion-page {
+  		display: block;
+  	}
+
+  	.shogun-content {
+  		width: 100%;
+  	}
+  	.shogun-accordion{
+  		margin-left: 1%;
+  		margin-right: 1%;
+  	}
+  }
+</style>
+
+<div class="shogun-accordion-wrapper">
+  {% for block in section.blocks %}
+    <div class="shogun-accordion">
+      <!-- Module Heading -->
+      <div class="shogun-accordion-header">
+        {% if block.settings.heading != blank %}
+          <h4 class="shogun-accordion-title">
+            {{ block.settings.heading }}
+          </h4>
+        {% endif %}
+
+        <div class="shogun-accordion-icon {% if forloop.first %}shogun-icon-chevron{% endif %}">
+          <!-- shogun-icon-chevron -->
+          <span></span>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="shogun-accordion-body {% if forloop.first %}shogun-accordion-active{% endif %}" {% if forloop.first %}style="height: auto;"{% endif %}>
+        <div class="accordion-page">
+          {% if block.settings.item_heading_1 != blank or block.settings.item_content_1 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_1 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_1 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_2 != blank or block.settings.item_content_2 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_2 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_2 }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if block.settings.item_heading_3 != blank or block.settings.item_content_3 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_3 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_3 }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if block.settings.item_heading_4 != blank or block.settings.item_content_4 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_4 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_4 }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if block.settings.item_heading_5 != blank or block.settings.item_content_5 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_5 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_5 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_6 != blank or block.settings.item_content_6 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_6 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_6 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_7 != blank or block.settings.item_content_7 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_7 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_7 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_8 != blank or block.settings.item_content_8 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_8 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_8 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_9 != blank or block.settings.item_content_9 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_9 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_9 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_10 != blank or block.settings.item_content_10 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_10 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_10 }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if block.settings.item_heading_11 != blank or block.settings.item_content_11 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_11 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_11 }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if block.settings.item_heading_12 != blank or block.settings.item_content_12 != blank %}
+            <div class="shogun-content">
+              <!-- Item 1-12 heading -->
+              <div class="shg-theme-text-content">
+                <p>
+                  <strong>{{ block.settings.item_heading_12 }}</strong>
+                </p>
+              </div>
+              <!-- Item 1-12 content -->
+              <div class="shg-theme-text-content">
+                <p>{{ block.settings.item_content_12 }}</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  var shogunAccordion = document.querySelectorAll('.shogun-accordion');
+  var shogunAccordionBody = document.querySelectorAll('.shogun-accordion-body');
+  var shogunAccordionIcon = document.querySelectorAll('.shogun-accordion .shogun-accordion-icon');
+
+  shogunAccordion.forEach((e, i) => {
+    let shogunAccordionHeader = e.firstElementChild;
+    shogunAccordionHeader.addEventListener('click', (ele) => {
+      addClass(i);
+      if (shogunAccordionHeader.children.length > 0) {
+        shogunAccordionHeader.children[1].classList.toggle('shogun-icon-chevron');
+      }
+
+      if (shogunAccordionHeader.parentNode.children.length > 1) {
+        let ischeng = shogunAccordionHeader.parentNode.children[1].classList.toggle('shogun-accordion-active');
+        let heights = shogunAccordionHeader.parentNode.children[1].children[0].offsetHeight;
+        shogunAccordionHeader.parentNode.children[1].style.height = ischeng ? heights + 'px' : 0;
+      }
+      // 			ele.path[0].children[1].classList.toggle('shogun-icon-chevron')
+
+      // 			let ischeng = ele.path[1].children[1].classList.toggle('shogun-accordion-active')
+      // 			let heights = ele.path[1].children[1].children[0].offsetHeight
+      // 			ele.path[1].children[1].style.height = ischeng ? heights + 'px' : 0
+    });
+  });
+
+  function addClass(i) {
+    shogunAccordionIcon.forEach((val, j) => {
+      if (i != j) {
+        val.className = 'shogun-accordion-icon';
+      }
+    });
+    shogunAccordionBody.forEach((val, j) => {
+      if (i != j) {
+        val.className = 'shogun-accordion-body';
+        val.style.height = '0';
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Accordion",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "text",
+      "id": "max_width",
+      "default": "1200px",
+      "label": "Max width"
+    },
+    {
+      "type": "range",
+      "id": "item_quantity",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "label": "The item quantity displayed per line",
+      "default": 3
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "default": "antique_olive_n9",
+      "label": "Heading font"
+    },
+    {
+      "type": "font_picker",
+      "id": "content_font",
+      "default": "antique_olive_n3",
+      "label": "Content font"
+    },
+    {
+      "type": "range",
+      "id": "pc_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "The top margin of a PC device",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pc_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "The bottom margin of a PC device",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mb_margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "The top margin of a Mobile device",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mb_margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "The top margin of a Mobile device",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Accordion item",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Module Heading"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading",
+          "default": "Item"
+        },
+        {
+          "type": "header",
+          "content": "Module content"
+        },
+        {
+          "id": "item_heading_1",
+          "type": "text",
+          "label": "Item 1 heading"
+        },
+        {
+          "id": "item_content_1",
+          "type": "textarea",
+          "label": "Item 1 content"
+        },
+        {
+          "id": "item_heading_2",
+          "type": "text",
+          "label": "Item 2 heading"
+        },
+        {
+          "id": "item_content_2",
+          "type": "textarea",
+          "label": "Item 2 content"
+        },
+        {
+          "id": "item_heading_3",
+          "type": "text",
+          "label": "Item 3 heading"
+        },
+        {
+          "id": "item_content_3",
+          "type": "textarea",
+          "label": "Item 3 content"
+        },
+        {
+          "id": "item_heading_4",
+          "type": "text",
+          "label": "Item 4 heading"
+        },
+        {
+          "id": "item_content_4",
+          "type": "textarea",
+          "label": "Item 4 content"
+        },
+        {
+          "id": "item_heading_5",
+          "type": "text",
+          "label": "Item 5 heading"
+        },
+        {
+          "id": "item_content_5",
+          "type": "textarea",
+          "label": "Item 5 content"
+        },
+        {
+          "id": "item_heading_6",
+          "type": "text",
+          "label": "Item 6 heading"
+        },
+        {
+          "id": "item_content_6",
+          "type": "textarea",
+          "label": "Item 6 content"
+        },
+        {
+          "id": "item_heading_7",
+          "type": "text",
+          "label": "Item 7 heading"
+        },
+        {
+          "id": "item_content_7",
+          "type": "textarea",
+          "label": "Item 7 content"
+        },
+        {
+          "id": "item_heading_8",
+          "type": "text",
+          "label": "Item 8 heading"
+        },
+        {
+          "id": "item_content_8",
+          "type": "textarea",
+          "label": "Item 8 content"
+        },
+        {
+          "id": "item_heading_9",
+          "type": "text",
+          "label": "Item 9 heading"
+        },
+        {
+          "id": "item_content_9",
+          "type": "textarea",
+          "label": "Item 9 content"
+        },
+        {
+          "id": "item_heading_10",
+          "type": "text",
+          "label": "Item 10 heading"
+        },
+        {
+          "id": "item_content_10",
+          "type": "textarea",
+          "label": "Item 10 content"
+        },
+        {
+          "id": "item_heading_11",
+          "type": "text",
+          "label": "Item 11 heading"
+        },
+        {
+          "id": "item_content_11",
+          "type": "textarea",
+          "label": "Item 11 content"
+        },
+        {
+          "id": "item_heading_12",
+          "type": "text",
+          "label": "Item 12 heading"
+        },
+        {
+          "id": "item_content_12",
+          "type": "textarea",
+          "label": "Item 12 content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

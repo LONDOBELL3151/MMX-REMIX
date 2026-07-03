@@ -1,0 +1,58 @@
+{{ 'fourSquares_icon.css' | asset_url | stylesheet_tag }}
+<section class="bicycle-fourIcon">
+    {% for item in section.blocks %}
+        <div class="bicycle-fourIcon-item">
+          <figure>
+            {% if item.settings.icon_img %}
+                <img src="{{ item.settings.icon_img | img_url: '80x80' }}"  alt="">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+              {% endif %}
+            <figcaption>
+              <header><b>{{ item.settings.icon_header }}</b></header>
+              <p>{{ item.settings.icon_desc }}</p>
+            </figcaption>
+          </figure>
+        </div>
+    {% endfor %}
+</section>
+{% schema %}
+{
+  "name": "fourSquares_icon",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "fourSquaresIconBox",
+      "name": "fourSquaresIconBox",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_img",
+          "label": "icon img",
+          "info": "图片尺寸 80x80"
+        },
+        {
+          "type": "text",
+          "id": "icon_header",
+          "label": "icon header",
+          "default": "icon header"
+        },
+        {
+          "type": "text",
+          "id": "icon_desc",
+          "label": "icon desc",
+          "default": "icon desc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "fourSquares_icon"
+    }
+  ]
+}
+{% endschema %} 

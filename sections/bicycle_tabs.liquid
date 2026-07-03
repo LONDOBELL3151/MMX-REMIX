@@ -1,0 +1,89 @@
+{{ 'bicycle_tabs.css' | asset_url | stylesheet_tag }}
+<section class="bicycle-tabs">
+  <div class="bicycle-tabs-titles bicycle-tabs-titles-{{ section.id }}">
+    {% for tabsBtn in section.blocks %}
+        <button data-idx="{{ forloop.index0 }}" class="bicycle-tabsBtn {% if forloop.index == 1 %}titleActive{% endif %}">{{ tabsBtn.settings.bicycleTabs_tabTitle }}</button>
+    {% endfor %}
+  </div>
+  <div class="bicycle-tabs-list">
+    {% for tabsItem in section.blocks %}
+        <div data-idx="{{ forloop.index0 }}" class="bicycle-tabs-listItem {% if forloop.index == 1 %}listItemActive{% endif %}">
+          <figure>
+            {% if tabsItem.settings.bicycleTabs_contentImg %}
+                <img src="{{ tabsItem.settings.bicycleTabs_contentImg | img_url: '752x502' }}"  alt="">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+              {% endif %}
+            <figcaption>
+              <header>{{ tabsItem.settings.bicycleTabs_contentHeader }}</header>
+              <p>{{ tabsItem.settings.bicycleTabs_contentDesc }}</p>
+            </figcaption>
+          </figure>
+        </div>
+    {% endfor %}
+  </div>
+</section>
+<script>
+  document.querySelector('.bicycle-tabs-titles-{{ section.id }}').addEventListener('click', (e) => {
+    const item = e.target;
+    if (item.nodeName == 'BUTTON') {
+      let { idx } = item.dataset;
+
+      document.querySelector('.bicycle-tabs-listItem.listItemActive').classList.remove('listItemActive');
+      document.querySelector(`.bicycle-tabs-listItem[data-idx="${idx}"]`).classList.add('listItemActive');
+
+      document.querySelector('.bicycle-tabsBtn.titleActive').classList.remove('titleActive');
+      document.querySelector(`.bicycle-tabsBtn[data-idx="${idx}"]`).classList.add('titleActive');
+
+      item.scrollIntoView({
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+  });
+</script>
+{% schema %}
+{
+  "name": "bicycle_tabs",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "bicycleTabsBox",
+      "name": "bicycleTabsBox",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bicycleTabs_tabTitle",
+          "label": "bicycle tabs title",
+          "default": "bicycle tabs title"
+        },
+        {
+          "type": "image_picker",
+          "id": "bicycleTabs_contentImg",
+          "label": "bicycle tabs content img",
+          "info": "图片尺寸 752x502"
+        },
+        {
+          "type": "text",
+          "id": "bicycleTabs_contentHeader",
+          "label": "bicycle tabs content header",
+          "default": "bicycle tabs content header"
+        },
+        {
+          "type": "text",
+          "id": "bicycleTabs_contentDesc",
+          "label": "bicycle tabs content desc",
+          "default": "bicycle tabs content desc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "bicycle_tabs"
+    }
+  ]
+}
+{% endschema %}

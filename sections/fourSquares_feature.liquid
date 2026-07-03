@@ -1,0 +1,89 @@
+{{ 'fourSquares_feature.css' | asset_url | stylesheet_tag }}
+
+<section class="bicycle-fourFeature">
+  <div class="bicycle-fourFeature-box">
+    {% for block in section.blocks %}
+      <div class="bicycle-fourFeature-item {% if forloop.index == 1 %}bicycle-fourFeature-width600 bicycle-fourFeature-item1{% endif %}{% if forloop.index == 2 %}bicycle-fourFeature-width450 bicycle-fourFeature-item2{% endif %}{% if forloop.index == 3 %}bicycle-fourFeature-width450 bicycle-fourFeature-item3{% endif %}{% if forloop.index == 4 %}bicycle-fourFeature-width600 bicycle-fourFeature-item4{% endif %}">
+        {% if forloop.index == 1 %}
+          <h2 class="bicycle-fourFeature-title">{{ section.settings.fourSquares_title }}</h2>
+        {% endif %}
+        <figure>
+          {% if block.settings.fourSquares_img %}
+            <img src="{{ block.settings.fourSquares_img | img_url: '600x800' }}"  alt="">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+          {% endif %}
+          <figcaption>
+            <header>
+              <b class="fourSquares_header_Pc">{{ block.settings.fourSquares_header_Pc }}</b>
+              <b class="fourSquares_header_Phpne" style="color: {{ block.settings.fourSquares_header_color }};">{{ block.settings.fourSquares_header_Phpne }}</b>
+            </header>
+            <p>{{ block.settings.fourSquares_desc }}</p>
+          </figcaption>
+        </figure>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "fourSquares_feature",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "fourSquares_title",
+      "label": "four squares title",
+      "default": "Each piece designed for a purpose."
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "fourSquaresBox",
+      "name": "fourSquaresBox",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "fourSquares_img",
+          "label": "four squares img",
+          "info": "图片尺寸 450x600 / 600x450"
+        },
+        {
+          "type": "text",
+          "id": "fourSquares_header_Pc",
+          "label": "Pc four squares header",
+          "default": "Pc four squares header"
+        },
+        {
+          "type": "text",
+          "id": "fourSquares_header_Phpne",
+          "label": "Phpne four squares header",
+          "default": "Phpne four <br/> squares header",
+          "info": "自行添加 <br/> 换行"
+        },
+        {
+          "type": "text",
+          "id": "fourSquares_header_color",
+          "label": "four squares header color",
+          "default": "#000",
+          "info": "手机端标题的颜色"
+        },
+        {
+          "type": "text",
+          "id": "fourSquares_desc",
+          "label": "four squares desc",
+          "default": "four squares desc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "fourSquares_feature"
+    }
+  ]
+}
+{% endschema %}

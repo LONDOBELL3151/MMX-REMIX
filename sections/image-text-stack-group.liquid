@@ -1,0 +1,208 @@
+{% schema %}
+{
+  "name": "多图文堆叠模块",
+  "tag": "section",
+  "class": "image-text-stack-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#f5f5f5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "图文堆叠块",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "布局方向",
+          "default": "image-right",
+          "options": [
+            { "value": "image-right", "label": "图右文左" },
+            { "value": "image-left", "label": "图左文右" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "标题",
+          "default": "你的标题在这里"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "描述文本",
+          "default": "这是你的描述文案。"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文字",
+          "default": "了解更多"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "按钮链接"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "图片 1（顶部）",
+          "info": "请上传比例为 1:1 的图片（例如 200x200 像素）。"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "图片 2（底部）",
+          "info": "请上传比例为 1:1 的图片（例如 200x200 像素）。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "多图文堆叠模块",
+      "category": "自定义模块"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.image-text-stack-section {
+  padding: 60px 20px;
+}
+.image-text-stack-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 60px auto;
+  gap: 30px;
+}
+.image-text-stack-wrapper.reverse {
+  flex-direction: row-reverse;
+}
+
+.image-text-text,
+.image-text-image {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+.image-text-text h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+.image-text-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.image-text-text a {
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.image-text-image {
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+.image-text-image.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 限制图片显示为 200x200 并保持 1:1 比例 */
+.image-text-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.image-text-image .img2 {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 1;
+  opacity: 0.8;
+}
+.image-text-image .img1 {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .image-text-stack-wrapper {
+    flex-direction: column !important;
+  }
+  .image-text-image img {
+    width: 160px;
+    height: 160px;
+  }
+  .image-text-image .img2 {
+    top: 15px;
+    left: 15px;
+  }
+}
+</style>
+
+<div class="image-text-stack-section" style="background-color: {{ section.settings.background_color }};">
+  {% for block in section.blocks %}
+    <div class="image-text-stack-wrapper {% if block.settings.layout == 'image-left' %}reverse{% endif %}">
+      
+      <!-- 文案区域 -->
+      <div class="image-text-text">
+        <h2>{{ block.settings.heading }}</h2>
+        <p>{{ block.settings.text }}</p>
+        {% if block.settings.button_link %}
+          <a href="{{ block.settings.button_link }}">{{ block.settings.button_text }}</a>
+        {% endif %}
+      </div>
+
+      <!-- 图片区域 -->
+      <div class="image-text-image" id="image-{{ forloop.index }}">
+        {% if block.settings.image_2 != blank %}
+          <img src="{{ block.settings.image_2 | image_url: width: 600 }}" alt="底图" class="img2">
+        {% endif %}
+        {% if block.settings.image_1 != blank %}
+          <img src="{{ block.settings.image_1 | image_url: width: 600 }}" alt="顶图" class="img1">
+        {% endif %}
+      </div>
+
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const animatedImages = document.querySelectorAll('.image-text-image');
+    if (window.innerWidth >= 769) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      animatedImages.forEach(img => observer.observe(img));
+    } else {
+      animatedImages.forEach(img => img.classList.add('visible'));
+    }
+  });
+</script>

@@ -1,0 +1,42 @@
+{%- assign has_valid_badge = true -%}
+
+{%- if product_custom.size > 0  -%}
+  {%- for field in product_custom -%}
+    {%- assign key = field | first -%}
+    {%- assign value = field | last -%}
+    {%- if key contains 'badge' and value != blank -%}
+      {%- if forloop.index > 1 -%}
+           <div class="impact-product-card_badge-list">
+           {%- assign has_valid_badge = false -%}
+           <p >{{ value }}</p>
+          </div>
+         {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+
+{%- if has_valid_badge -%}
+  {%- if product.compare_at_price > product.price -%}
+    {%- if percentage_mode -%}
+      {%- assign savings = product.compare_at_price
+        | minus: product.price
+        | times: 100.0
+        | divided_by: product.compare_at_price
+        | round
+        | append: '%'
+      -%}
+    {%- elsif currency_code_enabled -%}
+      {%- capture savings -%}{{ product.compare_at_price | minus: product.price | money_with_currency }} OFF{%- endcapture -%}
+    {%- else -%}
+      {%- capture savings -%}{{ product.compare_at_price | minus: product.price | money }} OFF{%- endcapture -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if has_valid_badge -%}
+  {%- if product.compare_at_price > product.price -%}
+    <div class="impact-product-card_badge-list">
+      <p>{{ savings }}</p>
+    </div>
+  {%- endif -%}
+{%- endif -%}

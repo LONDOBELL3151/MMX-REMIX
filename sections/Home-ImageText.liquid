@@ -1,0 +1,136 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+{{ 'home-bikeswiper.css' | asset_url | stylesheet_tag }}
+<div class="home-bikeswiper">
+  <div class="swiper bikeSwiper-{{- section.id }} bikeswiper-L">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+          <picture>
+            {% if block.settings.phone_swiper_Image %}
+              <source media="(max-width:750px)" srcset="{{ block.settings.phone_swiper_Image | image_url: width: 690 }}">
+            {% else %}
+              <source media="(max-width:750px)" srcset="{{ '404_MB.png' | asset_img_url:"690X437" }}">
+            {% endif %}
+            
+            {% if block.settings.pc_swiper_image %}
+              <img src="{{ block.settings.pc_swiper_image | image_url: width: 1001 }}" alt="" loading="lazy">
+            {% else %}
+              <img src="{{ '404_PC.png' | asset_img_url:"1001x628" }}" alt="" loading="lazy">
+            {% endif %}
+          </picture>
+        </div>
+
+      {% endfor %}
+
+      {% if section.blocks.size <= 0 %}
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+          {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="bikeswiper-R">
+    <h5 class="fontSize-b">{{ section.settings.title }}</h5>
+    <p class="fontSize-a">{{ section.settings.word_sentence }}</p>
+    <a
+      href="{{ section.settings.bikeswiper-href }}"
+      target="_blank"
+      class="fontSize-a more_href">{{ section.settings.bikeswiper-name-href }}</a>
+  </div>
+</div>
+
+{{ 'swiper-bundle.js' | asset_url | script_tag }}
+{% schema %}
+  {
+    "name": "Home-Image Text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "title",
+        "default": "MF-30 Bright Yellow Fat Tire E-trike"
+      }, {
+        "type": "text",
+        "id": "word_sentence",
+        "label": "word_sentence",
+        "default": "Maxfoot released an awesome yellow version of the MF-30 for 2023.The newcolor is bright and stunning. Ride in style on any terrain with this new color."
+      }, {
+        "type": "text",
+        "id": "bikeswiper-name-href",
+        "label": "bikeswiper-name-href",
+        "default": "DISCOVER MORE"
+      }, {
+        "type": "text",
+        "id": "bikeswiper-href",
+        "label": "bikeswiper-href"
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "max_blocks": 5,
+    "blocks": [
+      {
+        "name": "Image Item",
+        "type": "swiper_image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "pc_swiper_image",
+            "label": "pc_swiper_image"
+          }, {
+            "type": "image_picker",
+            "id": "phone_swiper_Image",
+            "label": "phone_swiper_Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home-Image Text",
+        "blocks": [
+          {
+            "type": "swiper_image"
+          }, {
+            "type": "swiper_image"
+          }, {
+            "type": "swiper_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+<script>
+  var swiper = new Swiper('.bikeSwiper-  {{- section.id }}', {
+    loop: true,
+    effect: 'fade',
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: true
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    }
+  });
+
+  document.addEventListener('shopify:block:select', () => {
+    var swiper = new Swiper('.bikeSwiper-  {{- section.id }}', {
+      loop: true,
+      effect: 'fade',
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: true
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
+  })
+</script>

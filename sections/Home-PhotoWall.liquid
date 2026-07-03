@@ -1,0 +1,183 @@
+{{ 'home-imgs.css' | asset_url | stylesheet_tag }}
+{% assign selected_img = false %}
+{% if section.settings.imgs-1 != blank or section.settings.imgs-2 != blank or section.settings.imgs-3 != blank or section.settings.imgs-4 != blank or section.settings.imgs-5 != blank or section.settings.imgs-6 != blank or section.settings.imgs-7 != blank %}
+  {% assign selected_img = true %}
+{% endif %}
+<div class="home-imgs">
+  <div class="imgs-first">
+    <div class="imgs-1 width_241">
+      <img src="{% if selected_img %}{{ section.settings.imgs-1 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+    </div>
+    <div class="imgs-2_3">
+      <div class="imgs-2 width_179">
+        <img src="{% if selected_img %}{{ section.settings.imgs-2 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+      </div>
+      <div class="imgs-3 width_241">
+        <img src="{% if selected_img %}{{ section.settings.imgs-3 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="imgs-second">
+    <div class="imgs-4 width_179">
+      <img src="{% if selected_img %}{{ section.settings.imgs-4 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+    </div>
+    <div class="imgs-5 width_179">
+      <img src="{% if selected_img %}{{ section.settings.imgs-5 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+    </div>
+  </div>
+  <div class="imgs-third">
+    <div class="imgs-5 width_274">
+      <img src="{% if selected_img %}{{ section.settings.imgs-6 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+    </div>
+    <div class="imgs-6 width_264">
+      <img src="{% if selected_img %}{{ section.settings.imgs-7 | image_url  }}{% else %}{{ '404_PC.png' | asset_img_url:"400x" }}{% endif %}" alt="">
+    </div>
+  </div>
+  <div class="imgs-word">
+    <h5 class="fontSize-d">{{ section.settings.title }}</h5>
+    <a
+      href="{{ section.settings.word-sentence-href }}"
+      class="fontSize-b"
+      target="_blank">
+      {{- section.settings.word-sentence-href-name -}}
+    </a>
+  </div>
+</div>
+<div class="home-imgs-phone">
+  <div class="imgs-1-2_word">
+    <div class="chatting chatting-bottom imgs-1_word">
+      <p>{{ section.settings.imgs-1_word }}</p>
+      <span class="chatting-arrow chatting-arrow-bottom"></span>
+    </div>
+    <div class="chatting chatting-bottom imgs-2_word">
+      <p>{{ section.settings.imgs-2_word }}</p>
+      <span class="chatting-arrow chatting-arrow-bottom"></span>
+    </div>
+  </div>
+  <div class="chatting chatting-bottom imgs-3_word">
+    <p>{{ section.settings.imgs-3_word }}</p>
+    <span class="chatting-arrow chatting-arrow-bottom"></span>
+  </div>
+  <div class="imgs-word-phone">
+    <h5>{{ section.settings.title }}</h5>
+    <a href="{{ section.settings.word-sentence-href }}" target="_blank">
+      {{- section.settings.word-sentence-href-name -}}
+    </a>
+  </div>
+  <div class="imgs-5-6_word">
+    <div class="chatting chatting-top imgs-5_word">
+      <p>{{ section.settings.imgs-4_word }}</p>
+      <span class="chatting-arrow chatting-arrow-top"></span>
+    </div>
+    <div class="chatting chatting-top imgs-6_word">
+      <p>{{ section.settings.imgs-5_word }}</p>
+      <span class="chatting-arrow chatting-arrow-top"></span>
+    </div>
+  </div>
+  <div class="imgs-7-8_word">
+    <div class="chatting chatting-top imgs-7_word">
+      <p>{{ section.settings.imgs-6_word }}</p>
+      <span class="chatting-arrow chatting-arrow-top"></span>
+    </div>
+    <div class="chatting chatting-top imgs-8_word">
+      <p>{{ section.settings.imgs-7_word }}</p>
+      <span class="chatting-arrow chatting-arrow-top"></span>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Home-Photo Wall",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "title",
+        "default": "“See what they say”"
+      },
+      {
+        "type": "text",
+        "id": "word-sentence-href-name",
+        "label": "word-sentence-href-name",
+        "default": "Read What Makes Our Riders Smile"
+      },
+      {
+        "type": "text",
+        "id": "word-sentence-href",
+        "label": "word-sentence-href"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgs-1",
+        "label": "imgs-1"
+      }, {
+        "type": "text",
+        "id": "imgs-1_word",
+        "label": "imgs-1_word",
+        "default": "“What a nice bike!”"
+      }, {
+        "type": "image_picker",
+        "id": "imgs-2",
+        "label": "imgs-2"
+      }, {
+        "type": "text",
+        "id": "imgs-2_word",
+        "label": "imgs-2_word",
+        "default": "“Very Good!”"
+      }, {
+        "type": "image_picker",
+        "id": "imgs-3",
+        "label": "imgs-3"
+      }, {
+        "type": "text",
+        "id": "imgs-3_word",
+        "label": "imgs-3_word",
+        "default": "“Give me a nice weekend”"
+      }, {
+        "type": "image_picker",
+        "id": "imgs-4",
+        "label": "imgs-4"
+      }, {
+        "type": "text",
+        "id": "imgs-4_word",
+        "label": "imgs-4_word",
+        "default": "“A Wonderful Trike”"
+      }, {
+        "type": "image_picker",
+        "id": "imgs-5",
+        "label": "imgs-5"
+      }, {
+        "type": "text",
+        "id": "imgs-5_word",
+        "label": "imgs-5_word",
+        "default": "“Will buy next time”"
+      }, {
+        "type": "image_picker",
+        "id": "imgs-6",
+        "label": "imgs-6"
+      }, {
+        "type": "text",
+        "id": "imgs-6_word",
+        "label": "imgs-6_word",
+        "default": "“Have a nice day”"
+      }, {
+        "type": "image_picker",
+        "id": "imgs-7",
+        "label": "imgs-7"
+      }, {
+        "type": "text",
+        "id": "imgs-7_word",
+        "label": "imgs-7_word",
+        "default": "“I ride it to office every day”"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home-Photo Wall"
+      }
+    ]
+  }
+{% endschema %}

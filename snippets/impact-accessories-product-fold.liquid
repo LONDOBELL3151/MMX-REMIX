@@ -1,0 +1,27 @@
+{%- assign fold_id = 'foldId-' | append: id -%}
+{% style %}
+  .page-width :has(#{{ fold_id }}:checked) .impact-accessories-product_fold {
+    grid-template-rows: 1fr;
+  }
+  #{{ fold_id }}:checked + label::after {
+    transform: scaleY(1);
+  }
+  #{{ fold_id }}:checked + label .expand {
+    display: block;
+  }
+  #{{ fold_id }}:not(:checked) + label .retract {
+    display: block
+  }
+{% endstyle %}
+<div class="impact-accessories-product-foldBox">
+  <div class="fold_btn">
+    <input hidden type="checkbox" id="{{ fold_id }}" checked>
+    <label for="{{ fold_id }}">
+      <span class="expand">{{ block.settings.accessories_fold_text-expand }}</span>
+      <span class="retract">{{ block.settings.accessories_fold_text-retract }}</span>
+    </label>
+  </div>
+  <div class="fold_price">
+    <p>{{ block.settings.accessories_fold_price }} $<span class="prict-toal"></span></p>
+  </div>
+</div>

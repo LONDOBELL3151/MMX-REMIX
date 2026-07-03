@@ -1,0 +1,116 @@
+{% comment %}
+  Renders product variant-picker (Split Variant Version)
+  针对单属性（颜色）拆分产品设计的定制版本
+{% endcomment %}
+
+{%- liquid 
+  # 获取当前产品的系列元字段（请确保在 Shopify 后台定义了 custom.product_family）
+  assign product_family = product.metafields.custom.product_family.value 
+-%}
+
+<div class="product-variant-picker-wrapper">
+  {%- if product_family and product_family.members.value.size > 1 -%}
+    <div class="product-form__input" style="margin-bottom: 2.5rem;">
+      <legend class="form__label" style="font-weight: bold; text-transform: uppercase; font-size: 1.3rem;">
+        Select Color
+      </legend>
+      
+      <div class="swatch-container">
+        {%- for sibling in product_family.members.value -%}
+          {%- liquid
+            # 获取色卡图片：优先取元字段自定义图片，没有则取产品主图
+            assign texture_img = sibling.metafields.custom.swatch_image.value
+            assign is_current = false
+            if sibling.id == product.id
+              assign is_current = true
+            endif
+          -%}
+          
+          <a href="{{ sibling.url }}" 
+             class="swatch-link {% if is_current %}is-active{% endif %}"
+             title="{{ sibling.title }}">
+            <div class="swatch-image-wrapper">
+              {%- if texture_img != blank -%}
+                <img src="{{ texture_img | image_url: width: 100, height: 100, crop: 'center' }}" alt="{{ sibling.title }}" loading="lazy">
+              {%- else -%}
+                <img src="{{ sibling.featured_image | image_url: width: 100, height: 100, crop: 'center' }}" alt="{{ sibling.title }}" loading="lazy">
+              {%- endif -%}
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}
+    由于是拆分产品，每个产品只有一个默认变体或唯一的颜色变体。
+    我们隐藏原生选择器，但保留隐藏的 Input 确保加购功能正常。
+  {%- endcomment -%}
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" form="{{ product_form_id }}">
+</div>
+
+<style>
+  .swatch-container {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .swatch-link {
+    width: 4.5rem;
+    height: 4.5rem;
+    border: 1px solid #e0e0e0;
+    padding: 2px;
+    background: #fff;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: block;
+    box-sizing: border-box;
+  }
+  
+  .swatch-image-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #f7f7f7;
+  }
+  
+  .swatch-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .swatch-link:hover {
+    border-color: #000;
+    transform: translateY(-2px);
+  }
+  
+  .swatch-link.is-active {
+    border: 2px solid #000 !important;
+    transform: scale(1.1);
+    pointer-events: none; /* 当前产品禁止重复点击 */
+  }
+
+  /* 隐藏原生可能存在的任何多属性选项 */
+  variant-radios, variant-selects, variant-color {
+    display: none !important;
+  }
+</style>
+
+{%- comment -%}
+  如果该网站有 AJAX 加购逻辑，
+  保留以下脚本以确保加购按钮在页面加载时处于可用状态。
+{%- endcomment -%}
+<script>
+  window.addEventListener('load', function() {
+    const atcButton = document.querySelector('button[name="add"]');
+    if (atcButton) {
+      atcButton.removeAttribute('disabled');
+      atcButton.classList.remove('disabled');
+    }
+  });
+</script>

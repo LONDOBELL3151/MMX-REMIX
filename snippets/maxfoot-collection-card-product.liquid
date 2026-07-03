@@ -1,0 +1,280 @@
+{% comment %}
+  Renders a collection-specific product card for the default collection template.
+
+  Accepts:
+  - card_product: {Object} Product Liquid object
+  - media_aspect_ratio: {String} Image ratio
+  - show_secondary_image: {Boolean} Show secondary image on hover
+  - show_vendor: {Boolean} Show vendor label
+  - lazy_load: {Boolean} Lazy load images
+  - show_quick_add: {Boolean} Show quick add button
+  - section_id: {String} Parent section id
+{% endcomment %}
+
+{%- if card_product and card_product != empty -%}
+  {%- liquid
+    assign ratio = 1
+    if card_product.featured_media and media_aspect_ratio == 'portrait'
+      assign ratio = 0.8
+    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
+      assign ratio = card_product.featured_media.aspect_ratio
+    endif
+    if ratio == 0 or ratio == null
+      assign ratio = 1
+    endif
+
+    assign sale_amount = 0
+    assign sale_percent = 0
+    if card_product.compare_at_price > card_product.price
+      assign sale_amount = card_product.compare_at_price | minus: card_product.price
+      assign sale_percent = sale_amount | times: 100 | divided_by: card_product.compare_at_price
+    endif
+
+    assign has_multiple_variants = false
+    if card_product.variants.size > 1
+      assign has_multiple_variants = true
+    endif
+
+    assign image_loading = 'lazy'
+    if lazy_load == false
+      assign image_loading = 'eager'
+    endif
+
+    assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id
+    assign qty_rules = false
+    if card_product.selected_or_first_available_variant.quantity_rule.min > 1 or card_product.selected_or_first_available_variant.quantity_rule.max != null or card_product.selected_or_first_available_variant.quantity_rule.increment > 1
+      assign qty_rules = true
+    endif
+  -%}
+
+  <article class="maxfoot-collection-card">
+    <div class="maxfoot-collection-card__media">
+      <div class="maxfoot-collection-card__badge-stack">
+        {%- if card_product.available == false -%}
+          <span class="maxfoot-collection-card__badge">Sold out</span>
+        {%- elsif card_product.compare_at_price > card_product.price -%}
+          <span class="maxfoot-collection-card__badge maxfoot-collection-card__badge--accent">
+            Save {{ sale_percent }}%
+          </span>
+        {%- endif -%}
+      </div>
+
+      <div class="maxfoot-collection-card__media-frame" style="--media-height: {{ 1 | divided_by: ratio | times: 100 }}%;">
+        <span class="maxfoot-collection-card__media-spacer"></span>
+        {%- if card_product.featured_media -%}
+          <a
+            href="{{ card_product.url }}"
+            class="maxfoot-collection-card__media-link"
+            aria-label="{{ card_product.title | escape }}"
+          >
+            <div class="maxfoot-collection-card__media-stage">
+              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+              {{
+                card_product.featured_media
+                | image_url: width: 720
+                | image_tag:
+                  widths: '165,360,533,720,940,1066',
+                  sizes: '(min-width: 1200px) calc((100vw - 10rem) / 3), (min-width: 750px) calc((100vw - 7rem) / 2), calc(100vw - 4rem)',
+                  loading: image_loading,
+                  class: 'maxfoot-collection-card__image maxfoot-collection-card__image--primary',
+                  alt: card_product.featured_media.alt
+              }}
+              {%- if card_product.media[1] != null and show_secondary_image -%}
+                {{
+                  card_product.media[1]
+                  | image_url: width: 720
+                  | image_tag:
+                    widths: '165,360,533,720,940,1066',
+                    sizes: '(min-width: 1200px) calc((100vw - 10rem) / 3), (min-width: 750px) calc((100vw - 7rem) / 2), calc(100vw - 4rem)',
+                    loading: 'lazy',
+                    class: 'maxfoot-collection-card__image maxfoot-collection-card__image--secondary',
+                    alt: ''
+                }}
+              {%- endif -%}
+              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+            </div>
+          </a>
+        {%- else -%}
+          <div class="maxfoot-collection-card__media-link" aria-hidden="true">
+            <div class="maxfoot-collection-card__media-stage">
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="maxfoot-collection-card__content">
+      <div class="maxfoot-collection-card__eyebrow-row">
+        <span class="maxfoot-collection-card__eyebrow">
+          {%- if show_vendor and card_product.vendor != blank -%}
+            {{ card_product.vendor | escape }}
+          {%- else -%}
+            Electric bike
+          {%- endif -%}
+        </span>
+        <span class="maxfoot-collection-card__availability{% unless card_product.available %} maxfoot-collection-card__availability--soldout{% endunless %}">
+          {%- if card_product.available -%}
+            In stock
+          {%- else -%}
+            Sold out
+          {%- endif -%}
+        </span>
+      </div>
+
+      <h3 class="maxfoot-collection-card__title" id="title-{{ section_id }}-{{ card_product.id }}">
+        <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
+      </h3>
+
+      <div class="maxfoot-collection-card__meta">
+        {%- if has_multiple_variants -%}
+          <span class="maxfoot-collection-card__meta-item">
+            {{ card_product.variants.size }} configurations
+          </span>
+        {%- endif -%}
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <span class="maxfoot-collection-card__meta-item maxfoot-collection-card__meta-item--accent">
+            {{ sale_amount | money }} off
+          </span>
+        {%- endif -%}
+        <span class="maxfoot-collection-card__meta-item">
+          {%- if show_quick_add -%}
+            Quick checkout
+          {%- else -%}
+            View details
+          {%- endif -%}
+        </span>
+      </div>
+
+      <div class="maxfoot-collection-card__price-block">
+        <div class="maxfoot-collection-card__price-line">
+          <span class="maxfoot-collection-card__price-current">{{ card_product.price | money }}</span>
+          {%- if card_product.compare_at_price > card_product.price -%}
+            <s class="maxfoot-collection-card__price-compare">{{ card_product.compare_at_price | money }}</s>
+          {%- endif -%}
+        </div>
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <p class="maxfoot-collection-card__price-note">You save {{ sale_amount | money }}</p>
+        {%- else -%}
+          <p class="maxfoot-collection-card__price-note maxfoot-collection-card__price-note--muted">
+            Compare build, pricing and availability at a glance
+          </p>
+        {%- endif -%}
+      </div>
+
+      <div class="maxfoot-collection-card__actions">
+        {%- if show_quick_add -%}
+          {%- if has_multiple_variants or qty_rules -%}
+            <modal-opener data-modal="#QuickAdd-{{ card_product.id }}">
+              <button
+                id="{{ product_form_id }}-submit"
+                type="submit"
+                name="add"
+                class="maxfoot-collection-card__quick-add button"
+                aria-haspopup="dialog"
+                aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                data-product-url="{{ card_product.url }}"
+              >
+                Choose options
+                <div class="loading-overlay__spinner hidden">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    class="spinner"
+                    viewBox="0 0 66 66"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </button>
+            </modal-opener>
+            <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
+              <div
+                role="dialog"
+                aria-label="{{ 'products.product.choose_product_options' | t: product_name: card_product.title | escape }}"
+                aria-modal="true"
+                class="quick-add-modal__content global-settings-popup"
+                tabindex="-1"
+              >
+                <button
+                  id="ModalClose-{{ card_product.id }}"
+                  type="button"
+                  class="quick-add-modal__toggle"
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  {% render 'icon-close' %}
+                </button>
+                <div id="QuickAddInfo-{{ card_product.id }}" class="quick-add-modal__content-info"></div>
+              </div>
+            </quick-add-modal>
+          {%- else -%}
+            <product-form>
+              {%- form 'product',
+                card_product,
+                id: product_form_id,
+                class: 'form',
+                novalidate: 'novalidate',
+                data-type: 'add-to-cart-form'
+              -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ card_product.selected_or_first_available_variant.id }}"
+                  disabled
+                >
+                <button
+                  id="{{ product_form_id }}-submit"
+                  type="submit"
+                  name="add"
+                  class="maxfoot-collection-card__quick-add button"
+                  aria-haspopup="dialog"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                  aria-live="polite"
+                  data-sold-out-message="true"
+                  {% if card_product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                  <span>
+                    {%- if card_product.selected_or_first_available_variant.available -%}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="sold-out-message hidden">{{ 'products.product.sold_out' | t }}</span>
+                  <div class="loading-overlay__spinner hidden">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      class="spinner"
+                      viewBox="0 0 66 66"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </button>
+              {%- endform -%}
+            </product-form>
+          {%- endif -%}
+          <a href="{{ card_product.url }}" class="maxfoot-collection-card__details">
+  <span>Explore</span>
+  <svg
+    class="maxfoot-collection-card__details-icon"
+    viewBox="0 0 1024 1024"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M885.113 489.373L628.338 232.599c-12.496-12.497-32.758-12.497-45.254 0-12.497 12.497-12.497 32.758 0 45.255l203.3 203.3H158.025c-17.036 0-30.846 13.811-30.846 30.846 0 17.036 13.811 30.846 30.846 30.846h628.36L583.084 746.147c-12.497 12.496-12.497 32.758 0 45.255 6.248 6.248 14.438 9.372 22.627 9.372s16.379-3.124 22.627-9.372l256.775-256.775a31.999 31.999 0 0 0 0-45.254z" fill="currentColor"></path>
+  </svg>
+</a>
+        {%- else -%}
+          <a href="{{ card_product.url }}" class="maxfoot-collection-card__quick-add button">Explore</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </article>
+{%- endif -%}

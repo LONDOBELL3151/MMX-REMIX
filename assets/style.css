@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.article-homeTab,.bikeswiper-R .more_href,.article-viewALL{
+  font-weight: 550;
+}
+
+.fontSize-a,.fontSize-b,.fontSize-c,.fontSize-d, .fontSize-e,.fontSize-f {
+    color: #17171a;
+}
+.fontSize-a{
+    font-size: 20px;
+}
+.fontSize-b{
+    font-size: 35px;
+}
+.fontSize-c{
+    font-size: 50px;
+}
+.fontSize-d{
+    font-size: 100px;
+    line-height: initial;
+}
+.fontSize-e{
+    font-size: 30px;
+}
+.fontSize-f{
+    font-size: 25px;
+}
+a {
+    text-decoration-line: none;
+}
+
+@media only screen and (max-width: 1750px) {
+    .fontSize-d {
+        font-size: 80px;
+    }
+    .fontSize-b{
+        font-size: 30px;
+    }
+    .fontSize-a{
+        font-size: 18px;
+    }
+    .fontSize-c {
+        font-size: 45px;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .fontSize-d {
+        font-size: 60px;
+    }
+    .fontSize-b {
+        font-size: 25px;
+    }
+    .fontSize-a{
+        font-size: 15px;
+    }
+    .fontSize-c {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    .fontSize-d {
+        font-size: 45px;
+    }
+    .fontSize-b {
+        font-size: 20px;
+    }
+    .fontSize-c {
+        font-size: 35px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .fontSize-d {
+        font-size: 35px;
+    }
+    .fontSize-b {
+        font-size: 18px;
+    }
+    .fontSize-c {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 750px)  {
+    .fontSize-c {
+        font-size: 40px;
+    }
+    .fontSize-a {
+        font-size: 20px;
+    }
+    .fontSize-b{
+        font-size: 30px;
+    }
+}
+@media only screen and (max-width: 650px) {
+    .fontSize-c {
+        font-size: 35px;
+    }
+    .fontSize-b,.fontSize-e {
+        font-size: 25px;
+    }
+    .fontSize-a {
+        font-size: 18px;
+    }
+    .fontSize-f {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .fontSize-c {
+        font-size: 30px;
+    }
+    .fontSize-b,.fontSize-e {
+        font-size: 20px;
+    }
+    .fontSize-a,.fontSize-f {
+        font-size: 17px;
+    }
+}

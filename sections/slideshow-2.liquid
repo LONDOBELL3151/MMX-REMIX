@@ -1,0 +1,295 @@
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	.carousel {
+/* 		max-width: 1920px; */
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.carousel-img-{{section.id}} {
+		overflow: hidden;
+	}
+
+	.carousel-img-{{section.id}} ul {
+		width: 1000%;
+		list-style: none;
+		overflow: hidden;
+	}
+
+	.carousel-img-{{section.id}} ul li {
+		width: 10%;
+		float: left;
+	}
+
+	.carousel-img-{{section.id}} ul li img {
+		width: 100%;
+	}
+
+	.carousel-img-{{section.id}} ul li .pc-imgs {
+		display: block;
+	}
+
+	.carousel-img-{{section.id}} ul li .mobile-imgs {
+		display: none;
+	}
+
+	.carousel .prev,
+	.carousel .next {
+		position: absolute;
+		top: 50%;
+		width: 40px;
+		height: 40px;
+		font-size: 40px;
+		background: rgba(0, 0, 0, .8);
+		color: #fff;
+		line-height: 40px;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	.carousel .prev {
+		left: 10px;
+	}
+
+	.carousel .next {
+		right: 10px;
+	}
+
+	.btn_disc {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 10px;
+	}
+
+	.btn_disc ol {
+		list-style: none;
+		display: flex;
+		align-items: center;
+	}
+
+	.btn_disc ol li {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		margin: 0 3px;
+		cursor: pointer;
+	}
+	.placeholder-svg {
+		max-width: 200rem;
+	}
+</style>
+<div class="carousel">
+	<div class="carousel-img-{{section.id}}">
+		<ul>
+			{% for block in section.blocks %}
+				{% if block.settings.image_pc != blank or block.settings.image_mobile != blank %}
+					<li>
+						<a href="{{ block.settings.jump_link }}">
+							{% if block.settings.image_pc != blank %}
+								<img class="pc-imgs" src="{{ block.settings.image_pc | img_url:"master" }}" alt="{{ block.settings.image_pc.alt }}">
+							{% endif %}
+
+							{% if block.settings.image_mobile != blank %}
+								<img class="mobile-imgs" src="{{ block.settings.image_mobile | img_url:"master" }}" alt="{{ block.settings.image_mobile.alt }}">
+							{% endif %}
+						</a>
+					</li>
+				{% else %}
+					<li>
+						{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+	{% if section.settings.cut_button %}
+		<div class="prev">
+			< </div> <div class="next">
+				>
+		</div>
+	{% endif %}
+	<div class="btn_disc">
+		<ol>
+			<!-- <li></li> -->
+		</ol>
+	</div>
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script>
+	var scrollIndex = 0;
+	var active = 0;
+	var $lunbo = $('.carousel-img-{{section.id}} ul').eq(0);
+	var isAnimated = false;
+
+	$(".carousel-img-{{section.id}} ul").append($('.carousel-img-{{section.id}} ul li').eq(0).prop("outerHTML"));
+	var lis = $('.carousel-img-{{section.id}} li').length - 1;
+	
+	function inif() {
+		var arr = ''
+		for (let index = 0; index < lis; index++) {
+			arr += '<li></li>'
+		}
+		$('.carousel .btn_disc ol').append(arr)
+		showCir()
+		scoll()
+	}
+	inif()
+
+	function scoll() {
+		//  监控窗口宽度变化
+		if ($(window).width() < 750) { //  屏宽1330触发
+			$(".carousel-img-{{section.id}} .pc-imgs").css('display', 'none'); //  隐去一部分
+			$(".carousel-img-{{section.id}} .mobile-imgs").css('display', 'block'); //  隐去一部分
+		} else {
+			$(".carousel-img-{{section.id}} .pc-imgs").css('display', 'block');
+			$(".carousel-img-{{section.id}} .mobile-imgs").css('display', 'none'); //  显示内容
+		}
+	}
+	//页面初始化调用
+
+	//监听屏幕变动
+	$(window).resize(function () {
+		scoll()
+	});
+
+	function nexts() {
+
+		if (scrollIndex > lis) {
+			$lunbo.css({
+				'margin-left': 0 * $(window).width() + "px"
+			})
+			scrollIndex = 1;
+		}
+		atter()
+	}
+
+	function prevs() {
+
+		if (scrollIndex < 0) {
+			$lunbo.css({
+				'margin-left': -lis * $(window).width() + "px"
+			})
+			scrollIndex = lis - 1;
+		}
+		atter()
+	}
+
+	function showCir() {
+		var $circle = $('.btn_disc li')
+		active = active > lis - 1 ? 0 : active
+		active = active < 0 ? lis - 1 : active
+		$circle.css("background", "rgba(0, 0, 0,.5)");
+		$circle.eq(active).css("background", "rgba(0, 0, 0,1)");
+	}
+	if(lis > 1){
+		function atter() {
+			$lunbo.stop(true, false).animate({
+				marginLeft: -scrollIndex * $(window).width() + 'px'
+			});
+			showCir()
+		}
+
+		$('.carousel .next').on('click', function () {
+			scrollIndex++
+			active++
+			nexts()
+		})
+		$('.carousel .prev').on('click', function () {
+			scrollIndex--
+			active--
+			prevs()
+		})
+
+		$('.btn_disc li').each(function (i) {
+			$(this).on('click', function () {
+				scrollIndex = i
+				active = i
+				nexts()
+			})
+		})
+
+		var timer = setInterval(function () {
+			scrollIndex++
+			active++
+			nexts()
+		}, 3000);
+		$('.carousel').on("mouseout", function () {
+			$('.carousel .next').css("display", "none");
+			$('.carousel .prev').css("display", "none");
+			timer = setInterval(function () {
+				scrollIndex++
+				active++
+				nexts()
+			}, 3000);
+		})
+		$('.carousel').on("mouseover", function () {
+		$('.carousel .next').css("display", "block");
+		$('.carousel .prev').css("display", "block");
+		clearInterval(timer);
+	})
+	}else{
+		$('.carousel .next').css('display','none');
+		$('.carousel .prev').css('display','none');
+		$('.carousel ol').css('display','none');
+	}
+</script>
+{% schema %}
+{
+	"name": "Slide Show",
+	"tag": "section",
+	"class": "section",
+	"max_blocks": 20,
+    "settings": [
+          {
+              "type": "checkbox",
+              "id":"cut_button",
+              "default": true,
+              "label":"启用切换按钮?"
+          }
+      ],
+	"blocks":[
+		{
+			"name": "image",
+			"type":"slide",
+			"settings": [
+				{
+					"id":"image_pc",
+					"type": "image_picker",
+					"label":"请选择PC端图片"
+				},
+				{
+					"id":"image_mobile",
+					"type": "image_picker",
+					"label":"请选择移动端图片"
+				},
+				{
+					"type": "url",
+					"id": "jump_link",
+					"label":"请选择配图关联的链接"
+				}
+			]
+		}	
+	],
+	"presets": [
+		{
+			"name": "Slide Show",
+			"blocks": [
+				{
+					"type": "slide"
+				},
+				{
+					"type": "slide"
+				},
+				{
+					"type": "slide"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

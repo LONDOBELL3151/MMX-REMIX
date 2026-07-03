@@ -1,0 +1,322 @@
+
+
+{{ 'swiper-bundle-10.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'swiper-bundle-10.min.js' | asset_url }} "></script>
+
+{{ 'impact-swiper-video.css' | asset_url | stylesheet_tag }}
+<div  class="swiper_video_content {% if section.blocks.size == 1 %} swiper_video_one{% endif %} {% if section.blocks.size >= 2 and section.blocks.size <3 %} swiper_video_two{% endif %}">
+  <h5 class="swiperVideo_title">{{ section.settings.swiperVideo_title }}</h5>
+  <div class="swiper_video_video vidoSwiper-{{ section.id }}">
+      <div class="swiper-wrapper swiper-wrapper-video">
+      {% for item in section.blocks %}
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+          <figure class="swiper-cover-box" data-video-url="{{ item.settings.swiperVideo_url }}">
+            {% if item.settings.swiperVideo_coverImg %}
+              <picture class="swiper-cover-img-box">
+                    <img
+                      class="swiper-cover-img"
+                      src="{{ item.settings.swiperVideo_coverImg | image_url: width: 860 }}"
+                      width="430"
+                      alt="{{ item.settings.swiperVideo_coverAlt }}"
+                      height="{{ 430 | divided_by: item.settings.swiperVideo_coverImg.aspect_ratio | ceil }}"
+                    >
+              </picture>
+            {% else %}
+              <div class="swiper-cover-empty">{{ 'image' | placeholder_svg_tag: 'swiper-empty' }}</div>
+            {% endif %}
+            <figcaption>
+              <p>{{ item.settings.swiperVideo_coverCopywriting }}</p>
+            </figcaption>
+          </figure>
+
+          <figure class="swiper-user-box">
+            {% if item.settings.swiperVideo_imgUser %}
+                  <img
+                    class="swiper-user-img"
+                    src="{{ item.settings.swiperVideo_imgUser | image_url: width: 90 }}"
+                    width="45"
+                    alt="{{ item.settings.swiperVideo_imgUserAlt }}"
+                    height="{{ 45 | divided_by: item.settings.swiperVideo_imgUser.aspect_ratio | ceil }}"
+                  >
+              
+            {% else %}
+              <div class="swiper-user-empty">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025=""><path fill="currentColor" d="M512 512a192 192 0 1 0 0-384 192 192 0 0 0 0 384m0 64a256 256 0 1 1 0-512 256 256 0 0 1 0 512m320 320v-96a96 96 0 0 0-96-96H288a96 96 0 0 0-96 96v96a32 32 0 1 1-64 0v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 1 1-64 0"></path></svg>
+              </div>
+            {% endif %}
+            <figcaption>
+              <p>{{ item.settings.swiperVideo_userName }}</p>
+            </figcaption>
+          </figure>
+         
+        </div>
+      {% endfor %}
+      </div>
+    <div class="swiper-viedo-scrollBox ">
+        <div class="swiper-scrollbar swiper-scrollbar-video {% if section.blocks.size >= 5 %} swiper-block{% endif %}"></div>
+      <div class="swiper-viedo-prev-next">
+        <div class="swiper-button-prev swiper-button-prev-video {% if section.blocks.size >= 5 %} swiper-block{% endif %}"></div>
+        <div class="swiper-button-next swiper-button-next-video {% if section.blocks.size >= 5 %} swiper-block{% endif %}"></div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="pop_video_bg">
+  <div class="video-layout">
+    <button class="video-close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025=""><path fill="currentColor" d="m466.752 512-90.496-90.496a32 32 0 0 1 45.248-45.248L512 466.752l90.496-90.496a32 32 0 1 1 45.248 45.248L557.248 512l90.496 90.496a32 32 0 1 1-45.248 45.248L512 557.248l-90.496 90.496a32 32 0 0 1-45.248-45.248z"></path><path fill="currentColor" d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896"></path></svg>
+    </button>
+    <div class="video-content">
+      
+    </div>
+  </div>
+</div>
+
+
+    {%- liquid
+      assign video_size = section.blocks.size
+    %}
+
+<script>
+    let video_size = {{ section.blocks.size | default: 0 }};
+    let coverBoxes = document.querySelectorAll('.swiperVideo_section .swiper-cover-box .swiper-cover-img-box');
+    let popVideoBg = document.querySelector('.swiperVideo_section .pop_video_bg');
+    let popVideoContent = document.querySelector('.swiperVideo_section .pop_video_bg .video-content');
+    
+
+    coverBoxes.forEach(coverBox => {
+        coverBox.addEventListener('click', function() {
+            let videoUrl = coverBox.parentElement.dataset.videoUrl;
+            if(videoUrl != '') {
+              popVideoBg.style.display = 'block';
+              const videoHtml = `<iframe loading="lazy" allowfullscreen="true" border="0" framespacing="0" scrolling="no" src="${videoUrl}?rel=0&amp;loop=1&amp;autoplay=1&amp;start=0&amp;end=0" frameborder="0" allow="autoplay; fullscreen"></iframe>`;
+              popVideoContent.innerHTML = '';
+              popVideoContent.innerHTML = videoHtml;
+            }
+        });
+    });
+
+    const closeButton = document.querySelector('.swiperVideo_section .pop_video_bg .video-close');
+    closeButton.addEventListener('click', function() {
+        popVideoBg.style.display = 'none';
+        popVideoContent.innerHTML = '';
+    });
+
+
+  function videoFun() {
+    if(video_size >= 5) {
+     
+      new Swiper('.vidoSwiper-{{ section.id }}', {
+        scrollbar: {
+            el: ".vidoSwiper-{{ section.id }} .swiper-scrollbar-video",
+          draggable: true,
+        },
+        navigation: {
+          nextEl: ".vidoSwiper-{{ section.id }} .swiper-button-next-video",
+          prevEl: ".vidoSwiper-{{ section.id }} .swiper-button-prev-video",
+        },
+        spaceBetween: 30,
+        mousewheel: {
+            forceToAxis: true,
+        },
+        threshold: 12,
+        breakpoints: {
+            320: {
+                slidesPerView: 1.5,
+              spaceBetween: 15,
+            },
+            650: {
+                slidesPerView: 2.5,
+              spaceBetween: 15,
+            },
+            768: {
+                slidesPerView: 2.5,
+              spaceBetween: 20,
+            },
+            1000: {
+                slidesPerView: 3.5,
+              spaceBetween: 20,
+            },
+            1200: {
+                slidesPerView: 3.5,
+                spaceBetween: 20,
+            },
+            1550: {
+                slidesPerView: 4.5,
+            }
+        }
+      });
+    }
+    if(video_size >= 4 && video_size< 5) {
+     
+         new Swiper('.vidoSwiper-{{ section.id }}', {
+          spaceBetween: 30,
+          breakpoints: {
+            320: {
+                slidesPerView: 1.5,
+              spaceBetween: 15,
+            },
+            650: {
+                slidesPerView: 2.5,
+              spaceBetween: 15,
+            },
+            768: {
+                slidesPerView: 2.5,
+              spaceBetween: 20,
+            },
+            1000: {
+                slidesPerView: 3.5,
+              spaceBetween: 20,
+            },
+            1200: {
+                slidesPerView: 3.5,
+                spaceBetween: 20,
+            },
+            1550: {
+                slidesPerView: 4,
+            }
+          }
+        });
+    }
+    if(video_size >=3 && video_size< 4) {
+     
+      new Swiper('.vidoSwiper-{{ section.id }}', {
+          
+          breakpoints: {
+             320: {
+                  slidesPerView: 1.5,
+                spaceBetween: 15,
+              },
+              650: {
+                  slidesPerView: 2.5,
+                spaceBetween: 15,
+              },
+              768: {
+                  slidesPerView: 2.5,
+                spaceBetween: 20,
+              },
+              1000: {
+                  slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1200: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+              },
+              1550: {
+                  slidesPerView: 3,
+                spaceBetween: 30,
+              }
+          }
+        });
+    }
+ 
+    if(video_size>=2 && video_size < 3) {
+      console.log('video_size',video_size)
+     
+        new Swiper('.vidoSwiper-{{ section.id }}', {
+          
+          breakpoints: {
+              320: {
+                  slidesPerView: 1.5,
+                spaceBetween: 20,
+              },
+              768: {
+                  slidesPerView: 2,
+                spaceBetween: 30,
+              }
+          }
+        });
+    }
+
+    if(video_size == 1) {
+      new Swiper('.vidoSwiper-{{ section.id }}', {});
+    }
+    
+  }
+
+videoFun()
+    document.addEventListener('shopify:section:load', () =>videoFun());
+
+
+
+
+</script>
+
+
+{% schema %}
+{
+  "name": "视频-轮播模块",
+  "tag": "section",
+  "class": "swiperVideo_section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "swiperVideo_title",
+      "label": "标题",
+      "default": "YouTube Reviews"
+    }
+  ],
+    "blocks": [
+    {
+      "type": "swiperVideoBox",
+      "name": "视频轮播设置",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "swiperVideo_coverImg",
+          "label": "视频封面图片"
+        },
+        {
+          "type": "text",
+          "id": "swiperVideo_coverAlt",
+          "label": "封面图片-Alt",
+        },
+        {
+          "type": "textarea",
+          "id": "swiperVideo_coverCopywriting",
+          "label": "视频文案",
+          "default": "文案文案文案"
+        },
+        {
+          "type": "image_picker",
+          "id": "swiperVideo_imgUser",
+          "label": "用户图片"
+        },
+        {
+          "type": "text",
+          "id": "swiperVideo_imgUserAlt",
+          "label": "用户图片-Alt",
+        },
+        {
+          "type": "textarea",
+          "id": "swiperVideo_userName",
+          "label": "用户文案",
+          "default": "文案文案文案"
+        },
+        {
+          "type": "text",
+          "id": "swiperVideo_url",
+          "label": "视频链接",
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "视频-轮播模块",
+       "blocks": [
+        {
+          "type": "swiperVideoBox"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

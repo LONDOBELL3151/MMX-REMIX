@@ -1,0 +1,187 @@
+.bicycle-fourFeature {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+.bicycle-fourFeature-box {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+        "feature-layout_top-left feature-layout_top-right"
+        "feature-layout_bottom-left feature-layout_bottom-right";
+}
+
+.bicycle-fourFeature figcaption {
+    max-width: 90%;
+}
+
+.bicycle-fourFeature-title {
+    font-size: 48px;
+    margin-bottom: 64px;
+}
+
+.bicycle-fourFeature-item {
+    margin-bottom: 36px;
+}
+
+.bicycle-fourFeature-item img {
+    display: block;
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+    vertical-align: top;
+    object-fit: cover;
+}
+
+.bicycle-fourFeature-item header {
+    font-size: 24px;
+    margin: 32px 0 12px;
+}
+
+.bicycle-fourFeature-item b {
+    font-weight: 598;
+}
+.bicycle-fourFeature-item .fourSquares_header_Phpne {
+    display: none;
+}
+
+.bicycle-fourFeature-item p {
+    font-size: 16px;
+    color: #595959;
+    line-height: 1.87;
+}
+
+.bicycle-fourFeature-width600 img {
+    width: 600px;
+    height: 450px;
+}
+
+.bicycle-fourFeature-width450 img {
+    width: 450px;
+    height: 600px;
+}
+
+.bicycle-fourFeature-item1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-area: feature-layout_top-left;
+}
+
+.bicycle-fourFeature-item1 figure {
+    max-width: fit-content;
+}
+
+.bicycle-fourFeature-item2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    grid-area: feature-layout_top-right;
+}
+
+.bicycle-fourFeature-item2 figure {
+    max-width: 80%;
+}
+
+.bicycle-fourFeature-item3 {
+    display: flex;
+    flex-direction: column;
+    grid-area: feature-layout_bottom-left;
+}
+
+.bicycle-fourFeature-item3 figure {
+    max-width: 85%;
+}
+
+.bicycle-fourFeature-item4 {
+    display: flex;
+    align-items: flex-end;
+    grid-area: feature-layout_bottom-right;
+}
+
+.bicycle-fourFeature-item4 figure {
+    max-width: fit-content;
+}
+
+@media only screen and (max-width: 750px) {
+    .bicycle-fourFeature-item .fourSquares_header_Phpne {
+        display: block;
+    }
+    .bicycle-fourFeature-item .fourSquares_header_Pc {
+        display: none;
+    }
+    .bicycle-fourFeature {
+        max-width: 750px;
+    }
+
+    .bicycle-fourFeature-box,
+    .bicycle-fourFeature-item {
+        display: block;
+    }
+
+    .bicycle-fourFeature-item img {
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .bicycle-fourFeature-title {
+        font-size: 36px;
+    }
+
+    .bicycle-fourFeature-item figure {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .bicycle-fourFeature-item header {
+        position: absolute;
+        top: 5%;
+        font-size: 30px;
+        padding: 15px 15px;
+        box-sizing: border-box;
+        margin: 0;
+        color: #fff;
+        backdrop-filter: blur(3px);
+        border-radius: 7px;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3CforeignObject width='100%25' height='100%25'%3E%3Cbody class='wrap' xmlns='http://www.w3.org/1999/xhtml'%3E%3Cstyle%3E.wrap%7Bbox-sizing:border-box;margin:0;height:100%25;padding:15px%7D.shadow%7Bheight:100%25;background:black;border-radius:10px;box-shadow:0 0 5px black, 0 0 10px black, 0 0 15px black %7D%3C/style%3E%3Cdiv class='shadow'/%3E%3C/body%3E%3C/foreignObject%3E%3C/svg%3E");
+    }
+
+    .bicycle-fourFeature-item p {
+        display: none;
+    }
+
+    .bicycle-fourFeature-item1 header {
+        left: 0;
+    }
+
+    .bicycle-fourFeature-item2 header {
+        right: 0;
+        color: #000;
+    }
+
+    .bicycle-fourFeature-item3 header {
+        left: 0;
+    }
+
+    .bicycle-fourFeature-item4 header {
+        right: 0;
+        color: #000;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .bicycle-fourFeature-title {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .bicycle-fourFeature-item header {
+        font-size: 23px;
+    }
+}

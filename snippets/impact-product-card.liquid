@@ -1,0 +1,83 @@
+{%- if product.media.size > 0 -%}
+  <impact-variant-selects class="impact-variant-selects">
+    <div class="impact-product-card_badge-list">
+      {% render 'impact-card-badge',
+        product_custom: product.metafields.custom,
+        product: product,
+        currency_code_enabled: currency_code_enabled,
+        percentage_mode: percentage_mode
+      %}
+    </div>
+    <div class="impact-product-card_img">
+      <a href="{{ product.url }}" class="impact-product-card_url" data-img-width="{{ product_image.width }}">
+        {%- liquid
+          assign main_media_loading_strategy = null
+
+          if section.index > 3 or position > 3
+            assign main_media_loading_strategy = 'lazy'
+          endif
+        -%}
+
+        {%- if product_image != blank -%}
+          {{-
+            product_image
+            | image_url: width: product_image.width
+            | image_tag:
+              loading: main_media_loading_strategy,
+              widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+              class: 'imapct-product-card__image--primary',
+              alt: product_image_alt
+          -}}
+        {%- elsif product.selected_or_first_available_variant.featured_image -%}
+          {{-
+            product.selected_or_first_available_variant.featured_image
+            | image_url: width: product.selected_or_first_available_variant.featured_image.width
+            | image_tag:
+              loading: main_media_loading_strategy,
+              widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+              class: 'imapct-product-card__image--primary'
+          -}}
+        {%- else -%}
+          {{-
+            product.featured_media
+            | image_url: width: product.featured_media.width
+            | image_tag:
+              loading: main_media_loading_strategy,
+              widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+              class: 'imapct-product-card__image--primary'
+          -}}
+        {%- endif -%}
+      </a>
+    </div>
+    <div class="impact-product-card_info">
+      {%- if product_title != blank -%}
+        <a href="{{ product.url }}" class="name">{{ product_title }}</a>
+      {%- else -%}
+        <a href="{{ product.url }}" class="name">{{ product.title }}</a>
+      {%- endif -%}
+      <div class="price-list">
+        <p class="sale-price">
+          <span class="sr-only">Sale price</span>
+          {%- if currency_code_enabled -%}
+            {{- product.price | money_with_currency -}}
+          {%- else -%}
+            {{- product.price | money -}}
+          {%- endif -%}
+        </p>
+        <p class="regular-price">
+          <span class="sr-only">Regular price</span>
+          {%- if currency_code_enabled -%}
+            {{- product.compare_at_price | money_with_currency -}}
+          {%- else -%}
+            {{- product.compare_at_price | money -}}
+          {%- endif -%}
+        </p>
+      </div>
+      {% render 'impact-product-variant-picker',
+        product: product,
+        product_form_id: product_form_id,
+        product_color_display: product_color_display
+      %}
+    </div>
+  </impact-variant-selects>
+{%- endif -%}

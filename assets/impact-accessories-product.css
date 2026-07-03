@@ -1,0 +1,366 @@
+.impact-accessories-product, .impact-accessories-product * {
+    padding: 0;
+    margin: 0;
+}
+.impact-accessories-product a {
+    color: #212121;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+}
+.impact-accessories-product {
+    margin-block-start: 1.5rem;
+    margin-block-end: 1.5rem;
+    color: rgb(18 18 18);
+}
+.impact-accessories-product .impact-accessories-product-item:first-child {
+    margin-top: 0;
+}
+.impact-accessories-product .impact-accessories-product-item:last-child {
+    margin-bottom: 0;
+}
+.impact-accessories-product-item {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 8% 15% 53% 17%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    justify-items: start;
+    align-items: center;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    margin: auto auto 15px auto;
+}
+.impact-accessories-product-item.sold-out {
+    cursor: not-allowed;
+    position: relative;
+}
+.impact-accessories-product-item.sold-out::before {
+    content: "Sold Out";
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+    width: 68px;
+    height: 22px;
+    text-align: center;
+    background: linear-gradient(90deg, #c6c6c6, #9a9a9a);
+    border-radius: 4px 0 12px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+.impact-accessories-product-item.sold-out .item_sku-selected{
+    color: #a8abb2;
+}
+.impact-accessories-product-item p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 13px;
+}
+.impact-accessories-product-item img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+.impact-accessories-product-item .product_item-img {
+    max-width: 50px;
+    max-height: 50px;
+    overflow: hidden;
+}
+
+/* .impact-accessories-product-item select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+}
+.impact-accessories-product-item select:focus-visible{
+    box-shadow: none;
+    outline: none;
+} */
+
+
+/* .impact-accessories-product-item .product_item_sku label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid #21212133;
+    padding: 3px 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+} */
+
+
+.impact-accessories-product-item .product_item_checkbox {
+    grid-row: 1 / 3;
+    grid-column: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.impact-accessories-product-item .product-item_checkbox {
+    width: 20px;
+    height: 20px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0081/3039/6242/files/input-nochecked-2.png?v=1754533065);
+    -webkit-appearance: none;
+    background-size: 100%;
+    cursor: pointer;
+}
+.impact-accessories-product-item .product-item_checkbox[type=checkbox]:disabled {
+    background-image: url(https://cdn.shopify.com/s/files/1/0081/3039/6242/files/input-disabled.png?v=1754533065);
+    cursor: not-allowed;
+}
+.impact-accessories-product-item .product-item_checkbox:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+.impact-accessories-product-item .product_item_checkbox input[type="checkbox"]:checked {
+    background-image: url(https://cdn.shopify.com/s/files/1/0081/3039/6242/files/input-ischecked-3.webp?v=1754533065);
+}
+.impact-accessories-product-item .product_item-img{
+    grid-row: 1 / 3;
+    grid-column: 2 / 2;
+}
+.impact-accessories-product-item .product_item-text{
+    grid-row: 1 / 1;
+    grid-column: 3 / 3;
+}
+.impact-accessories-product-item .product_item-text a {
+    color: #121212;
+    text-decoration: none;
+}
+.impact-accessories-product-item .product_item_sku{
+    grid-row: 2 / 2;
+    grid-column: 3 / 3;
+    width: 100%;
+    position: relative;
+}
+.impact-accessories-product-item .item_sku-btn {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    padding: 2px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #a8abb2;
+    transition: 0.3s;
+    transform: translateZ(0);
+    box-shadow: 0 0 0 1px #dcdfe6 inset;
+}
+
+.impact-accessories-product-item .product_item_sku.is_open .item_sku-btn {
+    box-shadow: 0 0 0 1px #ffc000 inset;
+}
+.impact-accessories-product-item .item_sku-selected{
+    margin-right: auto;
+    color: #121212;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.impact-accessories-product-item .product_item_sku.is_open .item_sku-selected {
+    color: #a8abb2;
+}
+.impact-accessories-product-item .item_sku-selectList-option .selected-option{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffc000;
+    background-color: #f5f7fa;
+    font-weight: 700;
+    position: relative;
+}
+.impact-accessories-product-item .selected-option::after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiIGRhdGEtdi1kMmU0NzAyNT0iIiBzdHlsZT0iY29sb3I6ICNmZmMwMDA7Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik01MTIgNjRhNDQ4IDQ0OCAwIDEgMSAwIDg5NiA0NDggNDQ4IDAgMCAxIDAtODk2bS01NS44MDggNTM2LjM4NC05OS41Mi05OS41ODRhMzguNCAzOC40IDAgMSAwLTU0LjMzNiA1NC4zMzZsMTI2LjcyIDEyNi43MmEzOC4yNzIgMzguMjcyIDAgMCAwIDU0LjMzNiAwbDI2Mi40LTI2Mi40NjRhMzguNCAzOC40IDAgMSAwLTU0LjI3Mi01NC4zMzZ6Ij48L3BhdGg+PC9zdmc+") center no-repeat;
+}
+.impact-accessories-product-item .item_sku-icon{
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    transform: rotate(0);
+}
+.impact-accessories-product-item .product_item_sku.is_open .item_sku-btn .item_sku-icon {
+    transform: rotate(180deg);
+}
+.impact-accessories-product-item .product_item_sku svg {
+    width: 15px;
+}
+.impact-accessories-product-item .product_item_sku span {
+    font-size: 13px;
+}
+.impact-accessories-product-item .item_sku-selectList {
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    border: 1px solid #e4e7ed;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
+    border-radius: 4px;
+    top: 43px;
+    left: 0;
+    transition: all 0.3s cubic-bezier(0.3, 1, 0.3, 1);
+    transform: translateY(-1%);
+    opacity: 0;
+    z-index: -1;
+}
+.impact-accessories-product-item .product_item_sku.is_open .item_sku-selectList {
+    transform: translateY(0%);
+    opacity: 1;
+    z-index: 5;
+}
+
+.impact-accessories-product-item .product_item_sku.is_close .item_sku-selectList {
+    transform: translateY(-1%);
+    opacity: 0;
+    z-index: -1;
+}
+
+.impact-accessories-product-item .item_sku-selectList.hidden {
+    display: none;
+}
+.impact-accessories-product-item .item_sku-selectList-arrow {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 10px;
+    height: 10px;
+    z-index: -1;
+}
+.impact-accessories-product-item .item_sku-selectList-arrow::before {
+    border: 1px solid #e4e7ed;
+    background: #ffffff;
+    right: 0;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: -1;
+    content: " ";
+    transform: rotate(45deg);
+    box-sizing: border-box;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-left-radius: 2px;
+}
+.impact-accessories-product-item .item_sku-selectList-option {
+    padding: 6px 0;
+}
+.impact-accessories-product-item .item_sku-selectList-option p {
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.impact-accessories-product-item .item_sku-selectList-option p:hover {
+    background-color: #f5f7fa;
+}
+.impact-accessories-product-item .item_sku-selectList-option p.sku-select-option_disabled {
+    color: #a8abb2;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+.impact-accessories-product-item .product_item_price {
+    grid-row: 1 / 1;
+    grid-column: 4 / 4;
+    margin-left: auto;
+    text-align: end;
+}
+.impact-accessories-product-item .product_item_price_compare {
+    grid-row: 1 / 3;
+}
+.impact-accessories-product-item .price{
+    color: #f83a3a;
+    font-size: 16px;
+    font-weight: 700;
+}
+.impact-accessories-product-item .customize_price{
+    color: #fff;
+    background: #f83a3a;
+    border-radius: 4px;
+    line-height: 1;
+    padding: 4px 8px;
+    font-size: 14px;
+    margin-bottom: 2px;
+    font-weight: 700;
+}
+.impact-accessories-product-item .compare_at_price {
+    font-size: 14px;
+    font-weight: 200;
+    text-decoration: line-through;
+}
+/* impact-accessories-product-foldBox -----start */
+.impact-accessories-product_fold {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 0.3s;
+    margin: auto;
+}
+.impact-accessories-product_fold.overflowHidden {
+    overflow: hidden;
+}
+.impact-accessories-product_fold > div {
+    min-height: 0;
+}
+.impact-accessories-product-foldBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto auto 15px auto;
+}
+.impact-accessories-product-foldBox input {
+    display: none;
+}
+.impact-accessories-product-foldBox label{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(currentColor, currentColor) 0 min(100%, 1.35em) / 100% 1px no-repeat;
+    background-position-x: left;
+    text-decoration-line: none;
+    transition: background-size 0.5s cubic-bezier(0.3, 1, 0.3, 1), color 0.3s 0.5s cubic-bezier(0.3, 1, 0.3, 1);
+    padding-bottom: 5px;
+    line-height: 1;
+}
+.impact-accessories-product-foldBox label span {
+    display: none;
+}
+@media screen and (pointer: fine) {
+    .impact-accessories-product-foldBox label:hover {
+        background-position-x: right;
+        background-size: 0 1px;
+    }
+}
+.impact-accessories-product-foldBox label::after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiIGRhdGEtdi1kMmU0NzAyNT0iIj48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Im00ODguODMyIDM0NC4zMi0zMzkuODQgMzU2LjY3MmEzMiAzMiAwIDAgMCAwIDQ0LjE2bC4zODQuMzg0YTI5LjQ0IDI5LjQ0IDAgMCAwIDQyLjY4OCAwbDMyMC0zMzUuODcyIDMxOS44NzIgMzM1Ljg3MmEyOS40NCAyOS40NCAwIDAgMCA0Mi42ODggMGwuMzg0LS4zODRhMzIgMzIgMCAwIDAgMC00NC4xNkw1MzUuMTY4IDM0NC4zMmEzMiAzMiAwIDAgMC00Ni4zMzYgMCI+PC9wYXRoPjwvc3ZnPg==") center no-repeat;
+    transform: scaleY(-1);
+}
+
+/* impact-accessories-product-foldBox -----end */

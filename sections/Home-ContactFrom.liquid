@@ -1,0 +1,72 @@
+{{ 'home-email.css' | asset_url | stylesheet_tag }}
+<h5 class="fontSize-d email-title email-title-pc">{{ section.settings.emailTitle }}</h5>
+<h5 class="fontSize-c email-title-phone">{{ section.settings.emailTitle }}</h5>
+{% form 'customer' %}
+
+  <div class="email-input">
+    <input
+      type="email"
+      name="contact[email]"
+      class="fontSize-a"
+      value="{{ form.email }}"
+      aria-required="true"
+      autocorrect="off"
+      autocapitalize="off"
+      autocomplete="email"
+      required
+      placeholder="{{ section.settings.emailPlaceholder }}">
+    <button type="submit"><img src="https://cdn.shopifycdn.net/s/files/1/0755/2915/8955/files/iconBtn.png?v=1684748478" alt=""></button>
+  </div>
+  <div>
+    {% if form.errors %}
+      <p class="fontSize-a">{{ form.errors.messages[error] }}</p>
+    {% elsif form.posted_successfully? %}
+      <h3
+        class="newsletter-form__message newsletter-form__message--success form__message"
+        id="ContactFooter-success"
+        tabindex="-1"
+        autofocus
+        style='max-width: 539px;margin: 0 auto;padding-top: 10px;padding-left: 10px;'>
+        {% render 'icon-success' %}
+        <span>{{ section.settings.title }}</span>
+      </h3>
+    {% endif %}
+  </div>
+{% endform %}
+<p class="email-tip fontSize-a">{{ section.settings.tip }}</p>
+{% schema %}
+  {
+    "name": "Home-Contact From",
+    "enabled_on": {
+      "groups": ["footer"]
+    },
+    "settings": [
+      {
+        "type": "text",
+        "id": "emailTitle",
+        "label": "emailTitle",
+        "default": "Don't miss out."
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "title",
+        "default": "Your comment was posted successfully! Thank you!"
+      }, {
+        "type": "text",
+        "id": "tip",
+        "label": "tip",
+        "default": "Sign up to get the latest on new releases and more."
+      }, {
+        "type": "text",
+        "id": "emailPlaceholder",
+        "label": "emailPlaceholder",
+        "default": "Your email"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home-Contact From"
+      }
+    ]
+  }
+{% endschema %}

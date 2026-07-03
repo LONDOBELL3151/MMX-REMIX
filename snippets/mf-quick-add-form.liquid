@@ -1,0 +1,60 @@
+{%- liquid
+  assign quick_add_product = product
+  assign quick_add_variant = quick_add_product.selected_or_first_available_variant
+  assign quick_add_button_label = button_label | default: 'Add to cart'
+  assign quick_add_button_class = button_class | default: 'button button--primary'
+  assign quick_add_id_suffix = id_suffix | default: quick_add_product.id
+  assign quick_add_form_id = 'MfQuickAdd-' | append: section_id | append: '-' | append: quick_add_id_suffix
+  assign quick_add_quantity = quantity | default: 1
+-%}
+
+{% if quick_add_product != blank and quick_add_variant != blank %}
+  <product-form class="product-form mf-quick-add-form" data-hide-errors="false" style="display:block;width:100%;">
+    <div class="product-form__error-message-wrapper" role="alert" hidden>
+      <span class="product-form__error-message"></span>
+    </div>
+    {%- form 'product',
+      quick_add_product,
+      id: quick_add_form_id,
+      class: 'form mf-quick-add-form__form',
+      novalidate: 'novalidate',
+      data-type: 'add-to-cart-form'
+    -%}
+      <input type="hidden" name="id" value="{{ quick_add_variant.id }}" class="product-variant-id">
+      <input type="hidden" name="quantity" value="{{ quick_add_quantity }}">
+      <button
+        type="submit"
+        name="add"
+        class="{{ quick_add_button_class }}"
+        {% if quick_add_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        <span>
+          {% if quick_add_variant.available %}
+            {{ quick_add_button_label }}
+          {% else %}
+            Sold out
+          {% endif %}
+        </span>
+        <div class="loading-overlay__spinner hidden">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </button>
+    {%- endform -%}
+  </product-form>
+{% else %}
+  <div class="mf-quick-add-form">
+    <button type="button" class="{{ quick_add_button_class }}" disabled>
+      <span>{{ quick_add_button_label }}</span>
+    </button>
+  </div>
+{% endif %}

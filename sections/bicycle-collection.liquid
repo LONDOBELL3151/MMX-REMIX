@@ -1,0 +1,333 @@
+{{ 'bicycle-collection.css' | asset_url | stylesheet_tag }}
+
+<section class="bicycle-collection">
+  <div class="mf_bikesBox">
+    {% for block in section.blocks %}
+      {% assign key = forloop.index0 %}
+      {%- assign item = block.settings  -%}
+      <div class="mf_bikes">
+        {% if item.product_content.compare_at_price > 0 and item.product_content.price > 0  and item.product_content.compare_at_price > item.product_content.price %}
+          <p class="mf_bikes_tip">${{ item.product_content.compare_at_price | minus: item.product_content.price | money_without_currency }} off</p>
+        {% endif %}
+
+        <div class="mf_bikes_imgsBox imgsBox{{- key }} imgsBox{{- section.id -}}">
+          {% if item.product_img_a and item.product_img_a.size > 0 %}
+            <a href="{{ item.product_content.url }}" idx="0">
+              <img src="{{ item.product_img_a | img_url: '1000x' }}" alt="{{ item.product_img_a_alt }}">
+            </a>
+          {% endif %}
+          {% if item.product_img_b and item.product_img_b.size > 0 %}
+            <a href="{{ item.product_content.url }}" idx="1">
+              <img src="{{ item.product_img_b | img_url: '1000x' }}" alt="{{ item.product_img_b_alt }}">
+            </a>
+          {% endif %}
+          {% if item.product_img_c and item.product_img_c.size > 0 %}
+            <a href="{{ item.product_content.url }}" idx="2">
+              <img src="{{ item.product_img_c | img_url: '1000x' }}" alt="{{ item.product_img_c_alt }}">
+            </a>
+          {% endif %}
+          {% if item.product_img_d and item.product_img_d.size > 0 %}
+            <a href="{{ item.product_content.url }}" idx="3">
+              <img src="{{ item.product_img_d | img_url: '1000x' }}" alt="{{ item.product_img_d_alt }}">
+            </a>
+          {% endif %}
+          {% if item.product_img_e and item.product_img_e.size > 0 %}
+            <a href="{{ item.product_content.url }}" idx="4">
+              <img src="{{ item.product_img_e | img_url: '1000x' }}" alt="{{ item.product_img_e_alt }}">
+            </a>
+          {% endif %}
+          {% if item.product_img_f and item.product_img_f.size > 0 %}
+            <a href="{{ item.product_content.url }}" idx="5">
+              <img src="{{ item.product_img_f | img_url: '1000x' }}" alt="{{ item.product_img_f_alt }}">
+            </a>
+          {% endif %}
+        </div>
+
+        <h3 class="mf_bikes_name">{{ item.bicycle_title }}</h3> 
+
+        <div class="mf_bikes_color colorBox{{- key }} colorBox{{- section.id -}}">
+          {% if item.product_img_a_color and item.product_img_a_color.size > 0 %}
+            <div class="color_box" idx="0"><span style="background-color: {{ item.product_img_a_color }}"></span></div>
+          {% endif %}
+          {% if item.product_img_b_color and item.product_img_b_color.size > 0 %}
+            <div class="color_box" idx="1"><span style="background-color: {{ item.product_img_b_color }}"></span></div>
+          {% endif %}
+          {% if item.product_img_c_color and item.product_img_c_color.size > 0 %}
+            <div class="color_box" idx="2"><span style="background-color: {{ item.product_img_c_color }}"></span></div>
+          {% endif %}
+          {% if item.product_img_d_color and item.product_img_d_color.size > 0 %}
+            <div class="color_box" idx="3"><span style="background-color: {{ item.product_img_d_color }}"></span></div>
+          {% endif %}
+          {% if item.product_img_e_color and item.product_img_e_color.size > 0 %}
+            <div class="color_box" idx="4"><span style="background-color: {{ item.product_img_e_color }}"></span></div>
+          {% endif %}
+          {% if item.product_img_f_color and item.product_img_f_color.size > 0 %}
+            <div class="color_box" idx="5"><span  style="background-color: {{ item.product_img_f_color }}"></span></div>
+          {% endif %}
+
+        </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var spans = document.querySelector('.mf_bikes_color.colorBox{{- key }}.colorBox{{- section.id -}}');
+            var spansItem = [...document.querySelector('.mf_bikes_color.colorBox{{- key }}.colorBox{{- section.id -}}').children];
+            var linksItem = [...document.querySelector('.mf_bikes_imgsBox.imgsBox{{- key }}.imgsBox{{- section.id -}}').children];
+            spansItem[0].style.borderStyle = 'solid';
+            spans.addEventListener('click',function(e) {
+                item = e.target;
+                spansItem.forEach(x => x.style.borderStyle = 'none')
+                if(item.className == 'color_box') {
+                    const idx = item.getAttribute('idx')
+                    linksItem.forEach((dom,index) => {
+                        if(dom.getAttribute('idx') == idx) {
+                            dom.style.display = 'block';
+                            item.style.borderStyle = 'solid'
+                        } else {
+                            dom.style.display = 'none';
+                        }
+                    }) 
+                }
+            })
+        })
+    </script>
+
+
+              
+
+
+        
+        <h3 class="mf_bikes_peice">
+          <span>$ {{ item.product_content.price | money_without_currency }}</span>
+          {% if item.product_content.compare_at_price and item.product_content.compare_at_price.size > 0 %}
+            <del>$ {{ item.product_content.compare_at_price | money_without_currency }}</del>
+          {% endif %}
+          
+        </h3>
+        <div class="mf_bikes_tipIcon_">
+          <div class="mf_bikes_tipIcon">
+            {% if item.icon_one %}
+              <img src="{{ item.icon_one | img_url: '50x' }}" alt="{{ item.icon_one_img_alt }}">
+              {% else %}
+              <div style="width: 50x;">{{ 'image' | placeholder_svg_tag }}</div>
+            {% endif %}
+            <p>{{ item.icon_one_img_tip }}</p>
+          </div>
+          <div class="mf_bikes_tipIcon">
+            {% if item.icon_two %}
+              <img src="{{ item.icon_two | img_url: '50x' }}" alt="{{ item.icon_two_img_alt }}">
+              {% else %}
+              <div style="width: 50x;">{{ 'image' | placeholder_svg_tag }}</div>
+            {% endif %}
+            <p>{{ item.icon_two_img_tip }}</p>
+          </div>
+          <div class="mf_bikes_tipIcon">
+            {% if item.icon_three %}
+              <img src="{{ item.icon_three | img_url: '50x' }}" alt="{{ item.icon_three_img_alt }}">
+              {% else %}
+              <div style="width: 50x;">{{ 'image' | placeholder_svg_tag }}</div>
+            {% endif %}
+            <p>{{ item.icon_three_img_tip }}</p>
+          </div>
+          <div class="mf_bikes_tipIcon">
+            {% if item.icon_four %}
+              <img src="{{ item.icon_four | img_url: '50x' }}" alt="{{ item.icon_four_img_alt }}">
+              {% else %}
+              <div style="width: 50x;">{{ 'image' | placeholder_svg_tag }}</div>
+            {% endif %}
+            <p>{{ item.icon_four_img_tip }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+
+
+
+{% schema %}
+{
+  "name": "bicycle-collection",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  
+  "blocks": [
+    {
+      "type": "bicycleSCollection",
+      "name": "bicycleSCollection",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_content",
+          "label": "产品内容"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_img_a",
+          "label": "imgA"
+        },
+        {
+          "type": "text",
+          "id": "product_img_a_alt",
+          "label": "imgA-alt"
+        },
+        {
+          "type": "text",
+          "id": "product_img_a_color",
+          "label": "imgA-color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_img_b",
+          "label": "imgB"
+        },
+        {
+          "type": "text",
+          "id": "product_img_b_alt",
+          "label": "imgB-alt"
+        },
+        {
+          "type": "text",
+          "id": "product_img_b_color",
+          "label": "imgB-color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_img_c",
+          "label": "imgC"
+        },
+        {
+          "type": "text",
+          "id": "product_img_c_alt",
+          "label": "imgC-alt"
+        },
+        {
+          "type": "text",
+          "id": "product_img_c_color",
+          "label": "imgC-color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_img_d",
+          "label": "imgD"
+        },
+        {
+          "type": "text",
+          "id": "product_img_d_alt",
+          "label": "imgD-alt"
+        },
+        {
+          "type": "text",
+          "id": "product_img_d_color",
+          "label": "imgD-color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_img_e",
+          "label": "imgE"
+        },
+        {
+          "type": "text",
+          "id": "product_img_e_alt",
+          "label": "imgE-alt"
+        },
+        {
+          "type": "text",
+          "id": "product_img_e_color",
+          "label": "imgE-color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_img_f",
+          "label": "imgF"
+        },
+        {
+          "type": "text",
+          "id": "product_img_f_alt",
+          "label": "imgF-alt"
+        },
+        {
+          "type": "text",
+          "id": "product_img_f_color",
+          "label": "imgF-color"
+        },
+        {
+          "type": "text",
+          "id": "bicycle_title",
+          "label": "产品标题",
+          "default": "产品标题",
+          "info": "若需要换行 加 <br>"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_one",
+          "label": "icon_one_img"
+        },
+        {
+          "type": "text",
+          "id": "icon_one_img_alt",
+          "label": "icon-one-img-alt"
+        },
+        {
+          "type": "text",
+          "id": "icon_one_img_tip",
+          "label": "icon-one-img-tip"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_two",
+          "label": "icon_two_img"
+        },
+        {
+          "type": "text",
+          "id": "icon_two_img_alt",
+          "label": "icon-two-img-alt"
+        },
+        {
+          "type": "text",
+          "id": "icon_two_img_tip",
+          "label": "icon-two-img-tip"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_three",
+          "label": "icon_three_img"
+        },
+        {
+          "type": "text",
+          "id": "icon_three_img_alt",
+          "label": "icon-three-img-alt"
+        },
+        {
+          "type": "text",
+          "id": "icon_three_img_tip",
+          "label": "icon-three-img-tip"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_four",
+          "label": "icon_four_img"
+        },
+        {
+          "type": "text",
+          "id": "icon_four_img_alt",
+          "label": "icon-four-img-alt"
+        },
+        {
+          "type": "text",
+          "id": "icon_four_img_tip",
+          "label": "icon-four-img-tip"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "bicycleCollection"
+    }
+  ]
+}
+{% endschema %}

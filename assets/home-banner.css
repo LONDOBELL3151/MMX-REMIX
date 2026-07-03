@@ -1,0 +1,45 @@
+
+.bannerSwiper {
+    margin: 0 auto;
+}
+
+.bannerSwiper .swiper-slide {
+    text-align: center;
+}
+
+.bannerSwiper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bannerSwiper .swiper-pagination-bullet {
+    width: 54px;
+    height: 7px;
+    border-radius: initial;
+    opacity: 1;
+    background-color: #969696;
+}
+
+.bannerSwiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #ffffff;
+}
+
+.banner_empty_pc {
+    width: 100%;
+    height: 821px;
+    background-color: #f3f4f6;
+}
+
+.banner_empty_phone {
+    width: 100%;
+    height: 750px;
+    background-color: #f3f4f6;
+}
+@media only screen and (max-width: 750px) {
+    .bannerSwiper .swiper-pagination-bullet {
+        width: 30px;
+        height: 5px;
+    }
+}

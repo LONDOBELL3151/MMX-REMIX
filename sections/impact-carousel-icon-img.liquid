@@ -1,0 +1,78 @@
+{{ 'impact-carousel-icon-img.css' | asset_url | stylesheet_tag }}
+<p class="title_info">{{ section.settings.title }}</p>
+<div class="marquee marquee--reverse">
+  <div class="marquee__group">
+    {%- capture content -%}
+        {%- for item in section.blocks -%}
+          {%- if item.settings.image != blank -%}
+            {{- item.settings.image | image_url: width: item.settings.image.width | image_tag: alt: item.settings.image_alt -}}
+          {%- else -%}
+            {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
+          {%- endif -%}
+        {%- endfor -%}
+    {%- endcapture -%}
+    {{- content -}}
+  </div>
+  <div aria-hidden="true" class="marquee__group">
+    {{- content -}}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "carousel icon img",
+  "class": "impact-carousel-icon-img",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "info": "100 x 100px .png recommended",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "carousel icon img",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

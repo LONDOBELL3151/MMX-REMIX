@@ -1,0 +1,61 @@
+{% liquid
+  if option_value
+    assign label = label | default: option_value.name
+    assign swatch = option_value.swatch
+    assign option_disabled = false
+    assign selected = option_value.selected
+    assign product_id = option_value.id
+    assign variant = option_value.variant
+
+    if option_value.available == false
+      assign option_disabled = true
+    endif
+
+    assign downcase_label = label | downcase | strip
+  endif
+%}
+
+{%- capture param_id -%}swatch-id-{{ section.id }}-{{ product.id }}-{{ product_id }}{%- endcapture -%}
+
+{% liquid
+  if type == 'swatch'
+    if swatch.image != blank
+      assign swatch_image = swatch.image | image_url: width: 72
+      assign swatch_style = '--swatch-background: url(' | append: swatch_image | append: ')'
+    else
+      assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: swatch.color | append: ', ' | append: swatch.color | append: ')'
+    endif
+  endif
+%}
+
+{%- capture input_dataset -%}
+  data-product-url="{{ variant.url }}"
+  data-option-value-id="{{ product_id }}"
+  data-product-featured-img="{{  variant.featured_image | image_url: width:  variant.featured_image.width }}"
+{%- endcapture -%}
+
+{%- case type -%}
+  {%- when 'swatch' -%}
+    {%- assign white_label_list = 'White' | replace: ', ', ',' | downcase | split: ',' -%}
+    <input
+      type="radio"
+      id="{{ param_id }}"
+      name="{{ param_name }}"
+      value="{{ downcase_label }}"
+      class="sr-only swatch_input {% if visually_disabled %} visually-disabled{% endif %}"
+
+      {% if selected %}
+        checked
+      {% endif %}
+      {% if input_dataset %}
+        {{ input_dataset }}
+      {% endif %}
+    >
+    <label
+      class="imapct-color-swatch {% if white_label_list contains downcase_label %}ring-inset{% endif %} {% if option_disabled %}is-disabled{% endif %}"
+      for="{{ param_id }}"
+      style="{{ swatch_style }}"
+    >
+      <span class="sr-only">{{ downcase_label }}</span>
+    </label>
+{%- endcase -%}

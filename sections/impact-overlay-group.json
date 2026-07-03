@@ -1,0 +1,1 @@
+{"type":"custom.impactOverlay","name":"Impact Overlay group","sections":{"impact-cart-modal-dialog":{"type":"impact-cart-modal-dialog","settings":{"impact_cart_empty_button_link":"shopify:\/\/collections\/all"}}},"order":["impact-cart-modal-dialog"]}

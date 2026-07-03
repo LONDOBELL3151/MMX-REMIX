@@ -1,0 +1,614 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --mf-bundle-background: {{ section.settings.background_color }};
+    --mf-bundle-title-color: {{ section.settings.title_color }};
+    --mf-bundle-card-background: {{ section.settings.card_background }};
+    --mf-bundle-card-text: {{ section.settings.card_text_color }};
+    --mf-bundle-save-color: {{ section.settings.save_color }};
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles {
+    background: var(--mf-bundle-background);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__title {
+    margin: 0 0 2rem;
+    color: var(--mf-bundle-title-color);
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__card {
+    padding: 2.4rem;
+    border-radius: 1.8rem;
+    background: var(--mf-bundle-card-background);
+    color: var(--mf-bundle-card-text);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    gap: 0.2rem;
+    border: 1px solid rgba(17, 24, 39, 0.06);
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__card-title {
+    margin: 0 0 1.2rem;
+    color: inherit;
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__description {
+    margin: 0 0 1rem;
+    color: inherit;
+    opacity: 0.76;
+    line-height: 1.55;
+    font-size: 1.4rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0.8rem;
+    margin: 1.2rem 0 2rem;
+    min-height: 6.4rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__item-thumb {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__item-thumb img,
+  #shopify-section-{{ section.id }} .mf-bundles__item-thumb .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__item-list {
+    margin: 0 0 1rem;
+    padding-left: 0;
+    color: inherit;
+    opacity: 0.82;
+    line-height: 1.5;
+    font-size: 1.4rem;
+    list-style: none;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__item-list li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__item-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__pricing {
+    margin-top: auto;
+    padding-top: 0.25rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__total {
+    margin: 0 0 0.35rem;
+    color: inherit;
+    opacity: 0.75;
+    font-size: 1.4rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__total s {
+    opacity: 0.8;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__bundle-price {
+    margin: 0 0 1.15rem;
+    color: inherit;
+    font-size: 1.8rem;
+    line-height: 1.45;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__save {
+    color: var(--mf-bundle-save-color);
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button .button,
+  #shopify-section-{{ section.id }} .mf-bundles__button,
+  #shopify-section-{{ section.id }} .mf-bundles__button .mf-quick-add-form,
+  #shopify-section-{{ section.id }} .mf-bundles__button product-form,
+  #shopify-section-{{ section.id }} .mf-bundles__button .form,
+  #shopify-section-{{ section.id }} .mf-bundles__button .product-form__buttons {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button {
+    min-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button .button {
+    width: 100%;
+    min-width: 0;
+    min-height: 4.8rem;
+    padding: 1.2rem 1.6rem;
+    justify-content: center;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: 1.6rem;
+    border-radius: 1.2rem;
+    background: var(--mf-bundle-save-color);
+    border-color: var(--mf-bundle-save-color);
+    color: #ffffff;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button .button::before,
+  #shopify-section-{{ section.id }} .mf-bundles__button .button::after {
+    content: none;
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button .button:hover {
+    filter: brightness(0.95);
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button .button:focus,
+  #shopify-section-{{ section.id }} .mf-bundles__button .button:focus-visible,
+  #shopify-section-{{ section.id }} .mf-bundles__button .button.focused {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__button.is-loading {
+    opacity: 0.72;
+    cursor: wait;
+  }
+
+  #shopify-section-{{ section.id }} .mf-bundles__status {
+    margin: 0.75rem 0 0;
+    min-height: 1.3rem;
+    color: var(--mf-bundle-save-color);
+    font-size: 0.92rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .mf-bundles__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .mf-bundles__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+  }
+{%- endstyle -%}
+
+<section class="mf-bundles">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="mf-bundles__title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+
+    <div class="mf-bundles__grid">
+      {% for block in section.blocks %}
+        {%- liquid
+          assign bundle_product = block.settings.bundle_product
+          assign bundle_price_display = block.settings.bundle_price
+          assign total_value_display = block.settings.total_value
+          assign savings_display = block.settings.savings_text
+          assign bundle_total = 0
+          assign bundle_item_count = 0
+        -%}
+
+        {%- for product_index in (1..4) -%}
+          {%- liquid
+            assign product_key = 'product_' | append: product_index
+            assign bundle_item = block.settings[product_key]
+          -%}
+          {% if bundle_item != blank and bundle_item.selected_or_first_available_variant != blank %}
+            {%- assign bundle_total = bundle_total | plus: bundle_item.selected_or_first_available_variant.price -%}
+            {%- assign bundle_item_count = bundle_item_count | plus: 1 -%}
+          {% endif %}
+        {%- endfor -%}
+
+        {%- if total_value_display == blank and bundle_total > 0 -%}
+          {%- assign total_value_display = bundle_total | money -%}
+        {%- endif -%}
+
+        {%- if bundle_product != blank and bundle_product.selected_or_first_available_variant != blank and bundle_price_display == blank -%}
+          {%- assign bundle_price_display = bundle_product.selected_or_first_available_variant.price | money -%}
+        {%- endif -%}
+
+        {%- if savings_display == blank
+          and bundle_product != blank
+          and bundle_product.selected_or_first_available_variant != blank
+          and bundle_total > bundle_product.selected_or_first_available_variant.price
+        -%}
+          {%- assign savings_display = bundle_total | minus: bundle_product.selected_or_first_available_variant.price | money | prepend: 'Save ' | append: '!' -%}
+        {%- endif -%}
+
+        {%- capture bundle_items_json -%}
+          [
+          {%- assign has_item_json = false -%}
+          {%- for product_index in (1..4) -%}
+            {%- liquid
+              assign product_key = 'product_' | append: product_index
+              assign bundle_item = block.settings[product_key]
+            -%}
+            {% if bundle_item != blank and bundle_item.selected_or_first_available_variant != blank %}
+              {%- if has_item_json -%},{%- endif -%}
+              {"id":{{ bundle_item.selected_or_first_available_variant.id | json }},"quantity":1}
+              {%- assign has_item_json = true -%}
+            {% endif %}
+          {%- endfor -%}
+          ]
+        {%- endcapture -%}
+
+        <article class="mf-bundles__card" {{ block.shopify_attributes }}>
+          <h3 class="mf-bundles__card-title">
+            {% if block.settings.title != blank %}
+              {{ block.settings.title | escape }}
+            {% else %}
+              Bundle
+            {% endif %}
+          </h3>
+
+          {% if block.settings.description != blank %}
+            <div class="mf-bundles__description">{{ block.settings.description | escape | newline_to_br }}</div>
+          {% endif %}
+
+          <div class="mf-bundles__items">
+            {% for product_index in (1..4) %}
+              {%- liquid
+                assign product_key = 'product_' | append: product_index
+                assign bundle_item = block.settings[product_key]
+              -%}
+              {% if bundle_item != blank %}
+                <div class="mf-bundles__item-thumb">
+                  {% if bundle_item.featured_image != blank %}
+                    {{
+                      bundle_item.featured_image
+                      | image_url: width: 240
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '120, 180, 240',
+                        sizes: '72px',
+                        alt: bundle_item.featured_image.alt | default: bundle_item.title | escape
+                    }}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% if bundle_item_count > 0 and block.settings.description == blank %}
+            <ul class="mf-bundles__item-list">
+              {% for product_index in (1..4) %}
+                {%- liquid
+                  assign product_key = 'product_' | append: product_index
+                  assign bundle_item = block.settings[product_key]
+                -%}
+                {% if bundle_item != blank %}
+                  {%- assign bundle_item_title = bundle_item.title | split: '|' | first | strip -%}
+                  <li>{{ bundle_item_title | escape }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <div class="mf-bundles__pricing">
+            {% if total_value_display != blank %}
+              <p class="mf-bundles__total">
+                {{ block.settings.total_label | escape }}:
+                <s>{{ total_value_display }}</s>
+              </p>
+            {% endif %}
+
+            {% if bundle_price_display != blank %}
+              <p class="mf-bundles__bundle-price">
+                {{ block.settings.bundle_price_label | escape }}:
+                {{ bundle_price_display }}
+                {% if savings_display != blank %}
+                  <span class="mf-bundles__save">{{ savings_display }}</span>
+                {% endif %}
+              </p>
+            {% elsif savings_display != blank %}
+              <p class="mf-bundles__bundle-price">
+                <span class="mf-bundles__save">{{ savings_display }}</span>
+              </p>
+            {% endif %}
+
+            <div class="mf-bundles__button">
+              {% if bundle_product != blank %}
+                {% render 'mf-quick-add-form',
+                  product: bundle_product,
+                  button_label: block.settings.button_label,
+                  button_class: 'button button--primary',
+                  section_id: section.id,
+                  id_suffix: block.id
+                %}
+              {% elsif bundle_item_count > 0 %}
+                <button
+                  type="button"
+                  class="button button--primary mf-bundles__button"
+                  data-mf-bundle-button
+                  data-items="{{ bundle_items_json | strip | escape }}"
+                  data-default-label="{{ block.settings.button_label | escape }}"
+                  data-bundle-title="{{ block.settings.title | escape }}"
+                >
+                  {{ block.settings.button_label | escape }}
+                </button>
+              {% else %}
+                <button type="button" class="button button--primary mf-bundles__button" disabled>
+                  {{ block.settings.button_label | escape }}
+                </button>
+              {% endif %}
+              <p class="mf-bundles__status" data-mf-bundle-status></p>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    const buttons = Array.from(sectionRoot.querySelectorAll('[data-mf-bundle-button]'));
+    if (!buttons.length) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const status = button.parentElement.querySelector('[data-mf-bundle-status]');
+        const cartDrawer = document.querySelector('cart-drawer');
+        const defaultLabel = button.dataset.defaultLabel || button.textContent.trim();
+
+        if (status) status.textContent = '';
+        button.classList.add('is-loading');
+        button.disabled = true;
+        button.textContent = 'Adding...';
+
+        try {
+          const items = JSON.parse(button.dataset.items || '[]');
+          if (!items.length) {
+            throw new Error('Please select products for this bundle.');
+          }
+
+          const formData = new FormData();
+          items.forEach((item, index) => {
+            formData.append(`items[${index}][id]`, item.id);
+            formData.append(`items[${index}][quantity]`, item.quantity || 1);
+
+            if (button.dataset.bundleTitle) {
+              formData.append(`items[${index}][properties][_bundle]`, button.dataset.bundleTitle);
+            }
+          });
+
+          if (cartDrawer) {
+            cartDrawer.setActiveElement(button);
+            cartDrawer.getSectionsToRender().forEach((section) => {
+              formData.append('sections', section.id);
+            });
+            formData.append('sections_url', window.location.pathname);
+          }
+
+          const response = await fetch((window.routes && window.routes.cart_add_url) || '/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+          });
+
+          const payload = await response.json();
+
+          if (!response.ok || payload.status) {
+            throw new Error(payload.description || payload.message || 'Unable to add this bundle.');
+          }
+
+          if (cartDrawer && payload.sections) {
+            cartDrawer.renderContents(payload);
+          } else {
+            window.location.href = (window.routes && window.routes.cart_url) || '/cart';
+          }
+        } catch (error) {
+          if (status) {
+            status.textContent = error.message;
+          }
+        } finally {
+          button.classList.remove('is-loading');
+          button.disabled = false;
+          button.textContent = defaultLabel;
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "MF Accessory Bundles",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Accessory Bundle & Save"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "save_color",
+      "label": "Save text color",
+      "default": "#218838"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Bundle title",
+          "default": "Commuter Pro Bundle"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "product",
+          "id": "bundle_product",
+          "label": "Optional bundle product"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Display product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Display product 2"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Display product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_4",
+          "label": "Display product 4"
+        },
+        {
+          "type": "text",
+          "id": "total_label",
+          "label": "Total value label",
+          "default": "Total Value"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price_label",
+          "label": "Bundle price label",
+          "default": "Bundle Price"
+        },
+        {
+          "type": "text",
+          "id": "total_value",
+          "label": "Custom total value"
+        },
+        {
+          "type": "text",
+          "id": "bundle_price",
+          "label": "Custom bundle price"
+        },
+        {
+          "type": "text",
+          "id": "savings_text",
+          "label": "Savings text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Add Bundle to Cart"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF Accessory Bundles"
+    }
+  ]
+}
+{% endschema %}

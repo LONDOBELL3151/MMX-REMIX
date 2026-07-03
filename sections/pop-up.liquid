@@ -1,0 +1,357 @@
+<!--
+
+{% if section.settings.enable_popup and customer == blank %}
+  {{ 'maxfoot-welcome-popup.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'maxfoot-welcome-popup.js' | asset_url }}" defer="defer"></script>
+
+  {%- liquid
+    assign popup_id = 'MaxfootWelcomePopup-' | append: section.id
+    assign popup_form_id = popup_id | append: '-form'
+    assign name_input_id = popup_id | append: '-name'
+    assign email_input_id = popup_id | append: '-email'
+    assign has_image = false
+    if section.settings.image != blank
+      assign has_image = true
+    endif
+  -%}
+
+  <div
+    id="{{ popup_id }}"
+    class="maxfoot-welcome-popup{% unless has_image %} maxfoot-welcome-popup--without-image{% endunless %}"
+    data-maxfoot-welcome-popup
+    data-section-id="{{ section.id }}"
+    data-delay-ms="{{ section.settings.delay_seconds | times: 1000 }}"
+    data-expiry-days="{{ section.settings.dismiss_days }}"
+    data-design-mode="{{ request.design_mode }}"
+    data-coupon-code="{{ section.settings.coupon_code | escape }}"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="maxfoot-welcome-popup__backdrop" data-popup-backdrop></div>
+
+    <div class="maxfoot-welcome-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="{{ popup_id }}-heading">
+      <button
+        type="button"
+        class="maxfoot-welcome-popup__close"
+        data-popup-close
+        aria-label="Close welcome offer"
+      >
+        {% render 'icon-close' %}
+      </button>
+
+      {% if has_image %}
+        <div class="maxfoot-welcome-popup__media">
+          {{
+            section.settings.image
+            | image_url: width: 900
+            | image_tag:
+              class: 'maxfoot-welcome-popup__image',
+              widths: '320, 480, 640, 900',
+              loading: 'lazy',
+              alt: section.settings.heading
+          }}
+
+          <div class="maxfoot-welcome-popup__media-badge">
+            {% if section.settings.badge_text != blank %}
+              <span class="maxfoot-welcome-popup__media-label">{{ section.settings.badge_text }}</span>
+            {% endif %}
+
+            {% if section.settings.coupon_code != blank %}
+              <strong class="maxfoot-welcome-popup__media-code">{{ section.settings.coupon_code }}</strong>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="maxfoot-welcome-popup__content">
+        <div class="maxfoot-welcome-popup__panel-head">
+          {% if section.settings.badge_text != blank %}
+            <p class="maxfoot-welcome-popup__eyebrow">{{ section.settings.badge_text }}</p>
+          {% endif %}
+
+          {% if section.settings.heading != blank %}
+            <h2 id="{{ popup_id }}-heading" class="maxfoot-welcome-popup__heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+
+          {% if section.settings.content != blank %}
+            <div class="maxfoot-welcome-popup__copy rte">{{ section.settings.content }}</div>
+          {% endif %}
+        </div>
+
+        {% form 'customer', class: 'maxfoot-welcome-popup__form', id: popup_form_id %}
+          <input type="hidden" name="contact[tags]" value="newsletter, welcome-popup">
+
+          <div
+            class="maxfoot-welcome-popup__state"
+            data-popup-form-panel
+            data-popup-state-source
+            data-popup-force-open="{% if form.errors or form.posted_successfully? %}true{% else %}false{% endif %}"
+            data-popup-show-success="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
+            {% if form.posted_successfully? %}
+              hidden
+            {% endif %}
+          >
+            <div class="maxfoot-welcome-popup__fields">
+              <div class="maxfoot-welcome-popup__field">
+                <label class="visually-hidden" for="{{ name_input_id }}">{{ section.settings.name_label }}</label>
+                <input
+                  id="{{ name_input_id }}"
+                  type="text"
+                  name="contact[first_name]"
+                  class="maxfoot-welcome-popup__input"
+                  placeholder="{{ section.settings.name_placeholder }}"
+                  autocomplete="given-name"
+                  data-popup-name
+                >
+              </div>
+
+              <div class="maxfoot-welcome-popup__field">
+                <label class="visually-hidden" for="{{ email_input_id }}">{{ section.settings.email_label }}</label>
+                <input
+                  id="{{ email_input_id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="maxfoot-welcome-popup__input"
+                  value="{{ form.email }}"
+                  placeholder="{{ section.settings.email_placeholder }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="{{ popup_id }}-error"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="{{ popup_id }}-success"
+                  {% endif %}
+                  data-popup-email
+                  required
+                >
+              </div>
+            </div>
+
+            {% if section.settings.coupon_code != blank %}
+              <div class="maxfoot-welcome-popup__offer">
+                <span class="maxfoot-welcome-popup__offer-label">{{ section.settings.coupon_label }}</span>
+                <strong class="maxfoot-welcome-popup__offer-code">{{ section.settings.coupon_code }}</strong>
+              </div>
+            {% endif %}
+
+            <button type="submit" class="maxfoot-welcome-popup__submit" name="commit" data-popup-submit>
+              {{ section.settings.submit_label }}
+            </button>
+
+            {% if form.errors %}
+              <div class="maxfoot-welcome-popup__message maxfoot-welcome-popup__message--error" id="{{ popup_id }}-error">
+                {% render 'icon-error' %}
+                <span>
+                  {% if form.errors.messages.email %}
+                    {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+                  {% else %}
+                    Please review your details and try again.
+                  {% endif %}
+                </span>
+              </div>
+            {% endif %}
+
+            {% if section.settings.fine_print != blank %}
+              <p class="maxfoot-welcome-popup__fine-print">{{ section.settings.fine_print }}</p>
+            {% endif %}
+          </div>
+
+          <div
+            class="maxfoot-welcome-popup__state maxfoot-welcome-popup__state--success"
+            id="{{ popup_id }}-success"
+            data-popup-success-panel
+            {% unless form.posted_successfully? %}
+              hidden
+            {% endunless %}
+          >
+            <div class="maxfoot-welcome-popup__success-icon">
+              {% render 'icon-checkmark' %}
+            </div>
+
+            {% if section.settings.success_heading != blank %}
+              <h3 class="maxfoot-welcome-popup__success-heading">{{ section.settings.success_heading }}</h3>
+            {% endif %}
+
+            <p class="maxfoot-welcome-popup__success-greeting" data-popup-greeting hidden>
+              Welcome, <span data-popup-subscriber-name></span>.
+            </p>
+
+            {% if section.settings.success_content != blank %}
+              <div class="maxfoot-welcome-popup__success-copy rte">{{ section.settings.success_content }}</div>
+            {% endif %}
+
+            {% if section.settings.coupon_code != blank %}
+              <div class="maxfoot-welcome-popup__coupon-card">
+                <span class="maxfoot-welcome-popup__coupon-card-label">{{ section.settings.coupon_label }}</span>
+                <strong class="maxfoot-welcome-popup__coupon-card-code" data-popup-coupon-display>
+                  {{ section.settings.coupon_code }}
+                </strong>
+              </div>
+            {% endif %}
+
+            <div class="maxfoot-welcome-popup__actions">
+              <button
+                type="button"
+                class="maxfoot-welcome-popup__action maxfoot-welcome-popup__action--primary"
+                data-popup-copy
+                data-default-label="{{ section.settings.copy_button_label }}"
+                data-copied-label="Code copied"
+              >
+                {{ section.settings.copy_button_label }}
+              </button>
+
+              <button
+                type="button"
+                class="maxfoot-welcome-popup__action maxfoot-welcome-popup__action--secondary"
+                data-popup-close
+              >
+                {{ section.settings.dismiss_button_label }}
+              </button>
+            </div>
+
+            {% if section.settings.fine_print != blank %}
+              <p class="maxfoot-welcome-popup__fine-print">{{ section.settings.fine_print }}</p>
+            {% endif %}
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Pop-Up",
+  "tag": "section",
+  "class": "section section--welcome-popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_popup",
+      "label": "Enable welcome popup",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay_seconds",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Delay before showing",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "dismiss_days",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "d",
+      "label": "Hide popup for",
+      "default": 90
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge",
+      "default": "New visitor offer"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Unlock your welcome coupon"
+    },
+    {
+      "type": "liquid",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Leave your name and email to get your first-order savings, launch updates, and Maxfoot-only offers.</p>"
+    },
+    {
+      "type": "text",
+      "id": "coupon_label",
+      "label": "Coupon label",
+      "default": "Your exclusive code"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code",
+      "label": "Coupon code",
+      "default": "WELCOME5"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name placeholder",
+      "default": "Your name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Get my coupon"
+    },
+    {
+      "type": "text",
+      "id": "success_heading",
+      "label": "Success heading",
+      "default": "You're in"
+    },
+    {
+      "type": "liquid",
+      "id": "success_content",
+      "label": "Success content",
+      "default": "<p>Use the code below at checkout. We will also send upcoming launches, sales, and riding tips to your inbox.</p>"
+    },
+    {
+      "type": "text",
+      "id": "copy_button_label",
+      "label": "Copy button label",
+      "default": "Copy code"
+    },
+    {
+      "type": "text",
+      "id": "dismiss_button_label",
+      "label": "Dismiss button label",
+      "default": "Continue shopping"
+    },
+    {
+      "type": "textarea",
+      "id": "fine_print",
+      "label": "Fine print",
+      "default": "One-time welcome offer. Discount eligibility, minimum spend, and collection exclusions can be updated in your checkout rules."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Popup image"
+    }
+  ]
+}
+{% endschema %}
+
+-->

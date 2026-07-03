@@ -1,0 +1,111 @@
+{{ 'swiperBanner.min.css' | asset_url | stylesheet_tag }}
+{{ 'swiper_banner.css' | asset_url | stylesheet_tag }}
+
+<section class="bicycle-swiperBanner bicycle-swiperBanner-{{ section.id }}">
+  <p class="bicycle-swiperBanner-title">{{ section.settings.swiperBanner_title }}</p>
+  <div class="bicycle-swiperBanner-box">
+    <div class="swiper-container swiper-container-horizontal">
+      <div class="swiper-wrapper">
+        {% for item in section.blocks %}
+          <div class="swiper-slide">
+            {% if item.settings.swiperBanner_img %}
+              <img src="{{ item.settings.swiperBanner_img | img_url: '620x400' }}" alt="{{ item.settings.swiperBanner_imgAlt }}">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="swiper-button-next swiper-button-next-{{ section.id }}"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section.id }}"></div>
+  </div>
+</section>
+{{ 'swiperBanner.min.js' | asset_url | script_tag }}
+<script>
+  certifySwiper = new Swiper('.bicycle-swiperBanner-{{ section.id }} .swiper-container', {
+    watchSlidesProgress: true,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    loop: true,
+    autoplay: true,
+    autoplay: 2000,
+    autoplay: {
+      disableOnInteraction: false,
+    },
+    loopedSlides: 3,
+    navigation: {
+      nextEl: '.swiper-button-next-{{ section.id }}',
+      prevEl: '.swiper-button-prev-{{ section.id }}',
+    },
+    on: {
+      progress: function (progress) {
+        for (i = 0; i < this.slides.length; i++) {
+          var slide = this.slides.eq(i);
+          var slideProgress = this.slides[i].progress;
+          modify = 1;
+          if (Math.abs(slideProgress) > 1) {
+            modify = (Math.abs(slideProgress) - 1) * 0.3 + 1;
+          }
+          translate = slideProgress * modify * 260 + 'px';
+          scale = 1 - Math.abs(slideProgress) / 5;
+          zIndex = 999 - Math.abs(Math.round(10 * slideProgress));
+          slide.transform('translateX(' + translate + ') scale(' + scale + ')');
+          slide.css('zIndex', zIndex);
+          slide.css('opacity', 1);
+          if (Math.abs(slideProgress) > 3) {
+            slide.css('opacity', 0);
+          }
+        }
+      },
+      setTransition: function (transition) {
+        for (var i = 0; i < this.slides.length; i++) {
+          var slide = this.slides.eq(i);
+          slide.transition(transition);
+        }
+      },
+    },
+  });
+</script>
+
+{% schema %}
+{
+  "name": "swiperBanner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "swiperBanner_title",
+      "label": "swiperBanner title",
+      "default": "swiperBanner title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "swiperBannerBox",
+      "name": "swiperBannerBox",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "swiperBanner_img",
+          "label": "swiperBanner img",
+          "info": "图片尺寸 620x400"
+        },
+        {
+          "type": "text",
+          "id": "swiperBanner_imgAlt",
+          "label": "swiperBanner img alt",
+          "default": "swiperBanner img alt"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "swiperBanner"
+    }
+  ]
+}
+{% endschema %}

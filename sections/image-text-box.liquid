@@ -1,0 +1,223 @@
+
+
+<style>
+.image-text-box {
+  padding: 60px 20px;
+  background-color: {{ section.settings.background_color }};
+}
+
+.image-text-box .container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.image-text-box .text-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.image-text-box .text-content h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.image-text-box .text-content p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.image-text-box .image-container {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+}
+
+.image-text-box .image-container img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.image-text-box .image-container .image-label {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.image-text-box .image-container .image-label2 {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.image-text-box .image-container .image-label3 {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  color: white;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Mobile view */
+@media screen and (max-width: 768px) {
+  .image-text-box .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-text-box .image-container {
+    margin-bottom: 20px;
+  }
+
+  .image-text-box .text-content {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .image-text-box .image-container img {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+
+{% for block in section.blocks %}
+  <div class="image-text-box">
+  <div class="container">
+    
+    <!-- 文本部分 -->
+    <div class="text-content">
+      <h2>{{ block.settings.heading }}</h2>
+      <p>{{ block.settings.description }}</p>
+    </div>
+    
+    <!-- 图片部分 -->
+    <div class="image-container">
+      {% if block.settings.image_1 %}
+        <img src="{{ block.settings.image_1 | image_url }}" alt="图片 1">
+        <div class="image-label">{{ block.settings.label_1 }}</div>
+      {% endif %}
+    </div>
+
+    <div class="image-container">
+      {% if block.settings.image_2 %}
+        <img src="{{ block.settings.image_2 | image_url }}" alt="图片 2">
+        <div class="image-label2">{{ block.settings.label_2 }}</div>
+      {% endif %}
+    </div>
+
+    <div class="image-container">
+      {% if block.settings.image_3 %}
+        <img src="{{ block.settings.image_3 | image_url }}" alt="图片 3">
+        <div class="image-label3">{{ block.settings.label_3 }}</div>
+      {% endif %}
+    </div>
+    
+  </div>
+</div>
+{% endfor %}
+{% schema %}
+{
+  "name": "图片与文字模块",
+  "tag": "section",
+  "class": "image-text-box",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "图文块",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "布局方向",
+          "default": "image-right",
+          "options": [
+            { "value": "image-right", "label": "图右文左" },
+            { "value": "image-left", "label": "图左文右" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "标题",
+          "default": "Compact and Foldable"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "描述文本",
+          "default": "Powered by a robust 500W rear-drive motor, this trike delivers impressive speed and torque, effortlessly tackling hills and long distances. Its 14.1-inch low-step thru frame ensures easy mounting and dismounting, making it accessible for riders of all ages and abilities."
+        },
+        {
+          "type": "text",
+          "id": "label_1",
+          "label": "图片1文字",
+          "default": "Peak Motor 1100W"
+        },
+        {
+          "type": "text",
+          "id": "label_2",
+          "label": "图片2文字",
+          "default": "Torque 60Nm"
+        },
+        {
+          "type": "text",
+          "id": "label_3",
+          "label": "图片3文字",
+          "default": "Speed 20Mph"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "图片 1",
+          "info": "建议上传 1:1 比例的图片（例如 400x400 像素）。"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "图片 2",
+          "info": "建议上传 1:1 比例的图片（例如 400x400 像素）。"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "图片 3",
+          "info": "建议上传 1:1 比例的图片（例如 400x400 像素）。"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "图片与文字模块",
+      "category": "自定义模块"
+    }
+  ]
+}
+{% endschema %}

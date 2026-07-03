@@ -1,0 +1,659 @@
+
+{% unless section.settings.product.has_only_default_variant %}
+  {{ 'impact-component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'impact-component-swatch.css' | asset_url | stylesheet_tag }}
+  {{ 'impact-component-swatch-input.css' | asset_url | stylesheet_tag }}
+{% endunless %}
+{{ 'impact-featured-collection-buy.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.is_quick_shop -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script type="module" src="{{ 'impact-product-card.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.title != blank or section.settings.view_all_link != blank -%}
+  <div class="impactFeaturedCollectionBuy_module-title impactFeaturedCollectionBuy_width {% if section.settings.title != blank and section.settings.view_all_link != blank %}space-between {% elsif section.settings.title != blank %}left {% else %}right {% endif %}">
+    {%- if section.settings.title != blank -%}
+      <h2>{{- section.settings.title -}}</h2>
+    {%- endif -%}
+    {%- if section.settings.view_all_link != blank -%}
+      <a href="{{section.settings.view_all_link}}" class="view_all">
+        <span class="view_all-text">View all</span>
+        <span class="view_all-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025="">
+            <path fill="currentColor"
+              d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0z">
+            </path>
+          </svg>
+        </span>
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% liquid
+  assign use_scroll_layout = false
+  if section.settings.layout_type_pc == 'scroll' or section.settings.layout_type_phone == 'scroll'
+    assign use_scroll_layout = true
+  endif
+
+  if section.settings.layout_type_pc == 'scroll' or section.settings.layout_type_phone == 'scroll'
+    assign product_slider_id = 'product_slider_id-' | append: section.id
+    assign keen_slider = 'keen-slider'
+  endif
+
+  if use_scroll_layout and section.blocks.size <= 4
+    assign not_scroll_is_piece = 'not_scroll_is_piece'
+  endif
+
+  if section.settings.layout_type_pc == 'scroll'
+    assign pc_scroll = 'pc_scroll'
+  else
+    assign pc_piece = 'pc_piece'
+  endif
+
+  if section.settings.layout_type_phone == 'scroll'
+    assign phone_scroll = 'phone_scroll'
+  else
+    assign phone_piece = 'phone_piece'
+  endif
+%}
+
+{%- capture quick_shop_btn -%}
+  <span class="icon-quickbuy">
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      role="presentation"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+    >
+      <path d="M27.5 43.5H5V14.4048H43V28.2611M34 14.1984V13.8105C34 8.66844 29.702 4.5 24.4 4.5H23.6C18.2981 4.5 14 8.66844 14 13.8105V14.1984M35 28.746V35.5349M35 35.5349V42.3238M35 35.5349H28M35 35.5349L42 35.5349" vector-effect="non-scaling-stroke"></path>
+    </svg>
+  </span>
+  <span class="icon-loading-spinner loading__spinner hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66">
+      <circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle>
+    </svg>
+  </span>
+{%- endcapture -%}
+
+{%- capture inner_content -%}
+  <div
+    id="{{ product_slider_id }}"
+    class="impactFeaturedCollectionBuy_width impactFeaturedCollectionBuy_products model_piece {{ not_scroll_is_piece }} {{ keen_slider }} {{ pc_scroll }} {{ pc_piece }} {{ phone_scroll }} {{ phone_piece }} "
+  >
+    {%- assign product_form_id = 'product-form-' | append: section.id -%}
+    {%- for block in section.blocks -%}
+      {%- if block.settings.product.media.size > 0 -%}
+        {%- assign product = block.settings.product -%}
+        {%- if block.settings.product_title != blank -%}
+          {% assign title = block.settings.product_title %}
+        {%- else -%}
+          {% assign title = product.title %}
+        {%- endif -%}
+        <div class="keen-slider__slide impactFeaturedCollectionBuy_slider">
+          <impact-product-card class="impactFeaturedCollectionBuy_product-list" {{ block.shopify_attributes }}>
+            <div class="figure">
+              <a href="{{ product.url }}" class="product-url" aria-label="{{ title }}">
+                {%- liquid
+                  assign main_media_loading_strategy = null
+  
+                  if section.index > 1 or forloop.index > 3
+                    assign main_media_loading_strategy = 'lazy'
+                  endif
+                -%}
+                {%- if block.settings.product_image != blank -%}
+                  {{-
+                    block.settings.product_image
+                    | image_url: width: block.settings.product_image.width
+                    | image_tag:
+                      loading: main_media_loading_strategy,
+                      widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+                      class: 'impactFeaturedCollectionBuy_product-img',
+                      alt: block.settings.product_image_alt
+                  -}}
+                {%- elsif product.selected_or_first_available_variant.featured_image -%}
+                  {{-
+                    product.selected_or_first_available_variant.featured_image
+                    | image_url: width: product.selected_or_first_available_variant.featured_image.width
+                    | image_tag:
+                      loading: main_media_loading_strategy,
+                      widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+                      class: 'impactFeaturedCollectionBuy_product-img'
+                  -}}
+                {%- else -%}
+                  {{-
+                    product.featured_media
+                    | image_url: width: product.featured_media.width
+                    | image_tag:
+                      loading: main_media_loading_strategy,
+                      widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+                      class: 'impactFeaturedCollectionBuy_product-img'
+                  -}}
+                {%- endif -%}
+              </a>
+              {%- if section.settings.is_badge -%}
+                {% render 'impact-card-badge',
+                  product_custom: product.metafields.custom,
+                  product: product,
+                  currency_code_enabled: section.settings.currency_code_enabled,
+                  percentage_mode: section.settings.percentage_mode
+                %}
+              {%- endif -%}
+              {%- if product.available and section.settings.is_quick_shop -%}
+                {%- if product.variants.size > 1 -%}
+                  {%- assign product_quick_add = 'quick-add-' | append: section.id | append: card_product.id -%}
+                  <modal-opener data-modal="#QuickAdd-{{ product.id }}" class="impact-card-quick-buy">
+                    <button
+                      id="{{ product_quick_add }}-submit"
+                      type="submit"
+                      name="add"
+                      class="impact-quick-shop_trigger quick-add__submit button button--full-width button--secondary"
+                      aria-haspopup="dialog"
+                      aria-labelledby="{{ product_quick_add }}-submit title-{{ section.id }}-{{ product.id }}"
+                      data-product-url="{{ product.url }}"
+                    >
+                      {{ quick_shop_btn }}
+                    </button>
+                  </modal-opener>
+                  <quick-add-modal id="QuickAdd-{{ product.id }}" class="quick-add-modal impact-quick-buy-pop">
+                    <div
+                      role="dialog"
+                      aria-label="{{ 'products.product.choose_product_options' | t: product_name: product.title | escape }}"
+                      aria-modal="true"
+                      class="quick-add-modal__content global-settings-popup"
+                      tabindex="-1"
+                    >
+                      <button
+                        id="ModalClose-{{ product.id }}"
+                        type="button"
+                        class="quick-add-modal__toggle"
+                        aria-label="{{ 'accessibility.close' | t }}"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025="">
+                          <path fill="currentColor" d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"></path>
+                        </svg>
+                      </button>
+                      <div
+                        id="QuickAddInfo-{{ product.id }}"
+                        class="quick-add-modal__content-info impact-quick-buy-pop_content"
+                        data-is-pop="1"
+                      ></div>
+                    </div>
+                    <div class="imapct-cart-drawer-overlay"></div>
+                  </quick-add-modal>
+                {%- endif -%}
+  
+                {%- if product.variants.size == 1 -%}
+                  <impact-card-quick-buy
+                    class="impact-card-quick-buy"
+                    data-variants="{{ product.variants.size }}"
+                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                  >
+                    {% form 'product',
+                      product,
+                      id: product_form_id,
+                      novalidate: 'novalidate',
+                      data-type: 'add-to-cart-form'
+                    %}
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ product.selected_or_first_available_variant.id }}"
+                        {% if product.selected_or_first_available_variant.available == false
+                          or product.selected_or_first_available_variant == null
+                        %}
+                          disabled
+                        {% endif %}
+                      >
+                      <button class="impact-quick-shop_trigger" type="submit" name="add">
+                        {{ quick_shop_btn }}
+                      </button>
+                    {% endform %}
+                  </impact-card-quick-buy>
+                {%- endif -%}
+              {%- endif -%}
+
+              {%- if  product.available == false and section.settings.is_quick_shop -%}
+                <p class="sell_out">Sell Out</p>
+              {%- endif -%}
+              
+            </div>
+            <div class="info">
+              <a href="{{ product.url }}" class="name product-url" title="{{ title }}">{{ title }}</a>
+              <div class="impactFeaturedCollectionBuy_price-list">
+                <p class="sale-price">
+                  <span class="sr-only">Sale price</span>
+                  {%- if section.settings.currency_code_enabled -%}
+                    {{- product.price | money_with_currency -}}
+                  {%- else -%}
+                    {{- product.price | money -}}
+                  {%- endif -%}
+                </p>
+                <p class="regular-price">
+                  <span class="sr-only">Regular price</span>
+                  {%- if section.settings.currency_code_enabled -%}
+                    {{- product.compare_at_price | money_with_currency -}}
+                  {%- else -%}
+                    {{- product.compare_at_price | money -}}
+                  {%- endif -%}
+                </p>
+              </div>
+              {% render 'impact-product-variant-picker-buy',
+                product: product,
+                product_form_id: product_form_id,
+                is_only_color: 'color'
+              %}
+            </div>
+          </impact-product-card>
+          <div class="impactFeaturedCollectionBuy_iconContent">
+            {%- for i in (1..4) -%}
+              {%- assign item_img_setting = 'image_icon_' | append: i -%}
+              {%- assign item_alt_setting = 'icon_title' | append: i -%}
+              {%- assign icon_image = block.settings[item_img_setting] -%}
+              {%- assign icon_image_alt = block.settings[item_alt_setting] -%}
+              {%- if icon_image != blank -%}
+                <div class="icon_list">
+                  {{- icon_image | image_url: width: icon_image.width | image_tag: alt: icon_image_alt, loading: 'lazy' -}}
+                  <p>{{ icon_image_alt }}</p>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- else -%}
+        {%- capture placeholder_image -%}product-{% cycle '1', '2', '3', '4', '5', '6' %}{%- endcapture -%}
+          <div class="keen-slider__slide">
+            <div class="impactFeaturedCollectionBuy_product-list">
+              <div class="figure">
+                {{- placeholder_image | placeholder_svg_tag: 'placeholder_image placeholder' -}}
+              </div>
+              <div class="info">
+                <a href="{{ product.url }}" class="name"> Product</a>
+                <p>{{- 4500 | money -}}</p>
+              </div>
+            </div>
+          </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endcapture -%}
+
+{%- if use_scroll_layout and section.blocks.size > 4 -%}
+  {{ 'keen-slider.min.css' | asset_url | stylesheet_tag }}
+  {{ inner_content }}
+  <script src="{{ 'keen-slider.min.js' | asset_url }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var gridBoxes = document.querySelectorAll('.impactFeaturedCollectionBuy_products.model_piece');
+      gridBoxes.forEach(function (gridBox) {
+        gridBox.classList.remove('model_piece');
+      });
+      function navigation(slider) {
+        let wrapper, arrowLeft, arrowRight;
+
+        function markup(remove) {
+          wrapperMarkup(remove);
+          arrowMarkup(remove);
+        }
+
+        function removeElement(elment) {
+          elment.parentNode.removeChild(elment);
+        }
+        function createDiv(className) {
+          var div = document.createElement('div');
+          var classNames = className.split(' ');
+          classNames.forEach((name) => div.classList.add(name));
+          return div;
+        }
+
+        function arrowMarkup(remove) {
+          if (remove) {
+            removeElement(arrowLeft);
+            removeElement(arrowRight);
+            return;
+          }
+          arrowLeft = createDiv('arrow arrow--left');
+          arrowLeft.setAttribute('role', 'button');
+          arrowLeft.setAttribute('aria-label', 'Previous');
+          arrowLeft.addEventListener('click', () => slider.prev());
+          arrowRight = createDiv('arrow arrow--right');
+          arrowRight.setAttribute('role', 'button');
+          arrowRight.setAttribute('aria-label', 'Next');
+          arrowRight.addEventListener('click', () => slider.next());
+
+          wrapper.appendChild(arrowLeft);
+          wrapper.appendChild(arrowRight);
+        }
+
+        function wrapperMarkup(remove) {
+          if (remove) {
+            var parent = wrapper.parentNode;
+            while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, wrapper);
+            removeElement(wrapper);
+            return;
+          }
+          wrapper = createDiv('navigation-wrapper');
+          slider.container.parentNode.appendChild(wrapper);
+          wrapper.appendChild(slider.container);
+        }
+
+        function updateClasses() {
+          const slide = slider.track.details.rel;
+          const slidesLength = slider.track.details.slides.length;
+          const perView = slider.options.slides.perView || 1;
+
+          slide === 0 ? arrowLeft.classList.add('arrow--disabled') : arrowLeft.classList.remove('arrow--disabled');
+
+          slide > slidesLength - Math.ceil(perView)
+            ? arrowRight.classList.add('arrow--disabled')
+            : arrowRight.classList.remove('arrow--disabled');
+        }
+
+        slider.on('created', () => {
+          markup();
+          updateClasses();
+        });
+        slider.on('optionsChanged', () => {
+          markup(true);
+          markup();
+          updateClasses();
+        });
+        slider.on('slideChanged', () => {
+          updateClasses();
+        });
+        slider.on('destroyed', () => {
+          markup(true);
+        });
+      }
+
+      new KeenSlider(
+        '#{{ product_slider_id }}',
+        {
+          slides: {
+            perView: 1.3, // 默认值（最小的情况）
+            spacing: 15,
+          },
+          breakpoints: {
+            '(min-width: 530px)': {
+              slides: {
+                perView: 1.5,
+                spacing: 15,
+              },
+            },
+            '(min-width: 650px)': {
+              slides: {
+                perView: 2.4,
+                spacing: 15,
+              },
+            },
+            '(min-width: 750px)': {
+              slides: {
+                perView: 2.7,
+                spacing: 20,
+              },
+            },
+            '(min-width: 1050px)': {
+              slides: {
+                perView: 3.5,
+                spacing: 20,
+              },
+            },
+            '(min-width: 1230px)': {
+              slides: {
+                perView: 4.5,
+                spacing: 20,
+              },
+            },
+          },
+        },
+        [navigation]
+      );
+    });
+  </script>
+{%- else -%}
+  {{ inner_content }}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "impact collection buy",
+  "class": "impact-featured-collection-buy",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password", "product"],
+    "groups": ["header", "footer", "custom.impactOverlay"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "左上角小标题-含有 'badge'字段 "
+    },
+    {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "Featured collection"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "跳转到查看所有的链接"
+    },
+    {
+      "type": "header",
+      "content": "价格设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "currency_code_enabled",
+      "label": "价格是否显示货币单位",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "percentage_mode",
+      "label": "价格是否百分比模式",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "模块布局"
+    },
+    {
+      "type": "paragraph",
+      "content": "轮播需要5个产品以上(包含5)"
+    },
+    {
+      "type": "select",
+      "id": "layout_type_pc",
+      "label": "电脑端",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "轮播"
+        },
+        {
+          "value": "piece",
+          "label": "块"
+        }
+      ],
+      "default": "piece",
+      "info": "只有子级: product_msg 数量大于4(不包含4), 轮播才能生效"
+    },
+    {
+      "type": "select",
+      "id": "layout_type_phone",
+      "label": "手机端",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "轮播"
+        },
+        {
+          "value": "piece",
+          "label": "块"
+        }
+      ],
+      "default": "scroll",
+      "info": "只有子级: product_msg 数量大于2(不包含2), 轮播才能生效"
+    },
+    {
+      "type": "header",
+      "content": "颜色指示点"
+    },
+    {
+      "type": "select",
+      "id": "product_color_display",
+      "label": "指示点",
+      "options": [
+        {
+          "value": "hide",
+          "label": "隐藏"
+        },
+        {
+          "value": "swatch",
+          "label": "显示"
+        }
+      ],
+      "default": "swatch"
+    },
+    {
+      "type": "header",
+      "content": "快速购买"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_quick_shop",
+      "label": "是否启动",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "徽章"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_badge",
+      "label": "是否展示",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_msg",
+      "name": "product_msg",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "选择产品"
+        },
+        {
+          "type": "header",
+          "content": "自定义产品-图片"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "product_image_alt",
+          "label": "图片-alt"
+        },
+        {
+          "type": "header",
+          "content": "自定义产品-标题"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "标题"
+        },
+        {
+          "type": "header",
+          "content": "图标-image",
+          "info": "上传图标"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_1",
+          "label": "图标1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_2",
+          "label": "图标2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_3",
+          "label": "图标3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_4",
+          "label": "图标4"
+        },
+        {
+          "type": "header",
+          "content": "图标-文案",
+          "info": "上传文案"
+        },
+        {
+          "type": "text",
+          "id": "icon_title1",
+          "label": "图标-标题1",
+          "default": "48V 20Ah"
+        },
+        {
+          "type": "text",
+          "id": "icon_title2",
+          "label": "图标-标题2",
+          "default": "48V 20Ah"
+        },
+        {
+          "type": "text",
+          "id": "icon_title3",
+          "label": "图标-标题3",
+          "default": "48V 20Ah"
+        },
+        {
+          "type": "text",
+          "id": "icon_title4",
+          "label": "图标-标题4",
+          "default": "48V 20Ah"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "impact collection buy",
+      "blocks": [
+        {
+          "type": "product_msg"
+        },
+        {
+          "type": "product_msg"
+        },
+        {
+          "type": "product_msg"
+        },
+        {
+          "type": "product_msg"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

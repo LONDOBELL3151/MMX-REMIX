@@ -1,0 +1,395 @@
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	.slider {
+		max-width:{{ section.settings.max_width }};
+		width: 100%;
+		margin: {{ section.settings.pc_margin_top }} auto {{ section.settings.pc_margin_bottom }};
+	}
+
+	.slider h2 {
+		text-align: center;
+	}
+
+	.slider .slider-list {
+		cursor: grab;
+		overflow: hidden;
+	}
+
+	.slider .slider-list ul {
+		width: 100%;
+		display: flex;
+		list-style: none;
+		transform: translateX(0px);
+		transition-duration: 0ms;
+		transition-timing-function: ease-out;
+		transition-property: transform;
+	}
+
+	@media (max-width: 768) {
+		.slider {
+			margin: {{ section.settings.mb_margin_top }} auto {{ section.settings.mb_margin_bottom }};
+		}
+
+		.slider .slider-list ul>div {
+			width: 85%;
+		}
+	}
+
+	.slider .slider-list ul li {
+		flex-shrink: 0;
+		margin-right: 10px;
+		max-width: 550px;
+		width: 100%;
+	}
+
+	.slider .slider-list ul li img {
+		width: 100%;
+		display: block;
+	}
+
+	.slider .slider-list ul li .slider-text {
+		margin-top: 20px;
+	}
+
+	.slider .slider-list ul li .slider-text h4 {
+		font-weight: 600;
+		margin-bottom: 10pt;
+	}
+
+	.slider .slider-list ul li .slider-text p {
+		margin-bottom: 40px;
+		line-height: 1.87;
+		font-size: 16px;
+	}
+
+	.scrollbar {
+		background: rgba(0, 0, 0, 0.1);
+		position: relative;
+		border-radius: 10px;
+		height: 5px;
+	}
+
+	.scrollbar .scrollbar-drag {
+		transform: translateX(0px);
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		border-radius: 10px;
+		background: #000;
+		transition-duration: 0ms;
+		transition-timing-function: ease-out;
+		transition-property: transform;
+	}
+
+	.swiper_arrow_wrapper {
+		margin-top: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	.swiper_arrow_wrapper a {
+		outline: none;
+		text-decoration: none;
+		margin-left: 20px;
+		padding: 5px 10px;
+		border-radius: 4px;
+		background-color: #000;
+		color: #fff;
+		cursor: default;
+	}
+
+	.slider-button-prev {
+		opacity: 0;
+	}
+
+
+	@media (max-width:767px) {
+
+		#s-03c0f484-0eba-4876-a4fc-6c31463d13cf #s-dbbbc677-6ac3-48e5-ad1b-d583ff9e4b2b {
+			padding-top: 0;
+		}
+
+		#s-dbbbc677-6ac3-48e5-ad1b-d583ff9e4b2b>.shg-row>.shg-c-sm-5 {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		#s-dbbbc677-6ac3-48e5-ad1b-d583ff9e4b2b>.shg-row>.shg-c-sm-5 .shg-box-vertical-align-wrapper {
+			width: 50%;
+			flex-shrink: 0;
+		}
+	}
+</style>
+
+<div class="slider">
+	<div class="slider-list">
+		<ul>
+			{% for block in section.blocks %}
+				<li style="padding: 0 2%;" {{ block.shopify_attributes }}>
+					{% if block.settings.image != blank %}
+						{% assign image = block.settings.image %}
+						<img src="{{ image | img_url: 'master' }}" alt="{{ image.alt}}" />
+					{% else %}
+						<div style="width: 300px;">
+							{{ 'image' | placeholder_svg_tag }}
+						</div>
+					{% endif %}
+					{% if block.settings.text != blank %}
+						<div class="slider-text">
+							<p>
+								{{ block.settings.text }}
+							</p>
+						</div>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="scrollbar">
+		<div class="scrollbar-drag"></div>
+	</div>
+	<div class="swiper_arrow_wrapper">
+		<a href="javascript:;" class="slider-button-prev" tabindex="0" role="button">⟵ Back</a>
+		<a href="javascript:;" class="slider-button-next" tabindex="0" role="button">Next ⟶</a>
+	</div>
+</div>
+
+<script>
+	var ulDom = document.querySelector(".slider-list ul");
+	var lis = document.querySelectorAll(".slider-list ul li");
+	var scrollbar = document.querySelector(".slider .scrollbar");
+	var scrollbarDrag = document.querySelector(
+		".slider .scrollbar .scrollbar-drag"
+	);
+	var btnPrev = document.querySelector(".slider-button-prev");
+	var btnNext = document.querySelector(".slider-button-next");
+	scrollbarDrag.style.width = (scrollbar.offsetWidth / lis.length) + 'px'
+
+
+	//获取样式属性值
+	function getStyle(obj, attr) {
+		if (obj.currentStyle) { //兼容IE
+			return obj.currentStyle[attr];
+		} else { //兼容火狐谷歌
+			return window.getComputedStyle(obj, false)[attr];
+		}
+	}
+
+
+	var ifBool = false; //判断鼠标是否被按下
+	var index; //初始值
+	var intercept;
+
+	var start = function (e) {
+		e.preventDefault();
+		ifBool = true;
+		if (!e.touches) { //兼容移动端
+					index = e.clientX; //赋值初始值
+			} else { //兼容PC端
+					index = e.touches[0].pageX;//赋值初始值
+			}
+		console.log(index)
+		var ischeng = getStyle(ulDom, 'transform')
+		intercept = ischeng.slice(19, ischeng.lastIndexOf(',')) //获取上一次移动的距离
+		ulDom.style.transitionDuration = '0ms'
+		scrollbarDrag.style.transitionDuration = '0ms'
+	}
+
+
+	function prev() {
+		var ischeng = getStyle(ulDom, 'transform')
+		intercept = ischeng.slice(19, ischeng.lastIndexOf(',')) //获取上一次移动的距离
+		if ((Math.abs(parseInt(intercept)) / (parseInt(lis[0].offsetWidth) + 10)) % 1 ==
+			0) { //判断滑块是否完整划到一整块
+			var z = Math.floor(Math.abs(parseInt(intercept)) / (parseInt(lis[0].offsetWidth) + 10))
+			z-- //目前滑到第几块 +1 到下一块
+			if (z <= 0) { //约束最大值
+				z = 0
+			}
+		} else { //不满足条件 数值上取舍 进入下一块
+			var z = Math.floor(Math.abs(parseInt(intercept)) / (parseInt(lis[0].offsetWidth) + 10))
+		}
+		var j = z * (parseInt(lis[0].offsetWidth) + 10) //获取滑动距离
+
+		if (j <= 0) { //约束最大滑动距离
+			j = 0
+			btnPrev.style.opacity = '0' //隐藏上一步按钮
+		} else {
+			btnPrev.style.opacity = '1' //显示上一步按钮
+		}
+		var xx = j / (ulDom.scrollWidth - ulDom.offsetWidth) * (scrollbar.offsetWidth - scrollbarDrag
+			.offsetWidth)
+
+		btnNext.style.opacity = '1' //显示下一步按钮
+		ulDom.style.transitionDuration = '300ms'
+		scrollbarDrag.style.transitionDuration = '300ms'
+		ulDom.style.transform = 'translateX(' + -j + 'px)' //赋值
+		scrollbarDrag.style.transform = 'translateX(' + xx + 'px)' //滑行条赋值
+	}
+
+	function next() {
+		var ischeng = getStyle(ulDom, 'transform')
+		intercept = ischeng.slice(19, ischeng.lastIndexOf(',')) //获取上一次移动的距离
+		if ((Math.abs(parseInt(intercept)) / (parseInt(lis[0].offsetWidth) + 10)) % 1 ==
+			0) { //判断滑块是否完整划到一整块
+			var z = Math.ceil(Math.abs(parseInt(intercept)) / (parseInt(lis[0].offsetWidth) + 10))
+			z++ //目前滑到第几块 +1 到下一块
+			if (z >= lis.length - Math.floor(ulDom.offsetWidth / lis[0].offsetWidth)) { //约束最大值
+				z = lis.length - Math.floor(ulDom.offsetWidth / lis[0].offsetWidth)
+			}
+		} else { //不满足条件 数值上取舍 进入下一块
+			var z = Math.ceil(Math.abs(parseInt(intercept)) / (parseInt(lis[0].offsetWidth) + 10))
+		}
+		var j = z * (parseInt(lis[0].offsetWidth) + 10) //获取滑动距离
+
+		if (j > (ulDom.scrollWidth - ulDom.offsetWidth)) { //约束最大滑动距离
+			j = (ulDom.scrollWidth - ulDom.offsetWidth)
+			btnNext.style.opacity = '0' //隐藏下一步按钮
+		} else {
+			btnNext.style.opacity = '1' //显示下一步按钮
+		}
+		var xx = j / (ulDom.scrollWidth - ulDom.offsetWidth) * (scrollbar.offsetWidth - scrollbarDrag
+			.offsetWidth)
+
+		btnPrev.style.opacity = '1' //显示上一步按钮
+		ulDom.style.transitionDuration = '300ms'
+		scrollbarDrag.style.transitionDuration = '300ms'
+		ulDom.style.transform = 'translateX(' + -j + 'px)' //赋值
+		scrollbarDrag.style.transform = 'translateX(' + xx + 'px)' //滑行条赋值
+	}
+
+
+
+	var move = function (e) {
+		if (ifBool) {
+			if (!e.touches) { //兼容移动端
+				var x = e.clientX;
+			} else { //兼容PC端
+				var x = e.touches[0].pageX;
+			}
+			var i = x - index //获取滑动距离
+			var j = parseInt(intercept) + parseInt(i) //加入上次滑动距离
+			//超出不允许滑动
+			console.log(index)
+			if (j > 0) {
+				j = 0
+				btnPrev.style.opacity = '0'
+			} else {
+				btnPrev.style.opacity = '1'
+			}
+			if (j < -(ulDom.scrollWidth - ulDom.offsetWidth)) {
+				j = -(ulDom.scrollWidth - ulDom.offsetWidth)
+				btnNext.style.opacity = '0'
+			} else {
+				btnNext.style.opacity = '1'
+			}
+			// j = j < -(ulDom.scrollWidth - ulDom.offsetWidth) ? -(ulDom.scrollWidth - ulDom
+			//     .offsetWidth) : j
+			ulDom.style.transform = 'translateX(' + j + 'px)' //赋值
+			var xx = j / (ulDom.scrollWidth - ulDom.offsetWidth) * (scrollbar.offsetWidth -
+				scrollbarDrag.offsetWidth)
+				
+			scrollbarDrag.style.transform = 'translateX(' + -xx + 'px)' //滑行条赋值
+		}
+	}
+	var end = function (e) {
+		ifBool = false;
+	}
+
+
+	ulDom.addEventListener("touchstart", start, false);
+	ulDom.addEventListener("mousedown", start, false);
+	//拖动
+	window.addEventListener("touchmove", move, false);
+	window.addEventListener("mousemove", move, false);
+	//鼠标松开
+	window.addEventListener("touchend", end, false);
+	window.addEventListener("mouseup", end, false);
+
+	btnNext.addEventListener("click", next)
+	btnPrev.addEventListener("click", prev)
+
+</script>
+
+{% schema %}
+{
+	"name": "Slide bar",
+	"tag": "section",
+	"class": "section",
+	"max_blocks": 10,
+	"settings": [
+		{
+			"id":"max_width",
+			"type": "text",
+			"default": "1400px",
+			"label":"请设置模块最大宽度:"
+		},
+		{
+			"id":"pc_margin_top",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在PC端的顶部边距:"
+		},
+		{
+			"id":"pc_margin_bottom",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在PC端的底部边距:"
+		},
+		{
+			"id":"mb_margin_top",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在移动端的顶部边距:"
+		},
+		{
+			"id":"mb_margin_bottom",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在移动端的底部边距:"
+		}
+	],
+	"blocks":[
+		{
+			"name": "Item",
+			"type":"slide",
+			"settings": [
+				{
+					"id":"image",
+					"type": "image_picker",
+					"label":"请指定图片"
+				},
+				{
+					"id":"text",
+					"type": "textarea",
+					"default": "<strong>Free Shipping</strong><br />Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+					"label":"请输入文本"
+				}
+			]
+		}	
+	],
+	"presets": [
+		{
+			"name": "Slide bar",
+			"blocks": [
+				{
+					"type": "slide"
+				},
+				{
+					"type": "slide"
+				},
+				{
+					"type": "slide"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

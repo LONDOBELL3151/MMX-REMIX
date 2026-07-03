@@ -1,0 +1,437 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --mf-ride-background: {{ section.settings.background_color }};
+    --mf-ride-title-color: {{ section.settings.title_color }};
+    --mf-ride-card-background: {{ section.settings.card_background }};
+    --mf-ride-card-text: {{ section.settings.card_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride {
+    background: var(--mf-ride-background);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__header {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__title {
+    margin: 0;
+    color: var(--mf-ride-title-color);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__carousel {
+    position: relative;
+    max-width: 104rem;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__actions {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__nav {
+    width: 4.4rem;
+    height: 4.4rem;
+    border: 0;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+    color: #111111;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__nav--prev {
+    left: -5.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__nav--next {
+    right: -5.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__track {
+    display: flex;
+    gap: 2.4rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 0.2rem 0.5rem;
+    align-items: stretch;
+    justify-content: flex-start;
+    scroll-padding-inline: 0.2rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__card {
+    flex: 0 0 clamp(28rem, 84vw, 32rem);
+    width: clamp(28rem, 84vw, 32rem);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 2.4rem;
+    border-radius: 1.8rem;
+    background: var(--mf-ride-card-background);
+    color: var(--mf-ride-card-text);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
+    scroll-snap-align: start;
+    border: 1px solid rgba(17, 24, 39, 0.06);
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__media {
+    flex: 0 0 48%;
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__media img,
+  #shopify-section-{{ section.id }} .mf-ride__placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__placeholder {
+    fill: rgba(17, 24, 39, 0.12);
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.2rem;
+    min-width: 0;
+    min-height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__product-title {
+    margin: 0;
+    color: inherit;
+    font-size: 1.6rem;
+    line-height: 1.15;
+    font-weight: 700;
+    min-height: 2.35em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__price {
+    margin: 0;
+    color: inherit;
+    opacity: 0.76;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__copy {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button {
+    margin-top: auto;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button,
+  #shopify-section-{{ section.id }} .mf-ride__button .mf-quick-add-form,
+  #shopify-section-{{ section.id }} .mf-ride__button product-form,
+  #shopify-section-{{ section.id }} .mf-ride__button .form,
+  #shopify-section-{{ section.id }} .mf-ride__button .product-form__buttons {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button .product-form__error-message-wrapper {
+    margin-bottom: 0.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button .button {
+    width: 100%;
+    min-width: 0;
+    min-height: 4rem;
+    padding: 1.1rem 1.4rem;
+    justify-content: center;
+    white-space: nowrap;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+    line-height: 1;
+    display: inline-flex;
+    background: #111111;
+    border-color: #111111;
+    color: #ffffff;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button .button::before,
+  #shopify-section-{{ section.id }} .mf-ride__button .button::after {
+    content: none;
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button .button:hover {
+    filter: brightness(0.92);
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button .button:focus,
+  #shopify-section-{{ section.id }} .mf-ride__button .button:focus-visible,
+  #shopify-section-{{ section.id }} .mf-ride__button .button.focused {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .mf-ride__nav {
+      display: inline-flex;
+    }
+
+    #shopify-section-{{ section.id }} .mf-ride__card {
+      flex-basis: 32rem;
+      width: 32rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="mf-ride">
+  <div class="page-width">
+    <div class="mf-ride__header">
+      <h2 class="mf-ride__title">{{ section.settings.title | escape }}</h2>
+    </div>
+
+    <div class="mf-ride__carousel">
+      <div class="mf-ride__actions">
+        <button type="button" class="mf-ride__nav mf-ride__nav--prev" data-ride-prev aria-label="Scroll products left">
+          &#8592;
+        </button>
+        <button type="button" class="mf-ride__nav mf-ride__nav--next" data-ride-next aria-label="Scroll products right">
+          &#8594;
+        </button>
+      </div>
+
+      <div class="mf-ride__track" data-ride-track>
+        {% for block in section.blocks %}
+          {%- assign block_product = block.settings.product -%}
+          {%- liquid
+            assign block_product_title = ''
+            if block_product != blank
+              assign block_product_title = block_product.title | split: '|' | first | strip
+            endif
+          -%}
+          <article class="mf-ride__card" {{ block.shopify_attributes }}>
+            <div class="mf-ride__media">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 900
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '320, 480, 640, 900',
+                    sizes: '(min-width: 990px) 160px, 42vw',
+                    alt: block.settings.image.alt | default: block_product.title | escape
+                }}
+              {% elsif block.settings.image_url != blank %}
+                <img src="{{ block.settings.image_url }}" alt="{{ block_product.title | escape }}" loading="lazy">
+              {% elsif block_product != blank and block_product.featured_image != blank %}
+                {{
+                  block_product.featured_image
+                  | image_url: width: 900
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '320, 480, 640, 900',
+                    sizes: '(min-width: 990px) 160px, 42vw',
+                    alt: block_product.featured_image.alt | default: block_product.title | escape
+                }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'mf-ride__placeholder' }}
+              {% endif %}
+            </div>
+
+            <div class="mf-ride__content">
+              <div class="mf-ride__copy">
+                <h3 class="mf-ride__product-title">
+                  {% if block.settings.title != blank %}
+                    {{ block.settings.title | escape }}
+                  {% elsif block_product_title != blank %}
+                    {{ block_product_title | escape }}
+                  {% else %}
+                    Product title
+                  {% endif %}
+                </h3>
+
+                <p class="mf-ride__price">
+                  {% if block_product != blank %}
+                    {{ block_product.selected_or_first_available_variant.price | money }}
+                  {% else %}
+                    $0.00
+                  {% endif %}
+                </p>
+              </div>
+
+              <div class="mf-ride__button">
+                {% render 'mf-quick-add-form',
+                  product: block_product,
+                  button_label: section.settings.button_label,
+                  button_class: 'button button--primary',
+                  section_id: section.id,
+                  id_suffix: block.id
+                %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const sectionRoot = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    const track = sectionRoot.querySelector('[data-ride-track]');
+    const prevButton = sectionRoot.querySelector('[data-ride-prev]');
+    const nextButton = sectionRoot.querySelector('[data-ride-next]');
+    if (!track || !prevButton || !nextButton) return;
+
+    const scrollByAmount = (direction) => {
+      const firstCard = track.querySelector('.mf-ride__card');
+      const gap = parseFloat(window.getComputedStyle(track).gap || '0');
+      const amount = firstCard ? firstCard.getBoundingClientRect().width + gap : track.clientWidth * 0.85;
+      track.scrollBy({
+        left: amount * direction,
+        behavior: 'smooth'
+      });
+    };
+
+    prevButton.addEventListener('click', () => scrollByAmount(-1));
+    nextButton.addEventListener('click', () => scrollByAmount(1));
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "MF Complete Your Ride",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Complete Your Ride"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "Fallback image URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF Complete Your Ride"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,334 @@
+{% comment %}
+  Shopify Section: Announcement Bar
+
+  功能:
+  - 显示可配置的公告栏在网站顶部。
+  - 支持最多3条公告文本，带链接，可通过箭头切换。
+  - 支持最多3个社交媒体图标链接。
+  - 可通过主题编辑器自定义背景颜色、公告内容和社交链接。
+
+  如何使用:
+  1. 将此文件保存到 Shopify 主题的 `sections` 目录下 (例如 `custom-announcement-bar.liquid`)。
+  2. 在 Shopify 主题编辑器中，将此 Section 添加到 Header Group 或合适的模板位置。
+  3. 在主题编辑器中配置设置：启用、背景颜色、添加公告和社交图标。
+{% endcomment %}
+
+{%- liquid
+  # 从设置中提取公告和社交图标区块
+  assign announcement_blocks = section.blocks | where: 'type', 'announcement'
+  assign social_icon_blocks = section.blocks | where: 'type', 'social_icon'
+
+  # 将公告数据转换为 JSON 供 JavaScript 使用
+  assign announcements_json = announcement_blocks | map: 'settings' | json
+-%}
+
+{% if section.settings.enable_bar and announcement_blocks.size > 0 %}
+  <style>
+    #shopify-section-{{ section.id }} .custom-announcement-bar {
+      height: 40px; /* 固定高度 */
+      background-color: {{ section.settings.background_color }}; /* 可调背景色 */
+      color: {{ section.settings.text_color }}; /* 可调文字颜色 */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px; /* 左右内边距 */
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__social-icons {
+      display: flex;
+      align-items: center;
+      gap: 12px; /* 图标间距 */
+      flex-shrink: 0; /* 防止图标区域被压缩 */
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__social-icon a {
+      display: block;
+      line-height: 0; /* 移除链接下方多余空间 */
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__social-icon img {
+      max-width: 30px; /* 最大宽度 */
+      max-height: 30px; /* 最大高度 */
+      width: auto;
+      height: auto;
+      object-fit: contain; /* 保持比例 */
+      border-radius: 4px; /* 轻微圆角 */
+      transition: opacity 0.3s ease;
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__social-icon a:hover img {
+       opacity: 0.8;
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* 居中 */
+      flex-grow: 1; /* 占据剩余空间 */
+      margin: 0 15px; /* 与左右图标区域的间距 */
+      min-width: 0; /* 允许内容区域收缩 */
+    }
+     #shopify-section-{{ section.id }} .custom-announcement-bar__content {
+      display: inline-flex; /* 让容器宽度适应内容 */
+      align-items: center;
+      max-width: 100%; /* 防止内容溢出父容器 */
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__text-container {
+      text-align: center;
+      font-size: 14px; /* 文本大小 */
+      white-space: nowrap; /* 防止文本换行 */
+      overflow: hidden; /* 隐藏溢出文本 */
+      text-overflow: ellipsis; /* 显示省略号 */
+      margin: 0 5px; /* 文本与箭头间距 */
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__text-container a {
+      color: inherit; /* 继承父元素颜色 */
+      text-decoration: none;
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__text-container a:hover {
+      text-decoration: underline;
+    }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__arrow {
+      background: none;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+      color: inherit; /* 继承父元素颜色 */
+      line-height: 0; /* 移除按钮内多余空间 */
+      flex-shrink: 0; /* 防止箭头被压缩 */
+      transition: opacity 0.3s ease;
+    }
+     #shopify-section-{{ section.id }} .custom-announcement-bar__arrow:hover {
+       opacity: 0.7;
+     }
+    #shopify-section-{{ section.id }} .custom-announcement-bar__arrow svg {
+      width: 18px; /* SVG 图标大小 */
+      height: 18px;
+      display: block; /* 移除下方空间 */
+    }
+    /* 隐藏箭头 (JS 控制) */
+    #shopify-section-{{ section.id }} .custom-announcement-bar__arrow--hidden {
+      display: none;
+    }
+    /* 用于占位的隐藏元素，帮助居中 */
+    #shopify-section-{{ section.id }} .custom-announcement-bar__placeholder {
+       visibility: hidden;
+       flex-shrink: 0; /* 防止被压缩 */
+    }
+
+    /* 移动端适应性调整 (可选) */
+    @media (max-width: 768px) {
+      #shopify-section-{{ section.id }} .custom-announcement-bar {
+        padding: 0 10px; /* 减小手机端内边距 */
+      }
+      #shopify-section-{{ section.id }} .custom-announcement-bar__social-icons {
+        /* 在小屏幕上可以考虑隐藏社交图标或减少数量 */
+        /* display: none; */
+        gap: 8px;
+      }
+       #shopify-section-{{ section.id }} .custom-announcement-bar__social-icon img {
+         max-width: 24px;
+         max-height: 24px;
+       }
+       #shopify-section-{{ section.id }} .custom-announcement-bar__placeholder {
+         /* 确保占位符宽度与图标区域一致 */
+       }
+      #shopify-section-{{ section.id }} .custom-announcement-bar__text-container {
+        font-size: 12px; /* 减小手机端字号 */
+      }
+       #shopify-section-{{ section.id }} .custom-announcement-bar__arrow svg {
+         width: 16px;
+         height: 16px;
+       }
+        #shopify-section-{{ section.id }} .custom-announcement-bar__content-wrapper {
+         margin: 0 10px;
+       }
+    }
+  </style>
+
+  <div class="custom-announcement-bar" data-section-id="{{ section.id }}">
+
+    <div class="custom-announcement-bar__social-icons">
+      {%- for block in social_icon_blocks limit: 3 -%}
+        <div class="custom-announcement-bar__social-icon" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.icon_link | default: '#' }}" target="_blank" rel="noopener noreferrer" aria-label="{{ block.settings.icon_image.alt | default: 'Social media link' | escape }}">
+            {%- if block.settings.icon_image != blank -%}
+              {{ block.settings.icon_image | image_url: width: 60 | image_tag: loading: 'lazy', widths: '30, 60', sizes: '30px' }}
+            {%- else -%}
+              <img src="https://placehold.co/30x30/{{ section.settings.background_color | color_to_hex | remove_first: '#' }}/{{ section.settings.text_color | color_to_hex | remove_first: '#' }}?text=Icon" alt="Placeholder Icon" width="30" height="30">
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endfor -%}
+      {% comment %} 如果没有图标，添加一个空的占位符以维持布局 {% endcomment %}
+      {% if social_icon_blocks.size == 0 %}
+         <div style="width: 30px; height: 30px; flex-shrink: 0;"></div>
+      {% endif %}
+    </div>
+
+    <div class="custom-announcement-bar__content-wrapper">
+       <div class="custom-announcement-bar__content">
+          <button class="custom-announcement-bar__arrow custom-announcement-bar__arrow--prev custom-announcement-bar__arrow--hidden" aria-label="Previous Announcement">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          <div class="custom-announcement-bar__text-container">
+            <a href="#" class="custom-announcement-bar__link" target="_blank" rel="noopener noreferrer">
+              <span class="custom-announcement-bar__text"></span>
+            </a>
+          </div>
+
+          <button class="custom-announcement-bar__arrow custom-announcement-bar__arrow--next custom-announcement-bar__arrow--hidden" aria-label="Next Announcement">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+       </div>
+    </div>
+
+    <div class="custom-announcement-bar__placeholder" aria-hidden="true">
+       <div class="custom-announcement-bar__social-icons">
+          {%- for block in social_icon_blocks limit: 3 -%}
+            <div class="custom-announcement-bar__social-icon">
+               <div style="width: 30px; height: 30px;"></div>
+            </div>
+          {%- endfor -%}
+          {% if social_icon_blocks.size == 0 %}
+             <div style="width: 30px; height: 30px; flex-shrink: 0;"></div>
+          {% endif %}
+       </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function() {
+      // 获取传递过来的公告数据
+      const announcements = {{ announcements_json }};
+      const sectionId = '{{ section.id }}';
+      const barElement = document.querySelector(`#shopify-section-${sectionId} .custom-announcement-bar`);
+
+      if (!barElement || !announcements || announcements.length === 0) {
+        console.warn('Announcement bar data or element not found for section:', sectionId);
+        // 如果没有公告，可以考虑隐藏整个 bar
+        // if (barElement) barElement.style.display = 'none';
+        return;
+      }
+
+      let currentAnnouncementIndex = 0;
+      const announcementTextElement = barElement.querySelector('.custom-announcement-bar__text');
+      const announcementLinkElement = barElement.querySelector('.custom-announcement-bar__link');
+      const prevButton = barElement.querySelector('.custom-announcement-bar__arrow--prev');
+      const nextButton = barElement.querySelector('.custom-announcement-bar__arrow--next');
+
+      // 更新显示的公告
+      function updateAnnouncement() {
+        const currentAnnouncement = announcements[currentAnnouncementIndex];
+        if (!currentAnnouncement) return;
+
+        announcementTextElement.textContent = currentAnnouncement.announcement_text || ''; // 使用 schema 中的 id
+        const link = currentAnnouncement.announcement_link || '#'; // 使用 schema 中的 id
+        announcementLinkElement.href = link;
+
+        // 如果链接是 '#' 或为空，则不打开新标签页
+        if (link === '#' || link.trim() === '') {
+            announcementLinkElement.removeAttribute('target');
+            announcementLinkElement.removeAttribute('rel');
+        } else {
+            announcementLinkElement.setAttribute('target', '_blank');
+            announcementLinkElement.setAttribute('rel', 'noopener noreferrer');
+        }
+      }
+
+      // 切换到上一条公告
+      function showPreviousAnnouncement() {
+        currentAnnouncementIndex = (currentAnnouncementIndex - 1 + announcements.length) % announcements.length;
+        updateAnnouncement();
+      }
+
+      // 切换到下一条公告
+      function showNextAnnouncement() {
+        currentAnnouncementIndex = (currentAnnouncementIndex + 1) % announcements.length;
+        updateAnnouncement();
+      }
+
+      // 初始化
+      updateAnnouncement(); // 初始加载
+
+      // 仅在公告数量大于1时显示箭头并添加事件监听器
+      if (announcements.length > 1) {
+        prevButton.classList.remove('custom-announcement-bar__arrow--hidden');
+        nextButton.classList.remove('custom-announcement-bar__arrow--hidden');
+        prevButton.addEventListener('click', showPreviousAnnouncement);
+        nextButton.addEventListener('click', showNextAnnouncement);
+      }
+
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "公告栏 (Custom)",
+  "class": "section-announcement-bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_bar",
+      "label": "启用公告栏",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#14B8A6" // 默认 Teal 600
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文本和箭头颜色",
+      "default": "#FFFFFF" // 默认白色
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "公告",
+      "limit": 3, // 最多3条公告
+      "settings": [
+        {
+          "type": "text",
+          "id": "announcement_text",
+          "label": "公告文本",
+          "default": "欢迎来到我们的商店！"
+        },
+        {
+          "type": "url",
+          "id": "announcement_link",
+          "label": "公告链接 (可选)"
+        }
+      ]
+    },
+    {
+      "type": "social_icon",
+      "name": "社交图标",
+      "limit": 3, // 最多3个图标
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "图标图片 (推荐 1:1 比例)",
+          "info": "上传正方形图标，最大显示 30x30px"
+        },
+        {
+          "type": "url",
+          "id": "icon_link",
+          "label": "图标链接"
+        }
+      ]
+    }
+  ],
+  "presets": [ // 允许在主题编辑器中直接添加此 section
+    {
+      "name": "公告栏 (Custom)"
+    }
+  ]
+}
+{% endschema %}
+

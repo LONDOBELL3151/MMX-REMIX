@@ -1,0 +1,380 @@
+{{ 'tab-products.css' | asset_url | stylesheet_tag }}
+<div class="MF_productTab MF_productTab-dom{{- section.id -}}">
+    <div class="MF_productTab_title"  {{ block.shopify_attributes }}>
+        <button data-product="product_first" class="MF_productTab_titleActive">{{section.settings.productTab_title_a}}</button>
+        <button data-product="product_second">{{section.settings.productTab_title_b}}</button>
+    </div>
+    <div class="MF_productTab_list">
+        {% for block in section.blocks %}
+            {%- assign item = block.settings  -%}
+            {%- assign item-sort = block.settings.productSort  -%}
+            <div class="MF_productTab_bikes {{item-sort}}" {{ block.shopify_attributes }}>
+                <div class="MF_productTab_bikes_bg" >
+                    <p>{{item.product_tag}}</p>
+                    {% if item.product_coverImg %}
+                        <a href="{{item.product_content.url}}">
+                            <img src="{{item.product_coverImg | img_url: '440X291'}}" alt="{{item.product_content.title}}">
+                        </a>
+                        {% else %}
+                        {{ 'image' | placeholder_svg_tag }}
+                    {% endif %}
+                </div>
+                <div class="MF_productTab_bikes_word" >
+                    <a href="{{item.product_content.url}}"><h3 class="p_name">{{item.product_name}}</h3></a>
+                    <p class="p_des">{{item.product_des}}</p>
+                    {% if item.product_priceOld != '' %}
+                        <h3 class="p_price"><del>${{item.product_priceOld}}</del>${{item.product_priceNow}}</h3>
+                        {% else %}
+                        <h3 class="p_price">${{item.product_priceNow}}</h3>
+                    {% endif %}
+                    <p class="p_tip">{{item.product_tip}}</p>
+                </div>
+                <div class="MF_productTab_bikes_partList">
+                    <div class="MF_productTab_bikes_part">
+                        {% if item.product_partImg_a %}
+                            <img src="{{item.product_partImg_a | img_url: '98X98'}}" alt="{{item.product_partImg_alt_a}}">
+                            {% else %}
+                                <div style="width: 98px;">{{ 'image' | placeholder_svg_tag }}</div>
+                        {% endif %}
+                        <div class="MF_productTab_bikes_partTip">{{item.product_partImg_des_a}}</div>
+                    </div>
+                    <div class="MF_productTab_bikes_part">
+                        {% if item.product_partImg_b %}
+                            <img src="{{item.product_partImg_b | img_url: '98X98'}}" alt="{{item.product_partImg_alt_b}}">
+                            {% else %}
+                            <div style="width: 98px;">{{ 'image' | placeholder_svg_tag }}</div>
+                        {% endif %}
+                        <div class="MF_productTab_bikes_partTip">{{item.product_partImg_des_b}}</div>
+                    </div>
+                    <div class="MF_productTab_bikes_part">
+                        {% if item.product_partImg_c %}
+                            <img src="{{item.product_partImg_c | img_url: '98X98'}}" alt="{{item.product_partImg_alt_c}}">
+                            {% else %}
+                            <div style="width: 98px;">{{ 'image' | placeholder_svg_tag }}</div>
+                        {% endif %}
+                        <div class="MF_productTab_bikes_partTip">{{item.product_partImg_des_c}}</div>
+                    </div>
+                </div>
+                <a href="{{item.product_content.url}}" class="MF_productTab_bikes_buy">{{item.product_btnHref}}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="MF_productTab_listPage MF_productTab_listNext listPageDisabled" onclick="jumpUp()">
+        {% render 'icon-next' %}
+    </div>
+    <div class="MF_productTab_listPage MF_productTab_listPre" onclick="jumpDown()">
+        {% render 'icon-pre' %}
+    </div>
+</div>
+<script>
+    var productTabName = '.MF_productTab-dom{{- section.id -}}';
+    var productTabList = [...document.querySelectorAll(`${productTabName} .MF_productTab_bikes`)];
+
+    function viewFun(val) {
+        var itemType = val.target.classList[1];
+        productTabList = [...document.querySelectorAll(`${productTabName} .MF_productTab_bikes`)];
+
+        var activeTitles = [...document.querySelectorAll(`${productTabName} .MF_productTab_title button`)];
+        productTabList.forEach(x => {
+            x.style.display = "none";
+            x.className.includes(itemType) == true ? x.style.display = "inline-block" : x.style.display = "none";
+            x.classList.remove('bikesItemActive');
+        });
+
+        val.target.classList.add('bikesItemActive');
+        [...document.querySelectorAll(`.${itemType}`)].forEach(x => {
+            if(x.className.includes('bikesItemActive')) {
+                x.scrollIntoView({
+                    block: 'start',
+                    inline: 'start',
+                });
+            }
+        })
+
+        activeTitles.forEach(item => {
+            let tabType = item.dataset.product;
+            item.classList.remove('MF_productTab_titleActive');
+            if(itemType == tabType) {
+                item.classList.add('MF_productTab_titleActive');
+            }
+        })
+
+    }
+
+    document.addEventListener('shopify:block:select', (event) => viewFun(event));
+    document.addEventListener('shopify:section:reorder', (event) => viewFun(event));
+
+
+    var productFirstList = productTabList.filter(itemList => itemList.className.includes('product_first'));
+    var productSecondList = productTabList.filter(itemList => itemList.className.includes('product_second'));
+    var product_result = 'product_first';
+    var num = 0;
+    var nextBtnTab_page = document.querySelector(`${productTabName} .MF_productTab_listNext`);
+    var preBtnTab_page = document.querySelector(`${productTabName} .MF_productTab_listPre`);
+
+    productFirstList[0].classList.add('bikesItemActive');
+    productSecondList[0].classList.add('bikesItemActive');
+
+    document.querySelector(`${productTabName} .MF_productTab_title`).addEventListener('click', (e) => {
+        const item = e.target;
+        if (item.localName == 'button') {
+            const  productItem  = item.dataset.product;
+            product_result = productItem;
+            document.querySelector(`${productTabName} .MF_productTab_titleActive`).classList.remove('MF_productTab_titleActive');
+            item.classList.add('MF_productTab_titleActive');
+
+            productTabList = [...document.querySelectorAll(`${productTabName} .MF_productTab_bikes`)];
+            productFirstList = productTabList.filter(itemList => itemList.className.includes('product_first'));
+            productSecondList = productTabList.filter(itemList => itemList.className.includes('product_second'));
+            
+            productTabList.forEach(x => {
+                x.className.includes(productItem) == true ? x.style.display = "inline-block" : x.style.display = "none";
+                x.classList.remove('bikesItemActive')
+            });
+            
+            productFirstList[0].classList.add('bikesItemActive');
+            productSecondList[0].classList.add('bikesItemActive');
+
+            
+            [...document.querySelectorAll(`.${product_result}`)][0].scrollIntoView({
+                 block: 'nearest',
+                inline: 'center',
+            });
+
+            nextBtnTab_page.classList.add('listPageDisabled');
+            preBtnTab_page.classList.remove('listPageDisabled');
+
+        }
+    })
+    
+
+    function jumpUp() {
+        let newProductArr = [...document.querySelectorAll(`.${product_result}`)];
+
+        var cur = document.querySelector(`.${product_result}.bikesItemActive`);
+        var pre = '';
+
+        newProductArr.forEach((item,index) => {
+            if(item == cur) {
+                pre = newProductArr[index - 1]
+            }
+        })
+
+        if (pre) {
+            cur.classList.remove('bikesItemActive')
+            pre.classList.add('bikesItemActive')
+            pre.scrollIntoView({
+                block: 'nearest',
+                inline: 'center',
+            })
+        }
+
+        newProductArr.map((item, index) => {
+            if(item.className.includes('bikesItemActive') && index>=1) {
+                nextBtnTab_page.classList.remove('listPageDisabled')
+            }
+            if(item.className.includes('bikesItemActive') && index <1) {
+                nextBtnTab_page.classList.add('listPageDisabled')
+            }
+            if(item.className.includes('bikesItemActive') && index == (newProductArr.length-2)) {
+                preBtnTab_page.classList.remove('listPageDisabled')
+            }
+        })
+
+    
+    }
+
+    function jumpDown() {
+        var newProductArr = [...document.querySelectorAll(`.${product_result}`)];
+        
+        var cur = document.querySelector(`.${product_result}.bikesItemActive`);
+        var next = '';
+
+        newProductArr.forEach((item,index) => {
+            if(item == cur) {
+                next = newProductArr[index + 1]
+            }
+        })
+
+        if (next) {
+            cur.classList.remove('bikesItemActive');
+            next.classList.add('bikesItemActive');
+            next.scrollIntoView({
+                  block: 'nearest',
+                inline: 'center',
+            })
+        }
+
+
+        newProductArr.map((item, index) => {
+            if(item.className.includes('bikesItemActive') && index>=1) {
+                nextBtnTab_page.classList.remove('listPageDisabled')
+            }
+            if(item.className.includes('bikesItemActive') && index == (newProductArr.length-1)) {
+                preBtnTab_page.classList.add('listPageDisabled')
+            }
+        })
+
+    }
+
+</script>
+
+{% schema %} 
+{
+    "name": "产品类型切换",
+    "limit": 1,
+    "disabled_on": {
+        "groups": ["header", "footer"]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "productTab_title_a",
+            "label": "第一组 标题",
+            "default": "Black Friday Sale"
+        },
+        {
+            "type": "text",
+            "id": "productTab_title_b",
+            "label": "第二组 标题",
+            "default": "New Arrival"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "product-sort",
+            "type": "product-sort",
+            "settings": [
+                {
+                    "type": "radio",
+                    "id": "productSort",
+                    "label": "产品属于哪一组",
+                    "options": [
+                        {
+                            "value": "product_first",
+                            "label": "第一组"
+                        },
+                        {
+                            "value": "product_second",
+                            "label": "第二组"
+                        }
+                    ],
+                    "default": "product_first"
+                },
+                {
+                    "type": "product",
+                    "id": "product_content",
+                    "label": "产品内容"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "product_coverImg",
+                    "label": "产品封面图"
+                },
+                {
+                    "type": "text",
+                    "id": "product_tag",
+                    "label": "产品标签",
+                    "default": "FREE GIFT"
+                },
+                {
+                    "type": "text",
+                    "id": "product_name",
+                    "label": "产品名字",
+                    "default": "product_name"
+                },
+                {
+                    "type": "text",
+                    "id": "product_des",
+                    "label": "产品描述",
+                    "default": "product_des"
+                },
+                {
+                    "type": "text",
+                    "id": "product_priceOld",
+                    "label": "产品历史价格"
+                },
+                {
+                    "type": "text",
+                    "id": "product_priceNow",
+                    "label": "产品最新价格",
+                    "default": "555"
+                },
+                {
+                    "type": "html",
+                    "id": "product_tip",
+                    "label": "产品提示：4 Gifts Valued at <b>$120</b>",
+                    "default": "4 Gifts Valued at <b>$120</b>"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "product_partImg_a",
+                    "label": "配件图1"
+                },
+                {
+                    "type": "text",
+                    "id": "product_partImg_alt_a",
+                    "label": "配件图1-alt"
+                },
+                {
+                    "type": "html",
+                    "id": "product_partImg_des_a",
+                    "label": "配件图1-描述：<b>FREE</b><del>$27.99</del>",
+                    "default": "<b>FREE</b><del>$27.99</del>"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "product_partImg_b",
+                    "label": "配件图2"
+                },
+                {
+                    "type": "text",
+                    "id": "product_partImg_alt_b",
+                    "label": "配件图2-alt"
+                },
+                {
+                    "type": "html",
+                    "id": "product_partImg_des_b",
+                    "label": "配件图2-描述：<b>FREE</b><del>$27.99</del>",
+                    "default": "<b>FREE</b><del>$27.99</del>"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "product_partImg_c",
+                    "label": "配件图3"
+                },
+                {
+                    "type": "text",
+                    "id": "product_partImg_alt_c",
+                    "label": "配件图3-alt"
+                },
+                {
+                    "type": "html",
+                    "id": "product_partImg_des_c",
+                    "label": "配件图3-描述：<b>FREE</b><del>$27.99</del>",
+                    "default": "<b>FREE</b><del>$27.99</del>"
+                },
+                {
+                    "type": "text",
+                    "id": "product_btnHref",
+                    "label": "跳转按钮文案",
+                    "default": "Buy Now"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "产品类型切换",
+            "blocks" : [
+                {
+                    "type": "product-sort"
+                },
+                {
+                    "type": "product-sort"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

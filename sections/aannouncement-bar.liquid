@@ -1,0 +1,204 @@
+<style>
+.announcement-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333; /* 默认背景颜色 */
+  color: white;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.announcement-text {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.announcement-content {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.announcement-item {
+  display: inline-block;
+  padding: 0 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.announcement-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.prev, .next {
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  user-select: none;
+  padding: 0 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "顶部公告栏",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#333333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_icons",
+      "name": "社媒图标",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "social_icon_1",
+          "label": "社媒图标 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "social_icon_2",
+          "label": "社媒图标 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "social_icon_3",
+          "label": "社媒图标 3"
+        }
+      ]
+    },
+    {
+      "type": "announcements",
+      "name": "公告文案",
+      "settings": [
+        {
+          "type": "text",
+          "id": "announcement_1",
+          "label": "公告文案 1",
+          "default": "欢迎光临我们的店铺！"
+        },
+        {
+          "type": "url",
+          "id": "announcement_link_1",
+          "label": "公告文案 1 链接"
+        },
+        {
+          "type": "text",
+          "id": "announcement_2",
+          "label": "公告文案 2",
+          "default": "所有商品满100元享免费配送！"
+        },
+        {
+          "type": "url",
+          "id": "announcement_link_2",
+          "label": "公告文案 2 链接"
+        },
+        {
+          "type": "text",
+          "id": "announcement_3",
+          "label": "公告文案 3",
+          "default": "关注我们的社交媒体！"
+        },
+        {
+          "type": "url",
+          "id": "announcement_link_3",
+          "label": "公告文案 3 链接"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "顶部公告栏",
+      "category": "自定义模块"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="announcement-bar" style="background-color: {{ section.settings.background_color }};">
+  <!-- 左侧社媒图标 -->
+  <div class="social-icons">
+    {% for block in section.blocks %}
+      {% if block.type == 'social_icons' %}
+        {% if block.settings.social_icon_1 %}
+          <a href="#" target="_blank"><img src="{{ block.settings.social_icon_1 | image_url: width: 30, height: 30 }}" alt="社媒1"></a>
+        {% endif %}
+        {% if block.settings.social_icon_2 %}
+          <a href="#" target="_blank"><img src="{{ block.settings.social_icon_2 | image_url: width: 30, height: 30 }}" alt="社媒2"></a>
+        {% endif %}
+        {% if block.settings.social_icon_3 %}
+          <a href="#" target="_blank"><img src="{{ block.settings.social_icon_3 | image_url: width: 30, height: 30 }}" alt="社媒3"></a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- 中间公告文案区域 -->
+  <div class="announcement-text">
+    <div class="announcement-content">
+      {% for block in section.blocks %}
+        {% if block.type == 'announcements' %}
+          <a href="{{ block.settings.announcement_link_1 }}" class="announcement-item" id="announcement-1" style="display: none;">{{ block.settings.announcement_1 }}</a>
+          <a href="{{ block.settings.announcement_link_2 }}" class="announcement-item" id="announcement-2" style="display: none;">{{ block.settings.announcement_2 }}</a>
+          <a href="{{ block.settings.announcement_link_3 }}" class="announcement-item" id="announcement-3" style="display: none;">{{ block.settings.announcement_3 }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="announcement-arrows">
+      <span class="prev" onclick="changeAnnouncement(-1)">&#10094;</span>
+      <span class="next" onclick="changeAnnouncement(1)">&#10095;</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentAnnouncement = 1;
+  const totalAnnouncements = 3;
+  
+  function changeAnnouncement(direction) {
+    currentAnnouncement += direction;
+    if (currentAnnouncement > totalAnnouncements) currentAnnouncement = 1;
+    if (currentAnnouncement < 1) currentAnnouncement = totalAnnouncements;
+    
+    // 隐藏所有公告文案
+    for (let i = 1; i <= totalAnnouncements; i++) {
+      document.getElementById('announcement-' + i).style.display = 'none';
+    }
+
+    // 显示当前公告
+    document.getElementById('announcement-' + currentAnnouncement).style.display = 'block';
+  }
+
+  // 初始化显示第一个公告
+  document.addEventListener('DOMContentLoaded', function() {
+    changeAnnouncement(0);
+  });
+</script>

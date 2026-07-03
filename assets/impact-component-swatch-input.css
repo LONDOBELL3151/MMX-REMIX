@@ -1,0 +1,108 @@
+/* swatch-input lives in its own file for reusability of the swatch in other areas than the product form context */
+.impact-variant-select-color .swatch-input__input + .swatch-input__label {
+    --swatch-input--border-radius: 50%;
+    display: inline-block;
+    max-width: 100%;
+    /* border-radius: var(--swatch-input--border-radius); */
+    cursor: pointer;
+    outline-offset: 0.2rem;
+    outline-color: transparent;
+    outline-style: solid;
+    transition-property: outline-color, outline-width, box-shadow;
+    transition-duration: var(--duration-short);
+    transition-timing-function: ease;
+    forced-color-adjust: none;
+    padding: 0 ;
+    border: none ;
+    border-radius: 3px;
+  }
+
+  .impact-variant-select-color .swatch-color-img {
+    background: initial;
+    background-image: var(--swatch--background);
+    background-color: var(--swatch-color);
+    background-position: top left;
+    background-size: 500% auto;
+  }
+
+  .impact-variant-select-color .swatch {
+    border-radius: 5px;
+    border: .5px solid rgba(18, 18, 18, 0.55);
+  }
+
+  .impact-variant-select-color .product-form__input input[type=radio]:checked+label {
+    background: initial;
+  }
+  
+  .impact-variant-select-color .swatch-input__input + .swatch-input__label.swatch-input__label--square {
+    --swatch-input--border-radius: 0.2rem;
+  }
+  
+  /* Active state */
+  .impact-variant-select-color .swatch-input__input:active + .swatch-input__label,
+  .impact-variant-select-color .swatch-input__input:checked + .swatch-input__label {
+    outline: 0.1rem solid rgb(var(--color-foreground));
+  }
+  
+  /* Hover state */
+  .impact-variant-select-color .swatch-input__input + .swatch-input__label:hover,
+  .impact-variant-select-color .swatch-input__input:hover + .swatch-input__label {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.4);
+  }
+  
+  /* Focus visible */
+  .impact-variant-select-color .swatch-input__input:focus-visible + .swatch-input__label {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+    box-shadow: 0 0 0 0.2rem rgb(var(--color-background)), 0 0 0.1rem 0.5rem rgba(var(--color-foreground), 0.25);
+  }
+  
+  /* Active and focused */
+  .impact-variant-select-color .swatch-input__input:active:focus-visible + .swatch-input__label,
+  .impact-variant-select-color .swatch-input__input:checked:focus-visible + .swatch-input__label {
+    outline: 0.1rem solid rgb(var(--color-foreground));
+    box-shadow: 0 0 0 0.2rem rgb(var(--color-background)), 0 0 0.1rem 0.4rem rgba(var(--color-foreground), 0.25);
+  }
+  
+  /* Visually disabled */
+  .impact-variant-select-color .swatch-input__input.visually-disabled:not(:active):not(:checked) + .swatch-input__label {
+    transition: none;
+  }
+  .impact-variant-select-color .swatch-input__input.visually-disabled:not(:active):not(:checked) + .swatch-input__label:hover {
+    outline: none;
+  }
+  
+  /* Actually disabled */
+  .impact-variant-select-color .swatch-input__input:disabled + .swatch-input__label {
+    pointer-events: none;
+  }
+  
+  /* Overrides for swatch snippet when used inside disabled swatch-input */
+  .impact-variant-select-color .swatch-input__input:disabled + .swatch-input__label > .swatch,
+  .impact-variant-select-color .swatch-input__input.visually-disabled + .swatch-input__label > .swatch {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Disabled styles */
+  .impact-variant-select-color .swatch-input__input:disabled + .swatch-input__label > .swatch,
+  .impact-variant-select-color .swatch-input__input.visually-disabled + .swatch-input__label > .swatch {
+    opacity: 0.4;
+  }
+  
+  /* Display crossed out line over swatch when input is disabled */
+  .impact-variant-select-color .swatch-input__input:disabled + .swatch-input__label > .swatch::after,
+  .impact-variant-select-color .swatch-input__input.visually-disabled + .swatch-input__label > .swatch::after {
+    /* Diagonal of a square = length of the side * sqrt(2)  */
+    --diagonal--size: calc(var(--swatch-input--size) * 1.414);
+    --crossed-line--size: 0.1rem;
+    content: '';
+    position: absolute;
+    bottom: calc(var(--crossed-line--size) * -0.5);
+    left: 0;
+    width: var(--diagonal--size);
+    height: var(--crossed-line--size);
+    background-color: rgb(var(--color-foreground));
+    transform: rotate(-45deg);
+    transform-origin: left;
+  }
+  

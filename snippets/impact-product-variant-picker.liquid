@@ -1,0 +1,23 @@
+{%- if product_color_display != 'hide' -%}
+  {%- assign color_label = 'color' -%}
+  {%- if product.options_by_name[color_label] != blank -%}
+    {%- assign product_option = product.options_by_name[color_label] -%}
+    {%- capture param_name -%}swatch-{{ section.id }}-{{ product.id }}-{{ product_option.position }}{%- endcapture -%}
+    <div class="impact-product_color_list">
+      <fieldset class="impact-product-option-fieldset">
+        <legend class="sr-only">
+          {{ product_option.name }}:
+          <span data-selected-value>{{- product_option.selected_value -}}</span>
+        </legend>
+        {%- for option_value in product_option.values -%}
+          {% render 'impact-option-value',
+            type: product_color_display,
+            option_value: option_value,
+            product_form_id: product_form_id,
+            param_name: param_name
+          %}
+        {%- endfor -%}
+      </fieldset>
+    </div>
+  {%- endif -%}
+{%- endif -%}

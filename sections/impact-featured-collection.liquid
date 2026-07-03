@@ -1,0 +1,486 @@
+{{ 'impact-featured-collection.css' | asset_url | stylesheet_tag }}
+
+<div class="impact-product-header">
+  {%- if section.blocks.size > 0 -%}
+    {%- assign product_form_id = 'product-form-' | append: section.id -%}
+  {%- endif -%}
+
+  {%- if section.settings.title != blank and section.settings.view_all_link == blank -%}
+    <h2 class="impact-featured-title">{{- section.settings.title -}}</h2>
+  {%- endif -%}
+
+  {%- if section.settings.title == blank and section.settings.view_all_link != blank -%}
+    <a href="{{section.settings.view_all_link}}" class="impact-featured-view_all">
+      <span>View all</span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025="">
+          <path fill="currentColor"
+            d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0z">
+          </path>
+        </svg>
+      </span>
+    </a>
+  {%- endif -%}
+
+  {%- if section.settings.title != blank and section.settings.view_all_link != blank -%}
+    <div class="impact-featured-title-viewAll">
+      <h2>{{- section.settings.title -}}</h2>
+      <a href="{{section.settings.view_all_link}}">
+        <span>View all</span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025="">
+            <path fill="currentColor"
+              d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0z">
+            </path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- if section.blocks.size > 0 -%}
+  <script src="{{ 'impact-variant-selects.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- liquid
+  assign blocks_count = section.blocks.size
+  assign layout_type = section.settings.layout_type
+  assign phone_layout_type = section.settings.layout_type_phone
+
+  # 桌面滚动条件
+  assign is_desktop_scroll = false
+  if layout_type == 'scroll' and blocks_count > 4
+    assign is_desktop_scroll = true
+  endif
+
+  # 手机滚动条件
+  assign is_mobile_scroll = false
+  if phone_layout_type == 'scroll' and blocks_count > 2
+    assign is_mobile_scroll = true
+  endif
+
+  # 构建class字符串
+  assign collection_classes = 'impact-product-collection grid_box'
+  assign product_content_classes = 'impact-product-content'
+  assign product_list_empty_classes = 'impact-product-list impact-product-empty'
+
+  if is_desktop_scroll or is_mobile_scroll
+    assign collection_classes = collection_classes | append: ' impact-product-collection_scroll' | append: ' keen-slider'
+    assign product_content_classes = product_content_classes | append: ' keen-slider__slide'
+    assign product_list_empty_classes = product_list_empty_classes | append: ' keen-slider__slide'
+  endif
+
+  # 设置ID属性
+  if is_desktop_scroll or is_mobile_scroll
+    assign slider_id = 'slider_id-' | append: section.id
+  endif
+-%}
+
+{%- capture inner_content -%}
+<div id="{{ slider_id }}" class="{{ collection_classes }}"
+  data-mobile="{{ is_mobile_scroll }}" data-desktop="{{ is_desktop_scroll }}">
+  {%- for block in section.blocks -%}
+  {%- if block.settings.product.media.size > 0 -%}
+  <div class="{{ product_content_classes }}" {{ block.shopify_attributes }}>
+    {%- render 'impact-product-card',
+    product: block.settings.product,
+    position: forloop.index,
+    product_title: block.settings.product_title,
+    product_image: block.settings.product_image,
+    product_image_alt: block.settings.product_image_alt,
+    product_color_display: section.settings.product_color_display,
+    product_form_id: product_form_id,
+    currency_code_enabled: section.settings.currency_code_enabled,
+    percentage_mode: section.settings.percentage_mode
+    -%}
+
+    {% render 'impact-product-card-icon',
+    image_icon_1: block.settings.image_icon_1,
+    image_icon_2: block.settings.image_icon_2,
+    image_icon_3: block.settings.image_icon_3,
+    image_icon_4: block.settings.image_icon_4,
+    icon_title1: block.settings.icon_title1,
+    icon_title2: block.settings.icon_title2,
+    icon_title3: block.settings.icon_title3,
+    icon_title4: block.settings.icon_title4
+    %}
+  </div>
+
+  {% else %}
+  {%- capture placeholder_image -%}product-{% cycle '1', '2', '3', '4', '5', '6' %}{%- endcapture -%}
+  <div class="{{ product_list_empty_classes }}">
+    <div class="impact-product-card_figure">
+      {{- placeholder_image | placeholder_svg_tag: 'placeholder_image placeholder' -}}
+    </div>
+    <div class="impact-product-card_info">
+      <a href="{{ product.url }}" class="name"> Product</a>
+      <p>{{- 4500 | money -}}</p>
+    </div>
+  </div>
+  {%- endif -%}
+  {%- endfor -%}
+</div>
+{%- endcapture -%}
+
+{%- capture keen_slider_content -%}
+  {{ 'keen-slider.min.css' | asset_url | stylesheet_tag }}
+  {{ inner_content }}
+  <script src="{{ 'keen-slider.min.js' | asset_url }}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      var gridBoxes = document.querySelectorAll('.grid_box');
+      gridBoxes.forEach(function (gridBox) {
+        gridBox.classList.remove('grid_box');
+      });
+      function navigation(slider) {
+        let wrapper, arrowLeft, arrowRight;
+
+        function markup(remove) {
+          wrapperMarkup(remove);
+          arrowMarkup(remove);
+        }
+
+        function removeElement(elment) {
+          elment.parentNode.removeChild(elment);
+        }
+        function createDiv(className) {
+          var div = document.createElement('div');
+          var classNames = className.split(' ');
+          classNames.forEach((name) => div.classList.add(name));
+          return div;
+        }
+
+        function arrowMarkup(remove) {
+          if (remove) {
+            removeElement(arrowLeft);
+            removeElement(arrowRight);
+            return;
+          }
+          arrowLeft = createDiv('arrow arrow--left');
+          arrowLeft.setAttribute('role', 'button');
+          arrowLeft.setAttribute('aria-label', 'Previous');
+          arrowLeft.addEventListener('click', () => slider.prev());
+          arrowRight = createDiv('arrow arrow--right');
+          arrowRight.setAttribute('role', 'button');
+          arrowRight.setAttribute('aria-label', 'Next');
+          arrowRight.addEventListener('click', () => slider.next());
+
+          wrapper.appendChild(arrowLeft);
+          wrapper.appendChild(arrowRight);
+        }
+
+        function wrapperMarkup(remove) {
+          if (remove) {
+            var parent = wrapper.parentNode;
+            while (wrapper.firstChild) parent.insertBefore(wrapper.firstChild, wrapper);
+            removeElement(wrapper);
+            return;
+          }
+          wrapper = createDiv('navigation-wrapper');
+          slider.container.parentNode.appendChild(wrapper);
+          wrapper.appendChild(slider.container);
+        }
+
+
+
+        function updateClasses() {
+          const slide = slider.track.details.rel;
+          const slidesLength = slider.track.details.slides.length;
+          const perView = slider.options.slides.perView || 1;
+
+          slide === 0 ? arrowLeft.classList.add('arrow--disabled') : arrowLeft.classList.remove('arrow--disabled');
+
+          slide > slidesLength - Math.ceil(perView)
+            ? arrowRight.classList.add('arrow--disabled')
+            : arrowRight.classList.remove('arrow--disabled');
+
+        }
+
+        slider.on('created', () => {
+          markup();
+          updateClasses();
+        });
+        slider.on('optionsChanged', () => {
+          markup(true);
+          markup();
+          updateClasses();
+        });
+        slider.on('slideChanged', () => {
+          updateClasses();
+        });
+        slider.on('destroyed', () => {
+          markup(true);
+        });
+      }
+
+      new KeenSlider(
+        '#{{ slider_id }}',
+        {
+          slides: {
+            perView: 1.3, // 默认值（最小的情况）
+            spacing: 15,
+          },
+          breakpoints: {
+            '(min-width: 530px)': {
+              slides: {
+                perView: 1.5,
+                spacing: 15,
+              },
+            },
+            '(min-width: 650px)': {
+              slides: {
+                perView: 2.4,
+                spacing: 15,
+              },
+            },
+            '(min-width: 750px)': {
+              slides: {
+                perView: 2.7,
+                spacing: 20,
+              },
+            },
+            '(min-width: 1050px)': {
+              slides: {
+                perView: 3.5,
+                spacing: 20,
+              },
+            },
+            '(min-width: 1230px)': {
+              slides: {
+                perView: 4.5,
+                spacing: 20,
+              },
+            },
+          },
+        },
+        [navigation]
+      );
+
+    })
+  </script>
+
+{%- endcapture -%}
+
+{%- if is_desktop_scroll or is_mobile_scroll -%}
+  {{ keen_slider_content }}
+{%- else -%}
+  {{ inner_content }}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "impact collection",
+  "class": "impact-featured-collection",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "左上角小标题-含有 'badge'字段 "
+    },
+    {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题",
+      "default": "Featured collection"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "跳转到查看所有的链接"
+    },
+    {
+      "type": "header",
+      "content": "价格设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "currency_code_enabled",
+      "label": "价格是否显示货币单位",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "percentage_mode",
+      "label": "价格是否百分比模式",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "模块布局"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "电脑端",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "轮播"
+        },
+        {
+          "value": "grid",
+          "label": "块"
+        }
+      ],
+      "default": "grid",
+      "info": "只有子级: product_msg 数量大于4(不包含4), 轮播才能生效"
+    },
+    {
+      "type": "select",
+      "id": "layout_type_phone",
+      "label": "手机端",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "轮播"
+        },
+        {
+          "value": "grid",
+          "label": "块"
+        }
+      ],
+      "default": "scroll",
+      "info": "只有子级: product_msg 数量大于2(不包含2), 轮播才能生效"
+    },
+    {
+      "type": "header",
+      "content": "颜色指示点"
+    },
+    {
+      "type": "select",
+      "id": "product_color_display",
+      "label": "指示点",
+      "options": [
+        {
+          "value": "hide",
+          "label": "隐藏"
+        },
+        {
+          "value": "swatch",
+          "label": "颜色"
+        }
+      ],
+      "default": "swatch"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_msg",
+      "name": "product_msg",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "选择产品"
+        },
+        {
+          "type": "header",
+          "content": "自定义产品-图片"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "product_image_alt",
+          "label": "图片-alt"
+        },
+        {
+          "type": "header",
+          "content": "自定义产品-标题"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "标题"
+        },
+        {
+          "type": "header",
+          "content": "图标-image",
+          "info": "上传图标"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_1",
+          "label": "图标1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_2",
+          "label": "图标2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_3",
+          "label": "图标3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon_4",
+          "label": "图标4"
+        },
+        {
+          "type": "header",
+          "content": "图标-文案",
+          "info": "上传文案"
+        },
+        {
+          "type": "text",
+          "id": "icon_title1",
+          "label": "图标-标题1",
+          "default": "48V 20Ah"
+        },
+        {
+          "type": "text",
+          "id": "icon_title2",
+          "label": "图标-标题2",
+          "default": "48V 20Ah"
+        },
+        {
+          "type": "text",
+          "id": "icon_title3",
+          "label": "图标-标题3",
+          "default": "48V 20Ah"
+        },
+        {
+          "type": "text",
+          "id": "icon_title4",
+          "label": "图标-标题4",
+          "default": "48V 20Ah"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "impact collection",
+      "blocks": [
+        {
+          "type": "product_msg"
+        },
+        {
+          "type": "product_msg"
+        },
+        {
+          "type": "product_msg"
+        },
+        {
+          "type": "product_msg"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

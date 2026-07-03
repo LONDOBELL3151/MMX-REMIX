@@ -1,0 +1,411 @@
+{{ 'swiper-bundle.css' | asset_url | stylesheet_tag }}
+
+{{ 'home-tab-bike.css' | asset_url | stylesheet_tag }}
+
+<div class="home-tab-bike-title">
+  <h5 class="fontSize-c tab-bike-word">{{ section.settings['tab-title'] }}</h5>
+  <p class="fontSize-b tab-bike-tip">{{ section.settings['tab-word'] }}</p>
+</div>
+<div class="home-tab-bike-tabs home-tab-pc">
+  {% for block in section.blocks %}
+    {% assign index = forloop.index0 %}
+    <div
+      class="tab"
+      data-idx="{{ index }}"
+      {{ block.shopify_attributes }}>
+      <div class="tab-img">
+        {% if block.settings.tab_title_image %}
+          <img src="{{ block.settings.tab_title_image | img_url:"200x" }}" alt="">
+          {% comment %}<img src="{{ 'cdn/shop/' | append: block.settings.tab_title_image }}" alt="">{% endcomment %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+        {% endif %}
+      </div>
+      <div class="tab-title">
+        <p class="fontSize-a">{{ block.settings.tab_title }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="home-tab-bike-content home-tab-pc">
+  {% for block in section.blocks %}
+    <div class="con-item" {{ block.shopify_attributes }}>
+      <div class="swiper contentSwiper-{{- section.id -}}">
+        <div class="swiper-wrapper">
+          {% if block.settings['tab_content_imgs-1'] %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.tab_content_imgs-1 | img_url: 'original' }}" style="height: 100%; width: 100%">
+            </div>
+          {% endif %}
+
+          {% if block.settings['tab_content_imgs-2'] %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.tab_content_imgs-2 | img_url: 'original' }}" style="height: 100%; width: 100%">
+            </div>
+          {% endif %}
+
+          {% if block.settings['tab_content_imgs-3'] %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.tab_content_imgs-3 | img_url: 'original' }}" style="height: 100%; width: 100%">
+            </div>
+          {% endif %}
+
+          {% if block.settings['tab_content_imgs-4'] %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.tab_content_imgs-4 | img_url: 'original' }}" style="height: 100%; width: 100%">
+            </div>
+          {% endif %}
+
+          {% if block.settings['tab_content_imgs-5'] %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.tab_content_imgs-5 | img_url: 'original' }}" style="height: 100%; width: 100%">
+            </div>
+          {% endif %}
+
+          {% if block.settings['tab_content_imgs-6'] %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.tab_content_imgs-6 | img_url: 'original' }}" style="height: 100%; width: 100%">
+            </div>
+          {% endif %}
+
+          {% if block.settings['tab_content_imgs-1'] == blank 
+             and block.settings['tab_content_imgs-2'] == blank
+             and block.settings['tab_content_imgs-3'] == blank
+             and block.settings['tab_content_imgs-4'] == blank
+             and block.settings['tab_content_imgs-5'] == blank
+             and block.settings['tab_content_imgs-6'] == blank
+         %}
+            <div class="swiper-slide">
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="content-price">
+        {% if block.settings.tab_content_product != '' %}
+          <h6 class="fontSize-b">{{ block.settings.tab_content_product.price | money }}</h6>
+          {% if block.settings.tab_content_product.price !=  block.settings.tab_content_product.compare_at_price_min %}
+            <p class="fontSize-a">{{ block.settings.tab_content_product.compare_at_price_min | money }}</p>
+          {% endif %}
+          
+        {% endif %}
+      </div>
+      <a href="{{ block.settings.tab-href }}" class="fontSize-a article-homeTab">
+        {{- block.settings['tab-href-text'] -}}
+      </a>
+      <div class="content-icon">
+        <div class="icon-list">
+          <div class="icon-img">
+            {% if block.settings['tab_content_icon_img-1'] %}
+              {% comment %}<img src="{{ 'cdn/shop/' | append: block.settings.tab_content_icon_img-1 }}" alt="">{% endcomment %}
+              <img src="{{ block.settings.tab_content_icon_img-1 | img_url:'55x' }}" alt="">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            {% endif %}
+          </div>
+          <p class="fontSize-a">{{ block.settings['tab_content_icon_text-1'] }}</p>
+        </div>
+        <div class="icon-list">
+          <div class="icon-img">
+            {% if block.settings['tab_content_icon_img-2'] %}
+                <img src="{{ block.settings.tab_content_icon_img-2 | img_url:'55x' }}" alt="">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            {% endif %}
+          </div>
+          <p class="fontSize-a">{{ block.settings['tab_content_icon_text-2'] }}</p>
+        </div>
+        <div class="icon-list">
+          <div class="icon-img">
+            {% if block.settings['tab_content_icon_img-3'] %}
+                <img src="{{ block.settings.tab_content_icon_img-3 | img_url:'55x' }}" alt="">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            {% endif %}
+          </div>
+          <p class="fontSize-a">{{ block.settings['tab_content_icon_text-3'] }}</p>
+        </div>
+        <div class="icon-list">
+          <div class="icon-img">
+            {% if block.settings['tab_content_icon_img-4'] %}
+                <img src="{{ block.settings.tab_content_icon_img-4 | img_url:'55x' }}" alt="">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            {% endif %}
+          </div>
+          <p class="fontSize-a">{{ block.settings['tab_content_icon_text-4'] }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="home-tab-phone">
+  {% for block in section.blocks limit: 4 %}
+    <div class="tab-phone-list">
+      {% if block.settings.tab_content_product != '' %}
+        <p class="fontSize-a">{{ block.settings.tab_content_product.title }}</p>
+        <h6 class="fontSize-e">
+          {{ block.settings.tab_content_product.price | money }}
+          <span class="fontSize-a">{{ block.settings.tab_content_product.compare_at_price_min | money }}</span>
+        </h6>
+        <div class="tab-phone-img">
+          {% if block.settings['tab_content_imgs-1'] %}
+            <img
+              src="{{block.settings.tab_content_imgs-1 | img_url: '400x' }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}">
+          {% elsif block.settings['tab_content_imgs-2'] %}
+            <img
+              src="{{block.settings.tab_content_imgs-2 | img_url: '400x' }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}">
+
+          {% elsif block.settings['tab_content_imgs-3'] %}
+            <img
+              src="{{block.settings.tab_content_imgs-3 | img_url: '400x' }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}">
+
+          {% elsif block.settings['tab_content_imgs-4'] %}
+            <img
+              src="{{block.settings.tab_content_imgs-4 | img_url: '400x' }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}">
+
+          {% elsif block.settings['tab_content_imgs-5'] %}
+            <img
+              src="{{block.settings.tab_content_imgs-5 | img_url: '400x' }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}">
+
+          {% elsif block.settings['tab_content_imgs-6'] %}
+            <img
+              src="{{block.settings.tab_content_imgs-6 | img_url: '400x' }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}">
+
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+          {% endif %}
+        </div>
+        <a href="{{ block.settings.tab_content_product.url }}" class="fontSize-f tab-phone-href">More color +</a>
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{{ 'swiper-bundle.js' | asset_url | script_tag }}
+<script>
+  function tabSwiper() {
+    var swiper = new Swiper('.contentSwiper-    {{- section.id -}}', {
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: true
+      },
+      speed: 700,
+      allowTouchMove: true,
+      grabCursor: true,
+      centeredSlides: true,
+      spaceBetween: 10,
+      slidesOffsetBefore: 40,
+      loop: true,
+      slidesPerView: 'auto',
+      on: {
+        slideChangeTransitionEnd: function() {
+          this.slides.transition(this.params.autoplay.delay + this.params.speed).transform('translate3d(-60px, 0, 0)');
+        },
+        slideChangeTransitionStart: function() {
+          this.slides.transition(this.params.speed).transform('translate3d(0, 0, 0)');
+        }
+      }
+    });
+  }
+
+  const tabs = document.querySelector('.home-tab-bike-tabs');
+  const conItem = [...document.querySelectorAll('.con-item')];
+  const tabItem = [...document.querySelectorAll('.tab')];
+  tabItem[0].classList.add('tab-active');
+  tabSwiper();
+  tabs.addEventListener('click', (e) => {
+    const item = e.target.parentNode.parentNode;
+    if (item.classList[0] == 'tab') {
+      const {idx} = item.dataset;
+      conItem[0].classList.add('con-item-no');
+      conItem.forEach((dom, index) => {
+        if (index == idx) {
+          dom.classList.add('con-item-active');
+        } else {
+          dom.classList.remove('con-item-active');
+        }
+      });
+      tabItem.forEach((dom, index) => {
+        if (index == idx) {
+          dom.classList.add('tab-active');
+          tabSwiper();
+        } else {
+          dom.classList.remove('tab-active');
+        }
+      });
+    }
+  });
+
+
+  document.addEventListener('shopify:block:select', function(event) {
+    const conItem = [...document.querySelectorAll('.con-item')];
+    const tabItem = [...document.querySelectorAll('.tab')];
+    if (event.target.classList[0] == 'tab') {
+      let idx = event.target.dataset.idx;
+      conItem[0].classList.add('con-item-no');
+      conItem.forEach((dom, index) => {
+        if (index == idx) {
+          dom.classList.add('con-item-active');
+        } else {
+          dom.classList.remove('con-item-active');
+        }
+      });
+      tabItem.forEach((dom, index) => {
+        if (index == idx) {
+          dom.classList.add('tab-active');
+          tabSwiper();
+        } else {
+          dom.classList.remove('tab-active');
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Home-Bike Tab",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "text",
+        "id": "tab-title",
+        "label": "tab-title",
+        "default": "ALL TERRAIN FOLDING E-BIKE"
+      }, {
+        "type": "text",
+        "id": "tab-word",
+        "label": "tab-word",
+        "default": "3 Steps Folding, Easy Carry"
+      }
+    ],
+    "max_blocks": 5,
+    "blocks": [
+      {
+        "type": "tab",
+        "name": "Tabs",
+        "settings": [
+          {
+            "type": "text",
+            "id": "tab_title",
+            "label": "Tab Title",
+            "default": "Product Title"
+          },
+          {
+            "type": "image_picker",
+            "id": "tab_title_image",
+            "label": "Tab Title Image"
+          },
+          {
+            "type": "product",
+            "id": "tab_content_product",
+            "label": "Tab Content Product"
+          },
+          {
+            "type": "text",
+            "id": "tab-href",
+            "label": "tab-href"
+          }, {
+            "type": "text",
+            "id": "tab-href-text",
+            "label": "tab-href-text",
+            "default": "View all"
+          }, {
+            "type": "text",
+            "id": "tab_content_icon_text-1",
+            "label": "Tab  Content Icon Text-1",
+            "default": "48V 14Ah SAMSUNG Battery"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_icon_img-1",
+            "label": "Tab Content Icon Img-1"
+          }, {
+            "type": "text",
+            "id": "tab_content_icon_text-2",
+            "label": "Tab Content Icon Text-2",
+            "default": "500W Brushless Gear Hub Motor"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_icon_img-2",
+            "label": "Tab  Content Icon Img-2"
+          }, {
+            "type": "text",
+            "id": "tab_content_icon_text-3",
+            "label": "Tab Content Icon Text-3",
+            "default": "Peak 750W Power 80N.m Torque"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_icon_img-3",
+            "label": "Tab Content Icon Img-3"
+          }, {
+            "type": "text",
+            "id": "tab_content_icon_text-4",
+            "label": "Tab Content Icon Text-4",
+            "default": "Max maha 100w fast fast"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_icon_img-4",
+            "label": "Tab Content Icon Img-4"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_imgs-1",
+            "label": "Tab Content Imgs-1"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_imgs-2",
+            "label": "Tab Content Imgs-2"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_imgs-3",
+            "label": "Tab Content Imgs-3"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_imgs-4",
+            "label": "Tab Content Imgs-4"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_imgs-5",
+            "label": "Tab Content Imgs-5"
+          }, {
+            "type": "image_picker",
+            "id": "tab_content_imgs-6",
+            "label": "Tab  Content Imgs-6"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home-Bike Tab",
+        "blocks": [
+          {
+            "type": "tab"
+          }, {
+            "type": "tab"
+          }, {
+            "type": "tab"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

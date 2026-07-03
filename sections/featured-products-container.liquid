@@ -1,0 +1,867 @@
+{% comment %}
+  Shopify Section: Featured Products Slider/Grid (FINAL VERSION - Fix JS Syntax Error)
+
+  功能:
+  - Fixed JavaScript syntax error (missing comma in Swiper options).
+  - Contains all requested features.
+  - Includes console.log statements inside the swatch click handler for debugging.
+
+  依赖:
+  - Swiper.js (通过 CDN 引入) 用于滑动和分页功能.
+{% endcomment %}
+
+{%- liquid
+  # Section Settings
+  assign section_title = section.settings.section_title
+  # PC端每页显示数量 (固定为4)
+  assign products_per_page_desktop = 4
+  assign background_color = section.settings.background_color
+  assign card_background_color = section.settings.card_background_color
+  assign text_color = section.settings.text_color
+  assign price_color = section.settings.price_color
+  assign compare_at_price_color = section.settings.compare_at_price_color
+  assign discount_bg_color = section.settings.discount_badge_background_color
+  assign discount_text_color = section.settings.discount_badge_text_color
+  assign color_option_name = section.settings.color_option_name | downcase | strip
+
+  # Calculate total number of relevant blocks without accessing settings yet
+  assign total_products = 0
+  for block in section.blocks
+    if block.type == 'featured_product'
+      # Basic check if product setting exists
+      if block.settings.product != blank
+         assign total_products = total_products | plus: 1
+      endif
+    endif
+  endfor
+-%}
+
+{% if total_products > 0 %}
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <style>
+    :root {
+      --fp-background-color: {{ background_color }};
+      --fp-card-background-color: {{ card_background_color }};
+      --fp-text-color: {{ text_color }};
+      --fp-price-color: {{ price_color }};
+      --fp-compare-at-price-color: {{ compare_at_price_color }};
+      --fp-discount-bg-color: {{ discount_bg_color }};
+      --fp-discount-text-color: {{ discount_text_color }};
+    }
+
+    #shopify-section-{{ section.id }} {
+      background-color: var(--fp-background-color);
+      padding: 40px 0;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-{{ section.id }} .featured-products-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      position: relative;
+    }
+
+    #shopify-section-{{ section.id }} .featured-products-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: var(--fp-text-color);
+    }
+
+    /* Swiper Styles */
+    #shopify-section-{{ section.id }} .swiper-featured-products {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #shopify-section-{{ section.id }} .swiper-featured-products.swiper-initialized {
+       overflow: hidden;
+       padding-bottom: 20px;
+       visibility: visible;
+       opacity: 1;
+    }
+
+    @media (min-width: 992px) {
+       #shopify-section-{{ section.id }} .swiper-wrapper--center-items {
+          justify-content: center;
+       }
+    }
+
+    #shopify-section-{{ section.id }} .swiper-slide {
+      height: auto;
+      display: flex;
+      justify-content: center;
+      min-height: 150px;
+      align-items: stretch;
+    }
+
+    #shopify-section-{{ section.id }} .product-card {
+      background-color: var(--fp-card-background-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 320px;
+      color: var(--fp-text-color);
+      text-align: left;
+    }
+     #shopify-section-{{ section.id }} .product-card:hover {
+       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+
+    #shopify-section-{{ section.id }} .product-card__discount-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: var(--fp-discount-bg-color);
+      color: var(--fp-discount-text-color);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+
+    #shopify-section-{{ section.id }} .product-card__image-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding-top: 100%; /* Aspect ratio 1:1, adjust as needed */
+      background-color: #f8f8f8; /* Light background for placeholder */
+    }
+    #shopify-section-{{ section.id }} .product-card__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Cover the area */
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+     #shopify-section-{{ section.id }} .product-card:hover .product-card__image {
+        transform: scale(1.05);
+     }
+     #shopify-section-{{ section.id }} .product-card__image-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 14px;
+        text-align: center;
+     }
+
+
+    #shopify-section-{{ section.id }} .product-card__content {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    #shopify-section-{{ section.id }} .product-card__title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+     #shopify-section-{{ section.id }} .product-card__title p { margin: 0; }
+     #shopify-section-{{ section.id }} .product-card__title strong { font-weight: bold; }
+     #shopify-section-{{ section.id }} .product-card__title em { font-style: italic; }
+
+
+    /* Restored Swatch styles */
+    #shopify-section-{{ section.id }} .product-card__swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+      min-height: 24px; /* Reserve space even if no swatches */
+    }
+    #shopify-section-{{ section.id }} .product-card__swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%; /* 圆形色块 */
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      transition: border-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+    #shopify-section-{{ section.id }} .product-card__swatch:hover {
+       transform: scale(1.1);
+    }
+    #shopify-section-{{ section.id }} .product-card__swatch--active {
+      border-color: var(--fp-text-color); /* Highlight active swatch */
+      border-width: 2px;
+    }
+    #shopify-section-{{ section.id }} .product-card__swatch[data-color="white"],
+    #shopify-section-{{ section.id }} .product-card__swatch[data-color="#ffffff"] { border-color: #ccc; }
+    #shopify-section-{{ section.id }} .product-card__swatch[data-color="white"].product-card__swatch--active,
+    #shopify-section-{{ section.id }} .product-card__swatch[data-color="#ffffff"].product-card__swatch--active { border-color: var(--fp-text-color); }
+
+
+    #shopify-section-{{ section.id }} .product-card__pricing {
+      font-size: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 15px; /* Add margin below price, before icons */
+    }
+    #shopify-section-{{ section.id }} .product-card__price--compare {
+      color: var(--fp-compare-at-price-color);
+      text-decoration: line-through;
+      font-size: 14px;
+    }
+    #shopify-section-{{ section.id }} .product-card__price--current {
+      color: var(--fp-price-color);
+      font-weight: bold;
+    }
+
+
+    #shopify-section-{{ section.id }} .product-card__custom-icons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 columns */
+      gap: 10px;
+      margin-top: auto; /* Push icons to the bottom */
+      padding-top: 15px; /* Space above icons */
+      position: relative; /* For pseudo-element shadow */
+      border-top: 1px solid #eee; /* Optional separator */
+    }
+
+    #shopify-section-{{ section.id }} .product-card__custom-icon {
+      text-align: center;
+    }
+    #shopify-section-{{ section.id }} .product-card__custom-icon img {
+      width: 30px; /* Icon size */
+      height: 30px;
+      object-fit: contain;
+      margin: 0 auto 5px auto; /* Center icon */
+      display: block;
+    }
+    #shopify-section-{{ section.id }} .product-card__custom-icon-text {
+      font-size: 11px;
+      line-height: 1.3;
+      color: var(--fp-text-color);
+      opacity: 0.8;
+    }
+
+
+    /* Swiper Navigation Arrows */
+    #shopify-section-{{ section.id }} .swiper-button-prev,
+    #shopify-section-{{ section.id }} .swiper-button-next {
+      color: var(--fp-text-color);
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #shopify-section-{{ section.id }} .swiper-navigation-initialized .swiper-button-prev,
+    #shopify-section-{{ section.id }} .swiper-navigation-initialized .swiper-button-next {
+       opacity: 1;
+       pointer-events: auto;
+    }
+     #shopify-section-{{ section.id }} .swiper-button-prev:hover,
+     #shopify-section-{{ section.id }} .swiper-button-next:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+     }
+    #shopify-section-{{ section.id }} .swiper-button-prev::after,
+    #shopify-section-{{ section.id }} .swiper-button-next::after {
+      font-size: 16px; font-weight: bold;
+    }
+    #shopify-section-{{ section.id }} .swiper-button-prev { left: -10px; }
+    #shopify-section-{{ section.id }} .swiper-button-next { right: -10px; }
+
+     @media (max-width: 767px) {
+        #shopify-section-{{ section.id }} .swiper-button-prev,
+        #shopify-section-{{ section.id }} .swiper-button-next { }
+         #shopify-section-{{ section.id }} .featured-products-container { padding: 0; }
+          #shopify-section-{{ section.id }} .swiper-featured-products.swiper-initialized { padding-left: 15px; padding-right: 15px; }
+     }
+     #shopify-section-{{ section.id }} .swiper-button-disabled {
+       opacity: 0.3 !important; cursor: auto !important; pointer-events: none !important;
+     }
+
+  </style>
+
+  <div class="featured-products-container" data-section-id="{{ section.id }}">
+    {% if section_title != blank %}
+      <h2 class="featured-products-title">{{ section_title | escape }}</h2>
+    {% endif %}
+
+    <div class="swiper swiper-featured-products">
+      <div class="swiper-wrapper {% if total_products < products_per_page_desktop %}swiper-wrapper--center-items{% endif %}">
+        {% comment %} Restore swatches logic {% endcomment %}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'featured_product' -%}
+            {%- liquid
+               assign product = block.settings.product
+               assign title_override = block.settings.title_override
+               assign custom_image = block.settings.custom_image
+
+               # Initialize default values
+               assign price = 0
+               assign compare_at_price = 0
+               assign show_discount = false
+               assign discount_amount = 0
+               assign current_image = null
+               # Restored swatch variables
+               assign variant_image_json =  
+               assign has_color_option = false
+               assign color_option_index = ''
+               # Initialize as nil, add_property will create map
+               assign variant_image_map = nil
+
+               # Check product object validity before accessing properties
+               if product != blank
+                 assign price = product.price | default: 0
+                 assign compare_at_price = product.compare_at_price | default: 0
+
+                 # Discount calculation (with checks)
+                 if compare_at_price > price and compare_at_price > 0
+                   assign show_discount = true
+                   assign discount_amount = compare_at_price | minus: price
+                 endif
+
+                 # Image Logic
+                 if custom_image != blank
+                   assign current_image = custom_image
+                 elsif product.featured_media != blank
+                   assign current_image = product.featured_media.preview_image
+                 endif
+
+                 # --- Restored Swatch Logic ---
+                 # Check if product has options
+                 if product.options_with_values.size > 0
+                   for option in product.options_with_values
+                     assign current_option_name = option.name | downcase | strip
+                     if current_option_name == color_option_name
+                        assign has_color_option = true
+                        assign color_option_index = 'option' | append: option.position
+                        break
+                     endif
+                   endfor
+                 endif
+
+                 # Check if product has variants and the color option was found
+                 if has_color_option and product.variants.size > 0
+                   for variant in product.variants
+                     # Ensure variant[color_option_index] exists before accessing
+                     if variant[color_option_index] != blank
+                        assign color_value = variant[color_option_index] | downcase | strip
+                        # Ensure variant image exists before adding to map
+                        if variant.featured_image != blank and color_value != blank
+                          # Adjust size as needed
+                          assign img_url = variant.featured_image | image_url: width: 800
+                          # Check if img_url is not blank before adding
+                          if img_url != blank
+                             # add_property will create variant_image_map if it's nil
+                             assign variant_image_map = variant_image_map | add_property: color_value, img_url
+                          endif
+                        endif
+                     endif
+                   endfor
+                 endif
+
+                 # --- Generate JSON string, checking if map was created ---
+                 # Check if map exists and has items
+                 if variant_image_map != blank and variant_image_map.size > 0
+                    assign variant_image_json = variant_image_map | json
+                 else
+                     
+                    assign variant_image_json = 
+                 endif
+                 # --- End Swatch Logic ---
+
+               endif
+            -%}
+            {% comment %} Render slide only if product setting exists (basic check) {% endcomment %}
+            {%- if block.settings.product != blank -%}
+              <div class="swiper-slide">
+                {% comment %} Fix: Use map size check for conditional attribute {% endcomment %}
+                <div class="product-card" data-block-id="{{ block.id }}" {% if variant_image_map != blank and variant_image_map.size > 0 %}data-variant-images='{{ variant_image_json }}'{% endif %}>
+                  {% if show_discount and section.settings.show_discount_badge %}
+                    <div class="product-card__discount-badge">
+                      {{ discount_amount | money_without_trailing_zeros | replace: '$', '' | default: 'Discount' | append: ' OFF' }}
+                    </div>
+                  {% endif %}
+
+                  <div class="product-card__image-wrapper">
+                    {%- if current_image != blank -%}
+                      {{ current_image | image_url: width: 600 | image_tag:
+                          loading: 'lazy',
+                          class: 'product-card__image',
+                          widths: '300, 400, 600, 800',
+                          sizes: '(max-width: 767px) 90vw, (max-width: 991px) 45vw, 280px',
+                          alt: current_image.alt | default: product.title | default: 'Product image' | escape
+                      }}
+                    {%- else -%}
+                       <div class="product-card__image-placeholder">No Image Available</div>
+                    {%- endif -%}
+                  </div>
+
+
+                  <div class="product-card__content">
+                    <div class="product-card__title">
+                      {% if title_override != blank %}
+                         {{ title_override }}
+                      {% elsif product != blank %}
+                         {{ product.title | default: '(Title Missing)' | escape }}
+                      {% else %}
+                         (Product Data Error)
+                      {% endif %}
+                    </div>
+
+                    {% comment %} Restore Swatches HTML {% endcomment %}
+                    {% if has_color_option and product.variants.size > 0 %}
+                      <div class="product-card__swatches">
+                        {%- assign color_values_processed = '' | split: '' -%}
+                        {%- for variant in product.variants -%}
+                           {% comment %} Check if color option value exists for variant {% endcomment %}
+                           {%- if variant[color_option_index] != blank -%}
+                              {%- assign color_value = variant[color_option_index] | downcase | strip -%}
+                              {% comment %} Ensure color value is not blank and not already processed {% endcomment %}
+                              {%- unless color_values_processed contains color_value or color_value == blank -%}
+                                {%- assign color_values_processed = color_values_processed | push: color_value -%}
+                                {%- liquid
+                                   assign swatch_style = ''
+                                   # Check if variant featured image exists
+                                   assign swatch_image = variant.featured_image | default: product.featured_media.preview_image
+
+                                   # Try to map common color names to hex codes or use variant image
+                                   assign color_lower = color_value | downcase
+                                   if color_lower == 'black'
+                                     assign swatch_style = 'background-color: #000000;'
+                                   elsif color_lower == 'white'
+                                     assign swatch_style = 'background-color: #ffffff;'
+                                   elsif color_lower == 'red'
+                                      assign swatch_style = 'background-color: #ff0000;'
+                                   elsif color_lower == 'blue'
+                                      assign swatch_style = 'background-color: #0000ff;'
+                                   elsif color_lower == 'green'
+                                      assign swatch_style = 'background-color: #008000;'
+                                   elsif color_lower == 'yellow'
+                                      assign swatch_style = 'background-color: #ffff00;'
+                                   elsif color_lower == 'gray' or color_lower == 'grey'
+                                      assign swatch_style = 'background-color: #808080;'
+                                   elsif color_lower == 'pink'
+                                       assign swatch_style = 'background-color: #ffc0cb;'
+                                   elsif color_lower == 'purple'
+                                       assign swatch_style = 'background-color: #800080;'
+                                   elsif color_lower == 'orange'
+                                        assign swatch_style = 'background-color: #ffa500;'
+                                   elsif color_lower == 'brown'
+                                        assign swatch_style = 'background-color: #a52a2a;'
+                                   else
+                                      # Fallback to using a small version of the variant image if available
+                                      if swatch_image != blank
+                                        assign swatch_img_url = swatch_image | image_url: width: 50
+                                        if swatch_img_url != blank
+                                           assign swatch_style = 'background-image: url(' | append: swatch_img_url | append: ');'
+                                        else
+                                           # Default fallback color if image URL fails
+                                           assign swatch_style = 'background-color: #cccccc;'
+                                        endif
+                                      else
+                                        # Default fallback color if no image
+                                        assign swatch_style = 'background-color: #cccccc;'
+                                      endif
+                                   endif
+                                -%}
+                                <button
+                                  class="product-card__swatch {% if forloop.first %}product-card__swatch--active{% endif %}"
+                                  data-color="{{ color_value | escape }}"
+                                  style="{{ swatch_style }}"
+                                  aria-label="选择颜色 {{ color_value | escape }}"
+                                  title="{{ color_value | capitalize | escape }}">
+                                </button>
+                              {%- endunless -%}
+                           {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    {% endif %}
+
+
+                    <div class="product-card__pricing">
+                      {% if show_discount %}
+                        <span class="product-card__price--compare">{{ compare_at_price | money }}</span>
+                      {% endif %}
+                      <span class="product-card__price--current">{{ price | money }}</span>
+                    </div>
+
+                    <div class="product-card__custom-icons">
+                      {% for i in (1..4) %}
+                        {%- liquid
+                          assign icon_setting = 'icon_' | append: i | append: '_image'
+                          assign text_setting = 'icon_' | append: i | append: '_text'
+                          assign icon_image = block.settings[icon_setting]
+                          assign icon_text = block.settings[text_setting]
+                        -%}
+                        {% if icon_image != blank or icon_text != blank %}
+                          <div class="product-card__custom-icon">
+                            {% if icon_image != blank %}
+                               {{ icon_image | image_url: width: 60 | image_tag: loading: 'lazy', widths: '30, 60', alt: icon_text | default: 'Icon ' | append: i | escape }}
+                            {% endif %}
+                            {% if icon_text != blank %}
+                              <div class="product-card__custom-icon-text">{{ icon_text | escape }}</div>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div><div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div> </div> <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    // Restore Full JS including Swatch Logic + Add Debug Logs
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const sectionId = '{{ section.id }}';
+        const container = document.querySelector(`[data-section-id="${sectionId}"]`);
+        if (!container) return;
+
+        const swiperContainer = container.querySelector('.swiper-featured-products');
+        const productsPerPageDesktop = {{ products_per_page_desktop }};
+
+        if (!swiperContainer) return;
+
+        const slides = swiperContainer.querySelectorAll('.swiper-slide');
+        if (slides.length === 0) {
+            swiperContainer.style.visibility = 'visible';
+            swiperContainer.style.opacity = '1';
+            const nextButton = container.querySelector('.swiper-button-next');
+            const prevButton = container.querySelector('.swiper-button-prev');
+            if (nextButton) nextButton.style.display = 'none';
+            if (prevButton) prevButton.style.display = 'none';
+            return;
+        }
+
+        const swiperInstance = new Swiper(swiperContainer, {
+          loop: slides.length > productsPerPageDesktop,
+          slidesPerView: 1,
+          spaceBetween: 15,
+          grabCursor: true,
+          watchOverflow: true,
+          navigation: {
+            nextEl: container.querySelector('.swiper-button-next'),
+            prevEl: container.querySelector('.swiper-button-prev'),
+            disabledClass: 'swiper-button-disabled',
+          },
+          breakpoints: {
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            992: {
+              slidesPerView: productsPerPageDesktop,
+              spaceBetween: 30,
+              loop: slides.length > productsPerPageDesktop,
+              allowTouchMove: slides.length > productsPerPageDesktop,
+            }
+          },
+           on: {
+              init: function (swiper) {
+                 if (swiper.navigation && swiper.navigation.enabled) {
+                    swiper.el.closest('.featured-products-container').classList.add('swiper-navigation-initialized');
+                 }
+                 swiper.el.classList.add('swiper-initialized');
+              }, // <<< FIX: Added missing comma here
+              navigationUpdate: function(swiper) {
+                 const navContainer = swiper.el.closest('.featured-products-container');
+                 if (navContainer) {
+                     if (swiper.navigation.enabled) {
+                        navContainer.classList.add('swiper-navigation-initialized');
+                     } else {
+                        navContainer.classList.remove('swiper-navigation-initialized');
+                     }
+                 }
+              }
+           }
+        });
+
+        // --- Restore Color Swatch Logic with Debug Logs ---
+        container.querySelectorAll('.product-card').forEach(card => {
+           try {
+              const productId = card.dataset.blockId || 'N/A'; // Use block id for logging
+              // console.log(`[Swatch Debug - ${productId}] Setting up card.`);
+
+              const swatches = card.querySelectorAll('.product-card__swatch');
+              const imageElement = card.querySelector('.product-card__image');
+              const variantImagesData = card.dataset.variantImages; // Check existence later
+
+              // Only proceed if swatches and image element exist
+              if (!swatches.length || !imageElement) {
+                 // console.log(`[Swatch Debug - ${productId}] No swatches or image element found.`);
+                 return;
+              }
+
+              // Check if data attribute exists *before* trying to parse
+              if (typeof variantImagesData === 'undefined') {
+                  console.log(`[Swatch Debug - ${productId}] data-variant-images attribute is missing (likely no variant images). Skipping swatch listeners.`);
+                  return; // No data, no listeners needed
+              }
+
+              let variantImages = {};
+              try {
+                // console.log(`[Swatch Debug - ${productId}] Parsing data-variant-images:`, variantImagesData);
+                // Check for empty string explicitly before parsing
+                if (variantImagesData === '' || variantImagesData === null) {
+                    console.log(`[Swatch Debug - ${productId}] Variant image data is empty ('${variantImagesData}'). Skipping swatch listeners.`);
+                    return; // Empty data, no listeners needed
+                }
+                variantImages = JSON.parse(variantImagesData);
+
+                if (typeof variantImages !== 'object' || variantImages === null) {
+                   console.error(`[Swatch Debug - ${productId}] Invalid variant image data after parse:`, variantImagesData);
+                   return;
+                }
+              } catch (e) {
+                console.error(`[Swatch Debug - ${productId}] Failed to parse variant images JSON:`, e, "\nJSON Data:", variantImagesData);
+                return;
+              }
+
+              // Check if the parsed object is empty
+              if (Object.keys(variantImages).length === 0) {
+                  // console.log(`[Swatch Debug - ${productId}] Parsed variant image data is empty object.`);
+                  return; // No images to switch
+              }
+
+              // If we reach here, we have swatches, an image element, and valid parsed variantImages data
+              console.log(`[Swatch Debug - ${productId}] Attaching click listeners to swatches. Image data:`, variantImages);
+
+              swatches.forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                  console.log(`[Swatch Click Debug - ${productId}] Swatch clicked!`); // Log click
+                  try {
+                      const selectedColor = swatch.dataset.color?.toLowerCase().trim();
+                      console.log(`[Swatch Click Debug - ${productId}] data-color:`, selectedColor);
+                      if (!selectedColor) {
+                          console.warn(`[Swatch Click Debug - ${productId}] Clicked swatch has no data-color.`);
+                          return;
+                      }
+
+                      swatches.forEach(s => s.classList.remove('product-card__swatch--active'));
+                      swatch.classList.add('product-card__swatch--active');
+                      console.log(`[Swatch Click Debug - ${productId}] Active class updated.`);
+
+                      const newImageUrl = variantImages[selectedColor];
+                      console.log(`[Swatch Click Debug - ${productId}] Found image URL in map for '${selectedColor}':`, newImageUrl);
+
+                      if (newImageUrl) {
+                         console.log(`[Swatch Click Debug - ${productId}] Current image src:`, imageElement.src);
+                         if (imageElement.src !== newImageUrl) {
+                             console.log(`[Swatch Click Debug - ${productId}] Updating image src to:`, newImageUrl);
+                             // Simplify image update - remove fade effect
+                             imageElement.src = newImageUrl;
+                             console.log(`[Swatch Click Debug - ${productId}] Image src set.`);
+                         } else {
+                            console.log(`[Swatch Click Debug - ${productId}] Image src already matches. No update needed.`);
+                         }
+                      } else {
+                         console.warn(`[Swatch Click Debug - ${productId}] Image URL not found in map for color: ${selectedColor}`);
+                      }
+                  } catch (clickError) {
+                     console.error(`[Swatch Click Debug - ${productId}] Error inside click handler:`, clickError);
+                  }
+                }); // End addEventListener
+              }); // End swatches.forEach
+           } catch (cardError) {
+               console.error(`[Swatch Debug - ${card.dataset.blockId || 'N/A'}] Error processing card setup:`, cardError);
+           }
+        }); // End container.querySelectorAll.forEach card
+
+      } catch (error) {
+          console.error("Error initializing featured products section ({{ section.id }}):", error);
+      }
+    });
+  </script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "热门产品展示 (Custom)",
+  "class": "section-featured-products",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "模块标题",
+      "default": "热门产品"
+    },
+    {
+       "type": "header",
+       "content": "颜色与样式"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "区域背景颜色",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "产品卡片背景颜色",
+      "default": "#FFFFFF"
+    },
+     {
+      "type": "color",
+      "id": "text_color",
+      "label": "主要文本颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "现价颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "compare_at_price_color",
+      "label": "原价颜色",
+      "default": "#888888"
+    },
+    {
+       "type": "header",
+       "content": "折扣标签"
+    },
+     {
+      "type": "checkbox",
+      "id": "show_discount_badge",
+      "label": "显示折扣标签 (例如 $X OFF)",
+      "default": true
+    },
+     {
+      "type": "color",
+      "id": "discount_badge_background_color",
+      "label": "折扣标签背景颜色",
+      "default": "#E53E3E" // Red-600
+    },
+     {
+      "type": "color",
+      "id": "discount_badge_text_color",
+      "label": "折扣标签文本颜色",
+      "default": "#FFFFFF"
+    },
+     {
+       "type": "header",
+       "content": "产品选项"
+    },
+    {
+      "type": "text",
+      "id": "color_option_name",
+      "label": "用于颜色切换的选项名称",
+      "info": "输入产品中代表颜色的选项名称（例如 Color, 颜色）。不区分大小写。",
+      "default": "Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_product",
+      "name": "精选产品",
+      "limit": 12, // 限制最大产品数，可调整
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "选择产品"
+        },
+        {
+          "type": "header",
+          "content": "自定义内容 (可选)"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "自定义产品图片",
+          "info": "如果设置，将覆盖产品自带的图片。"
+        },
+        {
+          "type": "richtext",
+          "id": "title_override",
+          "label": "自定义标题 (支持HTML)",
+          "info": "如果设置，将覆盖产品原标题。可使用加粗 <b></b> 或斜体 <i></i>。"
+        },
+        {
+          "type": "header",
+          "content": "自定义图标 (最多4个)"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1_image",
+          "label": "图标 1 图片"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_text",
+          "label": "图标 1 文本"
+        },
+         {
+          "type": "image_picker",
+          "id": "icon_2_image",
+          "label": "图标 2 图片"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_text",
+          "label": "图标 2 文本"
+        },
+         {
+          "type": "image_picker",
+          "id": "icon_3_image",
+          "label": "图标 3 图片"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_text",
+          "label": "图标 3 文本"
+        },
+         {
+          "type": "image_picker",
+          "id": "icon_4_image",
+          "label": "图标 4 图片"
+        },
+        {
+          "type": "text",
+          "id": "icon_4_text",
+          "label": "图标 4 文本"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "热门产品展示 (Custom)",
+      "blocks": [
+        { "type": "featured_product" },
+        { "type": "featured_product" },
+        { "type": "featured_product" },
+        { "type": "featured_product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

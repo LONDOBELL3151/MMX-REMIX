@@ -1,0 +1,124 @@
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	.textmodule {
+		max-width: {{ section.settings.max_width }};
+		margin: {{ section.settings.pc_margin_top }} auto {{ section.settings.pc_margin_bottom }};
+		display: flex;
+		align-items: center;
+		padding: 15px;
+		box-sizing: border-box;
+	}
+
+	.left-title {
+		flex: 1;
+
+	}
+
+	.left-title h2 {
+		font-size: 34px;
+		margin-top: 15px;
+	}
+
+	.left-title span {
+		font-size: 14px;
+	}
+
+	.tight-text {
+		flex: 1;
+		/* font-weight: 600; */
+		font-size: 16px;
+		line-height: 24px;
+		font-family: inherit;
+	}
+
+	@media screen and (max-width: 767px) {
+		.textmodule {
+			display: block;
+			margin: {{ section.settings.mb_margin_top }} auto {{ section.settings.mb_margin_bottom }};
+		}
+	}
+	
+</style>
+<div class="textmodule">
+	<div class="left-title">
+		{% if section.settings.subhead != blank %}
+			<span>{{ section.settings.subhead }}</span>
+		{% endif %}
+		{% if section.settings.main_title != blank %}
+			<h2>
+				{{ section.settings.main_title }}
+			</h2>
+		{% endif %}
+	</div>
+	{% if section.settings.text != blank %}
+		<div class="tight-text">
+			{{ section.settings.text }}
+		</div>
+	{% endif %}
+</div>
+
+{% schema %}
+{
+	"name": "Text Module",
+	"tag": "section",
+	"class": "section",
+	"settings": [
+		{
+			"id":"max_width",
+			"type": "text",
+			"default": "1400px",
+			"label":"请设置模块最大宽度:"
+		},
+		{
+			"type": "text",
+			"id":"main_title",
+			"default": "Built For More Riders",
+			"label":"请输入主标题："
+		},
+		{
+			"type": "text",
+			"id":"subhead",
+			"default": "MF-30 E-Trike",
+			"label":"请输入副标题："
+		},
+		{
+			"id":"text",
+			"type": "textarea",
+			"default": "<strong>Free Shipping</strong><br />Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+			"label":"请输入文本："
+		},
+		{
+			"id":"pc_margin_top",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在PC端的顶部边距:"
+		},
+		{
+			"id":"pc_margin_bottom",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在PC端的底部边距:"
+		},
+		{
+			"id":"mb_margin_top",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在移动端的顶部边距:"
+		},
+		{
+			"id":"mb_margin_bottom",
+			"type": "text",
+			"default": "0px",
+			"label":"请设置模块在移动端的底部边距:"
+		}
+	],
+	"presets": [
+		{
+			"name": "Text Module"
+		}
+	]
+}
+{% endschema %}

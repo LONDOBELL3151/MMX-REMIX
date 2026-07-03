@@ -1,0 +1,130 @@
+{{ 'home-article.css' | asset_url | stylesheet_tag }}
+<h5 class="fontSize-c home-article-title">{{ section.settings.title }}</h5>
+<div class="home-article-list home-article-pc">
+  <h6 class="fontSize-a">{{ article.title }}</h6>
+  {% for block in section.blocks limit: 3 %}
+    <div class="article-list">
+      {% if block.settings.article_cover_image %}
+        <a href="{{ block.settings.article.url }}">
+          <div class="article-img">
+            <img src="{{ block.settings.article_cover_image | img_url: '450X384' }}" alt="{{ block.settings.article.title }}" loading="lazy">
+          </div>
+        </a>
+      {% else %}
+        <div class="article-img">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+      <a href="{{ block.settings.article.url }}">
+        <h6 class="fontSize-a">
+          {% if block.settings.article.title != blank %}
+            {{ block.settings.article.title }}
+          {% else %}
+            {{ 'Article Title ' | append: forloop.index -}}
+          {%- endif %}
+        </h6>
+      </a>
+      {% if block.settings.article.metafields.global.description_tag != blank %}
+        <p class="fontSize-a">{{ block.settings.article.metafields.global.description_tag }}</p>
+      {% elsif block.settings.article.excerpt.size > 0 %}
+        <p class="fontSize-a">{{ block.settings.article.excerpt | strip_html }}</p>
+      {% elsif block.settings.article.content.size > 0 %}
+        <p class="fontSize-a">{{ block.settings.article.content | strip_html }}</p>
+      {% else %}
+        <p class="fontSize-a">{{ 'Article Excerpt or Article Content ' | append: forloop.index }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+<div class="home-article-href">
+  <a href="{{ section.settings.articles-href }}" class="fontSize-a article-viewALL home-article-pc">
+    {{- section.settings['articles-href-name'] -}}
+  </a>
+</div>
+<div class="home-article-phone">
+  {% for block in section.blocks %}
+    <div class="article-phone-list" {{ block.shopify_attributes }}>
+      {% if block.settings.article_cover_image %}
+        <div class="article-img">
+          <a href="{{ block.settings.article.url }}">
+            <img src="{{ block.settings.article_cover_image | img_url: 'medium' }}" alt="{{ block.settings.article.title }}" loading="lazy">
+          </a>
+          <h6 class="fontSize-a">
+            {% if block.settings.article.title != blank %}
+              {{ block.settings.article.title }}
+            {% else %}
+              {{ 'Article Title ' | append: forloop.index -}}
+            {%- endif %}
+          </h6>
+        </div>
+
+      {% else %}
+        <div class="article-img">
+          <a href="{{ block.settings.article.url }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% schema %}
+{
+  "name": "Home-Article",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "title",
+      "default": "Read What Makes Our Riders Smile"
+    }, {
+      "type": "text",
+      "id": "articles-href",
+      "label": "articles-href"
+    }, {
+      "type": "text",
+      "id": "articles-href-name",
+      "label": "articles-href-name",
+      "default": "View all"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "name": "article",
+      "type": "article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "article"
+        },
+        {
+            "type": "image_picker",
+            "id": "article_cover_image",
+            "label": "博客封面图"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home-Article",
+      "blocks": [
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,33 @@
+{%- if image_icon_1 != blank or image_icon_2 != blank or image_icon_3 != blank or image_icon_4 != blank -%}
+  <div class="impact-product-card-icon-content">
+    <div class="impact-product-card-icon">
+      {%- if image_icon_1 -%}
+        <div class="icon_list">
+          {{- image_icon_1 | image_url: width: image_icon_1.width | image_tag: alt: icon_title1 -}}
+          <p>{{ icon_title1 }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if image_icon_2 -%}
+        <div class="icon_list">
+          {{- image_icon_2 | image_url: width: image_icon_2.width | image_tag: alt: icon_title2 -}}
+          <p>{{ icon_title2 }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if image_icon_3 -%}
+        <div class="icon_list">
+          {{- image_icon_3 | image_url: width: image_icon_3.width | image_tag: alt: icon_title3 -}}
+          <p>{{ icon_title3 }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if image_icon_4 -%}
+        <div class="icon_list">
+          {{- image_icon_4 | image_url: width: image_icon_4.width | image_tag: alt: icon_title4 -}}
+          <p>{{ icon_title4 }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

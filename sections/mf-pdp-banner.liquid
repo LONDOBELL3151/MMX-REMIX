@@ -1,0 +1,258 @@
+{%- liquid
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+  assign content_alignment = 'flex-start'
+  if section.settings.text_alignment == 'center'
+    assign content_alignment = 'center'
+  elsif section.settings.text_alignment == 'right'
+    assign content_alignment = 'flex-end'
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --mf-banner-height-mobile: {{ section.settings.height_mobile }}px;
+    --mf-banner-height-desktop: {{ section.settings.height_desktop }}px;
+    --mf-banner-overlay-opacity: {{ overlay_opacity }};
+    --mf-banner-text-color: {{ section.settings.text_color }};
+    --mf-banner-heading-size-mobile: {{ section.settings.font_size_mobile }}px;
+    --mf-banner-heading-size-desktop: {{ section.settings.font_size_desktop }}px;
+    --mf-banner-content-width: {{ section.settings.content_width }}px;
+    --mf-banner-content-justify: {{ content_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner {
+    position: relative;
+    min-height: var(--mf-banner-height-mobile);
+    display: flex;
+    align-items: center;
+    isolation: isolate;
+    overflow: hidden;
+    background: #d9d9d9;
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__media,
+  #shopify-section-{{ section.id }} .mf-pdp-banner__media img,
+  #shopify-section-{{ section.id }} .mf-pdp-banner__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__media img,
+  #shopify-section-{{ section.id }} .mf-pdp-banner__placeholder {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__placeholder {
+    fill: rgba(255, 255, 255, 0.24);
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, var(--mf-banner-overlay-opacity)) 0%,
+      rgba(0, 0, 0, calc(var(--mf-banner-overlay-opacity) * 0.58)) 36%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: var(--mf-banner-content-justify);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__content {
+    width: min(100%, var(--mf-banner-content-width));
+    color: var(--mf-banner-text-color);
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__heading,
+  #shopify-section-{{ section.id }} .mf-pdp-banner__heading p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .mf-pdp-banner__heading {
+    font-size: var(--mf-banner-heading-size-mobile);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .mf-pdp-banner {
+      min-height: var(--mf-banner-height-desktop);
+    }
+
+    #shopify-section-{{ section.id }} .mf-pdp-banner__heading {
+      font-size: var(--mf-banner-heading-size-desktop);
+    }
+  }
+{%- endstyle -%}
+
+<section class="mf-pdp-banner">
+  <div class="mf-pdp-banner__media" aria-hidden="true">
+    {% if section.settings.background_image != blank %}
+      {{
+        section.settings.background_image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'lazy',
+          widths: '750, 1100, 1500, 1780, 2200, 2400',
+          sizes: '100vw',
+          alt: section.settings.background_image.alt | default: section.settings.background_alt | escape
+      }}
+    {% elsif section.settings.background_image_url != blank %}
+      <img
+        src="{{ section.settings.background_image_url }}"
+        alt="{{ section.settings.background_alt | escape }}"
+        loading="lazy"
+      >
+    {% else %}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'mf-pdp-banner__placeholder' }}
+    {% endif %}
+    <div class="mf-pdp-banner__overlay"></div>
+  </div>
+
+  <div class="page-width mf-pdp-banner__inner">
+    <div class="mf-pdp-banner__content">
+      {% if section.settings.heading != blank %}
+        <div class="mf-pdp-banner__heading rte">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF PDP Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "url",
+      "id": "background_image_url",
+      "label": "Fallback image URL"
+    },
+    {
+      "type": "text",
+      "id": "background_alt",
+      "label": "Image alt text",
+      "default": "MF-25 banner"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Ride in Style.<br/>Conquer the City.<br/>MaxFoot MF-25.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "min": 32,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 22,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 320,
+      "max": 920,
+      "step": 20,
+      "unit": "px",
+      "label": "Content width",
+      "default": 760
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "min": 360,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "min": 300,
+      "max": 640,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 420
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF PDP Banner"
+    }
+  ]
+}
+{% endschema %}

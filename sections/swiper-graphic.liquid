@@ -1,0 +1,194 @@
+{{ 'swiperBanner.min.css' | asset_url | stylesheet_tag }}
+{{ 'swiperGraphic.css' | asset_url | stylesheet_tag }}
+
+<div class="swiperGraphic_title">
+  <h5>{{ section.settings.swiperGraphic_title }}</h5>
+  {% if section.blocks.size > 3 %}
+    <div class="swiperGraphic_button">
+      <button class="disabledBtn" id="prev">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025="">
+          <path fill="currentColor" d="M609.408 149.376 277.76 489.6a32 32 0 0 0 0 44.672l331.648 340.352a29.12 29.12 0 0 0 41.728 0 30.592 30.592 0 0 0 0-42.752L339.264 511.936l311.872-319.872a30.592 30.592 0 0 0 0-42.688 29.12 29.12 0 0 0-41.728 0z"></path>
+        </svg>
+      </button>
+      <button class="activeBtn" id="next">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" data-v-d2e47025="" style="">
+          <path fill="currentColor" d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512 340.864 831.872a30.592 30.592 0 0 0 0 42.752 29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z"></path>
+        </svg>
+      </button>
+    </div>
+  {% endif %}
+</div>
+<div class="swiperGraphic_content mySwiper-{{ section.id }}">
+  <div class="swiper-wrapper swiper-wrapper-pc">
+    {% for item in section.blocks %}
+      <div class="swiper-slide">
+        <figure>
+          {% if item.settings.swiper_img_pc %}
+            <img
+              class="swiper-pc"
+              src="{{ item.settings.swiper_img_pc | image_url: width: 860 }}"
+              width="430"
+              height="{{ 430 | divided_by: item.settings.swiper_img_pc.aspect_ratio | ceil }}"
+            >
+          {% else %}
+            <div class="swiper-pc">{{ 'image' | placeholder_svg_tag: 'swiper-empty' }}</div>
+          {% endif %}
+
+          {% if item.settings.swiper_img_phone %}
+            <img
+              class="swiper-phone"
+              src="{{ item.settings.swiper_img_phone | image_url: width: 1080 }}"
+              width="540"
+              height="{{ 540 | divided_by: item.settings.swiper_img_phone.aspect_ratio | ceil }}"
+            >
+          {% else %}
+            <div class="swiper-phone">
+              {{ 'image' | placeholder_svg_tag: 'swiper-empty' }}
+            </div>
+          {% endif %}
+          <figcaption>
+            <h6>{{ item.settings.swiper_title }}</h6>
+            <p>{{ item.settings.swiper_copywriting }}</p>
+          </figcaption>
+        </figure>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{{ 'swiperBanner.min.js' | asset_url }}"></script>
+<script>
+  let screenWidth = window.innerWidth;
+  let spaceBetween = 50;
+  var mySwiper = new Swiper('.mySwiper-{{ section.id }}', {
+    slidesPerView: 3.5,
+    spaceBetween: 50,
+    // centeredSlides: true,
+    breakpoints: {
+      1700: {
+        slidesPerView: 3.5,
+        spaceBetween: 30
+      },
+      1050: {
+        slidesPerView: 2.5,
+        spaceBetween: 35,
+      },
+      900: {
+        slidesPerView: 2.5,
+        spaceBetween: 20
+      },
+      750: {
+        slidesPerView: 1.5,
+        spaceBetween: 30
+      },
+      550: {
+        slidesPerView: 1.5,
+        spaceBetween: 20
+      }
+    }
+  });
+
+  const swiperDomBox = document.querySelector('.swiperGraphic_content');
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+
+  const len = {{ section.blocks.size }};
+  const idx = [];
+  var count = 0;
+  for (let i = 0; i < len; i++) {
+      if ((i + 1) % 3 === 0) {
+          idx.push((i+1))
+      }
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if(count >= idx.length) {
+      return false;
+    };
+    // mySwiper.params.centeredSlides = true;
+    mySwiper.update();
+    mySwiper.slideTo(idx[count], 1000, false);
+    count = count +1;
+    prevBtn.classList.remove('disabledBtn');
+    prevBtn.classList.add('activeBtn');
+    if(count == idx.length) {
+      nextBtn.classList.remove('activeBtn');
+      nextBtn.classList.add('disabledBtn');
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if(count <= 0) {
+      return false;
+    };
+    count = count -1;
+    mySwiper.slideTo(idx[count]-3, 1000, false);
+    nextBtn.classList.remove('disabledBtn');
+    nextBtn.classList.add('activeBtn');
+    if(count == 0){
+      prevBtn.classList.remove('activeBtn');
+      prevBtn.classList.add('disabledBtn');
+    }
+
+  })
+</script>
+
+{% schema %}
+{
+  "name": "轮播模块",
+  "tag": "section",
+  "class": "swiperGraphic_section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "html",
+      "id": "swiperGraphic_title",
+      "label": "标题",
+      "default": "Discover <span class='fontBgColor'>Foldtan M</span> -120",
+      "info": "字体需添加背景颜色: <span class='fontBgColor'>Foldtan M</span>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "swiperBox",
+      "name": "轮播设置",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "swiper_img_pc",
+          "label": "电脑端图片"
+        },
+        {
+          "type": "image_picker",
+          "id": "swiper_img_phone",
+          "label": "手机端图片"
+        },
+        {
+          "type": "text",
+          "id": "swiper_title",
+          "label": "标题",
+          "default": "750W Motor"
+        },
+        {
+          "type": "textarea",
+          "id": "swiper_copywriting",
+          "label": "文案",
+          "default": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "轮播模块",
+      "blocks": [
+        {
+          "type": "swiperBox"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

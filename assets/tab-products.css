@@ -1,0 +1,369 @@
+.MF_productTab {
+    max-width: 1680px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 0 10px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-bottom: 52px;
+    position: relative;
+}
+.MF_productTab a {
+    text-decoration: none;
+    color: #000;
+}
+.MF_productTab button {
+    outline: inherit;
+    cursor: pointer;
+    border: inherit;
+    background-color: transparent;
+}
+
+.MF_productTab button:focus {
+    outline: none !important;
+}
+
+.MF_productTab button:focus-visible {
+    outline: none;
+    outline-offset: 0 !important;
+    box-shadow: none;
+}
+
+.MF_productTab_title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.MF_productTab_title button {
+    background: #fff;
+    border-bottom: 2px solid #E5E5E5;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: capitalize;
+    display: inline-block;
+    width: 100%;
+    padding: 0 0 16px;
+    color: #17171a;
+}
+
+button.MF_productTab_titleActive {
+    border-bottom: 2px solid #fcd24a;
+    color: #000;
+}
+
+.MF_productTab_list {
+    max-width: 1590px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 40px 10px 60px 10px;
+    box-sizing: border-box;
+    display: block;
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.MF_productTab_listActive {
+    display: block;
+}
+
+.MF_productTab_list::-webkit-scrollbar {
+    display: none;
+}
+
+.MF_productTab_list img,
+.MF_productTab_bikes_part img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.MF_productTab_bikes {
+    display: none;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0px 10px 54px 0px rgb(35 50 70 / 10%);
+    border-radius: 10px;
+    background: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: left;
+    vertical-align: top;
+    scroll-margin: 10px;
+    margin: 0 10px;
+    text-wrap: wrap;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.MF_productTab_bikes>* {
+    line-height: initial;
+}
+
+.MF_productTab_bikes_bg p {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 7px;
+    background: #febf27;
+    font-weight: 700;
+    border: 1px solid #fcd24a;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-bottom: 20px;
+}
+
+.MF_productTab_bikes_word .p_name {
+    display: block;
+    color: #444444;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.MF_productTab_bikes_word p {
+    font-size: 16px;
+    color: #17171a;
+}
+
+.MF_productTab_bikes_word .p_des {
+    padding-bottom: 10px;
+}
+
+.MF_productTab_bikes_word .p_price {
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dedede;
+    color: #ff0000;
+}
+
+.MF_productTab_bikes_word del {
+    text-decoration: line-through;
+    color: #8f9092;
+    margin-right: 20px;
+}
+
+.MF_productTab_bikes_word .p_tip {
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.MF_productTab_bikes_word .p_tip b,
+.MF_productTab_bikes_partTip b {
+    color: #ff0000;
+    font-weight: 700;
+}
+
+.MF_productTab_bikes_partList {
+    display: flex;
+    align-items: initial;
+    justify-content: space-between;
+}
+
+.MF_productTab_bikes_part {
+    width: 110px;
+}
+
+.MF_productTab_bikes_part img {
+    height: 110px;
+    padding: 5px;
+    border: 1px solid #dedede;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+.MF_productTab_bikes_partTip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.MF_productTab_bikes_partTip del {
+    color: #8f9092;
+}
+
+a.MF_productTab_bikes_buy {
+    display: block;
+    width: 100%;
+    border-radius: 50px;
+    color: #fff;
+    background: #ffc000;
+    font-weight: 600;
+    margin-top: 15px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.MF_productTab_listPage {
+    width: 30px;
+    height: 30px;
+    background: #ffc000;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    box-sizing: content-box;
+    cursor: pointer;
+}
+
+.MF_productTab_listPage svg {
+    color: #fff;
+}
+
+.MF_productTab_listNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 10;
+}
+
+.MF_productTab_listPre {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 10;
+}
+
+.listPageDisabled {
+    background: #fdf6ec;
+    border-color: #fdf6ec;
+    cursor: not-allowed;
+}
+
+.MF_productTab_bikes_bg {
+    position: relative;
+}
+.MF_productTab_bikes_word {
+    position: relative;
+    z-index: 8;
+}
+
+.MF_productTab_list .product_first {
+    display: inline-block;
+}
+@media only screen and (max-width: 1770px) {
+    .MF_productTab_listNext {
+        left: 1%;
+    }
+    .MF_productTab_listPre {
+        right: 1%;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .MF_productTab,.MF_productTab_list {
+        max-width: 750px;
+    }
+    .MF_productTab_bikes {
+        max-width: 100%;
+        width: 75%;    
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .MF_productTab,.MF_productTab_list {
+        max-width: 600px;
+    }
+    .MF_productTab_title button {
+        font-size: 25px;
+    }
+    .MF_productTab_listPage  {
+        width: 20px;
+        height: 20px;
+    }
+    .MF_productTab_bikes_part img {
+        width: 80px;
+        height: 80px;
+    }
+    .MF_productTab_bikes_partTip {
+        flex-direction: column;
+        font-size: 15px;
+    }
+    .MF_productTab_bikes_word del {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    .MF_productTab_bikes_part {
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .MF_productTab,.MF_productTab_list {
+        max-width: 500px;
+    }
+    .MF_productTab_bikes {
+        padding: 20px;
+        margin: 0 5px;
+        width: 70%;
+    }
+    .MF_productTab_bikes_word .p_price {
+        font-size: 22px;
+    }
+    .MF_productTab_bikes_word del {
+        font-size: 16px;
+    }
+    .MF_productTab_bikes_part img{
+        width: 70px;
+        height: 70px;    
+    }
+    .MF_productTab_title button {
+        font-size: 20px;
+    }
+    .MF_productTab_list {
+        padding: 20px 10px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .MF_productTab,.MF_productTab_list {
+        max-width: 400px;
+    }
+    .MF_productTab_bikes_word .p_name {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    .MF_productTab_bikes_word p,
+    .MF_productTab_bikes_word del,
+    .MF_productTab_bikes_buy {
+        font-size: 15px;
+    }
+    .MF_productTab_bikes_word .p_price,
+    .MF_productTab_title button {
+        font-size: 18px;
+    }
+    .MF_productTab_bikes_part img{
+        width: 55px;
+        height: 55px;
+    }
+    .MF_productTab_bikes_partTip {
+        font-size: 13px;
+    }
+    .MF_productTab_bikes_buy {
+        height: 30px;
+        line-height: 30px;
+    }
+    .MF_productTab_listPage {
+        padding: 7px;
+    }
+    .MF_productTab_bikes {
+        margin: 0 3px;
+        width: 80%;
+    }
+}
