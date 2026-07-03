@@ -6,7 +6,7 @@
   <div class="mobile-menu__overlay" data-mobile-menu-close></div>
   <div class="mobile-menu__panel">
     <div class="mobile-menu__header">
-      <span class="mobile-menu__title">{{ 'general.menu' | t: default: 'Menu' }}</span>
+      <span class="mobile-menu__title">{{ 'general.menu' | t | default: 'Menu' }}</span>
       <button type="button" class="mobile-menu__close" data-mobile-menu-close aria-label="Close menu">
         {% render 'icon', icon: 'close' %}
       </button>
@@ -41,7 +41,7 @@
     <div class="mobile-menu__footer">
       <a href="{{ routes.account_url }}" class="mobile-menu__account">
         {% render 'icon', icon: 'user' %}
-        {{ 'customer.account.title' | t: default: 'Account' }}
+        {{ 'customer.account.title' | t | default: 'Account' }}
       </a>
     </div>
   </div>

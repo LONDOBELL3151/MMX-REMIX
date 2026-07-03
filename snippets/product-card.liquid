@@ -49,7 +49,7 @@
       {%- if card_product.type != blank -%}
         {{ card_product.type }}
       {%- else -%}
-        {{ 'general.electric_bike' | t: default: 'Electric Bike' }}
+        {{ 'general.electric_bike' | t | default: 'Electric Bike' }}
       {%- endif -%}
     </div>
 
@@ -140,9 +140,9 @@
 
     <a href="{{ card_product.url | default: '#' }}" class="product-card__cta">
       {%- if card_product.has_only_default_variant == false -%}
-        {{ 'product.choose_options' | t: default: 'Choose Options' }}
+        {{ 'product.choose_options' | t | default: 'Choose Options' }}
       {%- else -%}
-        {{ 'product.add_to_cart' | t: default: 'Add to Cart' }}
+        {{ 'product.add_to_cart' | t | default: 'Add to Cart' }}
       {%- endif -%}
     </a>
   </div>
