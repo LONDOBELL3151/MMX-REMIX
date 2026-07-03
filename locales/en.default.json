@@ -55,7 +55,11 @@
       "next_slide": "Slide right",
       "previous_slide": "Slide left",
       "name": "Slider"
-    }
+    },
+    "menu": "Menu",
+    "home": "Home",
+    "no_results": "No results found",
+    "electric_bike": "Electric Bike"
   },
   "newsletter": {
     "label": "Email",
@@ -198,7 +202,15 @@
       "sort_button": "Sort",
       "sort_by_label": "Sort by:",
       "to": "To",
-      "clear_filter": "Remove filter"
+      "clear_filter": "Remove filter",
+      "sort_by": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_asc": "Price: Low to High",
+      "price_desc": "Price: High to Low",
+      "date_desc": "Date, New to Old"
     }
   },
   "templates": {
@@ -438,6 +450,11 @@
       "password": "Password",
       "password_confirm": "Confirm password",
       "submit": "Reset password"
+    },
+    "login": {
+      "title": "Enter store password",
+      "password": "Password",
+      "submit": "Enter"
     }
   },
   "gift_cards": {
@@ -512,5 +529,23 @@
       "signup_form_success": "We will send you an email right before we open!",
       "password_link": "Enter using password"
     }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Estimated tax",
+      "order_summary": "Order Summary",
+      "coupon": "Discount code",
+      "empty": "Your cart is empty",
+      "close_cart": "Close cart",
+      "continue_shopping": "Continue shopping",
+      "checkout": "Checkout"
+    }
+  },
+  "product": {
+    "choose_options": "Choose Options",
+    "add_to_cart": "Add to Cart"
   }
 }
