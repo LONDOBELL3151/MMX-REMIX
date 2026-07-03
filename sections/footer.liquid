@@ -42,7 +42,7 @@
       </div>
 
       {%- for block in section.blocks -%}
-        {%- if block.type == 'menu' -%}
+        {%- if block.type == 'menu' or block.type == 'link_list' -%}
           {%- assign menu = block.settings.menu -%}
           {%- if menu != blank or block.settings.heading != blank -%}
             <div class="footer__col" {{ block.shopify_attributes }}>
@@ -143,6 +143,22 @@
           "id": "heading",
           "label": "Heading",
           "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Menu column (legacy)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
         },
         {
           "type": "link_list",
