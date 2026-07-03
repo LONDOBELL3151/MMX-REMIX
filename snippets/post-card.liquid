@@ -1,0 +1,47 @@
+{%- liquid
+  # Resolve media URL with fallback: post.image (Featured image) → first <img> in post.content
+  assign media_url = blank
+  if post.image
+    assign media_url = post.image | image_url: width: 800
+  elsif post.content contains '<img'
+    # Pull the last <img> tag chunk (most recent = most likely the hero image inserted at the top of content)
+    assign last_img_chunk = post.content | split: '<img' | last
+    # Try double-quoted src first
+    assign media_url = last_img_chunk | split: 'src="' | last | split: '"' | first
+    if media_url == blank
+      # Try single-quoted src
+      assign media_url = last_img_chunk | split: "src='" | last | split: "'" | first
+    endif
+  endif
+-%}
+<article class="post-card{% if post.tags contains 'featured' %} post-card--featured{% endif %}" data-post-id="{{ post.id }}">
+  <a href="{{ post.url }}" class="post-card__link">
+    <div class="post-card__media"{% if media_url != blank %} style="background-image:url({{ media_url }})"{% endif %}>
+      <span class="post-card__cat">{{ post.tags | first | default: 'Article' }}</span>
+    </div>
+  </a>
+
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <span>{{ post.tags | first | default: 'Article' }}</span>
+      <span class="post-card__dot"></span>
+      <span>{{ post.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
+      <span class="post-card__dot"></span>
+      <span>{{ post.published_at | date: '%b %d' }}</span>
+    </div>
+
+    <h3 class="post-card__title">
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </h3>
+
+    <p class="post-card__excerpt">
+      {%- if post.excerpt != blank -%}
+        {{ post.excerpt | strip_html | truncatewords: 30 }}
+      {%- else -%}
+        {{ post.content | strip_html | truncatewords: 30 }}
+      {%- endif -%}
+    </p>
+
+    <a href="{{ post.url }}" class="post-card__cta">Read More</a>
+  </div>
+</article>

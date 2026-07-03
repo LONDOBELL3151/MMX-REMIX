@@ -1,0 +1,80 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section section--soft section--riders" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">{{ s.heading | default: 'Real riders, real rides' }}</h2>
+      {%- if s.subheading != blank -%}
+        <p class="section__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="riders-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          <figure class="rider-card" {{ block.shopify_attributes }}>
+            <div class="rider-card__rating">{% render 'stars', rating: 5 %}</div>
+            <blockquote class="rider-card__quote">{{ block.settings.quote }}</blockquote>
+            <figcaption class="rider-card__by">
+              <span class="rider-card__name">{{ block.settings.name }}</span>
+              <span class="rider-card__meta">{{ block.settings.meta }}</span>
+            </figcaption>
+          </figure>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rider testimonials",
+  "tag": "section",
+  "class": "section-riders",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real riders, real rides"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Sarah K."
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta",
+          "default": "MF-30 owner, Austin TX"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rider testimonials"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,57 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="cta-strip" {{ section.shopify_attributes }}>
+  <div class="container cta-strip__inner">
+    <div class="cta-strip__copy">
+      <h2 class="cta-strip__title">
+        {%- if s.title != blank -%}
+          {{ s.title }}
+        {%- else -%}
+          Ready to ride?
+        {%- endif -%}
+      </h2>
+      {%- if s.subtitle != blank -%}
+        <p class="cta-strip__sub">{{ s.subtitle }}</p>
+      {%- endif -%}
+    </div>
+    <div class="cta-strip__actions">
+      {%- if s.button_text != blank -%}
+        <a href="{{ s.button_link | default: '/collections/all' }}" class="btn btn--primary btn--lg">{{ s.button_text }} {% render 'icon', icon: 'arrow-right' %}</a>
+      {%- endif -%}
+      {%- if s.button2_text != blank -%}
+        <a href="{{ s.button2_link }}" class="btn btn--ghost btn--lg">{{ s.button2_text }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA strip",
+  "tag": "section",
+  "class": "section-cta-strip",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Ready to ride?" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Ships from our Reno, NV warehouse. Delivery in 3-5 business days." },
+    { "type": "text", "id": "button_text", "label": "Primary button text", "default": "Shop Trikes" },
+    { "type": "url", "id": "button_link", "label": "Primary button link" },
+    { "type": "text", "id": "button2_text", "label": "Secondary button text" },
+    { "type": "url", "id": "button2_link", "label": "Secondary button link" },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Background",
+      "options": [
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "black", "label": "Black" }
+      ],
+      "default": "yellow"
+    }
+  ],
+  "presets": [
+    { "name": "CTA strip" }
+  ]
+}
+{% endschema %}

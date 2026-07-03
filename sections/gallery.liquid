@@ -1,0 +1,219 @@
+{%- liquid
+  assign s = section.settings
+  assign photos = section.blocks | where: 'type', 'photo'
+-%}
+
+{%- if photos.size > 0 -%}
+<section class="section section--soft section--gallery" {{ section.shopify_attributes }}>
+  <div class="container">
+
+    <header class="section__head section__head--split">
+      <div class="section__head-copy">
+        <h2 class="section__title">{{ s.heading | default: 'Out there with <em>MaxFoot.</em>' }}</h2>
+        {%- if s.subheading != blank -%}
+          <p class="section__sub">{{ s.subheading }}</p>
+        {%- endif -%}
+      </div>
+      {%- if s.instagram_url != blank -%}
+        <a href="{{ s.instagram_url }}" class="section__hashlink" aria-label="{{ s.instagram_label | escape }}">
+          {% render 'icon', icon: 'instagram' %}
+          {{ s.instagram_label | default: 'Follow @maxfootbike' }}
+        </a>
+      {%- endif -%}
+    </header>
+
+    <div class="gallery" role="list">
+      {%- for block in photos -%}
+        {%- assign bs = block.settings -%}
+        {%- assign is_featured = false -%}
+        {%- if forloop.first -%}
+          {%- assign is_featured = true -%}
+        {%- endif -%}
+
+        <a href="{{ bs.link | default: '#' }}"
+           class="gallery__cell{% if is_featured %} gallery__cell--feat{% endif %}"
+           role="listitem"
+           {{ block.shopify_attributes }}>
+
+          {%- if bs.image != blank -%}
+            <img class="gallery__img"
+                 src="{{ bs.image | image_url: width: 1200 }}"
+                 srcset="{{ bs.image | image_url: width: 600 }} 600w, {{ bs.image | image_url: width: 900 }} 900w, {{ bs.image | image_url: width: 1200 }} 1200w, {{ bs.image | image_url: width: 1600 }} 1600w"
+                 sizes="{% if is_featured %}(max-width: 990px) 100vw, 50vw{% else %}(max-width: 990px) 50vw, 25vw{% endif %}"
+                 alt="{{ bs.image.alt | default: bs.location | escape }}"
+                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                 width="1200"
+                 height="{% if is_featured %}900{% else %}600{% endif %}">
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'gallery__placeholder' }}
+          {%- endif -%}
+
+          {%- if is_featured -%}
+            <span class="gallery__badge">{{ s.badge_text | default: 'Featured · #MaxFootLife' }}</span>
+          {%- endif -%}
+
+          {%- if bs.location != blank or bs.handle != blank -%}
+            <div class="gallery__cap">
+              {%- if bs.location != blank -%}
+                <span class="gallery__loc">
+                  {% render 'icon', icon: 'pin' %}
+                  {{ bs.location }}
+                </span>
+              {%- endif -%}
+              {%- if bs.handle != blank -%}
+                <span class="gallery__handle">
+                  {{ bs.handle }}{%- if bs.bike_model != blank %} · {{ bs.bike_model }}{%- endif -%}
+                </span>
+              {%- elsif bs.bike_model != blank -%}
+                <span class="gallery__handle">{{ bs.bike_model }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+
+    {%- if s.cta_title != blank or s.cta_url != blank -%}
+      <div class="gallery-cta">
+        <div>
+          {%- if s.cta_title != blank -%}
+            <p class="gallery-cta__title">{{ s.cta_title }}</p>
+          {%- endif -%}
+          {%- if s.cta_sub != blank -%}
+            <p class="gallery-cta__sub">{{ s.cta_sub }}</p>
+          {%- endif -%}
+        </div>
+        {%- if s.cta_url != blank -%}
+          <a href="{{ s.cta_url }}" class="gallery-cta__btn">
+            {% render 'icon', icon: 'arrow-down' %}
+            {{ s.cta_button | default: 'Submit your photo' }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Gallery (MaxFootLife)",
+  "tag": "section",
+  "class": "section-gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (use <em> for highlight)",
+      "default": "Out there with <em>MaxFoot.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Real rides from 50,000+ American families — yours could be next. Tag @maxfootbike or use #MaxFootLife to be featured."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Featured badge text",
+      "default": "Featured · #MaxFootLife"
+    },
+    {
+      "type": "header",
+      "content": "Instagram follow button"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "instagram_label",
+      "label": "Instagram button text",
+      "default": "Follow @maxfootbike"
+    },
+    {
+      "type": "header",
+      "content": "Submit-photo CTA strip"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA title (use <em> for highlight)",
+      "default": "Share your <em>ride home.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_sub",
+      "label": "CTA subtext",
+      "default": "Three of our favorites every month get a $250 MaxFoot credit + featured on the homepage."
+    },
+    {
+      "type": "text",
+      "id": "cta_button",
+      "label": "CTA button text",
+      "default": "Submit your photo"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "info": "e.g. 'Sedona, Arizona'",
+          "default": "Sedona, Arizona"
+        },
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Rider handle",
+          "info": "e.g. '@carol.h'",
+          "default": "@carol.h"
+        },
+        {
+          "type": "text",
+          "id": "bike_model",
+          "label": "Bike model + extra",
+          "info": "e.g. 'MF-30 Neptune Blue · 412 mi'",
+          "default": "MF-30 Neptune Blue · 412 mi"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Photo link (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Gallery (MaxFootLife)",
+      "blocks": [
+        { "type": "photo", "settings": { "location": "Sedona, Arizona", "handle": "@carol.h", "bike_model": "MF-30 Neptune Blue · 412 mi" } },
+        { "type": "photo", "settings": { "location": "Half Moon Bay, CA", "handle": "@the_lin_family", "bike_model": "MF-33" } },
+        { "type": "photo", "settings": { "location": "Portland, OR", "handle": "@jeanl_64", "bike_model": "MF-30 · 700 mi" } },
+        { "type": "photo", "settings": { "location": "Tampa, FL", "handle": "@gary.s71", "bike_model": "MF-25" } },
+        { "type": "photo", "settings": { "location": "Austin, TX", "handle": "@maria_kt", "bike_model": "MF-30" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

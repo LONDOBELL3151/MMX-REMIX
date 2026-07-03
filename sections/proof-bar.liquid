@@ -1,0 +1,66 @@
+{%- comment -%}
+  Reserved for future settings.
+{%- endcomment -%}
+
+<section class="proof-bar" aria-label="Social proof" {{ section.shopify_attributes }}>
+  <div class="container proof-bar__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'stat' -%}
+        <div class="proof-stat" {{ block.shopify_attributes }}>
+          <div class="proof-stat__num">{{ block.settings.number }}</div>
+          <div class="proof-stat__label">{{ block.settings.label }}</div>
+        </div>
+      {%- elsif block.type == 'press' -%}
+        <div class="proof-press" {{ block.shopify_attributes }}>
+          <span class="proof-press__label">{{ block.settings.label }}</span>
+          <span class="proof-press__name">{{ block.settings.name }}</span>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Proof bar",
+  "tag": "section",
+  "class": "section-proof-bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#121212"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "50,000+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Riders" }
+      ]
+    },
+    {
+      "type": "press",
+      "name": "Press logo",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "As seen in" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Forbes" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "stat", "settings": { "number": "50,000+", "label": "Riders" } },
+      { "type": "stat", "settings": { "number": "4.8★", "label": "Average rating" } },
+      { "type": "stat", "settings": { "number": "14 days", "label": "Free trial" } },
+      { "type": "stat", "settings": { "number": "2 years", "label": "Full warranty" } },
+      { "type": "press", "settings": { "label": "As seen in", "name": "Forbes" } },
+      { "type": "press", "settings": { "label": "Featured by", "name": "Electric Bike Review" } },
+      { "type": "press", "settings": { "label": "Reviewed in", "name": "WIRED" } }
+    ]
+  }
+}
+{% endschema %}

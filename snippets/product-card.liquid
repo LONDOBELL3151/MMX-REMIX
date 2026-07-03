@@ -1,0 +1,149 @@
+{%- liquid
+  assign card_product = product | default: closest_product
+  if card_product == blank and card_product_handle != blank
+    assign card_product = all_products[card_product_handle]
+  endif
+-%}
+
+<article class="product-card" data-product-id="{{ card_product.id }}">
+  {%- if card_product != blank -%}
+    <a href="{{ card_product.url }}" class="product-card__link">
+      <div class="product-card__media">
+        {%- if card_product.featured_image -%}
+          <img src="{{ card_product.featured_image | image_url: width: 600 }}"
+               srcset="{{ card_product.featured_image | image_url: width: 400 }} 400w,
+                       {{ card_product.featured_image | image_url: width: 600 }} 600w,
+                       {{ card_product.featured_image | image_url: width: 800 }} 800w"
+               sizes="(min-width: 990px) 25vw, (min-width: 560px) 50vw, 100vw"
+               alt="{{ card_product.featured_image.alt | default: card_product.title | escape }}"
+               loading="lazy"
+               width="600"
+               height="600">
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <span class="product-card__badge product-card__badge--sale">
+            {%- if settings.currency_code_enabled -%}
+              {{ card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price | round }}% OFF
+            {%- else -%}
+              SALE
+            {%- endif -%}
+          </span>
+        {%- elsif card_product.tags contains 'new' -%}
+          <span class="product-card__badge product-card__badge--new">NEW</span>
+        {%- elsif card_product.tags contains 'hot' -%}
+          <span class="product-card__badge product-card__badge--hot">HOT</span>
+        {%- endif -%}
+      </div>
+    </a>
+  {%- else -%}
+    <div class="product-card__media product-card__media--placeholder">
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+
+  <div class="product-card__body">
+    <div class="product-card__category">
+      {%- if card_product.type != blank -%}
+        {{ card_product.type }}
+      {%- else -%}
+        {{ 'general.electric_bike' | t: default: 'Electric Bike' }}
+      {%- endif -%}
+    </div>
+
+    <h3 class="product-card__title">
+      <a href="{{ card_product.url | default: '#' }}">{{ card_product.title | default: 'Product Title' }}</a>
+    </h3>
+
+    {%- if card_product != blank -%}
+      {%- assign rating_value = 0.0 -%}
+      {%- assign rating_count = 0 -%}
+      {%- comment -%}
+        Try Judge.me native metafields first, then legacy mirror,
+        then other review apps. If none have data, render hidden
+        so the layout doesn't shift.
+      {%- endcomment -%}
+      {%- if card_product.metafields.judgeme.rating -%}
+        {%- assign jm_rating = card_product.metafields.judgeme.rating -%}
+        {%- if jm_rating.value -%}
+          {%- assign rating_value = jm_rating.value | times: 1.0 -%}
+        {%- else -%}
+          {%- assign rating_value = jm_rating | times: 1.0 -%}
+        {%- endif -%}
+        {%- assign rating_count = card_product.metafields.judgeme.review_count | default: 0 -%}
+      {%- elsif card_product.metafields.reviews.rating.value -%}
+        {%- assign rating_value = card_product.metafields.reviews.rating.value | times: 1.0 -%}
+        {%- assign rating_count = card_product.metafields.reviews.rating_count | default: 0 -%}
+      {%- elsif card_product.metafields.loox.avg_rating -%}
+        {%- assign rating_value = card_product.metafields.loox.avg_rating | times: 1.0 -%}
+        {%- assign rating_count = card_product.metafields.loox.num_reviews | default: 0 -%}
+      {%- elsif card_product.metafields.yotpo.reviews_average -%}
+        {%- assign rating_value = card_product.metafields.yotpo.reviews_average | times: 1.0 -%}
+        {%- assign rating_count = card_product.metafields.yotpo.reviews_count | default: 0 -%}
+      {%- endif -%}
+      {%- if rating_value > 0 -%}
+        <div class="product-card__rating">
+          <span class="product-card__stars">★★★★★</span>
+          <strong>{{ rating_value }} ({{ rating_count }})</strong>
+        </div>
+      {%- elsif card_product.metafields.judgeme -%}
+        {%- comment -%}
+          Judge.me is installed (namespace 'judgeme' exists) but no rating yet.
+          Render a hidden row so layout is consistent until reviews come in.
+        {%- endcomment -%}
+        <div class="product-card__rating" style="visibility:hidden">
+          <span class="product-card__stars">★★★★★</span>
+          <strong>0.0 (0)</strong>
+        </div>
+      {%- else -%}
+        <div class="product-card__rating" style="visibility:hidden">
+          <span class="product-card__stars">★★★★★</span>
+          <strong>0.0 (0)</strong>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if show_specs and card_product != blank -%}
+      <div class="product-card__specs">
+        <div class="product-card__spec">
+          <div class="product-card__spec-val">{% if card_product.metafields.motor.wattage %}{{ card_product.metafields.motor.wattage }}W{% else %}750W{% endif %}</div>
+          <div class="product-card__spec-label">Motor</div>
+        </div>
+        <div class="product-card__spec">
+          <div class="product-card__spec-val">{% if card_product.metafields.battery.range %}{{ card_product.metafields.battery.range }}{% else %}85{% endif %}mi</div>
+          <div class="product-card__spec-label">Range</div>
+        </div>
+        <div class="product-card__spec">
+          <div class="product-card__spec-val">{% if card_product.metafields.specs.payload %}{{ card_product.metafields.specs.payload }}{% else %}500{% endif %}lb</div>
+          <div class="product-card__spec-label">Payload</div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="product-card__price-row">
+      {%- if card_product != blank and card_product.price_varies -%}
+        <span class="product-card__price">From {{ card_product.price_min | money }}</span>
+      {%- elsif card_product != blank -%}
+        <span class="product-card__price">{{ card_product.price | money }}</span>
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <span class="product-card__price--old">{{ card_product.compare_at_price | money }}</span>
+          <span class="product-card__price-save">{{ card_product.compare_at_price | minus: card_product.price | money }} OFF</span>
+        {%- endif -%}
+      {%- else -%}
+        <span class="product-card__price">$1,999</span>
+        <span class="product-card__price--old">$2,599</span>
+        <span class="product-card__price-save">$600 OFF</span>
+      {%- endif -%}
+    </div>
+
+    <a href="{{ card_product.url | default: '#' }}" class="product-card__cta">
+      {%- if card_product.has_only_default_variant == false -%}
+        {{ 'product.choose_options' | t: default: 'Choose Options' }}
+      {%- else -%}
+        {{ 'product.add_to_cart' | t: default: 'Add to Cart' }}
+      {%- endif -%}
+    </a>
+  </div>
+</article>

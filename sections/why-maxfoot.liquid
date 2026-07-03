@@ -1,0 +1,128 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section section--why" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">{{ s.heading | default: 'Why MaxFoot' }}</h2>
+      {%- if s.subheading != blank -%}
+        <p class="section__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="why-grid why-grid--{{ s.columns | default: 3 }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pillar' -%}
+          <div class="why-pillar" {{ block.shopify_attributes }}>
+            <div class="why-pillar__num">{{ block.settings.number | default: forloop.index }}</div>
+            <h3 class="why-pillar__title">{{ block.settings.title }}</h3>
+            <p class="why-pillar__text">{{ block.settings.text }}</p>
+            {%- if block.settings.link_text != blank -%}
+              <a href="{{ block.settings.link }}" class="why-pillar__link">
+                {{ block.settings.link_text }} {% render 'icon', icon: 'arrow-right' %}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why MaxFoot pillars",
+  "tag": "section",
+  "class": "section-why",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why MaxFoot"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "cards",
+          "label": "Cards (white bg)"
+        },
+        {
+          "value": "dark",
+          "label": "Dark cards"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number/label (e.g. 01)",
+          "info": "Leave blank for auto"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "UL 2849 Certified"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why MaxFoot"
+    }
+  ]
+}
+{% endschema %}

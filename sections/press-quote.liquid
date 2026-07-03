@@ -1,0 +1,70 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="press-quote" {{ section.shopify_attributes }}>
+  <div class="container">
+    {%- if s.quote != blank -%}
+      <blockquote class="press-quote__text">
+        <span class="press-quote__mark">"</span>
+        {{ s.quote }}
+        <span class="press-quote__mark press-quote__mark--end">"</span>
+      </blockquote>
+    {%- endif -%}
+    {%- if s.attribution != blank -%}
+      <cite class="press-quote__cite">— {{ s.attribution }}</cite>
+    {%- endif -%}
+    {%- if s.outlet_logo != blank -%}
+      <img src="{{ s.outlet_logo | image_url: width: 200 }}" alt="{{ s.outlet | escape }}" class="press-quote__logo" loading="lazy" width="200" height="60">
+    {%- elsif s.outlet != blank -%}
+      <span class="press-quote__outlet">{{ s.outlet }}</span>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Press quote",
+  "tag": "section",
+  "class": "section-press-quote",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "The MaxFoot MF-33 is the most passenger-friendly electric trike we've ever tested - and we've tested them all."
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution",
+      "default": "Mike Nau, Electric Bike Review"
+    },
+    {
+      "type": "text",
+      "id": "outlet",
+      "label": "Outlet name (text only)"
+    },
+    {
+      "type": "image_picker",
+      "id": "outlet_logo",
+      "label": "Outlet logo (overrides text)"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFC000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    }
+  ],
+  "presets": [
+    { "name": "Press quote" }
+  ]
+}
+{% endschema %}
