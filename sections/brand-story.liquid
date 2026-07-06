@@ -1,0 +1,147 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="brand-story" aria-label="{{ s.eyebrow | default: 'Our Story' | escape }}" {{ section.shopify_attributes }}>
+  <div class="container brand-story__inner">
+    <span class="story-eyebrow">{{ s.eyebrow | default: 'Our Story' }}</span>
+    <h2 class="story-headline">{{ s.headline }}</h2>
+
+    {%- if s.meta_1 != blank or s.meta_2 != blank or s.meta_3 != blank -%}
+    <div class="story-meta">
+      {%- if s.meta_1 != blank -%}<span>{{ s.meta_1 }}</span>{%- endif -%}
+      {%- if s.meta_1 != blank and s.meta_2 != blank -%}<span class="story-meta__dot"></span>{%- endif -%}
+      {%- if s.meta_2 != blank -%}<span>{{ s.meta_2 }}</span>{%- endif -%}
+      {%- if s.meta_2 != blank and s.meta_3 != blank -%}<span class="story-meta__dot"></span>{%- endif -%}
+      {%- if s.meta_3 != blank -%}<span>{{ s.meta_3 }}</span>{%- endif -%}
+    </div>
+    {%- endif -%}
+
+    <div class="story-body">
+      {%- if s.lead_text != blank -%}
+        <p class="story-lead">{{ s.lead_text }}</p>
+      {%- endif -%}
+      {%- if s.body_text_1 != blank -%}
+        <p>{{ s.body_text_1 }}</p>
+      {%- endif -%}
+      {%- if s.body_text_2 != blank -%}
+        <p>{{ s.body_text_2 }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if s.pull_quote != blank -%}
+    <div class="story-pull">
+      <p>{{ s.pull_quote }}</p>
+    </div>
+    {%- endif -%}
+
+    <div class="story-signoff">
+      <div class="story-signoff__avatar">{{ s.signoff_avatar | default: 'M' }}</div>
+      <div>
+        <div class="story-signoff__name">{{ s.signoff_name | default: 'The MaxFoot team' }}</div>
+        {%- if s.signoff_role != blank -%}
+          <div class="story-signoff__role">{{ s.signoff_role }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "section-brand-story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline (use <em> for yellow highlight)",
+      "default": "<p>A bike for the <em>rest of us.</em></p>"
+    },
+    {
+      "type": "header",
+      "content": "Meta line (3 short phrases, separated by dots)"
+    },
+    {
+      "type": "text",
+      "id": "meta_1",
+      "label": "Meta 1",
+      "default": "Founded 2016"
+    },
+    {
+      "type": "text",
+      "id": "meta_2",
+      "label": "Meta 2",
+      "default": "Reno, California"
+    },
+    {
+      "type": "text",
+      "id": "meta_3",
+      "label": "Meta 3",
+      "default": "50,000+ families riding"
+    },
+    {
+      "type": "header",
+      "content": "Story body"
+    },
+    {
+      "type": "richtext",
+      "id": "lead_text",
+      "label": "Lead paragraph (drop cap applied)",
+      "default": "<p><strong>MaxFoot started with one question:</strong> why are good electric bikes so expensive? We were tired of seeing American families pay five thousand dollars for a name, not a machine. So we went straight to our own factory in California, cut every middleman we could find, and started building. That was 2016. We've been answering the same question ever since.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text_1",
+      "label": "Body paragraph 1",
+      "default": "<p>We didn't set out to make bikes for the already-fit. We set out to make bikes for the rest of us — the grandparents who want to chase their grandkids at the park, the empty-nesters who finally have time to see the country, the dad who hasn't ridden in twenty years and wants to try again. Premium parts, factory-direct price, and a step-thru frame that anyone can step onto. That's the whole spec sheet.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text_2",
+      "label": "Body paragraph 2",
+      "default": "<p>Eight years later, fifty thousand American families ride a MaxFoot. The bikes are still built in the same warehouse. The batteries are still UL-certified, every one of them. The warranty is still two years, twice the industry average. None of that changed when we got bigger. <strong>It never will.</strong> The moment a MaxFoot stops being the best-value electric bike in America is the moment we stop being MaxFoot.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Pull quote + Sign-off"
+    },
+    {
+      "type": "textarea",
+      "id": "pull_quote",
+      "label": "Pull quote",
+      "default": "We didn't want to be a bike company. We wanted to be the reason someone rides again."
+    },
+    {
+      "type": "text",
+      "id": "signoff_name",
+      "label": "Sign-off name",
+      "default": "The MaxFoot team"
+    },
+    {
+      "type": "text",
+      "id": "signoff_avatar",
+      "label": "Sign-off avatar letter",
+      "default": "M"
+    },
+    {
+      "type": "textarea",
+      "id": "signoff_role",
+      "label": "Sign-off role",
+      "default": "A small group of riders, builders, and stubborn optimists · California, USA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story"
+    }
+  ]
+}
+{% endschema %}

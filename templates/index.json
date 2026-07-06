@@ -115,6 +115,23 @@
         "bg_color": "#f7f7f5"
       }
     },
+    "story": {
+      "type": "brand-story",
+      "settings": {
+        "eyebrow": "Our Story",
+        "headline": "<p>A bike for the <em>rest of us.</em></p>",
+        "meta_1": "Founded 2016",
+        "meta_2": "Reno, California",
+        "meta_3": "50,000+ families riding",
+        "lead_text": "<p><strong>MaxFoot started with one question:</strong> why are good electric bikes so expensive? We were tired of seeing American families pay five thousand dollars for a name, not a machine. So we went straight to our own factory in California, cut every middleman we could find, and started building. That was 2016. We've been answering the same question ever since.</p>",
+        "body_text_1": "<p>We didn't set out to make bikes for the already-fit. We set out to make bikes for the rest of us — the grandparents who want to chase their grandkids at the park, the empty-nesters who finally have time to see the country, the dad who hasn't ridden in twenty years and wants to try again. Premium parts, factory-direct price, and a step-thru frame that anyone can step onto. That's the whole spec sheet.</p>",
+        "body_text_2": "<p>Eight years later, fifty thousand American families ride a MaxFoot. The bikes are still built in the same warehouse. The batteries are still UL-certified, every one of them. The warranty is still two years, twice the industry average. None of that changed when we got bigger. <strong>It never will.</strong> The moment a MaxFoot stops being the best-value electric bike in America is the moment we stop being MaxFoot.</p>",
+        "pull_quote": "We didn't want to be a bike company. We wanted to be the reason someone rides again.",
+        "signoff_name": "The MaxFoot team",
+        "signoff_avatar": "M",
+        "signoff_role": "A small group of riders, builders, and stubborn optimists · California, USA"
+      }
+    },
     "lineup": {
       "type": "featured-collection",
       "settings": {
@@ -389,6 +406,7 @@
     "hero",
     "proof",
     "trust",
+    "story",
     "lineup",
     "why",
     "press",
