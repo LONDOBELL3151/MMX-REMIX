@@ -27,48 +27,6 @@
         "bg_color": "#ffffff"
       }
     },
-    "proof": {
-      "type": "proof-bar",
-      "blocks": {
-        "stat_9xU7Lm": {
-          "type": "stat",
-          "settings": {
-            "number": "7 Years",
-            "label": "Operation"
-          }
-        },
-        "stat_pjDVg9": {
-          "type": "stat",
-          "settings": {
-            "number": "11 Years",
-            "label": "Industry experience"
-          }
-        },
-        "stat_wxwLCH": {
-          "type": "stat",
-          "settings": {
-            "number": "3,000+",
-            "label": "Repeat Customers"
-          }
-        },
-        "stat_p8YazQ": {
-          "type": "stat",
-          "settings": {
-            "number": "50,000+",
-            "label": "Riders"
-          }
-        }
-      },
-      "block_order": [
-        "stat_9xU7Lm",
-        "stat_pjDVg9",
-        "stat_wxwLCH",
-        "stat_p8YazQ"
-      ],
-      "settings": {
-        "bg_color": "#121212"
-      }
-    },
     "trust": {
       "type": "trust-badges",
       "blocks": {
@@ -128,6 +86,48 @@
         "body_text_2": "<p>Eight years later, fifty thousand American families ride a MaxFoot. The bikes are still built in the same warehouse. The batteries are still UL-certified, every one of them. The warranty is still two years, twice the industry average. None of that changed when we got bigger. <strong>It never will.</strong> The moment a MaxFoot stops being the best-value electric bike in America is the moment we stop being MaxFoot.</p>",
         "pull_quote": "We didn't want to be a bike company. We wanted to be the reason someone rides again.",
         "closer_text": "Still built in California · Still here since 2016"
+      }
+    },
+    "proof": {
+      "type": "proof-bar",
+      "blocks": {
+        "stat_9xU7Lm": {
+          "type": "stat",
+          "settings": {
+            "number": "7 Years",
+            "label": "Operation"
+          }
+        },
+        "stat_pjDVg9": {
+          "type": "stat",
+          "settings": {
+            "number": "11 Years",
+            "label": "Industry experience"
+          }
+        },
+        "stat_wxwLCH": {
+          "type": "stat",
+          "settings": {
+            "number": "3,000+",
+            "label": "Repeat Customers"
+          }
+        },
+        "stat_p8YazQ": {
+          "type": "stat",
+          "settings": {
+            "number": "50,000+",
+            "label": "Riders"
+          }
+        }
+      },
+      "block_order": [
+        "stat_9xU7Lm",
+        "stat_pjDVg9",
+        "stat_wxwLCH",
+        "stat_p8YazQ"
+      ],
+      "settings": {
+        "bg_color": "#121212"
       }
     },
     "lineup": {
@@ -436,9 +436,9 @@
   },
   "order": [
     "hero",
-    "proof",
     "trust",
     "story",
+    "proof",
     "lineup",
     "why",
     "press",
