@@ -127,9 +127,7 @@
         "body_text_1": "<p>We didn't set out to make bikes for the already-fit. We set out to make bikes for the rest of us — the grandparents who want to chase their grandkids at the park, the empty-nesters who finally have time to see the country, the dad who hasn't ridden in twenty years and wants to try again. Premium parts, factory-direct price, and a step-thru frame that anyone can step onto. That's the whole spec sheet.</p>",
         "body_text_2": "<p>Eight years later, fifty thousand American families ride a MaxFoot. The bikes are still built in the same warehouse. The batteries are still UL-certified, every one of them. The warranty is still two years, twice the industry average. None of that changed when we got bigger. <strong>It never will.</strong> The moment a MaxFoot stops being the best-value electric bike in America is the moment we stop being MaxFoot.</p>",
         "pull_quote": "We didn't want to be a bike company. We wanted to be the reason someone rides again.",
-        "signoff_name": "The MaxFoot team",
-        "signoff_avatar": "M",
-        "signoff_role": "A small group of riders, builders, and stubborn optimists · California, USA"
+        "closer_text": "Still built in California · Still here since 2016"
       }
     },
     "lineup": {
@@ -295,32 +293,55 @@
     "riders": {
       "type": "reviews-coverflow",
       "blocks": {
+        "review_4P3Djr": {
+          "type": "review",
+          "settings": {
+            "name": "Sarah K.",
+            "avatar_initial": "fadfa",
+            "meta": "MF-30 owner, Austin TX",
+            "quote": "hgdfjgfhdfghdfgh"
+          }
+        },
+        "review_V8QJ76": {
+          "type": "review",
+          "settings": {
+            "name": "Sarah K.",
+            "avatar_initial": "dfasd",
+            "meta": "MF-30 owner, Austin TX",
+            "quote": "sdsfadfads"
+          }
+        },
         "review_BVfKap": {
           "type": "review",
           "settings": {
-            "quote": "I wanted to give it some time to make sure but I was in love on my first ride. I have had it only for a week and I do indeed love this bike. I type this not for any sort of discount on maxfoot products nor am I affiliated...",
             "name": "Jason Nunnenkamp",
-            "meta": "MF-30 owner, Austin TX"
+            "avatar_initial": "",
+            "meta": "MF-30 owner, Austin TX",
+            "quote": "I wanted to give it some time to make sure but I was in love on my first ride. I have had it only for a week and I do indeed love this bike. I type this not for any sort of discount on maxfoot products nor am I affiliated..."
           }
         },
         "review_hGVV8K": {
           "type": "review",
           "settings": {
-            "quote": "My wife relies on a motorized wheelchair to get around, and no type of bike or trike works for her. This trike allows me to take her out to beautiful locations that are completely inaccessible to wheelchairs....",
             "name": "Andrew",
-            "meta": "MF-33 OWNER, Thornton CO"
+            "avatar_initial": "",
+            "meta": "MF-33 OWNER, Thornton CO",
+            "quote": "My wife relies on a motorized wheelchair to get around, and no type of bike or trike works for her. This trike allows me to take her out to beautiful locations that are completely inaccessible to wheelchairs...."
           }
         },
         "review_8iMeCH": {
           "type": "review",
           "settings": {
-            "quote": "We purchased both a trike and 2 wheel and love them both. Lots of power and fun to ride. Great purchase for us that we will enjoy for many years. The grandkids love the back seat!",
             "name": "John Pilcher",
-            "meta": "MF-25 & MF-33 OWNER, Loomis CA"
+            "avatar_initial": "",
+            "meta": "MF-25 & MF-33 OWNER, Loomis CA",
+            "quote": "We purchased both a trike and 2 wheel and love them both. Lots of power and fun to ride. Great purchase for us that we will enjoy for many years. The grandkids love the back seat!"
           }
         }
       },
       "block_order": [
+        "review_4P3Djr",
+        "review_V8QJ76",
         "review_BVfKap",
         "review_hGVV8K",
         "review_8iMeCH"
@@ -400,7 +421,11 @@
         "placeholder": "Your email",
         "button_label": "Subscribe",
         "disclaimer": "<p>We respect your inbox. Unsubscribe anytime.</p>",
-        "bg_color": "#ffc000"
+        "bg_color": "#ffc000",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
