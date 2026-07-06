@@ -234,77 +234,61 @@
   });
 })();
 
-// ============ Nav drawer (submenu slide-in panel) ============
+// ============ Nav dropdown (submenu panel under each parent item) ============
 (function () {
-  function closeDrawer(drawer) {
-    if (!drawer) return;
-    drawer.setAttribute('aria-hidden', 'true');
-    const triggerId = drawer.dataset.trigger;
-    if (triggerId) {
-      const trigger = document.querySelector('[data-nav-trigger="' + triggerId + '"]');
-      if (trigger) {
-        trigger.setAttribute('aria-expanded', 'false');
-        // Return focus to the trigger button for keyboard users
-        if (drawer._lastFocused) {
-          trigger.focus();
-        }
-      }
-    }
-    if (!document.querySelector('.nav-drawer[aria-hidden="false"]')) {
-      document.body.classList.remove('nav-drawer-open');
+  function closeSubmenu(submenu) {
+    if (!submenu) return;
+    submenu.setAttribute('aria-hidden', 'true');
+    const toggleId = submenu.id;
+    if (toggleId) {
+      const toggle = document.querySelector('[data-nav-toggle="' + toggleId + '"]');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
     }
   }
 
-  function openDrawer(drawer, trigger) {
-    if (!drawer) return;
-    // Close any other open drawer first
-    document.querySelectorAll('.nav-drawer[aria-hidden="false"]').forEach((d) => {
-      if (d !== drawer) closeDrawer(d);
+  function openSubmenu(submenu, toggle) {
+    if (!submenu) return;
+    // Close any other open submenu first
+    document.querySelectorAll('.nav__submenu[aria-hidden="false"]').forEach((s) => {
+      if (s !== submenu) closeSubmenu(s);
     });
-    drawer.setAttribute('aria-hidden', 'false');
-    if (trigger) {
-      trigger.setAttribute('aria-expanded', 'true');
-      drawer._lastFocused = true;
-    }
-    document.body.classList.add('nav-drawer-open');
-    // Focus the close button so keyboard users can dismiss immediately
-    const closeBtn = drawer.querySelector('.nav-drawer__close');
-    if (closeBtn) {
-      // Defer to let the slide-in animation start
-      setTimeout(() => closeBtn.focus(), 50);
-    }
+    submenu.setAttribute('aria-hidden', 'false');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
   }
 
-  // Trigger buttons: open drawer on click
-  document.querySelectorAll('[data-nav-trigger]').forEach((trigger) => {
-    trigger.addEventListener('click', (e) => {
+  // Toggle buttons: open/close on click
+  document.querySelectorAll('[data-nav-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', (e) => {
       e.preventDefault();
-      const drawerId = trigger.dataset.navTrigger;
-      const drawer = document.getElementById(drawerId);
-      if (!drawer) return;
-      const isOpen = drawer.getAttribute('aria-hidden') === 'false';
+      const submenuId = toggle.dataset.navToggle;
+      const submenu = document.getElementById(submenuId);
+      if (!submenu) return;
+      const isOpen = submenu.getAttribute('aria-hidden') === 'false';
       if (isOpen) {
-        closeDrawer(drawer);
+        closeSubmenu(submenu);
       } else {
-        openDrawer(drawer, trigger);
+        openSubmenu(submenu, toggle);
       }
     });
   });
 
-  // Close buttons + backdrop click
-  document.querySelectorAll('[data-nav-drawer-close]').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const drawer = btn.closest('.nav-drawer');
-      closeDrawer(drawer);
-    });
+  // Click outside the nav closes any open submenu
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.nav__menu')) return;
+    document.querySelectorAll('.nav__submenu[aria-hidden="false"]').forEach(closeSubmenu);
   });
 
-  // ESC closes any open drawer
+  // ESC closes any open submenu and returns focus to the trigger
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    const openDrawerEl = document.querySelector('.nav-drawer[aria-hidden="false"]');
-    if (openDrawerEl) closeDrawer(openDrawerEl);
+    const openSub = document.querySelector('.nav__submenu[aria-hidden="false"]');
+    if (!openSub) return;
+    const toggleId = openSub.id;
+    closeSubmenu(openSub);
+    if (toggleId) {
+      const toggle = document.querySelector('[data-nav-toggle="' + toggleId + '"]');
+      if (toggle) toggle.focus();
+    }
   });
 })();
 

@@ -35,15 +35,26 @@
           {%- if menu != blank -%}
             {%- for link in menu.links -%}
               {%- if link.links.size > 0 -%}
-                {%- assign drawer_id = 'nav-drawer-' | append: link.title | handleize | append: '-' | append: section.id -%}
-                <button type="button"
-                        class="nav__item nav__item--has-sub{% if block.settings.accent %} nav__item--accent{% endif %}"
-                        data-nav-trigger="{{ drawer_id }}"
-                        aria-expanded="false"
-                        aria-controls="{{ drawer_id }}">
-                  {{ link.title }}
-                  <svg class="nav__chevron" viewBox="0 0 10 6" aria-hidden="true" focusable="false" width="10" height="6"><path d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/></svg>
-                </button>
+                {%- assign submenu_id = 'nav-submenu-' | append: link.title | handleize | append: '-' | append: section.id -%}
+                <div class="nav__menu">
+                  <button type="button"
+                          class="nav__item nav__item--has-sub{% if block.settings.accent %} nav__item--accent{% endif %}"
+                          data-nav-toggle="{{ submenu_id }}"
+                          aria-expanded="false"
+                          aria-controls="{{ submenu_id }}">
+                    {{ link.title }}
+                    <svg class="nav__chevron" viewBox="0 0 10 6" aria-hidden="true" focusable="false" width="10" height="6"><path d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/></svg>
+                  </button>
+                  <div id="{{ submenu_id }}"
+                       class="nav__submenu"
+                       data-nav-submenu
+                       aria-hidden="true"
+                       aria-label="{{ link.title | escape }}">
+                    {%- for child_link in link.links -%}
+                      <a href="{{ child_link.url }}" class="nav__subitem">{{ child_link.title | escape }}</a>
+                    {%- endfor -%}
+                  </div>
+                </div>
               {%- else -%}
                 <a href="{{ link.url }}" class="nav__item{% if block.settings.accent %} nav__item--accent{% endif %}"
                    {{ block.shopify_attributes }}>
@@ -80,41 +91,6 @@
     </div>
   </div>
 </header>
-
-<div class="nav-drawers" data-nav-drawers>
-  {%- for block in section.blocks -%}
-    {%- if block.type == 'menu' -%}
-      {%- assign menu = block.settings.menu -%}
-      {%- if menu != blank -%}
-        {%- for link in menu.links -%}
-          {%- if link.links.size > 0 -%}
-            {%- assign drawer_id = 'nav-drawer-' | append: link.title | handleize | append: '-' | append: section.id -%}
-            <div id="{{ drawer_id }}"
-                 class="nav-drawer"
-                 data-nav-drawer
-                 data-trigger="{{ drawer_id }}"
-                 aria-hidden="true">
-              <div class="nav-drawer__backdrop" data-nav-drawer-close></div>
-              <aside class="nav-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ link.title | escape }}">
-                <header class="nav-drawer__head">
-                  <button type="button" class="nav-drawer__close" data-nav-drawer-close aria-label="Close menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                  </button>
-                  <span class="nav-drawer__title">{{ link.title | escape }}</span>
-                </header>
-                <nav class="nav-drawer__list" aria-label="{{ link.title | escape }}">
-                  {%- for child_link in link.links -%}
-                    <a href="{{ child_link.url }}" class="nav-drawer__item">{{ child_link.title | escape }}</a>
-                  {%- endfor -%}
-                </nav>
-              </aside>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-</div>
 
 <style>
   .header .logo--img img {
