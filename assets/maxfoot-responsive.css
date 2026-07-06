@@ -129,10 +129,9 @@
   .cart-section__title{font-size:32px}
   .cart-table .cart-item__img{display:none}
 
-  /* ===== Mobile horizontal scroll carousels (1-card swipe, centered snap) =====
-     NOTE: Gallery is NOT included here — it stays the bento grid on mobile.
-           See .gallery (components.css) for the ≤990px / ≤560px responsive rules. */
-  .products--carousel-mobile,
+  /* ===== Mobile horizontal scroll carousel (blog feed only) =====
+     Featured collection reverted to standard grid (1 col ≤560px, 2 col ≤990px).
+     Gallery stays the bento grid (see .gallery in components.css). */
   .blog-feed--carousel-mobile{
     display:flex;
     overflow-x:auto;
@@ -146,36 +145,22 @@
     padding-left:max(var(--gutter), calc((100vw - 68vw) / 2));
     padding-right:max(var(--gutter), calc((100vw - 68vw) / 2));
   }
-  .products--carousel-mobile::-webkit-scrollbar,
   .blog-feed--carousel-mobile::-webkit-scrollbar{display:none}
-  .products--carousel-mobile > *,
   .blog-feed--carousel-mobile > *{
     flex:0 0 68vw;
     scroll-snap-align:center;
     margin-right:4vw;
   }
-  .products--carousel-mobile > *:last-child,
   .blog-feed--carousel-mobile > *:last-child{
     margin-right:max(var(--gutter), calc((100vw - 68vw) / 2));
   }
-  .section--lineup .section__cta{margin-top:8px}
 
-  /* ===== Cards inside the mobile carousel: no translateY on hover =====
-     The carousel container has overflow-y:hidden, so the -4px lift
-     would clip the top border (visible on mouse-hover in devtools
-     and on touch devices with :hover support). Keep shadow + border
-     color for affordance, but skip the lift. */
-  .products--carousel-mobile .product-card:hover,
+  /* Post cards inside the blog feed mobile carousel: no translateY on hover.
+     Carousel has overflow-y:hidden, so the -4px lift would clip the top
+     border. Keep shadow + border color for affordance, but skip the lift. */
   .blog-feed--carousel-mobile .post-card:hover{
     transform:none;
     box-shadow:var(--shadow-md);
-    border-color:var(--color-border);
-  }
-
-  /* ===== Touch devices: no -4px lift (legacy belt-and-suspenders) =====
-     Kept for any non-carousel card that still uses translateY on hover. */
-  @media (hover:none){
-    .product-card:hover{transform:none;box-shadow:var(--shadow-md);border-color:var(--color-border)}
   }
 }
 

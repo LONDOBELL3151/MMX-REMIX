@@ -1,6 +1,5 @@
 {%- liquid
   assign s = section.settings
-  assign collection = s.collection
 -%}
 
 <section class="section section--lineup" {{ section.shopify_attributes }}>
@@ -12,28 +11,23 @@
       {%- endif -%}
     </div>
 
-    {%- if collection != blank and collection.products.size > 0 -%}
-      <div class="products products--grid products--carousel-mobile products--{{ s.columns | default: 3 }}">
-        {%- for product in collection.products limit: s.products_to_show -%}
-          {% render 'product-card', product: product, show_specs: true %}
+    {%- assign product_blocks_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'product' and block.settings.product != blank -%}
+        {%- assign product_blocks_count = product_blocks_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if product_blocks_count > 0 -%}
+      <div class="products products--grid products--{{ s.columns | default: 3 }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'product' and block.settings.product != blank -%}
+            {% render 'product-card', product: block.settings.product, show_specs: true %}
+          {%- endif -%}
         {%- endfor -%}
       </div>
-      {%- if s.show_view_all -%}
-        <div class="section__cta">
-          <a href="{{ collection.url }}" class="btn btn--outline btn--lg">{{ s.view_all_label | default: 'View all' }} {% render 'icon', icon: 'arrow-right' %}</a>
-        </div>
-      {%- endif -%}
     {%- else -%}
-      <div class="products products--grid products--carousel-mobile products--{{ s.columns | default: 3 }}">
-        {%- for i in (1..s.products_to_show) -%}
-          {% render 'product-card', card_product_handle: s.placeholder_product_handles | split: ',' | at: i | default: blank %}
-        {%- endfor -%}
-      </div>
-      {%- if s.show_view_all -%}
-        <div class="section__cta">
-          <a href="{{ routes.collections_url }}/all" class="btn btn--outline btn--lg">{{ s.view_all_label | default: 'View all' }} {% render 'icon', icon: 'arrow-right' %}</a>
-        </div>
-      {%- endif -%}
+      <p class="products-empty">No products added yet. Open the theme editor and add products to this section.</p>
     {%- endif -%}
   </div>
 </section>
@@ -56,20 +50,6 @@
       "label": "Subheading"
     },
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "label": "Products to show",
-      "min": 3,
-      "max": 25,
-      "step": 1,
-      "default": 6
-    },
-    {
       "type": "select",
       "id": "columns",
       "label": "Columns (desktop)",
@@ -79,24 +59,6 @@
         { "value": "4", "label": "4" }
       ],
       "default": "3"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_view_all",
-      "label": "Show 'View all' button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "view_all_label",
-      "label": "View all label",
-      "default": "View all"
-    },
-    {
-      "type": "text",
-      "id": "placeholder_product_handles",
-      "label": "Placeholder handles (comma-separated)",
-      "info": "Used when no collection selected. For demo only."
     },
     {
       "type": "header",
@@ -114,9 +76,31 @@
       "default": "white"
     }
   ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 25,
   "presets": [
     {
-      "name": "Featured collection"
+      "name": "Featured collection",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
     }
   ]
 }
