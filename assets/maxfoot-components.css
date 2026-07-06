@@ -490,6 +490,12 @@ body.mobile-menu-open{overflow:hidden}
 
 /* ===== PDP Main ===== */
 .pdp__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start;padding-top:16px}
+/* Grid items default to min-width:auto (= max-content), which lets long
+   titles / price rows / buttons push the column wider than the container
+   and force the whole page to horizontally scroll on mobile. Force
+   min-width:0 on every grid child so each column is constrained to its
+   track width and the content inside can wrap or shrink as needed. */
+.pdp__grid > *{min-width:0}
 @media (max-width:990px){.pdp__grid{grid-template-columns:1fr;gap:40px}}
 .pdp__media{position:sticky;top:96px}
 .pdp__category{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-text-soft);font-weight:700;margin-bottom:8px}

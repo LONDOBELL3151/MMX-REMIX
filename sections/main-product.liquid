@@ -131,7 +131,7 @@
             </div>
             <button type="submit" name="add" class="btn btn--primary pdp__cta"{% unless product.available %} disabled{% endunless %}>
               {%- if product.available -%}
-                Add to Cart &mdash; {{ product.price | money }}
+                Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span>
               {%- else -%}
                 Sold Out
               {%- endif -%}
@@ -144,9 +144,9 @@
             <div class="pdp__qty">
               <button type="button" data-qty="dec">{% render 'icon', icon: 'minus' %}</button>
               <input type="number" name="quantity" value="1" min="1">
-              <button type="button" data-qty="inc">{% render 'icon', icon: 'plus' %}</button>
+              <button type="button" data-qty="inc">{% render 'icon', icon: 'plus' }}</button>
             </div>
-            <button type="submit" class="btn btn--primary pdp__cta">Add to Cart &mdash; {{ product.price | money }}</button>
+            <button type="submit" class="btn btn--primary pdp__cta">Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span></button>
           </div>
         {% endform %}
       {%- endif -%}

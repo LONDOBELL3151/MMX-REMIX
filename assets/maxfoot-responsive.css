@@ -59,10 +59,35 @@
 @media (max-width:760px){
   .collection-toolbar{flex-wrap:wrap;gap:8px}
   .collection-toolbar__count{order:3;width:100%;text-align:center}
-  .pdp__title{font-size:32px}
-  .pdp__price-current{font-size:32px}
-  .pdp__qty-row{flex-direction:column}
-  .pdp__qty{justify-content:center}
+  .pdp__title{font-size:26px;line-height:1.1;margin-bottom:12px}
+  .pdp__category{font-size:12px;margin-bottom:6px}
+  .pdp__rating{margin-bottom:14px}
+  .pdp__rating-text{font-size:13px}
+  .pdp__price{margin-bottom:16px;padding-bottom:16px}
+  .pdp__price-current{font-size:30px}
+  .pdp__price-compare{font-size:16px}
+  .pdp__price-save{font-size:12px;padding:3px 8px}
+  .pdp__stock{font-size:12px;padding:7px 10px;margin-bottom:18px}
+  .pdp__form{margin-bottom:18px}
+  .pdp__option{margin-bottom:16px}
+  .pdp__option-label{font-size:13px}
+  .pdp__qty-row{flex-direction:column;gap:10px;margin-top:18px}
+  .pdp__qty{justify-content:center;width:100%}
+  .pdp__qty button{width:48px;height:48px}
+  .pdp__qty input{width:64px;height:48px;font-size:15px}
+  /* Hide the price on the Add to Cart button at tablet/mobile so the
+     full "ADD TO CART — $X.XX" text doesn't overflow the narrow button.
+     Price is already visible in the price block above the form. */
+  .pdp__cta-price{display:none}
+  .pdp__cta{font-size:14px;letter-spacing:.5px;padding:14px 18px}
+  .pdp__extras{padding:16px;margin-top:18px;gap:10px}
+  .pdp__extra{font-size:13px;gap:10px}
+  .pdp__extra strong{font-size:12px}
+  .pdp__extra-sub{font-size:11px}
+  .pdp__extra-icon{width:32px;height:32px}
+  .pdp__finance{font-size:12px;padding:12px;margin:12px 0}
+  .swatch__color{width:40px;height:40px}
+  .swatch__label{font-size:10px}
   .cart-table thead{display:none}
   .cart-table,.cart-table tbody,.cart-table tr,.cart-table td{display:block;width:100%}
   .cart-table tr{background:#fff;padding:16px;border:1px solid var(--color-border);border-radius:var(--radius-md);margin-bottom:12px}
