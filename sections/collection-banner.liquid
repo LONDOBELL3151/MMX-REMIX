@@ -1,0 +1,58 @@
+{%- liquid
+  assign s = section.settings
+  assign collection = s.collection | default: closest.collection
+-%}
+
+<section class="collection-banner" {{ section.shopify_attributes }}>
+  <div class="container">
+    {%- if s.eyebrow != blank -%}
+      <span class="collection-banner__eyebrow">{{ s.eyebrow | default: collection.title }}</span>
+    {%- endif -%}
+    <h1 class="collection-banner__title">
+      {%- if s.title != blank -%}
+        {{ s.title }}
+      {%- else -%}
+        {{ collection.title }}
+      {%- endif -%}
+    </h1>
+    {%- if s.subtitle != blank -%}
+      <p class="collection-banner__sub">{{ s.subtitle | default: collection.description }}</p>
+    {%- endif -%}
+    <div class="collection-banner__count">
+      <strong>{{ collection.products_count | default: paginate.items }}</strong> products
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "tag": "section",
+  "class": "section-collection-banner",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Defaults to collection title" },
+    { "type": "text", "id": "title", "label": "Title", "info": "Defaults to collection title" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "info": "Defaults to collection description" },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Background",
+      "options": [
+        { "value": "gradient", "label": "Black gradient" },
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "white", "label": "White" }
+      ],
+      "default": "gradient"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show product count",
+      "default": true
+    }
+  ],
+  "presets": [
+    { "name": "Collection banner" }
+  ]
+}
+{% endschema %}
