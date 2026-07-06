@@ -1,1 +1,197 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":false}},"share":{"type":"share","settings":{"share_label":"Share"}},"description":{"type":"description","settings":{}}},"block_order":["vendor","title","price","variant_picker","quantity_selector","buy_buttons","share","description"],"settings":{"enable_sticky_info":true,"media_size":"small","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail_slider","media_position":"left","image_zoom":"lightbox","mobile_thumbnails":"hide","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","disabled":true,"settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"color_scheme":"background-1","image_ratio":"square","show_secondary_image":true,"show_vendor":false,"show_rating":false,"columns_mobile":"2","padding_top":36,"padding_bottom":28}},"text_module_9EMyT6":{"type":"text-module","disabled":true,"settings":{"max_width":"1200px","main_title":"Built For More Riders","subhead":"MF-30 E-Trike","text":"<strong>Free Shipping<\/strong><br>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.","pc_margin_top":"0px","pc_margin_bottom":"0px","mb_margin_top":"0px","mb_margin_bottom":"0px"}},"multirow_r7CJzC":{"type":"multirow","blocks":{"row_xXTLHK":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/DSC_2731.jpg","caption":"Caption","heading":"Row","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","button_label":"Button label","button_link":""}},"row_WKCr3t":{"type":"row","settings":{"image":"shopify:\/\/shop_images\/DSC_2850.jpg","caption":"Caption","heading":"Row","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","button_label":"Button label","button_link":""}},"row_jFgMNB":{"type":"row","settings":{"caption":"Caption","heading":"Row","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","button_label":"Button label","button_link":""}}},"block_order":["row_xXTLHK","row_WKCr3t","row_jFgMNB"],"disabled":true,"settings":{"image_height":"medium","desktop_image_width":"medium","heading_size":"h1","text_style":"body","button_style":"primary","desktop_content_position":"middle","desktop_content_alignment":"left","image_layout":"alternate-left","section_color_scheme":"background-1","row_color_scheme":"background-1","mobile_content_alignment":"left","padding_top":36,"padding_bottom":36}},"collapsible_content_nriF4r":{"type":"collapsible-content","blocks":{"collapsible_row_kHfKAM":{"type":"collapsible_row","settings":{"heading":"Collapsible row","icon":"check_mark","row_content":"","page":""}},"collapsible_row_eCpX3P":{"type":"collapsible_row","settings":{"heading":"Collapsible row","icon":"check_mark","row_content":"","page":""}},"collapsible_row_ECFerM":{"type":"collapsible_row","settings":{"heading":"Collapsible row","icon":"check_mark","row_content":"","page":""}},"collapsible_row_CGYKKt":{"type":"collapsible_row","settings":{"heading":"Collapsible row","icon":"check_mark","row_content":"","page":""}}},"block_order":["collapsible_row_kHfKAM","collapsible_row_eCpX3P","collapsible_row_ECFerM","collapsible_row_CGYKKt"],"disabled":true,"settings":{"caption":"","heading":"Collapsible content","heading_size":"h1","heading_alignment":"center","layout":"none","color_scheme":"background-1","container_color_scheme":"background-2","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}}},"order":["main","related-products","text_module_9EMyT6","multirow_r7CJzC","collapsible_content_nriF4r"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "extra_truck": {
+          "type": "extra",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Shipping",
+            "subtitle": "Ships within 2 business days"
+          }
+        },
+        "extra_shield": {
+          "type": "extra",
+          "settings": {
+            "icon": "shield",
+            "title": "2-Year Warranty",
+            "subtitle": "Full bumper-to-bumper coverage"
+          }
+        },
+        "extra_phone": {
+          "type": "extra",
+          "settings": {
+            "icon": "phone",
+            "title": "US Support",
+            "subtitle": "Reno, NV team · 1-866-MAXFOOT"
+          }
+        }
+      },
+      "block_order": [
+        "extra_truck",
+        "extra_shield",
+        "extra_phone"
+      ]
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "text_module_9EMyT6": {
+      "type": "text-module",
+      "disabled": true,
+      "settings": {
+        "max_width": "1200px",
+        "main_title": "Built For More Riders",
+        "subhead": "MF-30 E-Trike",
+        "text": "<strong>Free Shipping</strong><br>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.",
+        "pc_margin_top": "0px",
+        "pc_margin_bottom": "0px",
+        "mb_margin_top": "0px",
+        "mb_margin_bottom": "0px"
+      }
+    },
+    "multirow_r7CJzC": {
+      "type": "multirow",
+      "blocks": {
+        "row_xXTLHK": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/DSC_2731.jpg",
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        },
+        "row_WKCr3t": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/DSC_2850.jpg",
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        },
+        "row_jFgMNB": {
+          "type": "row",
+          "settings": {
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_xXTLHK",
+        "row_WKCr3t",
+        "row_jFgMNB"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "primary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "background-1",
+        "row_color_scheme": "background-1",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_nriF4r": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_kHfKAM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_eCpX3P": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_ECFerM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_CGYKKt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "check_mark",
+            "row_content": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_kHfKAM",
+        "collapsible_row_eCpX3P",
+        "collapsible_row_ECFerM",
+        "collapsible_row_CGYKKt"
+      ],
+      "disabled": true,
+      "settings": {
+        "caption": "",
+        "heading": "Collapsible content",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "text_module_9EMyT6",
+    "multirow_r7CJzC",
+    "collapsible_content_nriF4r"
+  ]
+}
