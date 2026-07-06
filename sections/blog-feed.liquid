@@ -25,7 +25,7 @@
     </header>
 
     {%- if blog and blog.articles.size > 0 -%}
-      <div class="blog-grid">
+      <div class="blog-grid blog-feed--carousel-mobile">
         {%- for article in blog.articles limit: posts_count -%}
           {% render 'post-card', post: article %}
         {%- endfor -%}

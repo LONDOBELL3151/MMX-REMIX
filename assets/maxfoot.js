@@ -9,11 +9,29 @@
   const menuToggle = document.querySelector('[data-mobile-menu-toggle]');
   const menuCloseEls = document.querySelectorAll('[data-mobile-menu-close]');
 
-  function openMenu() { if (menu) menu.classList.add('is-open'); }
-  function closeMenu() { if (menu) menu.classList.remove('is-open'); }
+  function openMenu() {
+    if (!menu) return;
+    menu.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mobile-menu-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    if (!menu) return;
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mobile-menu-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+  }
 
   if (menuToggle) menuToggle.addEventListener('click', openMenu);
   menuCloseEls.forEach((el) => el.addEventListener('click', closeMenu));
+
+  // ESC closes mobile menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (menu && menu.classList.contains('is-open')) closeMenu();
+  });
 
   // ============ Cart drawer ============
   const cartDrawer = document.querySelector('[data-cart-drawer]');

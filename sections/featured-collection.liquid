@@ -13,7 +13,7 @@
     </div>
 
     {%- if collection != blank and collection.products.size > 0 -%}
-      <div class="products products--grid products--{{ s.columns | default: 3 }}">
+      <div class="products products--grid products--carousel-mobile products--{{ s.columns | default: 3 }}">
         {%- for product in collection.products limit: s.products_to_show -%}
           {% render 'product-card', product: product, show_specs: true %}
         {%- endfor -%}
@@ -24,7 +24,7 @@
         </div>
       {%- endif -%}
     {%- else -%}
-      <div class="products products--grid products--{{ s.columns | default: 3 }}">
+      <div class="products products--grid products--carousel-mobile products--{{ s.columns | default: 3 }}">
         {%- for i in (1..s.products_to_show) -%}
           {% render 'product-card', card_product_handle: s.placeholder_product_handles | split: ',' | at: i | default: blank %}
         {%- endfor -%}

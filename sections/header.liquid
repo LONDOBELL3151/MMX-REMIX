@@ -92,6 +92,53 @@
   </div>
 </header>
 
+{%- comment -%} Mobile menu (slides in from left on small screens, mirrors the desktop main-menu) {%- endcomment -%}
+<aside id="MobileMenu" class="mobile-menu" aria-hidden="true" data-mobile-menu>
+  <div class="mobile-menu__overlay" data-mobile-menu-close></div>
+  <div class="mobile-menu__panel">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" data-mobile-menu-close aria-label="Close menu">
+        {% render 'icon', icon: 'close' %}
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Mobile primary">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'menu' -%}
+          {%- assign menu = block.settings.menu -%}
+          {%- if menu != blank -%}
+            {%- for link in menu.links -%}
+              {%- if link.links.size > 0 -%}
+                <details class="mobile-menu__group">
+                  <summary class="mobile-menu__item">
+                    <span>{{ link.title }}</span>
+                    {% render 'icon', icon: 'chevron-down' %}
+                  </summary>
+                  <div class="mobile-menu__submenu">
+                    {%- for child_link in link.links -%}
+                      <a href="{{ child_link.url }}" class="mobile-menu__subitem">{{ child_link.title | escape }}</a>
+                    {%- endfor -%}
+                  </div>
+                </details>
+              {%- else -%}
+                <a href="{{ link.url }}" class="mobile-menu__item">
+                  <span>{{ link.title }}</span>
+                </a>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+    <div class="mobile-menu__footer">
+      <a href="{{ routes.account_url }}" class="mobile-menu__account">
+        {% render 'icon', icon: 'user' %}
+        <span>Account</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
 <style>
   .header .logo--img img {
     height: {{ logo_height }}px;
