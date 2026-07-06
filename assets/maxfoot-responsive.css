@@ -142,8 +142,8 @@
     scrollbar-width:none;
     gap:0;
     margin:0 calc(-1 * var(--gutter));
-    padding-left:max(var(--gutter), calc((100vw - 85vw) / 2));
-    padding-right:max(var(--gutter), calc((100vw - 85vw) / 2));
+    padding-left:max(var(--gutter), calc((100vw - 75vw) / 2));
+    padding-right:max(var(--gutter), calc((100vw - 75vw) / 2));
   }
   .products--carousel-mobile::-webkit-scrollbar,
   .gallery--carousel-mobile::-webkit-scrollbar,
@@ -151,16 +151,23 @@
   .products--carousel-mobile > *,
   .gallery--carousel-mobile > *,
   .blog-feed--carousel-mobile > *{
-    flex:0 0 85vw;
+    flex:0 0 75vw;
     scroll-snap-align:center;
-    margin-right:4vw;
+    margin-right:5vw;
   }
   .products--carousel-mobile > *:last-child,
   .gallery--carousel-mobile > *:last-child,
   .blog-feed--carousel-mobile > *:last-child{
-    margin-right:max(var(--gutter), calc((100vw - 85vw) / 2));
+    margin-right:max(var(--gutter), calc((100vw - 75vw) / 2));
   }
   .section--lineup .section__cta{margin-top:8px}
+
+  /* ===== Touch devices: don't translate cards on hover =====
+     Carousel container has overflow-y:hidden, so the -4px lift
+     clips the top border on tap-hover. Skip the lift on touch. */
+  @media (hover:none){
+    .product-card:hover{transform:none;box-shadow:var(--shadow-md);border-color:var(--color-border)}
+  }
 }
 
 @media (max-width:380px){
