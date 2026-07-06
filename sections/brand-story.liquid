@@ -35,15 +35,9 @@
     </div>
     {%- endif -%}
 
-    <div class="story-signoff">
-      <div class="story-signoff__avatar">{{ s.signoff_avatar | default: 'M' }}</div>
-      <div>
-        <div class="story-signoff__name">{{ s.signoff_name | default: 'The MaxFoot team' }}</div>
-        {%- if s.signoff_role != blank -%}
-          <div class="story-signoff__role">{{ s.signoff_role }}</div>
-        {%- endif -%}
-      </div>
-    </div>
+    {%- if s.closer_text != blank -%}
+    <div class="story-closer">{{ s.closer_text }}</div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -111,7 +105,7 @@
     },
     {
       "type": "header",
-      "content": "Pull quote + Sign-off"
+      "content": "Pull quote"
     },
     {
       "type": "textarea",
@@ -120,22 +114,14 @@
       "default": "We didn't want to be a bike company. We wanted to be the reason someone rides again."
     },
     {
-      "type": "text",
-      "id": "signoff_name",
-      "label": "Sign-off name",
-      "default": "The MaxFoot team"
+      "type": "header",
+      "content": "Closer (small line under pull quote, optional)"
     },
     {
       "type": "text",
-      "id": "signoff_avatar",
-      "label": "Sign-off avatar letter",
-      "default": "M"
-    },
-    {
-      "type": "textarea",
-      "id": "signoff_role",
-      "label": "Sign-off role",
-      "default": "A small group of riders, builders, and stubborn optimists · California, USA"
+      "id": "closer_text",
+      "label": "Closer text",
+      "default": "Still built in California · Still here since 2016"
     }
   ],
   "presets": [
