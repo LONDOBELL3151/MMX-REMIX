@@ -293,26 +293,26 @@
       }
     },
     "riders": {
-      "type": "rider-testimonials",
+      "type": "reviews-coverflow",
       "blocks": {
-        "testimonial_BVfKap": {
-          "type": "testimonial",
+        "review_BVfKap": {
+          "type": "review",
           "settings": {
             "quote": "I wanted to give it some time to make sure but I was in love on my first ride. I have had it only for a week and I do indeed love this bike. I type this not for any sort of discount on maxfoot products nor am I affiliated...",
             "name": "Jason Nunnenkamp",
             "meta": "MF-30 owner, Austin TX"
           }
         },
-        "testimonial_hGVV8K": {
-          "type": "testimonial",
+        "review_hGVV8K": {
+          "type": "review",
           "settings": {
             "quote": "My wife relies on a motorized wheelchair to get around, and no type of bike or trike works for her. This trike allows me to take her out to beautiful locations that are completely inaccessible to wheelchairs....",
             "name": "Andrew",
             "meta": "MF-33 OWNER, Thornton CO"
           }
         },
-        "testimonial_8iMeCH": {
-          "type": "testimonial",
+        "review_8iMeCH": {
+          "type": "review",
           "settings": {
             "quote": "We purchased both a trike and 2 wheel and love them both. Lots of power and fun to ride. Great purchase for us that we will enjoy for many years. The grandkids love the back seat!",
             "name": "John Pilcher",
@@ -321,13 +321,15 @@
         }
       },
       "block_order": [
-        "testimonial_BVfKap",
-        "testimonial_hGVV8K",
-        "testimonial_8iMeCH"
+        "review_BVfKap",
+        "review_hGVV8K",
+        "review_8iMeCH"
       ],
       "settings": {
-        "heading": "Real riders, real rides",
-        "subheading": ""
+        "heading": "Reviews from MaxFoot riders",
+        "accent_word": "MaxFoot",
+        "subheading": "Real stories from American families riding every day.",
+        "initial_index": 0
       }
     },
     "faq": {

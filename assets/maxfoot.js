@@ -234,4 +234,155 @@
   });
 })();
 
+// ============ Reviews coverflow (3D) ============
+(function () {
+  function initCoverflow(root) {
+    if (!root || root.dataset.reviewsCfReady === 'true') return;
+    const slides = Array.prototype.slice.call(root.querySelectorAll('[data-reviews-slide]'));
+    const prevBtn = root.querySelector('[data-reviews-prev]');
+    const nextBtn = root.querySelector('[data-reviews-next]');
+    const viewport = root.querySelector('[data-reviews-viewport]');
+    if (slides.length < 2 || !prevBtn || !nextBtn) return;
+
+    root.dataset.reviewsCfReady = 'true';
+
+    let activeIndex = Math.min(parseInt(root.dataset.initialIndex || '0', 10), slides.length - 1);
+    if (activeIndex < 0) activeIndex = 0;
+    let isAnimating = false;
+    let suppressClickUntil = 0;
+    let pointerStartX = 0;
+    let pointerDeltaX = 0;
+    let pointerActive = false;
+    let pointerDragging = false;
+    let lastPointerType = '';
+
+    function getMaxVisible() {
+      const w = window.innerWidth;
+      let max = 7;
+      if (w <= 767) max = 3;
+      else if (w <= 999) max = 5;
+      return Math.min(slides.length, max);
+    }
+
+    function labelForOffset(offset) {
+      if (offset === 0) return 'center';
+      const half = Math.floor(getMaxVisible() / 2);
+      if (Math.abs(offset) > half) return 'hidden';
+      return offset < 0 ? 'left-' + (-offset) : 'right-' + offset;
+    }
+
+    function update(instant) {
+      const half = slides.length / 2;
+      slides.forEach((s, i) => {
+        let raw = i - activeIndex;
+        if (raw > half) raw -= slides.length;
+        if (raw < -half) raw += slides.length;
+        const label = labelForOffset(raw);
+        if (instant) {
+          const prev = s.style.transition;
+          s.style.transition = 'none';
+          s.setAttribute('data-3d', label);
+          // force reflow before restoring transition
+          // eslint-disable-next-line no-unused-expressions
+          s.offsetHeight;
+          s.style.transition = prev;
+        } else {
+          s.setAttribute('data-3d', label);
+        }
+      });
+    }
+
+    function goTo(nextIndex, instant) {
+      if (isAnimating && !instant) return;
+      activeIndex = (nextIndex + slides.length) % slides.length;
+      if (!instant) {
+        isAnimating = true;
+        setTimeout(() => { isAnimating = false; }, 650);
+      }
+      update(instant);
+    }
+
+    prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
+    nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
+
+    // Keyboard
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(activeIndex - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); goTo(activeIndex + 1); }
+    });
+
+    // Click on side cards → jump to that index
+    function findSlideFromPoint(cx, cy) {
+      if (typeof document.elementsFromPoint !== 'function') return -1;
+      const stack = document.elementsFromPoint(cx, cy);
+      for (let i = 0; i < stack.length; i++) {
+        let el = stack[i];
+        while (el && el !== viewport) {
+          const idx = slides.indexOf(el);
+          if (idx !== -1) {
+            if (slides[idx].getAttribute('data-3d') !== 'hidden') return idx;
+          }
+          el = el.parentElement;
+        }
+      }
+      return -1;
+    }
+
+    if (viewport) {
+      viewport.addEventListener('click', (e) => {
+        if (Date.now() < suppressClickUntil) { e.preventDefault(); return; }
+        if (lastPointerType && lastPointerType !== 'mouse') return;
+        const idx = findSlideFromPoint(e.clientX, e.clientY);
+        if (idx !== -1 && idx !== activeIndex) goTo(idx);
+      });
+
+      // Drag / swipe
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        pointerActive = true;
+        pointerDragging = false;
+        pointerDeltaX = 0;
+        lastPointerType = e.pointerType || 'mouse';
+        pointerStartX = e.clientX;
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!pointerActive) return;
+        pointerDeltaX = e.clientX - pointerStartX;
+        if (!pointerDragging && Math.abs(pointerDeltaX) > 8) {
+          pointerDragging = true;
+          viewport.classList.add('is-dragging');
+        }
+        if (pointerDragging) e.preventDefault();
+      });
+
+      function endDrag(e) {
+        if (!pointerActive) return;
+        const delta = (e && e.clientX != null) ? e.clientX - pointerStartX : pointerDeltaX;
+        const swipe = pointerDragging && Math.abs(delta) > 36;
+        pointerActive = false;
+        pointerDragging = false;
+        pointerDeltaX = 0;
+        viewport.classList.remove('is-dragging');
+        if (swipe) {
+          suppressClickUntil = Date.now() + 280;
+          if (delta < 0) goTo(activeIndex + 1);
+          else goTo(activeIndex - 1);
+        }
+      }
+      window.addEventListener('pointerup', endDrag);
+      window.addEventListener('pointercancel', () => {
+        pointerActive = false;
+        pointerDragging = false;
+        viewport.classList.remove('is-dragging');
+      });
+    }
+
+    window.addEventListener('resize', () => update(true));
+    update(true);
+  }
+
+  document.querySelectorAll('[data-reviews-cf]').forEach(initCoverflow);
+})();
+
 })();

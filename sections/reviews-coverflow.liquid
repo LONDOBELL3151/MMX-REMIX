@@ -1,0 +1,235 @@
+{%- liquid
+  assign s = section.settings
+  assign block_count = section.blocks.size
+  assign initial_index = s.initial_index | default: 0
+  if initial_index >= block_count
+    assign initial_index = block_count | minus: 1
+  endif
+  if initial_index < 0
+    assign initial_index = 0
+  endif
+-%}
+
+<section
+  class="reviews-cf"
+  id="reviews-cf-{{ section.id }}"
+  data-reviews-cf
+  data-initial-index="{{ initial_index }}"
+  data-block-count="{{ block_count }}"
+  aria-label="{{ s.heading | default: 'Customer reviews' | escape }}"
+  {{ section.shopify_attributes }}>
+
+  <div class="reviews-cf__inner">
+
+    {%- if s.heading != blank or s.subheading != blank -%}
+    <header class="reviews-cf__header">
+      {%- if s.heading != blank -%}
+        <h2 class="reviews-cf__title">
+          {{ s.heading | split: s.accent_word | first }}<span class="reviews-cf__title-hi">{{ s.accent_word }}</span>{{ s.heading | split: s.accent_word | last }}
+        </h2>
+      {%- endif -%}
+      {%- if s.subheading != blank -%}
+        <p class="reviews-cf__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </header>
+    {%- endif -%}
+
+    {%- if block_count > 0 -%}
+    <div class="reviews-cf__stage">
+      <button type="button" class="reviews-cf__btn reviews-cf__btn--prev" data-reviews-prev aria-label="Previous review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="reviews-cf__btn reviews-cf__btn--next" data-reviews-next aria-label="Next review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="reviews-cf__viewport" data-reviews-viewport>
+        <div class="reviews-cf__track" data-reviews-track>
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' -%}
+              {%- assign bs = block.settings -%}
+              {%- assign initial = bs.avatar_initial | default: bs.name | default: 'M' | slice: 0 | upcase -%}
+              <article
+                class="reviews-cf__slide"
+                data-reviews-slide
+                data-index="{{ forloop.index0 }}"
+                data-3d="hidden"
+                {{ block.shopify_attributes }}>
+
+                <div class="reviews-cf-card">
+                  <div class="reviews-cf-card__media">
+                    {%- if bs.image != blank -%}
+                      {{ bs.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320,480,640,900', sizes: '(max-width: 767px) 304px, (max-width: 999px) 340px, (max-width: 1279px) 400px, 434px' }}
+                    {%- else -%}
+                      <div class="reviews-cf-card__placeholder" aria-hidden="true"></div>
+                    {%- endif -%}
+                  </div>
+
+                  <div class="reviews-cf-card__body">
+                    <div class="reviews-cf-card__meta">
+                      <div class="reviews-cf-card__avatar">{{ initial }}</div>
+                      <div class="reviews-cf-card__author">
+                        <p class="reviews-cf-card__name">{{ bs.name }}</p>
+                        {%- if bs.meta != blank -%}
+                          <p class="reviews-cf-card__purchase">{{ bs.meta }}</p>
+                        {%- endif -%}
+                      </div>
+                    </div>
+
+                    {%- if bs.quote != blank -%}
+                      <p class="reviews-cf-card__text">{{ bs.quote }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </article>
+            {%- endif -%}
+          {%- endfor -%}
+
+        </div>
+      </div>
+    </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews coverflow",
+  "tag": "section",
+  "class": "section-reviews-coverflow",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Reviews from MaxFoot riders",
+      "info": "Use a short, punchy headline. The 'accent word' below will be highlighted yellow."
+    },
+    {
+      "type": "text",
+      "id": "accent_word",
+      "label": "Accent word (highlighted yellow)",
+      "default": "MaxFoot",
+      "info": "Must appear as a standalone substring in the heading. Default 'MaxFoot' is fine for that heading."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Thousands of verified reviews from American families riding every day."
+    },
+    {
+      "type": "range",
+      "id": "initial_index",
+      "label": "Initial centered review (0-based)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0,
+      "info": "Which review to show front-and-center on load. 0 = first, 1 = second, etc."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo (optional)"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Sarah K."
+        },
+        {
+          "type": "text",
+          "id": "avatar_initial",
+          "label": "Avatar letter (defaults to first letter of name)",
+          "info": "Leave blank to auto-pick the first letter of the name. Only override if you want a different letter or to handle non-ASCII names."
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Location + time (one line)",
+          "default": "MF-30 owner, Austin TX",
+          "info": "Shown under the name. e.g. 'Riverside, CA · Purchased 3 months ago' or 'MF-30 owner, Austin TX'."
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews coverflow",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Margaret H.",
+            "meta": "Riverside, CA · Purchased 3 months ago",
+            "quote": "I cried the first time I rode it. Three years of not being able to keep up with my grandkids at the park. Now I'm the one who suggests the long loop."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Tom & Linda B.",
+            "meta": "Bend, OR · Purchased 6 weeks ago",
+            "quote": "Replaced our second car with two MaxFoot trikes. We do the farmers' market every Saturday morning. Friends thought we were crazy until they tried ours."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "David R.",
+            "meta": "Asheville, NC · Purchased 2 weeks ago",
+            "quote": "Haven't been on a bike in 25 years. Step-thru frame got me back on in an afternoon. The pedal-assist on hills is the part I didn't know I needed."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Robert & Susan T.",
+            "meta": "Prescott, AZ · Purchased 5 days ago",
+            "quote": "Took the trike to Yellowstone last fall. Campground hosts kept asking where we got it. Now four couples in our park have one. Worth every penny."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Patricia M.",
+            "meta": "Sarasota, FL · Purchased 3 days ago",
+            "quote": "Knee surgery last spring. PT said low-impact cycling. This trike is the only thing that doesn't hurt. I'm riding five miles a day, easy."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Frank D.",
+            "meta": "Boulder, CO · Purchased 5 weeks ago",
+            "quote": "I ride with my daughter on weekends. She's on a road bike, I'm on the trike. We're slower than I'd like — but we're out there, every Saturday."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "James K.",
+            "meta": "Madison, WI · Purchased 4 months ago",
+            "quote": "Battery warranty claim after 18 months — they shipped a replacement in three days, no questions. That's the only review I really need to write."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
