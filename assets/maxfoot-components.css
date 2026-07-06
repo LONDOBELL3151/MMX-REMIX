@@ -96,7 +96,11 @@
 @media (max-width:990px){.proof-bar__grid{justify-content:center}}
 
 /* ===== Nav: submenu trigger (auto-detected from menu link depth) ===== */
-.nav__item--has-sub{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:10px 0;font:inherit;cursor:pointer;font-family:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit}
+/* Both <a class="nav__item"> and <button class="nav__item--has-sub"> share
+   the same typography — the button reset would otherwise inherit body weight
+   (~400) instead of the 800 we want here. */
+.nav__item,.nav__item--has-sub{font-family:var(--font-display);font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-primary);padding:10px 0;transition:var(--transition);text-decoration:none;white-space:nowrap}
+.nav__item--has-sub{display:inline-flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer}
 .nav__chevron{transition:transform var(--transition);flex-shrink:0}
 .nav__item--has-sub[aria-expanded="true"]{color:var(--color-accent)}
 .nav__item--has-sub[aria-expanded="true"] .nav__chevron{transform:rotate(180deg)}
