@@ -12,10 +12,20 @@
       <div class="pdp__category">{{ product.type | default: 'Electric Trike' }}</div>
       <h1 class="pdp__title">{{ product.title }}</h1>
 
-      {%- if product.metafields.reviews.rating -%}
+      {%- comment -%}
+        Shopify's native `rating` metafield is a JSON object
+        {scale_min, scale_max, value} — {{ }} on it would serialize
+        to a JSON string. Pull .value first so we get a plain number.
+      {%- endcomment -%}
+      {%- assign pdp_rating = 0 -%}
+      {%- if product.metafields.reviews.rating and product.metafields.reviews.rating.value -%}
+        {%- assign pdp_rating = product.metafields.reviews.rating.value | times: 1.0 -%}
+      {%- endif -%}
+      {%- assign pdp_review_count = product.metafields.reviews.rating_count | default: 0 -%}
+      {%- if pdp_rating > 0 -%}
         <div class="pdp__rating">
-          {% render 'stars', rating: product.metafields.reviews.rating %}
-          <span class="pdp__rating-text">{{ product.metafields.reviews.rating }} ({{ product.metafields.reviews.rating_count }} reviews)</span>
+          {% render 'stars', rating: pdp_rating %}
+          <span class="pdp__rating-text">{{ pdp_rating }} ({{ pdp_review_count }} reviews)</span>
         </div>
       {%- else -%}
         <div class="pdp__rating pdp__rating--empty">
@@ -52,9 +62,53 @@
                         {%- break -%}
                       {%- endif -%}
                     {%- endfor -%}
+                    {%- comment -%}
+                      Swatch color resolution order:
+                        1. variant.metafields.custom.color_hex  (per-variant override)
+                        2. name-based map (common colors + MaxFoot brand colors)
+                        3. neutral gray fallback
+                      The name map uses | handleize so "Neptune Blue" -> "neptune-blue".
+                      For brand-specific colors the merchant should set the
+                      color_hex metafield on each variant — that wins regardless
+                      of the name guess.
+                    {%- endcomment -%}
+                    {%- assign swatch_hex = blank -%}
+                    {%- if variant and variant.metafields.custom.color_hex != blank -%}
+                      {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
+                    {%- else -%}
+                      {%- assign swatch_name = value | downcase | handleize -%}
+                      {%- case swatch_name -%}
+                        {%- when 'red' -%}{%- assign swatch_hex = '#d32f2f' -%}
+                        {%- when 'crimson' -%}{%- assign swatch_hex = '#dc143c' -%}
+                        {%- when 'orange' -%}{%- assign swatch_hex = '#ff6b1a' -%}
+                        {%- when 'burning-orange' -%}{%- assign swatch_hex = '#ff5722' -%}
+                        {%- when 'vibrant-orange' -%}{%- assign swatch_hex = '#ff6f00' -%}
+                        {%- when 'yellow' -%}{%- assign swatch_hex = '#fbc02d' -%}
+                        {%- when 'gold' -%}{%- assign swatch_hex = '#d4af37' -%}
+                        {%- when 'green' -%}{%- assign swatch_hex = '#388e3c' -%}
+                        {%- when 'lime' -%}{%- assign swatch_hex = '#9ccc65' -%}
+                        {%- when 'pangea-green' -%}{%- assign swatch_hex = '#2e7d32' -%}
+                        {%- when 'teal' -%}{%- assign swatch_hex = '#00897b' -%}
+                        {%- when 'cyan' -%}{%- assign swatch_hex = '#00acc1' -%}
+                        {%- when 'blue' -%}{%- assign swatch_hex = '#1976d2' -%}
+                        {%- when 'navy' -%}{%- assign swatch_hex = '#0d2c54' -%}
+                        {%- when 'neptune-blue' -%}{%- assign swatch_hex = '#1e3a5f' -%}
+                        {%- when 'purple' -%}{%- assign swatch_hex = '#7b1fa2' -%}
+                        {%- when 'pink' -%}{%- assign swatch_hex = '#d81b60' -%}
+                        {%- when 'brown' -%}{%- assign swatch_hex = '#5d4037' -%}
+                        {%- when 'beige' -%}{%- assign swatch_hex = '#d7c3a5' -%}
+                        {%- when 'tan' -%}{%- assign swatch_hex = '#c9a87c' -%}
+                        {%- when 'black' -%}{%- assign swatch_hex = '#1a1a1a' -%}
+                        {%- when 'white' -%}{%- assign swatch_hex = '#ffffff' -%}
+                        {%- when 'gray', 'grey' -%}{%- assign swatch_hex = '#6b6b6b' -%}
+                        {%- when 'brooklyn-gray' -%}{%- assign swatch_hex = '#6b6b6b' -%}
+                        {%- when 'silver' -%}{%- assign swatch_hex = '#c0c0c0' -%}
+                      {%- endcase -%}
+                    {%- endif -%}
+                    {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
                     <label class="swatch" data-swatch="{{ value | handleize }}">
                       <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
-                      <span class="swatch__color" style="background:{{ value | downcase | handleize }};{% if value == 'White' or value == 'white' %}border:1px solid #ccc{% endif %}">
+                      <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}">
                         {{ value }}
                       </span>
                       <span class="swatch__label">{{ value }}</span>
