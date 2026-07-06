@@ -238,6 +238,13 @@
   .story-closer{margin-top:48px;letter-spacing:.08em}
 }
 
+/* ===== Welcome popup wrapper — collapse empty wrapper section ===== */
+/* The pop-up section is intentionally disabled (enable_popup: false + content
+   wrapped in HTML comment), but Shopify still renders its <section> wrapper.
+   Use display:contents so the wrapper itself is invisible to layout — its
+   inline <style> and custom_css still apply, but no DOM slot is occupied. */
+.shopify-section.section--welcome-popup { display: contents !important; }
+
 /* ===== Reviews coverflow (3D) ===== */
 .reviews-cf{background:var(--color-bg-soft);padding:80px 0;overflow:hidden}
 .reviews-cf__inner{max-width:var(--page-width,1440px);margin:0 auto;padding:0 24px;position:relative}
