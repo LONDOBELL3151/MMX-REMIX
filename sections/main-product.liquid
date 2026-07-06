@@ -108,9 +108,7 @@
                     {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
                     <label class="swatch" data-swatch="{{ value | handleize }}">
                       <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
-                      <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}">
-                        {{ value }}
-                      </span>
+                      <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}"></span>
                       <span class="swatch__label">{{ value }}</span>
                     </label>
                   {%- endfor -%}
