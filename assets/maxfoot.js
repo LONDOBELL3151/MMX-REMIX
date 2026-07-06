@@ -234,6 +234,80 @@
   });
 })();
 
+// ============ Nav drawer (submenu slide-in panel) ============
+(function () {
+  function closeDrawer(drawer) {
+    if (!drawer) return;
+    drawer.setAttribute('aria-hidden', 'true');
+    const triggerId = drawer.dataset.trigger;
+    if (triggerId) {
+      const trigger = document.querySelector('[data-nav-trigger="' + triggerId + '"]');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', 'false');
+        // Return focus to the trigger button for keyboard users
+        if (drawer._lastFocused) {
+          trigger.focus();
+        }
+      }
+    }
+    if (!document.querySelector('.nav-drawer[aria-hidden="false"]')) {
+      document.body.classList.remove('nav-drawer-open');
+    }
+  }
+
+  function openDrawer(drawer, trigger) {
+    if (!drawer) return;
+    // Close any other open drawer first
+    document.querySelectorAll('.nav-drawer[aria-hidden="false"]').forEach((d) => {
+      if (d !== drawer) closeDrawer(d);
+    });
+    drawer.setAttribute('aria-hidden', 'false');
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'true');
+      drawer._lastFocused = true;
+    }
+    document.body.classList.add('nav-drawer-open');
+    // Focus the close button so keyboard users can dismiss immediately
+    const closeBtn = drawer.querySelector('.nav-drawer__close');
+    if (closeBtn) {
+      // Defer to let the slide-in animation start
+      setTimeout(() => closeBtn.focus(), 50);
+    }
+  }
+
+  // Trigger buttons: open drawer on click
+  document.querySelectorAll('[data-nav-trigger]').forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const drawerId = trigger.dataset.navTrigger;
+      const drawer = document.getElementById(drawerId);
+      if (!drawer) return;
+      const isOpen = drawer.getAttribute('aria-hidden') === 'false';
+      if (isOpen) {
+        closeDrawer(drawer);
+      } else {
+        openDrawer(drawer, trigger);
+      }
+    });
+  });
+
+  // Close buttons + backdrop click
+  document.querySelectorAll('[data-nav-drawer-close]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const drawer = btn.closest('.nav-drawer');
+      closeDrawer(drawer);
+    });
+  });
+
+  // ESC closes any open drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const openDrawerEl = document.querySelector('.nav-drawer[aria-hidden="false"]');
+    if (openDrawerEl) closeDrawer(openDrawerEl);
+  });
+})();
+
 // ============ Reviews coverflow (3D) ============
 (function () {
   function initCoverflow(root) {
