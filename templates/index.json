@@ -132,15 +132,35 @@
     },
     "lineup": {
       "type": "featured-collection",
+      "blocks": {
+        "product_8FqeYX": {
+          "type": "product",
+          "settings": {
+            "product": "mf-25-step-thru-commuter-e-bike-burning-orange"
+          }
+        },
+        "product_pENM3z": {
+          "type": "product",
+          "settings": {
+            "product": "maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-neptune-blue"
+          }
+        },
+        "product_NQg4Fx": {
+          "type": "product",
+          "settings": {
+            "product": "mf-33-passenger-electric-tricycle-yellow"
+          }
+        }
+      },
+      "block_order": [
+        "product_8FqeYX",
+        "product_pENM3z",
+        "product_NQg4Fx"
+      ],
       "settings": {
         "heading": "The lineup",
         "subheading": "Three trikes built for three kinds of families.",
-        "collection": "trike",
-        "products_to_show": 3,
         "columns": "3",
-        "show_view_all": true,
-        "view_all_label": "View all",
-        "placeholder_product_handles": "",
         "bg": "white"
       }
     },
