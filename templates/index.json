@@ -296,6 +296,7 @@
         "review_4P3Djr": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/MF-33GS.png",
             "name": "Sarah K.JJ in Wisconsin",
             "avatar_initial": "J",
             "meta": "MF-33 owner, Austin TX",
@@ -305,6 +306,7 @@
         "review_V8QJ76": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/goal.jpg",
             "name": "Andrew",
             "avatar_initial": "A",
             "meta": "MF-33 owner, Austin TX",
@@ -314,6 +316,7 @@
         "review_BVfKap": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/popup_57ac1ae7-f8f2-442e-9698-597ba01340e1.jpg",
             "name": "Marii",
             "avatar_initial": "M",
             "meta": "MF-25 owner, Austin TX",
@@ -323,6 +326,7 @@
         "review_hGVV8K": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_ndvr4bndvr4bndvr.png",
             "name": "Jason Nunnenkamp",
             "avatar_initial": "J",
             "meta": "MF-30 OWNER, Thornton CO",
@@ -332,6 +336,7 @@
         "review_8iMeCH": {
           "type": "review",
           "settings": {
+            "image": "shopify://shop_images/2026-05-22_172012_277.png",
             "name": "Ricky Copeland",
             "avatar_initial": "",
             "meta": "MF-30 OWNER, Loomis CA",
