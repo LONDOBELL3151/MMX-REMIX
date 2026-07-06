@@ -6,6 +6,10 @@
 
 <header class="header" role="banner" {{ section.shopify_attributes }}>
   <div class="container header__inner">
+    <button type="button" class="icon-btn menu-toggle" aria-label="Open menu" data-mobile-menu-toggle>
+      {% render 'icon', icon: 'menu' %}
+    </button>
+
     <a href="{{ routes.root_url }}" class="logo logo--img" aria-label="{{ shop.name | escape }} home">
       {%- if s.logo != blank -%}
         <img src="{{ s.logo | image_url: width: 600 }}"
@@ -68,10 +72,6 @@
     </nav>
 
     <div class="header__actions">
-      <button type="button" class="icon-btn menu-toggle" aria-label="Open menu" data-mobile-menu-toggle>
-        {% render 'icon', icon: 'menu' %}
-      </button>
-
       {%- if s.show_search -%}
         <button type="button" class="icon-btn" aria-label="Search" data-search-toggle>
           {% render 'icon', icon: 'search' %}

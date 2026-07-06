@@ -45,8 +45,10 @@
   .timeline{padding-left:24px}
   .timeline::before{left:-8px}
   .timeline__item::before{left:-31px}
-  .header__inner{height:64px;grid-template-columns:auto 1fr auto}
-  .menu-toggle{display:inline-flex}
+  .header__inner{height:64px;grid-template-columns:auto 1fr auto;gap:12px}
+  .menu-toggle{justify-self:start;display:inline-flex}
+  .logo{justify-self:center}
+  .header__actions{justify-self:end}
   .nav{display:none}
   .cart-btn span:last-child{display:none}
   .footer__grid{grid-template-columns:1fr 1fr;gap:32px}
