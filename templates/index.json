@@ -17,7 +17,7 @@
         "subtitle": "Foldable electric trikes built for the whole family. UL-certified, US-shipping, 14-day trial, 2-year warranty.",
         "button_text": "Shop Electric Trikes",
         "button_link": "",
-        "button2_text": "Compare Models",
+        "button2_text": "",
         "button2_link": "",
         "image": "shopify://shop_images/Gemini_Generated_Image_n2n7mun2n7mun2n7_2.webp",
         "badge_text": "FREE 14-DAY TRIAL",
@@ -25,48 +25,6 @@
         "urgency_text": "Ships from US warehouse - free 2-day in 48 states",
         "height": "medium",
         "bg_color": "#ffffff"
-      }
-    },
-    "proof": {
-      "type": "proof-bar",
-      "blocks": {
-        "stat_9xU7Lm": {
-          "type": "stat",
-          "settings": {
-            "number": "7 Years",
-            "label": "Operation"
-          }
-        },
-        "stat_pjDVg9": {
-          "type": "stat",
-          "settings": {
-            "number": "11 Years",
-            "label": "Industry experience"
-          }
-        },
-        "stat_wxwLCH": {
-          "type": "stat",
-          "settings": {
-            "number": "3,000+",
-            "label": "Repeat Customers"
-          }
-        },
-        "stat_p8YazQ": {
-          "type": "stat",
-          "settings": {
-            "number": "50,000+",
-            "label": "Riders"
-          }
-        }
-      },
-      "block_order": [
-        "stat_9xU7Lm",
-        "stat_pjDVg9",
-        "stat_wxwLCH",
-        "stat_p8YazQ"
-      ],
-      "settings": {
-        "bg_color": "#121212"
       }
     },
     "trust": {
@@ -128,6 +86,48 @@
         "body_text_2": "<p>Eight years later, fifty thousand American families ride a MaxFoot. The bikes are still built in the same warehouse. The batteries are still UL-certified, every one of them. The warranty is still two years, twice the industry average. None of that changed when we got bigger. <strong>It never will.</strong> The moment a MaxFoot stops being the best-value electric bike in America is the moment we stop being MaxFoot.</p>",
         "pull_quote": "We didn't want to be a bike company. We wanted to be the reason someone rides again.",
         "closer_text": "Still built in California · Still here since 2016"
+      }
+    },
+    "proof": {
+      "type": "proof-bar",
+      "blocks": {
+        "stat_9xU7Lm": {
+          "type": "stat",
+          "settings": {
+            "number": "7 Years",
+            "label": "Operation"
+          }
+        },
+        "stat_pjDVg9": {
+          "type": "stat",
+          "settings": {
+            "number": "11 Years",
+            "label": "Industry experience"
+          }
+        },
+        "stat_wxwLCH": {
+          "type": "stat",
+          "settings": {
+            "number": "3,000+",
+            "label": "Repeat Customers"
+          }
+        },
+        "stat_p8YazQ": {
+          "type": "stat",
+          "settings": {
+            "number": "50,000+",
+            "label": "Riders"
+          }
+        }
+      },
+      "block_order": [
+        "stat_9xU7Lm",
+        "stat_pjDVg9",
+        "stat_wxwLCH",
+        "stat_p8YazQ"
+      ],
+      "settings": {
+        "bg_color": "#121212"
       }
     },
     "lineup": {
@@ -296,46 +296,51 @@
         "review_4P3Djr": {
           "type": "review",
           "settings": {
-            "name": "Sarah K.",
-            "avatar_initial": "fadfa",
-            "meta": "MF-30 owner, Austin TX",
-            "quote": "hgdfjgfhdfghdfgh"
+            "image": "shopify://shop_images/MF-33GS.png",
+            "name": "Sarah K.JJ in Wisconsin",
+            "avatar_initial": "J",
+            "meta": "MF-33 owner, Austin TX",
+            "quote": "MaxFoot MF-33 Exceeds expectations!!!!\nThis trike is awesome in every way. Assembly was easy. Comfort level is good. Power is way unexpected! What a thrill to give my daughter an opportunity to ride in the wind, face in the sun. I highly recommend this trike!!!"
           }
         },
         "review_V8QJ76": {
           "type": "review",
           "settings": {
-            "name": "Sarah K.",
-            "avatar_initial": "dfasd",
-            "meta": "MF-30 owner, Austin TX",
-            "quote": "sdsfadfads"
+            "image": "shopify://shop_images/goal.jpg",
+            "name": "Andrew",
+            "avatar_initial": "A",
+            "meta": "MF-33 owner, Austin TX",
+            "quote": "Our favorite toy\nMy wife relies on a motorized wheelchair to get around, and no type of bike or trike works for her. This trike allows me to take her out to beautiful locations that are completely inaccessible to wheelchairs. It has brought us a lot of joy, so happy we have it."
           }
         },
         "review_BVfKap": {
           "type": "review",
           "settings": {
-            "name": "Jason Nunnenkamp",
-            "avatar_initial": "",
-            "meta": "MF-30 owner, Austin TX",
-            "quote": "I wanted to give it some time to make sure but I was in love on my first ride. I have had it only for a week and I do indeed love this bike. I type this not for any sort of discount on maxfoot products nor am I affiliated..."
+            "image": "shopify://shop_images/popup_57ac1ae7-f8f2-442e-9698-597ba01340e1.jpg",
+            "name": "Marii",
+            "avatar_initial": "M",
+            "meta": "MF-25 owner, Austin TX",
+            "quote": "Love this bike\nI was in Texas and my home in California I ordered it so when I got home it would be there I think I confused them. But finally jot it together and when I got home it was there have been so happy with it. Will definitely order another one"
           }
         },
         "review_hGVV8K": {
           "type": "review",
           "settings": {
-            "name": "Andrew",
-            "avatar_initial": "",
-            "meta": "MF-33 OWNER, Thornton CO",
-            "quote": "My wife relies on a motorized wheelchair to get around, and no type of bike or trike works for her. This trike allows me to take her out to beautiful locations that are completely inaccessible to wheelchairs...."
+            "image": "shopify://shop_images/Gemini_Generated_Image_ndvr4bndvr4bndvr.png",
+            "name": "Jason Nunnenkamp",
+            "avatar_initial": "J",
+            "meta": "MF-30 OWNER, Thornton CO",
+            "quote": "Yes, I love it\nI wanted to give it some time to make sure but I was in love on my first ride. I have had it only for a week and I do indeed love this bike. I type this not for any sort of discount on maxfoot products nor am I affiliated with maxfoot in any way. I am just a truly satisfied customer. I would attach photos of it as I've taken a lot of them but I can't seem to attach any in this review form"
           }
         },
         "review_8iMeCH": {
           "type": "review",
           "settings": {
-            "name": "John Pilcher",
+            "image": "shopify://shop_images/2026-05-22_172012_277.png",
+            "name": "Ricky Copeland",
             "avatar_initial": "",
-            "meta": "MF-25 & MF-33 OWNER, Loomis CA",
-            "quote": "We purchased both a trike and 2 wheel and love them both. Lots of power and fun to ride. Great purchase for us that we will enjoy for many years. The grandkids love the back seat!"
+            "meta": "MF-30 OWNER, Loomis CA",
+            "quote": "Fun to ride\nI’ve been riding almost every day since I received the etrike. Fun to ride and people stop and ask me about it. I use it to go to the grocery store. The back basket/trunk holds a lot of stuff!\nMy only complaint is the assembly tools are not the greatest."
           }
         }
       },
@@ -431,9 +436,9 @@
   },
   "order": [
     "hero",
-    "proof",
     "trust",
     "story",
+    "proof",
     "lineup",
     "why",
     "press",
