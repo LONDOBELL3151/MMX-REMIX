@@ -214,6 +214,48 @@
       align-items: stretch;
     }
   }
+
+  /* === Mobile (≤560): card padding shrink, items wrap, type shrink ===
+     The 3-bundle product thumbs (6rem each) at flex-wrap:nowrap
+     push the card wider than the viewport on small screens, which
+     forces horizontal page scroll. Allow items to wrap and shrink. */
+  @media screen and (max-width: 560px) {
+    #shopify-section-{{ section.id }} .mf-bundles__title {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__card {
+      padding: 1.4rem;
+      min-width: 0;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__card-title {
+      font-size: 1.5rem;
+      margin: 0 0 0.8rem;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__description,
+    #shopify-section-{{ section.id }} .mf-bundles__item-list,
+    #shopify-section-{{ section.id }} .mf-bundles__total {
+      font-size: 1.2rem;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__items {
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.8rem 0 1.2rem;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__item-thumb {
+      width: 4.6rem;
+      height: 4.6rem;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__bundle-price {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__button .button {
+      min-height: 4.4rem;
+      font-size: 1.4rem;
+      padding: 1rem 1.2rem;
+    }
+  }
 {%- endstyle -%}
 
 <section class="mf-bundles">

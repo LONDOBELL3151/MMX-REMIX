@@ -79,8 +79,8 @@
   }
 
   #shopify-section-{{ section.id }} .mf-ride__card {
-    flex: 0 0 clamp(28rem, 84vw, 32rem);
-    width: clamp(28rem, 84vw, 32rem);
+    flex: 0 0 clamp(20rem, 84vw, 32rem);
+    width: clamp(20rem, 84vw, 32rem);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -215,6 +215,56 @@
     #shopify-section-{{ section.id }} .mf-ride__card {
       flex-basis: 32rem;
       width: 32rem;
+    }
+  }
+
+  /* === Mobile (≤560): stack card vertically, fit viewport, swipe-only ===
+     The card floor was 28rem (448px) which overflowed a 390px viewport
+     (clamp(28rem, 84vw, 32rem) at 390px resolved to 448px). Lowered to
+     20rem (320px) so 84vw (327.6px) wins on small screens. Also stack
+     image+content vertically and let the track bleed to the viewport
+     edge with horizontal padding so first/last cards aren't clipped. */
+  @media screen and (max-width: 560px) {
+    #shopify-section-{{ section.id }} .mf-ride__title {
+      font-size: 1.8rem;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__header {
+      margin-bottom: 1.6rem;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__track {
+      gap: 1.2rem;
+      margin: 0 -1.6rem;
+      padding: 0.5rem 1.6rem;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__card {
+      flex: 0 0 84vw;
+      width: 84vw;
+      flex-direction: column;
+      text-align: center;
+      padding: 1.4rem;
+      gap: 1.2rem;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__media {
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__product-title {
+      font-size: 1.4rem;
+      -webkit-line-clamp: 2;
+      min-height: 0;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__price {
+      font-size: 1.4rem;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__button .button {
+      min-height: 4rem;
+      font-size: 1.3rem;
+      padding: 0.9rem 1.2rem;
+    }
+    #shopify-section-{{ section.id }} .mf-ride__nav--prev,
+    #shopify-section-{{ section.id }} .mf-ride__nav--next {
+      display: none;
     }
   }
 {%- endstyle -%}
