@@ -13,10 +13,12 @@
       set), we render nothing and the parent falls back to the
       in-product variant picker.
 
-  Swatch image resolution order:
-    1. sibling.metafields.custom.swatch_image  (per-color override)
-    2. sibling.featured_image                  (product hero image)
-    3. sibling.title                          (text fallback)
+  Display:
+    - Renders the SHORT color name only (last two words of the product
+      title, e.g. "Burning Orange", "Brooklyn Gray"). This is the only
+      text shown — no image, no full product title.
+    - Layout is a horizontal row of pill buttons. The active color is
+      filled with the primary color and uses font-weight:700.
 {%- endcomment -%}
 
 {%- liquid
@@ -31,44 +33,43 @@
   <div class="pdp__option pdp__option--family" data-color-family>
     <label class="pdp__option-label">
       Color:
-      <strong data-family-current>{{ product.title }}</strong>
     </label>
     <div class="pdp__swatches pdp__swatches--family">
       {%- for sibling in family_members -%}
         {%- liquid
-          assign swatch_img = blank
-          if sibling.metafields.custom.swatch_image != blank
-            assign swatch_img = sibling.metafields.custom.swatch_image
-          elsif sibling.featured_image
-            assign swatch_img = sibling.featured_image
-          endif
           assign is_current = false
           if sibling.id == product.id
             assign is_current = true
           endif
+
           assign color_name = sibling.metafields.custom.color_name
           if color_name == blank
             assign color_name = sibling.title
+          endif
+
+          assign color_short = color_name
+          assign name_parts = color_name | split: ' '
+          assign parts_size = name_parts | size
+          if parts_size > 2
+            assign drop_count = parts_size | minus: 2
+            assign color_short = ''
+            for part in name_parts
+              if forloop.index0 >= drop_count
+                assign color_short = color_short | append: part
+                unless forloop.last
+                  assign color_short = color_short | append: ' '
+                endunless
+              endif
+            endfor
           endif
         -%}
         <a href="{{ sibling.url }}"
            class="swatch swatch--family{% if is_current %} is-active{% endif %}"
            data-swatch="{{ sibling.handle }}"
            data-color-name="{{ color_name | escape }}"
-           title="{{ sibling.title | escape }}"
+           title="{{ color_name | escape }}"
            {%- if is_current %} aria-current="page"{% endif -%}>
-          <span class="swatch__img">
-            {%- if swatch_img != blank -%}
-              <img src="{{ swatch_img | image_url: width: 120, height: 120, crop: 'center' }}"
-                   alt="{{ color_name | escape }}"
-                   loading="lazy"
-                   width="48"
-                   height="48">
-            {%- else -%}
-              <span class="swatch__img-fallback">{{ color_name | slice: 0, 1 | upcase }}</span>
-            {%- endif -%}
-          </span>
-          <span class="swatch__label">{{ color_name }}</span>
+          {{ color_short }}
         </a>
       {%- endfor -%}
     </div>
