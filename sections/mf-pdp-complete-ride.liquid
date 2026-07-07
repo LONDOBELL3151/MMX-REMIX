@@ -158,19 +158,10 @@
     margin-top: auto;
   }
 
-  #shopify-section-{{ section.id }} .mf-ride__button,
-  #shopify-section-{{ section.id }} .mf-ride__button .mf-quick-add-form,
-  #shopify-section-{{ section.id }} .mf-ride__button product-form,
-  #shopify-section-{{ section.id }} .mf-ride__button .form,
-  #shopify-section-{{ section.id }} .mf-ride__button .product-form__buttons {
+  #shopify-section-{{ section.id }} .mf-ride__button form {
     width: 100%;
     max-width: none;
     margin: 0;
-    display: block;
-  }
-
-  #shopify-section-{{ section.id }} .mf-ride__button .product-form__error-message-wrapper {
-    margin-bottom: 0.5rem;
   }
 
   /* ===== 按钮样式（全局统一为金黄色） ===== */
@@ -189,6 +180,12 @@
     border-color: #FFC000;
     color: #121212;
     box-shadow: none;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .mf-ride__button .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   #shopify-section-{{ section.id }} .mf-ride__button .button::before,
@@ -228,15 +225,15 @@
       margin-bottom: 1.6rem;
     }
 
-    /* 滚动容器——修复垂直滚动干扰 */
+    /* 滚动容器——禁止垂直滚动 */
     #shopify-section-{{ section.id }} .mf-ride__track {
       gap: 1.2rem;
       margin: 0 -1.6rem;
       padding: 0.5rem 1.6rem 0.8rem;
       scroll-snap-type: x mandatory;
       scroll-padding-left: 1.6rem;
-      overflow-y: hidden;          /* 禁止垂直滚动，只允许水平 */
-      height: auto;                /* 确保高度由内容撑开 */
+      overflow-y: hidden;
+      height: auto;
     }
 
     #shopify-section-{{ section.id }} .mf-ride__card {
@@ -251,14 +248,12 @@
       scroll-snap-align: start;
     }
 
-    /* 图片改为正方形 */
     #shopify-section-{{ section.id }} .mf-ride__media {
       flex: 0 0 auto;
       width: 100%;
       aspect-ratio: 1 / 1;
     }
 
-    /* 文字大小 */
     #shopify-section-{{ section.id }} .mf-ride__product-title {
       font-size: 1.5rem;
       -webkit-line-clamp: 2;
@@ -278,7 +273,6 @@
       word-break: break-word;
     }
 
-    /* 隐藏桌面导航按钮（仅靠滑动） */
     #shopify-section-{{ section.id }} .mf-ride__nav--prev,
     #shopify-section-{{ section.id }} .mf-ride__nav--next {
       display: none;
@@ -365,14 +359,21 @@
                 </p>
               </div>
 
+              <!-- 改用原生表单，确保按钮始终显示且功能完整 -->
               <div class="mf-ride__button">
-                {% render 'mf-quick-add-form',
-                  product: block_product,
-                  button_label: section.settings.button_label,
-                  button_class: 'button button--primary',
-                  section_id: section.id,
-                  id_suffix: block.id
-                %}
+                {% if block_product != blank and block_product.selected_or_first_available_variant != blank %}
+                  <form method="post" action="/cart/add">
+                    <input type="hidden" name="id" value="{{ block_product.selected_or_first_available_variant.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="button button--primary">
+                      {{ section.settings.button_label | escape }}
+                    </button>
+                  </form>
+                {% else %}
+                  <button class="button button--primary" disabled>
+                    {{ section.settings.button_label | escape }}
+                  </button>
+                {% endif %}
               </div>
             </div>
           </article>
