@@ -152,17 +152,18 @@
             </button>
           </div>
         </form>
-      {%- else -%}
-        {% form 'product', product, id: 'pdp__form' %}
+{%- else -%}
+        <form method="post" action="{{ routes.cart_add_url }}" id="pdp__form" enctype="multipart/form-data" class="pdp__form">
+          <input type="hidden" name="id" data-product-id>
           <div class="pdp__qty-row">
             <div class="pdp__qty">
               <button type="button" data-qty="dec">{% render 'icon', icon: 'minus' %}</button>
               <input type="number" name="quantity" value="1" min="1">
-              <button type="button" data-qty="inc">{% render 'icon', icon: 'plus' }}</button>
+              <button type="button" data-qty="inc">{% render 'icon', icon: 'plus' %}</button>
             </div>
             <button type="submit" class="btn btn--primary pdp__cta">Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span></button>
           </div>
-        {% endform %}
+        </form>
       {%- endif -%}
 
       {%- if s.show_finance -%}
