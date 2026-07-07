@@ -227,9 +227,7 @@
       "block_order": [
         "slide_CCUV3q"
       ],
-      "custom_css": [
-        ". {}"
-      ],
+      "custom_css": [],
       "name": "Slide Show",
       "settings": {
         "cut_button": false
