@@ -229,7 +229,7 @@
             "image": "shopify://shop_images/goal.jpg",
             "location": "Sedona, Arizona",
             "handle": "@carol.h",
-            "bike_model": "MF-30 Neptune Blue · 412 mi",
+            "bike_model": "MF-33 Orange · 412 mi",
             "link": ""
           }
         },
@@ -239,7 +239,7 @@
             "image": "shopify://shop_images/popup_57ac1ae7-f8f2-442e-9698-597ba01340e1.jpg",
             "location": "Half Moon Bay, CA",
             "handle": "@the_lin_family",
-            "bike_model": "MF-33",
+            "bike_model": "MF-30",
             "link": ""
           }
         },
@@ -284,12 +284,12 @@
       "name": "Gallery (MaxFootLife)",
       "settings": {
         "heading": "Out there with MaxFoot.",
-        "subheading": "Real rides from 50,000+ American families — yours could be next. Tag @maxfootbike or use #MaxFootLife to be featured.",
+        "subheading": "Real rides from 50,000+ American families — yours could be next. Tag @maxfoot.bike or use #MaxFootLife to be featured.",
         "badge_text": "Featured · #MaxFootLife",
         "instagram_url": "",
-        "instagram_label": "Follow @maxfootbike",
+        "instagram_label": "Follow @maxfoot.bike",
         "cta_title": "Share your ride home.",
-        "cta_sub": "Three of our favorites every month get a $250 MaxFoot credit + featured on the homepage.",
+        "cta_sub": "Three of our favorites every month get a $100 MaxFoot credit + featured on the homepage.",
         "cta_button": "Submit your photo",
         "cta_url": ""
       }
