@@ -43,10 +43,30 @@
         </div>
       {%- endif -%}
 
+      {%- liquid
+        # If this product has a `custom.product_family` metaobject that lists
+        # sibling color products, render the cross-product color picker and
+        # skip the in-product Color variant below (it's already split across
+        # products). Any non-Color option (Size, etc.) still renders.
+        assign has_color_family = false
+        if product.metafields.custom.product_family.value != blank
+          if product.metafields.custom.product_family.value.members.value.size > 1
+            assign has_color_family = true
+          endif
+        endif
+      -%}
+
+      {%- if has_color_family -%}
+        {% render 'pdp-color-family' %}
+      {%- endif -%}
+
       {%- if product.options.size > 0 -%}
         <form method="post" action="{{ routes.cart_add_url }}" id="pdp__form" enctype="multipart/form-data" class="pdp__form">
           <input type="hidden" name="id" data-product-id>
           {%- for option in product.options_with_values -%}
+            {%- if has_color_family and option.name == 'Color' -%}
+              {%- continue -%}
+            {%- endif -%}
             <div class="pdp__option">
               <label class="pdp__option-label">
                 {{ option.name }}:

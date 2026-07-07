@@ -1,0 +1,76 @@
+{%- comment -%}
+  Renders the cross-product color family picker.
+
+  Pattern:
+    - Each color variant of a product is a SEPARATE Shopify product
+      (e.g. mf-25-orange, mf-25-blue, mf-25-red, …).
+    - Each one carries a metafield `custom.product_family` of type
+      `metaobject_reference` pointing to a metaobject that has a
+      `list.product_reference` field called `members`.
+    - We render that members list as a row of swatch links; clicking
+      a swatch navigates to that color's product page.
+    - When `members.size` is 0 or 1 (single color or metafield not
+      set), we render nothing and the parent falls back to the
+      in-product variant picker.
+
+  Swatch image resolution order:
+    1. sibling.metafields.custom.swatch_image  (per-color override)
+    2. sibling.featured_image                  (product hero image)
+    3. sibling.title                          (text fallback)
+{%- endcomment -%}
+
+{%- liquid
+  assign product_family = product.metafields.custom.product_family.value
+  assign family_members = blank
+  if product_family and product_family.members.value.size > 1
+    assign family_members = product_family.members.value
+  endif
+-%}
+
+{%- if family_members != blank -%}
+  <div class="pdp__option pdp__option--family" data-color-family>
+    <label class="pdp__option-label">
+      Color:
+      <strong data-family-current>{{ product.title }}</strong>
+    </label>
+    <div class="pdp__swatches pdp__swatches--family">
+      {%- for sibling in family_members -%}
+        {%- liquid
+          assign swatch_img = blank
+          if sibling.metafields.custom.swatch_image != blank
+            assign swatch_img = sibling.metafields.custom.swatch_image
+          elsif sibling.featured_image
+            assign swatch_img = sibling.featured_image
+          endif
+          assign is_current = false
+          if sibling.id == product.id
+            assign is_current = true
+          endif
+          assign color_name = sibling.metafields.custom.color_name
+          if color_name == blank
+            assign color_name = sibling.title
+          endif
+        -%}
+        <a href="{{ sibling.url }}"
+           class="swatch swatch--family{% if is_current %} is-active{% endif %}"
+           data-swatch="{{ sibling.handle }}"
+           data-color-name="{{ color_name | escape }}"
+           title="{{ sibling.title | escape }}"
+           {%- if is_current %} aria-current="page"{% endif -%}>
+          <span class="swatch__img">
+            {%- if swatch_img != blank -%}
+              <img src="{{ swatch_img | image_url: width: 120, height: 120, crop: 'center' }}"
+                   alt="{{ color_name | escape }}"
+                   loading="lazy"
+                   width="48"
+                   height="48">
+            {%- else -%}
+              <span class="swatch__img-fallback">{{ color_name | slice: 0, 1 | upcase }}</span>
+            {%- endif -%}
+          </span>
+          <span class="swatch__label">{{ color_name }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
