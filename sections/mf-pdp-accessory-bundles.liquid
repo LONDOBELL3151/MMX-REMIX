@@ -157,6 +157,7 @@
     min-height: 0;
   }
 
+  /* ===== 按钮颜色修改（全局） ===== */
   #shopify-section-{{ section.id }} .mf-bundles__button .button {
     width: 100%;
     min-width: 0;
@@ -167,9 +168,9 @@
     line-height: 1;
     font-size: 1.6rem;
     border-radius: 1.2rem;
-    background: var(--mf-bundle-save-color);
-    border-color: var(--mf-bundle-save-color);
-    color: #ffffff;
+    background: #FFC000;           /* 新背景色（金黄色） */
+    border-color: #FFC000;         /* 边框与背景一致 */
+    color: #121212;               /* 新文字颜色（深灰） */
     box-shadow: none;
   }
 
@@ -215,14 +216,16 @@
     }
   }
 
-  /* === 移动端卡片左右滑动（替代原有单列垂直排列） === */
+  /* === 移动端卡片左右滑动 + 排版优化 === */
   @media screen and (max-width: 560px) {
+    /* 标题 */
     #shopify-section-{{ section.id }} .mf-bundles__title {
-      font-size: 2rem;
-      margin-bottom: 1.2rem;
+      font-size: 2.2rem;
+      margin-bottom: 1.6rem;
+      letter-spacing: -0.02em;
     }
 
-    /* 网格容器改为横向弹性滚动容器 */
+    /* 滚动容器 */
     #shopify-section-{{ section.id }} .mf-bundles__grid {
       display: flex;
       flex-wrap: nowrap;
@@ -239,7 +242,6 @@
       padding-bottom: 0.8rem;
     }
 
-    /* 隐藏滚动条 */
     #shopify-section-{{ section.id }} .mf-bundles__grid::-webkit-scrollbar {
       display: none;
     }
@@ -247,7 +249,7 @@
       scrollbar-width: none;
     }
 
-    /* 每张卡片设为固定宽度，并启用滚动吸附 */
+    /* 卡片 */
     #shopify-section-{{ section.id }} .mf-bundles__card {
       flex: 0 0 auto;
       width: calc(100% - 4.8rem);
@@ -255,25 +257,37 @@
       max-width: 320px;
       scroll-snap-align: start;
       min-height: auto;
-      padding: 1.4rem;
+      padding: 1.6rem;
+      gap: 0.4rem;
     }
 
+    /* 卡片标题 */
     #shopify-section-{{ section.id }} .mf-bundles__card-title {
-      font-size: 1.5rem;
-      margin: 0 0 0.8rem;
+      font-size: 1.6rem;
+      margin: 0 0 0.6rem;
     }
 
-    #shopify-section-{{ section.id }} .mf-bundles__description,
-    #shopify-section-{{ section.id }} .mf-bundles__item-list,
-    #shopify-section-{{ section.id }} .mf-bundles__total {
+    /* 描述 */
+    #shopify-section-{{ section.id }} .mf-bundles__description {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+
+    /* 商品列表 */
+    #shopify-section-{{ section.id }} .mf-bundles__item-list {
       font-size: 1.2rem;
+      gap: 0.3rem;
+      margin-bottom: 0.8rem;
     }
 
+    /* 缩略图行 */
     #shopify-section-{{ section.id }} .mf-bundles__items {
       flex-wrap: nowrap;
       gap: 0.6rem;
-      margin: 0.8rem 0 1.2rem;
+      margin: 0.6rem 0 1rem;
       justify-content: flex-start;
+      min-height: 5rem;
     }
 
     #shopify-section-{{ section.id }} .mf-bundles__item-thumb {
@@ -282,15 +296,40 @@
       flex-shrink: 0;
     }
 
-    #shopify-section-{{ section.id }} .mf-bundles__bundle-price {
-      font-size: 1.6rem;
-      margin-bottom: 0.8rem;
+    /* 价格区域 */
+    #shopify-section-{{ section.id }} .mf-bundles__total {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
     }
 
+    #shopify-section-{{ section.id }} .mf-bundles__bundle-price {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 0.6rem;
+    }
+
+    /* “Save $XX!” 独立成行或右对齐 */
+    #shopify-section-{{ section.id }} .mf-bundles__bundle-price .mf-bundles__save {
+      margin-left: auto;
+      font-weight: 700;
+      font-size: 1.3rem;
+      background: rgba(33, 136, 56, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.6rem;
+      white-space: nowrap;
+    }
+
+    /* 按钮（移动端尺寸调整，颜色继承全局） */
     #shopify-section-{{ section.id }} .mf-bundles__button .button {
       min-height: 4.4rem;
-      font-size: 1.4rem;
-      padding: 1rem 1.2rem;
+      font-size: 1.3rem;
+      padding: 0.8rem 0.8rem;
+      white-space: normal;          /* 允许换行，避免截断 */
+      line-height: 1.3;
+      word-break: break-word;
     }
   }
 {%- endstyle -%}
