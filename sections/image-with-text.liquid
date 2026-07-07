@@ -34,7 +34,7 @@
             {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
             {%- capture sizes -%}
               (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+              (min-width: 750px) calc((100vw - 130px) / 2), 100vw
             {%- endcapture -%}
           {%- endif -%}
           {{
