@@ -1,1 +1,901 @@
-{"sections":{"main":{"type":"main-product","blocks":{"title":{"type":"title","settings":{}},"text_p8jdJH":{"type":"text","settings":{"text":"Ride together, explore more. The MF-33 electric tricycle for 2-3 adults blends style and function for effortless shared adventures.","text_style":"body"}},"judge_me_reviews_preview_badge_exgDXf":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{}},"price":{"type":"price","settings":{}},"custom_liquid_da73Nd":{"type":"custom_liquid","settings":{"custom_liquid":"<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        <\/span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror <\/span>\n    <\/div>\n   \n<\/div>"}},"custom_liquid_fLnnFx":{"type":"custom_liquid","settings":{"custom_liquid":"<div class=\"hidden_\" style=\"\nfont-size: 20px; \ncolor: black; \n\/*text-decoration: underline;\ntext-decoration-color: #ffc000;*\/\nmargin-top: 0px;\nmargin-bottom: 0px !important;\n\">\n    For riders: 5'2\" - 6'4\" \n<\/div>"}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"color"}},"inventory_WnUDXG":{"type":"inventory","settings":{"text_style":"body","inventory_threshold":10,"show_inventory_quantity":true}},"custom_liquid_rppzzL":{"type":"custom_liquid","settings":{"custom_liquid":"<div class=\"hidden_\" style=\"\n    background-color: rgba(177, 177, 177, 0.2);\n    color: #121212;\n    padding: 12px 20px;\n    display: inline-block;\n    border: none;\n    border-radius: 4px;\n    font-family: Arial, sans-serif;\nwidth: 100%;\n\">\n<strong>\nOrange Preorder Available<br>\nExpect to Ship on <strong>End-July<\/strong>\n<\/div>"}},"impact_accessories_i4XbDY":{"type":"impact-accessories","settings":{"accessories_product":"rearview-bicycle-mirrors","accessories_is_fold":"no","accessories_is_checed":"yes","accessories_is_link":"no","accessories_link":""}},"impact_accessories_xqd7Cr":{"type":"impact-accessories","settings":{"accessories_product":"electric-bicycle-weather-cover","accessories_is_fold":"no","accessories_is_checed":"no","accessories_is_link":"no","accessories_link":""}},"impact_accessories_jYwYXH":{"type":"impact-accessories","settings":{"accessories_product":"48v-2a-5-pins-battery-charger-for-mf-30-mf-33-maxz-series","accessories_is_fold":"no","accessories_is_checed":"no","accessories_is_link":"no","accessories_link":""}},"impact_accessories_GJDehi":{"type":"impact-accessories","settings":{"accessories_product":"20ah-battery-for-mf-30-20ah-and-mf-23","accessories_is_fold":"no","accessories_is_checed":"no","accessories_is_link":"no","accessories_link":""}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":false}},"icon_with_text_PGhbjb":{"type":"icon-with-text","disabled":true,"settings":{"layout":"horizontal","icon_1":"heart","image_1":"shopify:\/\/shop_images\/953ebbc1f2f5775c228625e1c716cf87_71d20080-0065-49c4-88de-df513e125467.png","heading_1":"Rear Drive Motor","icon_2":"return","image_2":"shopify:\/\/shop_images\/ca2309941c027d694311ef3b584445d9.png","heading_2":"Rear Differential","icon_3":"truck","image_3":"shopify:\/\/shop_images\/e0c73f2967d91303d6b0d659434a7e1f.png","heading_3":"Parking Brake"}},"share":{"type":"share","settings":{"share_label":"Share"}},"collapsible_tab_ApcEjL":{"type":"collapsible_tab","settings":{"heading":"Return and Refund","icon":"return","content":"","page":"return-and-refund"}},"collapsible_tab_mxAUKL":{"type":"collapsible_tab","settings":{"heading":"Shipping","icon":"truck","content":"","page":"shipping-term"}}},"block_order":["title","text_p8jdJH","judge_me_reviews_preview_badge_exgDXf","price","custom_liquid_da73Nd","custom_liquid_fLnnFx","variant_picker","inventory_WnUDXG","custom_liquid_rppzzL","impact_accessories_i4XbDY","impact_accessories_xqd7Cr","impact_accessories_jYwYXH","impact_accessories_GJDehi","quantity_selector","buy_buttons","icon_with_text_PGhbjb","share","collapsible_tab_ApcEjL","collapsible_tab_mxAUKL"],"custom_css":[".subtitle {color: #ffc200;}",".icon-with-text--horizontal {column-gap: 0rem;}","@media only screen and (max-width: 750px) {.icon-with-text--horizontal {column-gap: 0rem; } h4 {font-size: 1.4rem; }}"],"settings":{"enable_sticky_info":true,"media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail_slider","media_position":"left","image_zoom":"hover","mobile_thumbnails":"hide","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","disabled":true,"settings":{"heading":"You may also like","heading_size":"h2","products_to_show":4,"columns_desktop":4,"color_scheme":"background-1","image_ratio":"square","show_secondary_image":true,"show_vendor":false,"show_rating":false,"columns_mobile":"2","padding_top":36,"padding_bottom":28}},"text_module_RXYq4J":{"type":"text-module","custom_css":["{background-color: #ffc000;}",".textmodule {padding-top: 80px; padding-bottom: 80px; background-color: #ffc000;}"],"settings":{"max_width":"1400px","main_title":"Share the Journey, Multiply the Joy","subhead":"MF-33 E-Trike","text":"Over the years, our riders have told us one thing clear and loud: the best journeys are the ones shared. Driven by your feedback, we re-imagined what an electric tricycle could be and created the Maxfoot MF-33—our very first multi-passenger E-Trike.\n\nAs a groundbreaking addition to the Maxfoot lineup, the MF-33 takes our industry-leading tricycle craftsmanship and elevates it for the whole family. While we’ve meticulously optimized the rider’s comfort and control, we’ve also introduced a spacious, premium rear passenger seat. Whether you're cruising with family, running errands, or exploring with friends, the MF-33 is designed to turn every ride into a shared adventure.\n\nDon't just ride alone—bring your favorite people along for the journey.","pc_margin_top":"0px","pc_margin_bottom":"0px","mb_margin_top":"0px","mb_margin_bottom":"0px"}},"slideshow_2_LhKh4p":{"type":"slideshow-2","blocks":{"slide_CCUV3q":{"type":"slide","settings":{"image_pc":"shopify:\/\/shop_images\/D4CDA9269DF4E9F8D5421A046DD53FDF.jpg","image_mobile":"shopify:\/\/shop_images\/B6B2CDD3D4B867A80BC8C2A6CDE96615.jpg","jump_link":""}}},"block_order":["slide_CCUV3q"],"name":"Slide Show","settings":{"cut_button":false}},"graphic_module_rBVcTY":{"type":"graphic-module","blocks":{"slide_YeVXkV":{"type":"slide","settings":{"icon":"shopify:\/\/shop_images\/c5b9a1702888b8b61400b8ec135d2fdf_4bb2ddaf-80db-47d2-a491-b330555e2e86.png","main_title":"48V 20Ah","text":"UL-Certified Battery"}},"slide_mjkgJU":{"type":"slide","settings":{"icon":"shopify:\/\/shop_images\/953ebbc1f2f5775c228625e1c716cf87_71d20080-0065-49c4-88de-df513e125467.png","main_title":"750 W","text":"Rear Drive Motor"}},"slide_3qCiHy":{"type":"slide","settings":{"icon":"shopify:\/\/shop_images\/dcbf258b7e33f36ca3423eee233866fa_e9077569-3288-45de-8f7a-8b344e4e991c.png","main_title":"85N.m","text":"Motor Torque"}},"slide_dMqTVc":{"type":"slide","settings":{"icon":"shopify:\/\/shop_images\/1_f9b70bb5-65a3-4fb9-abcc-927a46e4511e.png","main_title":"Up to 3","text":"Rider and Pessengers"}}},"block_order":["slide_YeVXkV","slide_mjkgJU","slide_3qCiHy","slide_dMqTVc"],"settings":{"max_width":"1400px","main_image":"shopify:\/\/shop_images\/af1820e73c8e794d1e892c7c02681cfa.jpg","pc_margin_top":"50px","pc_margin_bottom":"0px","mb_margin_top":"0px","mb_margin_bottom":"0px"}},"custom_liquid_RFfafi":{"type":"custom-liquid","disabled":true,"settings":{"custom_liquid":"<style>\n    * {\n        margin: 0;\n        padding: 0;\n    }\n\n    html {\n        font-family: 'Arial';\n    }\n\n    .electricEngine {\n        position: relative;\n        max-width: 1920px;\n        width: 100%;\n        overflow: hidden;\n        display: flex;\n        align-items: center;\n        justify-content: space-between;\n        flex-flow: row-reverse;\n        margin: 0 auto;\n    }\n\n    .electricEngine_L {\n        max-width: 610px;\n        width: 100%;\n        position: absolute;\n        left: 10%;\n        top: 10%;\n    }\n\n    .electricEngine_L_title {\n        font-size: 70px;\n        color: #151515;\n        font-weight: 600;\n    }\n\n    .electricEngine_L_word {\n        max-width: 500px;\n        width: 100%;\n        font-size: 18px;\n        color: #0e0e0e;\n        font-weight: 400;\n        padding-top: 40px;\n        line-height: 30px;\n    }\n\n    .electricEngine_L_tip {\n        display: flex;\n        align-items: center;\n        justify-content: flex-start;\n        padding-top: 80px;\n    }\n\n    .electricEngine_L_tip div:first-child {\n        margin-right: 55px;\n    }\n\n    .electricEngine_L_tip_box h6 {\n        font-size: 34px;\n        font-weight: 600;\n        margin-block-start: auto;\n        margin-block-end: auto;\n    }\n\n    .electricEngine_L_tip_box p {\n        font-size: 18px;\n        font-weight: 400;\n        margin-top: 20px;\n    }\n\n    .electricEngine_R_bg {\n        max-width: 1920px;\n        width: 100%;\n    }\n\n    .electricEngine_R_bgPhone {\n        max-width: 800px;\n        width: 100%;\n        display: none;\n    }\n\n    .electricEngine_R_bg img,\n    .electricEngine_R_bgPhone img {\n        display: block;\n        width: 100%;\n        height: 100%;\n    }\n\n    .electricEngine_L_title {\n        position: relative;\n    }\n\n    .underline_title {\n        position: absolute;\n        bottom: -10px;\n        left: 0px;\n        z-index: -1;\n    }\n<\/style>\n<style>\n    .electricEngine_R_bikeA img {\n        max-width: 700px;\n        width: 100%;\n        transition: all 1s;\n    }\n\n    .b,\n    .c,\n    .d,\n    .a {\n        position: absolute;\n        top: 11%;\n    }\n\n    .a {\n        right: 18%;\n        z-index: 4;\n    }\n\n    .b {\n        right: 17%;\n        z-index: 3;\n    }\n\n    .c {\n        right: 17%;\n        z-index: 2;\n    }\n\n    .d {\n        right: 17%;\n    }\n\n    .electricEngine_R_bikePhone {\n        display: none;\n    }\n\n    @media only screen and (max-width: 1750px) {\n        .electricEngine_R_bikeA {\n            zoom: .95;\n        }\n    }\n\n    @media only screen and (max-width: 1650px) {\n        .electricEngine_R_bikeA {\n            zoom: .90;\n        }\n    }\n\n    @media only screen and (max-width: 1550px) {\n        .electricEngine_R_bikeA {\n            zoom: .85;\n        }\n\n        .electricEngine_L_title {\n            font-size: 50px;\n        }\n\n        .electricEngine_L_word {\n            max-width: 400px;\n            font-size: 16px;\n            padding-top: 25px;\n            line-height: 25px;\n        }\n\n        .electricEngine_L_tip {\n            padding-top: 50px;\n        }\n\n        .electricEngine_L_tip_box h6 {\n            font-size: 23px;\n        }\n\n        .electricEngine_L_tip_box p {\n            font-size: 16px;\n            margin-top: 10px;\n        }\n\n    }\n\n    @media only screen and (max-width: 1450px) {\n        .electricEngine_R_bikeA {\n            zoom: .80;\n        }\n    }\n\n    @media only screen and (max-width: 1350px) {\n        .electricEngine_R_bikeA {\n            zoom: .75;\n        }\n\n        .electricEngine_L {\n            left: 7%;\n        }\n    }\n\n    @media only screen and (max-width: 1250px) {\n        .electricEngine_R_bikeA {\n            zoom: .70;\n        }\n\n        .electricEngine_L {\n            left: 5%;\n        }\n\n        .electricEngine_L_title {\n            font-size: 30px;\n        }\n\n        .electricEngine_L_word {\n            font-size: 14px;\n            padding-top: 20px;\n            line-height: 23px;\n        }\n\n        .electricEngine_L_tip {\n            padding-top: 35px;\n        }\n\n        .electricEngine_L_tip div:first-child {\n            margin-right: 30px;\n        }\n\n        .electricEngine_L_tip_box h6 {\n            font-size: 18px;\n        }\n\n        .electricEngine_L_tip_box p {\n            font-size: 14px;\n        }\n    }\n\n    @media only screen and (max-width: 1150px) {\n        .electricEngine_R_bikeA {\n            zoom: .65;\n        }\n\n        .electricEngine_L {\n            left: 3%;\n        }\n    }\n\n    @media only screen and (max-width: 1050px) {\n        .electricEngine_R_bikeA {\n            zoom: .60;\n        }\n\n        .electricEngine_L {\n            left: 3%;\n        }\n\n        .electricEngine_L_word {\n            max-width: 350px;\n        }\n    }\n\n    @media only screen and (max-width: 950px) {\n        .electricEngine_R_bikeA {\n            zoom: .55;\n        }\n\n        .electricEngine_L_word {\n            max-width: 280px;\n        }\n    }\n\n    @media only screen and (max-width: 850px) {\n        .electricEngine_R_bikeA {\n            zoom: .50;\n        }\n\n        .electricEngine_L_word {\n            max-width: 250px;\n        }\n    }\n\n    @media only screen and (max-width: 800px) {\n        .electricEngine {\n            max-width: 800px;\n            display: block;\n        }\n\n        .electricEngine_L {\n            position: initial;\n            max-width: 100%;\n            margin: 35px auto;\n            padding: 0 10px;\n            box-sizing: border-box;\n        }\n\n        .electricEngine_L_word {\n            max-width: 100%;\n        }\n\n        .electricEngine_L_tip {\n            padding-top: 20px;\n        }\n\n        .a,\n        .b,\n        .c,\n        .d {\n            top: 12%;\n            right: auto;\n        }\n\n        .a {\n            left: 3%;\n        }\n\n        .b,\n        .c,\n        .d {\n            left: 5%;\n        }\n\n        .electricEngine_R_bikeA,\n        .electricEngine_R_bg {\n            display: none;\n        }\n\n        .electricEngine_R_bikePhone,\n        .electricEngine_R_bgPhone {\n            display: block;\n        }\n\n        .electricEngine_R_bikePhone>div {\n            position: absolute;\n            top: 0;\n        }\n\n        .electricEngine_R_bikePhone img {\n            max-width: 450px;\n            width: 100%;\n        }\n\n        .aPhone {\n            right: 19%;\n            z-index: 4;\n        }\n\n        .bPhone {\n            right: 17%;\n            z-index: 3;\n        }\n\n        .cPhone {\n            right: 17%;\n            z-index: 2;\n        }\n\n        .dPhone {\n            right: 17%;\n        }\n    }\n\n    @media only screen and (max-width: 750px) {\n        .electricEngine_R_bikePhone {\n            zoom: .90;\n        }\n    }\n\n    @media only screen and (max-width: 700px) {\n        .electricEngine_R_bikePhone {\n            zoom: .85;\n        }\n    }\n\n    @media only screen and (max-width: 650px) {\n        .electricEngine_R_bikePhone {\n            zoom: .80;\n        }\n    }\n\n    @media only screen and (max-width: 600px) {\n        .electricEngine_R_bikePhone {\n            zoom: .75;\n        }\n    }\n\n    @media only screen and (max-width: 550px) {\n        .electricEngine_R_bikePhone {\n            zoom: .70;\n        }\n\n        .electricEngine_L_title {\n            font-size: 20px;\n        }\n\n        .electricEngine_L_word {\n            font-size: 12px;\n            padding-top: 10px;\n            line-height: 20px;\n        }\n\n        .electricEngine_L_tip_box h6 {\n            font-size: 15px;\n        }\n\n        .electricEngine_L_tip_box p {\n            font-size: 12px;\n            margin-top: 5px;\n        }\n    }\n\n    @media only screen and (max-width: 500px) {\n        .electricEngine_R_bikePhone {\n            zoom: .65;\n        }\n    }\n\n    @media only screen and (max-width: 450px) {\n        .electricEngine_R_bikePhone {\n            zoom: .60;\n        }\n    }\n\n    @media only screen and (max-width: 400px) {\n        .electricEngine_R_bikePhone {\n            zoom: .55;\n        }\n    }\n\n    @media only screen and (max-width: 350px) {\n        .electricEngine_R_bikePhone {\n            zoom: .50;\n        }\n    }\n\n    @media only screen and (max-width: 330px) {\n        .electricEngine_R_bikePhone {\n            zoom: .45;\n        }\n    }\n<\/style>\n\n<div class=\"electricEngine\">\n    <div class=\"electricEngine_R_bg\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/bb5.jpg?v=1682146025\" alt=\"\">\n    <\/div>\n    <div class=\"electricEngine_R_bgPhone\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/bb7.jpg?v=1682146025\" alt=\"\">\n    <\/div>\n    <div class=\"electricEngine_R_bikeA\">\n        <div class=\"a\"><img src=\"https:\/\/cdn.shopifycdn.net\/s\/files\/1\/0081\/3039\/6242\/files\/700MF.webp?v=1703732143\"\n                alt=\"\"><\/div>\n        <div class=\"b\"><img class=\"bb\"\n                src=\"https:\/\/cdn.shopifycdn.net\/s\/files\/1\/0081\/3039\/6242\/files\/700_a1.gif?v=1682404760\" alt=\"\"><\/div>\n        <div class=\"c\"><img class=\"cc\"\n                src=\"https:\/\/cdn.shopifycdn.net\/s\/files\/1\/0081\/3039\/6242\/files\/700_b2.gif?v=1682578312\" alt=\"\"><\/div>\n        <div class=\"d\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/700.png?v=1682146092\"\n                alt=\"\"><\/div>\n    <\/div>\n    <div class=\"electricEngine_R_bikePhone\">\n        <div class=\"aPhone\"><img\n                src=\"https:\/\/cdn.shopifycdn.net\/s\/files\/1\/0081\/3039\/6242\/files\/500MF.webp?v=1703732177\" alt=\"\"><\/div>\n        <div class=\"bPhone\"><img class=\"bbPhone\"\n                src=\"https:\/\/cdn.shopifycdn.net\/s\/files\/1\/0081\/3039\/6242\/files\/500_a1.gif?v=1682578976\" alt=\"\"><\/div>\n        <div class=\"cPhone\"><img class=\"ccPhone\"\n                src=\"https:\/\/cdn.shopifycdn.net\/s\/files\/1\/0081\/3039\/6242\/files\/500_b1.gif?v=1682578976\" alt=\"\"><\/div>\n        <div class=\"dPhone\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/500.png?v=1682146089\"\n                alt=\"\"><\/div>\n    <\/div>\n    <div class=\"electricEngine_L\">\n        <h3 class=\"electricEngine_L_title\">\n            MAXFOOT 750W<br> Rear Drive Motor\n        <\/h3>\n        <p class=\"electricEngine_L_word\">The MAXFOOT powerful motor provides the MF-33 with a rated power of 750W (peak power 1100W) and a powerful torque of 85N.m. \n            In the new version in 2024, the position of the MF-33's motor has been changed to the rear wheel position. \n            This means that the entire vehicle is driven by the two rear wheels, and the driving mode is changed from the original <b>\"pull\"<\/b> to <b>\"push\"<\/b>. When riding on some special terrain, the front wheel will no longer slip. \n            The MAXFOOT motor will work with the two rear wheels to easily push you forward. Free from terrain anxiety, your rides will be easier and more enjoyable.<\/p>\n        <div class=\"electricEngine_L_tip\">\n            <div class=\"electricEngine_L_tip_box\">\n                <h6>750W<\/h6>\n                <p>Motor Power<\/p>\n            <\/div>\n            <div class=\"electricEngine_L_tip_box\">\n                <h6>85N.m<\/h6>\n                <p>Motor Torque<\/p>\n            <\/div>\n        <\/div>\n    <\/div>\n<\/div>\n\n<script src=\"{{ 'gsap.js' | asset_url }}\"><\/script>\n<script src=\"{{ 'scrollTrigger.js' | asset_url }}\"><\/script>\n<script>\n    var timerImg, timeOneImg, timeTwoImg;\n    function gsapFun(num1, num2) {\n        gsap.registerPlugin(ScrollTrigger);\n        gsap.timeline({\n            scrollTrigger: {\n                trigger: \".electricEngine\",\n                start: \"top center\",\n                end: \"top 10px\",\n                scrub: true\n            }\n        })\n            .to('.electricEngine_R_bg', { x: 100, opacity: 0.05 }, 0)\n            .to('.a', { x: num1 }, 0)\n            .to('.b', { x: num2, }, 0)\n    }\n\n    function gsapFunPhone(num1, num2) {\n        gsap.registerPlugin(ScrollTrigger);\n        gsap.timeline({\n            scrollTrigger: {\n                trigger: \".electricEngine\",\n                start: \"top center\",\n                end: \"+=40%\",\n                scrub: true\n            }\n        })\n            .to('.electricEngine_R_bgPhone', { x: 50, opacity: 0.05 }, 0)\n            .to('.aPhone', { x: num1 }, 0)\n            .to('.bPhone', { x: num2, }, 0)\n    }\n\n\n    window.onload = function () {\n        gsapFun(-250, -20)\n        gsapFunPhone(-160, -20)\n    }\n\n    const iframeDom = document.querySelector('.electricEngine_R_bikeA')\n    const iframeDomPhone = document.querySelector('.electricEngine_R_bikePhone')\n    function aa(width, zoom, widthPhone, zoomPhone) {\n        if (window.innerWidth < width) {\n            iframeDom.style.zoom = window.innerWidth * zoom \/ width\n        } else {\n            iframeDom.style.zoom = zoom\n        }\n        if (window.innerWidth < widthPhone) {\n            iframeDomPhone.style.zoom = window.innerWidth * zoomPhone \/ widthPhone\n        } else {\n            iframeDomPhone.style.zoom = zoom\n        }\n    }\n    aa(1920, 1.02, 800, 1)\n    window.onresize = function () {\n        aa(1920, 1.02, 800, 1)\n    }\n<\/script>","color_scheme":"background-1","padding_top":40,"padding_bottom":52}},"rich_text_PxT8Bg":{"type":"rich-text","blocks":{"heading_4GVH8j":{"type":"heading","settings":{"heading":"Performance Comparison","heading_size":"h1"}},"text_QiHBmG":{"type":"text","settings":{"text":"<h2><strong>Front-Drive<\/strong> VS <strong>Rear-Drive<\/strong><\/h2>"}}},"block_order":["heading_4GVH8j","text_QiHBmG"],"disabled":true,"custom_css":["{margin-bottom: -50px;}"],"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"background-1","full_width":true,"padding_top":40,"padding_bottom":52}},"custom_liquid_7aFmgi":{"type":"custom-liquid","custom_css":["{margin-bottom: 100px;}"],"settings":{"custom_liquid":"<style>\n.progressBar > * {\n    margin: 0;\n    padding: 0;\n    line-height: initial;\n}\n.progressBar {\n    max-width: 1200px;\n    width: 100%;\n    margin: 0 auto;\n    padding: 0 10px;\n    box-sizing: border-box;\n    display: flex;\n}\n.progressBar img {\n    max-width: 100%;\n    width: 100%;\n    height: 100%;\n    display: block;\n    margin: 0 auto;\n}\n.progressBar_msgContent{\n    display: flex;\n    flex-wrap: wrap;\n    max-width: 300px;\n    width: 100%;\n    align-items: center;\n}\n.progressBar_msg {\n    font-size: 20px;\n    font-weight: 700;\n}\n.progressBar_msg figcaption {\n    text-align: center;\n    margin-top: 5px;\n}\n.progressBar_iconContent {\n    flex: 1;\n    margin-left: 20px;\n}\n.progressBar_icon img {\n    max-width: 50px;\n    width: 100%;\n    margin: 0;\n}\n.progressBar_iconTitle,.progressBar_iconBar .num {\n    display: flex;\n    align-items: center;\n    justify-content: flex-start;\n}\n.progressBar_iconTitle {\n    font-size: 25px;\n    margin-bottom: 10px;\n}\n.progressBar_iconTitle figcaption {\n    margin-left: 5px;\n    font-weight: 700;\n}\n.progressBar_iconBar {\n    font-size: 20px;\n}\n.progressBar_iconBar >p{\n    margin-bottom: 5px;\n}\n.progressBar_iconBar .num{\n    font-weight: 700;\n}\n.progressBar_iconBar .num img {\n    max-width: 20px;\n    width: 100%;\n}\n.progressBar_iconBar .bar {\n    animation: striped-flow 3s linear infinite;\n    background-image: linear-gradient(45deg,rgba(0,0,0,.1) 25%,transparent 25%,transparent 50%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.1) 75%,transparent 75%,transparent);\n    background-size: 1.25em 1.25em;\n    background-color: #ffd900;\n    border-radius: 100px;\n    white-space: nowrap;\n    transition: width .6s ease;\n    width: 100%;\n    animation-duration: 30s;\n}\n@keyframes striped-flow {\n    0% {\n        background-position: -100%\n    }\n\n    to {\n        background-position: 100%\n    }\n}\n.progressBar_iconBar .bar_num {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.progressBar_iconBar_grey {\n    margin-top: 10px;\n}\n.progressBar_iconBar .barBg {\n    background-color: #ebeef5;\n    width: 92%;\n    border-radius: 100px;\n    line-height: 1;\n}\n.progressBar_iconBar_grey .barGrey {\n    width: 60%;\n    background-color: #b7b7b7;\n    border-radius: 100px;\n}\n.progressBar_icon2 {\n    margin: 80px 0;\n}\n\n.progressBar_icon1 .progressBar_iconBar .bar {\n    width: 80%;\n}\n.progressBar_icon2 .progressBar_iconBar .bar {\n    width: 70%;\n}\n.progressBar_icon3 .progressBar_iconBar .bar {\n    width: 70%;\n}\n.progressBar_icon1 .progressBar_iconBar_grey .barGrey {\n    width: 40%;\n}\n.progressBar_icon2 .progressBar_iconBar_grey .barGrey {\n    width: 50%;\n}\n.progressBar_icon3 .progressBar_iconBar_grey .barGrey {\n    width: 50%;\n}\n@media only screen and (max-width: 1300px) {\n    .progressBar_iconBar .barBg{\n        width: 90%;\n    }\n}\n@media only screen and (max-width: 1100px) {\n    .progressBar_iconBar .barBg{\n        width: 88%;\n    }\n    .progressBar_msgContent {\n        max-width: 250px;\n    }\n}\n@media only screen and (max-width: 900px) {\n    .progressBar_iconBar .barBg{\n        width: 86%;\n    }\n}\n@media only screen and (max-width: 750px) {\n    .progressBar {\n        max-width: 750px;\n        display: block;\n    }\n    .progressBar_msgContent {\n        max-width: 750px;\n        flex-wrap: nowrap;\n        margin-bottom: 20px;\n    }\n    .progressBar_msg {\n        flex: 1;\n    }\n    .progressBar_iconContent {\n        margin-left: 0;\n    }\n    .progressBar_msgContent .progressBar_msg:nth-child(1) {\n        margin-right: 10px;\n    }\n    .progressBar_msgContent .progressBar_msg:nth-child(2) {\n        margin-left: 10px;\n    }\n    .progressBar_iconBar_grey {\n        margin-top: 5px;\n    }\n    .progressBar_icon2 {\n        margin: 40px 0;\n    }\n}\n@media only screen and (max-width: 500px) {\n    .progressBar_msg ,.progressBar_iconBar{\n        font-size: 17px;\n    }\n    .progressBar_iconTitle {\n        font-size: 20px;\n    }\n    .progressBar_icon img {\n        max-width: 30px;\n    }\n    .progressBar_iconBar .num img {\n        max-width: 15px;\n    }\n    .progressBar_iconBar .barBg {\n        line-height: 0.8;\n    }\n    .progressBar_iconBar .barBg {\n        width: 80%;\n    }\n\n}\n    <\/style>\n    <div class=\"progressBar\">\n        <div class=\"progressBar_msgContent\">\n            <div class=\"progressBar_msg\">\n                <figure>\n                    <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_msg1.jpg?v=1708671100\" alt=\"\" >\n                    <figcaption>Rear Drive Motor<\/figcaption>\n                <\/figure>\n            <\/div>\n            <div class=\"progressBar_msg\">\n                <figure>\n                    <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_msg2.jpg?v=1708671099\" alt=\"\" >\n                    <figcaption>Front Hub Motor<\/figcaption>\n                <\/figure>\n            <\/div>\n        <\/div>\n        <div class=\"progressBar_iconContent\">\n            <div class=\"progressBar_icon progressBar_icon1\">\n                <figure class=\"progressBar_iconTitle\">\n                    <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_icon1.png?v=1708671099\" alt=\"\" >\n                    <figcaption>Speeded-Up<\/figcaption>\n                <\/figure>\n                <div class=\"progressBar_iconBar\">\n                    <p>Rear Drive Motor<\/p>\n                    <div class=\"bar_num\">\n                        <div class=\"barBg\"><div class=\"bar\">&nbsp;<\/div><\/div>\n                        <div class=\"num\">\n                            <span>100%<\/span>\n                            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_icon4.png?v=1708671099\" alt=\"\">\n                        <\/div>\n                    <\/div>\n                <\/div>\n                <div class=\"progressBar_iconBar progressBar_iconBar_grey\">\n                    <p>Front Hub Motor<\/p>\n                    <div class=\"barBg\"><div class=\"barGrey\">&nbsp;<\/div><\/div>\n                <\/div>\n            <\/div>\n            <div class=\"progressBar_icon progressBar_icon2\">\n                <figure class=\"progressBar_iconTitle\">\n                    <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_icon2.png?v=1708671099\" alt=\"\" >\n                    <figcaption>Driving Efficiency<\/figcaption>\n                <\/figure>\n                <div class=\"progressBar_iconBar\">\n                    <p>Rear Drive Motor<\/p>\n                    <div class=\"bar_num\">\n                        <div class=\"barBg\"><div class=\"bar\">&nbsp;<\/div><\/div>\n                        <div class=\"num\">\n                            <span>40%<\/span>\n                            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_icon4.png?v=1708671099\" alt=\"\">\n                        <\/div>\n                    <\/div>\n                <\/div>\n                <div class=\"progressBar_iconBar progressBar_iconBar_grey\">\n                    <p>Front Hub Motor<\/p>\n                    <div class=\"barBg\"><div class=\"barGrey\">&nbsp;<\/div><\/div>\n                <\/div>\n            <\/div>\n            <div class=\"progressBar_icon progressBar_icon3\">\n                <figure class=\"progressBar_iconTitle\">\n                    <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_icon3.png?v=1708671099\" alt=\"\" >\n                    <figcaption>Gradeability<\/figcaption>\n                <\/figure>\n                <div class=\"progressBar_iconBar\">\n                    <p>Rear Drive Motor<\/p>\n                    <div class=\"bar_num\">\n                        <div class=\"barBg\"><div class=\"bar\">&nbsp;<\/div><\/div>\n                        <div class=\"num\">\n                            <span>40%<\/span>\n                            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0081\/3039\/6242\/files\/progressBar_icon4.png?v=1708671099\" alt=\"\">\n                        <\/div>\n                    <\/div>\n                <\/div>\n                <div class=\"progressBar_iconBar progressBar_iconBar_grey\">\n                    <p>Front Hub Motor<\/p>\n                    <div class=\"barBg\"><div class=\"barGrey\">&nbsp;<\/div><\/div>\n                <\/div>\n            <\/div>\n        <\/div>\n    <\/div>","color_scheme":"background-1","padding_top":40,"padding_bottom":52}},"image_with_text_JACfy6":{"type":"image-with-text","blocks":{"heading_LzGCXy":{"type":"heading","settings":{"heading":"Rear Differential","heading_size":"h1"}},"text_cYQpVD":{"type":"text","settings":{"text":"<p>The differential exists to adjust the speed difference between the left and right wheels so that when the MF-33 electric tricycle is driving on uneven roads or turning, the left and right wheels can roll at different speeds. To achieve the purpose of ensuring the overall balance and safety of the electric tricycle when passing through special terrain or turning.<\/p>","text_style":"body"}}},"block_order":["heading_LzGCXy","text_cYQpVD"],"custom_css":[],"settings":{"image":"shopify:\/\/shop_images\/MAXFOOT_30-2.jpg","height":"adapt","desktop_image_width":"medium","layout":"image_first","desktop_content_position":"top","desktop_content_alignment":"left","content_layout":"no-overlap","color_scheme":"background-1","image_behavior":"none","mobile_content_alignment":"left","padding_top":36,"padding_bottom":36}},"image_with_text_KGV98L":{"type":"image-with-text","blocks":{"heading_8yFKi8":{"type":"heading","settings":{"heading":"Passenger Seat","heading_size":"h1"}},"text_zbK8TH":{"type":"text","settings":{"text":"<p>MF-33 electric tricycle is equipped with a rear passenger seat, which can theoretically support 2 additional adults. The step-thru passenger step is very convenient for adults and children to get in and out of the trike. The seat cushion and backrest of moderate thickness, combined with the footrests and armrests on both sides, will provide rear passengers with a comfortable riding experience and enjoy the scenery along the way.<\/p>","text_style":"body"}}},"block_order":["heading_8yFKi8","text_zbK8TH"],"custom_css":[],"settings":{"image":"shopify:\/\/shop_images\/d30e90ac4677d654ec8429fed5e29206.png","height":"adapt","desktop_image_width":"medium","layout":"text_first","desktop_content_position":"top","desktop_content_alignment":"left","content_layout":"no-overlap","color_scheme":"background-1","image_behavior":"none","mobile_content_alignment":"left","padding_top":36,"padding_bottom":36}},"image_with_text_tU3wD3":{"type":"image-with-text","blocks":{"heading_U4V9qk":{"type":"heading","settings":{"heading":"Taillight with Turn Signl","heading_size":"h1"}},"text_6rtyPb":{"type":"text","settings":{"text":"<p>In addition to the standard driving light and brake light functions, the MF-33's taillight also provides a turn signal function. With a reasonable key arrangement, you can light up the turn signal promptly and conveniently when you need to change lanes or turn while riding to remind the vehicle behind you. Ensure road safety for both parties.<\/p>","text_style":"body"}}},"block_order":["heading_U4V9qk","text_6rtyPb"],"custom_css":[],"settings":{"image":"shopify:\/\/shop_images\/1_78849427-defb-4bd0-941e-ae605843f51a.jpg","height":"adapt","desktop_image_width":"medium","layout":"image_first","desktop_content_position":"top","desktop_content_alignment":"left","content_layout":"no-overlap","color_scheme":"background-1","image_behavior":"none","mobile_content_alignment":"left","padding_top":36,"padding_bottom":36}},"image_with_text_VUijxg":{"type":"image-with-text","blocks":{"heading_VA9xMY":{"type":"heading","settings":{"heading":"Electric Horn","heading_size":"h1"}},"text_zDmNEN":{"type":"text","settings":{"text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","text_style":"body"}}},"block_order":["heading_VA9xMY","text_zDmNEN"],"disabled":true,"custom_css":["{margin-bottom: 100px;}"],"settings":{"image":"shopify:\/\/shop_images\/DSC_9290.jpg","height":"adapt","desktop_image_width":"medium","layout":"text_first","desktop_content_position":"top","desktop_content_alignment":"left","content_layout":"no-overlap","color_scheme":"background-1","image_behavior":"none","mobile_content_alignment":"left","padding_top":36,"padding_bottom":36}},"bicycle_tabs_4waMA6":{"type":"bicycle_tabs","blocks":{"bicycle_tabs_box_488wHc":{"type":"bicycleTabsBox","settings":{"bicycleTabs_tabTitle":"Step-Thru Frame","bicycleTabs_contentImg":"shopify:\/\/shop_images\/1523.png","bicycleTabs_contentHeader":"Step-Thru Frame","bicycleTabs_contentDesc":"The MF-33 fat tire electric trike designs the step-thru frame for more riders. Whoever you are, whatever you wear, you can span the frame and get on the trike easily."}},"bicycle_tabs_box_8AEXhK":{"type":"bicycleTabsBox","settings":{"bicycleTabs_tabTitle":"SAMSUNG Lithium Battery","bicycleTabs_contentImg":"shopify:\/\/shop_images\/2_3f9f8da1-e2a8-43d9-a239-e9d4a431feff.png","bicycleTabs_contentHeader":"SAMSUNG Lithium Battery","bicycleTabs_contentDesc":"The MF-33 fat tire electric trike provides a SAMSUNG 48V 20Ah high capacity battery, it can support MF-33 travel around 85+ miles on a single charge ( with PAS 1 )."}},"bicycle_tabs_box_LTzYxw":{"type":"bicycleTabsBox","settings":{"bicycleTabs_tabTitle":"Dual Rear Disc Brake","bicycleTabs_contentImg":"shopify:\/\/shop_images\/2_b72fae31-fb31-42b5-adfe-3bef8cae99a5.jpg","bicycleTabs_contentHeader":"Dual Rear Disc Brake","bicycleTabs_contentDesc":"The fat tire electric trike are equipped with 180mm dual disc brakes for all wheels, which prevents rollover effectively. When you brake, the brake disc can be sensitively held tightly according to your needs."}},"bicycle_tabs_box_AWMpLX":{"type":"bicycleTabsBox","disabled":true,"settings":{"bicycleTabs_tabTitle":"Passenger Seat","bicycleTabs_contentImg":"shopify:\/\/shop_images\/PS.png","bicycleTabs_contentHeader":"Passenger Seat","bicycleTabs_contentDesc":"MF-33 is equipped with a rear passenger seat, which can theoretically support 2 additional adults. The step-thru passenger step is very convenient for adults and children to get in and out of the trike. The seat cushion and backrest of moderate thickness, combined with the footrests and armrests on both sides, will provide rear passengers with a comfortable riding experience and enjoy the scenery along the way."}},"bicycle_tabs_box_cm3nNK":{"type":"bicycleTabsBox","settings":{"bicycleTabs_tabTitle":"Thick Comfortable Seat","bicycleTabs_contentImg":"shopify:\/\/shop_images\/1_c1ee205c-4a56-418c-9968-6eb9861c1fa6.png","bicycleTabs_contentHeader":"Thick Comfortable Seat","bicycleTabs_contentDesc":"The electric trike for adults features a thick padded saddle with a unique design of backrest of the seat. It can improve your riding comfort and keep your riding comfortable at rough torgraphy."}}},"block_order":["bicycle_tabs_box_488wHc","bicycle_tabs_box_8AEXhK","bicycle_tabs_box_LTzYxw","bicycle_tabs_box_AWMpLX","bicycle_tabs_box_cm3nNK"],"custom_css":["{margin-bottom: 100px;}"],"settings":{}},"accordion_module_pjbfXE":{"type":"accordion-module","blocks":{"slide_JW39tM":{"type":"slide","settings":{"heading":"Electronic","item_heading_1":"Battery","item_content_1":"UL-Certified SAMSUNG 48V 20AH Lithium Battery","item_heading_2":"Motor","item_content_2":"750W Rear Drive Brushless Geared Motor","item_heading_3":"Throttle","item_content_3":"Variable Speed Control - 1\/2 Twist Throttle","item_heading_4":"Display","item_content_4":"Maxfoot 5 Inch LCD Display With USB Port","item_heading_5":"Controller","item_content_5":"Maxfoot 25A Overall Waterproof Controller","item_heading_6":"Integrated Wiring","item_content_6":"Water-Resistant Connectors and Wiring Harness","item_heading_7":"Lights","item_content_7":"Integrated Headlight, Brake Light and Turn Signal","item_heading_8":"Pedal Assist","item_content_8":"Intelligent 5 level pedal assist With an integrated speed sensor","item_heading_9":"","item_content_9":"","item_heading_10":"","item_content_10":"","item_heading_11":"","item_content_11":"","item_heading_12":"","item_content_12":""}},"slide_fbCBFT":{"type":"slide","settings":{"heading":"Mechanics","item_heading_1":"Frame","item_content_1":"Front: 6061 Aluminium-Alloy Frame Rear: 7A19 Aluminium-Alloy Frame","item_heading_2":"Fork","item_content_2":"Maxfoot 50mm Max Travel Suspension Fork","item_heading_3":"Chain Puller","item_content_3":"Shimano 7 Speeds gear","item_heading_4":"Rotors","item_content_4":"180mm Disc Brake (Front *1 \/ Rear *2)","item_heading_5":"Tire","item_content_5":"Front 24\" \/ Rear 20\"","item_heading_6":"Brake levers","item_content_6":"Dual power-off brake levers","item_heading_7":"Saddle","item_content_7":"Thickened saddle with backrest","item_heading_8":"Fender","item_content_8":"Aluminium-Alloy Fenders","item_heading_9":"","item_content_9":"","item_heading_10":"","item_content_10":"","item_heading_11":"","item_content_11":"","item_heading_12":"","item_content_12":""}},"slide_RCijqF":{"type":"slide","settings":{"heading":"Data","item_heading_1":"Charging Time","item_content_1":"9-10 Hours (Depending On The Battery Status)","item_heading_2":"G.W:","item_content_2":"220 lbs","item_heading_3":"Range","item_content_3":"85+ Miles with PAS 1","item_heading_4":"Max. Load Capacity","item_content_4":"500lbs","item_heading_5":"Battery Life","item_content_5":"Rated For 800 Charge Cycles","item_heading_6":"Appropriate Height","item_content_6":"5'2\" - 6'4\"","item_heading_7":"","item_content_7":"","item_heading_8":"","item_content_8":"","item_heading_9":"","item_content_9":"","item_heading_10":"","item_content_10":"","item_heading_11":"","item_content_11":"","item_heading_12":"","item_content_12":""}}},"block_order":["slide_JW39tM","slide_fbCBFT","slide_RCijqF"],"settings":{"max_width":"1200px","item_quantity":3,"heading_font":"anek_tamil_n8","content_font":"anek_tamil_n3","pc_margin_top":20,"pc_margin_bottom":20,"mb_margin_top":20,"mb_margin_bottom":20}},"1779069388ed3e4a47":{"type":"_blocks","blocks":{"ai_gen_block_7591c74_taKQg9":{"type":"ai_gen_block_7591c74","settings":{"title":"Frequently Asked Questions","description":"<p>Find answers to common questions about our products<\/p>","question_1":"Is the Maxfoot MF-33 safe for carrying elderly passengers or kids?","answer_1":"<p>Yes, safety is our top priority. The MF-33 features a low step-thru frame for easy boarding, built-in safety belts for rear passengers, and an advanced rear differential that prevents tipping during sharp turns, making it exceptionally safe for seniors and children.<\/p>","question_2":"What is the weight capacity of the Maxfoot MaxLandau MF-33?","answer_2":"<p>The MF-33 MaxLandau has a heavy-duty payload capacity of up to 500 lbs, easily accommodating the rider and two rear passengers.<\/p>","question_3":"Can the MF-33 E-Trike handle hills when fully loaded?","answer_3":"<p>Absolutely. Equipped with a high-torque 750W rear motor (85 Nm) and a 48V 20Ah Samsung battery, the MF-33 delivers a 40% increase in climbing efficiency, ensuring smooth uphill rides even with a full passenger load.<\/p>","question_4":"Is the trike suitable for seniors or individuals with disabilities?","answer_4":"<p>Of course! The Maxfoot electric trike comes with a saddle. It has a backrest. This ensures a comfortable riding experience.<\/p>","question_5":"Does the electric trike come with a battery and both front and rear baskets included?","answer_5":"<p>The MF-33 MAXLANDAU Rear Drive electric trike comes with a battery, front basket, rear basket and even seat belt.<\/p>","desktop_width_percent":95,"text_alignment":"left","section_padding":40,"item_spacing":12,"item_padding":20,"border_radius":0,"background_color":"#ffffff","item_background":"#ffffff","hover_background":"#f3f3f3","border_color":"#e0e0e0","title_color":"#121212","question_color":"#121212","text_color":"#121212","icon_color":"#121212","title_size":32,"description_size":16,"question_size":16,"answer_size":14},"blocks":{}}},"block_order":["ai_gen_block_7591c74_taKQg9"],"settings":{}},"collapsible_content_jHtWgq":{"type":"collapsible-content","blocks":{"collapsible_row_9wHA7h":{"type":"collapsible_row","settings":{"heading":"How assembled is the MF-33 MAXLANDAU Rear Drive Electric Trike when it arrives, and what will I need to do to finish the assembly?","icon":"none","row_content":"<p>The MF-33 MAXLANDAU Rear Drive electric trike comes 85% pre-assembled. Only simple components need to be installed, and these can be easily put in place.<\/p>","page":""}},"collapsible_row_RKewwt":{"type":"collapsible_row","settings":{"heading":"Is the trike suitable for seniors or individuals with disabilities?","icon":"none","row_content":"<p>Of course! The Maxfoot electric trike comes with a saddle. It has a backrest. This ensures a comfortable riding experience.<\/p>","page":""}},"collapsible_row_UgxzGC":{"type":"collapsible_row","settings":{"heading":"Does the electric trike come with a battery and both front and rear baskets included?","icon":"none","row_content":"<p>The MF-33 MAXLANDAU Rear Drive electric trike comes with a battery, front basket, rear basket and even seat belt.<\/p>","page":""}},"collapsible_row_XXbaGk":{"type":"collapsible_row","settings":{"heading":"What's inside the box?","icon":"none","row_content":"<p>A seatbelt, a battery and a charger.<\/p>","page":""}},"collapsible_row_3fpf6g":{"type":"collapsible_row","settings":{"heading":"What kind of warranty is included with Maxfoot electric trike in the United States?","icon":"none","row_content":"<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https:\/\/maxfoot.bike\/policies\/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty<\/a>.<\/p>","page":""}}},"block_order":["collapsible_row_9wHA7h","collapsible_row_RKewwt","collapsible_row_UgxzGC","collapsible_row_XXbaGk","collapsible_row_3fpf6g"],"disabled":true,"name":"t:sections.collapsible_content.presets.name","settings":{"caption":"","heading":"FAQ - MF-33 MAXLANDAU Rear Drive Electric Trike","heading_size":"h1","heading_alignment":"center","layout":"none","color_scheme":"background-1","container_color_scheme":"background-2","open_first_collapsible_row":false,"image_ratio":"adapt","desktop_layout":"image_second","padding_top":36,"padding_bottom":36}},"impact_featured_collection_4NRrEh":{"type":"impact-featured-collection","blocks":{"product_msg_fqCyc9":{"type":"product_msg","settings":{"product":"750w-maxz-20-step-thru-electric-trike-picton-blue","product_image_alt":"","product_title":"","icon_title1":"48V 20Ah","icon_title2":"48V 20Ah","icon_title3":"48V 20Ah","icon_title4":"48V 20Ah"}},"product_msg_z6Cz9X":{"type":"product_msg","settings":{"product":"750w-maxz-24-step-thru-electric-trike-pangea-green","product_image_alt":"","product_title":"","icon_title1":"48V 20Ah","icon_title2":"48V 20Ah","icon_title3":"48V 20Ah","icon_title4":"48V 20Ah"}},"product_msg_H4THYX":{"type":"product_msg","settings":{"product":"maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-neptune-blue","product_image_alt":"","product_title":"","icon_title1":"48V 20Ah","icon_title2":"48V 20Ah","icon_title3":"48V 20Ah","icon_title4":"48V 20Ah"}},"product_msg_HP6Fcm":{"type":"product_msg","settings":{"product":"mf-33-passenger-electric-tricycle-yellow","product_image_alt":"","product_title":"","icon_title1":"48V 20Ah","icon_title2":"48V 20Ah","icon_title3":"48V 20Ah","icon_title4":"48V 20Ah"}}},"block_order":["product_msg_fqCyc9","product_msg_z6Cz9X","product_msg_H4THYX","product_msg_HP6Fcm"],"name":"impact collection","settings":{"title":"You may also like","view_all_link":"","currency_code_enabled":false,"percentage_mode":false,"layout_type":"grid","layout_type_phone":"scroll","product_color_display":"swatch"}},"171248711217421731":{"type":"apps","blocks":{"judge_me_reviews_review_widget_x74DA7":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{"review_data":"sample_data","max_width":1200,"show_shop_reviews":false,"empty_state":"empty_widget"}}},"block_order":["judge_me_reviews_review_widget_x74DA7"],"settings":{"include_margins":true}}},"order":["main","related-products","text_module_RXYq4J","slideshow_2_LhKh4p","graphic_module_rBVcTY","custom_liquid_RFfafi","rich_text_PxT8Bg","custom_liquid_7aFmgi","image_with_text_JACfy6","image_with_text_KGV98L","image_with_text_tU3wD3","image_with_text_VUijxg","bicycle_tabs_4waMA6","accordion_module_pjbfXE","1779069388ed3e4a47","collapsible_content_jHtWgq","impact_featured_collection_4NRrEh","171248711217421731"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size": "medium"
+          }
+        },
+        "text_p8jdJH": {
+          "type": "text",
+          "settings": {
+            "text": "Ride together, explore more. The MF-33 electric tricycle for 2-3 adults blends style and function for effortless shared adventures.",
+            "text_style": "body"
+          }
+        },
+        "judge_me_reviews_preview_badge_exgDXf": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "custom_liquid_da73Nd": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror </span>\n    </div>\n   \n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "custom_liquid_fLnnFx": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"hidden_\" style=\"\nfont-size: 20px; \ncolor: black; \n/*text-decoration: underline;\ntext-decoration-color: #ffc000;*/\nmargin-top: 0px;\nmargin-bottom: 0px !important;\n\">\n    For riders: 5'2\" - 6'4\" \n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "color"
+          }
+        },
+        "inventory_WnUDXG": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
+        "custom_liquid_rppzzL": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"hidden_\" style=\"\n    background-color: rgba(177, 177, 177, 0.2);\n    color: #121212;\n    padding: 12px 20px;\n    display: inline-block;\n    border: none;\n    border-radius: 4px;\n    font-family: Arial, sans-serif;\nwidth: 100%;\n\">\n<strong>\nOrange Preorder Available<br>\nExpect to Ship on <strong>End-July</strong>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "impact_accessories_i4XbDY": {
+          "type": "impact-accessories",
+          "settings": {
+            "accessories_product": "rearview-bicycle-mirrors",
+            "accessories_is_fold": "no",
+            "accessories_is_checed": "yes",
+            "accessories_is_link": "no",
+            "accessories_link": ""
+          }
+        },
+        "impact_accessories_xqd7Cr": {
+          "type": "impact-accessories",
+          "settings": {
+            "accessories_product": "electric-bicycle-weather-cover",
+            "accessories_is_fold": "no",
+            "accessories_is_checed": "no",
+            "accessories_is_link": "no",
+            "accessories_link": ""
+          }
+        },
+        "impact_accessories_jYwYXH": {
+          "type": "impact-accessories",
+          "settings": {
+            "accessories_product": "48v-2a-5-pins-battery-charger-for-mf-30-mf-33-maxz-series",
+            "accessories_is_fold": "no",
+            "accessories_is_checed": "no",
+            "accessories_is_link": "no",
+            "accessories_link": ""
+          }
+        },
+        "impact_accessories_GJDehi": {
+          "type": "impact-accessories",
+          "settings": {
+            "accessories_product": "20ah-battery-for-mf-30-20ah-and-mf-23",
+            "accessories_is_fold": "no",
+            "accessories_is_checed": "no",
+            "accessories_is_link": "no",
+            "accessories_link": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        },
+        "collapsible_tab_ApcEjL": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Return and Refund",
+            "content": "",
+            "icon": "return"
+          }
+        },
+        "collapsible_tab_mxAUKL": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping",
+            "content": "",
+            "icon": "truck"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "text_p8jdJH",
+        "judge_me_reviews_preview_badge_exgDXf",
+        "price",
+        "custom_liquid_da73Nd",
+        "custom_liquid_fLnnFx",
+        "variant_picker",
+        "inventory_WnUDXG",
+        "custom_liquid_rppzzL",
+        "impact_accessories_i4XbDY",
+        "impact_accessories_xqd7Cr",
+        "impact_accessories_jYwYXH",
+        "impact_accessories_GJDehi",
+        "quantity_selector",
+        "buy_buttons",
+        "share",
+        "collapsible_tab_ApcEjL",
+        "collapsible_tab_mxAUKL"
+      ],
+      "custom_css": [
+        ".subtitle {color: #ffc200;}",
+        ".icon-with-text--horizontal {column-gap: 0rem;}",
+        "@media only screen and (max-width: 750px) {.icon-with-text--horizontal {column-gap: 0rem; } h4 {font-size: 1.4rem; }}"
+      ],
+      "settings": {
+        "show_stock": true,
+        "stock_count": "",
+        "show_finance": true,
+        "finance_label": "Affirm financing",
+        "finance_link": "",
+        "show_extras": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "text_module_RXYq4J": {
+      "type": "text-module",
+      "custom_css": [
+        "{background-color: #ffc000;}",
+        ".textmodule {padding-top: 80px; padding-bottom: 80px; background-color: #ffc000;}"
+      ],
+      "settings": {
+        "max_width": "1400px",
+        "main_title": "Share the Journey, Multiply the Joy",
+        "subhead": "MF-33 E-Trike",
+        "text": "Over the years, our riders have told us one thing clear and loud: the best journeys are the ones shared. Driven by your feedback, we re-imagined what an electric tricycle could be and created the Maxfoot MF-33—our very first multi-passenger E-Trike.\n\nAs a groundbreaking addition to the Maxfoot lineup, the MF-33 takes our industry-leading tricycle craftsmanship and elevates it for the whole family. While we’ve meticulously optimized the rider’s comfort and control, we’ve also introduced a spacious, premium rear passenger seat. Whether you're cruising with family, running errands, or exploring with friends, the MF-33 is designed to turn every ride into a shared adventure.\n\nDon't just ride alone—bring your favorite people along for the journey.",
+        "pc_margin_top": "0px",
+        "pc_margin_bottom": "0px",
+        "mb_margin_top": "0px",
+        "mb_margin_bottom": "0px"
+      }
+    },
+    "slideshow_2_LhKh4p": {
+      "type": "slideshow-2",
+      "blocks": {
+        "slide_CCUV3q": {
+          "type": "slide",
+          "settings": {
+            "image_pc": "shopify://shop_images/D4CDA9269DF4E9F8D5421A046DD53FDF.jpg",
+            "image_mobile": "shopify://shop_images/B6B2CDD3D4B867A80BC8C2A6CDE96615.jpg",
+            "jump_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_CCUV3q"
+      ],
+      "custom_css": [
+        ". {}"
+      ],
+      "name": "Slide Show",
+      "settings": {
+        "cut_button": false
+      }
+    },
+    "graphic_module_rBVcTY": {
+      "type": "graphic-module",
+      "blocks": {
+        "slide_YeVXkV": {
+          "type": "slide",
+          "settings": {
+            "icon": "shopify://shop_images/c5b9a1702888b8b61400b8ec135d2fdf_4bb2ddaf-80db-47d2-a491-b330555e2e86.png",
+            "main_title": "48V 20Ah",
+            "text": "UL-Certified Battery"
+          }
+        },
+        "slide_mjkgJU": {
+          "type": "slide",
+          "settings": {
+            "icon": "shopify://shop_images/953ebbc1f2f5775c228625e1c716cf87_71d20080-0065-49c4-88de-df513e125467.png",
+            "main_title": "750 W",
+            "text": "Rear Drive Motor"
+          }
+        },
+        "slide_3qCiHy": {
+          "type": "slide",
+          "settings": {
+            "icon": "shopify://shop_images/dcbf258b7e33f36ca3423eee233866fa_e9077569-3288-45de-8f7a-8b344e4e991c.png",
+            "main_title": "85N.m",
+            "text": "Motor Torque"
+          }
+        },
+        "slide_dMqTVc": {
+          "type": "slide",
+          "settings": {
+            "icon": "shopify://shop_images/1_f9b70bb5-65a3-4fb9-abcc-927a46e4511e.png",
+            "main_title": "Up to 3",
+            "text": "Rider and Pessengers"
+          }
+        }
+      },
+      "block_order": [
+        "slide_YeVXkV",
+        "slide_mjkgJU",
+        "slide_3qCiHy",
+        "slide_dMqTVc"
+      ],
+      "settings": {
+        "max_width": "1400px",
+        "main_image": "shopify://shop_images/af1820e73c8e794d1e892c7c02681cfa.jpg",
+        "pc_margin_top": "50px",
+        "pc_margin_bottom": "0px",
+        "mb_margin_top": "0px",
+        "mb_margin_bottom": "0px"
+      }
+    },
+    "custom_liquid_RFfafi": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "<style>\n    * {\n        margin: 0;\n        padding: 0;\n    }\n\n    html {\n        font-family: 'Arial';\n    }\n\n    .electricEngine {\n        position: relative;\n        max-width: 1920px;\n        width: 100%;\n        overflow: hidden;\n        display: flex;\n        align-items: center;\n        justify-content: space-between;\n        flex-flow: row-reverse;\n        margin: 0 auto;\n    }\n\n    .electricEngine_L {\n        max-width: 610px;\n        width: 100%;\n        position: absolute;\n        left: 10%;\n        top: 10%;\n    }\n\n    .electricEngine_L_title {\n        font-size: 70px;\n        color: #151515;\n        font-weight: 600;\n    }\n\n    .electricEngine_L_word {\n        max-width: 500px;\n        width: 100%;\n        font-size: 18px;\n        color: #0e0e0e;\n        font-weight: 400;\n        padding-top: 40px;\n        line-height: 30px;\n    }\n\n    .electricEngine_L_tip {\n        display: flex;\n        align-items: center;\n        justify-content: flex-start;\n        padding-top: 80px;\n    }\n\n    .electricEngine_L_tip div:first-child {\n        margin-right: 55px;\n    }\n\n    .electricEngine_L_tip_box h6 {\n        font-size: 34px;\n        font-weight: 600;\n        margin-block-start: auto;\n        margin-block-end: auto;\n    }\n\n    .electricEngine_L_tip_box p {\n        font-size: 18px;\n        font-weight: 400;\n        margin-top: 20px;\n    }\n\n    .electricEngine_R_bg {\n        max-width: 1920px;\n        width: 100%;\n    }\n\n    .electricEngine_R_bgPhone {\n        max-width: 800px;\n        width: 100%;\n        display: none;\n    }\n\n    .electricEngine_R_bg img,\n    .electricEngine_R_bgPhone img {\n        display: block;\n        width: 100%;\n        height: 100%;\n    }\n\n    .electricEngine_L_title {\n        position: relative;\n    }\n\n    .underline_title {\n        position: absolute;\n        bottom: -10px;\n        left: 0px;\n        z-index: -1;\n    }\n</style>\n<style>\n    .electricEngine_R_bikeA img {\n        max-width: 700px;\n        width: 100%;\n        transition: all 1s;\n    }\n\n    .b,\n    .c,\n    .d,\n    .a {\n        position: absolute;\n        top: 11%;\n    }\n\n    .a {\n        right: 18%;\n        z-index: 4;\n    }\n\n    .b {\n        right: 17%;\n        z-index: 3;\n    }\n\n    .c {\n        right: 17%;\n        z-index: 2;\n    }\n\n    .d {\n        right: 17%;\n    }\n\n    .electricEngine_R_bikePhone {\n        display: none;\n    }\n\n    @media only screen and (max-width: 1750px) {\n        .electricEngine_R_bikeA {\n            zoom: .95;\n        }\n    }\n\n    @media only screen and (max-width: 1650px) {\n        .electricEngine_R_bikeA {\n            zoom: .90;\n        }\n    }\n\n    @media only screen and (max-width: 1550px) {\n        .electricEngine_R_bikeA {\n            zoom: .85;\n        }\n\n        .electricEngine_L_title {\n            font-size: 50px;\n        }\n\n        .electricEngine_L_word {\n            max-width: 400px;\n            font-size: 16px;\n            padding-top: 25px;\n            line-height: 25px;\n        }\n\n        .electricEngine_L_tip {\n            padding-top: 50px;\n        }\n\n        .electricEngine_L_tip_box h6 {\n            font-size: 23px;\n        }\n\n        .electricEngine_L_tip_box p {\n            font-size: 16px;\n            margin-top: 10px;\n        }\n\n    }\n\n    @media only screen and (max-width: 1450px) {\n        .electricEngine_R_bikeA {\n            zoom: .80;\n        }\n    }\n\n    @media only screen and (max-width: 1350px) {\n        .electricEngine_R_bikeA {\n            zoom: .75;\n        }\n\n        .electricEngine_L {\n            left: 7%;\n        }\n    }\n\n    @media only screen and (max-width: 1250px) {\n        .electricEngine_R_bikeA {\n            zoom: .70;\n        }\n\n        .electricEngine_L {\n            left: 5%;\n        }\n\n        .electricEngine_L_title {\n            font-size: 30px;\n        }\n\n        .electricEngine_L_word {\n            font-size: 14px;\n            padding-top: 20px;\n            line-height: 23px;\n        }\n\n        .electricEngine_L_tip {\n            padding-top: 35px;\n        }\n\n        .electricEngine_L_tip div:first-child {\n            margin-right: 30px;\n        }\n\n        .electricEngine_L_tip_box h6 {\n            font-size: 18px;\n        }\n\n        .electricEngine_L_tip_box p {\n            font-size: 14px;\n        }\n    }\n\n    @media only screen and (max-width: 1150px) {\n        .electricEngine_R_bikeA {\n            zoom: .65;\n        }\n\n        .electricEngine_L {\n            left: 3%;\n        }\n    }\n\n    @media only screen and (max-width: 1050px) {\n        .electricEngine_R_bikeA {\n            zoom: .60;\n        }\n\n        .electricEngine_L {\n            left: 3%;\n        }\n\n        .electricEngine_L_word {\n            max-width: 350px;\n        }\n    }\n\n    @media only screen and (max-width: 950px) {\n        .electricEngine_R_bikeA {\n            zoom: .55;\n        }\n\n        .electricEngine_L_word {\n            max-width: 280px;\n        }\n    }\n\n    @media only screen and (max-width: 850px) {\n        .electricEngine_R_bikeA {\n            zoom: .50;\n        }\n\n        .electricEngine_L_word {\n            max-width: 250px;\n        }\n    }\n\n    @media only screen and (max-width: 800px) {\n        .electricEngine {\n            max-width: 800px;\n            display: block;\n        }\n\n        .electricEngine_L {\n            position: initial;\n            max-width: 100%;\n            margin: 35px auto;\n            padding: 0 10px;\n            box-sizing: border-box;\n        }\n\n        .electricEngine_L_word {\n            max-width: 100%;\n        }\n\n        .electricEngine_L_tip {\n            padding-top: 20px;\n        }\n\n        .a,\n        .b,\n        .c,\n        .d {\n            top: 12%;\n            right: auto;\n        }\n\n        .a {\n            left: 3%;\n        }\n\n        .b,\n        .c,\n        .d {\n            left: 5%;\n        }\n\n        .electricEngine_R_bikeA,\n        .electricEngine_R_bg {\n            display: none;\n        }\n\n        .electricEngine_R_bikePhone,\n        .electricEngine_R_bgPhone {\n            display: block;\n        }\n\n        .electricEngine_R_bikePhone>div {\n            position: absolute;\n            top: 0;\n        }\n\n        .electricEngine_R_bikePhone img {\n            max-width: 450px;\n            width: 100%;\n        }\n\n        .aPhone {\n            right: 19%;\n            z-index: 4;\n        }\n\n        .bPhone {\n            right: 17%;\n            z-index: 3;\n        }\n\n        .cPhone {\n            right: 17%;\n            z-index: 2;\n        }\n\n        .dPhone {\n            right: 17%;\n        }\n    }\n\n    @media only screen and (max-width: 750px) {\n        .electricEngine_R_bikePhone {\n            zoom: .90;\n        }\n    }\n\n    @media only screen and (max-width: 700px) {\n        .electricEngine_R_bikePhone {\n            zoom: .85;\n        }\n    }\n\n    @media only screen and (max-width: 650px) {\n        .electricEngine_R_bikePhone {\n            zoom: .80;\n        }\n    }\n\n    @media only screen and (max-width: 600px) {\n        .electricEngine_R_bikePhone {\n            zoom: .75;\n        }\n    }\n\n    @media only screen and (max-width: 550px) {\n        .electricEngine_R_bikePhone {\n            zoom: .70;\n        }\n\n        .electricEngine_L_title {\n            font-size: 20px;\n        }\n\n        .electricEngine_L_word {\n            font-size: 12px;\n            padding-top: 10px;\n            line-height: 20px;\n        }\n\n        .electricEngine_L_tip_box h6 {\n            font-size: 15px;\n        }\n\n        .electricEngine_L_tip_box p {\n            font-size: 12px;\n            margin-top: 5px;\n        }\n    }\n\n    @media only screen and (max-width: 500px) {\n        .electricEngine_R_bikePhone {\n            zoom: .65;\n        }\n    }\n\n    @media only screen and (max-width: 450px) {\n        .electricEngine_R_bikePhone {\n            zoom: .60;\n        }\n    }\n\n    @media only screen and (max-width: 400px) {\n        .electricEngine_R_bikePhone {\n            zoom: .55;\n        }\n    }\n\n    @media only screen and (max-width: 350px) {\n        .electricEngine_R_bikePhone {\n            zoom: .50;\n        }\n    }\n\n    @media only screen and (max-width: 330px) {\n        .electricEngine_R_bikePhone {\n            zoom: .45;\n        }\n    }\n</style>\n\n<div class=\"electricEngine\">\n    <div class=\"electricEngine_R_bg\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/bb5.jpg?v=1682146025\" alt=\"\">\n    </div>\n    <div class=\"electricEngine_R_bgPhone\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/bb7.jpg?v=1682146025\" alt=\"\">\n    </div>\n    <div class=\"electricEngine_R_bikeA\">\n        <div class=\"a\"><img src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/700MF.webp?v=1703732143\"\n                alt=\"\"></div>\n        <div class=\"b\"><img class=\"bb\"\n                src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/700_a1.gif?v=1682404760\" alt=\"\"></div>\n        <div class=\"c\"><img class=\"cc\"\n                src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/700_b2.gif?v=1682578312\" alt=\"\"></div>\n        <div class=\"d\"><img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/700.png?v=1682146092\"\n                alt=\"\"></div>\n    </div>\n    <div class=\"electricEngine_R_bikePhone\">\n        <div class=\"aPhone\"><img\n                src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/500MF.webp?v=1703732177\" alt=\"\"></div>\n        <div class=\"bPhone\"><img class=\"bbPhone\"\n                src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/500_a1.gif?v=1682578976\" alt=\"\"></div>\n        <div class=\"cPhone\"><img class=\"ccPhone\"\n                src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/500_b1.gif?v=1682578976\" alt=\"\"></div>\n        <div class=\"dPhone\"><img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/500.png?v=1682146089\"\n                alt=\"\"></div>\n    </div>\n    <div class=\"electricEngine_L\">\n        <h3 class=\"electricEngine_L_title\">\n            MAXFOOT 750W<br> Rear Drive Motor\n        </h3>\n        <p class=\"electricEngine_L_word\">The MAXFOOT powerful motor provides the MF-33 with a rated power of 750W (peak power 1100W) and a powerful torque of 85N.m. \n            In the new version in 2024, the position of the MF-33's motor has been changed to the rear wheel position. \n            This means that the entire vehicle is driven by the two rear wheels, and the driving mode is changed from the original <b>\"pull\"</b> to <b>\"push\"</b>. When riding on some special terrain, the front wheel will no longer slip. \n            The MAXFOOT motor will work with the two rear wheels to easily push you forward. Free from terrain anxiety, your rides will be easier and more enjoyable.</p>\n        <div class=\"electricEngine_L_tip\">\n            <div class=\"electricEngine_L_tip_box\">\n                <h6>750W</h6>\n                <p>Motor Power</p>\n            </div>\n            <div class=\"electricEngine_L_tip_box\">\n                <h6>85N.m</h6>\n                <p>Motor Torque</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<script src=\"{{ 'gsap.js' | asset_url }}\"></script>\n<script src=\"{{ 'scrollTrigger.js' | asset_url }}\"></script>\n<script>\n    var timerImg, timeOneImg, timeTwoImg;\n    function gsapFun(num1, num2) {\n        gsap.registerPlugin(ScrollTrigger);\n        gsap.timeline({\n            scrollTrigger: {\n                trigger: \".electricEngine\",\n                start: \"top center\",\n                end: \"top 10px\",\n                scrub: true\n            }\n        })\n            .to('.electricEngine_R_bg', { x: 100, opacity: 0.05 }, 0)\n            .to('.a', { x: num1 }, 0)\n            .to('.b', { x: num2, }, 0)\n    }\n\n    function gsapFunPhone(num1, num2) {\n        gsap.registerPlugin(ScrollTrigger);\n        gsap.timeline({\n            scrollTrigger: {\n                trigger: \".electricEngine\",\n                start: \"top center\",\n                end: \"+=40%\",\n                scrub: true\n            }\n        })\n            .to('.electricEngine_R_bgPhone', { x: 50, opacity: 0.05 }, 0)\n            .to('.aPhone', { x: num1 }, 0)\n            .to('.bPhone', { x: num2, }, 0)\n    }\n\n\n    window.onload = function () {\n        gsapFun(-250, -20)\n        gsapFunPhone(-160, -20)\n    }\n\n    const iframeDom = document.querySelector('.electricEngine_R_bikeA')\n    const iframeDomPhone = document.querySelector('.electricEngine_R_bikePhone')\n    function aa(width, zoom, widthPhone, zoomPhone) {\n        if (window.innerWidth < width) {\n            iframeDom.style.zoom = window.innerWidth * zoom / width\n        } else {\n            iframeDom.style.zoom = zoom\n        }\n        if (window.innerWidth < widthPhone) {\n            iframeDomPhone.style.zoom = window.innerWidth * zoomPhone / widthPhone\n        } else {\n            iframeDomPhone.style.zoom = zoom\n        }\n    }\n    aa(1920, 1.02, 800, 1)\n    window.onresize = function () {\n        aa(1920, 1.02, 800, 1)\n    }\n</script>",
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_PxT8Bg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_4GVH8j": {
+          "type": "heading",
+          "settings": {
+            "heading": "Performance Comparison",
+            "heading_size": "h1"
+          }
+        },
+        "text_QiHBmG": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><strong>Front-Drive</strong> VS <strong>Rear-Drive</strong></h2>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4GVH8j",
+        "text_QiHBmG"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "{margin-bottom: -50px;}"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_7aFmgi": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "{margin-bottom: 100px;}"
+      ],
+      "settings": {
+        "custom_liquid": "<style>\n.progressBar > * {\n    margin: 0;\n    padding: 0;\n    line-height: initial;\n}\n.progressBar {\n    max-width: 1200px;\n    width: 100%;\n    margin: 0 auto;\n    padding: 0 10px;\n    box-sizing: border-box;\n    display: flex;\n}\n.progressBar img {\n    max-width: 100%;\n    width: 100%;\n    height: 100%;\n    display: block;\n    margin: 0 auto;\n}\n.progressBar_msgContent{\n    display: flex;\n    flex-wrap: wrap;\n    max-width: 300px;\n    width: 100%;\n    align-items: center;\n}\n.progressBar_msg {\n    font-size: 20px;\n    font-weight: 700;\n}\n.progressBar_msg figcaption {\n    text-align: center;\n    margin-top: 5px;\n}\n.progressBar_iconContent {\n    flex: 1;\n    margin-left: 20px;\n}\n.progressBar_icon img {\n    max-width: 50px;\n    width: 100%;\n    margin: 0;\n}\n.progressBar_iconTitle,.progressBar_iconBar .num {\n    display: flex;\n    align-items: center;\n    justify-content: flex-start;\n}\n.progressBar_iconTitle {\n    font-size: 25px;\n    margin-bottom: 10px;\n}\n.progressBar_iconTitle figcaption {\n    margin-left: 5px;\n    font-weight: 700;\n}\n.progressBar_iconBar {\n    font-size: 20px;\n}\n.progressBar_iconBar >p{\n    margin-bottom: 5px;\n}\n.progressBar_iconBar .num{\n    font-weight: 700;\n}\n.progressBar_iconBar .num img {\n    max-width: 20px;\n    width: 100%;\n}\n.progressBar_iconBar .bar {\n    animation: striped-flow 3s linear infinite;\n    background-image: linear-gradient(45deg,rgba(0,0,0,.1) 25%,transparent 25%,transparent 50%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.1) 75%,transparent 75%,transparent);\n    background-size: 1.25em 1.25em;\n    background-color: #ffd900;\n    border-radius: 100px;\n    white-space: nowrap;\n    transition: width .6s ease;\n    width: 100%;\n    animation-duration: 30s;\n}\n@keyframes striped-flow {\n    0% {\n        background-position: -100%\n    }\n\n    to {\n        background-position: 100%\n    }\n}\n.progressBar_iconBar .bar_num {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.progressBar_iconBar_grey {\n    margin-top: 10px;\n}\n.progressBar_iconBar .barBg {\n    background-color: #ebeef5;\n    width: 92%;\n    border-radius: 100px;\n    line-height: 1;\n}\n.progressBar_iconBar_grey .barGrey {\n    width: 60%;\n    background-color: #b7b7b7;\n    border-radius: 100px;\n}\n.progressBar_icon2 {\n    margin: 80px 0;\n}\n\n.progressBar_icon1 .progressBar_iconBar .bar {\n    width: 80%;\n}\n.progressBar_icon2 .progressBar_iconBar .bar {\n    width: 70%;\n}\n.progressBar_icon3 .progressBar_iconBar .bar {\n    width: 70%;\n}\n.progressBar_icon1 .progressBar_iconBar_grey .barGrey {\n    width: 40%;\n}\n.progressBar_icon2 .progressBar_iconBar_grey .barGrey {\n    width: 50%;\n}\n.progressBar_icon3 .progressBar_iconBar_grey .barGrey {\n    width: 50%;\n}\n@media only screen and (max-width: 1300px) {\n    .progressBar_iconBar .barBg{\n        width: 90%;\n    }\n}\n@media only screen and (max-width: 1100px) {\n    .progressBar_iconBar .barBg{\n        width: 88%;\n    }\n    .progressBar_msgContent {\n        max-width: 250px;\n    }\n}\n@media only screen and (max-width: 900px) {\n    .progressBar_iconBar .barBg{\n        width: 86%;\n    }\n}\n@media only screen and (max-width: 750px) {\n    .progressBar {\n        max-width: 750px;\n        display: block;\n    }\n    .progressBar_msgContent {\n        max-width: 750px;\n        flex-wrap: nowrap;\n        margin-bottom: 20px;\n    }\n    .progressBar_msg {\n        flex: 1;\n    }\n    .progressBar_iconContent {\n        margin-left: 0;\n    }\n    .progressBar_msgContent .progressBar_msg:nth-child(1) {\n        margin-right: 10px;\n    }\n    .progressBar_msgContent .progressBar_msg:nth-child(2) {\n        margin-left: 10px;\n    }\n    .progressBar_iconBar_grey {\n        margin-top: 5px;\n    }\n    .progressBar_icon2 {\n        margin: 40px 0;\n    }\n}\n@media only screen and (max-width: 500px) {\n    .progressBar_msg ,.progressBar_iconBar{\n        font-size: 17px;\n    }\n    .progressBar_iconTitle {\n        font-size: 20px;\n    }\n    .progressBar_icon img {\n        max-width: 30px;\n    }\n    .progressBar_iconBar .num img {\n        max-width: 15px;\n    }\n    .progressBar_iconBar .barBg {\n        line-height: 0.8;\n    }\n    .progressBar_iconBar .barBg {\n        width: 80%;\n    }\n\n}\n    </style>\n    <div class=\"progressBar\">\n        <div class=\"progressBar_msgContent\">\n            <div class=\"progressBar_msg\">\n                <figure>\n                    <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_msg1.jpg?v=1708671100\" alt=\"\" >\n                    <figcaption>Rear Drive Motor</figcaption>\n                </figure>\n            </div>\n            <div class=\"progressBar_msg\">\n                <figure>\n                    <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_msg2.jpg?v=1708671099\" alt=\"\" >\n                    <figcaption>Front Hub Motor</figcaption>\n                </figure>\n            </div>\n        </div>\n        <div class=\"progressBar_iconContent\">\n            <div class=\"progressBar_icon progressBar_icon1\">\n                <figure class=\"progressBar_iconTitle\">\n                    <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_icon1.png?v=1708671099\" alt=\"\" >\n                    <figcaption>Speeded-Up</figcaption>\n                </figure>\n                <div class=\"progressBar_iconBar\">\n                    <p>Rear Drive Motor</p>\n                    <div class=\"bar_num\">\n                        <div class=\"barBg\"><div class=\"bar\">&nbsp;</div></div>\n                        <div class=\"num\">\n                            <span>100%</span>\n                            <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_icon4.png?v=1708671099\" alt=\"\">\n                        </div>\n                    </div>\n                </div>\n                <div class=\"progressBar_iconBar progressBar_iconBar_grey\">\n                    <p>Front Hub Motor</p>\n                    <div class=\"barBg\"><div class=\"barGrey\">&nbsp;</div></div>\n                </div>\n            </div>\n            <div class=\"progressBar_icon progressBar_icon2\">\n                <figure class=\"progressBar_iconTitle\">\n                    <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_icon2.png?v=1708671099\" alt=\"\" >\n                    <figcaption>Driving Efficiency</figcaption>\n                </figure>\n                <div class=\"progressBar_iconBar\">\n                    <p>Rear Drive Motor</p>\n                    <div class=\"bar_num\">\n                        <div class=\"barBg\"><div class=\"bar\">&nbsp;</div></div>\n                        <div class=\"num\">\n                            <span>40%</span>\n                            <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_icon4.png?v=1708671099\" alt=\"\">\n                        </div>\n                    </div>\n                </div>\n                <div class=\"progressBar_iconBar progressBar_iconBar_grey\">\n                    <p>Front Hub Motor</p>\n                    <div class=\"barBg\"><div class=\"barGrey\">&nbsp;</div></div>\n                </div>\n            </div>\n            <div class=\"progressBar_icon progressBar_icon3\">\n                <figure class=\"progressBar_iconTitle\">\n                    <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_icon3.png?v=1708671099\" alt=\"\" >\n                    <figcaption>Gradeability</figcaption>\n                </figure>\n                <div class=\"progressBar_iconBar\">\n                    <p>Rear Drive Motor</p>\n                    <div class=\"bar_num\">\n                        <div class=\"barBg\"><div class=\"bar\">&nbsp;</div></div>\n                        <div class=\"num\">\n                            <span>40%</span>\n                            <img src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/progressBar_icon4.png?v=1708671099\" alt=\"\">\n                        </div>\n                    </div>\n                </div>\n                <div class=\"progressBar_iconBar progressBar_iconBar_grey\">\n                    <p>Front Hub Motor</p>\n                    <div class=\"barBg\"><div class=\"barGrey\">&nbsp;</div></div>\n                </div>\n            </div>\n        </div>\n    </div>",
+        "color_scheme": "background-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_JACfy6": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_LzGCXy": {
+          "type": "heading",
+          "settings": {
+            "heading": "Rear Differential",
+            "heading_size": "h1"
+          }
+        },
+        "text_cYQpVD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The differential exists to adjust the speed difference between the left and right wheels so that when the MF-33 electric tricycle is driving on uneven roads or turning, the left and right wheels can roll at different speeds. To achieve the purpose of ensuring the overall balance and safety of the electric tricycle when passing through special terrain or turning.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LzGCXy",
+        "text_cYQpVD"
+      ],
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/MAXFOOT_30-2.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_KGV98L": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_8yFKi8": {
+          "type": "heading",
+          "settings": {
+            "heading": "Passenger Seat",
+            "heading_size": "h1"
+          }
+        },
+        "text_zbK8TH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>MF-33 electric tricycle is equipped with a rear passenger seat, which can theoretically support 2 additional adults. The step-thru passenger step is very convenient for adults and children to get in and out of the trike. The seat cushion and backrest of moderate thickness, combined with the footrests and armrests on both sides, will provide rear passengers with a comfortable riding experience and enjoy the scenery along the way.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8yFKi8",
+        "text_zbK8TH"
+      ],
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/d30e90ac4677d654ec8429fed5e29206.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_tU3wD3": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_U4V9qk": {
+          "type": "heading",
+          "settings": {
+            "heading": "Taillight with Turn Signl",
+            "heading_size": "h1"
+          }
+        },
+        "text_6rtyPb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In addition to the standard driving light and brake light functions, the MF-33's taillight also provides a turn signal function. With a reasonable key arrangement, you can light up the turn signal promptly and conveniently when you need to change lanes or turn while riding to remind the vehicle behind you. Ensure road safety for both parties.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_U4V9qk",
+        "text_6rtyPb"
+      ],
+      "custom_css": [],
+      "settings": {
+        "image": "shopify://shop_images/1_78849427-defb-4bd0-941e-ae605843f51a.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_VUijxg": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_VA9xMY": {
+          "type": "heading",
+          "settings": {
+            "heading": "Electric Horn",
+            "heading_size": "h1"
+          }
+        },
+        "text_zDmNEN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VA9xMY",
+        "text_zDmNEN"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "{margin-bottom: 100px;}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/DSC_9290.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "bicycle_tabs_4waMA6": {
+      "type": "bicycle_tabs",
+      "blocks": {
+        "bicycle_tabs_box_488wHc": {
+          "type": "bicycleTabsBox",
+          "settings": {
+            "bicycleTabs_tabTitle": "Step-Thru Frame",
+            "bicycleTabs_contentImg": "shopify://shop_images/1523.png",
+            "bicycleTabs_contentHeader": "Step-Thru Frame",
+            "bicycleTabs_contentDesc": "The MF-33 fat tire electric trike designs the step-thru frame for more riders. Whoever you are, whatever you wear, you can span the frame and get on the trike easily."
+          }
+        },
+        "bicycle_tabs_box_8AEXhK": {
+          "type": "bicycleTabsBox",
+          "settings": {
+            "bicycleTabs_tabTitle": "SAMSUNG Lithium Battery",
+            "bicycleTabs_contentImg": "shopify://shop_images/2_3f9f8da1-e2a8-43d9-a239-e9d4a431feff.png",
+            "bicycleTabs_contentHeader": "SAMSUNG Lithium Battery",
+            "bicycleTabs_contentDesc": "The MF-33 fat tire electric trike provides a SAMSUNG 48V 20Ah high capacity battery, it can support MF-33 travel around 85+ miles on a single charge ( with PAS 1 )."
+          }
+        },
+        "bicycle_tabs_box_LTzYxw": {
+          "type": "bicycleTabsBox",
+          "settings": {
+            "bicycleTabs_tabTitle": "Dual Rear Disc Brake",
+            "bicycleTabs_contentImg": "shopify://shop_images/2_b72fae31-fb31-42b5-adfe-3bef8cae99a5.jpg",
+            "bicycleTabs_contentHeader": "Dual Rear Disc Brake",
+            "bicycleTabs_contentDesc": "The fat tire electric trike are equipped with 180mm dual disc brakes for all wheels, which prevents rollover effectively. When you brake, the brake disc can be sensitively held tightly according to your needs."
+          }
+        },
+        "bicycle_tabs_box_AWMpLX": {
+          "type": "bicycleTabsBox",
+          "disabled": true,
+          "settings": {
+            "bicycleTabs_tabTitle": "Passenger Seat",
+            "bicycleTabs_contentImg": "shopify://shop_images/PS.png",
+            "bicycleTabs_contentHeader": "Passenger Seat",
+            "bicycleTabs_contentDesc": "MF-33 is equipped with a rear passenger seat, which can theoretically support 2 additional adults. The step-thru passenger step is very convenient for adults and children to get in and out of the trike. The seat cushion and backrest of moderate thickness, combined with the footrests and armrests on both sides, will provide rear passengers with a comfortable riding experience and enjoy the scenery along the way."
+          }
+        },
+        "bicycle_tabs_box_cm3nNK": {
+          "type": "bicycleTabsBox",
+          "settings": {
+            "bicycleTabs_tabTitle": "Thick Comfortable Seat",
+            "bicycleTabs_contentImg": "shopify://shop_images/1_c1ee205c-4a56-418c-9968-6eb9861c1fa6.png",
+            "bicycleTabs_contentHeader": "Thick Comfortable Seat",
+            "bicycleTabs_contentDesc": "The electric trike for adults features a thick padded saddle with a unique design of backrest of the seat. It can improve your riding comfort and keep your riding comfortable at rough torgraphy."
+          }
+        }
+      },
+      "block_order": [
+        "bicycle_tabs_box_488wHc",
+        "bicycle_tabs_box_8AEXhK",
+        "bicycle_tabs_box_LTzYxw",
+        "bicycle_tabs_box_AWMpLX",
+        "bicycle_tabs_box_cm3nNK"
+      ],
+      "custom_css": [
+        "{margin-bottom: 100px;}"
+      ],
+      "settings": {}
+    },
+    "accordion_module_pjbfXE": {
+      "type": "accordion-module",
+      "blocks": {
+        "slide_JW39tM": {
+          "type": "slide",
+          "settings": {
+            "heading": "Electronic",
+            "item_heading_1": "Battery",
+            "item_content_1": "UL-Certified SAMSUNG 48V 20AH Lithium Battery",
+            "item_heading_2": "Motor",
+            "item_content_2": "750W Rear Drive Brushless Geared Motor",
+            "item_heading_3": "Throttle",
+            "item_content_3": "Variable Speed Control - 1/2 Twist Throttle",
+            "item_heading_4": "Display",
+            "item_content_4": "Maxfoot 5 Inch LCD Display With USB Port",
+            "item_heading_5": "Controller",
+            "item_content_5": "Maxfoot 25A Overall Waterproof Controller",
+            "item_heading_6": "Integrated Wiring",
+            "item_content_6": "Water-Resistant Connectors and Wiring Harness",
+            "item_heading_7": "Lights",
+            "item_content_7": "Integrated Headlight, Brake Light and Turn Signal",
+            "item_heading_8": "Pedal Assist",
+            "item_content_8": "Intelligent 5 level pedal assist With an integrated speed sensor",
+            "item_heading_9": "",
+            "item_content_9": "",
+            "item_heading_10": "",
+            "item_content_10": "",
+            "item_heading_11": "",
+            "item_content_11": "",
+            "item_heading_12": "",
+            "item_content_12": ""
+          }
+        },
+        "slide_fbCBFT": {
+          "type": "slide",
+          "settings": {
+            "heading": "Mechanics",
+            "item_heading_1": "Frame",
+            "item_content_1": "Front: 6061 Aluminium-Alloy Frame Rear: 7A19 Aluminium-Alloy Frame",
+            "item_heading_2": "Fork",
+            "item_content_2": "Maxfoot 50mm Max Travel Suspension Fork",
+            "item_heading_3": "Chain Puller",
+            "item_content_3": "Shimano 7 Speeds gear",
+            "item_heading_4": "Rotors",
+            "item_content_4": "180mm Disc Brake (Front *1 / Rear *2)",
+            "item_heading_5": "Tire",
+            "item_content_5": "Front 24\" / Rear 20\"",
+            "item_heading_6": "Brake levers",
+            "item_content_6": "Dual power-off brake levers",
+            "item_heading_7": "Saddle",
+            "item_content_7": "Thickened saddle with backrest",
+            "item_heading_8": "Fender",
+            "item_content_8": "Aluminium-Alloy Fenders",
+            "item_heading_9": "",
+            "item_content_9": "",
+            "item_heading_10": "",
+            "item_content_10": "",
+            "item_heading_11": "",
+            "item_content_11": "",
+            "item_heading_12": "",
+            "item_content_12": ""
+          }
+        },
+        "slide_RCijqF": {
+          "type": "slide",
+          "settings": {
+            "heading": "Data",
+            "item_heading_1": "Charging Time",
+            "item_content_1": "9-10 Hours (Depending On The Battery Status)",
+            "item_heading_2": "G.W:",
+            "item_content_2": "220 lbs",
+            "item_heading_3": "Range",
+            "item_content_3": "85+ Miles with PAS 1",
+            "item_heading_4": "Max. Load Capacity",
+            "item_content_4": "500lbs",
+            "item_heading_5": "Battery Life",
+            "item_content_5": "Rated For 800 Charge Cycles",
+            "item_heading_6": "Appropriate Height",
+            "item_content_6": "5'2\" - 6'4\"",
+            "item_heading_7": "",
+            "item_content_7": "",
+            "item_heading_8": "",
+            "item_content_8": "",
+            "item_heading_9": "",
+            "item_content_9": "",
+            "item_heading_10": "",
+            "item_content_10": "",
+            "item_heading_11": "",
+            "item_content_11": "",
+            "item_heading_12": "",
+            "item_content_12": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_JW39tM",
+        "slide_fbCBFT",
+        "slide_RCijqF"
+      ],
+      "settings": {
+        "max_width": "1200px",
+        "item_quantity": 3,
+        "heading_font": "anek_tamil_n8",
+        "content_font": "anek_tamil_n3",
+        "pc_margin_top": 20,
+        "pc_margin_bottom": 20,
+        "mb_margin_top": 20,
+        "mb_margin_bottom": 20
+      }
+    },
+    "1779069388ed3e4a47": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7591c74_taKQg9": {
+          "type": "ai_gen_block_7591c74",
+          "settings": {
+            "title": "Frequently Asked Questions",
+            "description": "<p>Find answers to common questions about our products</p>",
+            "question_1": "Is the Maxfoot MF-33 safe for carrying elderly passengers or kids?",
+            "answer_1": "<p>Yes, safety is our top priority. The MF-33 features a low step-thru frame for easy boarding, built-in safety belts for rear passengers, and an advanced rear differential that prevents tipping during sharp turns, making it exceptionally safe for seniors and children.</p>",
+            "question_2": "What is the weight capacity of the Maxfoot MaxLandau MF-33?",
+            "answer_2": "<p>The MF-33 MaxLandau has a heavy-duty payload capacity of up to 500 lbs, easily accommodating the rider and two rear passengers.</p>",
+            "question_3": "Can the MF-33 E-Trike handle hills when fully loaded?",
+            "answer_3": "<p>Absolutely. Equipped with a high-torque 750W rear motor (85 Nm) and a 48V 20Ah Samsung battery, the MF-33 delivers a 40% increase in climbing efficiency, ensuring smooth uphill rides even with a full passenger load.</p>",
+            "question_4": "Is the trike suitable for seniors or individuals with disabilities?",
+            "answer_4": "<p>Of course! The Maxfoot electric trike comes with a saddle. It has a backrest. This ensures a comfortable riding experience.</p>",
+            "question_5": "Does the electric trike come with a battery and both front and rear baskets included?",
+            "answer_5": "<p>The MF-33 MAXLANDAU Rear Drive electric trike comes with a battery, front basket, rear basket and even seat belt.</p>",
+            "desktop_width_percent": 95,
+            "text_alignment": "left",
+            "section_padding": 40,
+            "item_spacing": 12,
+            "item_padding": 20,
+            "border_radius": 0,
+            "background_color": "#ffffff",
+            "item_background": "#ffffff",
+            "hover_background": "#f3f3f3",
+            "border_color": "#e0e0e0",
+            "title_color": "#121212",
+            "question_color": "#121212",
+            "text_color": "#121212",
+            "icon_color": "#121212",
+            "title_size": 32,
+            "description_size": 16,
+            "question_size": 16,
+            "answer_size": 14
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7591c74_taKQg9"
+      ],
+      "settings": {}
+    },
+    "collapsible_content_jHtWgq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_9wHA7h": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How assembled is the MF-33 MAXLANDAU Rear Drive Electric Trike when it arrives, and what will I need to do to finish the assembly?",
+            "icon": "none",
+            "row_content": "<p>The MF-33 MAXLANDAU Rear Drive electric trike comes 85% pre-assembled. Only simple components need to be installed, and these can be easily put in place.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_RKewwt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is the trike suitable for seniors or individuals with disabilities?",
+            "icon": "none",
+            "row_content": "<p>Of course! The Maxfoot electric trike comes with a saddle. It has a backrest. This ensures a comfortable riding experience.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_UgxzGC": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Does the electric trike come with a battery and both front and rear baskets included?",
+            "icon": "none",
+            "row_content": "<p>The MF-33 MAXLANDAU Rear Drive electric trike comes with a battery, front basket, rear basket and even seat belt.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_XXbaGk": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's inside the box?",
+            "icon": "none",
+            "row_content": "<p>A seatbelt, a battery and a charger.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_3fpf6g": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What kind of warranty is included with Maxfoot electric trike in the United States?",
+            "icon": "none",
+            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_9wHA7h",
+        "collapsible_row_RKewwt",
+        "collapsible_row_UgxzGC",
+        "collapsible_row_XXbaGk",
+        "collapsible_row_3fpf6g"
+      ],
+      "disabled": true,
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "FAQ - MF-33 MAXLANDAU Rear Drive Electric Trike",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "impact_featured_collection_4NRrEh": {
+      "type": "impact-featured-collection",
+      "blocks": {
+        "product_msg_fqCyc9": {
+          "type": "product_msg",
+          "settings": {
+            "product": "750w-maxz-20-step-thru-electric-trike-picton-blue",
+            "product_image_alt": "",
+            "product_title": "",
+            "icon_title1": "48V 20Ah",
+            "icon_title2": "48V 20Ah",
+            "icon_title3": "48V 20Ah",
+            "icon_title4": "48V 20Ah"
+          }
+        },
+        "product_msg_z6Cz9X": {
+          "type": "product_msg",
+          "settings": {
+            "product": "750w-maxz-24-step-thru-electric-trike-pangea-green",
+            "product_image_alt": "",
+            "product_title": "",
+            "icon_title1": "48V 20Ah",
+            "icon_title2": "48V 20Ah",
+            "icon_title3": "48V 20Ah",
+            "icon_title4": "48V 20Ah"
+          }
+        },
+        "product_msg_H4THYX": {
+          "type": "product_msg",
+          "settings": {
+            "product": "maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-neptune-blue",
+            "product_image_alt": "",
+            "product_title": "",
+            "icon_title1": "48V 20Ah",
+            "icon_title2": "48V 20Ah",
+            "icon_title3": "48V 20Ah",
+            "icon_title4": "48V 20Ah"
+          }
+        },
+        "product_msg_HP6Fcm": {
+          "type": "product_msg",
+          "settings": {
+            "product": "mf-33-passenger-electric-tricycle-yellow",
+            "product_image_alt": "",
+            "product_title": "",
+            "icon_title1": "48V 20Ah",
+            "icon_title2": "48V 20Ah",
+            "icon_title3": "48V 20Ah",
+            "icon_title4": "48V 20Ah"
+          }
+        }
+      },
+      "block_order": [
+        "product_msg_fqCyc9",
+        "product_msg_z6Cz9X",
+        "product_msg_H4THYX",
+        "product_msg_HP6Fcm"
+      ],
+      "disabled": true,
+      "name": "impact collection",
+      "settings": {
+        "title": "You may also like",
+        "view_all_link": "",
+        "currency_code_enabled": false,
+        "percentage_mode": false,
+        "layout_type": "grid",
+        "layout_type_phone": "scroll",
+        "product_color_display": "swatch"
+      }
+    },
+    "171248711217421731": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_x74DA7": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_x74DA7"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "text_module_RXYq4J",
+    "slideshow_2_LhKh4p",
+    "graphic_module_rBVcTY",
+    "custom_liquid_RFfafi",
+    "rich_text_PxT8Bg",
+    "custom_liquid_7aFmgi",
+    "image_with_text_JACfy6",
+    "image_with_text_KGV98L",
+    "image_with_text_tU3wD3",
+    "image_with_text_VUijxg",
+    "bicycle_tabs_4waMA6",
+    "accordion_module_pjbfXE",
+    "1779069388ed3e4a47",
+    "collapsible_content_jHtWgq",
+    "impact_featured_collection_4NRrEh",
+    "171248711217421731"
+  ]
+}
