@@ -624,7 +624,9 @@
         "template--14525860741202__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7-heading-1",
         "template--14525860741202__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7-text-1"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539914764370__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+      ],
       "settings": {
         "image": "shopify://shop_images/DSC_5465_4bcc54e9-47d4-48b5-a9c4-92a74bc49168.png",
         "height": "adapt",
@@ -959,6 +961,7 @@
         "product_msg_KVh3xg",
         "product_msg_k677Y9"
       ],
+      "disabled": true,
       "name": "impact collection",
       "settings": {
         "title": "You may also like",
