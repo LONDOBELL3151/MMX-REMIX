@@ -13,17 +13,21 @@
   Display:
     - Label: "Color: <current-short-name>"  (only the CURRENT color's
       name is shown as info; sibling swatches are unlabeled dots).
-    - Below the label: a row of solid COLOR CIRCLES, one per family
-      member, horizontally laid out and wrapping on narrow viewports.
-      - The current product's circle shows the short color name below
-        it AND is rendered as a non-interactive `<span>` with the
-        `is-active` ring.
+    - Below the label: a row of COLOR CIRCLES, one per family member,
+      horizontally laid out and wrapping on narrow viewports.
+      - The current product's circle is rendered as a non-interactive
+        `<span>` with the `is-active` ring (no label below — the in-page
+        variant picker elsewhere is the single source of truth for the
+        current color's name).
       - All other sibling circles are clickable `<a>` to the sibling
         product URL — only the circle (no label) renders for those.
+      - Hover/focus on any circle reveals the full sibling color name
+        via the native `title` tooltip.
     - Circle fill resolved per member in this order:
         1. product.metafields.custom.color_hex  (per-product override)
         2. keyword match on the color name (orange/gray/green/blue/…)
-        3. neutral gray fallback (#cccccc)
+        3. fallback to product's `featured_image` thumbnail (so members
+           with no color data still look intentional, not broken-gray)
     - The short name = last two words of the full color name when the
       full name has more than 2 words.
 
@@ -68,13 +72,13 @@
         {%- liquid
           # `members` field is list.product, so each `member` IS a Product directly.
           # Do NOT write `member.product` — that returns blank and the whole
-          # color-resolution chain falls through to #cccccc.
+          # color-resolution chain falls through.
           assign member_color_name = member.metafields.custom.color_name
           if member_color_name == blank
             assign member_color_name = member.title
           endif
 
-          # member short name = last two words
+          # member short name = last two words  (used only in the label above the row)
           assign member_short = member_color_name
           assign m_parts = member_color_name | split: ' '
           assign m_parts_size = m_parts | size
@@ -91,11 +95,18 @@
             endfor
           endif
 
-          # member circle fill: metafield hex -> keyword match -> gray
+          # member circle fill resolution:
+          #   1. metafield hex
+          #   2. keyword match on color name (orange/gray/blue/…)
+          #   3. fallback to member.featured_image (so non-color members
+          #      like frame-only or wheel-only SKUs still render as a
+          #      recognizable product thumbnail instead of a generic gray)
           assign member_hex = member.metafields.custom.color_hex
+          assign use_image = false
+          assign member_image_url = blank
+
           if member_hex == blank
             assign m_lower = member_color_name | downcase
-            assign member_hex = '#cccccc'
             if m_lower contains 'orange'
               assign member_hex = '#e8632a'
             elsif m_lower contains 'gray' or m_lower contains 'grey' or m_lower contains 'silver'
@@ -121,6 +132,15 @@
             endif
           endif
 
+          # no hex resolved → try product image
+          if member_hex == blank and member.featured_image != blank
+            assign member_image_url = member.featured_image | image_url: width: 120
+            assign use_image = true
+          elsif member_hex == blank
+            # truly nothing — last-resort neutral so the row still reads as a swatch
+            assign member_hex = '#cccccc'
+          endif
+
           assign is_current = false
           if member.id == product.id
             assign is_current = true
@@ -131,17 +151,28 @@
                 data-swatch="{{ member.handle }}"
                 data-color-name="{{ member_color_name | escape }}"
                 title="{{ member_color_name | escape }}"
-                aria-current="page">
-            <span class="swatch__color" style="background:{{ member_hex }}"></span>
-            <span class="swatch__label">{{ member_short }}</span>
+                aria-current="page"
+                aria-label="{{ member_color_name | escape }}">
+            {%- if use_image -%}
+              <span class="swatch__color swatch__color--image"
+                    style="background-image:url('{{ member_image_url }}')"></span>
+            {%- else -%}
+              <span class="swatch__color" style="background:{{ member_hex }}"></span>
+            {%- endif -%}
           </span>
         {%- else -%}
           <a class="swatch swatch--family"
              href="{{ member.url }}"
              data-swatch="{{ member.handle }}"
              data-color-name="{{ member_color_name | escape }}"
-             title="{{ member_color_name | escape }}">
-            <span class="swatch__color" style="background:{{ member_hex }}"></span>
+             title="{{ member_color_name | escape }}"
+             aria-label="{{ member_color_name | escape }}">
+            {%- if use_image -%}
+              <span class="swatch__color swatch__color--image"
+                    style="background-image:url('{{ member_image_url }}')"></span>
+            {%- else -%}
+              <span class="swatch__color" style="background:{{ member_hex }}"></span>
+            {%- endif -%}
           </a>
         {%- endif -%}
       {%- endfor -%}
