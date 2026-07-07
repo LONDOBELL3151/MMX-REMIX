@@ -359,10 +359,10 @@
                 </p>
               </div>
 
-              <!-- 改用原生表单，确保按钮始终显示且功能完整 -->
+              <!-- 原生表单（无硬编码路径，完全符合规范） -->
               <div class="mf-ride__button">
                 {% if block_product != blank and block_product.selected_or_first_available_variant != blank %}
-                  <form method="post" action="/cart/add">
+                  <form method="post" action="{{ routes.cart_add_url }}">
                     <input type="hidden" name="id" value="{{ block_product.selected_or_first_available_variant.id }}">
                     <input type="hidden" name="quantity" value="1">
                     <button type="submit" class="button button--primary">
