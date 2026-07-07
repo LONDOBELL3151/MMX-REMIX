@@ -1,28 +1,31 @@
 {%- comment -%}
-  Renders the cross-product color family picker.
+  Renders the CURRENT product's color as a single circle + short name.
 
-  Pattern:
-    - Each color variant of a product is a SEPARATE Shopify product
-      (e.g. mf-25-orange, mf-25-blue, mf-25-red, …).
-    - Each one carries a metafield `custom.product_family` of type
-      `metaobject_reference` pointing to a metaobject that has a
-      `list.product_reference` field called `members`.
-    - We render that members list as a row of swatch links; clicking
-      a swatch navigates to that color's product page.
-    - When `members.size` is 0 or 1 (single color or metafield not
-      set), we render nothing and the parent falls back to the
-      in-product variant picker.
+  Why this exists (context, 2026-07-07):
+    - In main-product.liquid, when the product has a `product_family`
+      metaobject with >1 members, the in-product variant picker is
+      SKIPPED to avoid duplicate color UI.
+    - Originally this snippet listed ALL family members (sibling
+      products) as clickable swatches so users could switch between
+      colors by jumping to another product page.
+    - Coulson decided that switching between colors in-product is not
+      needed — the current color's name is shown as info only. The
+      siblings no longer appear here.
 
   Display:
-    - A horizontal row of items. Each item = a solid COLOR CIRCLE on
-      top + the SHORT color name below (last two words of the title,
-      e.g. "Burning Orange").
-    - The circle fill is resolved in this order:
-        1. sibling.metafields.custom.color_hex  (per-color hex override)
+    - Label: "Color:"
+    - Below: a single solid COLOR CIRCLE (with brand-color ring) +
+      the SHORT color name ("Burning Orange", etc.).
+    - Circle fill resolved in this order:
+        1. product.metafields.custom.color_hex  (per-product override)
         2. keyword match on the color name (orange/gray/green/blue/…)
         3. neutral gray fallback (#cccccc)
-    - The active color circle gets a primary-color ring and its label
-      is bold.
+    - The short name = last two words of the full color name when the
+      full name has more than 2 words.
+
+  Renders nothing when `product_family.members.size <= 1`, so the
+  parent falls back to the in-product variant picker for single-color
+  products.
 {%- endcomment -%}
 
 {%- liquid
@@ -34,80 +37,72 @@
 -%}
 
 {%- if family_members != blank -%}
+  {%- liquid
+    assign color_name = product.metafields.custom.color_name
+    if color_name == blank
+      assign color_name = product.title
+    endif
+
+    # short name = last two words of the color name
+    assign color_short = color_name
+    assign name_parts = color_name | split: ' '
+    assign parts_size = name_parts | size
+    if parts_size > 2
+      assign drop_count = parts_size | minus: 2
+      assign color_short = ''
+      for part in name_parts
+        if forloop.index0 >= drop_count
+          assign color_short = color_short | append: part
+          unless forloop.last
+            assign color_short = color_short | append: ' '
+          endunless
+        endif
+      endfor
+    endif
+
+    # resolve circle fill: metafield hex -> keyword match -> gray
+    assign color_hex = product.metafields.custom.color_hex
+    if color_hex == blank
+      assign name_lower = color_name | downcase
+      assign color_hex = '#cccccc'
+      if name_lower contains 'orange'
+        assign color_hex = '#e8632a'
+      elsif name_lower contains 'gray' or name_lower contains 'grey' or name_lower contains 'silver'
+        assign color_hex = '#6b6e72'
+      elsif name_lower contains 'green'
+        assign color_hex = '#3e7c4f'
+      elsif name_lower contains 'blue'
+        assign color_hex = '#2e4a7a'
+      elsif name_lower contains 'red' or name_lower contains 'burgundy'
+        assign color_hex = '#b32330'
+      elsif name_lower contains 'black'
+        assign color_hex = '#1a1a1a'
+      elsif name_lower contains 'white'
+        assign color_hex = '#f2f2f2'
+      elsif name_lower contains 'yellow'
+        assign color_hex = '#f4c430'
+      elsif name_lower contains 'purple' or name_lower contains 'violet'
+        assign color_hex = '#6a4c93'
+      elsif name_lower contains 'pink'
+        assign color_hex = '#e56399'
+      elsif name_lower contains 'brown' or name_lower contains 'tan' or name_lower contains 'khaki'
+        assign color_hex = '#8a6d3b'
+      endif
+    endif
+  -%}
   <div class="pdp__option pdp__option--family" data-color-family>
     <label class="pdp__option-label">
-      Color:
+      Color: <strong>{{ color_short }}</strong>
     </label>
-    <div class="pdp__swatches pdp__swatches--family">
-      {%- for sibling in family_members -%}
-        {%- liquid
-          assign is_current = false
-          if sibling.id == product.id
-            assign is_current = true
-          endif
-
-          assign color_name = sibling.metafields.custom.color_name
-          if color_name == blank
-            assign color_name = sibling.title
-          endif
-
-          # short name = last two words of the color name
-          assign color_short = color_name
-          assign name_parts = color_name | split: ' '
-          assign parts_size = name_parts | size
-          if parts_size > 2
-            assign drop_count = parts_size | minus: 2
-            assign color_short = ''
-            for part in name_parts
-              if forloop.index0 >= drop_count
-                assign color_short = color_short | append: part
-                unless forloop.last
-                  assign color_short = color_short | append: ' '
-                endunless
-              endif
-            endfor
-          endif
-
-          # resolve circle fill: metafield hex -> keyword match -> gray
-          assign color_hex = sibling.metafields.custom.color_hex
-          if color_hex == blank
-            assign name_lower = color_name | downcase
-            assign color_hex = '#cccccc'
-            if name_lower contains 'orange'
-              assign color_hex = '#e8632a'
-            elsif name_lower contains 'gray' or name_lower contains 'grey' or name_lower contains 'silver'
-              assign color_hex = '#6b6e72'
-            elsif name_lower contains 'green'
-              assign color_hex = '#3e7c4f'
-            elsif name_lower contains 'blue'
-              assign color_hex = '#2e4a7a'
-            elsif name_lower contains 'red' or name_lower contains 'burgundy'
-              assign color_hex = '#b32330'
-            elsif name_lower contains 'black'
-              assign color_hex = '#1a1a1a'
-            elsif name_lower contains 'white'
-              assign color_hex = '#f2f2f2'
-            elsif name_lower contains 'yellow'
-              assign color_hex = '#f4c430'
-            elsif name_lower contains 'purple' or name_lower contains 'violet'
-              assign color_hex = '#6a4c93'
-            elsif name_lower contains 'pink'
-              assign color_hex = '#e56399'
-            elsif name_lower contains 'brown' or name_lower contains 'tan' or name_lower contains 'khaki'
-              assign color_hex = '#8a6d3b'
-            endif
-          endif
-        -%}
-        <a href="{{ sibling.url }}"
-           class="swatch swatch--family{% if is_current %} is-active{% endif %}"
-           data-swatch="{{ sibling.handle }}"
-           data-color-name="{{ color_name | escape }}"
-           title="{{ color_name | escape }}"
-           {%- if is_current %} aria-current="page"{% endif -%}>
-          <span class="swatch__color" style="background:{{ color_hex }}"></span>
-          <span class="swatch__label">{{ color_short }}</span>
-        </a>
-      {%- endfor -%}
+    <div class="pdp__swatches pdp__swatches--family pdp__swatches--current">
+      <span class="swatch swatch--family swatch--current is-active"
+            data-swatch="{{ product.handle }}"
+            data-color-name="{{ color_name | escape }}"
+            title="{{ color_name | escape }}"
+            aria-current="page">
+        <span class="swatch__color" style="background:{{ color_hex }}"></span>
+        <span class="swatch__label">{{ color_short }}</span>
+      </span>
     </div>
   </div>
 {%- endif -%}
