@@ -86,9 +86,10 @@
   .pdp__extra-sub{font-size:11px}
   .pdp__extra-icon{width:32px;height:32px}
   .pdp__finance{font-size:12px;padding:12px;margin:12px 0}
-  .swatch__color{width:40px;height:40px}
+  .swatch__color{width:24px;height:24px}
+  .swatch--family .swatch__color{width:24px;height:24px}
   .swatch__label{font-size:10px}
-  .swatch__img{width:40px;height:40px}
+  .swatch__img{width:24px;height:24px}
   .cart-table thead{display:none}
   .cart-table,.cart-table tbody,.cart-table tr,.cart-table td{display:block;width:100%}
   .cart-table tr{background:#fff;padding:16px;border:1px solid var(--color-border);border-radius:var(--radius-md);margin-bottom:12px}
