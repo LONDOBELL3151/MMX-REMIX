@@ -164,7 +164,7 @@
     margin: 0;
   }
 
-  /* ===== 按钮样式（全局统一为金黄色） ===== */
+  /* ===== 按钮样式（全局） ===== */
   #shopify-section-{{ section.id }} .mf-ride__button .button {
     width: 100%;
     min-width: 0;
@@ -225,7 +225,6 @@
       margin-bottom: 1.6rem;
     }
 
-    /* 滚动容器——禁止垂直滚动 */
     #shopify-section-{{ section.id }} .mf-ride__track {
       gap: 1.2rem;
       margin: 0 -1.6rem;
@@ -264,29 +263,49 @@
       font-size: 1.4rem;
     }
 
-    /* ===== 强制移动端按钮可见 ===== */
+    /* ===== 强制显示移动端按钮（覆盖所有可能的隐藏样式） ===== */
     #shopify-section-{{ section.id }} .mf-ride__button,
     #shopify-section-{{ section.id }} .mf-ride__button form,
-    #shopify-section-{{ section.id }} .mf-ride__button .button {
-      display: block !important;
+    #shopify-section-{{ section.id }} .mf-ride__button .button,
+    #shopify-section-{{ section.id }} .mf-ride__button button {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       width: 100% !important;
       min-height: 4.4rem !important;
-      font-size: 1.3rem !important;
+      height: auto !important;
       padding: 0.8rem 0.8rem !important;
-      white-space: normal !important;
-      line-height: 1.3 !important;
-      word-break: break-word !important;
       background: #FFC000 !important;
       color: #121212 !important;
-      border-color: #FFC000 !important;
+      border: 1px solid #FFC000 !important;
+      border-radius: 1rem !important;
+      font-size: 1.3rem !important;
+      line-height: 1.3 !important;
+      white-space: normal !important;
+      word-break: break-word !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      box-shadow: none !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
+      font-weight: normal !important;
     }
 
-    /* 覆盖禁用状态 */
-    #shopify-section-{{ section.id }} .mf-ride__button .button:disabled {
+    /* 禁用状态 */
+    #shopify-section-{{ section.id }} .mf-ride__button .button:disabled,
+    #shopify-section-{{ section.id }} .mf-ride__button button:disabled {
       opacity: 0.6 !important;
       cursor: not-allowed !important;
     }
 
+    /* 覆盖 hover 效果 */
+    #shopify-section-{{ section.id }} .mf-ride__button .button:hover {
+      filter: brightness(0.92) !important;
+    }
+
+    /* 隐藏桌面导航按钮 */
     #shopify-section-{{ section.id }} .mf-ride__nav--prev,
     #shopify-section-{{ section.id }} .mf-ride__nav--next {
       display: none;
@@ -373,7 +392,7 @@
                 </p>
               </div>
 
-              <!-- 原生表单（使用 routes 对象，符合规范） -->
+              <!-- 原生表单 -->
               <div class="mf-ride__button">
                 {% if block_product != blank and block_product.selected_or_first_available_variant != blank %}
                   <form method="post" action="{{ routes.cart_add_url }}">
