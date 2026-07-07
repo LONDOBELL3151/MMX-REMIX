@@ -67,7 +67,8 @@
   .pdp__price-current{font-size:30px}
   .pdp__price-compare{font-size:16px}
   .pdp__price-save{font-size:12px;padding:3px 8px}
-  .pdp__stock{font-size:12px;padding:7px 10px;margin-bottom:18px}
+  .pdp__stock{font-size:12px;padding:7px 10px;margin-bottom:18px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+  .pdp__stock-status{display:inline-flex;align-items:center;gap:6px}
   .pdp__form{margin-bottom:18px}
   .pdp__option{margin-bottom:16px}
   .pdp__option-label{font-size:13px}

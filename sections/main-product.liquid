@@ -37,9 +37,11 @@
 
       {%- if s.show_stock -%}
         <div class="pdp__stock">
-          {% render 'icon', icon: 'check', size: 14 %}
-          <strong>In stock</strong> &mdash; {{ s.stock_count | default: 24 }} available
-          &mdash; Ships within 2 business days
+          <span class="pdp__stock-status">
+            {% render 'icon', icon: 'check', size: 14 %}
+            <strong>In stock</strong>
+          </span>
+          <span class="pdp__stock-detail">{{ s.stock_count | default: 24 }} available &mdash; Ships within 2 business days</span>
         </div>
       {%- endif -%}
 
