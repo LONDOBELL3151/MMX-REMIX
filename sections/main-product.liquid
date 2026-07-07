@@ -151,6 +151,11 @@
               {%- endif -%}
             </button>
           </div>
+          {%- if product.available -%}
+            <div class="pdp__dynamic-checkout">
+              {{ form | payment_button }}
+            </div>
+          {%- endif -%}
         </form>
 {%- else -%}
         <form method="post" action="{{ routes.cart_add_url }}" id="pdp__form" enctype="multipart/form-data" class="pdp__form">
@@ -163,6 +168,11 @@
             </div>
             <button type="submit" class="btn btn--primary pdp__cta">Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span></button>
           </div>
+          {%- if product.available -%}
+            <div class="pdp__dynamic-checkout">
+              {{ form | payment_button }}
+            </div>
+          {%- endif -%}
         </form>
       {%- endif -%}
 

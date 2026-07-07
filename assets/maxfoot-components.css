@@ -542,6 +542,10 @@ body.mobile-menu-open{overflow:hidden}
 .pdp__cta{flex:1;background:var(--color-primary);color:#fff;font-family:var(--font-display);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:1px;border-radius:var(--radius-md);transition:var(--transition)}
 .pdp__cta:hover:not(:disabled){background:var(--color-accent);color:var(--color-primary)}
 .pdp__cta:disabled{background:#9a9a9a;cursor:not-allowed}
+.pdp__dynamic-checkout{margin-top:14px;width:100%}
+.pdp__dynamic-checkout shopify-payment-button{display:block;width:100%}
+.pdp__dynamic-checkout .shopify-payment-button__button{min-height:52px;border-radius:var(--radius-md);width:100%}
+.pdp__dynamic-checkout .shopify-payment-button__button--branded{border-radius:var(--radius-md)}
 .pdp__finance{font-size:13px;color:var(--color-text-soft);margin:16px 0;padding:16px;background:var(--color-bg-soft);border-radius:var(--radius-md)}
 .pdp__finance a{color:var(--color-primary);font-weight:700;text-decoration:underline}
 .pdp__extras{display:flex;flex-direction:column;gap:12px;padding:24px;background:var(--color-bg-soft);border-radius:var(--radius-md);margin-top:24px}
