@@ -238,11 +238,11 @@
     }
 
     #shopify-section-{{ section.id }} .mf-ride__card {
-      flex: 0 0 80vw;                 /* 宽度占屏幕 80%，露出下一张 */
+      flex: 0 0 80vw;
       width: 80vw;
       min-width: 260px;
       max-width: 320px;
-      flex-direction: column;         /* 图片在上，文字在下 */
+      flex-direction: column;
       text-align: center;
       padding: 1.6rem;
       gap: 1.2rem;
@@ -253,7 +253,7 @@
     #shopify-section-{{ section.id }} .mf-ride__media {
       flex: 0 0 auto;
       width: 100%;
-      aspect-ratio: 1 / 1;            /* 正方形，更紧凑 */
+      aspect-ratio: 1 / 1;
     }
 
     /* 文字大小 */
@@ -271,7 +271,7 @@
       min-height: 4.4rem;
       font-size: 1.3rem;
       padding: 0.8rem 0.8rem;
-      white-space: normal;            /* 允许换行，避免截断 */
+      white-space: normal;
       line-height: 1.3;
       word-break: break-word;
     }
@@ -322,7 +322,12 @@
                     alt: block.settings.image.alt | default: block_product.title | escape
                 }}
               {% elsif block.settings.image_url != blank %}
-                <img src="{{ block.settings.image_url }}" alt="{{ block_product.title | escape }}" loading="lazy">
+                <!-- 修复：补充 width 和 height 属性，满足 theme-check -->
+                <img src="{{ block.settings.image_url }}"
+                     alt="{{ block_product.title | escape }}"
+                     loading="lazy"
+                     width="300"
+                     height="300">
               {% elsif block_product != blank and block_product.featured_image != blank %}
                 {{
                   block_product.featured_image
