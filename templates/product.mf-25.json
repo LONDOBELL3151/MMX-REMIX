@@ -1,1 +1,790 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"custom_liquid_H7TAbJ":{"type":"custom_liquid","disabled":true,"settings":{"custom_liquid":"<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        <\/span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror <\/span>\n    <\/div>\n   \n<\/div>"}},"custom_liquid_DjAYXi":{"type":"custom_liquid","settings":{"custom_liquid":"<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Limited Offer\n        <\/span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Price Limited at $659. Buy and Get Free Rearview Mirror <\/span>\n    <\/div>\n   <p style=\"margin: 0; color: #4a5568; font-size: 14px; line-height: 1.4;\">\n        Discount will be <strong>automatically applied<\/strong> at checkout.\n    <\/p>\n<\/div>"}},"text_839WWa":{"type":"text","settings":{"text":"<strong>Buy MF-25 Get Rear Mirror Free<\/strong>","text_style":"subtitle"}},"impact_accessories_K9gFqW":{"type":"impact-accessories","settings":{"accessories_product":"rearview-bicycle-mirrors","accessories_is_fold":"no","accessories_is_checed":"yes","accessories_is_link":"no","accessories_link":""}},"impact_accessories_NfaQgk":{"type":"impact-accessories","settings":{"accessories_product":"electric-bicycle-weather-cover","accessories_is_fold":"no","accessories_is_checed":"no","accessories_is_link":"no","accessories_link":""}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"color"}},"inventory":{"type":"inventory","settings":{"text_style":"body","inventory_threshold":10,"show_inventory_quantity":true}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":false}},"share":{"type":"share","settings":{"share_label":"Share"}},"description":{"type":"description","disabled":true,"settings":{}}},"block_order":["vendor","title","price","custom_liquid_H7TAbJ","custom_liquid_DjAYXi","text_839WWa","impact_accessories_K9gFqW","impact_accessories_NfaQgk","variant_picker","inventory","quantity_selector","buy_buttons","share","description"],"settings":{"enable_sticky_info":true,"media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail_slider","media_position":"left","image_zoom":"hover","mobile_thumbnails":"hide","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"mf_banner":{"type":"mf-pdp-banner","custom_css":[".mf-pdp-banner__content {transform: translateY(-50%); \/* 向上移动 *\/}"],"settings":{"background_image":"shopify:\/\/shop_images\/Generated-Image-November-26_-2025---3_33PM.jpg","background_image_url":"https:\/\/lh3.googleusercontent.com\/aida-public\/AB6AXuD141wfhojyYAzsy6N_Hdav7av4Bb2em4vFZc7pYHozVywYH_EIdaqruDOYx0NwIcDdFhGNmW5OCY4KUDjJsZZh0tueOzSoYhOA6ZQBC-jJKb-LKX9iP5uldAqUhKI58HP1AOby0KXOZaGEhtU82vyB04ksN5KGV3PbOpDE_vG_g7748dhe9_ri7UqiXhkOfeRdtSb-NuU-vRV4JpM6Xp6w7oqYF1YPQYMPeHpCFBmRMRl-_HrrgAd22iqVGiYff6XRnDnyBbCc1-w","background_alt":"MaxFoot MF-25 e-bike","heading":"<p>Ride in Style<br\/>Conquer the City<br\/>MaxFoot MF-25<\/p>","text_alignment":"right","text_color":"#111111","font_size_desktop":68,"font_size_mobile":38,"content_width":760,"overlay_opacity":40,"height_desktop":600,"height_mobile":420}},"impact_swiper_video_TpQyky":{"type":"impact-swiper-video","blocks":{"swiper_video_box_iN3qn8":{"type":"swiperVideoBox","settings":{"swiperVideo_coverImg":"shopify:\/\/shop_images\/ytbtu_maxresdefault-1755571898.jpg","swiperVideo_coverAlt":"","swiperVideo_coverCopywriting":"Maxfoot MF 25 E Bike","swiperVideo_imgUser":"shopify:\/\/shop_images\/channels4_profile_1.jpg","swiperVideo_imgUserAlt":"","swiperVideo_userName":"Shopping with Amy","swiperVideo_url":"https:\/\/www.youtube.com\/watch?v=RZg5C6C-DSU&t=2s"}},"swiper_video_box_xan7xX":{"type":"swiperVideoBox","settings":{"swiperVideo_coverImg":"shopify:\/\/shop_images\/ytbtu_maxresdefault-1755589035.jpg","swiperVideo_coverAlt":"","swiperVideo_coverCopywriting":"Maxfoot MF-25 eBike (ONLY $699)","swiperVideo_imgUser":"shopify:\/\/shop_images\/channels4_profile.jpg","swiperVideo_imgUserAlt":"","swiperVideo_userName":"eBike Reviews & Adventures","swiperVideo_url":"https:\/\/www.youtube.com\/watch?v=6UpGphswnMQ"}},"swiper_video_box_6YWGrX":{"type":"swiperVideoBox","settings":{"swiperVideo_coverImg":"shopify:\/\/shop_images\/ytbtu_maxresdefault-1755589107.jpg","swiperVideo_coverAlt":"","swiperVideo_coverCopywriting":"Can This E-Bike Handle My Neighborhood Streets?","swiperVideo_imgUser":"shopify:\/\/shop_images\/channels4_profile_988ad82a-ba38-4e80-876b-80212cf2a1cd.jpg","swiperVideo_imgUserAlt":"","swiperVideo_userName":"eBike Reviews & Adventures","swiperVideo_url":"https:\/\/www.youtube.com\/watch?v=1nrLU_K7YBY&t=340s"}},"swiper_video_box_he6GdU":{"type":"swiperVideoBox","settings":{"swiperVideo_coverImg":"shopify:\/\/shop_images\/ytbtu_maxresdefault-1755589189.jpg","swiperVideo_coverAlt":"","swiperVideo_coverCopywriting":"Maxfoot MF25 eBike Ride and Review","swiperVideo_imgUser":"shopify:\/\/shop_images\/channels4_profile_18a5879d-d427-49f2-bc27-d464c5caaf63.jpg","swiperVideo_imgUserAlt":"","swiperVideo_userName":"eBike Reviews & Adventures","swiperVideo_url":"https:\/\/www.youtube.com\/watch?v=GNDfMOtItjk"}}},"block_order":["swiper_video_box_iN3qn8","swiper_video_box_xan7xX","swiper_video_box_6YWGrX","swiper_video_box_he6GdU"],"custom_css":[".swiper-cover-box p {margin: 6px 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3em; line-height: 1.5em;}"],"name":"视频-轮播模块","settings":{"swiperVideo_title":"YouTube Reviews"}},"mf_gallery":{"type":"mf-pdp-gallery","blocks":{"gallery_1":{"type":"gallery_item","settings":{"image":"shopify:\/\/shop_images\/Generated-Image-March-24_-2026---9_46AM.jpg","image_url":"https:\/\/lh3.googleusercontent.com\/aida-public\/AB6AXuCVTncqY8WEUQtobotXHq5N7DuVGDUi6JWk0-L4aPwEpcZgV2Ne9N0MyOwve43sjslPz0we_AEYihfNMYcMLgLSeVd_NSceXbwd8ekj7Ak8k2UB2l066FiyUcHC5IlzGhXm06J19xOF5GJW_PeuK_dYnS4jKmF33NfXVmsvhSb9XwIQv1pHDlpCI4XPoAXafNWfxI1lZYb5NFb4fzs8BY5JYalhPspyrw3duRBw4TNuZlyIUJIOy_7LtgED9fD9ZtF5StQFzFtg3us","alt":"E-bike side view","hotspot_1_product":"front-basket-for-mf-25","hotspot_1_top":55,"hotspot_1_left":40,"hotspot_2_product":"","hotspot_2_top":70,"hotspot_2_left":75,"hotspot_3_product":"","hotspot_3_top":50,"hotspot_3_left":50}},"gallery_2":{"type":"gallery_item","settings":{"image":"shopify:\/\/shop_images\/Generated-Image-March-24_-2026---3_25PM.jpg","image_url":"https:\/\/lh3.googleusercontent.com\/aida-public\/AB6AXuAW5M1KRGSzBS2bwf04BYGgNqoqbM9dAaXY6YW8ZmzRDCftw7Xbs2N3l1njNCEoJgOn5CHsjkTjMKDGP7J4BBQJZqjxnWeozUmfBlYkHFYLa93hruNRXftjtwdVAP3CY3u9fDXzMBwKwt0nOvS90MR0eaYy113XYjtgKXussuMJcvQDxVictrbGtudd8J309S22HXyUQhEBqgHrcQhbgnR1uPhG77wnblsBCxY6u6F_5I5W9m1rO-8oTKDEQlOSmoEaDkSyhgfcRIw","alt":"Rider on street","hotspot_1_product":"rear-rack-bag","hotspot_1_top":60,"hotspot_1_left":20,"hotspot_2_product":"","hotspot_2_top":80,"hotspot_2_left":70,"hotspot_3_product":"","hotspot_3_top":50,"hotspot_3_left":50}},"gallery_3":{"type":"gallery_item","settings":{"image":"shopify:\/\/shop_images\/Generated-Image-March-24_-2026---6_06PM.jpg","image_url":"https:\/\/lh3.googleusercontent.com\/aida-public\/AB6AXuDgnyPiDDTlJZGbOTzoDHQ8wcacPPSEICQ0GJPG8dTzL6DoQovPvFMpz7H8RMeFGjAvxJhpOk-L5fe8DLuBYkZsCiTcVY14Nb-Vu1uXxOkaUaZ7KuiBBOn-nqrRyyPv1DvmXlu-PE7WpkTMEuoB-McsDzr-7BgYP-P8szUb1fhNq3OXhKz3C6U7kZkp_QzYO81hhix9lyObhoQrwrOIgTtq07VRYg4kv-Gw2XEOy_Thvh6-EDece3CkzKoKW7TOesf3EHAeYyBRvow","alt":"E-bike at cafe","hotspot_1_product":"rearview-bicycle-mirrors","hotspot_1_top":20,"hotspot_1_left":40,"hotspot_2_product":"","hotspot_2_top":70,"hotspot_2_left":75,"hotspot_3_product":"","hotspot_3_top":50,"hotspot_3_left":50}},"gallery_4":{"type":"gallery_item","settings":{"image":"shopify:\/\/shop_images\/MF25-HILLING-628x628.jpg","image_url":"https:\/\/lh3.googleusercontent.com\/aida-public\/AB6AXuDauraptXUCTVQgDsUT58KLM-3k0iXf5_P-6k3BAZLGkMVfcn78GiXHaG8sQvmsP008aSd2LiTTERF-nerNdPJSvDFY1CGGfmEunGop9GgHDdf8RN9MJ3Kx0r9hKjIhLUWytFM1QSNmSoKqygNKHSZqdWg57TogMqDV-9Tl2iQiFrzKMgdf0zfmunf-gA7kJVqb5KSLv-9RP_XbhVljvlFbTwos9H-4bhXBAGmNxWpOid98S0zt3yrQGRY_IKJ3MDjZCftQmNvO1TA","alt":"Rider near water","hotspot_1_product":"","hotspot_1_top":60,"hotspot_1_left":10,"hotspot_2_product":"","hotspot_2_top":70,"hotspot_2_left":75,"hotspot_3_product":"","hotspot_3_top":50,"hotspot_3_left":50}},"gallery_5":{"type":"gallery_item","settings":{"image":"shopify:\/\/shop_images\/Generated-Image-September-08_-2025---7_09PM.jpg","image_url":"https:\/\/lh3.googleusercontent.com\/aida-public\/AB6AXuCGXAyz-Qfcgatshwdo5Y3ow4iAVfuwoIrIOdV1eSXKhC-krib7OKm0Qe8-IEkWL0VPcxb2-zxYY3HfI-IIWT70081AY1Ws_Ce-_NgicXb0ZuN9zK1BWkR9DTmu_olg5GjX8KRTWVm7Mh9Xkkwnc2K6nWt9z3-w7ATMnV8zQ7zmiPvg29Da_DUeeTMuQpgLVHKagb7_r7q1paFG7NCcS-hHC8hMFSCY0phndD0Rztu5dnwi-jijlrJi9bcTfkk9FasFQdOquzRp5oY","alt":"E-bikes parked","hotspot_1_product":"tailer-for-e-bike","hotspot_1_top":60,"hotspot_1_left":20,"hotspot_2_product":"","hotspot_2_top":70,"hotspot_2_left":75,"hotspot_3_product":"","hotspot_3_top":50,"hotspot_3_left":50}}},"block_order":["gallery_1","gallery_2","gallery_3","gallery_4","gallery_5"],"settings":{"title":"Gallery of Adventure","background_color":"#ffffff","title_color":"#111111","title_size_desktop":36,"title_size_mobile":28,"mobile_card_width":84,"hotspot_color":"#ffffff","hotspot_text_color":"#111111","popup_background":"#ffffff","popup_text_color":"#111111","dot_color":"#111111","padding_top":64,"padding_bottom":64}},"mf_bundle_save":{"type":"mf-pdp-accessory-bundles","blocks":{"bundle_1":{"type":"bundle","settings":{"title":"Commuter Pro Bundle","description":"","bundle_product":"","product_1":"rear-rack-bag","product_2":"front-basket-for-mf-25","product_3":"rearview-bicycle-mirrors","product_4":"","total_label":"Total Value","bundle_price_label":"Bundle Price","total_value":"$179.98","bundle_price":"$114.98","savings_text":"Save $65!","button_label":"Add Bundle to Cart"}},"bundle_2":{"type":"bundle","settings":{"title":"Adventure Pack","description":"Includes:\n• Front Utility Basket\n• Rear Rack Bag\n• E-Bike Trailer","bundle_product":"","product_1":"front-basket-for-mf-25","product_2":"rear-rack-bag","product_3":"tailer-for-e-bike","product_4":"","total_label":"Total Value","bundle_price_label":"Bundle Price","total_value":"$457.99","bundle_price":"$387.99","savings_text":"Save $70!","button_label":"Add Bundle to Cart"}},"bundle_3":{"type":"bundle","settings":{"title":"Essentials Kit","description":"Includes:\n• Rear Rack Bag\n• Rearview Bicycle Mirrors\n• E-Bike Trailer","bundle_product":"","product_1":"rear-rack-bag","product_2":"rearview-bicycle-mirrors","product_3":"tailer-for-e-bike","product_4":"","total_label":"Total Value","bundle_price_label":"Bundle Price","total_value":"$439.98","bundle_price":"$364.98","savings_text":"Save $75!","button_label":"Add Bundle to Cart"}}},"block_order":["bundle_1","bundle_2","bundle_3"],"settings":{"title":"Accessory Bundle & Save","background_color":"#ffffff","title_color":"#111111","card_background":"#ffffff","card_text_color":"#111111","save_color":"#218838","padding_top":64,"padding_bottom":64}},"swiper_graphic_BUgdU9":{"type":"swiper-graphic","blocks":{"swiper_box_dyQPhD":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2959.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2959.jpg","swiper_title":"Battery","swiper_copywriting":"500Wh lithium battery delivers long-range power, fast charging, and reliable performance for every ride."}},"swiper_box_8PD49h":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2921.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2921.jpg","swiper_title":"Motor","swiper_copywriting":"Peak 1000W motor provides powerful acceleration, smooth climbs, and unmatched performance for any terrain."}},"swiper_box_7cgir6":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2731.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2731.jpg","swiper_title":"Front Light","swiper_copywriting":"LED headlight ensures clear visibility, safe night rides, and energy-efficient illumination for all adventures."}},"swiper_box_igdkBi":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2850.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2850.jpg","swiper_title":"Taillight","swiper_copywriting":"High-visibility LED taillight enhances safety with brake sensing and durable weatherproof design."}},"swiper_box_8dHXyh":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_3080.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_3080.jpg","swiper_title":"LCD Display","swiper_copywriting":"Bright LCD shows speed, battery, distance, and mode, ensuring a smart, intuitive ride experience."}},"swiper_box_KpEVat":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2809.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2809.jpg","swiper_title":"Seatpost","swiper_copywriting":"Suspension seatpost absorbs shocks, reduces fatigue, and ensures a smooth, comfortable ride on any terrain."}},"swiper_box_x49HNz":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2987.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2987.jpg","swiper_title":"Step-Thru Frame","swiper_copywriting":"A Step-thru design, enhancing convenience, stability, and easy getting on and off for effortless rides."}},"swiper_box_MPTAap":{"type":"swiperBox","settings":{"swiper_img_pc":"shopify:\/\/shop_images\/DSC_2749.jpg","swiper_img_phone":"shopify:\/\/shop_images\/DSC_2749.jpg","swiper_title":"Rear Rack","swiper_copywriting":"A durable, lightweight rear rack, supporting 25kg, designed for secure, versatile, and weatherproof functionality."}}},"block_order":["swiper_box_dyQPhD","swiper_box_8PD49h","swiper_box_7cgir6","swiper_box_igdkBi","swiper_box_8dHXyh","swiper_box_KpEVat","swiper_box_x49HNz","swiper_box_MPTAap"],"custom_css":[".fontBgColor {background-image: linear-gradient(to right, #7db1a8 0, #fff), linear-gradient(to right, #7db1a8 0, #fff);}",".swiperGraphic_section {max-width: 1200px;}",".swiperGraphic_content p {font-size: 15px;}",".swiperGraphic_section {max-width: 100%;}"],"settings":{"swiperGraphic_title":"Discover <span class=\"fontBgColor\">MF<\/span>-25 E-Bike"}},"bike_spec_info_3BkbtH":{"type":"bike-spec-info","blocks":{"bike_spec_info_box_yVt7Dw":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Frame","bikeSpecInfo_Item_value":"High-Strength Step-Thru Alloy Frame"}},"bike_spec_info_box_cphdNB":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Fork","bikeSpecInfo_Item_value":"Front Suspension Fork with Switch"}}},"block_order":["bike_spec_info_box_yVt7Dw","bike_spec_info_box_cphdNB"],"settings":{"bikeSpecInfo_title":"Frameset","bikeSpecInfo_imgAlt":"","bikeSpecInfo_imgPosition":"right"}},"bike_spec_info_RFQhKQ":{"type":"bike-spec-info","blocks":{"bike_spec_info_box_JEQViB":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Motor","bikeSpecInfo_Item_value":"Maxfoot Brushless Motor Peak 1000W"}},"bike_spec_info_box_kYcfqH":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Tire","bikeSpecInfo_Item_value":"Puncture protection, 26x1.95\" fat tire"}}},"block_order":["bike_spec_info_box_JEQViB","bike_spec_info_box_kYcfqH"],"settings":{"bikeSpecInfo_title":"Wheels","bikeSpecInfo_imgAlt":"","bikeSpecInfo_imgPosition":"right"}},"bike_spec_info_VzzDyi":{"type":"bike-spec-info","blocks":{"bike_spec_info_box_xWrMzG":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Battery","bikeSpecInfo_Item_value":"500Wh Removable Lithium-ion Battery"}},"bike_spec_info_box_wCzyz4":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Size & Fit","bikeSpecInfo_Item_value":"5‘3“-7’3“"}},"bike_spec_info_box_RYTzhX":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Charger","bikeSpecInfo_Item_value":"2A Fast Charger"}},"bike_spec_info_box_jXRG7K":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Display Type","bikeSpecInfo_Item_value":"LCD Color Screen Display"}},"bike_spec_info_box_dCDF4R":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Rear Derailleur","bikeSpecInfo_Item_value":"Shimano 7 speed"}},"bike_spec_info_box_YaTyg3":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Throttle","bikeSpecInfo_Item_value":"Thumb-Twist Throttle"}}},"block_order":["bike_spec_info_box_xWrMzG","bike_spec_info_box_wCzyz4","bike_spec_info_box_RYTzhX","bike_spec_info_box_jXRG7K","bike_spec_info_box_dCDF4R","bike_spec_info_box_YaTyg3"],"settings":{"bikeSpecInfo_title":"E-system & Drivetrain","bikeSpecInfo_imgAlt":"","bikeSpecInfo_imgPosition":"right"}},"bike_spec_info_qa4kLL":{"type":"bike-spec-info","blocks":{"bike_spec_info_box_MKJAY7":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Light","bikeSpecInfo_Item_value":"Integrated LED headlight and taillight with brake light."}},"bike_spec_info_box_EkwDnr":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Kickstand","bikeSpecInfo_Item_value":"Alloy Adjustable"}}},"block_order":["bike_spec_info_box_MKJAY7","bike_spec_info_box_EkwDnr"],"settings":{"bikeSpecInfo_title":"Accessories","bikeSpecInfo_imgAlt":"","bikeSpecInfo_imgPosition":"right"}},"bike_spec_info_RdHAPF":{"type":"bike-spec-info","blocks":{"bike_spec_info_box_YVHW7j":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Weight","bikeSpecInfo_Item_value":"27 kg \/ 59 lb"}},"bike_spec_info_box_WDdtWq":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Weight limit","bikeSpecInfo_Item_value":"This bike has a maximum total weight limit (combined weight of rider and cargo) of 300 pounds (136kg)."}},"bike_spec_info_box_VJPBfG":{"type":"bikeSpecInfoBox","settings":{"bikeSpecInfo_Item_title":"Ebike Dimensions","bikeSpecInfo_Item_value":"67.8\" × 28\" × 45\"\n(Length × Width × Height)"}}},"block_order":["bike_spec_info_box_YVHW7j","bike_spec_info_box_WDdtWq","bike_spec_info_box_VJPBfG"],"settings":{"bikeSpecInfo_title":"Weight & Dimensions","bikeSpecInfo_imgAlt":"","bikeSpecInfo_imgPosition":"right"}},"custom_liquid_XaEgh6":{"type":"custom-liquid","settings":{"custom_liquid":"<style>\n        .bike_img,.bike_img * {\n            padding: 0;\n            margin: 0;\n        }\n        .bike_img {\n            max-width: 1200px;\n            width: 100%;\n            margin: auto;\n        }\n        .bike_img img {\n            display: block;\n            max-width: 100%;\n            width: 100%;\n            height: 100%;\n            margin: auto;\n            backface-visibility: hidden;\n            object-fit: cover;\n            object-position: center center;\n        }\n        @media only screen and (max-width: 750px) {\n            .bike_img {\n                padding: 0 10px;\n                box-sizing: border-box;\n            }\n        }\n    <\/style>\n    <div class=\"bike_img\">\n        <picture>\n            <source media=\"(max-width:750px)\"\n                srcset=\"https:\/\/maxfoot.bike\/cdn\/shop\/files\/M.jpg?v=1739323833\">\n            <img\n                src=\"https:\/\/maxfoot.bike\/cdn\/shop\/files\/f7d7c897f798fc44c391847188c3ac79.jpg?v=1739260824\"\n                alt=\"\">\n        <\/picture>\n    <\/div>","color_scheme":"background-1","padding_top":0,"padding_bottom":0}},"mf_complete_ride":{"type":"mf-pdp-complete-ride","blocks":{"ride_1":{"type":"product_card","settings":{"product":"rear-rack-bag","title":"MaxFoot Rear Rack Bag","image_url":""}},"ride_2":{"type":"product_card","settings":{"product":"front-basket-for-mf-25","title":"Front Utility Basket","image_url":""}},"ride_3":{"type":"product_card","settings":{"product":"rearview-bicycle-mirrors","title":"Rearview Bicycle Mirrors","image_url":""}},"ride_4":{"type":"product_card","settings":{"product":"tailer-for-e-bike","title":"E-Bike Trailer","image_url":""}}},"block_order":["ride_1","ride_2","ride_3","ride_4"],"settings":{"title":"Complete Your Ride","button_label":"Add to Cart","background_color":"#f8f9fa","title_color":"#111111","card_background":"#ffffff","card_text_color":"#111111","padding_top":64,"padding_bottom":64}},"177443790647a5de09":{"type":"apps","blocks":{"judge_me_reviews_review_widget_h6mKLd":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{"review_data":"real_data","max_width":1200,"show_shop_reviews":false,"empty_state":"other_products_reviews"}}},"block_order":["judge_me_reviews_review_widget_h6mKLd"],"settings":{"include_margins":true}}},"order":["main","mf_banner","impact_swiper_video_TpQyky","mf_gallery","mf_bundle_save","swiper_graphic_BUgdU9","bike_spec_info_3BkbtH","bike_spec_info_RFQhKQ","bike_spec_info_VzzDyi","bike_spec_info_qa4kLL","bike_spec_info_RdHAPF","custom_liquid_XaEgh6","mf_complete_ride","177443790647a5de09"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size": "medium"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "custom_liquid_H7TAbJ": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror </span>\n    </div>\n   \n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "custom_liquid_DjAYXi": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Limited Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Price Limited at $659. Buy and Get Free Rearview Mirror </span>\n    </div>\n   <p style=\"margin: 0; color: #4a5568; font-size: 14px; line-height: 1.4;\">\n        Discount will be <strong>automatically applied</strong> at checkout.\n    </p>\n</div>",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "text_839WWa": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Buy MF-25 Get Rear Mirror Free</strong>",
+            "text_style": "subtitle"
+          }
+        },
+        "impact_accessories_K9gFqW": {
+          "type": "impact-accessories",
+          "settings": {
+            "accessories_product": "rearview-bicycle-mirrors",
+            "accessories_is_fold": "no",
+            "accessories_is_checed": "yes",
+            "accessories_is_link": "no",
+            "accessories_link": ""
+          }
+        },
+        "impact_accessories_NfaQgk": {
+          "type": "impact-accessories",
+          "settings": {
+            "accessories_product": "electric-bicycle-weather-cover",
+            "accessories_is_fold": "no",
+            "accessories_is_checed": "no",
+            "accessories_is_link": "no",
+            "accessories_link": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "color"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "custom_liquid_H7TAbJ",
+        "custom_liquid_DjAYXi",
+        "text_839WWa",
+        "impact_accessories_K9gFqW",
+        "impact_accessories_NfaQgk",
+        "variant_picker",
+        "inventory",
+        "quantity_selector",
+        "buy_buttons",
+        "share",
+        "description"
+      ],
+      "settings": {
+        "show_stock": true,
+        "stock_count": "",
+        "show_finance": true,
+        "finance_label": "Affirm financing",
+        "finance_link": "",
+        "show_extras": true
+      }
+    },
+    "mf_banner": {
+      "type": "mf-pdp-banner",
+      "custom_css": [
+        ".mf-pdp-banner__content {transform: translateY(-50%); /* 向上移动 */}",
+        " {padding: 0px;}"
+      ],
+      "settings": {
+        "background_image": "shopify://shop_images/Generated-Image-November-26_-2025---3_33PM.jpg",
+        "background_image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuD141wfhojyYAzsy6N_Hdav7av4Bb2em4vFZc7pYHozVywYH_EIdaqruDOYx0NwIcDdFhGNmW5OCY4KUDjJsZZh0tueOzSoYhOA6ZQBC-jJKb-LKX9iP5uldAqUhKI58HP1AOby0KXOZaGEhtU82vyB04ksN5KGV3PbOpDE_vG_g7748dhe9_ri7UqiXhkOfeRdtSb-NuU-vRV4JpM6Xp6w7oqYF1YPQYMPeHpCFBmRMRl-_HrrgAd22iqVGiYff6XRnDnyBbCc1-w",
+        "background_alt": "MaxFoot MF-25 e-bike",
+        "heading": "<p>Ride in Style<br/>Conquer the City<br/>MaxFoot MF-25</p>",
+        "text_alignment": "right",
+        "text_color": "#111111",
+        "font_size_desktop": 68,
+        "font_size_mobile": 38,
+        "content_width": 760,
+        "overlay_opacity": 40,
+        "height_desktop": 600,
+        "height_mobile": 420
+      }
+    },
+    "impact_swiper_video_TpQyky": {
+      "type": "impact-swiper-video",
+      "blocks": {
+        "swiper_video_box_iN3qn8": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755571898.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "Maxfoot MF 25 E Bike",
+            "swiperVideo_imgUser": "shopify://shop_images/channels4_profile_1.jpg",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "Shopping with Amy",
+            "swiperVideo_url": "https://www.youtube.com/watch?v=RZg5C6C-DSU&t=2s"
+          }
+        },
+        "swiper_video_box_xan7xX": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755589035.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "Maxfoot MF-25 eBike (ONLY $699)",
+            "swiperVideo_imgUser": "shopify://shop_images/channels4_profile.jpg",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "eBike Reviews & Adventures",
+            "swiperVideo_url": "https://www.youtube.com/watch?v=6UpGphswnMQ"
+          }
+        },
+        "swiper_video_box_6YWGrX": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755589107.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "Can This E-Bike Handle My Neighborhood Streets?",
+            "swiperVideo_imgUser": "shopify://shop_images/channels4_profile_988ad82a-ba38-4e80-876b-80212cf2a1cd.jpg",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "eBike Reviews & Adventures",
+            "swiperVideo_url": "https://www.youtube.com/watch?v=1nrLU_K7YBY&t=340s"
+          }
+        },
+        "swiper_video_box_he6GdU": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755589189.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "Maxfoot MF25 eBike Ride and Review",
+            "swiperVideo_imgUser": "shopify://shop_images/channels4_profile_18a5879d-d427-49f2-bc27-d464c5caaf63.jpg",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "eBike Reviews & Adventures",
+            "swiperVideo_url": "https://www.youtube.com/watch?v=GNDfMOtItjk"
+          }
+        }
+      },
+      "block_order": [
+        "swiper_video_box_iN3qn8",
+        "swiper_video_box_xan7xX",
+        "swiper_video_box_6YWGrX",
+        "swiper_video_box_he6GdU"
+      ],
+      "custom_css": [
+        ".swiper-cover-box p {margin: 6px 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3em; line-height: 1.5em;}"
+      ],
+      "name": "视频-轮播模块",
+      "settings": {
+        "swiperVideo_title": "YouTube Reviews"
+      }
+    },
+    "mf_gallery": {
+      "type": "mf-pdp-gallery",
+      "blocks": {
+        "gallery_1": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-March-24_-2026---9_46AM.jpg",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCVTncqY8WEUQtobotXHq5N7DuVGDUi6JWk0-L4aPwEpcZgV2Ne9N0MyOwve43sjslPz0we_AEYihfNMYcMLgLSeVd_NSceXbwd8ekj7Ak8k2UB2l066FiyUcHC5IlzGhXm06J19xOF5GJW_PeuK_dYnS4jKmF33NfXVmsvhSb9XwIQv1pHDlpCI4XPoAXafNWfxI1lZYb5NFb4fzs8BY5JYalhPspyrw3duRBw4TNuZlyIUJIOy_7LtgED9fD9ZtF5StQFzFtg3us",
+            "alt": "E-bike side view",
+            "hotspot_1_product": "front-basket-for-mf-25",
+            "hotspot_1_top": 55,
+            "hotspot_1_left": 40,
+            "hotspot_2_product": "",
+            "hotspot_2_top": 70,
+            "hotspot_2_left": 75,
+            "hotspot_3_product": "",
+            "hotspot_3_top": 50,
+            "hotspot_3_left": 50
+          }
+        },
+        "gallery_2": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-March-24_-2026---3_25PM.jpg",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAW5M1KRGSzBS2bwf04BYGgNqoqbM9dAaXY6YW8ZmzRDCftw7Xbs2N3l1njNCEoJgOn5CHsjkTjMKDGP7J4BBQJZqjxnWeozUmfBlYkHFYLa93hruNRXftjtwdVAP3CY3u9fDXzMBwKwt0nOvS90MR0eaYy113XYjtgKXussuMJcvQDxVictrbGtudd8J309S22HXyUQhEBqgHrcQhbgnR1uPhG77wnblsBCxY6u6F_5I5W9m1rO-8oTKDEQlOSmoEaDkSyhgfcRIw",
+            "alt": "Rider on street",
+            "hotspot_1_product": "rear-rack-bag",
+            "hotspot_1_top": 60,
+            "hotspot_1_left": 20,
+            "hotspot_2_product": "",
+            "hotspot_2_top": 80,
+            "hotspot_2_left": 70,
+            "hotspot_3_product": "",
+            "hotspot_3_top": 50,
+            "hotspot_3_left": 50
+          }
+        },
+        "gallery_3": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-March-24_-2026---6_06PM.jpg",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDgnyPiDDTlJZGbOTzoDHQ8wcacPPSEICQ0GJPG8dTzL6DoQovPvFMpz7H8RMeFGjAvxJhpOk-L5fe8DLuBYkZsCiTcVY14Nb-Vu1uXxOkaUaZ7KuiBBOn-nqrRyyPv1DvmXlu-PE7WpkTMEuoB-McsDzr-7BgYP-P8szUb1fhNq3OXhKz3C6U7kZkp_QzYO81hhix9lyObhoQrwrOIgTtq07VRYg4kv-Gw2XEOy_Thvh6-EDece3CkzKoKW7TOesf3EHAeYyBRvow",
+            "alt": "E-bike at cafe",
+            "hotspot_1_product": "rearview-bicycle-mirrors",
+            "hotspot_1_top": 20,
+            "hotspot_1_left": 40,
+            "hotspot_2_product": "",
+            "hotspot_2_top": 70,
+            "hotspot_2_left": 75,
+            "hotspot_3_product": "",
+            "hotspot_3_top": 50,
+            "hotspot_3_left": 50
+          }
+        },
+        "gallery_4": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/MF25-HILLING-628x628.jpg",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDauraptXUCTVQgDsUT58KLM-3k0iXf5_P-6k3BAZLGkMVfcn78GiXHaG8sQvmsP008aSd2LiTTERF-nerNdPJSvDFY1CGGfmEunGop9GgHDdf8RN9MJ3Kx0r9hKjIhLUWytFM1QSNmSoKqygNKHSZqdWg57TogMqDV-9Tl2iQiFrzKMgdf0zfmunf-gA7kJVqb5KSLv-9RP_XbhVljvlFbTwos9H-4bhXBAGmNxWpOid98S0zt3yrQGRY_IKJ3MDjZCftQmNvO1TA",
+            "alt": "Rider near water",
+            "hotspot_1_product": "",
+            "hotspot_1_top": 60,
+            "hotspot_1_left": 10,
+            "hotspot_2_product": "",
+            "hotspot_2_top": 70,
+            "hotspot_2_left": 75,
+            "hotspot_3_product": "",
+            "hotspot_3_top": 50,
+            "hotspot_3_left": 50
+          }
+        },
+        "gallery_5": {
+          "type": "gallery_item",
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-September-08_-2025---7_09PM.jpg",
+            "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCGXAyz-Qfcgatshwdo5Y3ow4iAVfuwoIrIOdV1eSXKhC-krib7OKm0Qe8-IEkWL0VPcxb2-zxYY3HfI-IIWT70081AY1Ws_Ce-_NgicXb0ZuN9zK1BWkR9DTmu_olg5GjX8KRTWVm7Mh9Xkkwnc2K6nWt9z3-w7ATMnV8zQ7zmiPvg29Da_DUeeTMuQpgLVHKagb7_r7q1paFG7NCcS-hHC8hMFSCY0phndD0Rztu5dnwi-jijlrJi9bcTfkk9FasFQdOquzRp5oY",
+            "alt": "E-bikes parked",
+            "hotspot_1_product": "tailer-for-e-bike",
+            "hotspot_1_top": 60,
+            "hotspot_1_left": 20,
+            "hotspot_2_product": "",
+            "hotspot_2_top": 70,
+            "hotspot_2_left": 75,
+            "hotspot_3_product": "",
+            "hotspot_3_top": 50,
+            "hotspot_3_left": 50
+          }
+        }
+      },
+      "block_order": [
+        "gallery_1",
+        "gallery_2",
+        "gallery_3",
+        "gallery_4",
+        "gallery_5"
+      ],
+      "custom_css": [
+        "{padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Gallery of Adventure",
+        "background_color": "#ffffff",
+        "title_color": "#111111",
+        "title_size_desktop": 36,
+        "title_size_mobile": 28,
+        "mobile_card_width": 84,
+        "hotspot_color": "#ffffff",
+        "hotspot_text_color": "#111111",
+        "popup_background": "#ffffff",
+        "popup_text_color": "#111111",
+        "dot_color": "#111111",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "mf_bundle_save": {
+      "type": "mf-pdp-accessory-bundles",
+      "blocks": {
+        "bundle_1": {
+          "type": "bundle",
+          "settings": {
+            "title": "Commuter Pro Bundle",
+            "description": "",
+            "bundle_product": "",
+            "product_1": "rear-rack-bag",
+            "product_2": "front-basket-for-mf-25",
+            "product_3": "rearview-bicycle-mirrors",
+            "product_4": "",
+            "total_label": "Total Value",
+            "bundle_price_label": "Bundle Price",
+            "total_value": "$179.98",
+            "bundle_price": "$114.98",
+            "savings_text": "Save $65!",
+            "button_label": "Add Bundle to Cart"
+          }
+        },
+        "bundle_2": {
+          "type": "bundle",
+          "settings": {
+            "title": "Adventure Pack",
+            "description": "Includes:\n• Front Utility Basket\n• Rear Rack Bag\n• E-Bike Trailer",
+            "bundle_product": "",
+            "product_1": "front-basket-for-mf-25",
+            "product_2": "rear-rack-bag",
+            "product_3": "tailer-for-e-bike",
+            "product_4": "",
+            "total_label": "Total Value",
+            "bundle_price_label": "Bundle Price",
+            "total_value": "$457.99",
+            "bundle_price": "$387.99",
+            "savings_text": "Save $70!",
+            "button_label": "Add Bundle to Cart"
+          }
+        },
+        "bundle_3": {
+          "type": "bundle",
+          "settings": {
+            "title": "Essentials Kit",
+            "description": "Includes:\n• Rear Rack Bag\n• Rearview Bicycle Mirrors\n• E-Bike Trailer",
+            "bundle_product": "",
+            "product_1": "rear-rack-bag",
+            "product_2": "rearview-bicycle-mirrors",
+            "product_3": "tailer-for-e-bike",
+            "product_4": "",
+            "total_label": "Total Value",
+            "bundle_price_label": "Bundle Price",
+            "total_value": "$439.98",
+            "bundle_price": "$364.98",
+            "savings_text": "Save $75!",
+            "button_label": "Add Bundle to Cart"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_1",
+        "bundle_2",
+        "bundle_3"
+      ],
+      "custom_css": [
+        "{padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Accessory Bundle & Save",
+        "background_color": "#ffffff",
+        "title_color": "#111111",
+        "card_background": "#ffffff",
+        "card_text_color": "#111111",
+        "save_color": "#218838",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "swiper_graphic_BUgdU9": {
+      "type": "swiper-graphic",
+      "blocks": {
+        "swiper_box_dyQPhD": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2959.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2959.jpg",
+            "swiper_title": "Battery",
+            "swiper_copywriting": "500Wh lithium battery delivers long-range power, fast charging, and reliable performance for every ride."
+          }
+        },
+        "swiper_box_8PD49h": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2921.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2921.jpg",
+            "swiper_title": "Motor",
+            "swiper_copywriting": "Peak 1000W motor provides powerful acceleration, smooth climbs, and unmatched performance for any terrain."
+          }
+        },
+        "swiper_box_7cgir6": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2731.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2731.jpg",
+            "swiper_title": "Front Light",
+            "swiper_copywriting": "LED headlight ensures clear visibility, safe night rides, and energy-efficient illumination for all adventures."
+          }
+        },
+        "swiper_box_igdkBi": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2850.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2850.jpg",
+            "swiper_title": "Taillight",
+            "swiper_copywriting": "High-visibility LED taillight enhances safety with brake sensing and durable weatherproof design."
+          }
+        },
+        "swiper_box_8dHXyh": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_3080.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_3080.jpg",
+            "swiper_title": "LCD Display",
+            "swiper_copywriting": "Bright LCD shows speed, battery, distance, and mode, ensuring a smart, intuitive ride experience."
+          }
+        },
+        "swiper_box_KpEVat": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2809.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2809.jpg",
+            "swiper_title": "Seatpost",
+            "swiper_copywriting": "Suspension seatpost absorbs shocks, reduces fatigue, and ensures a smooth, comfortable ride on any terrain."
+          }
+        },
+        "swiper_box_x49HNz": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2987.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2987.jpg",
+            "swiper_title": "Step-Thru Frame",
+            "swiper_copywriting": "A Step-thru design, enhancing convenience, stability, and easy getting on and off for effortless rides."
+          }
+        },
+        "swiper_box_MPTAap": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2749.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2749.jpg",
+            "swiper_title": "Rear Rack",
+            "swiper_copywriting": "A durable, lightweight rear rack, supporting 25kg, designed for secure, versatile, and weatherproof functionality."
+          }
+        }
+      },
+      "block_order": [
+        "swiper_box_dyQPhD",
+        "swiper_box_8PD49h",
+        "swiper_box_7cgir6",
+        "swiper_box_igdkBi",
+        "swiper_box_8dHXyh",
+        "swiper_box_KpEVat",
+        "swiper_box_x49HNz",
+        "swiper_box_MPTAap"
+      ],
+      "custom_css": [
+        ".fontBgColor {background-image: linear-gradient(to right, #7db1a8 0, #fff), linear-gradient(to right, #7db1a8 0, #fff);}",
+        ".swiperGraphic_section {max-width: 1200px;}",
+        ".swiperGraphic_content p {font-size: 15px;}",
+        ".swiperGraphic_section {max-width: 100%;}"
+      ],
+      "settings": {
+        "swiperGraphic_title": "Discover <span class=\"fontBgColor\">MF</span>-25 E-Bike"
+      }
+    },
+    "bike_spec_info_3BkbtH": {
+      "type": "bike-spec-info",
+      "blocks": {
+        "bike_spec_info_box_yVt7Dw": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Frame",
+            "bikeSpecInfo_Item_value": "High-Strength Step-Thru Alloy Frame"
+          }
+        },
+        "bike_spec_info_box_cphdNB": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Fork",
+            "bikeSpecInfo_Item_value": "Front Suspension Fork with Switch"
+          }
+        }
+      },
+      "block_order": [
+        "bike_spec_info_box_yVt7Dw",
+        "bike_spec_info_box_cphdNB"
+      ],
+      "settings": {
+        "bikeSpecInfo_title": "Frameset",
+        "bikeSpecInfo_imgAlt": "",
+        "bikeSpecInfo_imgPosition": "right"
+      }
+    },
+    "bike_spec_info_RFQhKQ": {
+      "type": "bike-spec-info",
+      "blocks": {
+        "bike_spec_info_box_JEQViB": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Motor",
+            "bikeSpecInfo_Item_value": "Maxfoot Brushless Motor Peak 1000W"
+          }
+        },
+        "bike_spec_info_box_kYcfqH": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Tire",
+            "bikeSpecInfo_Item_value": "Puncture protection, 26x1.95\" fat tire"
+          }
+        }
+      },
+      "block_order": [
+        "bike_spec_info_box_JEQViB",
+        "bike_spec_info_box_kYcfqH"
+      ],
+      "settings": {
+        "bikeSpecInfo_title": "Wheels",
+        "bikeSpecInfo_imgAlt": "",
+        "bikeSpecInfo_imgPosition": "right"
+      }
+    },
+    "bike_spec_info_VzzDyi": {
+      "type": "bike-spec-info",
+      "blocks": {
+        "bike_spec_info_box_xWrMzG": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Battery",
+            "bikeSpecInfo_Item_value": "500Wh Removable Lithium-ion Battery"
+          }
+        },
+        "bike_spec_info_box_wCzyz4": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Size & Fit",
+            "bikeSpecInfo_Item_value": "5‘3“-7’3“"
+          }
+        },
+        "bike_spec_info_box_RYTzhX": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Charger",
+            "bikeSpecInfo_Item_value": "2A Fast Charger"
+          }
+        },
+        "bike_spec_info_box_jXRG7K": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Display Type",
+            "bikeSpecInfo_Item_value": "LCD Color Screen Display"
+          }
+        },
+        "bike_spec_info_box_dCDF4R": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Rear Derailleur",
+            "bikeSpecInfo_Item_value": "Shimano 7 speed"
+          }
+        },
+        "bike_spec_info_box_YaTyg3": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Throttle",
+            "bikeSpecInfo_Item_value": "Thumb-Twist Throttle"
+          }
+        }
+      },
+      "block_order": [
+        "bike_spec_info_box_xWrMzG",
+        "bike_spec_info_box_wCzyz4",
+        "bike_spec_info_box_RYTzhX",
+        "bike_spec_info_box_jXRG7K",
+        "bike_spec_info_box_dCDF4R",
+        "bike_spec_info_box_YaTyg3"
+      ],
+      "settings": {
+        "bikeSpecInfo_title": "E-system & Drivetrain",
+        "bikeSpecInfo_imgAlt": "",
+        "bikeSpecInfo_imgPosition": "right"
+      }
+    },
+    "bike_spec_info_qa4kLL": {
+      "type": "bike-spec-info",
+      "blocks": {
+        "bike_spec_info_box_MKJAY7": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Light",
+            "bikeSpecInfo_Item_value": "Integrated LED headlight and taillight with brake light."
+          }
+        },
+        "bike_spec_info_box_EkwDnr": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Kickstand",
+            "bikeSpecInfo_Item_value": "Alloy Adjustable"
+          }
+        }
+      },
+      "block_order": [
+        "bike_spec_info_box_MKJAY7",
+        "bike_spec_info_box_EkwDnr"
+      ],
+      "settings": {
+        "bikeSpecInfo_title": "Accessories",
+        "bikeSpecInfo_imgAlt": "",
+        "bikeSpecInfo_imgPosition": "right"
+      }
+    },
+    "bike_spec_info_RdHAPF": {
+      "type": "bike-spec-info",
+      "blocks": {
+        "bike_spec_info_box_YVHW7j": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Weight",
+            "bikeSpecInfo_Item_value": "27 kg / 59 lb"
+          }
+        },
+        "bike_spec_info_box_WDdtWq": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Weight limit",
+            "bikeSpecInfo_Item_value": "This bike has a maximum total weight limit (combined weight of rider and cargo) of 300 pounds (136kg)."
+          }
+        },
+        "bike_spec_info_box_VJPBfG": {
+          "type": "bikeSpecInfoBox",
+          "settings": {
+            "bikeSpecInfo_Item_title": "Ebike Dimensions",
+            "bikeSpecInfo_Item_value": "67.8\" × 28\" × 45\"\n(Length × Width × Height)"
+          }
+        }
+      },
+      "block_order": [
+        "bike_spec_info_box_YVHW7j",
+        "bike_spec_info_box_WDdtWq",
+        "bike_spec_info_box_VJPBfG"
+      ],
+      "settings": {
+        "bikeSpecInfo_title": "Weight & Dimensions",
+        "bikeSpecInfo_imgAlt": "",
+        "bikeSpecInfo_imgPosition": "right"
+      }
+    },
+    "custom_liquid_XaEgh6": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n        .bike_img,.bike_img * {\n            padding: 0;\n            margin: 0;\n        }\n        .bike_img {\n            max-width: 1200px;\n            width: 100%;\n            margin: auto;\n        }\n        .bike_img img {\n            display: block;\n            max-width: 100%;\n            width: 100%;\n            height: 100%;\n            margin: auto;\n            backface-visibility: hidden;\n            object-fit: cover;\n            object-position: center center;\n        }\n        @media only screen and (max-width: 750px) {\n            .bike_img {\n                padding: 0 10px;\n                box-sizing: border-box;\n            }\n        }\n    </style>\n    <div class=\"bike_img\">\n        <picture>\n            <source media=\"(max-width:750px)\"\n                srcset=\"https://maxfoot.bike/cdn/shop/files/M.jpg?v=1739323833\">\n            <img\n                src=\"https://maxfoot.bike/cdn/shop/files/f7d7c897f798fc44c391847188c3ac79.jpg?v=1739260824\"\n                alt=\"\">\n        </picture>\n    </div>",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "mf_complete_ride": {
+      "type": "mf-pdp-complete-ride",
+      "blocks": {
+        "ride_1": {
+          "type": "product_card",
+          "settings": {
+            "product": "rear-rack-bag",
+            "title": "MaxFoot Rear Rack Bag",
+            "image_url": ""
+          }
+        },
+        "ride_2": {
+          "type": "product_card",
+          "settings": {
+            "product": "front-basket-for-mf-25",
+            "title": "Front Utility Basket",
+            "image_url": ""
+          }
+        },
+        "ride_3": {
+          "type": "product_card",
+          "settings": {
+            "product": "rearview-bicycle-mirrors",
+            "title": "Rearview Bicycle Mirrors",
+            "image_url": ""
+          }
+        },
+        "ride_4": {
+          "type": "product_card",
+          "settings": {
+            "product": "tailer-for-e-bike",
+            "title": "E-Bike Trailer",
+            "image_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "ride_1",
+        "ride_2",
+        "ride_3",
+        "ride_4"
+      ],
+      "settings": {
+        "title": "Complete Your Ride",
+        "button_label": "Add to Cart",
+        "background_color": "#f8f9fa",
+        "title_color": "#111111",
+        "card_background": "#ffffff",
+        "card_text_color": "#111111",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "177443790647a5de09": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_h6mKLd": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "other_products_reviews"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_h6mKLd"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "mf_banner",
+    "impact_swiper_video_TpQyky",
+    "mf_gallery",
+    "mf_bundle_save",
+    "swiper_graphic_BUgdU9",
+    "bike_spec_info_3BkbtH",
+    "bike_spec_info_RFQhKQ",
+    "bike_spec_info_VzzDyi",
+    "bike_spec_info_qa4kLL",
+    "bike_spec_info_RdHAPF",
+    "custom_liquid_XaEgh6",
+    "mf_complete_ride",
+    "177443790647a5de09"
+  ]
+}
