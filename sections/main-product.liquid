@@ -58,6 +58,7 @@
 
       {%- if product.options.size > 0 -%}
         {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
           {%- for option in product.options_with_values -%}
             {%- if has_color_family and option.name == 'Color' -%}
               {%- continue -%}
@@ -160,6 +161,7 @@
         {%- endform -%}
 {%- else -%}
         {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
           <div class="pdp__qty-row">
             <div class="pdp__qty">
               <button type="button" data-qty="dec">{% render 'icon', icon: 'minus' %}</button>
