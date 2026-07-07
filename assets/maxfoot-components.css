@@ -520,12 +520,17 @@ body.mobile-menu-open{overflow:hidden}
 .swatch__color{width:48px;height:48px;border-radius:50%;display:block;border:3px solid transparent;transition:var(--transition)}
 .swatch input:checked+.swatch__color{border-color:var(--color-primary);box-shadow:0 0 0 2px var(--color-bg)}
 .swatch__label{display:block;font-size:11px;margin-top:4px;text-align:center}
-/* Cross-product color family (each pill links to a sibling product).
-   Renders short color name only — no image, no full product title. */
-.swatch--family{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:inherit;transition:var(--transition);padding:8px 16px;border-radius:999px;border:1px solid var(--color-border);background:#fff;font-size:13px;line-height:1.2;white-space:nowrap;font-weight:500}
-.swatch--family:hover{border-color:var(--color-primary);color:var(--color-primary);background:#fff}
-.swatch--family.is-active{background:var(--color-primary);color:#fff;border-color:var(--color-primary);font-weight:700;pointer-events:none}
-.pdp__swatches--family{flex-wrap:wrap;gap:8px}
+/* Cross-product color family (each item links to a sibling product).
+   Renders a solid COLOR CIRCLE on top + SHORT color name below. */
+.swatch--family{display:inline-flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;text-decoration:none;color:inherit;transition:var(--transition);font-size:12px;line-height:1.2;font-weight:500}
+.swatch--family .swatch__color{width:44px;height:44px;border-radius:50%;border:2px solid var(--color-border);box-shadow:0 0 0 2px #fff inset;transition:var(--transition)}
+.swatch--family .swatch__label{margin-top:0;font-size:12px;text-align:center;white-space:nowrap}
+.swatch--family:hover .swatch__color{border-color:var(--color-primary)}
+.swatch--family:hover .swatch__label{color:var(--color-primary)}
+.swatch--family.is-active{pointer-events:none}
+.swatch--family.is-active .swatch__color{border-color:var(--color-primary);box-shadow:0 0 0 2px var(--color-primary)}
+.swatch--family.is-active .swatch__label{color:var(--color-primary);font-weight:700}
+.pdp__swatches--family{flex-wrap:wrap;gap:16px}
 .pdp__qty-row{display:flex;gap:12px;margin-top:24px}
 .pdp__qty{display:flex;align-items:center;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden}
 .pdp__qty button{width:44px;height:52px;display:grid;place-items:center;color:var(--color-primary);transition:var(--transition)}
