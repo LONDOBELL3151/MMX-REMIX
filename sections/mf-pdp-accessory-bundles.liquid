@@ -168,9 +168,9 @@
     line-height: 1;
     font-size: 1.6rem;
     border-radius: 1.2rem;
-    background: #FFC000;           /* 新背景色（金黄色） */
-    border-color: #FFC000;         /* 边框与背景一致 */
-    color: #121212;               /* 新文字颜色（深灰） */
+    background: #FFC000;
+    border-color: #FFC000;
+    color: #121212;
     box-shadow: none;
   }
 
@@ -311,23 +311,25 @@
       gap: 0.3rem 0.6rem;
     }
 
-    /* “Save $XX!” 独立成行或右对齐 */
+    /* ===== Save 标签左对齐（独立成行） ===== */
     #shopify-section-{{ section.id }} .mf-bundles__bundle-price .mf-bundles__save {
-      margin-left: auto;
+      margin-left: 0;
+      flex-basis: 100%;          /* 强制换行 */
       font-weight: 700;
       font-size: 1.3rem;
       background: rgba(33, 136, 56, 0.08);
       padding: 0.2rem 0.6rem;
       border-radius: 0.6rem;
       white-space: nowrap;
+      display: inline-block;     /* 背景只包裹内容 */
     }
 
-    /* 按钮（移动端尺寸调整，颜色继承全局） */
+    /* 按钮（移动端尺寸调整） */
     #shopify-section-{{ section.id }} .mf-bundles__button .button {
       min-height: 4.4rem;
       font-size: 1.3rem;
       padding: 0.8rem 0.8rem;
-      white-space: normal;          /* 允许换行，避免截断 */
+      white-space: normal;
       line-height: 1.3;
       word-break: break-word;
     }
