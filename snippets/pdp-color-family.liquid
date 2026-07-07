@@ -1,22 +1,26 @@
 {%- comment -%}
-  Renders the CURRENT product's color as a single circle + short name.
+  Renders the product's `product_family` color swatches — a clickable
+  row of COLOR CIRCLES (one per sibling product) so the user can
+  switch between colors by jumping to another product page.
 
   Why this exists (context, 2026-07-07):
     - In main-product.liquid, when the product has a `product_family`
       metaobject with >1 members, the in-product variant picker is
       SKIPPED to avoid duplicate color UI.
-    - Originally this snippet listed ALL family members (sibling
-      products) as clickable swatches so users could switch between
-      colors by jumping to another product page.
-    - Coulson decided that switching between colors in-product is not
-      needed — the current color's name is shown as info only. The
-      siblings no longer appear here.
+    - This snippet takes over color selection: each circle links to a
+      sibling product's PDP.
 
   Display:
-    - Label: "Color:"
-    - Below: a single solid COLOR CIRCLE (with brand-color ring) +
-      the SHORT color name ("Burning Orange", etc.).
-    - Circle fill resolved in this order:
+    - Label: "Color: <current-short-name>"  (only the CURRENT color's
+      name is shown as info; sibling swatches are unlabeled dots).
+    - Below the label: a row of solid COLOR CIRCLES, one per family
+      member, horizontally laid out and wrapping on narrow viewports.
+      - The current product's circle shows the short color name below
+        it AND is rendered as a non-interactive `<span>` with the
+        `is-active` ring.
+      - All other sibling circles are clickable `<a>` to the sibling
+        product URL — only the circle (no label) renders for those.
+    - Circle fill resolved per member in this order:
         1. product.metafields.custom.color_hex  (per-product override)
         2. keyword match on the color name (orange/gray/green/blue/…)
         3. neutral gray fallback (#cccccc)
@@ -38,14 +42,9 @@
 
 {%- if family_members != blank -%}
   {%- liquid
-    assign color_name = product.metafields.custom.color_name
-    if color_name == blank
-      assign color_name = product.title
-    endif
-
     # short name = last two words of the color name
-    assign color_short = color_name
-    assign name_parts = color_name | split: ' '
+    assign color_short = product.title
+    assign name_parts = product.title | split: ' '
     assign parts_size = name_parts | size
     if parts_size > 2
       assign drop_count = parts_size | minus: 2
@@ -59,50 +58,91 @@
         endif
       endfor
     endif
-
-    # resolve circle fill: metafield hex -> keyword match -> gray
-    assign color_hex = product.metafields.custom.color_hex
-    if color_hex == blank
-      assign name_lower = color_name | downcase
-      assign color_hex = '#cccccc'
-      if name_lower contains 'orange'
-        assign color_hex = '#e8632a'
-      elsif name_lower contains 'gray' or name_lower contains 'grey' or name_lower contains 'silver'
-        assign color_hex = '#6b6e72'
-      elsif name_lower contains 'green'
-        assign color_hex = '#3e7c4f'
-      elsif name_lower contains 'blue'
-        assign color_hex = '#2e4a7a'
-      elsif name_lower contains 'red' or name_lower contains 'burgundy'
-        assign color_hex = '#b32330'
-      elsif name_lower contains 'black'
-        assign color_hex = '#1a1a1a'
-      elsif name_lower contains 'white'
-        assign color_hex = '#f2f2f2'
-      elsif name_lower contains 'yellow'
-        assign color_hex = '#f4c430'
-      elsif name_lower contains 'purple' or name_lower contains 'violet'
-        assign color_hex = '#6a4c93'
-      elsif name_lower contains 'pink'
-        assign color_hex = '#e56399'
-      elsif name_lower contains 'brown' or name_lower contains 'tan' or name_lower contains 'khaki'
-        assign color_hex = '#8a6d3b'
-      endif
-    endif
   -%}
   <div class="pdp__option pdp__option--family" data-color-family>
     <label class="pdp__option-label">
       Color: <strong>{{ color_short }}</strong>
     </label>
-    <div class="pdp__swatches pdp__swatches--family pdp__swatches--current">
-      <span class="swatch swatch--family swatch--current is-active"
-            data-swatch="{{ product.handle }}"
-            data-color-name="{{ color_name | escape }}"
-            title="{{ color_name | escape }}"
-            aria-current="page">
-        <span class="swatch__color" style="background:{{ color_hex }}"></span>
-        <span class="swatch__label">{{ color_short }}</span>
-      </span>
+    <div class="pdp__swatches pdp__swatches--family">
+      {%- for member in family_members -%}
+        {%- liquid
+          assign member_product = member.product
+          assign member_color_name = member_product.metafields.custom.color_name
+          if member_color_name == blank
+            assign member_color_name = member_product.title
+          endif
+
+          # member short name = last two words
+          assign member_short = member_color_name
+          assign m_parts = member_color_name | split: ' '
+          assign m_parts_size = m_parts | size
+          if m_parts_size > 2
+            assign m_drop = m_parts_size | minus: 2
+            assign member_short = ''
+            for m_part in m_parts
+              if forloop.index0 >= m_drop
+                assign member_short = member_short | append: m_part
+                unless forloop.last
+                  assign member_short = member_short | append: ' '
+                endunless
+              endif
+            endfor
+          endif
+
+          # member circle fill: metafield hex -> keyword match -> gray
+          assign member_hex = member_product.metafields.custom.color_hex
+          if member_hex == blank
+            assign m_lower = member_color_name | downcase
+            assign member_hex = '#cccccc'
+            if m_lower contains 'orange'
+              assign member_hex = '#e8632a'
+            elsif m_lower contains 'gray' or m_lower contains 'grey' or m_lower contains 'silver'
+              assign member_hex = '#6b6e72'
+            elsif m_lower contains 'green'
+              assign member_hex = '#3e7c4f'
+            elsif m_lower contains 'blue'
+              assign member_hex = '#2e4a7a'
+            elsif m_lower contains 'red' or m_lower contains 'burgundy'
+              assign member_hex = '#b32330'
+            elsif m_lower contains 'black'
+              assign member_hex = '#1a1a1a'
+            elsif m_lower contains 'white'
+              assign member_hex = '#f2f2f2'
+            elsif m_lower contains 'yellow'
+              assign member_hex = '#f4c430'
+            elsif m_lower contains 'purple' or m_lower contains 'violet'
+              assign member_hex = '#6a4c93'
+            elsif m_lower contains 'pink'
+              assign member_hex = '#e56399'
+            elsif m_lower contains 'brown' or m_lower contains 'tan' or m_lower contains 'khaki'
+              assign member_hex = '#8a6d3b'
+            endif
+          endif
+
+          assign is_current = false
+          if member_product.handle == product.handle
+            assign is_current = true
+          endif
+        -%}
+        {%- if is_current -%}
+          <span class="swatch swatch--family swatch--current is-active"
+                data-swatch="{{ member_product.handle }}"
+                data-color-name="{{ member_color_name | escape }}"
+                title="{{ member_color_name | escape }}"
+                aria-current="page">
+            <span class="swatch__color" style="background:{{ member_hex }}"></span>
+            <span class="swatch__label">{{ member_short }}</span>
+          </span>
+        {%- else -%}
+          <a class="swatch swatch--family"
+             href="{{ member_product.url }}"
+             data-swatch="{{ member_product.handle }}"
+             data-color-name="{{ member_color_name | escape }}"
+             title="{{ member_color_name | escape }}">
+            <span class="swatch__color" style="background:{{ member_hex }}"></span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 {%- endif -%}
