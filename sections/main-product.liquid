@@ -55,8 +55,7 @@
       {%- endif -%}
 
       {%- if product.options.size > 0 -%}
-        <form method="post" action="{{ routes.cart_add_url }}" id="pdp__form" enctype="multipart/form-data" class="pdp__form">
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-product-id>
+        {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
           {%- for option in product.options_with_values -%}
             {%- if has_color_family and option.name == 'Color' -%}
               {%- continue -%}
@@ -156,10 +155,9 @@
               {{ form | payment_button }}
             </div>
           {%- endif -%}
-        </form>
+        {%- endform -%}
 {%- else -%}
-        <form method="post" action="{{ routes.cart_add_url }}" id="pdp__form" enctype="multipart/form-data" class="pdp__form">
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-product-id>
+        {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
           <div class="pdp__qty-row">
             <div class="pdp__qty">
               <button type="button" data-qty="dec">{% render 'icon', icon: 'minus' %}</button>
@@ -173,7 +171,7 @@
               {{ form | payment_button }}
             </div>
           {%- endif -%}
-        </form>
+        {%- endform -%}
       {%- endif -%}
 
       {%- if s.show_finance -%}

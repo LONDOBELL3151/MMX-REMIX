@@ -70,7 +70,7 @@
   // ============ Variant picker (PDP) ============
   const pdpForm = document.querySelector('#pdp__form');
   if (pdpForm) {
-    const productIdInput = pdpForm.querySelector('[data-product-id]');
+    const productIdInput = pdpForm.querySelector('input[type="hidden"][name="id"]');
     pdpForm.addEventListener('change', (e) => {
       if (e.target.matches('input[type=radio], select')) {
         const selectedOptions = Array.from(
