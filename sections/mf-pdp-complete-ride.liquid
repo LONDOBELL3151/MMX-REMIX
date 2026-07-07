@@ -228,13 +228,15 @@
       margin-bottom: 1.6rem;
     }
 
-    /* 滚动容器与卡片 */
+    /* 滚动容器——修复垂直滚动干扰 */
     #shopify-section-{{ section.id }} .mf-ride__track {
       gap: 1.2rem;
       margin: 0 -1.6rem;
       padding: 0.5rem 1.6rem 0.8rem;
       scroll-snap-type: x mandatory;
       scroll-padding-left: 1.6rem;
+      overflow-y: hidden;          /* 禁止垂直滚动，只允许水平 */
+      height: auto;                /* 确保高度由内容撑开 */
     }
 
     #shopify-section-{{ section.id }} .mf-ride__card {
@@ -322,7 +324,6 @@
                     alt: block.settings.image.alt | default: block_product.title | escape
                 }}
               {% elsif block.settings.image_url != blank %}
-                <!-- 修复：补充 width 和 height 属性，满足 theme-check -->
                 <img src="{{ block.settings.image_url }}"
                      alt="{{ block_product.title | escape }}"
                      loading="lazy"
