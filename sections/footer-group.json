@@ -14,8 +14,10 @@
     "footer": {
       "type": "footer",
       "settings": {
+        "show_social": true,
         "show_payment_icons": true,
-        "show_social": true
+        "tagline": "Premium folding e-bikes and electric tricycles built for American families. Ships from our US warehouse with a 2-year warranty.",
+        "copyright_text": "All rights reserved."
       }
     }
   },
