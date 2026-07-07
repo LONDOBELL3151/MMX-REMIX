@@ -173,6 +173,7 @@
     margin-bottom: 0.5rem;
   }
 
+  /* ===== 按钮样式（全局统一为金黄色） ===== */
   #shopify-section-{{ section.id }} .mf-ride__button .button {
     width: 100%;
     min-width: 0;
@@ -184,9 +185,9 @@
     border-radius: 1rem;
     line-height: 1;
     display: inline-flex;
-    background: #111111;
-    border-color: #111111;
-    color: #ffffff;
+    background: #FFC000;
+    border-color: #FFC000;
+    color: #121212;
     box-shadow: none;
   }
 
@@ -218,50 +219,64 @@
     }
   }
 
-  /* === Mobile (≤560): stack card vertically, fit viewport, swipe-only ===
-     The card floor was 28rem (448px) which overflowed a 390px viewport
-     (clamp(28rem, 84vw, 32rem) at 390px resolved to 448px). Lowered to
-     20rem (320px) so 84vw (327.6px) wins on small screens. Also stack
-     image+content vertically and let the track bleed to the viewport
-     edge with horizontal padding so first/last cards aren't clipped. */
+  /* ===== 移动端优化（≤560px） ===== */
   @media screen and (max-width: 560px) {
     #shopify-section-{{ section.id }} .mf-ride__title {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
     }
     #shopify-section-{{ section.id }} .mf-ride__header {
       margin-bottom: 1.6rem;
     }
+
+    /* 滚动容器与卡片 */
     #shopify-section-{{ section.id }} .mf-ride__track {
       gap: 1.2rem;
       margin: 0 -1.6rem;
-      padding: 0.5rem 1.6rem;
+      padding: 0.5rem 1.6rem 0.8rem;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 1.6rem;
     }
+
     #shopify-section-{{ section.id }} .mf-ride__card {
-      flex: 0 0 84vw;
-      width: 84vw;
-      flex-direction: column;
+      flex: 0 0 80vw;                 /* 宽度占屏幕 80%，露出下一张 */
+      width: 80vw;
+      min-width: 260px;
+      max-width: 320px;
+      flex-direction: column;         /* 图片在上，文字在下 */
       text-align: center;
-      padding: 1.4rem;
+      padding: 1.6rem;
       gap: 1.2rem;
+      scroll-snap-align: start;
     }
+
+    /* 图片改为正方形 */
     #shopify-section-{{ section.id }} .mf-ride__media {
       flex: 0 0 auto;
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 1 / 1;            /* 正方形，更紧凑 */
     }
+
+    /* 文字大小 */
     #shopify-section-{{ section.id }} .mf-ride__product-title {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       -webkit-line-clamp: 2;
       min-height: 0;
     }
+
     #shopify-section-{{ section.id }} .mf-ride__price {
       font-size: 1.4rem;
     }
+
     #shopify-section-{{ section.id }} .mf-ride__button .button {
-      min-height: 4rem;
+      min-height: 4.4rem;
       font-size: 1.3rem;
-      padding: 0.9rem 1.2rem;
+      padding: 0.8rem 0.8rem;
+      white-space: normal;            /* 允许换行，避免截断 */
+      line-height: 1.3;
+      word-break: break-word;
     }
+
+    /* 隐藏桌面导航按钮（仅靠滑动） */
     #shopify-section-{{ section.id }} .mf-ride__nav--prev,
     #shopify-section-{{ section.id }} .mf-ride__nav--next {
       display: none;
