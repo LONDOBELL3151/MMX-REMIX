@@ -362,7 +362,9 @@
         "heading_LzGCXy",
         "text_cYQpVD"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_JACfy6.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+      ],
       "settings": {
         "image": "shopify://shop_images/MAXFOOT_30-2.jpg",
         "height": "adapt",
@@ -400,7 +402,9 @@
         "heading_8yFKi8",
         "text_zbK8TH"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_KGV98L.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+      ],
       "settings": {
         "image": "shopify://shop_images/d30e90ac4677d654ec8429fed5e29206.png",
         "height": "adapt",
@@ -438,7 +442,9 @@
         "heading_U4V9qk",
         "text_6rtyPb"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_tU3wD3.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+      ],
       "settings": {
         "image": "shopify://shop_images/1_78849427-defb-4bd0-941e-ae605843f51a.jpg",
         "height": "adapt",
