@@ -215,41 +215,78 @@
     }
   }
 
-  /* === Mobile (≤560): card padding shrink, items wrap, type shrink ===
-     The 3-bundle product thumbs (6rem each) at flex-wrap:nowrap
-     push the card wider than the viewport on small screens, which
-     forces horizontal page scroll. Allow items to wrap and shrink. */
+  /* === 移动端卡片左右滑动（替代原有单列垂直排列） === */
   @media screen and (max-width: 560px) {
     #shopify-section-{{ section.id }} .mf-bundles__title {
       font-size: 2rem;
       margin-bottom: 1.2rem;
     }
-    #shopify-section-{{ section.id }} .mf-bundles__card {
-      padding: 1.4rem;
-      min-width: 0;
+
+    /* 网格容器改为横向弹性滚动容器 */
+    #shopify-section-{{ section.id }} .mf-bundles__grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1.2rem;
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 1.6rem;
+      margin-left: -1.6rem;
+      margin-right: -1.6rem;
+      padding-left: 1.6rem;
+      padding-right: 0.8rem;
+      padding-bottom: 0.8rem;
     }
+
+    /* 隐藏滚动条 */
+    #shopify-section-{{ section.id }} .mf-bundles__grid::-webkit-scrollbar {
+      display: none;
+    }
+    #shopify-section-{{ section.id }} .mf-bundles__grid {
+      scrollbar-width: none;
+    }
+
+    /* 每张卡片设为固定宽度，并启用滚动吸附 */
+    #shopify-section-{{ section.id }} .mf-bundles__card {
+      flex: 0 0 auto;
+      width: calc(100% - 4.8rem);
+      min-width: 260px;
+      max-width: 320px;
+      scroll-snap-align: start;
+      min-height: auto;
+      padding: 1.4rem;
+    }
+
     #shopify-section-{{ section.id }} .mf-bundles__card-title {
       font-size: 1.5rem;
       margin: 0 0 0.8rem;
     }
+
     #shopify-section-{{ section.id }} .mf-bundles__description,
     #shopify-section-{{ section.id }} .mf-bundles__item-list,
     #shopify-section-{{ section.id }} .mf-bundles__total {
       font-size: 1.2rem;
     }
+
     #shopify-section-{{ section.id }} .mf-bundles__items {
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 0.6rem;
       margin: 0.8rem 0 1.2rem;
+      justify-content: flex-start;
     }
+
     #shopify-section-{{ section.id }} .mf-bundles__item-thumb {
       width: 4.6rem;
       height: 4.6rem;
+      flex-shrink: 0;
     }
+
     #shopify-section-{{ section.id }} .mf-bundles__bundle-price {
       font-size: 1.6rem;
       margin-bottom: 0.8rem;
     }
+
     #shopify-section-{{ section.id }} .mf-bundles__button .button {
       min-height: 4.4rem;
       font-size: 1.4rem;
