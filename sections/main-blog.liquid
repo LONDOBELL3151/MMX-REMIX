@@ -32,11 +32,11 @@
               <h2 class="post-card__title"><a href="{{ featured.url }}">{{ featured.title }}</a></h2>
               <p class="post-card__excerpt">
                 {%- if featured.excerpt != blank -%}
-                  {{ featured.excerpt | strip_html | truncatewords: 40 }}
+                  {{ featured.excerpt | strip_html | truncatewords: 80 }}
                 {%- else -%}
                   {%- assign _ct = featured.content | strip_html -%}
                   {%- assign _tt = featured.title | strip_html -%}
-                  {%- if _ct contains _tt -%}{{ _ct | remove: _tt | strip | truncatewords: 40 }}{%- else -%}{{ _ct | truncatewords: 40 }}{%- endif -%}
+                  {%- if _ct contains _tt -%}{{ _ct | remove: _tt | strip | truncatewords: 80 }}{%- else -%}{{ _ct | truncatewords: 80 }}{%- endif -%}
                 {%- endif -%}
               </p>
               <a href="{{ featured.url }}" class="post-card__cta">Read the guide {% render 'icon', icon: 'arrow-right' %}</a>

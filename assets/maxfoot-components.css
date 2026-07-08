@@ -758,13 +758,10 @@ body.mobile-menu-open{overflow:hidden}
 /* ===== Post card ===== */
 .post-card{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);display:flex;flex-direction:column;height:100%}
 .post-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.post-card--featured{grid-column:span 2;grid-row:span 2;display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr;height:100%;overflow:hidden}
-.post-card--featured .post-card__link{display:block;height:100%}
-.post-card--featured .post-card__media{aspect-ratio:auto;height:100%;min-height:0;width:100%}
-.post-card--featured .post-card__body{padding:32px;gap:24px;display:flex;flex-direction:column;justify-content:space-between}
-.post-card--featured .post-card__title{font-size:32px;margin:0}
-.post-card--featured .post-card__excerpt{flex:none;margin:0}
-.post-card--featured .post-card__body{flex:initial}
+.post-card--featured{grid-column:span 2;grid-row:span 2;display:grid;grid-template-rows:auto 1fr}
+.post-card--featured .post-card__link{display:block}
+.post-card--featured .post-card__media{aspect-ratio:16/10;min-height:380px;height:auto}
+.post-card--featured .post-card__title{font-size:32px}
 .post-card__media{aspect-ratio:16/10;background:linear-gradient(135deg,#f7f7f7,#e5e5e5);position:relative;background-size:cover;background-position:center}
 .post-card__cat{position:absolute;top:14px;left:14px;background:var(--color-primary);color:var(--color-accent);font-size:11px;font-weight:800;padding:5px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.8px;z-index:1}
 .post-card__body{padding:24px;flex:1;display:flex;flex-direction:column}

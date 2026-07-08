@@ -36,11 +36,11 @@
 
     <p class="post-card__excerpt">
       {%- if post.excerpt != blank -%}
-        {{ post.excerpt | strip_html | truncatewords: 30 }}
+        {{ post.excerpt | strip_html | truncatewords: 50 }}
       {%- else -%}
         {%- assign _pc = post.content | strip_html -%}
         {%- assign _pt = post.title | strip_html -%}
-        {%- if _pc contains _pt -%}{{ _pc | remove: _pt | strip | truncatewords: 30 }}{%- else -%}{{ _pc | truncatewords: 30 }}{%- endif -%}
+        {%- if _pc contains _pt -%}{{ _pc | remove: _pt | strip | truncatewords: 50 }}{%- else -%}{{ _pc | truncatewords: 50 }}{%- endif -%}
       {%- endif -%}
     </p>
 
