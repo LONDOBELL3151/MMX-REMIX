@@ -173,7 +173,10 @@
   .press-quote{padding:56px 0}
   .post-card__title{font-size:18px}
   .post-card--featured .post-card__title{font-size:24px}
-  .post-card--featured{grid-column:auto;grid-row:auto}
+  .post-card--featured{grid-column:auto;grid-row:auto;grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;overflow:visible}
+  .post-card--featured .post-card__link{height:auto}
+  .post-card--featured .post-card__media{aspect-ratio:16/10;height:auto;min-height:240px}
+  .post-card--featured .post-card__body{padding:24px;gap:0;flex-direction:column;justify-content:flex-start}
   .blog-hero{padding:48px 0 24px}
   .blog-hero__title{font-size:48px}
   .blog-hero__tags{gap:8px;margin-top:24px}
