@@ -173,10 +173,20 @@
   .press-quote{padding:56px 0}
   .post-card__title{font-size:18px}
   .post-card--featured .post-card__title{font-size:24px}
-  .post-card--featured{grid-column:auto;grid-row:auto;grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;overflow:visible}
+  .post-card--featured{grid-column:auto;grid-row:auto;grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;overflow:visible;max-width:100%}
   .post-card--featured .post-card__link{height:auto}
-  .post-card--featured .post-card__media{aspect-ratio:16/10;height:auto;min-height:240px}
+  .post-card--featured .post-card__media{aspect-ratio:16/10;height:auto;min-height:240px;width:100%;max-width:100%}
   .post-card--featured .post-card__body{padding:24px;gap:0;justify-content:flex-start}
+  /* Blog collection page — override the 990px 2-col .blog-grid (which collapses the
+     right column to ~2px on a 390px viewport and makes text wrap to 2px width,
+     blowing each card to ~2500px tall). Force 1 col, natural card height, media
+     fills the card, body/excerpt stop growing. */
+  .blog-grid{grid-template-columns:1fr;gap:24px}
+  .post-card{height:auto}
+  .post-card__link{display:block}
+  .post-card__media{width:100%}
+  .post-card__body{flex:0 0 auto}
+  .post-card__excerpt{flex:0 0 auto}
   .blog-hero{padding:48px 0 24px}
   .blog-hero__title{font-size:48px}
   .blog-hero__tags{gap:8px;margin-top:24px}

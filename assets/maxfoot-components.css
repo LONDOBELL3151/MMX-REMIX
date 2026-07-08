@@ -1332,9 +1332,18 @@ body.mobile-menu-open{overflow:hidden}
    Duplicated so production theme works even if maxfoot-responsive.css fails to sync.
    Keep these in sync with maxfoot-responsive.css. */
 @media (max-width:990px){
-  .post-card--featured{grid-column:auto;grid-row:auto;grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;overflow:visible}
-  .post-card--featured .post-card__link{height:auto}
-  .post-card--featured .post-card__media{aspect-ratio:16/10;height:auto;min-height:240px}
+  .post-card--featured{grid-column:auto;grid-row:auto;grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;overflow:visible;max-width:100%}
+  .post-card--featured .post-card__link{display:block;height:auto}
+  .post-card--featured .post-card__media{aspect-ratio:16/10;height:auto;min-height:240px;width:100%;max-width:100%}
   .post-card--featured .post-card__body{padding:24px;gap:0;justify-content:flex-start;align-items:flex-start}
   .post-card--featured .post-card__title{font-size:24px}
+  /* Blog collection page — 1 col, natural card height, media fills card,
+     body/excerpt stop growing. Mirrors rules in maxfoot-responsive.css
+     @media (max-width:560px) as sync fallback. */
+  .blog-grid{grid-template-columns:1fr;gap:24px}
+  .post-card{height:auto}
+  .post-card__link{display:block}
+  .post-card__media{width:100%}
+  .post-card__body{flex:0 0 auto}
+  .post-card__excerpt{flex:0 0 auto}
 }
