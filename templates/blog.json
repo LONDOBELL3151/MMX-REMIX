@@ -1,1 +1,34 @@
-{"sections":{"fac100b6-992d-4af3-bb98-6196c6677c2d":{"type":"featured-blog","disabled":true,"settings":{"heading":"🔥Trending","heading_size":"h1","blog":"test","post_limit":2,"columns_desktop":1,"color_scheme":"background-1","show_image":true,"show_date":true,"show_author":false,"show_view_all":false,"padding_top":36,"padding_bottom":36}},"main":{"type":"main-blog","settings":{"layout":"collage","show_image":true,"image_height":"medium","show_date":true,"show_author":false,"padding_top":36,"padding_bottom":36}}},"order":["fac100b6-992d-4af3-bb98-6196c6677c2d","main"]}
+{
+  "sections": {
+    "hero": {
+      "type": "blog-hero",
+      "settings": {
+        "eyebrow": "The MaxFoot Journal",
+        "title": "MaxFoot <em>Blog</em>",
+        "subtitle": "eBike tips, family riding stories, buying guides, and the occasional dad joke.",
+        "blog": "news",
+        "show_tags": true,
+        "tag_1_label": "Buying Guides",
+        "tag_1_value": "buying-guide",
+        "tag_2_label": "Riding Tips",
+        "tag_2_value": "riding-tips",
+        "tag_3_label": "Family Stories",
+        "tag_3_value": "family-stories",
+        "tag_4_label": "Maintenance",
+        "tag_4_value": "maintenance",
+        "tag_5_label": "Industry News",
+        "tag_5_value": "industry-news"
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "blog": "news"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main"
+  ]
+}

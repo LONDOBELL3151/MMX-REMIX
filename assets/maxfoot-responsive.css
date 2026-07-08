@@ -173,8 +173,11 @@
   .press-quote{padding:56px 0}
   .post-card__title{font-size:18px}
   .post-card--featured .post-card__title{font-size:24px}
+  .post-card--featured{grid-column:auto;grid-row:auto}
   .blog-hero{padding:48px 0 24px}
   .blog-hero__title{font-size:48px}
+  .blog-hero__tags{gap:8px;margin-top:24px}
+  .blog-hero__tag{padding:8px 14px;font-size:11px;letter-spacing:.8px}
   .post-header{padding:48px 0 24px}
   .post-header__title{font-size:32px}
   .post-content__body{font-size:16px}

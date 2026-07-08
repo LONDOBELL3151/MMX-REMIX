@@ -1,0 +1,77 @@
+{%- liquid
+  assign s = section.settings
+  assign blog = blogs[s.blog] | default: blogs['news']
+  assign hero_title = s.title | default: blog.title
+  if hero_title == blank
+    assign hero_title = 'The Journal'
+  endif
+-%}
+
+<section class="blog-hero blog-hero--dark section" {{ section.shopify_attributes }}>
+  <div class="container">
+    {%- if s.eyebrow != blank -%}
+      <span class="blog-hero__eyebrow">{{ s.eyebrow }}</span>
+    {%- endif -%}
+    <h1 class="blog-hero__title">{{ hero_title }}</h1>
+    {%- if s.subtitle != blank -%}
+      <p class="blog-hero__sub">{{ s.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if s.show_tags -%}
+      {%- assign all_active = true -%}
+      {%- if current_tags.size > 0 -%}
+        {%- assign all_active = false -%}
+      {%- endif -%}
+      <div class="blog-hero__tags" role="navigation" aria-label="Filter by topic">
+        <a href="{{ blog.url }}" class="blog-hero__tag{% if all_active %} is-active{% endif %}">All Posts</a>
+        {%- if s.tag_1_label != blank and s.tag_1_value != blank -%}
+          <a href="{{ blog.url }}/tagged/{{ s.tag_1_value }}" class="blog-hero__tag{% if current_tags contains s.tag_1_value %} is-active{% endif %}">{{ s.tag_1_label }}</a>
+        {%- endif -%}
+        {%- if s.tag_2_label != blank and s.tag_2_value != blank -%}
+          <a href="{{ blog.url }}/tagged/{{ s.tag_2_value }}" class="blog-hero__tag{% if current_tags contains s.tag_2_value %} is-active{% endif %}">{{ s.tag_2_label }}</a>
+        {%- endif -%}
+        {%- if s.tag_3_label != blank and s.tag_3_value != blank -%}
+          <a href="{{ blog.url }}/tagged/{{ s.tag_3_value }}" class="blog-hero__tag{% if current_tags contains s.tag_3_value %} is-active{% endif %}">{{ s.tag_3_label }}</a>
+        {%- endif -%}
+        {%- if s.tag_4_label != blank and s.tag_4_value != blank -%}
+          <a href="{{ blog.url }}/tagged/{{ s.tag_4_value }}" class="blog-hero__tag{% if current_tags contains s.tag_4_value %} is-active{% endif %}">{{ s.tag_4_label }}</a>
+        {%- endif -%}
+        {%- if s.tag_5_label != blank and s.tag_5_value != blank -%}
+          <a href="{{ blog.url }}/tagged/{{ s.tag_5_value }}" class="blog-hero__tag{% if current_tags contains s.tag_5_value %} is-active{% endif %}">{{ s.tag_5_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog hero",
+  "tag": "section",
+  "class": "section-blog-hero",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The MaxFoot Journal" },
+    { "type": "text", "id": "title", "label": "Title", "info": "Wrap the second word in <em>...</em> to color it yellow (e.g. \"The MaxFoot <em>Journal</em>\")." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "eBike tips, family riding stories, buying guides, and the occasional dad joke." },
+    { "type": "header", "content": "Blog source" },
+    { "type": "blog", "id": "blog", "label": "Blog", "info": "If empty, falls back to the current blog on /blogs/<handle>." },
+    { "type": "header", "content": "Topic filter pills" },
+    { "type": "checkbox", "id": "show_tags", "label": "Show topic pills", "default": true },
+    { "type": "paragraph", "content": "Each pill links to /blogs/<handle>/tagged/<value>. The 'All Posts' pill is always shown and links to the blog root." },
+    { "type": "text", "id": "tag_1_label", "label": "Pill 1 — label", "default": "Buying Guides" },
+    { "type": "text", "id": "tag_1_value", "label": "Pill 1 — tag value", "default": "buying-guide" },
+    { "type": "text", "id": "tag_2_label", "label": "Pill 2 — label", "default": "Riding Tips" },
+    { "type": "text", "id": "tag_2_value", "label": "Pill 2 — tag value", "default": "riding-tips" },
+    { "type": "text", "id": "tag_3_label", "label": "Pill 3 — label", "default": "Family Stories" },
+    { "type": "text", "id": "tag_3_value", "label": "Pill 3 — tag value", "default": "family-stories" },
+    { "type": "text", "id": "tag_4_label", "label": "Pill 4 — label", "default": "Maintenance" },
+    { "type": "text", "id": "tag_4_value", "label": "Pill 4 — tag value", "default": "maintenance" },
+    { "type": "text", "id": "tag_5_label", "label": "Pill 5 — label", "default": "Industry News" },
+    { "type": "text", "id": "tag_5_value", "label": "Pill 5 — tag value", "default": "industry-news" }
+  ],
+  "presets": [
+    { "name": "Blog hero" }
+  ]
+}
+{% endschema %}
