@@ -52,9 +52,13 @@
         {%- if paginate.pages > 1 -%}
           <nav class="pagination" aria-label="Pagination">
             {%- if paginate.previous -%}
-              <a href="{{ paginate.previous.url }}" class="pagination__prev">{% render 'icon', icon: 'chevron-left' %} Prev</a>
+              <a href="{{ paginate.previous.url }}" class="pagination__prev">
+                {% render 'icon', icon: 'chevron-left' %}
+              </a>
             {%- else -%}
-              <span class="pagination__prev is-disabled">{% render 'icon', icon: 'chevron-left' %} Prev</span>
+              <span class="pagination__prev is-disabled">
+                {% render 'icon', icon: 'chevron-left' %}
+              </span>
             {%- endif -%}
             {%- for part in paginate.parts -%}
               {%- if part.is_link -%}
@@ -64,9 +68,13 @@
               {%- endif -%}
             {%- endfor -%}
             {%- if paginate.next -%}
-              <a href="{{ paginate.next.url }}" class="pagination__next">Next {% render 'icon', icon: 'chevron-right' %}</a>
+              <a href="{{ paginate.next.url }}" class="pagination__next">
+                {% render 'icon', icon: 'chevron-right' %}
+              </a>
             {%- else -%}
-              <span class="pagination__next is-disabled">Next {% render 'icon', icon: 'chevron-right' %}</span>
+              <span class="pagination__next is-disabled">
+                {% render 'icon', icon: 'chevron-right' %}
+              </span>
             {%- endif -%}
           </nav>
         {%- endif -%}

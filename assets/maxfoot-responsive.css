@@ -202,7 +202,7 @@
   .pagination{gap:6px;margin-top:32px;padding:4px 0 8px}
   .pagination a,.pagination span{min-width:36px;height:36px;padding:0 10px;font-size:13px}
   .pagination__prev,.pagination__next{font-size:0;min-width:36px;padding:0;letter-spacing:0}
-  .pagination__prev svg,.pagination__next svg{width:14px;height:14px}
+  .pagination__prev svg,.pagination__next svg{width:14px;height:14px;display:block;margin:auto}
 
   /* ===== Mobile horizontal scroll carousel (blog feed only) =====
      Featured collection reverted to standard grid (1 col ≤560px, 2 col ≤990px).
