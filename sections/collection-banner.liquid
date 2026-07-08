@@ -2,14 +2,23 @@
   assign s = section.settings
   assign collection = s.collection | default: closest.collection
 
-  assign has_image = false
-  if s.image_desktop != blank
-    assign has_image = true
+  # 背景图优先级: image_picker(强制覆盖) > collection.image(admin 给 collection 上传的封面图) > collection.featured_image(首个产品的图) > collection.products.first.featured_image
+  assign bg_source = s.image_desktop
+  if bg_source == blank and collection
+    if collection.image
+      assign bg_source = collection.image
+    elsif collection.featured_image
+      assign bg_source = collection.featured_image
+    elsif collection.products.first and collection.products.first.featured_image
+      assign bg_source = collection.products.first.featured_image
+    endif
   endif
 
+  assign has_image = false
   assign bg_style = ''
-  if has_image
-    assign bg_url = s.image_desktop | image_url: width: 2400
+  if bg_source
+    assign has_image = true
+    assign bg_url = bg_source | image_url: width: 2400
     assign bg_style = 'background-image: url(' | append: bg_url | append: ');'
   endif
 
@@ -40,18 +49,20 @@
   {%- endif -%}
 
   <div class="collection-banner__inner container">
-    {%- if s.eyebrow != blank or collection.title -%}
-      <span class="collection-banner__eyebrow">{{ s.eyebrow | default: collection.title }}</span>
+    {%- if s.eyebrow != blank -%}
+      <span class="collection-banner__eyebrow">{{ s.eyebrow }}</span>
+    {%- elsif collection and collection.title -%}
+      <span class="collection-banner__eyebrow">{{ collection.title }}</span>
     {%- endif -%}
     <h1 class="collection-banner__title">
       {%- if s.title != blank -%}
         {{ s.title }}
-      {%- else -%}
+      {%- elsif collection -%}
         {{ collection.title }}
       {%- endif -%}
     </h1>
-    {%- if s.subtitle != blank or collection.description != blank -%}
-      <p class="collection-banner__sub">{{ s.subtitle | default: collection.description }}</p>
+    {%- if s.subtitle != blank -%}
+      <p class="collection-banner__sub">{{ s.subtitle }}</p>
     {%- endif -%}
     {%- if s.show_count -%}
       <div class="collection-banner__count">
@@ -69,16 +80,17 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Defaults to collection title" },
     { "type": "text", "id": "title", "label": "Title", "info": "Defaults to collection title" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "info": "Defaults to collection description" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "info": "Optional. Leave blank to hide. Does not auto-pull collection description." },
     {
       "type": "image_picker",
       "id": "image_desktop",
-      "label": "Background image (desktop)"
+      "label": "Background image override (desktop)",
+      "info": "Optional. Leave blank to use the collection's image (set in Shopify admin → Products → Collections → Collection image)."
     },
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Background image (mobile)",
+      "label": "Background image override (mobile)",
       "info": "Optional. Falls back to desktop image when empty."
     },
     {
