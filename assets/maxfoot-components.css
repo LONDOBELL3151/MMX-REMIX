@@ -798,7 +798,7 @@ body.mobile-menu-open{overflow:hidden}
 
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media (max-width:990px){.blog-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
-@media (max-width:560px){.blog-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.blog-grid{grid-template-columns:minmax(0,1fr)}}
 .blog-empty{text-align:center;padding:64px 24px;color:var(--color-text-soft)}
 
 /* ===== Blog feed (homepage module) ===== */
@@ -1340,8 +1340,8 @@ body.mobile-menu-open{overflow:hidden}
   /* Blog collection page — 1 col, natural card height, media fills card,
      body/excerpt stop growing. Mirrors rules in maxfoot-responsive.css
      @media (max-width:560px) as sync fallback. */
-  .blog-grid{grid-template-columns:1fr;gap:24px}
-  .post-card{height:auto}
+  .blog-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  .post-card{height:auto;min-width:0;max-width:100%}
   .post-card__link{display:block}
   .post-card__media{width:100%}
   .post-card__body{flex:0 0 auto}
