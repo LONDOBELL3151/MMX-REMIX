@@ -1327,3 +1327,14 @@ body.mobile-menu-open{overflow:hidden}
   .product-thumb{border-color:var(--color-border)}
   .product-thumb.is-active{border-color:var(--color-accent-dark)}
 }
+
+/* === Mobile overrides (also duplicated in maxfoot-responsive.css) ===
+   Duplicated so production theme works even if maxfoot-responsive.css fails to sync.
+   Keep these in sync with maxfoot-responsive.css. */
+@media (max-width:990px){
+  .post-card--featured{grid-column:auto;grid-row:auto;grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;overflow:visible}
+  .post-card--featured .post-card__link{height:auto}
+  .post-card--featured .post-card__media{aspect-ratio:16/10;height:auto;min-height:240px}
+  .post-card--featured .post-card__body{padding:24px;gap:0;justify-content:flex-start;align-items:flex-start}
+  .post-card--featured .post-card__title{font-size:24px}
+}
