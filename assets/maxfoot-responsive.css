@@ -197,6 +197,13 @@
   .cart-section__title{font-size:32px}
   .cart-table .cart-item__img{display:none}
 
+  /* Pagination on mobile: shrink buttons, hide Prev/Next labels (icon only),
+     keep the row visually flat so it scrolls horizontally instead of wrapping. */
+  .pagination{gap:6px;margin-top:32px;padding:4px 0 8px}
+  .pagination a,.pagination span{min-width:36px;height:36px;padding:0 10px;font-size:13px}
+  .pagination__prev,.pagination__next{font-size:0;min-width:36px;padding:0;letter-spacing:0}
+  .pagination__prev svg,.pagination__next svg{width:14px;height:14px}
+
   /* ===== Mobile horizontal scroll carousel (blog feed only) =====
      Featured collection reverted to standard grid (1 col ≤560px, 2 col ≤990px).
      Gallery stays the bento grid (see .gallery in components.css). */
