@@ -579,13 +579,19 @@ body.mobile-menu-open{overflow:hidden}
 
 /* ===== Collection ===== */
 .collection-banner{background:linear-gradient(120deg,var(--color-primary) 0%,#2a2a2a 100%);color:#fff;padding:64px 0;text-align:center;position:relative;overflow:hidden}
-.collection-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--color-accent)}
+.collection-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--color-accent);z-index:2}
 .collection-banner__eyebrow{font-family:var(--font-display);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-accent);display:inline-block;margin-bottom:12px}
 .collection-banner__title{font-size:clamp(40px,5vw,72px);font-weight:900;margin:0 0 12px;letter-spacing:-.02em;color:#fff}
 .collection-banner h1,.collection-banner h2,.collection-banner h3,.collection-banner h4,.collection-banner h5,.collection-banner h6{color:#fff}
 .collection-banner__sub{font-size:17px;color:#cfcfcf;max-width:640px;margin:0 auto 24px;line-height:1.6}
 .collection-banner__count{display:inline-flex;align-items:center;gap:10px;background:rgba(255,192,0,.15);border:1px solid var(--color-accent);padding:8px 18px;border-radius:999px;font-size:13px;color:var(--color-accent);font-weight:800;text-transform:uppercase;letter-spacing:.8px}
 .collection-banner__count strong{font-size:18px;font-family:var(--font-mono)}
+
+/* ===== Collection banner with background image ===== */
+.collection-banner--has-image{background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1a1a1a;display:flex;align-items:center;justify-content:center;min-height:clamp(320px,42vw,520px);padding:80px 0}
+.collection-banner--has-image .container{position:relative;z-index:1;width:100%}
+.collection-banner__overlay{position:absolute;inset:0;background:#000;pointer-events:none;z-index:1}
+@media (max-width:749px){.collection-banner--has-image{min-height:clamp(280px,72vw,420px);padding:64px 0}}
 
 .collection-grid{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:40px 0}
 @media (max-width:990px){.collection-grid{grid-template-columns:1fr;gap:24px}}
