@@ -590,7 +590,12 @@ body.mobile-menu-open{overflow:hidden}
 /* ===== Collection banner with background image ===== */
 .collection-banner--has-image{background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#1a1a1a;display:flex;align-items:center;justify-content:center;min-height:clamp(320px,42vw,520px);padding:80px 0}
 .collection-banner--has-image .container{position:relative;z-index:1;width:100%}
-.collection-banner__overlay{position:absolute;inset:0;background:#000;pointer-events:none;z-index:1}
+/* 渐变蒙版:顶部稍亮(还能看清图),底部更深(突出文字);inline opacity 控制整体浓度 */
+.collection-banner__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,1) 100%);pointer-events:none;z-index:1}
+/* 文字保险:即使图片局部透也读得清 */
+.collection-banner--has-image .collection-banner__title{text-shadow:0 2px 12px rgba(0,0,0,.45),0 1px 2px rgba(0,0,0,.3)}
+.collection-banner--has-image .collection-banner__eyebrow{text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.collection-banner--has-image .collection-banner__sub{text-shadow:0 1px 4px rgba(0,0,0,.35)}
 @media (max-width:749px){.collection-banner--has-image{min-height:clamp(280px,72vw,420px);padding:64px 0}}
 
 .collection-grid{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:40px 0}
