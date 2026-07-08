@@ -34,7 +34,9 @@
                 {%- if featured.excerpt != blank -%}
                   {{ featured.excerpt | strip_html | truncatewords: 40 }}
                 {%- else -%}
-                  {{ featured.content | strip_html | truncatewords: 40 }}
+                  {%- assign _ct = featured.content | strip_html -%}
+                  {%- assign _tt = featured.title | strip_html -%}
+                  {%- if _ct contains _tt -%}{{ _ct | remove: _tt | strip | truncatewords: 40 }}{%- else -%}{{ _ct | truncatewords: 40 }}{%- endif -%}
                 {%- endif -%}
               </p>
               <a href="{{ featured.url }}" class="post-card__cta">Read the guide {% render 'icon', icon: 'arrow-right' %}</a>

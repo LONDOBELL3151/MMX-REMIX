@@ -38,7 +38,9 @@
       {%- if post.excerpt != blank -%}
         {{ post.excerpt | strip_html | truncatewords: 30 }}
       {%- else -%}
-        {{ post.content | strip_html | truncatewords: 30 }}
+        {%- assign _pc = post.content | strip_html -%}
+        {%- assign _pt = post.title | strip_html -%}
+        {%- if _pc contains _pt -%}{{ _pc | remove: _pt | strip | truncatewords: 30 }}{%- else -%}{{ _pc | truncatewords: 30 }}{%- endif -%}
       {%- endif -%}
     </p>
 
