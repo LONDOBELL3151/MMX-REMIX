@@ -466,7 +466,9 @@
         "column_GzwQhJ"
       ],
       "custom_css": [
-        "{padding: 0px;}"
+        "{padding: 0px;}",
+        ".rte{color: #fff;}",
+        "h3{color: #fff;}"
       ],
       "settings": {
         "title": "Features",
