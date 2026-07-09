@@ -1,0 +1,335 @@
+{{ 'section-feature-tabs.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="ft-section"
+  style="
+    --ft-bg: {{ section.settings.bg_color }};
+    --ft-fg: {{ section.settings.text_color }};
+    --ft-accent: {{ section.settings.accent_color }};
+    --ft-accent-2: {{ section.settings.accent_color_2 | default: '#FFFFFF' }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+  {{ section.shopify_attributes }}
+>
+  <div class="container">
+    {%- if section.settings.eyebrow != blank or section.settings.headline != blank -%}
+      <header class="ft-head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ft-head__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.headline != blank -%}
+          <h2 class="ft-head__title {% if section.settings.use_gradient_title %}ft-head__title--gradient{% endif %}">{{ section.settings.headline }}</h2>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- assign feature_blocks = section.blocks | where: 'type', 'feature' -%}
+    {%- if feature_blocks.size > 0 -%}
+      <div class="ft-tabs" data-ft-tabs>
+        <div class="ft-tabs__bar" role="tablist" aria-label="{{ section.settings.headline | default: 'Feature tabs' | escape }}">
+          {%- for block in feature_blocks -%}
+            <button
+              type="button"
+              role="tab"
+              class="ft-tab {% if forloop.first %}is-active{% endif %}"
+              id="ft-tab-{{ section.id }}-{{ forloop.index0 }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-controls="ft-panel-{{ section.id }}-{{ forloop.index0 }}"
+              data-idx="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >{{ block.settings.tab_label | default: block.settings.title | escape }}</button>
+          {%- endfor -%}
+        </div>
+
+        <div class="ft-panels">
+          {%- for block in feature_blocks -%}
+            <div
+              class="ft-panel {% if forloop.first %}is-active{% endif %}"
+              role="tabpanel"
+              id="ft-panel-{{ section.id }}-{{ forloop.index0 }}"
+              aria-labelledby="ft-tab-{{ section.id }}-{{ forloop.index0 }}"
+              data-idx="{{ forloop.index0 }}"
+            >
+              <div class="ft-panel__media">
+                {%- if block.settings.media_type == 'video' and block.settings.video != blank -%}
+                  <video
+                    class="ft-media__video"
+                    muted
+                    playsinline
+                    loop
+                    autoplay
+                    preload="metadata"
+                    {% if block.settings.video_poster != blank %}poster="{{ block.settings.video_poster | image_url: width: 1600 }}"{% else %}poster="{{ block.settings.video.preview_image | image_url: width: 1600 }}"{% endif %}
+                  >
+                    {%- for source in block.settings.video.sources -%}
+                      <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                    {%- endfor -%}
+                  </video>
+                {%- elsif block.settings.media_type == 'video_url' and block.settings.video_external_url != blank -%}
+                  <video
+                    class="ft-media__video"
+                    src="{{ block.settings.video_external_url }}"
+                    {% if block.settings.video_poster != blank %}poster="{{ block.settings.video_poster | image_url: width: 1600 }}"{% endif %}
+                    muted
+                    playsinline
+                    loop
+                    autoplay
+                    preload="metadata"
+                  ></video>
+                {%- elsif block.settings.image != blank -%}
+                  <img
+                    class="ft-media__img"
+                    src="{{ block.settings.image | image_url: width: 1600 }}"
+                    srcset="
+                      {%- if block.settings.image.width >= 800 -%}{{ block.settings.image | image_url: width: 800 }} 800w,{%- endif -%}
+                      {%- if block.settings.image.width >= 1200 -%}{{ block.settings.image | image_url: width: 1200 }} 1200w,{%- endif -%}
+                      {%- if block.settings.image.width >= 1600 -%}{{ block.settings.image | image_url: width: 1600 }} 1600w,{%- endif -%}
+                      {{ block.settings.image | image_url }} {{ block.settings.image.width }}w
+                    "
+                    sizes="(min-width: 990px) 70vw, 100vw"
+                    alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                {%- else -%}
+                  <div class="ft-media__placeholder" aria-hidden="true"></div>
+                {%- endif -%}
+
+                {%- if block.settings.title != blank or block.settings.description != blank -%}
+                  <div class="ft-panel__copy">
+                    {%- if block.settings.title != blank -%}
+                      <h3 class="ft-panel__title">{{ block.settings.title }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.description != blank -%}
+                      <div class="ft-panel__desc">{{ block.settings.description }}</div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    var roots = document.querySelectorAll('[data-ft-tabs]');
+    if (!roots.length) return;
+
+    roots.forEach(function(root) {
+      var tabs = root.querySelectorAll('.ft-tab');
+      var panels = root.querySelectorAll('.ft-panel');
+
+      function activate(idx) {
+        tabs.forEach(function(t, i) {
+          var active = i === idx;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(function(p, i) {
+          var active = i === idx;
+          p.classList.toggle('is-active', active);
+          var vid = p.querySelector('video');
+          if (vid) {
+            if (active) {
+              var p2 = vid.play();
+              if (p2 && typeof p2.catch === 'function') { p2.catch(function(){}); }
+            } else {
+              vid.pause();
+              try { vid.currentTime = 0; } catch (e) {}
+            }
+          }
+        });
+      }
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var idx = parseInt(tab.dataset.idx, 10);
+          if (isNaN(idx)) return;
+          activate(idx);
+          tab.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        });
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Feature tabs",
+  "tag": "section",
+  "class": "section-feature-tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Smart Features"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Engineered For Every Ride"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_gradient_title",
+      "label": "Use gradient on headline",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (eyebrow + active tab)",
+      "default": "#B7E143"
+    },
+    {
+      "type": "color",
+      "id": "accent_color_2",
+      "label": "Gradient end (title)",
+      "default": "#FFFFFF",
+      "info": "Only used when gradient headline is on"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "Feature"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title (optional)",
+          "default": "Tab title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Tab description (optional)"
+        },
+        {
+          "type": "radio",
+          "id": "media_type",
+          "label": "Media type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video (Shopify upload)" },
+            { "value": "video_url", "label": "Video (external URL)" }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Used when Media type = Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video file",
+          "info": "MP4 upload. Used when Media type = Video (Shopify upload)"
+        },
+        {
+          "type": "text",
+          "id": "video_external_url",
+          "label": "External video URL (.mp4)",
+          "info": "Used when Media type = Video (external URL). Direct .mp4 link only."
+        },
+        {
+          "type": "image_picker",
+          "id": "video_poster",
+          "label": "Video poster (optional)",
+          "info": "Overrides auto-generated poster"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Feature tabs",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Battery",
+            "title": "Long-Lasting Battery"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Motor",
+            "title": "Powerful Motor"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Smart",
+            "title": "Smart Connectivity"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
