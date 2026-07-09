@@ -29,18 +29,6 @@
     },
     "why_features": {
       "type": "why-features-grid",
-      "blocks": {
-        "feature_aUWDKG": {
-          "type": "feature",
-          "settings": {
-            "icon": "check",
-            "title": "Feature title"
-          }
-        }
-      },
-      "block_order": [
-        "feature_aUWDKG"
-      ],
       "disabled": true,
       "settings": {
         "eyebrow": "",
