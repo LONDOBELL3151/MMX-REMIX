@@ -35,11 +35,45 @@
         "heading": "",
         "subtitle": ""
       }
+    },
+    "mileage_tabs": {
+      "type": "mileage-tabs",
+      "disabled": true,
+      "settings": {
+        "heading": "Ride Further. Feel in Control",
+        "subtitle": "From City Streets To Gentle Hills",
+        "auto_rotate": true,
+        "interval_ms": 6000,
+        "progress_color": "#FFC000",
+        "padding_top": 56,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "tab_go_further": {
+          "type": "tab",
+          "settings": {
+            "label": "Go Further",
+            "text": "Up to 60 miles on a single charge, giving you freedom to commute, cruise, and explore without worrying about battery."
+          }
+        },
+        "tab_smooth_power": {
+          "type": "tab",
+          "settings": {
+            "label": "Smooth Power",
+            "text": "A quiet 350W hub motor delivers steady, controlled support for starts, stops, and mild climbs."
+          }
+        }
+      },
+      "block_order": [
+        "tab_go_further",
+        "tab_smooth_power"
+      ]
     }
   },
   "order": [
     "banner",
     "main",
-    "why_features"
+    "why_features",
+    "mileage_tabs"
   ]
 }

@@ -1,0 +1,410 @@
+{{ 'section-mileage-tabs.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+  assign tabs_count = 0
+  for block in section.blocks
+    if block.type == 'tab'
+      assign tabs_count = tabs_count | plus: 1
+    endif
+  endfor
+-%}
+
+<section
+  class="mileage-section"
+  data-mileage-section
+  data-interval="{{ s.interval_ms }}"
+  data-auto-rotate="{{ s.auto_rotate }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="container">
+    <div class="mileage-head">
+      <h2 class="mileage-head__title">
+        {{ s.heading | default: 'Ride Further. Feel in Control' }}
+      </h2>
+      {%- if s.subtitle != blank -%}
+        <p class="mileage-head__sub">{{ s.subtitle }}</p>
+      {%- elsif s.subtitle == blank -%}
+        <p class="mileage-head__sub">From City Streets To Gentle Hills</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="mileage-hero">
+    {%- if tabs_count > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab' -%}
+          {%- assign is_first = false -%}
+          {%- if forloop.first -%}{%- assign is_first = true -%}{%- endif -%}
+          <div
+            class="mileage-hero__slide {% if is_first %}is-active{% endif %}"
+            data-mileage-slide="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.image_desktop != blank -%}
+              <img
+                class="mileage-hero__img mileage-hero__img--desktop"
+                src="{{ block.settings.image_desktop | image_url: width: 1600 }}"
+                srcset="
+                  {%- if block.settings.image_desktop.width >= 800 -%}{{ block.settings.image_desktop | image_url: width: 800 }} 800w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 1200 -%}{{ block.settings.image_desktop | image_url: width: 1200 }} 1200w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 1600 -%}{{ block.settings.image_desktop | image_url: width: 1600 }} 1600w,{%- endif -%}
+                  {{ block.settings.image_desktop | image_url }} {{ block.settings.image_desktop.width }}w
+                "
+                sizes="100vw"
+                alt="{{ block.settings.image_desktop.alt | default: block.settings.label | escape }}"
+                width="{{ block.settings.image_desktop.width }}"
+                height="{{ block.settings.image_desktop.height }}"
+                loading="{% if is_first %}eager{% else %}lazy{% endif %}"
+                decoding="async"
+              >
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'mileage-hero__img mileage-hero__img--desktop' }}
+            {%- endif -%}
+
+            {%- if block.settings.image_mobile != blank -%}
+              <img
+                class="mileage-hero__img mileage-hero__img--mobile"
+                src="{{ block.settings.image_mobile | image_url: width: 800 }}"
+                srcset="
+                  {%- if block.settings.image_mobile.width >= 480 -%}{{ block.settings.image_mobile | image_url: width: 480 }} 480w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 640 -%}{{ block.settings.image_mobile | image_url: width: 640 }} 640w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 800 -%}{{ block.settings.image_mobile | image_url: width: 800 }} 800w,{%- endif -%}
+                  {{ block.settings.image_mobile | image_url }} {{ block.settings.image_mobile.width }}w
+                "
+                sizes="100vw"
+                alt="{{ block.settings.image_mobile.alt | default: block.settings.label | escape }}"
+                width="{{ block.settings.image_mobile.width }}"
+                height="{{ block.settings.image_mobile.height }}"
+                loading="{% if is_first %}eager{% else %}lazy{% endif %}"
+                decoding="async"
+              >
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    <div class="mileage-hero__overlay" aria-hidden="true"></div>
+
+    <div class="mileage-hero__content">
+      {%- if tabs_count > 0 -%}
+        <div class="mileage-tabs" role="tablist" aria-label="{{ s.heading | default: 'Highlights' | escape }}">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}
+              {%- assign is_first = false -%}
+              {%- if forloop.first -%}{%- assign is_first = true -%}{%- endif -%}
+              <button
+                type="button"
+                class="mileage-tab {% if is_first %}is-active{% endif %}"
+                data-mileage-tab="{{ forloop.index0 }}"
+                role="tab"
+                aria-selected="{% if is_first %}true{% else %}false{% endif %}"
+                aria-controls="mileage-panel-{{ section.id }}-{{ forloop.index0 }}"
+              >
+                <span class="mileage-tab__label">{{ block.settings.label }}</span>
+                <span class="mileage-tab__progress" aria-hidden="true">
+                  <span class="mileage-tab__progress-bar" data-mileage-progress></span>
+                </span>
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if tabs_count > 0 -%}
+        <div class="mileage-body" aria-live="polite">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}
+              {%- assign is_first = false -%}
+              {%- if forloop.first -%}{%- assign is_first = true -%}{%- endif -%}
+              <p
+                class="mileage-body__text {% if is_first %}is-active{% endif %}"
+                id="mileage-panel-{{ section.id }}-{{ forloop.index0 }}"
+                data-mileage-text="{{ forloop.index0 }}"
+                role="tabpanel"
+                {% unless is_first %}hidden{% endunless %}
+              >{{ block.settings.text }}</p>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <style>
+    #ShopifySection-{{ section.id }} .mileage-section {
+      padding-top: {{ s.padding_top }}px;
+      padding-bottom: {{ s.padding_bottom }}px;
+    }
+    #ShopifySection-{{ section.id }} .mileage-tab__progress-bar {
+      background: {{ s.progress_color }};
+    }
+  </style>
+</section>
+
+{% javascript %}
+  function initMileageSection(section) {
+    var tabs = Array.prototype.slice.call(section.querySelectorAll('[data-mileage-tab]'));
+    var slides = Array.prototype.slice.call(section.querySelectorAll('[data-mileage-slide]'));
+    var texts = Array.prototype.slice.call(section.querySelectorAll('[data-mileage-text]'));
+    var bars = tabs.map(function (btn) {
+      return btn.querySelector('[data-mileage-progress]');
+    });
+    if (tabs.length < 2) return;
+
+    var duration = parseInt(section.getAttribute('data-interval') || '6000', 10);
+    if (!duration || duration < 1500) duration = 6000;
+    var autoRotate = section.getAttribute('data-auto-rotate') !== 'false';
+
+    var activeIndex = 0;
+    var startTs = 0;
+    var rafId = 0;
+    var running = false;
+    var observer = null;
+
+    function setActive(i) {
+      activeIndex = i;
+      renderProgress(0);
+
+      tabs.forEach(function (btn, idx) {
+        var on = idx === i;
+        btn.classList.toggle('is-active', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+
+      slides.forEach(function (slide, idx) {
+        slide.classList.toggle('is-active', idx === i);
+      });
+
+      texts.forEach(function (p, idx) {
+        var on = idx === i;
+        p.classList.toggle('is-active', on);
+        if (on) {
+          p.removeAttribute('hidden');
+        } else {
+          p.setAttribute('hidden', '');
+        }
+      });
+    }
+
+    function clearAllProgress() {
+      bars.forEach(function (bar) {
+        if (bar) bar.style.width = '0%';
+      });
+    }
+
+    function renderProgress(p) {
+      var v = Math.max(0, Math.min(1, p));
+      bars.forEach(function (bar, idx) {
+        if (!bar) return;
+        bar.style.width = idx === activeIndex ? String(v * 100) + '%' : '0%';
+      });
+    }
+
+    function step(ts) {
+      if (!running) return;
+      if (!startTs) startTs = ts;
+      var elapsed = ts - startTs;
+      var p = elapsed / duration;
+      renderProgress(p);
+      if (p >= 1) {
+        startTs = ts;
+        setActive((activeIndex + 1) % tabs.length);
+      }
+      rafId = window.requestAnimationFrame(step);
+    }
+
+    function start() {
+      if (running || !autoRotate) return;
+      running = true;
+      startTs = 0;
+      renderProgress(0);
+      rafId = window.requestAnimationFrame(step);
+    }
+
+    function stop() {
+      running = false;
+      startTs = 0;
+      if (rafId) window.cancelAnimationFrame(rafId);
+      rafId = 0;
+      clearAllProgress();
+    }
+
+    tabs.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        setActive(idx);
+        if (running) startTs = 0;
+      });
+    });
+
+    // Preload all slide images so the crossfade doesn't stall
+    slides.forEach(function (slide) {
+      var imgs = slide.querySelectorAll('img');
+      imgs.forEach(function (img) {
+        var src = img.currentSrc || img.src;
+        if (src) {
+          var p = new Image();
+          p.decoding = 'async';
+          p.src = src;
+        }
+      });
+    });
+
+    setActive(0);
+
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        function (entries) {
+          var entry = entries && entries[0];
+          if (!entry) return;
+          if (entry.isIntersecting) start();
+          else stop();
+        },
+        { threshold: 0.35 }
+      );
+      observer.observe(section);
+    } else if (autoRotate) {
+      start();
+    }
+
+    // Theme editor: don't auto-rotate so blocks stay editable
+    if (window.Shopify && Shopify.designMode) {
+      stop();
+    }
+  }
+
+  function bootMileageTabs() {
+    document.querySelectorAll('[data-mileage-section]').forEach(initMileageSection);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootMileageTabs);
+  } else {
+    bootMileageTabs();
+  }
+
+  // Shopify theme editor re-renders sections on edit — re-init when needed
+  document.addEventListener('shopify:section:load', function (e) {
+    var target = e.target && e.target.querySelector('[data-mileage-section]');
+    if (target) initMileageSection(target);
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Mileage tabs (ride further)",
+  "tag": "section",
+  "class": "section-mileage-tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ride Further. Feel in Control"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "From City Streets To Gentle Hills"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate tabs",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "interval_ms",
+      "label": "Auto-rotate interval (ms)",
+      "min": 2000,
+      "max": 12000,
+      "step": 500,
+      "unit": "ms",
+      "default": 6000
+    },
+    {
+      "type": "color",
+      "id": "progress_color",
+      "label": "Active tab progress bar",
+      "default": "#FFC000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Go Further"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Tab description",
+          "default": "Up to 60 miles on a single charge, giving you freedom to commute, cruise, and explore without worrying about battery."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Image — desktop",
+          "info": "Recommended 1600x900 (16:9) or wider. Will be cover-cropped to fill the hero."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image — mobile (optional)",
+          "info": "If left empty, the desktop image is used on mobile too. Recommended 800x1000 (4:5) portrait for tighter crops on phone."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Mileage tabs (ride further)",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Go Further",
+            "text": "Up to 60 miles on a single charge, giving you freedom to commute, cruise, and explore without worrying about battery."
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Smooth Power",
+            "text": "A quiet 350W hub motor delivers steady, controlled support for starts, stops, and mild climbs."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
