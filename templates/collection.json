@@ -38,7 +38,6 @@
     },
     "mileage_tabs": {
       "type": "mileage-tabs",
-      "disabled": true,
       "settings": {
         "heading": "Ride Further. Feel in Control",
         "subtitle": "From City Streets To Gentle Hills",
