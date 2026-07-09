@@ -1,0 +1,248 @@
+{{ 'section-reliability-trust-grid.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="rt-section"
+  style="
+    --rt-bg: {{ section.settings.bg_color }};
+    --rt-fg: {{ section.settings.text_color }};
+    --rt-accent: {{ section.settings.accent_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+  {{ section.shopify_attributes }}
+>
+  <div class="container">
+    <header class="rt-head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="rt-head__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="rt-head__title">{{ section.settings.headline }}</h2>
+    </header>
+
+    {%- assign card_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'feature' -%}
+        {%- assign card_count = card_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if card_count > 0 -%}
+      <ul class="rt-grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            <li class="rt-card" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <div class="rt-card__media">
+                  <img
+                    class="rt-card__img"
+                    src="{{ block.settings.image | image_url: width: 1200 }}"
+                    srcset="
+                      {%- if block.settings.image.width >= 600 -%}{{ block.settings.image | image_url: width: 600 }} 600w,{%- endif -%}
+                      {%- if block.settings.image.width >= 800 -%}{{ block.settings.image | image_url: width: 800 }} 800w,{%- endif -%}
+                      {%- if block.settings.image.width >= 1000 -%}{{ block.settings.image | image_url: width: 1000 }} 1000w,{%- endif -%}
+                      {%- if block.settings.image.width >= 1200 -%}{{ block.settings.image | image_url: width: 1200 }} 1200w,{%- endif -%}
+                      {{ block.settings.image | image_url }} {{ block.settings.image.width }}w
+                    "
+                    sizes="(min-width: 990px) 33vw, (min-width: 720px) 50vw, 85vw"
+                    alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                  <div class="rt-card__shade" aria-hidden="true"></div>
+                </div>
+              {%- else -%}
+                <div class="rt-card__media rt-card__media--placeholder" aria-hidden="true"></div>
+              {%- endif -%}
+
+              <div class="rt-card__body">
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="rt-card__eyebrow">{{ block.settings.eyebrow }}</p>
+                {%- endif -%}
+                <h3 class="rt-card__title">{{ block.settings.title }}</h3>
+              </div>
+
+              {%- if block.settings.description != blank -%}
+                <details class="rt-card__expand">
+                  <summary
+                    class="rt-card__toggle"
+                    aria-label="Show details about {{ block.settings.title | escape }}"
+                  >
+                    <span class="rt-icon" aria-hidden="true">
+                      <span class="rt-icon__h"></span>
+                      <span class="rt-icon__v"></span>
+                    </span>
+                  </summary>
+                  <div class="rt-card__panel">
+                    <div class="rt-card__panel-inner">{{ block.settings.description }}</div>
+                    {%- if block.settings.link != blank -%}
+                      <a class="rt-card__panel-link" href="{{ block.settings.link }}">
+                        Learn more <span aria-hidden="true">→</span>
+                      </a>
+                    {%- endif -%}
+                  </div>
+                </details>
+              {%- elsif block.settings.link != blank -%}
+                <a
+                  class="rt-card__hit"
+                  href="{{ block.settings.link }}"
+                  aria-label="Learn more about {{ block.settings.title | escape }}"
+                >
+                  <span class="rt-icon" aria-hidden="true">
+                    <span class="rt-icon__h"></span>
+                    <span class="rt-icon__v"></span>
+                  </span>
+                </a>
+              {%- else -%}
+                <span class="rt-card__hit rt-card__hit--static" aria-hidden="true">
+                  <span class="rt-icon" aria-hidden="true">
+                    <span class="rt-icon__h"></span>
+                    <span class="rt-icon__v"></span>
+                  </span>
+                </span>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reliability trust grid",
+  "tag": "section",
+  "class": "section-reliability-trust-grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "All-Round Reliability"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Reliability You Can Trust"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Eyebrow / hover accent",
+      "default": "#B7E143"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Proven Reliability"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Rigorous Testing"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card link (optional)",
+          "info": "e.g. /pages/reliability or https://..."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Reliability trust grid",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Proven Reliability",
+            "title": "Rigorous Testing"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Worry-Free Service",
+            "title": "Multi-Channel After-Sales Service"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Secure Servicing",
+            "title": "Safer Maintenance Mode"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
