@@ -5,10 +5,14 @@
     },
     "main": {
       "type": "main-collection"
+    },
+    "why_features": {
+      "type": "why-features-grid"
     }
   },
   "order": [
     "banner",
-    "main"
+    "main",
+    "why_features"
   ]
 }

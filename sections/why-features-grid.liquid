@@ -1,0 +1,150 @@
+{{ 'section-why-features-grid.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+  assign collection = s.collection | default: closest.collection
+-%}
+
+<section class="wfg-section" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="wfg-card">
+
+      <div class="wfg-card__text">
+        {%- if s.eyebrow != blank -%}
+          <span class="wfg-card__eyebrow">{{ s.eyebrow }}</span>
+        {%- elsif collection and collection.title -%}
+          <span class="wfg-card__eyebrow">{{ collection.title | upcase }}</span>
+        {%- endif -%}
+
+        <h2 class="wfg-card__title">
+          {%- if s.heading != blank -%}
+            {{ s.heading }}
+          {%- elsif collection -%}
+            Why Choose {{ collection.title }}?
+          {%- else -%}
+            Why Choose Us
+          {%- endif -%}
+        </h2>
+
+        {%- if s.subtitle != blank -%}
+          <p class="wfg-card__sub">{{ s.subtitle }}</p>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="wfg-grid">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'feature' -%}
+                <div class="wfg-item" {{ block.shopify_attributes }}>
+                  {%- assign icon_name = block.settings.icon | default: 'check' -%}
+                  <div class="wfg-item__icon">
+                    {% render 'icon-feature', icon: icon_name, size: 48 %}
+                  </div>
+                  <h3 class="wfg-item__title">{{ block.settings.title }}</h3>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="wfg-card__media">
+        {%- if s.image != blank -%}
+          <img
+            class="wfg-card__img"
+            src="{{ s.image | image_url: width: 1200 }}"
+            srcset="
+              {%- if s.image.width >= 600 -%}{{ s.image | image_url: width: 600 }} 600w,{%- endif -%}
+              {%- if s.image.width >= 800 -%}{{ s.image | image_url: width: 800 }} 800w,{%- endif -%}
+              {%- if s.image.width >= 1200 -%}{{ s.image | image_url: width: 1200 }} 1200w,{%- endif -%}
+              {{ s.image | image_url }} {{ s.image.width }}w
+            "
+            sizes="(min-width: 990px) 42vw, 100vw"
+            alt="{{ s.image.alt | default: s.heading | escape }}"
+            width="{{ s.image.width }}"
+            height="{{ s.image.height }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'wfg-card__img' }}
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why features grid",
+  "tag": "section",
+  "class": "section-why-features-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "info": "Small uppercase label above the title. Defaults to collection title."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Defaults to 'Why Choose [Collection Title]?'"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "info": "Short description paragraph above the feature grid."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right-side image",
+      "info": "Recommended 1200x900 (4:3) or 1200x1200. Will be cover-cropped to fill the right column."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "compact", "label": "Compact / Folding" },
+            { "value": "storage", "label": "Storage / Capacity" },
+            { "value": "money", "label": "Money / Savings" },
+            { "value": "check", "label": "Checkmark / Verified" },
+            { "value": "eco", "label": "Eco / Sustainable" },
+            { "value": "power", "label": "Power / Battery" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature title"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Why features grid",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "compact", "title": "Step-Thru Frame" } },
+        { "type": "feature", "settings": { "icon": "power", "title": "Long-Lasting Battery" } },
+        { "type": "feature", "settings": { "icon": "storage", "title": "Cargo-Ready Basket" } },
+        { "type": "feature", "settings": { "icon": "check", "title": "UL-Certified Safety" } },
+        { "type": "feature", "settings": { "icon": "eco", "title": "Eco-Friendly Ride" } },
+        { "type": "feature", "settings": { "icon": "money", "title": "Save on Commute Costs" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

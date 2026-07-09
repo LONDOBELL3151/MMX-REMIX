@@ -1,0 +1,124 @@
+/* Why Features Grid — left text + 3x2 icon grid, right image.
+   Modeled on Velotric's feature-section-3 visual but rebuilt from scratch
+   in MaxFoot tokens. */
+
+.wfg-section{background:var(--color-bg);padding:0 0 var(--section-padding-y)}
+
+.wfg-card{
+  display:flex;
+  align-items:center;
+  background:#F8F9FD;
+  border-radius:16px;
+  overflow:hidden;
+  max-width:var(--page-width);
+  margin:0 auto;
+  min-height:480px;
+}
+
+.wfg-card__text{
+  flex:0 0 57.5%;
+  width:57.5%;
+  padding:64px 64px;
+  max-width:680px;
+}
+
+.wfg-card__eyebrow{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--color-accent-dark);
+  margin-bottom:12px;
+}
+
+.wfg-card__title{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.05;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  color:var(--color-primary);
+  margin:0 0 16px;
+}
+
+.wfg-card__sub{
+  font-size:17px;
+  line-height:1.6;
+  color:var(--color-text-soft);
+  margin:0 0 40px;
+  max-width:540px;
+}
+
+.wfg-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px 16px;
+  max-width:560px;
+}
+
+.wfg-item{color:var(--color-primary)}
+
+.wfg-item__icon{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  margin-bottom:16px;
+  color:var(--color-primary);
+}
+
+.wfg-item__icon svg{width:48px;height:48px;display:block}
+
+.wfg-item__title{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:15px;
+  line-height:1.2;
+  letter-spacing:.01em;
+  text-transform:none;
+  color:var(--color-primary);
+  margin:0;
+}
+
+.wfg-card__media{
+  flex:0 0 42.5%;
+  width:42.5%;
+  align-self:stretch;
+  position:relative;
+  background:#e9ecf3;
+  min-height:480px;
+}
+
+.wfg-card__img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Mobile */
+@media (max-width:990px){
+  .wfg-card{flex-direction:column;min-height:0;border-radius:12px}
+  .wfg-card__text{width:100%;flex:0 0 auto;padding:48px 32px}
+  .wfg-card__sub{margin-bottom:32px}
+  .wfg-grid{gap:28px 12px;max-width:none}
+  .wfg-card__media{width:100%;flex:0 0 auto;aspect-ratio:4/3;min-height:0}
+  .wfg-card__img{position:absolute}
+}
+
+@media (max-width:560px){
+  .wfg-card__text{padding:36px 20px}
+  .wfg-card__title{font-size:28px}
+  .wfg-card__sub{font-size:15px;margin-bottom:28px}
+  .wfg-grid{grid-template-columns:repeat(2,1fr);gap:24px 12px}
+  .wfg-item__icon{width:40px;height:40px;margin-bottom:10px}
+  .wfg-item__icon svg{width:40px;height:40px}
+  .wfg-item__title{font-size:14px}
+  .wfg-card__media{aspect-ratio:3/2}
+}
