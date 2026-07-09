@@ -196,7 +196,7 @@
         "text_R8hjkF": {
           "type": "text",
           "settings": {
-            "text": "<h2><strong>·</strong> The unconventional undulating and extending ridges show beauty and strength.</h2><h2><strong>·</strong> The main body of the vehicle tube is formed in one piece and requires no welding.</h2>",
+            "text": "<h5><strong>·</strong> The unconventional undulating and extending ridges show beauty and strength.</h5><h5><strong>·</strong> The main body of the vehicle tube is formed in one piece and requires no welding.</h5>",
             "text_style": "body"
           }
         }
@@ -208,7 +208,7 @@
       "custom_css": [
         ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".global-media-settings {border: none; /*无边框*/}",
-        "h2 {color: #fff;}"
+        "h5 {color: #fff;}"
       ],
       "settings": {
         "image": "shopify://shop_images/DSC_3850.png",
