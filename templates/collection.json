@@ -68,12 +68,61 @@
         "padding_top": 56,
         "padding_bottom": 0
       }
+    },
+    "reliability_trust_grid_rictPT": {
+      "type": "reliability-trust-grid",
+      "blocks": {
+        "feature_effyPw": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Proven Reliability",
+            "title": "Rigorous Testing",
+            "description": "",
+            "link": ""
+          }
+        },
+        "feature_6QkBKB": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Worry-Free Service",
+            "title": "Multi-Channel After-Sales Service",
+            "description": "",
+            "link": ""
+          }
+        },
+        "feature_tp3Ufw": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Secure Servicing",
+            "title": "Safer Maintenance Mode",
+            "description": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_effyPw",
+        "feature_6QkBKB",
+        "feature_tp3Ufw"
+      ],
+      "disabled": true,
+      "name": "Reliability trust grid",
+      "settings": {
+        "eyebrow": "All-Round Reliability",
+        "headline": "Reliability You Can Trust",
+        "bg_color": "#000000",
+        "text_color": "#FFFFFF",
+        "accent_color": "#B7E143",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "banner",
     "main",
     "why_features",
-    "mileage_tabs"
+    "mileage_tabs",
+    "reliability_trust_grid_rictPT"
   ]
 }
