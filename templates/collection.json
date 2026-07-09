@@ -38,15 +38,6 @@
     },
     "mileage_tabs": {
       "type": "mileage-tabs",
-      "settings": {
-        "heading": "Ride Further. Feel in Control",
-        "subtitle": "From City Streets To Gentle Hills",
-        "auto_rotate": true,
-        "interval_ms": 6000,
-        "progress_color": "#FFC000",
-        "padding_top": 56,
-        "padding_bottom": 0
-      },
       "blocks": {
         "tab_go_further": {
           "type": "tab",
@@ -66,7 +57,17 @@
       "block_order": [
         "tab_go_further",
         "tab_smooth_power"
-      ]
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Ride Further. Feel in Control",
+        "subtitle": "From City Streets To Gentle Hills",
+        "auto_rotate": true,
+        "interval_ms": 6000,
+        "progress_color": "#ffc000",
+        "padding_top": 56,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
