@@ -102,23 +102,38 @@
   display:block;
 }
 
-/* Mobile */
+/* Mobile — matches Velotric feature-section-3 behavior:
+   1) ≤990 stack text + image vertically (text on top, image below)
+   2) ≤560 compress padding / type / icons to phone scale
+   3) ≤380 tighten further for narrow phones */
+
 @media (max-width:990px){
-  .wfg-card{flex-direction:column;min-height:0;border-radius:12px}
-  .wfg-card__text{width:100%;flex:0 0 auto;padding:48px 32px}
-  .wfg-card__sub{margin-bottom:32px}
+  .wfg-card{flex-direction:column;align-items:stretch;min-height:0;border-radius:12px}
+  .wfg-card__text,
+  .wfg-card__media{width:100%;flex:0 0 auto}
+  .wfg-card__text{padding:48px 32px;max-width:none}
+  .wfg-card__sub{margin-bottom:32px;max-width:none}
   .wfg-grid{gap:28px 12px;max-width:none}
-  .wfg-card__media{width:100%;flex:0 0 auto;aspect-ratio:4/3;min-height:0}
+  .wfg-card__media{min-height:0;aspect-ratio:4/3;position:relative}
   .wfg-card__img{position:absolute}
 }
 
 @media (max-width:560px){
-  .wfg-card__text{padding:36px 20px}
-  .wfg-card__title{font-size:28px}
-  .wfg-card__sub{font-size:15px;margin-bottom:28px}
-  .wfg-grid{grid-template-columns:repeat(2,1fr);gap:24px 12px}
-  .wfg-item__icon{width:40px;height:40px;margin-bottom:10px}
-  .wfg-item__icon svg{width:40px;height:40px}
-  .wfg-item__title{font-size:14px}
+  /* Compress: section heading 32, subtitle 14, icon 32, item 12, gap 24/8 */
+  .wfg-card__text{padding:32px 24px}
+  .wfg-card__title{font-size:32px;margin-bottom:16px}
+  .wfg-card__sub{font-size:14px;line-height:1.45;margin-bottom:30px}
+  .wfg-grid{grid-template-columns:repeat(3,1fr);gap:24px 8px}
+  .wfg-item__icon{width:32px;height:32px;margin-bottom:8px}
+  .wfg-item__icon svg{width:32px;height:32px}
+  .wfg-item__title{font-size:12px;line-height:1.17}
   .wfg-card__media{aspect-ratio:3/2}
+}
+
+@media (max-width:380px){
+  /* Narrow phones — drop one column to 2x3 so titles stop wrapping 3 lines */
+  .wfg-grid{grid-template-columns:repeat(2,1fr);gap:20px 10px}
+  .wfg-item__title{font-size:13px;line-height:1.2}
+  .wfg-card__text{padding:28px 20px}
+  .wfg-card__title{font-size:28px}
 }
