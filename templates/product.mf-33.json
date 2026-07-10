@@ -241,7 +241,7 @@
         "slide_YeVXkV": {
           "type": "slide",
           "settings": {
-            "icon": "shopify://shop_images/c5b9a1702888b8b61400b8ec135d2fdf_4bb2ddaf-80db-47d2-a491-b330555e2e86.png",
+            "icon": "shopify://shop_images/battery_12388fc6-eb43-4625-be92-59b93e04a975.png",
             "main_title": "48V 20Ah",
             "text": "UL-Certified Battery"
           }
@@ -249,7 +249,7 @@
         "slide_mjkgJU": {
           "type": "slide",
           "settings": {
-            "icon": "shopify://shop_images/953ebbc1f2f5775c228625e1c716cf87_71d20080-0065-49c4-88de-df513e125467.png",
+            "icon": "shopify://shop_images/motor_74e5c237-ac26-4ab0-9aa6-757e9ef5c879.png",
             "main_title": "750 W",
             "text": "Rear Drive Motor"
           }
@@ -257,7 +257,7 @@
         "slide_3qCiHy": {
           "type": "slide",
           "settings": {
-            "icon": "shopify://shop_images/dcbf258b7e33f36ca3423eee233866fa_e9077569-3288-45de-8f7a-8b344e4e991c.png",
+            "icon": "shopify://shop_images/T.png",
             "main_title": "85N.m",
             "text": "Motor Torque"
           }
@@ -265,7 +265,7 @@
         "slide_dMqTVc": {
           "type": "slide",
           "settings": {
-            "icon": "shopify://shop_images/1_f9b70bb5-65a3-4fb9-abcc-927a46e4511e.png",
+            "icon": "shopify://shop_images/P.png",
             "main_title": "Up to 3",
             "text": "Rider and Pessengers"
           }
