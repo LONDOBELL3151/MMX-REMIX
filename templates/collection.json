@@ -111,8 +111,61 @@
         "eyebrow": "All-Round Reliability",
         "headline": "Reliability You Can Trust",
         "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#ffc000",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "feature_tabs_dmddNw": {
+      "type": "feature-tabs",
+      "blocks": {
+        "feature_HibF37": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Battery",
+            "title": "Long-Lasting Battery",
+            "description": "",
+            "media_type": "image",
+            "video_external_url": ""
+          }
+        },
+        "feature_NqiGwY": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Motor",
+            "title": "Powerful Motor",
+            "description": "",
+            "media_type": "image",
+            "video_external_url": ""
+          }
+        },
+        "feature_FGKBB9": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Smart",
+            "title": "Smart Connectivity",
+            "description": "",
+            "media_type": "image",
+            "video_external_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_HibF37",
+        "feature_NqiGwY",
+        "feature_FGKBB9"
+      ],
+      "disabled": true,
+      "name": "Feature tabs",
+      "settings": {
+        "eyebrow": "Smart Features",
+        "headline": "Engineered For Every Ride",
+        "use_gradient_title": true,
+        "bg_color": "#000000",
         "text_color": "#FFFFFF",
         "accent_color": "#FFC000",
+        "accent_color_2": "#FFFFFF",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -123,6 +176,7 @@
     "main",
     "why_features",
     "mileage_tabs",
-    "reliability_trust_grid_rictPT"
+    "reliability_trust_grid_rictPT",
+    "feature_tabs_dmddNw"
   ]
 }
