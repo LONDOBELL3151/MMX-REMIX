@@ -203,8 +203,9 @@
         "feature_tp3Ufw": {
           "type": "feature",
           "settings": {
+            "image": "shopify://shop_images/frame.png",
             "eyebrow": "One-Piece Aluminum Alloy Frame",
-            "title": "Step-ThruSturdier. <br>Safer. Easier to Ride",
+            "title": "Step-ThruSturdier. Safer. Easier to Ride",
             "description": "",
             "link": ""
           }
