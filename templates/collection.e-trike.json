@@ -183,7 +183,7 @@
         "feature_effyPw": {
           "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/battery_e026e184-b259-4ed5-9ef2-d4eacb466ded.png",
+            "image": "shopify://shop_images/battery_ddf4465d-d64e-47eb-9421-1328a5b72419.png",
             "eyebrow": "UL-Certified SAMSUNG Battery",
             "title": "48V 20AH  85 mi RangeSafer. More Durable. More Reliable",
             "description": "",
@@ -193,6 +193,7 @@
         "feature_6QkBKB": {
           "type": "feature",
           "settings": {
+            "image": "shopify://shop_images/motor.png",
             "eyebrow": "750W Rear Drive Motor",
             "title": "Peak Power 1400W More Power, Better Traction, Superior Stability",
             "description": "",
