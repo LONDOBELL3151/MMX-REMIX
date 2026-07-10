@@ -182,6 +182,7 @@
         "feature_effyPw": {
           "type": "feature",
           "settings": {
+            "image": "shopify://shop_images/DSC_5196.jpg",
             "eyebrow": "UL-Certified SAMSUNG Battery",
             "title": "48V 20AH  85 mi RangeSafer. More Durable. More Reliable",
             "description": "",
