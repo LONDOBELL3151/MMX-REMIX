@@ -121,6 +121,61 @@
         "padding_bottom": 0
       }
     },
+    "feature_tabs_dmddNw": {
+      "type": "feature-tabs",
+      "blocks": {
+        "feature_HibF37": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "MF 30 Electric trikes for adults",
+            "title": "",
+            "description": "<p>This step-thru electric tricycle for adults is powered by a high-torque 750W rear-drive motor and a UL-certified 20Ah Samsung battery, with up to 85 miles per charge.Designed for adults seeking exceptional range, safety, and competitive pricing.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/popup_57ac1ae7-f8f2-442e-9698-597ba01340e1.jpg",
+            "video_external_url": ""
+          }
+        },
+        "feature_NqiGwY": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "MF 31 Fat tire electric trikes for adults",
+            "title": "",
+            "description": "<p>This MAXZ 20\" fat tire electric tricycle for adults combines a one-piece molding frame, a 750W (1400W peak) rear motor, and a UL-certified Samsung 48V 20Ah battery — giving you superior grip, shock absorption, and a smooth, stable ride every time.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/DSC_0423_9cd1e493-7a83-404a-afd7-61f626755f41.jpg",
+            "video_external_url": ""
+          }
+        },
+        "feature_FGKBB9": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "MF 32 Fat tire electric trikes for adults",
+            "title": "",
+            "description": "<p>This MAXZ 24\" fat tire electric tricycle for adults features a one-piece molded frame, a 750W rear motor, and a UL-certified Samsung 48V 20Ah battery — absorbing bumps and rough terrain with ease for a smooth, balanced, and effortless ride.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/2_2d7b2bb1-8c3e-4da7-84aa-fb10a7498b07.jpg",
+            "video_external_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_HibF37",
+        "feature_NqiGwY",
+        "feature_FGKBB9"
+      ],
+      "name": "Feature tabs",
+      "settings": {
+        "eyebrow": "Beyond Riding. Safe Journey",
+        "headline": "Find Your Perfect 3-Wheel Electric Bike",
+        "use_gradient_title": true,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#ffc000",
+        "accent_color_2": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "reliability_trust_grid_rictPT": {
       "type": "reliability-trust-grid",
       "blocks": {
@@ -167,58 +222,6 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
-    },
-    "feature_tabs_dmddNw": {
-      "type": "feature-tabs",
-      "blocks": {
-        "feature_HibF37": {
-          "type": "feature",
-          "settings": {
-            "tab_label": "Battery",
-            "title": "Long-Lasting Battery",
-            "description": "",
-            "media_type": "image",
-            "video_external_url": ""
-          }
-        },
-        "feature_NqiGwY": {
-          "type": "feature",
-          "settings": {
-            "tab_label": "Motor",
-            "title": "Powerful Motor",
-            "description": "",
-            "media_type": "image",
-            "video_external_url": ""
-          }
-        },
-        "feature_FGKBB9": {
-          "type": "feature",
-          "settings": {
-            "tab_label": "Smart",
-            "title": "Smart Connectivity",
-            "description": "",
-            "media_type": "image",
-            "video_external_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "feature_HibF37",
-        "feature_NqiGwY",
-        "feature_FGKBB9"
-      ],
-      "name": "Feature tabs",
-      "settings": {
-        "eyebrow": "Smart Features",
-        "headline": "Engineered For Every Ride",
-        "use_gradient_title": true,
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#ffc000",
-        "accent_color_2": "#ffffff",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
     }
   },
   "order": [
@@ -226,7 +229,7 @@
     "main",
     "why_features",
     "mileage_tabs",
-    "reliability_trust_grid_rictPT",
-    "feature_tabs_dmddNw"
+    "feature_tabs_dmddNw",
+    "reliability_trust_grid_rictPT"
   ]
 }
