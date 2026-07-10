@@ -13,8 +13,8 @@
       "type": "collection-banner",
       "settings": {
         "eyebrow": "",
-        "title": "",
-        "subtitle": "",
+        "title": "MAXFOOT ELECTRIC TRICYCLE FOR ADULTS",
+        "subtitle": "Step-Thru, Fat Tire & Passenger — Discover the Best Electric Tricycle for Adults!",
         "show_overlay": true,
         "overlay_opacity": 50,
         "show_count": true
@@ -29,11 +29,62 @@
     },
     "why_features": {
       "type": "why-features-grid",
-      "disabled": true,
+      "blocks": {
+        "feature_rnekmb": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "title": "UL Certified"
+          }
+        },
+        "feature_wb8FVn": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "title": "2 year warranty"
+          }
+        },
+        "feature_nXnd4F": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "title": "Trusted by 50K+ US Riders"
+          }
+        },
+        "feature_U8cHyy": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "title": "Installment Payment"
+          }
+        },
+        "feature_YkAFMx": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "title": "Free Shipping"
+          }
+        },
+        "feature_jwXdYn": {
+          "type": "feature",
+          "settings": {
+            "icon": "check",
+            "title": "Unbeatable Value"
+          }
+        }
+      },
+      "block_order": [
+        "feature_rnekmb",
+        "feature_wb8FVn",
+        "feature_nXnd4F",
+        "feature_U8cHyy",
+        "feature_YkAFMx",
+        "feature_jwXdYn"
+      ],
       "settings": {
         "eyebrow": "",
-        "heading": "",
-        "subtitle": ""
+        "heading": "Why Choose MaxFoot Electric Tricycle?",
+        "subtitle": "MaxFoot are committed to building best electric tricycle for adults that are safe, reliable, and affordable. No compromise on quality, no unnecessary markup — just a ride that's comfortable, secure, and enjoyable every time."
       }
     },
     "mileage_tabs": {
@@ -58,7 +109,6 @@
         "tab_go_further",
         "tab_smooth_power"
       ],
-      "disabled": true,
       "settings": {
         "heading": "Ride Further. Feel in Control",
         "subtitle": "From City Streets To Gentle Hills",
@@ -105,7 +155,6 @@
         "feature_6QkBKB",
         "feature_tp3Ufw"
       ],
-      "disabled": true,
       "name": "Reliability trust grid",
       "settings": {
         "eyebrow": "All-Round Reliability",
@@ -156,16 +205,15 @@
         "feature_NqiGwY",
         "feature_FGKBB9"
       ],
-      "disabled": true,
       "name": "Feature tabs",
       "settings": {
         "eyebrow": "Smart Features",
         "headline": "Engineered For Every Ride",
         "use_gradient_title": true,
         "bg_color": "#000000",
-        "text_color": "#FFFFFF",
-        "accent_color": "#FFC000",
-        "accent_color_2": "#FFFFFF",
+        "text_color": "#ffffff",
+        "accent_color": "#ffc000",
+        "accent_color_2": "#ffffff",
         "padding_top": 80,
         "padding_bottom": 80
       }
