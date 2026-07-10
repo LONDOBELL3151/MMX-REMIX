@@ -1,0 +1,182 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "collection-banner",
+      "settings": {
+        "eyebrow": "",
+        "title": "",
+        "subtitle": "",
+        "show_overlay": true,
+        "overlay_opacity": 50,
+        "show_count": true
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_specs": true,
+        "products_per_page": 24
+      }
+    },
+    "why_features": {
+      "type": "why-features-grid",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "subtitle": ""
+      }
+    },
+    "mileage_tabs": {
+      "type": "mileage-tabs",
+      "blocks": {
+        "tab_go_further": {
+          "type": "tab",
+          "settings": {
+            "label": "Go Further",
+            "text": "Up to 60 miles on a single charge, giving you freedom to commute, cruise, and explore without worrying about battery."
+          }
+        },
+        "tab_smooth_power": {
+          "type": "tab",
+          "settings": {
+            "label": "Smooth Power",
+            "text": "A quiet 350W hub motor delivers steady, controlled support for starts, stops, and mild climbs."
+          }
+        }
+      },
+      "block_order": [
+        "tab_go_further",
+        "tab_smooth_power"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Ride Further. Feel in Control",
+        "subtitle": "From City Streets To Gentle Hills",
+        "auto_rotate": true,
+        "interval_ms": 6000,
+        "progress_color": "#ffc000",
+        "padding_top": 56,
+        "padding_bottom": 0
+      }
+    },
+    "reliability_trust_grid_rictPT": {
+      "type": "reliability-trust-grid",
+      "blocks": {
+        "feature_effyPw": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Proven Reliability",
+            "title": "Rigorous Testing",
+            "description": "",
+            "link": ""
+          }
+        },
+        "feature_6QkBKB": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Worry-Free Service",
+            "title": "Multi-Channel After-Sales Service",
+            "description": "",
+            "link": ""
+          }
+        },
+        "feature_tp3Ufw": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Secure Servicing",
+            "title": "Safer Maintenance Mode",
+            "description": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_effyPw",
+        "feature_6QkBKB",
+        "feature_tp3Ufw"
+      ],
+      "disabled": true,
+      "name": "Reliability trust grid",
+      "settings": {
+        "eyebrow": "All-Round Reliability",
+        "headline": "Reliability You Can Trust",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#ffc000",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "feature_tabs_dmddNw": {
+      "type": "feature-tabs",
+      "blocks": {
+        "feature_HibF37": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Battery",
+            "title": "Long-Lasting Battery",
+            "description": "",
+            "media_type": "image",
+            "video_external_url": ""
+          }
+        },
+        "feature_NqiGwY": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Motor",
+            "title": "Powerful Motor",
+            "description": "",
+            "media_type": "image",
+            "video_external_url": ""
+          }
+        },
+        "feature_FGKBB9": {
+          "type": "feature",
+          "settings": {
+            "tab_label": "Smart",
+            "title": "Smart Connectivity",
+            "description": "",
+            "media_type": "image",
+            "video_external_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "feature_HibF37",
+        "feature_NqiGwY",
+        "feature_FGKBB9"
+      ],
+      "disabled": true,
+      "name": "Feature tabs",
+      "settings": {
+        "eyebrow": "Smart Features",
+        "headline": "Engineered For Every Ride",
+        "use_gradient_title": true,
+        "bg_color": "#000000",
+        "text_color": "#FFFFFF",
+        "accent_color": "#FFC000",
+        "accent_color_2": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main",
+    "why_features",
+    "mileage_tabs",
+    "reliability_trust_grid_rictPT",
+    "feature_tabs_dmddNw"
+  ]
+}
