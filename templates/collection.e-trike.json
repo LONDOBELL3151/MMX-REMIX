@@ -93,15 +93,17 @@
         "tab_go_further": {
           "type": "tab",
           "settings": {
-            "label": "Go Further",
-            "text": "Up to 60 miles on a single charge, giving you freedom to commute, cruise, and explore without worrying about battery."
+            "label": "MF-33 Electric tricycle for 2 adults",
+            "text": "The MF-33 is a stable, passenger electric tricycle for 2 adults, built with a step-through frame and fat tires for easy boarding and confident handling. Powered by a UL-certified Samsung battery and equipped with an advanced rear differential, it delivers smooth, balanced, and safe rides every time. It is the perfect choice for enjoying life's simple pleasures with someone you love.",
+            "image_desktop": "shopify://shop_images/MF-33GS.png"
           }
         },
         "tab_smooth_power": {
           "type": "tab",
           "settings": {
             "label": "Smooth Power",
-            "text": "A quiet 350W hub motor delivers steady, controlled support for starts, stops, and mild climbs."
+            "text": "A quiet 350W hub motor delivers steady, controlled support for starts, stops, and mild climbs.",
+            "image_desktop": "shopify://shop_images/goal.jpg"
           }
         }
       },
@@ -110,8 +112,8 @@
         "tab_smooth_power"
       ],
       "settings": {
-        "heading": "Ride Further. Feel in Control",
-        "subtitle": "From City Streets To Gentle Hills",
+        "heading": "Made for Two, Made for Love — Maxfoot MF-33",
+        "subtitle": "Take your partner with you on every journey",
         "auto_rotate": true,
         "interval_ms": 6000,
         "progress_color": "#ffc000",
