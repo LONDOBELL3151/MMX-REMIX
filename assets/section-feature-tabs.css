@@ -40,7 +40,7 @@
   color: transparent;
 }
 
-/* Tab bar — horizontal scrollable strip */
+/* Tab bar — horizontal scrollable strip, sits BELOW media */
 .ft-tabs {
   max-width: 1600px;
   margin: 0 auto;
@@ -53,10 +53,11 @@
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  margin: 0 0 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 56px 0 0;
   padding: 0 var(--gutter);
   scroll-behavior: smooth;
+  justify-content: center;
 }
 
 .ft-tabs__bar::-webkit-scrollbar { display: none; }
@@ -134,11 +135,12 @@
     linear-gradient(135deg, #2a2a2a 0%, #0a0a0a 100%);
 }
 
-/* Per-tab copy — sits below media, centered */
+/* Per-tab copy — sits below media (sibling), centered */
 .ft-panel__copy {
   max-width: 800px;
   margin: 32px auto 0;
   text-align: center;
+  padding: 0 var(--gutter);
 }
 
 .ft-panel__title {
@@ -162,13 +164,14 @@
 /* Tablet */
 @media (max-width: 989px) {
   .ft-head { margin-bottom: 40px; }
-  .ft-tabs__bar { margin-bottom: 32px; }
+  .ft-tabs__bar { margin-top: 40px; justify-content: flex-start; }
   .ft-tab { padding: 12px 20px; font-size: 15px; }
 }
 
 /* Mobile */
 @media (max-width: 719px) {
   .ft-head { margin-bottom: 32px; }
+  .ft-tabs__bar { margin-top: 32px; }
   .ft-panel__media { aspect-ratio: 4 / 5; }
   .ft-panel__copy { margin-top: 20px; }
   .ft-panel__title { font-size: 20px; }
