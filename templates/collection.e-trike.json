@@ -182,8 +182,8 @@
         "feature_effyPw": {
           "type": "feature",
           "settings": {
-            "eyebrow": "Proven Reliability",
-            "title": "Rigorous Testing",
+            "eyebrow": "UL-Certified SAMSUNG Battery",
+            "title": "48V 20AH  85 mi RangeSafer. More Durable. More Reliable",
             "description": "",
             "link": ""
           }
@@ -191,8 +191,8 @@
         "feature_6QkBKB": {
           "type": "feature",
           "settings": {
-            "eyebrow": "Worry-Free Service",
-            "title": "Multi-Channel After-Sales Service",
+            "eyebrow": "750W Rear Drive Motor",
+            "title": "Peak Power 1400W More Power, Better Traction, Superior Stability",
             "description": "",
             "link": ""
           }
@@ -200,8 +200,8 @@
         "feature_tp3Ufw": {
           "type": "feature",
           "settings": {
-            "eyebrow": "Secure Servicing",
-            "title": "Safer Maintenance Mode",
+            "eyebrow": "One-Piece Aluminum Alloy Frame",
+            "title": "Step-ThruSturdier. <br>Safer. Easier to Ride",
             "description": "",
             "link": ""
           }
@@ -214,8 +214,8 @@
       ],
       "name": "Reliability trust grid",
       "settings": {
-        "eyebrow": "All-Round Reliability",
-        "headline": "Reliability You Can Trust",
+        "eyebrow": "",
+        "headline": "Premium Quality. Powerful Performance",
         "bg_color": "#000000",
         "text_color": "#ffffff",
         "accent_color": "#ffc000",
