@@ -33,6 +33,7 @@
         "feature_rnekmb": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/UL-CERTIFIED.png",
             "icon": "UL-CERTIFIED.png",
             "title": "UL Certified"
           }
@@ -40,6 +41,7 @@
         "feature_wb8FVn": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/2-year-warranty.png",
             "icon": "2-year-warranty.png",
             "title": "2 year warranty"
           }
@@ -47,6 +49,7 @@
         "feature_nXnd4F": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/Trusted.png",
             "icon": "Trusted.png",
             "title": "Trusted by 50K+ US Riders"
           }
@@ -54,6 +57,7 @@
         "feature_U8cHyy": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/Installment-Payment.png",
             "icon": "Installment-Payment.png",
             "title": "Installment Payment"
           }
@@ -61,6 +65,7 @@
         "feature_YkAFMx": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/Free-Shipping.png",
             "icon": "Free-Shipping.png",
             "title": "Free Shipping"
           }
@@ -68,6 +73,7 @@
         "feature_jwXdYn": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/Unbeatable-Value.png",
             "icon": "Unbeatable-Value.png",
             "title": "Unbeatable Value"
           }
