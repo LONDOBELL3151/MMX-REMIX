@@ -33,42 +33,42 @@
         "feature_rnekmb": {
           "type": "feature",
           "settings": {
-            "icon": "check",
+            "icon": "UL-CERTIFIED.png",
             "title": "UL Certified"
           }
         },
         "feature_wb8FVn": {
           "type": "feature",
           "settings": {
-            "icon": "check",
+            "icon": "2-year-warranty.png",
             "title": "2 year warranty"
           }
         },
         "feature_nXnd4F": {
           "type": "feature",
           "settings": {
-            "icon": "check",
+            "icon": "Trusted.png",
             "title": "Trusted by 50K+ US Riders"
           }
         },
         "feature_U8cHyy": {
           "type": "feature",
           "settings": {
-            "icon": "check",
+            "icon": "Installment-Payment.png",
             "title": "Installment Payment"
           }
         },
         "feature_YkAFMx": {
           "type": "feature",
           "settings": {
-            "icon": "check",
+            "icon": "Free-Shipping.png",
             "title": "Free Shipping"
           }
         },
         "feature_jwXdYn": {
           "type": "feature",
           "settings": {
-            "icon": "check",
+            "icon": "Unbeatable-Value.png",
             "title": "Unbeatable Value"
           }
         }
