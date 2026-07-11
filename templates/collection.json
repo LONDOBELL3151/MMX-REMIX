@@ -29,7 +29,58 @@
     },
     "why_features": {
       "type": "why-features-grid",
-      "disabled": true,
+      "blocks": {
+        "feature_warranty_2y": {
+          "type": "feature",
+          "settings": {
+            "icon": "2-year-warranty.png",
+            "title": "2-Year Warranty"
+          }
+        },
+        "feature_free_shipping": {
+          "type": "feature",
+          "settings": {
+            "icon": "Free-Shipping.png",
+            "title": "Free Shipping"
+          }
+        },
+        "feature_installment": {
+          "type": "feature",
+          "settings": {
+            "icon": "Installment-Payment.png",
+            "title": "Installment Payment"
+          }
+        },
+        "feature_trusted": {
+          "type": "feature",
+          "settings": {
+            "icon": "Trusted.png",
+            "title": "Trusted by Riders"
+          }
+        },
+        "feature_ul_certified": {
+          "type": "feature",
+          "settings": {
+            "icon": "UL-CERTIFIED.png",
+            "title": "UL Certified"
+          }
+        },
+        "feature_unbeatable_value": {
+          "type": "feature",
+          "settings": {
+            "icon": "Unbeatable-Value.png",
+            "title": "Unbeatable Value"
+          }
+        }
+      },
+      "block_order": [
+        "feature_warranty_2y",
+        "feature_free_shipping",
+        "feature_installment",
+        "feature_trusted",
+        "feature_ul_certified",
+        "feature_unbeatable_value"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "",

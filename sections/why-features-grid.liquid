@@ -35,10 +35,17 @@
             {%- for block in section.blocks -%}
               {%- if block.type == 'feature' -%}
                 <div class="wfg-item" {{ block.shopify_attributes }}>
-                  {%- assign icon_name = block.settings.icon | default: 'check' -%}
-                  <div class="wfg-item__icon">
-                    {% render 'icon-feature', icon: icon_name, size: 48 %}
-                  </div>
+                  {%- if block.settings.icon != blank -%}
+                    <div class="wfg-item__icon">
+                      <img
+                        src="{{ block.settings.icon | asset_url }}"
+                        alt="{{ block.settings.title | escape }}"
+                        width="48"
+                        height="48"
+                        loading="lazy"
+                      >
+                    </div>
+                  {%- endif -%}
                   <h3 class="wfg-item__title">{{ block.settings.title }}</h3>
                 </div>
               {%- endif -%}
@@ -110,18 +117,11 @@
       "name": "Feature",
       "settings": [
         {
-          "type": "select",
+          "type": "text",
           "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "compact", "label": "Compact / Folding" },
-            { "value": "storage", "label": "Storage / Capacity" },
-            { "value": "money", "label": "Money / Savings" },
-            { "value": "check", "label": "Checkmark / Verified" },
-            { "value": "eco", "label": "Eco / Sustainable" },
-            { "value": "power", "label": "Power / Battery" }
-          ],
-          "default": "check"
+          "label": "Icon filename (assets/)",
+          "info": "e.g. 2-year-warranty.png — file must exist in /assets/ folder. Leave blank to hide icon.",
+          "default": "2-year-warranty.png"
         },
         {
           "type": "text",
@@ -137,12 +137,12 @@
     {
       "name": "Why features grid",
       "blocks": [
-        { "type": "feature", "settings": { "icon": "compact", "title": "Step-Thru Frame" } },
-        { "type": "feature", "settings": { "icon": "power", "title": "Long-Lasting Battery" } },
-        { "type": "feature", "settings": { "icon": "storage", "title": "Cargo-Ready Basket" } },
-        { "type": "feature", "settings": { "icon": "check", "title": "UL-Certified Safety" } },
-        { "type": "feature", "settings": { "icon": "eco", "title": "Eco-Friendly Ride" } },
-        { "type": "feature", "settings": { "icon": "money", "title": "Save on Commute Costs" } }
+        { "type": "feature", "settings": { "icon": "2-year-warranty.png", "title": "2-Year Warranty" } },
+        { "type": "feature", "settings": { "icon": "Free-Shipping.png", "title": "Free Shipping" } },
+        { "type": "feature", "settings": { "icon": "Installment-Payment.png", "title": "Installment Payment" } },
+        { "type": "feature", "settings": { "icon": "Trusted.png", "title": "Trusted by Riders" } },
+        { "type": "feature", "settings": { "icon": "UL-CERTIFIED.png", "title": "UL Certified" } },
+        { "type": "feature", "settings": { "icon": "Unbeatable-Value.png", "title": "Unbeatable Value" } }
       ]
     }
   ]
