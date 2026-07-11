@@ -37,13 +37,18 @@
                 <div class="wfg-item" {{ block.shopify_attributes }}>
                   {%- if block.settings.icon != blank -%}
                     <div class="wfg-item__icon">
-                      <img
-                        src="{{ block.settings.icon | asset_url }}"
-                        alt="{{ block.settings.title | escape }}"
-                        width="48"
-                        height="48"
-                        loading="lazy"
-                      >
+                      {%- assign icon_value = block.settings.icon -%}
+                      {%- if icon_value contains '.' -%}
+                        <img
+                          src="{{ icon_value | asset_url }}"
+                          alt="{{ block.settings.title | escape }}"
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                        >
+                      {%- else -%}
+                        {% render 'icon-feature', icon: icon_value, size: 48 %}
+                      {%- endif -%}
                     </div>
                   {%- endif -%}
                   <h3 class="wfg-item__title">{{ block.settings.title }}</h3>
@@ -119,8 +124,8 @@
         {
           "type": "text",
           "id": "icon",
-          "label": "Icon filename (assets/)",
-          "info": "e.g. 2-year-warranty.png — file must exist in /assets/ folder. Leave blank to hide icon.",
+          "label": "Icon",
+          "info": "PNG filename in /assets/ (e.g. 2-year-warranty.png, Free-Shipping.png, Trusted.png, UL-CERTIFIED.png) — or a legacy icon key (compact / power / storage / check / eco / money) for the old SVG set.",
           "default": "2-year-warranty.png"
         },
         {
