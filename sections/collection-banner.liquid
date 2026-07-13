@@ -33,7 +33,7 @@
   {%- if has_image and s.show_overlay -%}
     <div
       class="collection-banner__overlay"
-      style="opacity: {{ overlay_pct }};"
+      style="--overlay-alpha: {{ overlay_pct }};"
       aria-hidden="true"
     ></div>
   {%- endif -%}
@@ -105,11 +105,11 @@
       "id": "overlay_opacity",
       "label": "Overlay opacity",
       "min": 0,
-      "max": 80,
+      "max": 100,
       "step": 5,
       "default": 50,
       "unit": "%",
-      "info": "0% = no darken, 80% = nearly black. Combined with a top-to-bottom gradient for text readability."
+      "info": "Direct black alpha: 0% = no darken (image fully visible), 100% = nearly black. Top of banner stays lighter, bottom goes darker for text readability."
     },
     {
       "type": "checkbox",

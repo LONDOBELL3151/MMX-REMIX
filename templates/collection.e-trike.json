@@ -126,6 +126,7 @@
         "auto_rotate": true,
         "interval_ms": 6000,
         "progress_color": "#ffc000",
+        "overlay_opacity": 50,
         "padding_top": 56,
         "padding_bottom": 0
       }

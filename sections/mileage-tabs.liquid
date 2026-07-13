@@ -85,7 +85,7 @@
       {%- endfor -%}
     {%- endif -%}
 
-    <div class="mileage-hero__overlay" aria-hidden="true"></div>
+    <div class="mileage-hero__overlay" style="--overlay-alpha: {{ s.overlay_opacity | divided_by: 100.0 }};" aria-hidden="true"></div>
 
     <div class="mileage-hero__content">
       {%- if tabs_count > 0 -%}
@@ -330,6 +330,17 @@
       "id": "progress_color",
       "label": "Active tab progress bar",
       "default": "#FFC000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "%",
+      "info": "Direct black alpha: 0% = no darken (image fully visible), 100% = nearly black. Top of hero stays lighter, bottom goes darker for tabs + body readability."
     },
     {
       "type": "range",
