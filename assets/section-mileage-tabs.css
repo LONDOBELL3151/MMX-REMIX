@@ -70,9 +70,11 @@
 .mileage-hero__img--mobile { display: none; }
 
 /* Full-cover dark layer. --overlay-alpha is set inline by mileage-tabs.liquid from the Overlay opacity range setting (0-100). Coefficients tuned so 100% = strong darken. */
+/* `display: block` explicitly overrides Dawn base.css `div:empty { display: none }` — this overlay div has no innerHTML (only a style attribute) so it would otherwise be hidden as an empty div. */
 .mileage-hero__overlay {
   position: absolute;
   inset: 0;
+  display: block;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, calc(0.6 * var(--overlay-alpha, 0.5))) 0%,
