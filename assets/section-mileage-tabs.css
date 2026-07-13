@@ -69,15 +69,15 @@
 /* Mobile-only image hidden by default on desktop */
 .mileage-hero__img--mobile { display: none; }
 
-/* Full-cover dark layer. --overlay-alpha is set inline by mileage-tabs.liquid from the Overlay opacity range setting (0-100, treated as % black alpha directly — not div opacity). */
+/* Full-cover dark layer. --overlay-alpha is set inline by mileage-tabs.liquid from the Overlay opacity range setting (0-100). Coefficients tuned so 100% = strong darken. */
 .mileage-hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, calc(0.35 * var(--overlay-alpha, 0.5))) 0%,
-    rgba(0, 0, 0, calc(0.55 * var(--overlay-alpha, 0.5))) 50%,
-    rgba(0, 0, 0, calc(0.85 * var(--overlay-alpha, 0.5))) 100%
+    rgba(0, 0, 0, calc(0.6 * var(--overlay-alpha, 0.5))) 0%,
+    rgba(0, 0, 0, calc(0.8 * var(--overlay-alpha, 0.5))) 50%,
+    rgba(0, 0, 0, calc(1 * var(--overlay-alpha, 0.5))) 100%
   );
   pointer-events: none;
   z-index: 1;
