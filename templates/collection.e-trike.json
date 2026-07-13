@@ -234,6 +234,62 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "faq_WidWfT": {
+      "type": "faq",
+      "blocks": {
+        "question_aJF9XD": {
+          "type": "question",
+          "settings": {
+            "question": "Why Choose a Fat Tire Electric Trikes For Adults？",
+            "answer": "<p>Fat tire electric trikes for adults are worth choosing mainly for fat tires provide excellent stability, superior shock absorption, and reliable traction on almost any surface. From city streets to gravel roads, they help you ride more confidently over rough terrain, loose ground, or wet conditions.</p>"
+          }
+        },
+        "question_9hhgKi": {
+          "type": "question",
+          "settings": {
+            "question": "Are electric trikes safe？",
+            "answer": "<p>Yes, e-trikes are remarkably safe overall. For most people, especially seniors or those with poor balance, it is safer than a traditional two wheel drive electric bike. Its main advantage is its stability, so you do not need to worry about losing balance or falling when stopping or getting on and off.</p>"
+          }
+        },
+        "question_pkheFM": {
+          "type": "question",
+          "settings": {
+            "question": "What is the best electric tricycle for adults？",
+            "answer": "<p>A best electric tricycle for adults should include these key features: a UL-certified Samsung-cell battery pack,750W rear-drive motor, rear differential, safety lights, disc brakes, parking brake, and a step-thru frame. These features work together to improve stability and reduce the risk of tipping, ensuring a smooth, safe, and comfortable ride. The Maxfoot MF30 and MF33 offer all of these essential features.</p>"
+          }
+        },
+        "question_cpFnLt": {
+          "type": "question",
+          "settings": {
+            "question": "What is the best electric trike for seniors?",
+            "answer": "<p>Stability, safety, and a low step-thru frame are the defining features of a best electric trike for seniors. MaxFoot's products feature a 750W rear-drive motor and a rear differential to guarantee a smooth and stable ride, while the UL-certified Samsung-cell battery ensures ultimate electrical safety. Additionally, the step-thru frame allows seniors to mount, dismount, and ride with absolute ease.</p>"
+          }
+        },
+        "question_NbxnUm": {
+          "type": "question",
+          "settings": {
+            "question": "What is the warranty on Maxfoot etrike?",
+            "answer": "<p>MAXFOOT electric tricycles come with a 1-year limited warranty on  electrical parts and 2 years of technical support warranty for most mechanical parts. Click here to view the full warranty policy.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_aJF9XD",
+        "question_9hhgKi",
+        "question_pkheFM",
+        "question_cpFnLt",
+        "question_NbxnUm"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "heading": "Before you buy",
+        "subheading": "",
+        "cta_text": "Still have questions?",
+        "cta_link": "mailto:sales@maxfoot.bike",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -242,6 +298,7 @@
     "why_features",
     "mileage_tabs",
     "feature_tabs_dmddNw",
-    "reliability_trust_grid_rictPT"
+    "reliability_trust_grid_rictPT",
+    "faq_WidWfT"
   ]
 }
