@@ -12,7 +12,7 @@
       "type": "about-hero",
       "settings": {
         "eyebrow": "— About MaxFoot",
-        "title": "<p>Premium electric mobility <em>at a price that makes sense.</em></p>",
+        "title": "Premium electric mobility <em>at a price that makes sense.</em>",
         "subtitle": "MaxFoot was founded in 2019 with one belief: U.S. riders shouldn't have to choose between overpriced premium electric trikes and unsafe, low-quality alternatives. We build the balance.",
         "meta_1": "Founded 2019",
         "meta_2": "U.S. Focused",
@@ -56,14 +56,19 @@
           }
         }
       },
-      "block_order": ["stat_01", "stat_02", "stat_03", "stat_04"]
+      "block_order": [
+        "stat_01",
+        "stat_02",
+        "stat_03",
+        "stat_04"
+      ]
     },
     "philosophy": {
       "type": "about-story",
       "settings": {
         "variant": "light",
         "eyebrow": "Our Philosophy",
-        "headline": "<p>Built around what riders <em>actually need.</em></p>",
+        "headline": "Built around what riders <em>actually need.</em>",
         "meta_1": "Affordable Pricing",
         "meta_2": "Dependable Quality",
         "meta_3": "Real-World Usability",
@@ -80,7 +85,7 @@
         "layout": "image_left",
         "media_style": "year_block",
         "eyebrow": "Who Is MaxFoot?",
-        "title": "<p>We stepped in to balance <em>affordability, safety, and everyday practicality.</em></p>",
+        "title": "We stepped in to balance <em>affordability, safety, and everyday practicality.</em>",
         "lead_text": "<p>Founded in 2019, MaxFoot was created after recognizing a gap in the U.S. market: riders had to choose between overpriced premium electric trikes or unsafe, low-quality alternatives.</p>",
         "body_text": "<p>We stepped in to balance the two, and we are committed to creating the best electric tricycles for adults, designed for the way Americans actually ride.</p>",
         "media_year": "2019",
@@ -96,7 +101,7 @@
         "layout": "image_right",
         "media_style": "category_blocks",
         "eyebrow": "Who We Serve",
-        "title": "<p>Built for <em>every kind of rider.</em></p>",
+        "title": "Built for <em>every kind of rider.</em>",
         "lead_text": "<p>Our products are designed for seniors, families, commuters, and leisure riders, helping solve the everyday challenges that keep people from riding more.</p>",
         "body_text": "",
         "media_year": "",
@@ -107,37 +112,56 @@
       "blocks": {
         "list_01": {
           "type": "list_item",
-          "settings": { "text": "Stability & balance for seniors" }
+          "settings": {
+            "text": "Stability & balance for seniors"
+          }
         },
         "list_02": {
           "type": "list_item",
-          "settings": { "text": "Two-seater family outings" }
+          "settings": {
+            "text": "Two-seater family outings"
+          }
         },
         "list_03": {
           "type": "list_item",
-          "settings": { "text": "Reliable daily commuting" }
+          "settings": {
+            "text": "Reliable daily commuting"
+          }
         },
         "list_04": {
           "type": "list_item",
-          "settings": { "text": "Leisure rides & weekend trips" }
+          "settings": {
+            "text": "Leisure rides & weekend trips"
+          }
         },
         "list_05": {
           "type": "list_item",
-          "settings": { "text": "Range anxiety, solved (up to 85 mi)" }
+          "settings": {
+            "text": "Range anxiety, solved (up to 85 mi)"
+          }
         },
         "list_06": {
           "type": "list_item",
-          "settings": { "text": "Rising transport costs, offset" }
+          "settings": {
+            "text": "Rising transport costs, offset"
+          }
         }
       },
-      "block_order": ["list_01", "list_02", "list_03", "list_04", "list_05", "list_06"]
+      "block_order": [
+        "list_01",
+        "list_02",
+        "list_03",
+        "list_04",
+        "list_05",
+        "list_06"
+      ]
     },
     "team_msg": {
       "type": "about-story",
       "settings": {
         "variant": "dark",
         "eyebrow": "A Message From Our Team",
-        "headline": "<p>We build for the <em>pure joy of riding.</em></p>",
+        "headline": "We build for the <em>pure joy of riding.</em>",
         "meta_1": "",
         "meta_2": "",
         "meta_3": "",
@@ -153,7 +177,7 @@
         "variant": "soft",
         "centered": true,
         "eyebrow": "Our Mission",
-        "headline": "<p>High-quality electric mobility <em>at a price that makes sense.</em></p>",
+        "headline": "High-quality electric mobility <em>at a price that makes sense.</em>",
         "meta_1": "",
         "meta_2": "",
         "meta_3": "",
@@ -220,7 +244,14 @@
           }
         }
       },
-      "block_order": ["pillar_01", "pillar_02", "pillar_03", "pillar_04", "pillar_05", "pillar_06"]
+      "block_order": [
+        "pillar_01",
+        "pillar_02",
+        "pillar_03",
+        "pillar_04",
+        "pillar_05",
+        "pillar_06"
+      ]
     },
     "certs": {
       "type": "about-story-grid",
@@ -229,7 +260,7 @@
         "layout": "image_left",
         "media_style": "ul_badge",
         "eyebrow": "Certifications & Compliance",
-        "title": "<p>UL-certified, <em>tested beyond the standard.</em></p>",
+        "title": "UL-certified, <em>tested beyond the standard.</em>",
         "lead_text": "<p>We place strong emphasis on safety and compliance, and UL certification is an important part of our commitment to quality and rider confidence.</p>",
         "body_text": "<p>This means that our UL-certified Samsung battery has passed extremely rigorous tests for overcharging, short circuits, crushing, high temperatures, and even needle penetration. We don't ship batteries we wouldn't ride ourselves.</p>",
         "media_year": "",
@@ -286,12 +317,18 @@
           }
         }
       },
-      "block_order": ["year_2019", "year_2020", "year_2021", "year_2023", "year_2025"]
+      "block_order": [
+        "year_2019",
+        "year_2020",
+        "year_2021",
+        "year_2023",
+        "year_2025"
+      ]
     },
     "cta": {
       "type": "about-cta",
       "settings": {
-        "title": "<p>Ready to <em>Ride?</em></p>",
+        "title": "Ready to <em>Ride?</em>",
         "subtitle": "14-day free trial. Free shipping. 2-year warranty. Nothing to lose.",
         "button_1_label": "Shop Electric Trikes",
         "button_1_link": "/collections/electric-trikes",
@@ -318,11 +355,14 @@
         "text": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>New models, exclusive offers, and riding tips \u2014 straight to your inbox.</p>"
+            "text": "<p>New models, exclusive offers, and riding tips — straight to your inbox.</p>"
           }
         }
       },
-      "block_order": ["heading", "text"]
+      "block_order": [
+        "heading",
+        "text"
+      ]
     }
   },
   "order": [
