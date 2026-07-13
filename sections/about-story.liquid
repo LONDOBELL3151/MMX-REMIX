@@ -1,0 +1,128 @@
+{%- liquid
+  assign s = section.settings
+  assign variant = s.variant | default: 'light'
+-%}
+
+<section class="story about-story about-story--{{ variant }}{% if variant == 'soft' %} story--soft{% elsif variant == 'dark' %} story--dark{% endif %}" {{ section.shopify_attributes }}>
+  <div class="container" {% if s.centered %}style="text-align:center;max-width:780px;margin:0 auto"{% endif %}>
+    {%- if s.eyebrow != blank -%}
+      <span class="story-eyebrow" {% if s.centered %}style="justify-content:center"{% endif %}>{{ s.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if s.headline != blank -%}
+      <h2 class="story-headline" {% if s.centered %}style="margin:0 auto 32px"{% endif %}>{{ s.headline }}</h2>
+    {%- endif -%}
+
+    {%- if s.meta_1 != blank or s.meta_2 != blank or s.meta_3 != blank -%}
+    <div class="story-meta">
+      {%- if s.meta_1 != blank -%}<span>{{ s.meta_1 }}</span>{%- endif -%}
+      {%- if s.meta_1 != blank and s.meta_2 != blank -%}<span class="story-meta__dot"></span>{%- endif -%}
+      {%- if s.meta_2 != blank -%}<span>{{ s.meta_2 }}</span>{%- endif -%}
+      {%- if s.meta_2 != blank and s.meta_3 != blank -%}<span class="story-meta__dot"></span>{%- endif -%}
+      {%- if s.meta_3 != blank -%}<span>{{ s.meta_3 }}</span>{%- endif -%}
+    </div>
+    {%- endif -%}
+
+    <div class="story-body" {% if s.centered %}style="font-size:21px;line-height:1.65;margin:0 auto"{% endif %}>
+      {%- if s.lead_text != blank -%}
+        <p class="story-lead">{{ s.lead_text }}</p>
+      {%- endif -%}
+      {%- if s.body_text != blank -%}
+        {{ s.body_text }}
+      {%- endif -%}
+    </div>
+
+    {%- if s.pull_quote != blank -%}
+    <div class="story-pull">
+      <p>{{ s.pull_quote }}</p>
+    </div>
+    {%- endif -%}
+
+    {%- if s.closer_text != blank -%}
+    <div class="story-closer">{{ s.closer_text }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Story",
+  "tag": "section",
+  "class": "section-about-story",
+  "settings": [
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Background variant",
+      "options": [
+        { "value": "light", "label": "Light (white)" },
+        { "value": "soft", "label": "Soft (light gray)" },
+        { "value": "dark", "label": "Dark (black)" }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "checkbox",
+      "id": "centered",
+      "label": "Center content",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (yellow line + uppercase)",
+      "default": "Our Philosophy"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "headline",
+      "label": "Headline (use <em> for yellow highlight)",
+      "default": "Built around what riders <em>actually need.</em>"
+    },
+    {
+      "type": "text",
+      "id": "meta_1",
+      "label": "Meta 1"
+    },
+    {
+      "type": "text",
+      "id": "meta_2",
+      "label": "Meta 2"
+    },
+    {
+      "type": "text",
+      "id": "meta_3",
+      "label": "Meta 3"
+    },
+    {
+      "type": "richtext",
+      "id": "lead_text",
+      "label": "Lead paragraph (drop cap applied)"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text"
+    },
+    {
+      "type": "textarea",
+      "id": "pull_quote",
+      "label": "Pull quote (large yellow-bordered)"
+    },
+    {
+      "type": "text",
+      "id": "closer_text",
+      "label": "Closer (small line under pull quote)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Story"
+    }
+  ]
+}
+{% endschema %}

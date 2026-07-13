@@ -1,0 +1,98 @@
+{%- liquid
+  assign s = section.settings
+  assign cols = s.columns | default: '3'
+-%}
+
+<section class="about-pillars" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">{{ s.heading | default: 'Built For Quality & Safety.' }}</h2>
+      {%- if s.subheading != blank -%}
+        <p class="section__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="about-pillars__grid about-pillars__grid--{{ cols }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pillar' -%}
+          <div class="about-pillar" {{ block.shopify_attributes }}>
+            <span class="about-pillar__num">{{ block.settings.number | default: forloop.index | prepend: '0' }}</span>
+            <h3 class="about-pillar__title">{{ block.settings.title }}</h3>
+            <p class="about-pillar__text">{{ block.settings.text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Pillars",
+  "tag": "section",
+  "class": "section-about-pillars",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built For Quality & Safety."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every detail engineered to elevate your ride comfort and ensure maximum safety."
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number (leave blank for auto)",
+          "info": "Will be auto-formatted as 01, 02..."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Aluminum Frame"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Rugged, durable, and built to last."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "number": "01", "title": "Aluminum Frame", "text": "Rugged, durable, and built to last. Engineered to handle real-world loads, day after day." } },
+        { "type": "pillar", "settings": { "number": "02", "title": "750W Rear Motor", "text": "Peak power 1100W with a powerful 85 N.m torque. Slip-free performance on hills, gravel, and city streets." } },
+        { "type": "pillar", "settings": { "number": "03", "title": "Samsung Battery", "text": "UL-certified 48V 20Ah for up to 85 miles of range on a single charge." } },
+        { "type": "pillar", "settings": { "number": "04", "title": "Rear Dual Disc Brake", "text": "Prevent rollover and protect riding safety. Confident stopping power in any condition." } },
+        { "type": "pillar", "settings": { "number": "05", "title": "Rear Differential", "text": "Enhanced stability and safer cornering. Available on select models." } },
+        { "type": "pillar", "settings": { "number": "06", "title": "Multifunctional Tail Light", "text": "Prompt turn signaling to alert trailing vehicles and ensure safety on every ride." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

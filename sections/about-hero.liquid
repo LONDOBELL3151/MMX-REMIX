@@ -1,0 +1,91 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="page-hero" aria-label="{{ s.eyebrow | default: 'About' | escape }}" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="page-hero__inner">
+      {%- if s.eyebrow != blank -%}
+        <span class="page-hero__pill">{{ s.eyebrow }}</span>
+      {%- endif -%}
+
+      <h1 class="page-hero__title">{{ s.title }}</h1>
+
+      {%- if s.subtitle != blank -%}
+        <p class="page-hero__sub">{{ s.subtitle }}</p>
+      {%- endif -%}
+
+      {%- assign metas = '' -%}
+      <div class="page-hero__meta">
+        {%- if s.meta_1 != blank -%}<span>{{ s.meta_1 }}</span>{%- endif -%}
+        {%- if s.meta_1 != blank and s.meta_2 != blank -%}<span class="page-hero__meta-dot"></span>{%- endif -%}
+        {%- if s.meta_2 != blank -%}<span>{{ s.meta_2 }}</span>{%- endif -%}
+        {%- if s.meta_2 != blank and s.meta_3 != blank -%}<span class="page-hero__meta-dot"></span>{%- endif -%}
+        {%- if s.meta_3 != blank -%}<span>{{ s.meta_3 }}</span>{%- endif -%}
+        {%- if s.meta_3 != blank and s.meta_4 != blank -%}<span class="page-hero__meta-dot"></span>{%- endif -%}
+        {%- if s.meta_4 != blank -%}<span>{{ s.meta_4 }}</span>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Hero",
+  "tag": "section",
+  "class": "section-about-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (yellow pill)",
+      "default": "— About MaxFoot"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title (use <em> for yellow highlight)",
+      "default": "Premium electric mobility <em>at a price that makes sense.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "MaxFoot was founded in 2019 with one belief: U.S. riders shouldn't have to choose between overpriced premium electric trikes and unsafe, low-quality alternatives. We build the balance."
+    },
+    {
+      "type": "header",
+      "content": "Meta line (4 short phrases, separated by yellow dots)"
+    },
+    {
+      "type": "text",
+      "id": "meta_1",
+      "label": "Meta 1",
+      "default": "Founded 2019"
+    },
+    {
+      "type": "text",
+      "id": "meta_2",
+      "label": "Meta 2",
+      "default": "U.S. Focused"
+    },
+    {
+      "type": "text",
+      "id": "meta_3",
+      "label": "Meta 3",
+      "default": "Direct From Factory"
+    },
+    {
+      "type": "text",
+      "id": "meta_4",
+      "label": "Meta 4",
+      "default": "UL Certified"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,172 @@
+{%- liquid
+  assign s = section.settings
+  assign layout = s.layout | default: 'image_left'
+  assign media_style = s.media_style | default: 'year_block'
+-%}
+
+<section class="story about-story-grid{% if s.background == 'soft' %} story--soft{% endif %}" {{ section.shopify_attributes }}>
+  <div class="container story-grid{% if layout == 'image_right' %} story-grid--reverse{% endif %}">
+    <div>
+      {%- if s.eyebrow != blank -%}
+        <span class="story-eyebrow">{{ s.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="story-grid__title">{{ s.title }}</h2>
+      {%- if s.lead_text != blank -%}
+        <p class="story-grid__lead">{{ s.lead_text }}</p>
+      {%- endif -%}
+      {%- if s.body_text != blank -%}
+        {{ s.body_text }}
+      {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+      <ul class="story-grid__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'list_item' -%}
+            <li {{ block.shopify_attributes }}><span>{{ block.settings.text }}</span></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="story-grid__media about-story-grid__media--{{ media_style }}" {% if media_style == 'year_block' %}style="background:linear-gradient(135deg,var(--color-accent),#cc9900);display:grid;place-items:center;color:var(--color-primary);font-weight:900;font-family:var(--font-display)"{% elsif media_style == 'ul_badge' %}style="background:linear-gradient(135deg,#121212,#2a2a2a);display:grid;place-items:center;padding:40px;position:relative"{% elsif media_style == 'category_blocks' %}style="background:linear-gradient(135deg,#121212,#2a2a2a);display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:24px;aspect-ratio:4/3"{% endif %}>
+      {%- if media_style == 'year_block' -%}
+        <span style="font-size:clamp(80px,10vw,160px);line-height:1;letter-spacing:-.04em">{{ s.media_year | default: '2019' }}</span>
+        <span class="story-grid__media-tag">{{ s.media_tag | default: 'Founded In The U.S.' }}</span>
+      {%- elsif media_style == 'ul_badge' -%}
+        <div style="text-align:center;color:#fff">
+          <div style="font-family:var(--font-display);font-size:clamp(72px,9vw,128px);font-weight:900;color:var(--color-accent);line-height:1;letter-spacing:-.04em">UL</div>
+          <div style="font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);font-weight:900;color:#fff;letter-spacing:-.02em">CERTIFIED</div>
+          <div style="margin-top:16px;font-family:var(--font-mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7)">{{ s.media_subtitle | default: 'Samsung 48V 20Ah Battery' }}</div>
+        </div>
+        <span class="story-grid__media-tag">{{ s.media_tag | default: 'Rigorously Tested' }}</span>
+      {%- elsif media_style == 'category_blocks' -%}
+        {%- assign cats = s.media_categories | default: 'Seniors,Families,Commuters,Leisure' | split: ',' -%}
+        {%- for cat in cats -%}
+          {%- assign idx = forloop.index | modulo: 2 -%}
+          {%- if idx == 1 -%}
+            <div style="background:var(--color-accent);border-radius:8px;display:grid;place-items:center;font-family:var(--font-display);font-size:18px;font-weight:900;color:var(--color-primary);text-transform:uppercase">{{ cat | strip }}</div>
+          {%- else -%}
+            <div style="background:#fff;border:2px solid var(--color-accent);border-radius:8px;display:grid;place-items:center;font-family:var(--font-display);font-size:18px;font-weight:900;color:var(--color-primary);text-transform:uppercase">{{ cat | strip }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Story Grid",
+  "tag": "section",
+  "class": "section-about-story-grid",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Section background",
+      "options": [
+        { "value": "default", "label": "Default (white)" },
+        { "value": "soft", "label": "Soft (light gray)" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "image_left", "label": "Image left, text right" },
+        { "value": "image_right", "label": "Text left, image right" }
+      ],
+      "default": "image_left"
+    },
+    {
+      "type": "select",
+      "id": "media_style",
+      "label": "Media placeholder style",
+      "options": [
+        { "value": "year_block", "label": "Year block (yellow gradient + big year)" },
+        { "value": "category_blocks", "label": "Category blocks (2x2 grid)" },
+        { "value": "ul_badge", "label": "UL badge (black with yellow text)" }
+      ],
+      "default": "year_block"
+    },
+    {
+      "type": "header",
+      "content": "Text side"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Who Is MaxFoot?"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title (use <em> for yellow highlight)",
+      "default": "We stepped in to balance <em>affordability, safety, and everyday practicality.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "lead_text",
+      "label": "Lead paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text"
+    },
+    {
+      "type": "header",
+      "content": "Media placeholder"
+    },
+    {
+      "type": "text",
+      "id": "media_year",
+      "label": "Year block: big year text",
+      "default": "2019",
+      "info": "Only used when Media style = Year block"
+    },
+    {
+      "type": "text",
+      "id": "media_tag",
+      "label": "Yellow tag label (bottom-left)",
+      "default": "Founded In The U.S."
+    },
+    {
+      "type": "text",
+      "id": "media_subtitle",
+      "label": "UL badge: small subtitle",
+      "default": "Samsung 48V 20Ah Battery",
+      "info": "Only used when Media style = UL badge"
+    },
+    {
+      "type": "text",
+      "id": "media_categories",
+      "label": "Category blocks: 4 names (comma-separated)",
+      "default": "Seniors,Families,Commuters,Leisure",
+      "info": "Only used when Media style = Category blocks"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "List item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Stability & balance for seniors"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Story Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="cta-section" {{ section.shopify_attributes }}>
+  <div class="container">
+    <h2 class="cta-section__title">{{ s.title }}</h2>
+    {%- if s.subtitle != blank -%}
+      <p class="cta-section__sub">{{ s.subtitle }}</p>
+    {%- endif -%}
+    {%- if s.button_1_label != blank or s.button_2_label != blank -%}
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative">
+      {%- if s.button_1_label != blank -%}
+        <a href="{{ s.button_1_link | default: '#' }}" class="btn btn--primary btn--lg">{{ s.button_1_label }}</a>
+      {%- endif -%}
+      {%- if s.button_2_label != blank -%}
+        <a href="{{ s.button_2_link | default: '#' }}" class="btn btn--outline btn--lg">{{ s.button_2_label }}</a>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About CTA",
+  "tag": "section",
+  "class": "section-about-cta",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title (use <em> for white highlight)",
+      "default": "Ready to <em>Ride?</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "14-day free trial. Free shipping. 2-year warranty. Nothing to lose."
+    },
+    {
+      "type": "header",
+      "content": "Primary button (black)"
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Label",
+      "default": "Shop Electric Trikes"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button (outline)"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Label",
+      "default": "Talk To A Human"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About CTA"
+    }
+  ]
+}
+{% endschema %}

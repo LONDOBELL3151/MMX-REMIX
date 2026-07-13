@@ -1,0 +1,88 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="timeline-section" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">{{ s.heading | default: 'Brand Evolution.' }}</h2>
+      {%- if s.subheading != blank -%}
+        <p class="section__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <ol class="timeline">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'milestone' -%}
+          <li class="timeline__item" {{ block.shopify_attributes }}>
+            <div class="timeline__year">{{ block.settings.year }}</div>
+            <div class="timeline__content">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.text }}</p>
+            </div>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Timeline",
+  "tag": "section",
+  "class": "section-about-timeline",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (use <em> for yellow highlight)",
+      "default": "Brand <em>Evolution.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "From a single model to a full lineup of U.S.-focused electric trikes, in six years."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year (e.g. 2019, 2020-2021, 2025-Present)",
+          "default": "2019"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "First Model Launch"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "We officially launched our brand and introduced our first two wheel drive electric bike."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Timeline",
+      "blocks": [
+        { "type": "milestone", "settings": { "year": "2019", "title": "First Model Launch", "text": "We officially launched our brand and introduced our first two wheel drive electric bike. This marked the beginning of our journey in electric mobility and laid the foundation for our continued growth." } },
+        { "type": "milestone", "settings": { "year": "2020-2021", "title": "First Electric Tricycle", "text": "Recognizing growing demand for stability and everyday practicality, we launched our first electric tricycle for adults and expanded our product direction." } },
+        { "type": "milestone", "settings": { "year": "2021-2023", "title": "Monocoque Model Expansion", "text": "As R&D capabilities grew, we launched our 20-inch and 24-inch fat tire monocoque electric trikes for adults, improving frame structure, stability, and ride quality." } },
+        { "type": "milestone", "settings": { "year": "2023-2025", "title": "Two-Seater Tricycle", "text": "Engineered as a reliable electric tricycle for 2 adults, this model expands our lineup, making our trikes perfect for personal transportation and shared family rides." } },
+        { "type": "milestone", "settings": { "year": "2025-Present", "title": "Electric Motorcycle Development", "text": "The next addition to our lineup, premium electric motorcycles for sale, is coming soon. Stay tuned." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

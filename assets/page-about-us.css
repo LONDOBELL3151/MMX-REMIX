@@ -3,7 +3,7 @@
    Loaded only when template == page.about-us (see layout/theme.liquid)
    Mirrors the design in maxfoot-preview-v2/about-us.html 1:1
 
-   Revision: 2026-07-13 (1) trigger sync
+   Revision: 2026-07-13 (2) about-* section namespace
    ===================================================================== */
 
 /* ===== 1. Page hero ===== */
@@ -27,7 +27,7 @@
 .stats__num em{color:var(--color-accent);font-style:normal}
 .stats__label{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;margin-top:14px;font-weight:700;color:var(--color-text-soft);font-family:var(--font-mono)}
 
-/* ===== 3. Story variants (soft / dark) ===== */
+/* ===== 3. Story variants (light / soft / dark) ===== */
 .story{padding:var(--section-padding-y,80px) 0}
 .story + .story{padding-top:0}
 .story--soft{background:var(--color-bg-soft)}
@@ -56,19 +56,19 @@
 .story-grid__list li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:var(--color-text)}
 .story-grid__list li::before{content:"✓";color:var(--color-accent);font-weight:900;flex-shrink:0;margin-top:1px}
 
-/* ===== 5. Pillars grid (mirrors why-maxfoot section in design) =====
-   Reuses the actual .section--why class from sections/why-maxfoot.liquid
-   so the existing section file can be dropped in unchanged. */
-.section.section--why{background:var(--color-primary);color:#fff;padding:var(--section-padding-y,80px) 0;position:relative;overflow:hidden}
-.section.section--why::before{content:"";position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,192,0,.1),transparent 60%);border-radius:50%}
-.section.section--why .section__head h2{color:#fff}
-.section.section--why .section__head .section__sub{color:rgba(255,255,255,.7)}
-.section.section--why .why-grid{grid-template-columns:repeat(3,1fr);gap:20px}
-.section.section--why .why-pillar{background:#1a1a1a;border:2px solid #2a2a2a;border-radius:var(--radius-lg);padding:36px 28px;transition:var(--transition);position:relative;overflow:hidden}
-.section.section--why .why-pillar:hover{border-color:var(--color-accent);transform:translateY(-3px)}
-.section.section--why .why-pillar__num{font-size:64px;margin-bottom:16px}
-.section.section--why .why-pillar__title{font-size:22px;margin:0 0 10px;letter-spacing:-.01em;line-height:1.15}
-.section.section--why .why-pillar__text{color:rgba(255,255,255,.7);font-size:14px;line-height:1.65;margin:0}
+/* ===== 5. Pillars grid (about-pillars.liquid) ===== */
+.about-pillars{background:var(--color-primary);color:#fff;padding:var(--section-padding-y,80px) 0;position:relative;overflow:hidden}
+.about-pillars::before{content:"";position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,192,0,.1),transparent 60%);border-radius:50%}
+.about-pillars .section__head h2{color:#fff}
+.about-pillars .section__head .section__sub{color:rgba(255,255,255,.7)}
+.about-pillars__grid{display:grid;gap:20px}
+.about-pillars__grid--2{grid-template-columns:repeat(2,1fr)}
+.about-pillars__grid--3{grid-template-columns:repeat(3,1fr)}
+.about-pillar{background:#1a1a1a;border:2px solid #2a2a2a;border-radius:var(--radius-lg);padding:36px 28px;transition:var(--transition);position:relative;overflow:hidden}
+.about-pillar:hover{border-color:var(--color-accent);transform:translateY(-3px)}
+.about-pillar__num{font-family:var(--font-display);font-weight:900;font-size:64px;color:var(--color-accent);line-height:1;margin-bottom:16px;display:block}
+.about-pillar__title{font-family:var(--font-display);font-weight:900;font-size:22px;color:#fff;margin:0 0 10px;text-transform:uppercase;letter-spacing:-.01em;line-height:1.15}
+.about-pillar__text{color:rgba(255,255,255,.7);font-size:14px;line-height:1.65;margin:0}
 
 /* ===== 6. Timeline section wrapper ===== */
 .timeline-section{background:var(--color-bg-soft);padding:var(--section-padding-y,80px) 0}
@@ -95,8 +95,8 @@
   .stats__item:nth-last-child(-n+2){border-bottom:none}
   .story-grid,.story-grid--reverse{grid-template-columns:1fr;gap:32px;direction:ltr}
   .story-grid__list{grid-template-columns:1fr}
-  .section--why .why-grid{grid-template-columns:1fr 1fr}
-  .section--why .why-pillar__num{font-size:48px}
+  .about-pillars__grid--3{grid-template-columns:1fr 1fr}
+  .about-pillar__num{font-size:48px}
 }
 @media (max-width:560px){
   .page-hero__title{font-size:32px}
@@ -104,8 +104,9 @@
   .stats__grid{grid-template-columns:1fr 1fr;gap:0}
   .stats__item{padding:32px 12px}
   .stats__num{font-size:36px}
-  .section--why .why-grid{grid-template-columns:1fr}
-  .section--why .why-pillar{padding:28px 24px}
+  .about-pillars__grid--3,
+  .about-pillars__grid--2{grid-template-columns:1fr}
+  .about-pillar{padding:28px 24px}
   .timeline__year{font-size:26px}
   .cta-section__title{font-size:32px}
 }
