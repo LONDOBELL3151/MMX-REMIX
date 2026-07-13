@@ -17,7 +17,7 @@
         "subtitle": "Step-Thru, Fat Tire & Passenger — Discover the Best Electric Tricycle for Adults!",
         "image_desktop": "shopify://shop_images/MF-30_097f12c0-38f2-4c36-8db9-490b5a6dd608.png",
         "show_overlay": true,
-        "overlay_opacity": 0,
+        "overlay_opacity": 100,
         "show_count": true
       }
     },
