@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -61,12 +70,17 @@
         "stat_02",
         "stat_03",
         "stat_04"
-      ]
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": ""
+      }
     },
     "philosophy": {
       "type": "about-story",
       "settings": {
         "variant": "light",
+        "centered": false,
         "eyebrow": "Our Philosophy",
         "headline": "Built around what riders <em>actually need.</em>",
         "meta_1": "Affordable Pricing",
@@ -96,19 +110,6 @@
     },
     "who_serve": {
       "type": "about-story-grid",
-      "settings": {
-        "background": "default",
-        "layout": "image_right",
-        "media_style": "category_blocks",
-        "eyebrow": "Who We Serve",
-        "title": "Built for <em>every kind of rider.</em>",
-        "lead_text": "<p>Our products are designed for seniors, families, commuters, and leisure riders, helping solve the everyday challenges that keep people from riding more.</p>",
-        "body_text": "",
-        "media_year": "",
-        "media_tag": "",
-        "media_subtitle": "",
-        "media_categories": "Seniors,Families,Commuters,Leisure"
-      },
       "blocks": {
         "list_01": {
           "type": "list_item",
@@ -154,12 +155,26 @@
         "list_04",
         "list_05",
         "list_06"
-      ]
+      ],
+      "settings": {
+        "background": "default",
+        "layout": "image_right",
+        "media_style": "category_blocks",
+        "eyebrow": "Who We Serve",
+        "title": "Built for <em>every kind of rider.</em>",
+        "lead_text": "<p>Our products are designed for seniors, families, commuters, and leisure riders, helping solve the everyday challenges that keep people from riding more.</p>",
+        "body_text": "",
+        "media_year": "",
+        "media_tag": "",
+        "media_subtitle": "",
+        "media_categories": "Seniors,Families,Commuters,Leisure"
+      }
     },
     "team_msg": {
       "type": "about-story",
       "settings": {
         "variant": "dark",
+        "centered": false,
         "eyebrow": "A Message From Our Team",
         "headline": "We build for the <em>pure joy of riding.</em>",
         "meta_1": "",
@@ -189,11 +204,6 @@
     },
     "quality": {
       "type": "about-pillars",
-      "settings": {
-        "heading": "Built For Quality & Safety.",
-        "subheading": "Every detail engineered to elevate your ride comfort and ensure maximum safety.",
-        "columns": "3"
-      },
       "blocks": {
         "pillar_01": {
           "type": "pillar",
@@ -251,7 +261,12 @@
         "pillar_04",
         "pillar_05",
         "pillar_06"
-      ]
+      ],
+      "settings": {
+        "heading": "Built For Quality & Safety.",
+        "subheading": "Every detail engineered to elevate your ride comfort and ensure maximum safety.",
+        "columns": "3"
+      }
     },
     "certs": {
       "type": "about-story-grid",
@@ -271,10 +286,6 @@
     },
     "evolution": {
       "type": "about-timeline",
-      "settings": {
-        "heading": "Brand <em>Evolution.</em>",
-        "subheading": "From a single model to a full lineup of U.S.-focused electric trikes, in six years."
-      },
       "blocks": {
         "year_2019": {
           "type": "milestone",
@@ -323,7 +334,11 @@
         "year_2021",
         "year_2023",
         "year_2025"
-      ]
+      ],
+      "settings": {
+        "heading": "Brand <em>Evolution.</em>",
+        "subheading": "From a single model to a full lineup of U.S.-focused electric trikes, in six years."
+      }
     },
     "cta": {
       "type": "about-cta",
@@ -338,11 +353,6 @@
     },
     "newsletter": {
       "type": "about-newsletter",
-      "settings": {
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "variant": "light"
-      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -356,12 +366,24 @@
           "settings": {
             "text": "<p>New models, exclusive offers, and riding tips — straight to your inbox.</p>"
           }
+        },
+        "email_form_x3kHnU": {
+          "type": "email_form",
+          "settings": {
+            "placeholder": "Enter your email",
+            "button_label": "Subscribe",
+            "success_message": "Thanks for subscribing!"
+          }
         }
       },
       "block_order": [
         "heading",
-        "text"
-      ]
+        "text",
+        "email_form_x3kHnU"
+      ],
+      "settings": {
+        "variant": "light"
+      }
     }
   },
   "order": [
