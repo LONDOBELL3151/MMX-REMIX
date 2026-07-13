@@ -1,0 +1,146 @@
+{%- liquid
+  assign s = section.settings
+  assign variant = s.variant | default: 'light'
+-%}
+
+<section class="about-newsletter about-newsletter--{{ variant }}" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="about-newsletter__inner">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            <h2 class="about-newsletter__heading inline-richtext {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+              {{ block.settings.heading }}
+            </h2>
+          {%- when 'paragraph' -%}
+            <p class="about-newsletter__sub" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+          {%- when 'email_form' -%}
+            <div class="about-newsletter__form" {{ block.shopify_attributes }}>
+              {% form 'customer', class: 'about-newsletter__form-el' %}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="about-newsletter__field">
+                  <input
+                    type="email"
+                    name="contact[email]"
+                    id="AboutNewsletter--{{ section.id }}"
+                    class="about-newsletter__input"
+                    value="{{ form.email }}"
+                    placeholder="{{ block.settings.placeholder | default: 'Enter your email' }}"
+                    aria-required="true"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    required
+                  >
+                  <button type="submit" class="about-newsletter__btn btn btn--primary">
+                    {{ block.settings.button_label | default: 'Subscribe' }}
+                  </button>
+                </div>
+                {%- if form.errors -%}
+                  <p class="about-newsletter__msg about-newsletter__msg--err">{{ form.errors | default_errors }}</p>
+                {%- elsif form.posted_successfully? -%}
+                  <p class="about-newsletter__msg about-newsletter__msg--ok">{{ block.settings.success_message | default: 'Thanks for subscribing!' }}</p>
+                {%- endif -%}
+              {% endform %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Newsletter",
+  "tag": "section",
+  "class": "section-about-newsletter",
+  "settings": [
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Background variant",
+      "options": [
+        { "value": "light", "label": "Light (white)" },
+        { "value": "soft", "label": "Soft (light gray)" },
+        { "value": "dark", "label": "Dark (black)" },
+        { "value": "accent", "label": "Accent (yellow #FFC000)" }
+      ],
+      "default": "light"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading (use <em> for highlight)",
+          "default": "Be the first to know"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "options": [
+            { "value": "h2", "label": "Medium" },
+            { "value": "h1", "label": "Large" },
+            { "value": "h0", "label": "X-Large" }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>New models, exclusive offers, and riding tips \u2014 straight to your inbox.</p>"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "Email form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Email placeholder",
+          "default": "Enter your email"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Subscribe"
+        },
+        {
+          "type": "text",
+          "id": "success_message",
+          "label": "Success message",
+          "default": "Thanks for subscribing!"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Newsletter",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "paragraph" },
+        { "type": "email_form" }
+      ]
+    }
+  ]
+}
+{% endschema %}

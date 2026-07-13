@@ -337,12 +337,11 @@
       }
     },
     "newsletter": {
-      "type": "newsletter",
+      "type": "about-newsletter",
       "settings": {
-        "color_scheme": "background-1",
-        "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 40
+        "padding_bottom": 40,
+        "variant": "light"
       },
       "blocks": {
         "heading": {

@@ -74,6 +74,38 @@
 .timeline-section{background:var(--color-bg-soft);padding:var(--section-padding-y,80px) 0}
 .timeline-section .section__head{margin-bottom:64px}
 
+/* ===== 6.5. About Newsletter ===== */
+.about-newsletter{padding:64px 0;position:relative}
+.about-newsletter--light{background:var(--color-bg);color:var(--color-text)}
+.about-newsletter--soft{background:var(--color-bg-soft);color:var(--color-text)}
+.about-newsletter--dark{background:var(--color-primary);color:#fff}
+.about-newsletter--accent{background:var(--color-accent);color:var(--color-primary)}
+.about-newsletter__inner{max-width:680px;margin:0 auto;text-align:center}
+.about-newsletter__heading{font-family:var(--font-display);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:inherit;margin:0 0 12px}
+.about-newsletter__heading em{font-style:normal;color:var(--color-accent-dark)}
+.about-newsletter--accent .about-newsletter__heading em{color:var(--color-primary);text-decoration:underline;text-decoration-color:rgba(0,0,0,.25);text-underline-offset:4px}
+.about-newsletter--dark .about-newsletter__heading em{color:var(--color-accent)}
+.about-newsletter__sub{margin:0 0 28px;font-size:16px;line-height:1.6;color:inherit;opacity:.85}
+.about-newsletter__form-el{display:block;width:100%}
+.about-newsletter__field{display:flex;gap:8px;max-width:520px;margin:0 auto;background:#fff;border-radius:var(--radius-md);padding:6px;border:2px solid var(--color-border)}
+.about-newsletter--dark .about-newsletter__field{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
+.about-newsletter--accent .about-newsletter__field{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.1)}
+.about-newsletter__input{flex:1;border:0;background:transparent;padding:10px 14px;font-size:15px;font-family:inherit;color:var(--color-text);outline:none;min-width:0}
+.about-newsletter__input::placeholder{color:var(--color-text-soft)}
+.about-newsletter__btn{padding:12px 24px;border-radius:var(--radius-sm);font-family:var(--font-display);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.8px;background:var(--color-primary);color:#fff;border:0;cursor:pointer;white-space:nowrap;transition:var(--transition)}
+.about-newsletter__btn:hover{background:#000;transform:translateY(-1px)}
+.about-newsletter--accent .about-newsletter__btn{background:var(--color-primary);color:var(--color-accent)}
+.about-newsletter--dark .about-newsletter__btn{background:var(--color-accent);color:var(--color-primary)}
+.about-newsletter--dark .about-newsletter__btn:hover{background:#FFD340}
+.about-newsletter__msg{margin:12px 0 0;font-size:14px}
+.about-newsletter__msg--ok{color:var(--color-success)}
+.about-newsletter--dark .about-newsletter__msg--ok{color:#6dd58c}
+.about-newsletter__msg--err{color:var(--color-danger)}
+@media (max-width:560px){
+  .about-newsletter__field{flex-direction:column;padding:8px;gap:6px}
+  .about-newsletter__btn{width:100%}
+}
+
 /* ===== 7. CTA ===== */
 .cta-section{background:var(--color-accent);color:var(--color-primary);padding:80px 0;text-align:center;position:relative;overflow:hidden}
 .cta-section::before{content:"";position:absolute;top:-150px;right:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,0,0,.08),transparent 60%);border-radius:50%}
