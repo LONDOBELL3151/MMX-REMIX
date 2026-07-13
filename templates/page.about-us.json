@@ -1,0 +1,395 @@
+{
+  "sections": {
+    "banner": {
+      "type": "image-banner",
+      "settings": {
+        "image": "",
+        "image_2": "",
+        "image_overlay_opacity": 55,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_alignment": "center",
+        "desktop_content_position": "center",
+        "mobile_content_alignment": "center",
+        "show_text_below": false,
+        "show_text_box": true,
+        "color_scheme": "background-1",
+        "heading": "OUR STORY",
+        "subheading": "Built for U.S. riders who deserve safe, dependable, and affordable electric mobility.",
+        "button_label": "Shop Electric Trikes",
+        "button_link": "/collections/electric-tricycle",
+        "button_style_secondary": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "section_color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "eyebrow": "Who is MaxFoot",
+        "headline": "<p>Built for riders who were <em>overlooked.</em></p>",
+        "meta_1": "Founded 2019",
+        "meta_2": "Designed in California",
+        "meta_3": "Serving U.S. riders",
+        "lead_text": "<p><strong>MaxFoot was founded in 2019 after seeing a gap in the U.S. market:</strong> riders had to choose between overpriced premium electric trikes or unsafe, low-quality alternatives. We stepped in to balance affordability, safety, and everyday practicality — and we haven't stopped since.</p>",
+        "body_text_1": "<p>Our products are designed for seniors, families, commuters, and leisure riders — solving the real problems they face every day: lack of stability, riding inconvenience, range anxiety, and the rising cost of everyday transportation. Every model is designed by our in-house team and produced with trusted partner factories, so we maintain consistency from concept to final production.</p>",
+        "body_text_2": "<p>We didn't just want to engineer the best electric tricycle for adults. We wanted to bring back the <strong>pure joy of riding</strong> — for the grandparent who wants to chase their grandkids at the park, the empty-nester who finally has time to explore, the dad who hasn't ridden in twenty years and wants to try again. Every vehicle we build is made with your safety and freedom in mind.</p>",
+        "pull_quote": "We didn't want to be a bike company. We wanted to be the reason someone rides again.",
+        "closer_text": "Founded 2019 · Designed in California · Built for U.S. riders"
+      }
+    },
+    "philosophy": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "philosophy_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Our Philosophy</p>",
+            "heading_size": "h1"
+          }
+        },
+        "philosophy_caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "WHAT GUIDES EVERYTHING WE BUILD",
+            "text_style": "uppercase",
+            "text_size": "small"
+          }
+        },
+        "philosophy_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We are guided by <strong>affordable pricing</strong>, <strong>dependable quality</strong>, <strong>real-world usability</strong>, and <strong>continuous innovation</strong>. These four pillars are how we keep the promise we made in 2019 — make high-quality electric mobility accessible to more U.S. riders, at a price that makes sense.</p>"
+          }
+        }
+      }
+    },
+    "who_we_serve": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "",
+        "image_2": "",
+        "image_behavior": "none",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "color_scheme": "background-1",
+        "section_color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "wws_caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Built for the people we serve",
+            "text_style": "subtitle",
+            "text_size": "small"
+          }
+        },
+        "wws_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Who We Serve — and <em>What We Solve.</em></p>",
+            "heading_size": "h1"
+          }
+        },
+        "wws_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our electric tricycles for adults are designed for <strong>seniors, families, commuters, and leisure riders</strong> — the riders most electric-bike brands overlook. Whether you need the extra stability of a three-wheel frame, the peace of mind of a UL-certified battery, or just a safer, easier way to get around, we built a trike for it.</p><p>Every detail — from the step-thru frame to the rear differential, from the wide saddle to the rear cargo basket — solves a real problem our riders have told us about. No fluff. No needless markups. Just a ride that's safe, secure, and enjoyable every time.</p>"
+          }
+        },
+        "wws_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Find Your Trike",
+            "button_link": "/collections/electric-tricycle",
+            "button_style_secondary": false
+          }
+        }
+      }
+    },
+    "specs": {
+      "type": "multirow",
+      "settings": {
+        "title": "Built for Quality & Safety",
+        "heading_size": "h1",
+        "subheading": "Engineered for ride comfort and maximum safety.",
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "background-2",
+        "row_color_scheme": "background-1",
+        "mobile_content_alignment": "left",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "spec_frame": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "FRAME",
+            "heading": "Aluminum Frame",
+            "text": "<p>Rugged, durable, and built to last. The lightweight aluminum frame keeps every MaxFoot stable mile after mile.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "spec_motor": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "MOTOR",
+            "heading": "750W Rear Motor",
+            "text": "<p>Peak power 1100W and 85 N·m of torque for slip-free, confident starts, climbs, and everyday riding.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "spec_battery": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "BATTERY",
+            "heading": "UL-Certified Samsung Battery",
+            "text": "<p>48V 20Ah Samsung cell pack, UL-certified for up to 85 miles of range on a single charge.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "spec_brake": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "BRAKES",
+            "heading": "Rear Dual Disc Brake",
+            "text": "<p>Engineered to prevent rollover and protect rider safety, on every stop and at every speed.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "spec_diff": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "DIFFERENTIAL",
+            "heading": "Rear Differential (Select Models)",
+            "text": "<p>Enhanced stability and safer cornering — a trike that handles like a bike should.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "spec_light": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "VISIBILITY",
+            "heading": "Multifunctional Tail Light",
+            "text": "<p>Prompt turn signaling to alert trailing vehicles and keep you seen in low light.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "spec_frame",
+        "spec_motor",
+        "spec_battery",
+        "spec_brake",
+        "spec_diff",
+        "spec_light"
+      ]
+    },
+    "certs": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "",
+        "image_2": "",
+        "image_behavior": "none",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "color_scheme": "inverse",
+        "section_color_scheme": "inverse",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "certs_caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Safety and compliance",
+            "text_style": "subtitle",
+            "text_size": "small"
+          }
+        },
+        "certs_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>UL-Certified. <em>Rigorously tested.</em></p>",
+            "heading_size": "h1"
+          }
+        },
+        "certs_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We place strong emphasis on safety and compliance, and <strong>UL certification</strong> is a central part of our commitment to quality and rider confidence. Our UL-certified Samsung battery has passed the most demanding safety tests in the industry — overcharging, short circuits, crushing, high temperatures, and even needle penetration.</p><p>That is the level of safety we put behind every MaxFoot electric tricycle for adults. Because peace of mind shouldn't be a premium feature.</p>"
+          }
+        },
+        "certs_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn About Our Standards",
+            "button_link": "/pages/safety",
+            "button_style_secondary": true
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "multirow",
+      "settings": {
+        "title": "Brand Evolution",
+        "heading_size": "h1",
+        "subheading": "Every step forward stems from our commitment to the riders we serve.",
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "desktop_content_alignment": "left",
+        "image_layout": "align-left",
+        "section_color_scheme": "background-1",
+        "row_color_scheme": "background-1",
+        "mobile_content_alignment": "left",
+        "padding_top": 80,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "year_2019": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "2019",
+            "heading": "First Model Launch",
+            "text": "<p>We officially launched MaxFoot and introduced our first two wheel drive electric bike — laying the foundation for everything that followed.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "year_2020": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "2020–2021",
+            "heading": "First Electric Tricycle",
+            "text": "<p>Listening to customer feedback and watching the market, we saw a growing demand for stable, practical electric tricycles. We launched our first electric tricycle for adults and expanded our product direction.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "year_2021": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "2021–2023",
+            "heading": "Monocoque Model Expansion",
+            "text": "<p>As our R&D capabilities grew, we launched our 20\" and 24\" fat tire monocoque electric trikes for adults — improving frame structure, stability, and ride quality across the lineup.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "year_2023": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "2023–2025",
+            "heading": "Two-Seater Tricycle Launch",
+            "text": "<p>To meet the needs of family travel, we introduced our electric tricycle for adults with passenger seat — engineered as a reliable electric tricycle for 2 adults, perfect for family and shared rides.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "year_2025": {
+          "type": "row",
+          "settings": {
+            "image": "",
+            "caption": "2025–Present",
+            "heading": "Electric Motorcycle Development",
+            "text": "<p>Every step forward stems from what our users truly need. The next addition to the lineup — premium electric motorcycles for sale — is coming soon. Stay tuned.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "year_2019",
+        "year_2020",
+        "year_2021",
+        "year_2023",
+        "year_2025"
+      ]
+    },
+    "cta": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 96
+      },
+      "blocks": {
+        "cta_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Find the <em>best electric tricycle for adults</em> — built for you.</p>",
+            "heading_size": "h1"
+          }
+        },
+        "cta_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Step-thru frames, fat tires, two-seater family rides, and commuter step-thrus — every MaxFoot is engineered for the way real U.S. riders actually ride.</p>"
+          }
+        },
+        "cta_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop All Electric Bikes",
+            "button_link": "/collections/all",
+            "button_style_secondary": false
+          }
+        }
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "brand_story",
+    "philosophy",
+    "who_we_serve",
+    "specs",
+    "certs",
+    "timeline",
+    "cta"
+  ]
+}
