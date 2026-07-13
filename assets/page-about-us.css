@@ -1,0 +1,109 @@
+/* =====================================================================
+   Page-specific styles for /pages/about-us
+   Loaded only when template == page.about-us (see layout/theme.liquid)
+   Mirrors the design in maxfoot-preview-v2/about-us.html 1:1
+   ===================================================================== */
+
+/* ===== 1. Page hero ===== */
+.page-hero{background:linear-gradient(120deg,var(--color-primary) 0%,#2a2a2a 100%);color:#fff;padding:96px 0 80px;position:relative;overflow:hidden}
+.page-hero::before{content:"";position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,192,0,.15),transparent 60%);border-radius:50%}
+.page-hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--color-accent)}
+.page-hero__inner{position:relative;max-width:880px}
+.page-hero__pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--color-accent);color:var(--color-primary);border-radius:999px;font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:24px;text-transform:uppercase}
+.page-hero__title{font-size:clamp(40px,5.5vw,72px);font-weight:900;line-height:.95;margin:0 0 24px;letter-spacing:-2px;text-transform:uppercase;color:#fff}
+.page-hero__title em{font-style:normal;color:var(--color-accent)}
+.page-hero__sub{font-size:19px;color:rgba(255,255,255,.88);line-height:1.6;max-width:680px;margin:0}
+.page-hero__meta{display:flex;align-items:center;gap:14px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18);font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);flex-wrap:wrap}
+.page-hero__meta-dot{width:4px;height:4px;background:var(--color-accent);border-radius:50%}
+
+/* ===== 2. Stats ===== */
+.stats{padding:64px 0;background:var(--color-bg-soft)}
+.stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:2px solid var(--color-primary)}
+.stats__item{text-align:center;padding:48px 24px;border-right:2px solid var(--color-border)}
+.stats__item:last-child{border-right:none}
+.stats__num{font-size:clamp(40px,4.5vw,56px);font-weight:900;color:var(--color-primary);line-height:1;font-family:var(--font-display);text-transform:uppercase;letter-spacing:-.02em}
+.stats__num em{color:var(--color-accent);font-style:normal}
+.stats__label{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;margin-top:14px;font-weight:700;color:var(--color-text-soft);font-family:var(--font-mono)}
+
+/* ===== 3. Story variants (soft / dark) ===== */
+.story{padding:var(--section-padding-y,80px) 0}
+.story + .story{padding-top:0}
+.story--soft{background:var(--color-bg-soft)}
+.story--dark{background:var(--color-primary);color:#fff}
+.story--dark .story-headline,
+.story--dark .story-body{color:#fff}
+.story--dark .story-body{color:rgba(255,255,255,.88)}
+.story--dark .story-closer{color:rgba(255,255,255,.7)}
+.story--dark .story-closer::before,
+.story--dark .story-closer::after{background:rgba(255,255,255,.2)}
+.story--dark .story-meta{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.7)}
+.story--dark .story-pull{border-color:var(--color-accent)}
+.story--dark .story-pull p{color:#fff}
+
+/* ===== 4. Two-column image + text (story-grid) ===== */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.story-grid--reverse{grid-template-columns:1fr 1fr;direction:rtl}
+.story-grid--reverse > *{direction:ltr}
+.story-grid__media{border-radius:var(--radius-lg);aspect-ratio:4/3;background:linear-gradient(135deg,#2a2a2a,#121212);position:relative;overflow:hidden;border:2px solid var(--color-primary)}
+.story-grid__media-tag{position:absolute;bottom:20px;left:20px;background:var(--color-accent);color:var(--color-primary);padding:8px 14px;border-radius:4px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-family:var(--font-display)}
+.story-grid__title{font-size:clamp(32px,4vw,48px);font-weight:900;line-height:1.05;margin:0 0 20px;letter-spacing:-1px;text-transform:uppercase;color:var(--color-primary)}
+.story-grid__title em{color:var(--color-accent);font-style:normal}
+.story-grid__lead{font-size:18px;color:var(--color-text);line-height:1.65;margin:0 0 16px;font-weight:500}
+.story-grid__text{font-size:16px;color:var(--color-text-soft);line-height:1.75;margin:0 0 12px}
+.story-grid__list{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.story-grid__list li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:var(--color-text)}
+.story-grid__list li::before{content:"✓";color:var(--color-accent);font-weight:900;flex-shrink:0;margin-top:1px}
+
+/* ===== 5. Pillars grid (mirrors why-maxfoot section in design) =====
+   Reuses the actual .section--why class from sections/why-maxfoot.liquid
+   so the existing section file can be dropped in unchanged. */
+.section.section--why{background:var(--color-primary);color:#fff;padding:var(--section-padding-y,80px) 0;position:relative;overflow:hidden}
+.section.section--why::before{content:"";position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,192,0,.1),transparent 60%);border-radius:50%}
+.section.section--why .section__head h2{color:#fff}
+.section.section--why .section__head .section__sub{color:rgba(255,255,255,.7)}
+.section.section--why .why-grid{grid-template-columns:repeat(3,1fr);gap:20px}
+.section.section--why .why-pillar{background:#1a1a1a;border:2px solid #2a2a2a;border-radius:var(--radius-lg);padding:36px 28px;transition:var(--transition);position:relative;overflow:hidden}
+.section.section--why .why-pillar:hover{border-color:var(--color-accent);transform:translateY(-3px)}
+.section.section--why .why-pillar__num{font-size:64px;margin-bottom:16px}
+.section.section--why .why-pillar__title{font-size:22px;margin:0 0 10px;letter-spacing:-.01em;line-height:1.15}
+.section.section--why .why-pillar__text{color:rgba(255,255,255,.7);font-size:14px;line-height:1.65;margin:0}
+
+/* ===== 6. Timeline section wrapper ===== */
+.timeline-section{background:var(--color-bg-soft);padding:var(--section-padding-y,80px) 0}
+.timeline-section .section__head{margin-bottom:64px}
+
+/* ===== 7. CTA ===== */
+.cta-section{background:var(--color-accent);color:var(--color-primary);padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:"";position:absolute;top:-150px;right:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,0,0,.08),transparent 60%);border-radius:50%}
+.cta-section__title{font-size:clamp(36px,4.5vw,56px);font-weight:900;margin:0 0 16px;letter-spacing:-1px;text-transform:uppercase;color:var(--color-primary);position:relative}
+.cta-section__title em{color:#fff;font-style:normal}
+.cta-section__sub{font-size:18px;margin:0 auto 32px;max-width:580px;color:var(--color-primary);opacity:.85;position:relative}
+.cta-section .btn--primary{background:var(--color-primary);color:var(--color-accent);border-color:var(--color-primary);position:relative}
+.cta-section .btn--primary:hover{background:#000;border-color:#000;color:var(--color-accent)}
+.cta-section .btn--outline{background:transparent;color:var(--color-primary);border-color:var(--color-primary);position:relative}
+.cta-section .btn--outline:hover{background:var(--color-primary);color:var(--color-accent)}
+
+/* ===== Responsive ===== */
+@media (max-width:990px){
+  .page-hero{padding:64px 0 56px}
+  .page-hero__title{font-size:42px}
+  .stats__grid{grid-template-columns:repeat(2,1fr)}
+  .stats__item{border-right:none;border-bottom:2px solid var(--color-border)}
+  .stats__item:nth-child(odd){border-right:2px solid var(--color-border)}
+  .stats__item:nth-last-child(-n+2){border-bottom:none}
+  .story-grid,.story-grid--reverse{grid-template-columns:1fr;gap:32px;direction:ltr}
+  .story-grid__list{grid-template-columns:1fr}
+  .section--why .why-grid{grid-template-columns:1fr 1fr}
+  .section--why .why-pillar__num{font-size:48px}
+}
+@media (max-width:560px){
+  .page-hero__title{font-size:32px}
+  .page-hero__meta{font-size:11px;gap:10px}
+  .stats__grid{grid-template-columns:1fr 1fr;gap:0}
+  .stats__item{padding:32px 12px}
+  .stats__num{font-size:36px}
+  .section--why .why-grid{grid-template-columns:1fr}
+  .section--why .why-pillar{padding:28px 24px}
+  .timeline__year{font-size:26px}
+  .cta-section__title{font-size:32px}
+}
