@@ -2,6 +2,8 @@
    Page-specific styles for /pages/about-us
    Loaded only when template == page.about-us (see layout/theme.liquid)
    Mirrors the design in maxfoot-preview-v2/about-us.html 1:1
+
+   Revision: 2026-07-13 (1) trigger sync
    ===================================================================== */
 
 /* ===== 1. Page hero ===== */
