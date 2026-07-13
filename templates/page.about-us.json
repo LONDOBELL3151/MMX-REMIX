@@ -187,7 +187,7 @@
           }
         },
         "text": {
-          "type": "text",
+          "type": "paragraph",
           "settings": {
             "text": "<p>New models, exclusive offers, and riding tips \u2014 straight to your inbox.</p>"
           }
