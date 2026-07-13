@@ -69,15 +69,15 @@
 /* Mobile-only image hidden by default on desktop */
 .mileage-hero__img--mobile { display: none; }
 
-/* Dark gradient at the bottom to keep text readable */
+/* Full-cover dark layer (top 35% flat, mid 50%, bottom 75%) so tabs + body stay readable on any photo */
 .mileage-hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0) 35%,
-    rgba(0, 0, 0, 0.45) 80%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.75) 100%
   );
   pointer-events: none;
   z-index: 1;
