@@ -107,6 +107,7 @@
         "feature_NqiGwY",
         "feature_FGKBB9"
       ],
+      "disabled": true,
       "name": "Feature tabs",
       "settings": {
         "eyebrow": "Smart Features",
