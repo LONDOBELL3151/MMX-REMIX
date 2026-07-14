@@ -32,7 +32,8 @@
       "settings": {
         "eyebrow": "",
         "heading": "",
-        "subtitle": ""
+        "subtitle": "",
+        "image": "shopify://shop_images/whyebike.png"
       }
     },
     "mileage_tabs": {
