@@ -23,6 +23,25 @@
     },
     "main": {
       "type": "main-collection",
+      "blocks": {
+        "promo_LcKXNK": {
+          "type": "promo",
+          "settings": {
+            "heading": "Maxfoot MF-33",
+            "body": "",
+            "image": "shopify://shop_images/MF-33GS.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "xlarge",
+            "overlay_opacity": 100,
+            "position": 0
+          }
+        }
+      },
+      "block_order": [
+        "promo_LcKXNK"
+      ],
       "settings": {
         "show_specs": true,
         "products_per_page": 24
@@ -122,7 +141,7 @@
         "tab_smooth_power"
       ],
       "settings": {
-        "heading": "Made for Two, Made for Love <br> Maxfoot MF-33",
+        "heading": "Made for Two, Made for Love  Maxfoot MF-33",
         "subtitle": "MF-33 Electric tricycle for 3 adults，Take your partner with you on every journey",
         "auto_rotate": true,
         "interval_ms": 6000,
