@@ -16,6 +16,7 @@
       "blocks": {
         "text_9RkdPB": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "heading": "",
             "text": "<p>Email:<br/>Pre-sales：sales@maxfoot.bike<br/>After-sales：support@maxfoot.bike</p><p>Phone: 818-305 6122</p><p>Monday-Friday: 10:00 am-5:30 pm (PST)<br/>Saturday: 10:00 am-4:30 pm (PST)</p>"
@@ -52,7 +53,7 @@
       "settings": {
         "show_social": true,
         "show_payment_icons": true,
-        "tagline": "Premium folding e-bikes and electric tricycles built for American families. Ships from our US warehouse with a 2-year warranty.",
+        "tagline": "Premium folding e-bikes and electric tricycles built for American families. Ships from our US warehouse with a 2-year warranty.\n<br><br>\nEmail:<br>\nPre-sales: sales@maxfoot.bike<br>\nAfter-sales: support@maxfoot.bike<br>\nPhone: 818-305 6122<br>\nMonday-Friday: 10:00 am-5:30 pm (PST)<br>\nSaturday: 10:00 am-4:30 pm (PST)<br>",
         "copyright_text": "All rights reserved."
       }
     }
