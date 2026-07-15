@@ -1,6 +1,9 @@
 {%- liquid
   assign s = section.settings
+  assign promo_blocks = section.blocks | where: 'type', 'promo'
 -%}
+
+{{ 'section-main-collection.css' | asset_url | stylesheet_tag }}
 
 <section class="main-collection" id="MainCollection" {{ section.shopify_attributes }}>
   <div class="container collection-grid">
@@ -85,7 +88,13 @@
         {%- paginate collection.products by s.products_per_page -%}
           <div class="products products--grid products--3">
             {%- for product in collection.products -%}
+              {%- assign outer_index = forloop.index -%}
               {% render 'product-card', product: product, show_specs: s.show_specs %}
+              {%- for block in promo_blocks -%}
+                {%- if block.settings.position == outer_index -%}
+                  {% render 'promo-card', block: block %}
+                {%- endif -%}
+              {%- endfor -%}
             {%- endfor -%}
           </div>
 
@@ -141,6 +150,53 @@
   ],
   "presets": [
     { "name": "Main collection" }
+  ],
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Promo card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Limited-time offer"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body text",
+          "info": "Optional. Short description under the heading."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Learn more",
+          "info": "Single CTA — leave blank to hide the button."
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "range",
+          "id": "position",
+          "label": "Insert after product #",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "default": 1,
+          "info": "Card is rendered right after the Nth product in the grid. 1 = right after the first product."
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
