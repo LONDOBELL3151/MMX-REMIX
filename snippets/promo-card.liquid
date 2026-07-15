@@ -1,7 +1,7 @@
 {%- liquid
   assign b = block.settings
 -%}
-<article class="promo-card" {{ block.shopify_attributes }}>
+<article class="promo-card{% if b.image == blank %} promo-card--no-image{% endif %}" {{ block.shopify_attributes }}>
   {%- if b.image != blank -%}
     <div class="promo-card__media">
       {{
