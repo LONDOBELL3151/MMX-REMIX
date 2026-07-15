@@ -164,6 +164,10 @@
       "name": "Promo card",
       "settings": [
         {
+          "type": "header",
+          "content": "Content"
+        },
+        {
           "type": "text",
           "id": "heading",
           "label": "Heading",
@@ -192,6 +196,47 @@
           "type": "url",
           "id": "button_link",
           "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Body alignment",
+          "default": "bottom",
+          "options": [
+            {"value": "top", "label": "Top — all content at the top of the card"},
+            {"value": "bottom", "label": "Bottom — all content at the bottom of the card"},
+            {"value": "split", "label": "Split — heading at top, body and CTA at bottom"}
+          ]
+        },
+        {
+          "type": "select",
+          "id": "font_size",
+          "label": "Font size",
+          "default": "medium",
+          "options": [
+            {"value": "small", "label": "Small (heading 16px / text 12px)"},
+            {"value": "medium", "label": "Medium (heading 20px / text 14px)"},
+            {"value": "large", "label": "Large (heading 24px / text 16px)"},
+            {"value": "xlarge", "label": "X-Large (heading 28px / text 18px)"}
+          ]
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 100,
+          "info": "Strength of the dark gradient behind the body text. 0 = no overlay (image fully visible), 100 = strongest dark (current default)."
+        },
+        {
+          "type": "header",
+          "content": "Position"
         },
         {
           "type": "range",

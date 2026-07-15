@@ -1,6 +1,12 @@
 /* ===== Promo card (insertable into main-collection product grid) =====
- * Layout: full-bleed image fills the entire card; body sits on top at the bottom.
+ * Full-bleed image fills the entire card; body sits on top at the bottom.
  * Card height matches the product card in the same grid row (via grid stretch).
+ *
+ * Editable in the theme editor:
+ *   - Body alignment: top | bottom | split (heading at top, body+CTA at bottom)
+ *   - Font size:      small | medium | large | xlarge
+ *   - Overlay opacity: 0-100 (controls dark gradient strength)
+ *
  * Differentiator: yellow CTA button + dark gradient overlay. */
 
 .promo-card {
@@ -37,7 +43,8 @@
   transform: scale(1.05);
 }
 
-/* Dark gradient overlay for text readability (on image only) */
+/* Default gradient: bottom alignment (dark at bottom).
+   --overlay-alpha is set inline by the snippet (0..1). Coefficients are scaled by it. */
 .promo-card__media::after {
   content: "";
   position: absolute;
@@ -45,28 +52,78 @@
   background: linear-gradient(180deg,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,0) 35%,
-    rgba(0,0,0,0.55) 70%,
-    rgba(0,0,0,0.8) 100%);
+    rgba(0,0,0, calc(0.55 * var(--overlay-alpha, 1.0))) 70%,
+    rgba(0,0,0, calc(0.8  * var(--overlay-alpha, 1.0))) 100%);
   pointer-events: none;
   z-index: 1;
 }
 
-/* Body sits at the bottom, overlaid on top of the image */
-.promo-card__body {
+/* ===== Content containers ===== */
+
+/* Default (.promo-card--align-bottom) and .promo-card--align-top share .promo-card__content */
+.promo-card__content,
+.promo-card__top,
+.promo-card__bottom {
+  z-index: 2;
+}
+
+/* ===== Alignment: BOTTOM (default) ===== */
+.promo-card--align-bottom .promo-card__content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
   padding: 22px 20px 20px;
+}
+
+/* ===== Alignment: TOP ===== */
+.promo-card--align-top .promo-card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 22px 20px 20px;
+}
+/* Top alignment: gradient flipped to dark at the top */
+.promo-card--align-top .promo-card__media::after {
+  background: linear-gradient(0deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 35%,
+    rgba(0,0,0, calc(0.55 * var(--overlay-alpha, 1.0))) 70%,
+    rgba(0,0,0, calc(0.8  * var(--overlay-alpha, 1.0))) 100%);
+}
+
+/* ===== Alignment: SPLIT (heading top, body+CTA bottom) ===== */
+.promo-card--align-split .promo-card__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 22px 20px 0;
+}
+
+.promo-card--align-split .promo-card__bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 20px 20px;
   display: flex;
   flex-direction: column;
 }
+/* Split: gradient at BOTH ends, transparent in the middle (image middle stays visible) */
+.promo-card--align-split .promo-card__media::after {
+  background: linear-gradient(180deg,
+    rgba(0,0,0, calc(0.8 * var(--overlay-alpha, 1.0))) 0%,
+    rgba(0,0,0,0) 28%,
+    rgba(0,0,0,0) 72%,
+    rgba(0,0,0, calc(0.8 * var(--overlay-alpha, 1.0))) 100%);
+}
 
+/* ===== Typography ===== */
 .promo-card__heading {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 22px;
   line-height: 1.1;
   color: #fff;
   margin: 0 0 8px;
@@ -77,13 +134,23 @@
 
 .promo-card__text {
   font-family: var(--font-body);
-  font-size: 14px;
   line-height: 1.5;
   color: rgba(255,255,255,0.92);
   margin: 0 0 14px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
+/* Font size modifiers (heading + body text scale together) */
+.promo-card--font-small  .promo-card__heading { font-size: 16px; }
+.promo-card--font-small  .promo-card__text    { font-size: 12px; }
+.promo-card--font-medium .promo-card__heading { font-size: 20px; }
+.promo-card--font-medium .promo-card__text    { font-size: 14px; }
+.promo-card--font-large  .promo-card__heading { font-size: 24px; }
+.promo-card--font-large  .promo-card__text    { font-size: 16px; }
+.promo-card--font-xlarge .promo-card__heading { font-size: 28px; }
+.promo-card--font-xlarge .promo-card__text    { font-size: 18px; }
+
+/* ===== CTA ===== */
 .promo-card__cta {
   display: flex;
   align-items: center;
@@ -125,15 +192,19 @@
   background: var(--color-bg-soft);
 }
 
-.promo-card--no-image .promo-card__body {
+/* For .promo-card--align-bottom and .promo-card--align-top, the .promo-card__content
+   is absolute, which makes the no-image card collapse. Force it to fill when no image. */
+.promo-card--no-image.promo-card--align-bottom .promo-card__content,
+.promo-card--no-image.promo-card--align-top .promo-card__content {
   position: relative;
   bottom: auto;
-  left: auto;
-  right: auto;
+  top: auto;
   height: 100%;
   padding: 32px 24px;
   justify-content: center;
   align-items: flex-start;
+  display: flex;
+  flex-direction: column;
 }
 
 .promo-card--no-image .promo-card__heading {
@@ -148,7 +219,12 @@
 
 /* ===== Mobile ===== */
 @media (max-width: 560px) {
-  .promo-card__heading { font-size: 18px; }
-  .promo-card__body { padding: 16px; }
-  .promo-card--no-image .promo-card__body { padding: 24px 18px; }
+  .promo-card--font-xlarge .promo-card__heading { font-size: 22px; }
+  .promo-card--font-xlarge .promo-card__text    { font-size: 14px; }
+  .promo-card--font-large  .promo-card__heading { font-size: 20px; }
+  .promo-card__content { padding: 16px; }
+  .promo-card--align-split .promo-card__top    { padding: 16px 16px 0; }
+  .promo-card--align-split .promo-card__bottom { padding: 0 16px 16px; }
+  .promo-card--no-image.promo-card--align-bottom .promo-card__content,
+  .promo-card--no-image.promo-card--align-top    .promo-card__content { padding: 24px 18px; }
 }
