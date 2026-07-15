@@ -87,6 +87,13 @@
       {%- else -%}
         {%- paginate collection.products by s.products_per_page -%}
           <div class="products products--grid products--3">
+            {%- comment -%} Render position=0 promo blocks BEFORE the first product {%- endcomment -%}
+            {%- for block in promo_blocks -%}
+              {%- if block.settings.position == 0 -%}
+                {% render 'promo-card', block: block %}
+              {%- endif -%}
+            {%- endfor -%}
+
             {%- for product in collection.products -%}
               {%- assign outer_index = forloop.index -%}
               {% render 'product-card', product: product, show_specs: s.show_specs %}
@@ -188,12 +195,12 @@
         {
           "type": "range",
           "id": "position",
-          "label": "Insert after product #",
-          "min": 1,
+          "label": "Position",
+          "min": 0,
           "max": 12,
           "step": 1,
           "default": 1,
-          "info": "Card is rendered right after the Nth product in the grid. 1 = right after the first product."
+          "info": "0 = render before the first product (top of grid). 1 = render after the 1st product. N = render after the Nth product."
         }
       ]
     }
