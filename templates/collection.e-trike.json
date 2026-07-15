@@ -24,6 +24,48 @@
     "main": {
       "type": "main-collection",
       "blocks": {
+        "promo_6GyD9w": {
+          "type": "promo",
+          "settings": {
+            "heading": "Maxfoot MF-32",
+            "body": "",
+            "image": "shopify://shop_images/mf-32_03ce34f7-d0a9-4519-8651-0d78da7071d2.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "xlarge",
+            "overlay_opacity": 100,
+            "position": 11
+          }
+        },
+        "promo_7qD3xN": {
+          "type": "promo",
+          "settings": {
+            "heading": "Maxfoot MF-31",
+            "body": "",
+            "image": "shopify://shop_images/MF-31_484514f5-42d8-4ce3-bef1-76f3519eb412.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "xlarge",
+            "overlay_opacity": 100,
+            "position": 7
+          }
+        },
+        "promo_mfmVeH": {
+          "type": "promo",
+          "settings": {
+            "heading": "Maxfoot MF-30",
+            "body": "",
+            "image": "shopify://shop_images/MF-30_097f12c0-38f2-4c36-8db9-490b5a6dd608.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "xlarge",
+            "overlay_opacity": 100,
+            "position": 4
+          }
+        },
         "promo_LcKXNK": {
           "type": "promo",
           "settings": {
@@ -40,6 +82,9 @@
         }
       },
       "block_order": [
+        "promo_6GyD9w",
+        "promo_7qD3xN",
+        "promo_mfmVeH",
         "promo_LcKXNK"
       ],
       "settings": {
