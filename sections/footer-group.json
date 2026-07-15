@@ -13,6 +13,34 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "menu_yiPp89": {
+          "type": "menu",
+          "settings": {
+            "heading": "MAXFOOT PRODUCT",
+            "menu": "maxfoot-product"
+          }
+        },
+        "menu_Ut7E8c": {
+          "type": "menu",
+          "settings": {
+            "heading": "SUPPORT",
+            "menu": "support"
+          }
+        },
+        "menu_QYaBWX": {
+          "type": "menu",
+          "settings": {
+            "heading": "COMPANY",
+            "menu": "company"
+          }
+        }
+      },
+      "block_order": [
+        "menu_yiPp89",
+        "menu_Ut7E8c",
+        "menu_QYaBWX"
+      ],
       "settings": {
         "show_social": true,
         "show_payment_icons": true,
