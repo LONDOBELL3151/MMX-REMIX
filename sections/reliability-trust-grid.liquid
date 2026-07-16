@@ -57,10 +57,10 @@
               {%- endif -%}
 
               <div class="rt-card__body">
+                <h3 class="rt-card__title">{{ block.settings.title }}</h3>
                 {%- if block.settings.eyebrow != blank -%}
                   <p class="rt-card__eyebrow">{{ block.settings.eyebrow }}</p>
                 {%- endif -%}
-                <h3 class="rt-card__title">{{ block.settings.title }}</h3>
               </div>
 
               {%- if block.settings.description != blank -%}
@@ -140,7 +140,8 @@
       "type": "color",
       "id": "bg_color",
       "label": "Background",
-      "default": "#000000"
+      "default": "#ffc000",
+      "info": "Section background color. Use the Custom tab in the color picker to enter any hex code (e.g. #ffc000)."
     },
     {
       "type": "color",

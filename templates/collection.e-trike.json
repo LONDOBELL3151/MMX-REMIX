@@ -253,6 +253,15 @@
     },
     "reliability_trust_grid_rictPT": {
       "type": "reliability-trust-grid",
+      "settings": {
+        "eyebrow": "",
+        "headline": "Premium Quality. Powerful Performance",
+        "bg_color": "#ffc000",
+        "text_color": "#1a1a1a",
+        "accent_color": "#1a1a1a",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
       "blocks": {
         "feature_effyPw": {
           "type": "feature",
