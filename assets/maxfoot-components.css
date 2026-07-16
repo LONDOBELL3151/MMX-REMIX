@@ -2,7 +2,11 @@
 
 /* ===== Header ===== */
 .header{display:block;background:#fff;border-bottom:1px solid var(--color-border)}
-.header--sticky{position:sticky;top:0;z-index:100}
+/* The section wrapper (77px tall) is the header's containing block for sticky.
+   Sticky needs a containing block TALLER than the sticky element, so we
+   make the section itself sticky too. Its containing block is the body
+   (now display: block, ~9000px tall), so it can stick for the full scroll. */
+.shopify-section.section-header:has(> .header--sticky){position:sticky;top:0;z-index:100;background:#fff}
 .header__inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px;height:76px}
 .logo--img{display:inline-flex;align-items:center;line-height:0}
 .nav{display:flex;align-items:center;gap:28px;justify-content:center;width:100%;min-width:0}
