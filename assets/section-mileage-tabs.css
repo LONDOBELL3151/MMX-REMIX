@@ -19,7 +19,7 @@
   font-family: var(--font-display);
   font-weight: 900;
   font-size: clamp(32px, 4vw, 48px);
-  line-height: 1.05;
+  line-height: 0.95;
   letter-spacing: -0.02em;
   text-transform: none;
   color: var(--color-primary);
