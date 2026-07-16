@@ -15,11 +15,11 @@
   <div class="container">
     {%- if section.settings.eyebrow != blank or section.settings.headline != blank -%}
       <header class="ft-head">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="ft-head__eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
         {%- if section.settings.headline != blank -%}
           <h2 class="ft-head__title {% if section.settings.use_gradient_title %}ft-head__title--gradient{% endif %}">{{ section.settings.headline }}</h2>
+        {%- endif -%}
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ft-head__eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
       </header>
     {%- endif -%}
