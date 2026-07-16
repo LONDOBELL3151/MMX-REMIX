@@ -5,7 +5,11 @@
   assign collection = s.collection | default: closest.collection
 -%}
 
-<section class="wfg-section" {{ section.shopify_attributes }}>
+<section
+  class="wfg-section"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  {{ section.shopify_attributes }}
+>
   <div class="container">
     <div class="wfg-card">
 
@@ -113,6 +117,30 @@
       "id": "image",
       "label": "Right-side image",
       "info": "Recommended 1200x900 (4:3) or 1200x1200. Will be cover-cropped to fill the right column."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
     }
   ],
   "blocks": [
