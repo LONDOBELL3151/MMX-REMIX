@@ -583,7 +583,7 @@ body.mobile-menu-open{overflow:hidden}
 .collection-banner__eyebrow{font-family:var(--font-display);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-accent);display:inline-block;margin-bottom:12px}
 .collection-banner__title{font-size:clamp(40px,5vw,72px);font-weight:900;margin:0 0 12px;letter-spacing:-.02em;color:#fff}
 .collection-banner h1,.collection-banner h2,.collection-banner h3,.collection-banner h4,.collection-banner h5,.collection-banner h6{color:#fff}
-.collection-banner__sub{font-size:17px;color:#cfcfcf;max-width:640px;margin:0 auto 24px;line-height:1.6}
+.collection-banner__sub{font-size:17px;color:#cfcfcf;margin:0 auto 24px;line-height:1.6}
 .collection-banner__count{display:inline-flex;align-items:center;gap:10px;background:rgba(255,192,0,.15);border:1px solid var(--color-accent);padding:8px 18px;border-radius:999px;font-size:13px;color:var(--color-accent);font-weight:800;text-transform:uppercase;letter-spacing:.8px}
 .collection-banner__count strong{font-size:18px;font-family:var(--font-mono)}
 
