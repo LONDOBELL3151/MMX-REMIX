@@ -87,10 +87,11 @@
 .wfg-card__media{
   flex:0 0 42.5%;
   width:42.5%;
-  align-self:stretch;
+  align-self:center;
   position:relative;
   background:#e9ecf3;
-  min-height:480px;
+  aspect-ratio:4/3;
+  min-height:320px;
 }
 
 .wfg-card__img{
