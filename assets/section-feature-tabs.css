@@ -25,7 +25,7 @@
 
 .ft-head__title {
   color: var(--ft-fg);
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.02em;
