@@ -153,6 +153,13 @@
       height: {{ logo_height_mobile }}px;
     }
   }
+  {%- if s.sticky_header -%}
+  /* Sticky header: section wrapper must be sticky too, because the header's
+     containing block for sticky is the 77px section, which can't contain a
+     sticky element taller than itself. Making the section sticky gives the
+     body as the containing block (~9000px). */
+  .shopify-section.section-header:has(> .header--sticky){position:sticky;top:0;z-index:100;background:#fff}
+  {%- endif -%}
 </style>
 {% schema %}
 {
