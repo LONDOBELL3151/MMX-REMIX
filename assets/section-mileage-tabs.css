@@ -17,7 +17,7 @@
 
 .mileage-head__title {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 900;
   font-size: clamp(32px, 4vw, 48px);
   line-height: 0.95;
   letter-spacing: -0.02em;
