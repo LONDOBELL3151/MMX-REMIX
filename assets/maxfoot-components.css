@@ -1,7 +1,8 @@
 /* MaxFoot Dawn — components */
 
 /* ===== Header ===== */
-.header{display:block;position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--color-border)}
+.header{display:block;background:#fff;border-bottom:1px solid var(--color-border)}
+.header--sticky{position:sticky;top:0;z-index:100}
 .header__inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px;height:76px}
 .logo--img{display:inline-flex;align-items:center;line-height:0}
 .nav{display:flex;align-items:center;gap:28px;justify-content:center;width:100%;min-width:0}

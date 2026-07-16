@@ -4,7 +4,7 @@
   assign logo_height_mobile = s.logo_height_mobile | default: settings.logo_height_mobile | default: 36
 -%}
 
-<header class="header" role="banner" {{ section.shopify_attributes }}>
+<header class="header{% if s.sticky_header %} header--sticky{% endif %}" role="banner" {{ section.shopify_attributes }}>
   <div class="container header__inner">
     <button type="button" class="icon-btn menu-toggle" aria-label="Open menu" data-mobile-menu-toggle>
       {% render 'icon', icon: 'menu' %}
