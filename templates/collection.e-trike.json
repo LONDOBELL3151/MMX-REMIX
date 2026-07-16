@@ -253,15 +253,6 @@
     },
     "reliability_trust_grid_rictPT": {
       "type": "reliability-trust-grid",
-      "settings": {
-        "eyebrow": "",
-        "headline": "Premium Quality. Powerful Performance",
-        "bg_color": "#ffc000",
-        "text_color": "#1a1a1a",
-        "accent_color": "#1a1a1a",
-        "padding_top": 80,
-        "padding_bottom": 80
-      },
       "blocks": {
         "feature_effyPw": {
           "type": "feature",
@@ -269,7 +260,7 @@
             "image": "shopify://shop_images/battery_ddf4465d-d64e-47eb-9421-1328a5b72419.png",
             "eyebrow": "UL-Certified SAMSUNG Battery",
             "title": "48V 20AH  85 mi RangeSafer. More Durable. More Reliable",
-            "description": "<p>Powered by a UL-certified 48V 20Ah Samsung battery, it delivers up to 85 miles of range per charge. Safer, more durable, and reliable, it provides dependable power for a worry-free ride.</p>",
+            "description": "<p>Powered by a UL-certified 48V 20Ah<br/>Samsung battery, Maxfoot<br/>electric trike for adults delivers up to 85 miles of range per charge. This<br/>durable battery system is engineered to provide stable, long-term power and<br/>maximum safety.</p>",
             "link": ""
           }
         },
@@ -279,7 +270,7 @@
             "image": "shopify://shop_images/motor.png",
             "eyebrow": "750W Rear Drive Motor",
             "title": "Peak Power 1400W More Power, Better Traction, Superior Stability",
-            "description": "<p>Powered by a 750W rear-drive motor with a 1400W peak, it delivers extra power, superior traction, and rock-solid stability for every ride.</p>",
+            "description": "<p>Equipped with a 750W rear-drive motor<br/>(1400W peak), Maxfoot<br/>electric trike for adults provides steady power for daily riding. It assists<br/>with starting, climbing hills, and carrying cargo, ensuring stability on<br/>various roads.</p>",
             "link": ""
           }
         },
@@ -289,7 +280,7 @@
             "image": "shopify://shop_images/frame_1da39f46-0a63-4466-a128-0c50fb767893.png",
             "eyebrow": "One-Piece Aluminum Alloy Frame",
             "title": "Step-ThruSturdier. Safer. Easier to Ride",
-            "description": "<p>Featuring a one-piece aluminum alloy step-through frame, it delivers sturdier, safer, and easier riding for everyone.</p>",
+            "description": "<p>Featuring a high-strength integrated<br/>step-through frame, the Maxfoot<br/>electric trike delivers effortless, ultra-stable mounting for riders of all<br/>abilities.</p>",
             "link": ""
           }
         }
