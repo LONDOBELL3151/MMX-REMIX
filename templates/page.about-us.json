@@ -20,7 +20,6 @@
     "hero": {
       "type": "about-hero",
       "settings": {
-        "media_image": "",
         "media_video_url": "",
         "eyebrow": "— About MaxFoot",
         "title": "Built for <em>real rides,</em> not showroom rides.",
@@ -38,7 +37,6 @@
           "type": "stat",
           "settings": {
             "number": "6+",
-            "icon": "",
             "label": "Years Building Trikes"
           }
         },
@@ -46,7 +44,6 @@
           "type": "stat",
           "settings": {
             "number": "9+",
-            "icon": "",
             "label": "Models In Lineup"
           }
         },
@@ -54,7 +51,6 @@
           "type": "stat",
           "settings": {
             "number": "85mi",
-            "icon": "",
             "label": "Max Battery Range"
           }
         },
@@ -62,7 +58,6 @@
           "type": "stat",
           "settings": {
             "number": "2yr",
-            "icon": "",
             "label": "Full Warranty"
           }
         }
@@ -77,7 +72,7 @@
         "story_eyebrow": "Our Story",
         "story_title": "Designed for <em>real riders.</em>",
         "story_body": "<p>MaxFoot is changing the face of electric mobility. We build dependable, affordable trikes that fit the way Americans actually ride, so you can keep going without compromise.</p>",
-        "story_image": "",
+        "story_image": "shopify://shop_images/55f3158c63ed72fba43f85791c62ccf6.jpg",
         "story_video_url": "",
         "story_button_label": "See Our Trikes",
         "story_button_link": "/collections/electric-trikes",
@@ -87,9 +82,7 @@
     "founder": {
       "type": "about-founder",
       "settings": {
-        "bg_image": "",
         "bg_video_url": "",
-        "icon": "",
         "eyebrow": "The Founder",
         "title": "Why we started <em>MaxFoot.</em>",
         "body": "<p>In 2019, after watching too many friends and family members choose between overpriced premium trikes and unsafe budget options, we decided to build something different. Not another gadget for tech bros — a real, dependable electric tricycle that an American senior, a working parent, or a weekend rider could actually afford and actually trust.</p><p>Six years later, we're still building every model around the same four commitments: affordable pricing, dependable quality, real-world usability, and continuous improvement. If it doesn't ride well in a grocery store parking lot, it doesn't ship.</p>",
@@ -103,7 +96,6 @@
           "type": "pillar",
           "settings": {
             "number": "01",
-            "icon": "",
             "title": "Affordable Pricing",
             "text": "No markup between the factory and your door. We ship direct, so you skip the middleman markup — and we don't ship a model we wouldn't ride ourselves."
           }
@@ -112,7 +104,6 @@
           "type": "pillar",
           "settings": {
             "number": "02",
-            "icon": "",
             "title": "Dependable Quality",
             "text": "Components that last, not components that look good in ads. UL-certified, Samsung cells, hydraulic brakes on every model."
           }
@@ -121,7 +112,6 @@
           "type": "pillar",
           "settings": {
             "number": "03",
-            "icon": "",
             "title": "Real-World Usability",
             "text": "Trikes designed for grocery runs, family outings, and daily commutes — not for showroom floors."
           }
@@ -130,7 +120,6 @@
           "type": "pillar",
           "settings": {
             "number": "04",
-            "icon": "",
             "title": "Continuous Innovation",
             "text": "We keep listening to riders and keep improving what we ship next. Every generation solves a real problem, not a marketing one."
           }
@@ -199,7 +188,6 @@
       "settings": {
         "background": "soft",
         "layout": "image_right",
-        "media_image": "",
         "media_video_url": "",
         "media_caption": "Built for everyone",
         "media_style": "category_blocks",
@@ -220,7 +208,6 @@
           "type": "pillar",
           "settings": {
             "number": "01",
-            "icon": "",
             "title": "Aluminum Frame",
             "text": "Rugged, durable, and built to last. Engineered to handle real-world loads, day after day."
           }
@@ -229,7 +216,6 @@
           "type": "pillar",
           "settings": {
             "number": "02",
-            "icon": "",
             "title": "750W Rear Motor",
             "text": "Peak power 1100W with a powerful 85 N.m torque. Slip-free performance on hills, gravel, and city streets."
           }
@@ -238,7 +224,6 @@
           "type": "pillar",
           "settings": {
             "number": "03",
-            "icon": "",
             "title": "Samsung Battery",
             "text": "UL-certified 48V 20Ah for up to 85 miles of range on a single charge."
           }
@@ -247,7 +232,6 @@
           "type": "pillar",
           "settings": {
             "number": "04",
-            "icon": "",
             "title": "Rear Dual Disc Brake",
             "text": "Prevent rollover and protect riding safety. Confident stopping power in any condition."
           }
@@ -256,7 +240,6 @@
           "type": "pillar",
           "settings": {
             "number": "05",
-            "icon": "",
             "title": "Rear Differential",
             "text": "Enhanced stability and safer cornering. Available on select models."
           }
@@ -265,7 +248,6 @@
           "type": "pillar",
           "settings": {
             "number": "06",
-            "icon": "",
             "title": "Multifunctional Tail Light",
             "text": "Prompt turn signaling to alert trailing vehicles and ensure safety on every ride."
           }
@@ -294,7 +276,6 @@
             "year": "2019",
             "title": "First Model Launch",
             "text": "We officially launched our brand and introduced our first two wheel drive electric bike. This marked the beginning of our journey in electric mobility and laid the foundation for our continued growth.",
-            "media_image": "",
             "media_video_url": ""
           }
         },
@@ -304,7 +285,6 @@
             "year": "2020-2021",
             "title": "First Electric Tricycle",
             "text": "Recognizing growing demand for stability and everyday practicality, we launched our first electric tricycle for adults and expanded our product direction.",
-            "media_image": "",
             "media_video_url": ""
           }
         },
@@ -314,7 +294,6 @@
             "year": "2021-2023",
             "title": "Monocoque Model Expansion",
             "text": "As R&D capabilities grew, we launched our 20-inch and 24-inch fat tire monocoque electric trikes for adults, improving frame structure, stability, and ride quality.",
-            "media_image": "",
             "media_video_url": ""
           }
         },
@@ -324,7 +303,6 @@
             "year": "2023-2025",
             "title": "Two-Seater Tricycle",
             "text": "Engineered as a reliable electric tricycle for 2 adults, this model expands our lineup, making our trikes perfect for personal transportation and shared family rides.",
-            "media_image": "",
             "media_video_url": ""
           }
         },
@@ -334,7 +312,6 @@
             "year": "2025-Present",
             "title": "Electric Motorcycle Development",
             "text": "The next addition to our lineup, premium electric motorcycles for sale, is coming soon. Stay tuned.",
-            "media_image": "",
             "media_video_url": ""
           }
         }
@@ -357,7 +334,6 @@
         "trust_01": {
           "type": "trust",
           "settings": {
-            "logo": "",
             "title": "UL 2849",
             "subtitle": "Whole eBike certified"
           }
@@ -365,7 +341,6 @@
         "trust_02": {
           "type": "trust",
           "settings": {
-            "logo": "",
             "title": "UL 2271",
             "subtitle": "Battery certified"
           }
@@ -373,7 +348,6 @@
         "trust_03": {
           "type": "trust",
           "settings": {
-            "logo": "",
             "title": "2-Year",
             "subtitle": "Full warranty"
           }
@@ -381,7 +355,6 @@
         "trust_04": {
           "type": "trust",
           "settings": {
-            "logo": "",
             "title": "Direct",
             "subtitle": "From our factory"
           }
@@ -389,7 +362,6 @@
         "trust_05": {
           "type": "trust",
           "settings": {
-            "logo": "",
             "title": "U.S. Warehouse",
             "subtitle": "Fast shipping"
           }
@@ -397,7 +369,6 @@
         "trust_06": {
           "type": "trust",
           "settings": {
-            "logo": "",
             "title": "U.S. Support",
             "subtitle": "Real humans"
           }
@@ -423,7 +394,6 @@
           "type": "box",
           "settings": {
             "variant": "accent",
-            "bg_image": "",
             "bg_video_url": "",
             "title": "Shop Electric Trikes",
             "text": "<p>Free shipping. 14-day trial. 2-year warranty. Nothing to lose.</p>",
@@ -436,7 +406,6 @@
           "type": "box",
           "settings": {
             "variant": "primary",
-            "bg_image": "",
             "bg_video_url": "",
             "title": "Talk To A Human",
             "text": "<p>Real people, real answers. No bots, no scripts, no upsell.</p>",
