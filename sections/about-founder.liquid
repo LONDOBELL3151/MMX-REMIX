@@ -1,0 +1,122 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="about-founder" {{ section.shopify_attributes }}>
+  {%- if s.bg_video_url != blank -%}
+    <div class="about-founder__bg" aria-hidden="true">
+      <video
+        class="about-founder__bg-video"
+        src="{{ s.bg_video_url }}"
+        {% if s.bg_image != blank %}poster="{{ s.bg_image | image_url: width: 1920 }}"{% endif %}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"></video>
+    </div>
+  {%- elsif s.bg_image != blank -%}
+    <div class="about-founder__bg" aria-hidden="true">
+      <img
+        class="about-founder__bg-img"
+        src="{{ s.bg_image | image_url: width: 1920 }}"
+        srcset="{{ s.bg_image | image_url: width: 960 }} 960w, {{ s.bg_image | image_url: width: 1280 }} 1280w, {{ s.bg_image | image_url: width: 1920 }} 1920w, {{ s.bg_image | image_url: width: 2560 }} 2560w"
+        sizes="100vw"
+        alt=""
+        loading="lazy">
+    </div>
+  {%- endif -%}
+
+  <div class="about-founder__overlay" aria-hidden="true"></div>
+
+  <div class="container about-founder__inner">
+    <div class="about-founder__card">
+      {%- if s.icon != blank -%}
+        <div class="about-founder__icon">
+          <img src="{{ s.icon | image_url: width: 120 }}" alt="" loading="lazy" width="60" height="60">
+        </div>
+      {%- endif -%}
+
+      {%- if s.eyebrow != blank -%}
+        <span class="about-founder__eyebrow">{{ s.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if s.title != blank -%}
+        <h2 class="about-founder__title">{{ s.title }}</h2>
+      {%- endif -%}
+
+      {%- if s.body != blank -%}
+        <div class="about-founder__body">{{ s.body }}</div>
+      {%- endif -%}
+
+      {%- if s.signature != blank -%}
+        <div class="about-founder__signature">— {{ s.signature }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Founder",
+  "tag": "section",
+  "class": "section-about-founder",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background (image OR video)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image / video poster",
+      "info": "Recommended: 1920×1080 (16:9), JPG/PNG, <500KB. Used as video poster if video is set, otherwise as full-bleed background image."
+    },
+    {
+      "type": "text",
+      "id": "bg_video_url",
+      "label": "Background video URL (mp4)",
+      "info": "Recommended: 1920×1080 mp4, H.264, <10MB. Direct .mp4 link. Takes priority over image."
+    },
+    {
+      "type": "header",
+      "content": "Floating card content"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Card icon (small)",
+      "info": "Recommended: 60×60 PNG (transparent background), SVG preferred. Sits at the top of the white card."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (small caps)",
+      "default": "The Founder"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Card title (use <em> for highlight)",
+      "default": "Why we started <em>MaxFoot.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Card body",
+      "default": "<p>In 2019, after watching too many friends and family members choose between overpriced premium trikes and unsafe budget options, we decided to build something different. Not another gadget for tech bros — a real, dependable electric tricycle that an American senior, a working parent, or a weekend rider could actually afford and actually trust.</p><p>Six years later, we're still building every model around the same four commitments: affordable pricing, dependable quality, real-world usability, and continuous improvement. If it doesn't ride well in a grocery store parking lot, it doesn't ship.</p>"
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Signature (right-aligned, e.g. — Coulson, Founder)",
+      "default": "Coulson, Founder"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Founder"
+    }
+  ]
+}
+{% endschema %}

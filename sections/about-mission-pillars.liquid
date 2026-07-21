@@ -1,0 +1,104 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="about-mission" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="section__head about-mission__head">
+      <span class="about-mission__eyebrow">{{ s.eyebrow | default: 'What We Stand For' }}</span>
+      <h2 class="section__title">{{ s.heading }}</h2>
+      {%- if s.subheading != blank -%}
+        <p class="section__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="about-mission__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pillar' -%}
+          <div class="about-mission-pillar" {{ block.shopify_attributes }}>
+            <div class="about-mission-pillar__num">{{ block.settings.number | default: forloop.index | prepend: '0' }}</div>
+            <div class="about-mission-pillar__icon">
+              {%- if block.settings.icon != blank -%}
+                <img src="{{ block.settings.icon | image_url: width: 200 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="80" height="80">
+              {%- endif -%}
+            </div>
+            <h3 class="about-mission-pillar__title">{{ block.settings.title }}</h3>
+            <p class="about-mission-pillar__text">{{ block.settings.text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Mission Pillars",
+  "tag": "section",
+  "class": "section-about-mission",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (small caps)",
+      "default": "What We Stand For"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading (use <em> for yellow highlight)",
+      "default": "Four commitments. <em>Every model, every shipment.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every decision we make starts with these four commitments. They're how we balance affordability, safety, and everyday practicality — without cutting corners on the things that matter."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number (leave blank for auto 01, 02...)",
+          "info": "Auto-formatted as 01, 02, ... if left blank"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Recommended: 80×80 PNG (transparent background), SVG preferred. Max 30KB."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Affordable Pricing"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "No markup between the factory and your door. We ship direct, so you skip the middleman markup — and we don't ship a model we wouldn't ride ourselves."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Mission Pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Affordable Pricing", "text": "No markup between the factory and your door. We ship direct, so you skip the middleman markup." } },
+        { "type": "pillar", "settings": { "title": "Dependable Quality", "text": "Components that last, not components that look good in ads. UL-certified, Samsung cells, hydraulic brakes on every model." } },
+        { "type": "pillar", "settings": { "title": "Real-World Usability", "text": "Trikes designed for grocery runs, family outings, and daily commutes — not for showroom floors." } },
+        { "type": "pillar", "settings": { "title": "Continuous Innovation", "text": "We keep listening to riders and keep improving what we ship next. Every generation solves a real problem, not a marketing one." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -2,22 +2,62 @@
   assign s = section.settings
 -%}
 
-<section class="cta-section" {{ section.shopify_attributes }}>
+<section class="about-cta" {{ section.shopify_attributes }}>
   <div class="container">
-    <h2 class="cta-section__title">{{ s.title }}</h2>
-    {%- if s.subtitle != blank -%}
-      <p class="cta-section__sub">{{ s.subtitle }}</p>
-    {%- endif -%}
-    {%- if s.button_1_label != blank or s.button_2_label != blank -%}
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative">
-      {%- if s.button_1_label != blank -%}
-        <a href="{{ s.button_1_link | default: '#' }}" class="btn btn--primary btn--lg">{{ s.button_1_label }}</a>
+    <div class="about-cta__head">
+      {%- if s.eyebrow != blank -%}
+        <span class="about-cta__eyebrow">{{ s.eyebrow }}</span>
       {%- endif -%}
-      {%- if s.button_2_label != blank -%}
-        <a href="{{ s.button_2_link | default: '#' }}" class="btn btn--outline btn--lg">{{ s.button_2_label }}</a>
+      {%- if s.heading != blank -%}
+        <h2 class="about-cta__heading">{{ s.heading }}</h2>
+      {%- endif -%}
+      {%- if s.subtitle != blank -%}
+        <p class="about-cta__sub">{{ s.subtitle }}</p>
       {%- endif -%}
     </div>
-    {%- endif -%}
+
+    <div class="about-cta__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'box' -%}
+          {%- assign idx = forloop.index -%}
+          {%- assign variant = block.settings.variant | default: 'accent' -%}
+          <div class="about-cta-box about-cta-box--{{ variant }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.bg_video_url != blank -%}
+              <video
+                class="about-cta-box__bg"
+                src="{{ block.settings.bg_video_url }}"
+                {% if block.settings.bg_image != blank %}poster="{{ block.settings.bg_image | image_url: width: 1280 }}"{% endif %}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"></video>
+            {%- elsif block.settings.bg_image != blank -%}
+              <img
+                class="about-cta-box__bg"
+                src="{{ block.settings.bg_image | image_url: width: 1280 }}"
+                srcset="{{ block.settings.bg_image | image_url: width: 640 }} 640w, {{ block.settings.bg_image | image_url: width: 960 }} 960w, {{ block.settings.bg_image | image_url: width: 1280 }} 1280w"
+                sizes="(max-width: 990px) 100vw, 50vw"
+                alt=""
+                loading="lazy">
+            {%- endif -%}
+            <div class="about-cta-box__overlay" aria-hidden="true"></div>
+
+            <div class="about-cta-box__content">
+              <h3 class="about-cta-box__title">{{ block.settings.title }}</h3>
+              {%- if block.settings.text != blank -%}
+                <div class="about-cta-box__text">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+                <a href="{{ block.settings.button_link }}" class="about-cta-box__btn" {% if block.settings.button_external %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                  {{ block.settings.button_label }}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 
@@ -28,51 +68,100 @@
   "class": "section-about-cta",
   "settings": [
     {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (small caps)",
+      "default": "Ready to ride?"
+    },
+    {
       "type": "inline_richtext",
-      "id": "title",
-      "label": "Title (use <em> for white highlight)",
-      "default": "Ready to <em>Ride?</em>"
+      "id": "heading",
+      "label": "Heading (use <em> for yellow highlight)",
+      "default": "Two ways to <em>get started.</em>"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "14-day free trial. Free shipping. 2-year warranty. Nothing to lose."
-    },
+      "default": "Browse the lineup, or talk to a real human who rides one."
+    }
+  ],
+  "blocks": [
     {
-      "type": "header",
-      "content": "Primary button (black)"
-    },
-    {
-      "type": "text",
-      "id": "button_1_label",
-      "label": "Label",
-      "default": "Shop Electric Trikes"
-    },
-    {
-      "type": "url",
-      "id": "button_1_link",
-      "label": "Link"
-    },
-    {
-      "type": "header",
-      "content": "Secondary button (outline)"
-    },
-    {
-      "type": "text",
-      "id": "button_2_label",
-      "label": "Label",
-      "default": "Talk To A Human"
-    },
-    {
-      "type": "url",
-      "id": "button_2_link",
-      "label": "Link"
+      "type": "box",
+      "name": "CTA box",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "select",
+          "id": "variant",
+          "label": "Color variant",
+          "options": [
+            { "value": "accent", "label": "Accent (yellow)" },
+            { "value": "primary", "label": "Primary (black)" },
+            { "value": "soft", "label": "Soft (light gray)" }
+          ],
+          "default": "accent"
+        },
+        {
+          "type": "header",
+          "content": "Background (image OR video — optional, leave blank for flat color)"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Background image / video poster",
+          "info": "Recommended: 1280×800 (16:10), JPG/PNG, <300KB. Used as video poster if video is set."
+        },
+        {
+          "type": "text",
+          "id": "bg_video_url",
+          "label": "Background video URL (mp4)",
+          "info": "Recommended: 1280×800 mp4, H.264, <6MB. Direct .mp4 link. Takes priority over image."
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Shop Electric Trikes"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description (short)",
+          "default": "<p>Free shipping, 14-day trial, 2-year warranty. Nothing to lose.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop Trikes"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_external",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "About CTA"
+      "name": "About CTA",
+      "blocks": [
+        { "type": "box", "settings": { "variant": "accent", "title": "Shop Electric Trikes", "text": "<p>Free shipping. 14-day trial. 2-year warranty. Nothing to lose.</p>", "button_label": "Shop Trikes", "button_link": "/collections/electric-trikes" } },
+        { "type": "box", "settings": { "variant": "primary", "title": "Talk To A Human", "text": "<p>Real people, real answers. No bots, no scripts, no upsell.</p>", "button_label": "Contact Us", "button_link": "/pages/contact" } }
+      ]
     }
   ]
 }

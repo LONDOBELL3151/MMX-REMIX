@@ -1,0 +1,96 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="about-trust-strip" {{ section.shopify_attributes }}>
+  <div class="container">
+    {%- if s.heading != blank -%}
+      <div class="about-trust-strip__head">
+        <span class="about-trust-strip__eyebrow">{{ s.eyebrow | default: 'Certified & Trusted' }}</span>
+        <h2 class="about-trust-strip__title">{{ s.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="about-trust-strip__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust' -%}
+          <div class="about-trust-strip__item" {{ block.shopify_attributes }}>
+            <div class="about-trust-strip__logo">
+              {%- if block.settings.logo != blank -%}
+                <img src="{{ block.settings.logo | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="200" height="80">
+              {%- else -%}
+                <span class="about-trust-strip__logo-placeholder" aria-hidden="true">{{ block.settings.title | slice: 0, 1 }}</span>
+              {%- endif -%}
+            </div>
+            <div class="about-trust-strip__label">{{ block.settings.title }}</div>
+            {%- if block.settings.subtitle != blank -%}
+              <div class="about-trust-strip__sub">{{ block.settings.subtitle }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Trust Strip",
+  "tag": "section",
+  "class": "section-about-trust-strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (small caps)",
+      "default": "Certified & Trusted"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading (use <em> for yellow highlight)",
+      "default": "Tested, certified, and <em>backed by warranty.</em>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust badge",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo / icon",
+          "info": "Recommended: 200×80 PNG (transparent background), SVG preferred. Max 50KB. If left blank, the first letter of the title is used as a placeholder."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title (1-2 words)",
+          "default": "UL 2849"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle (short, optional)",
+          "default": "Certified"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Trust Strip",
+      "blocks": [
+        { "type": "trust", "settings": { "title": "UL 2849", "subtitle": "Whole eBike certified" } },
+        { "type": "trust", "settings": { "title": "UL 2271", "subtitle": "Battery certified" } },
+        { "type": "trust", "settings": { "title": "2-Year", "subtitle": "Full warranty" } },
+        { "type": "trust", "settings": { "title": "Direct", "subtitle": "From our factory" } },
+        { "type": "trust", "settings": { "title": "U.S. Warehouse", "subtitle": "Fast shipping" } },
+        { "type": "trust", "settings": { "title": "U.S. Support", "subtitle": "Real humans" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

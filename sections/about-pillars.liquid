@@ -16,7 +16,14 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'pillar' -%}
           <div class="about-pillar" {{ block.shopify_attributes }}>
-            <span class="about-pillar__num">{{ block.settings.number | default: forloop.index | prepend: '0' }}</span>
+            <div class="about-pillar__head">
+              <span class="about-pillar__num">{{ block.settings.number | default: forloop.index | prepend: '0' }}</span>
+              {%- if block.settings.icon != blank -%}
+                <div class="about-pillar__icon">
+                  <img src="{{ block.settings.icon | image_url: width: 200 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="80" height="80">
+                </div>
+              {%- endif -%}
+            </div>
             <h3 class="about-pillar__title">{{ block.settings.title }}</h3>
             <p class="about-pillar__text">{{ block.settings.text }}</p>
           </div>
@@ -63,8 +70,14 @@
         {
           "type": "text",
           "id": "number",
-          "label": "Number (leave blank for auto)",
-          "info": "Will be auto-formatted as 01, 02..."
+          "label": "Number (leave blank for auto 01, 02...)",
+          "info": "Auto-formatted as 01, 02, ... if left blank"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Recommended: 80×80 PNG (transparent background), SVG preferred. Max 30KB."
         },
         {
           "type": "text",

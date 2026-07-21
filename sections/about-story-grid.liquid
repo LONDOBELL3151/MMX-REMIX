@@ -28,27 +28,50 @@
       {%- endif -%}
     </div>
 
-    <div class="story-grid__media about-story-grid__media--{{ media_style }}" {% if media_style == 'year_block' %}style="background:linear-gradient(135deg,var(--color-accent),#cc9900);display:grid;place-items:center;color:var(--color-primary);font-weight:900;font-family:var(--font-display)"{% elsif media_style == 'ul_badge' %}style="background:linear-gradient(135deg,#121212,#2a2a2a);display:grid;place-items:center;padding:40px;position:relative"{% elsif media_style == 'category_blocks' %}style="background:linear-gradient(135deg,#121212,#2a2a2a);display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:24px;aspect-ratio:4/3"{% endif %}>
-      {%- if media_style == 'year_block' -%}
-        <span style="font-size:clamp(80px,10vw,160px);line-height:1;letter-spacing:-.04em">{{ s.media_year | default: '2019' }}</span>
-        <span class="story-grid__media-tag">{{ s.media_tag | default: 'Founded In The U.S.' }}</span>
-      {%- elsif media_style == 'ul_badge' -%}
-        <div style="text-align:center;color:#fff">
-          <div style="font-family:var(--font-display);font-size:clamp(72px,9vw,128px);font-weight:900;color:var(--color-accent);line-height:1;letter-spacing:-.04em">UL</div>
-          <div style="font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);font-weight:900;color:#fff;letter-spacing:-.02em">CERTIFIED</div>
-          <div style="margin-top:16px;font-family:var(--font-mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7)">{{ s.media_subtitle | default: 'Samsung 48V 20Ah Battery' }}</div>
+    <div class="story-grid__media about-story-grid__media about-story-grid__media--{{ media_style }}">
+      {%- if s.media_video_url != blank -%}
+        <video
+          class="about-story-grid__media-video"
+          src="{{ s.media_video_url }}"
+          {% if s.media_image != blank %}poster="{{ s.media_image | image_url: width: 1280 }}"{% endif %}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"></video>
+        {%- if s.media_caption != blank -%}
+          <span class="story-grid__media-tag">{{ s.media_caption }}</span>
+        {%- endif -%}
+      {%- elsif s.media_image != blank -%}
+        <img
+          class="about-story-grid__media-img"
+          src="{{ s.media_image | image_url: width: 1280 }}"
+          srcset="{{ s.media_image | image_url: width: 640 }} 640w, {{ s.media_image | image_url: width: 960 }} 960w, {{ s.media_image | image_url: width: 1280 }} 1280w"
+          sizes="(max-width: 990px) 100vw, 50vw"
+          alt="{{ s.title | escape }}"
+          loading="lazy">
+        {%- if s.media_caption != blank -%}
+          <span class="story-grid__media-tag">{{ s.media_caption }}</span>
+        {%- endif -%}
+      {%- elsif media_style == 'year_block' -%}
+        <div class="about-story-grid__placeholder about-story-grid__placeholder--year">
+          <span class="about-story-grid__placeholder-year">{{ s.media_year | default: '2019' }}</span>
+          <span class="story-grid__media-tag">{{ s.media_tag | default: 'Founded In The U.S.' }}</span>
         </div>
-        <span class="story-grid__media-tag">{{ s.media_tag | default: 'Rigorously Tested' }}</span>
+      {%- elsif media_style == 'ul_badge' -%}
+        <div class="about-story-grid__placeholder about-story-grid__placeholder--ul">
+          <div class="about-story-grid__placeholder-ul-mark">UL</div>
+          <div class="about-story-grid__placeholder-ul-text">CERTIFIED</div>
+          <div class="about-story-grid__placeholder-ul-sub">{{ s.media_subtitle | default: 'Samsung 48V 20Ah Battery' }}</div>
+          <span class="story-grid__media-tag">{{ s.media_tag | default: 'Rigorously Tested' }}</span>
+        </div>
       {%- elsif media_style == 'category_blocks' -%}
-        {%- assign cats = s.media_categories | default: 'Seniors,Families,Commuters,Leisure' | split: ',' -%}
-        {%- for cat in cats -%}
-          {%- assign idx = forloop.index | modulo: 2 -%}
-          {%- if idx == 1 -%}
-            <div style="background:var(--color-accent);border-radius:8px;display:grid;place-items:center;font-family:var(--font-display);font-size:18px;font-weight:900;color:var(--color-primary);text-transform:uppercase">{{ cat | strip }}</div>
-          {%- else -%}
-            <div style="background:#fff;border:2px solid var(--color-accent);border-radius:8px;display:grid;place-items:center;font-family:var(--font-display);font-size:18px;font-weight:900;color:var(--color-primary);text-transform:uppercase">{{ cat | strip }}</div>
-          {%- endif -%}
-        {%- endfor -%}
+        <div class="about-story-grid__placeholder about-story-grid__placeholder--cats">
+          {%- assign cats = s.media_categories | default: 'Seniors,Families,Commuters,Leisure' | split: ',' -%}
+          {%- for cat in cats -%}
+            <div class="about-story-grid__placeholder-cat">{{ cat | strip }}</div>
+          {%- endfor -%}
+        </div>
       {%- endif -%}
     </div>
   </div>
@@ -75,15 +98,37 @@
       "id": "layout",
       "label": "Layout",
       "options": [
-        { "value": "image_left", "label": "Image left, text right" },
-        { "value": "image_right", "label": "Text left, image right" }
+        { "value": "image_left", "label": "Media left, text right" },
+        { "value": "image_right", "label": "Text left, media right" }
       ],
       "default": "image_left"
     },
     {
+      "type": "header",
+      "content": "Media (image OR video — leave both blank for placeholder)"
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Media image / video poster",
+      "info": "Recommended: 1280×960 (4:3), JPG/PNG, <300KB. Used as video poster if video is set, otherwise as full media."
+    },
+    {
+      "type": "text",
+      "id": "media_video_url",
+      "label": "Media video URL (mp4)",
+      "info": "Recommended: 1280×960 mp4, H.264, <6MB. Direct .mp4 link. Takes priority over image. Leave blank to use image."
+    },
+    {
+      "type": "text",
+      "id": "media_caption",
+      "label": "Yellow tag caption (bottom-left of media)",
+      "info": "Optional. Shown over image or video, e.g. 'Rigorously Tested'."
+    },
+    {
       "type": "select",
       "id": "media_style",
-      "label": "Media placeholder style",
+      "label": "Placeholder style (only used when no image/video is set)",
       "options": [
         { "value": "year_block", "label": "Year block (yellow gradient + big year)" },
         { "value": "category_blocks", "label": "Category blocks (2x2 grid)" },
@@ -119,7 +164,7 @@
     },
     {
       "type": "header",
-      "content": "Media placeholder"
+      "content": "Placeholder text (only used when no media uploaded)"
     },
     {
       "type": "text",
@@ -131,7 +176,7 @@
     {
       "type": "text",
       "id": "media_tag",
-      "label": "Yellow tag label (bottom-left)",
+      "label": "Yellow tag label",
       "default": "Founded In The U.S."
     },
     {

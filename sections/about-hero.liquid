@@ -2,30 +2,56 @@
   assign s = section.settings
 -%}
 
-<section class="page-hero" aria-label="{{ s.eyebrow | default: 'About' | escape }}" {{ section.shopify_attributes }}>
-  <div class="container">
-    <div class="page-hero__inner">
-      {%- if s.eyebrow != blank -%}
-        <span class="page-hero__pill">{{ s.eyebrow }}</span>
-      {%- endif -%}
-
-      <h1 class="page-hero__title">{{ s.title }}</h1>
-
-      {%- if s.subtitle != blank -%}
-        <p class="page-hero__sub">{{ s.subtitle }}</p>
-      {%- endif -%}
-
-      {%- assign metas = '' -%}
-      <div class="page-hero__meta">
-        {%- if s.meta_1 != blank -%}<span>{{ s.meta_1 }}</span>{%- endif -%}
-        {%- if s.meta_1 != blank and s.meta_2 != blank -%}<span class="page-hero__meta-dot"></span>{%- endif -%}
-        {%- if s.meta_2 != blank -%}<span>{{ s.meta_2 }}</span>{%- endif -%}
-        {%- if s.meta_2 != blank and s.meta_3 != blank -%}<span class="page-hero__meta-dot"></span>{%- endif -%}
-        {%- if s.meta_3 != blank -%}<span>{{ s.meta_3 }}</span>{%- endif -%}
-        {%- if s.meta_3 != blank and s.meta_4 != blank -%}<span class="page-hero__meta-dot"></span>{%- endif -%}
-        {%- if s.meta_4 != blank -%}<span>{{ s.meta_4 }}</span>{%- endif -%}
-      </div>
+<section class="about-hero{% if s.media_video_url != blank or s.media_image != blank %} about-hero--has-media{% endif %}" aria-label="{{ s.eyebrow | default: 'About' | escape }}" {{ section.shopify_attributes }}>
+  {%- if s.media_video_url != blank -%}
+    <div class="about-hero__media" aria-hidden="true">
+      <video
+        class="about-hero__video"
+        src="{{ s.media_video_url }}"
+        {% if s.media_image != blank %}poster="{{ s.media_image | image_url: width: 1920 }}"{% endif %}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"></video>
     </div>
+  {%- elsif s.media_image != blank -%}
+    <div class="about-hero__media" aria-hidden="true">
+      <img
+        class="about-hero__image"
+        src="{{ s.media_image | image_url: width: 1920 }}"
+        srcset="{{ s.media_image | image_url: width: 960 }} 960w, {{ s.media_image | image_url: width: 1280 }} 1280w, {{ s.media_image | image_url: width: 1920 }} 1920w, {{ s.media_image | image_url: width: 2560 }} 2560w"
+        sizes="100vw"
+        alt=""
+        loading="eager"
+        fetchpriority="high">
+    </div>
+  {%- endif -%}
+
+  <div class="about-hero__overlay" aria-hidden="true"></div>
+
+  <div class="container about-hero__inner">
+    {%- if s.eyebrow != blank -%}
+      <span class="about-hero__pill">{{ s.eyebrow }}</span>
+    {%- endif -%}
+
+    <h1 class="about-hero__title">{{ s.title }}</h1>
+
+    {%- if s.subtitle != blank -%}
+      <p class="about-hero__sub">{{ s.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if s.meta_1 != blank or s.meta_2 != blank or s.meta_3 != blank or s.meta_4 != blank -%}
+    <div class="about-hero__meta">
+      {%- if s.meta_1 != blank -%}<span>{{ s.meta_1 }}</span>{%- endif -%}
+      {%- if s.meta_1 != blank and s.meta_2 != blank -%}<span class="about-hero__meta-dot"></span>{%- endif -%}
+      {%- if s.meta_2 != blank -%}<span>{{ s.meta_2 }}</span>{%- endif -%}
+      {%- if s.meta_2 != blank and s.meta_3 != blank -%}<span class="about-hero__meta-dot"></span>{%- endif -%}
+      {%- if s.meta_3 != blank -%}<span>{{ s.meta_3 }}</span>{%- endif -%}
+      {%- if s.meta_3 != blank and s.meta_4 != blank -%}<span class="about-hero__meta-dot"></span>{%- endif -%}
+      {%- if s.meta_4 != blank -%}<span>{{ s.meta_4 }}</span>{%- endif -%}
+    </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -36,6 +62,26 @@
   "class": "section-about-hero",
   "settings": [
     {
+      "type": "header",
+      "content": "Background media (image OR video)"
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Background image / video poster",
+      "info": "Recommended: 1920×1080 (16:9), JPG/PNG, <500KB. Used as video poster if video is set, otherwise as full-bleed image."
+    },
+    {
+      "type": "text",
+      "id": "media_video_url",
+      "label": "Background video URL (mp4)",
+      "info": "Recommended: 1920×1080 mp4, H.264, <8MB. Direct .mp4 link (Shopify CDN or external). Takes priority over image. Leave blank to use image only."
+    },
+    {
+      "type": "header",
+      "content": "Headline"
+    },
+    {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow (yellow pill)",
@@ -45,13 +91,13 @@
       "type": "inline_richtext",
       "id": "title",
       "label": "Title (use <em> for yellow highlight)",
-      "default": "Premium electric mobility <em>at a price that makes sense.</em>"
+      "default": "Built for <em>real rides,</em> not showroom rides."
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "MaxFoot was founded in 2019 with one belief: U.S. riders shouldn't have to choose between overpriced premium electric trikes and unsafe, low-quality alternatives. We build the balance."
+      "default": "We design electric trikes for the way Americans actually ride — grocery runs, family outings, daily commutes — and ship them direct from our factory, without the premium markup."
     },
     {
       "type": "header",

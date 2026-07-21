@@ -2,7 +2,7 @@
   assign s = section.settings
 -%}
 
-<section class="timeline-section" {{ section.shopify_attributes }}>
+<section class="about-timeline" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="section__head">
       <h2 class="section__title">{{ s.heading | default: 'Brand Evolution.' }}</h2>
@@ -11,14 +11,45 @@
       {%- endif -%}
     </div>
 
-    <ol class="timeline">
+    <ol class="about-timeline__list">
       {%- for block in section.blocks -%}
         {%- if block.type == 'milestone' -%}
-          <li class="timeline__item" {{ block.shopify_attributes }}>
-            <div class="timeline__year">{{ block.settings.year }}</div>
-            <div class="timeline__content">
-              <h3>{{ block.settings.title }}</h3>
-              <p>{{ block.settings.text }}</p>
+          {%- assign idx = forloop.index -%}
+          {%- assign side = idx | modulo: 2 -%}
+          {%- if side == 1 -%}
+            {%- assign layout_mod = 'image-right' -%}
+          {%- else -%}
+            {%- assign layout_mod = 'image-left' -%}
+          {%- endif -%}
+          <li class="about-timeline__item about-timeline__item--{{ layout_mod }}" {{ block.shopify_attributes }}>
+            <div class="about-timeline__copy">
+              <div class="about-timeline__year">{{ block.settings.year }}</div>
+              <h3 class="about-timeline__title">{{ block.settings.title }}</h3>
+              <p class="about-timeline__text">{{ block.settings.text }}</p>
+            </div>
+
+            <div class="about-timeline__media">
+              {%- if block.settings.media_video_url != blank -%}
+                <video
+                  src="{{ block.settings.media_video_url }}"
+                  {% if block.settings.media_image != blank %}poster="{{ block.settings.media_image | image_url: width: 960 }}"{% endif %}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"></video>
+              {%- elsif block.settings.media_image != blank -%}
+                <img
+                  src="{{ block.settings.media_image | image_url: width: 960 }}"
+                  srcset="{{ block.settings.media_image | image_url: width: 480 }} 480w, {{ block.settings.media_image | image_url: width: 768 }} 768w, {{ block.settings.media_image | image_url: width: 960 }} 960w"
+                  sizes="(max-width: 990px) 100vw, 50vw"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy">
+              {%- else -%}
+                <div class="about-timeline__media-placeholder" aria-hidden="true">
+                  <span class="about-timeline__media-year">{{ block.settings.year }}</span>
+                </div>
+              {%- endif -%}
             </div>
           </li>
         {%- endif -%}
@@ -67,7 +98,23 @@
           "type": "textarea",
           "id": "text",
           "label": "Description",
-          "default": "We officially launched our brand and introduced our first two wheel drive electric bike."
+          "default": "We officially launched our brand and introduced our first two wheel drive electric bike. This marked the beginning of our journey in electric mobility and laid the foundation for our continued growth."
+        },
+        {
+          "type": "header",
+          "content": "Media (image OR video — leave both blank for year placeholder)"
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Image / video poster",
+          "info": "Recommended: 800×800 (1:1) or 960×720 (4:3), JPG/PNG, <200KB."
+        },
+        {
+          "type": "text",
+          "id": "media_video_url",
+          "label": "Video URL (mp4)",
+          "info": "Recommended: 800×800 mp4, H.264, <4MB. Direct .mp4 link. Takes priority over image."
         }
       ]
     }
