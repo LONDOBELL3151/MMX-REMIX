@@ -37,29 +37,33 @@
         "stat_01": {
           "type": "stat",
           "settings": {
+            "number": "6+",
             "icon": "",
-            "label": "6+ Years Building Trikes"
+            "label": "Years Building Trikes"
           }
         },
         "stat_02": {
           "type": "stat",
           "settings": {
+            "number": "9+",
             "icon": "",
-            "label": "9+ Models In Lineup"
+            "label": "Models In Lineup"
           }
         },
         "stat_03": {
           "type": "stat",
           "settings": {
+            "number": "85mi",
             "icon": "",
-            "label": "85 mi Max Range"
+            "label": "Max Battery Range"
           }
         },
         "stat_04": {
           "type": "stat",
           "settings": {
+            "number": "2yr",
             "icon": "",
-            "label": "2-Year Warranty"
+            "label": "Full Warranty"
           }
         }
       },
