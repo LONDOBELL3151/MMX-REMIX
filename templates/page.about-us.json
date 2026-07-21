@@ -31,8 +31,8 @@
         "meta_4": "UL Certified"
       }
     },
-    "floating_stats": {
-      "type": "about-floating-stats",
+    "floating_story": {
+      "type": "about-floating-story",
       "blocks": {
         "stat_01": {
           "type": "stat",
@@ -68,7 +68,17 @@
         "stat_02",
         "stat_03",
         "stat_04"
-      ]
+      ],
+      "settings": {
+        "story_eyebrow": "Our Story",
+        "story_title": "Designed for <em>real riders.</em>",
+        "story_body": "<p>MaxFoot is changing the face of electric mobility. We build dependable, affordable trikes that fit the way Americans actually ride, so you can keep going without compromise.</p>",
+        "story_image": "",
+        "story_video_url": "",
+        "story_button_label": "See Our Trikes",
+        "story_button_link": "/collections/electric-trikes",
+        "story_button_external": false
+      }
     },
     "founder": {
       "type": "about-founder",
@@ -480,7 +490,7 @@
   "order": [
     "main",
     "hero",
-    "floating_stats",
+    "floating_story",
     "founder",
     "mission",
     "who_serve",
