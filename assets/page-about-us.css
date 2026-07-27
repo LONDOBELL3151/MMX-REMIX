@@ -230,14 +230,14 @@
   /* eat the card's right + bottom padding so the product can bleed to the card edge */
   margin:0 -48px -56px 0
 }
-.about-floating-story__media img,
-.about-floating-story__media video{
+.about-floating-story__content .about-floating-story__media img,
+.about-floating-story__content .about-floating-story__media video{
   position:absolute;
   bottom:0;
   right:-10%;
-  height:120%;
-  width:auto;
-  max-width:none;
+  height:120% !important;
+  width:auto !important;
+  max-width:none !important;
   object-fit:contain;
   object-position:right bottom;
   display:block
@@ -248,9 +248,9 @@
     height:360px;
     margin:0 -24px -40px 0
   }
-  .about-floating-story__media img,
-  .about-floating-story__media video{
-    height:108%;
+  .about-floating-story__content .about-floating-story__media img,
+  .about-floating-story__content .about-floating-story__media video{
+    height:108% !important;
     right:-6%
   }
 }
