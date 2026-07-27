@@ -233,9 +233,9 @@
 .about-floating-story__content .about-floating-story__media img,
 .about-floating-story__content .about-floating-story__media video{
   position:absolute;
-  bottom:0;
+  bottom:-4%;
   right:0;
-  height:100% !important;
+  height:118% !important;
   width:auto !important;
   max-width:none !important;
   object-fit:contain;
@@ -250,7 +250,7 @@
   }
   .about-floating-story__content .about-floating-story__media img,
   .about-floating-story__content .about-floating-story__media video{
-    height:100% !important;
+    height:110% !important;
   }
 }
 
