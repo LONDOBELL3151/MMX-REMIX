@@ -120,7 +120,7 @@
   padding:48px 48px 56px;
   box-shadow:0 18px 48px -16px rgba(0,0,0,.18);
   border:2px solid var(--color-primary);
-  overflow:hidden
+  overflow:visible
 }
 @media (max-width:990px){
   .about-floating-story__card{padding:32px 24px 40px;border-radius:32px}
@@ -226,15 +226,15 @@
   position:relative;
   align-self:stretch;
   min-height:520px;
-  overflow:hidden;
-  /* eat the card's right + bottom padding so the image can bleed to the card edge */
-  margin:0 -48px -56px 0
+  overflow:visible;
+  /* extend media past container right padding so the bike can break out of the card into the page margin area */
+  margin:0 -200px -56px -48px
 }
 .about-floating-story__content .about-floating-story__media img,
 .about-floating-story__content .about-floating-story__media video{
   position:absolute;
   bottom:0;
-  right:-280px;
+  right:0;
   height:100% !important;
   width:auto !important;
   max-width:none !important;
@@ -246,12 +246,11 @@
   .about-floating-story__media{
     min-height:0;
     height:360px;
-    margin:0 -24px -40px 0
+    margin:0 -24px -40px
   }
   .about-floating-story__content .about-floating-story__media img,
   .about-floating-story__content .about-floating-story__media video{
     height:100% !important;
-    right:-140px
   }
 }
 
