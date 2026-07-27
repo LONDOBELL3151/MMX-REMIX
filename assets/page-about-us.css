@@ -225,7 +225,7 @@
 .about-floating-story__media{
   position:relative;
   align-self:stretch;
-  min-height:520px;
+  min-height:560px;
   overflow:visible;
   /* extend media past container right padding so the bike can break out of the card into the page margin area */
   margin:0 -200px -56px -48px
@@ -235,7 +235,7 @@
   position:absolute;
   bottom:-4%;
   right:0;
-  height:118% !important;
+  height:138% !important;
   width:auto !important;
   max-width:none !important;
   object-fit:contain;
@@ -245,12 +245,12 @@
 @media (max-width:990px){
   .about-floating-story__media{
     min-height:0;
-    height:360px;
+    height:380px;
     margin:0 -24px -40px
   }
   .about-floating-story__content .about-floating-story__media img,
   .about-floating-story__content .about-floating-story__media video{
-    height:110% !important;
+    height:118% !important;
   }
 }
 
