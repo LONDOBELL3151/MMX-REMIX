@@ -227,15 +227,15 @@
   align-self:stretch;
   min-height:520px;
   overflow:hidden;
-  /* eat the card's right + bottom padding so the product can bleed to the card edge */
+  /* eat the card's right + bottom padding so the image can bleed to the card edge */
   margin:0 -48px -56px 0
 }
 .about-floating-story__content .about-floating-story__media img,
 .about-floating-story__content .about-floating-story__media video{
   position:absolute;
   bottom:0;
-  right:-10%;
-  height:120% !important;
+  right:-280px;
+  height:100% !important;
   width:auto !important;
   max-width:none !important;
   object-fit:contain;
@@ -250,8 +250,8 @@
   }
   .about-floating-story__content .about-floating-story__media img,
   .about-floating-story__content .about-floating-story__media video{
-    height:108% !important;
-    right:-6%
+    height:100% !important;
+    right:-140px
   }
 }
 
