@@ -225,7 +225,7 @@
 .about-floating-story__media{
   position:relative;
   align-self:stretch;
-  min-height:480px;
+  min-height:520px;
   /* eat the card's right + top + bottom padding so the product can bleed to the card edge */
   margin:-48px -48px -56px 0
 }
@@ -233,11 +233,11 @@
 .about-floating-story__media video{
   position:absolute;
   top:50%;
-  right:-4%;
+  right:-12%;
   transform:translateY(-50%);
-  height:104%;
+  height:128%;
   width:auto;
-  max-width:130%;
+  max-width:none;
   object-fit:contain;
   object-position:right center;
   display:block
@@ -245,13 +245,13 @@
 @media (max-width:990px){
   .about-floating-story__media{
     min-height:0;
-    height:340px;
+    height:360px;
     margin:0 -24px -40px 0
   }
   .about-floating-story__media img,
   .about-floating-story__media video{
-    height:100%;
-    max-width:120%
+    height:112%;
+    right:-8%
   }
 }
 
