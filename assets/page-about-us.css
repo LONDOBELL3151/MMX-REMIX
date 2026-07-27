@@ -228,13 +228,13 @@
   min-height:560px;
   overflow:visible;
   /* extend media past container right padding so the bike can break out of the card into the page margin area */
-  margin:0 -200px -56px -48px
+  margin:0 -200px -56px 0
 }
 .about-floating-story__content .about-floating-story__media img,
 .about-floating-story__content .about-floating-story__media video{
   position:absolute;
   bottom:-4%;
-  right:0;
+  right:-60px;
   height:138% !important;
   width:auto !important;
   max-width:none !important;
