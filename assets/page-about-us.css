@@ -698,3 +698,64 @@
   .about-cta-box{padding:28px 20px;min-height:240px}
   .about-cta-box__title{font-size:24px}
 }
+
+/* ===================================================================
+   ABOUT MISSION — Centered mission statement (image optional)
+   =================================================================== */
+.about-mission{
+  padding:96px 0 80px;
+  background:var(--color-bg)
+}
+@media (max-width:990px){
+  .about-mission{padding:64px 0 56px}
+}
+.about-mission__wrap{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:64px;
+  align-items:center;
+  max-width:1180px;
+  margin:0 auto
+}
+@media (max-width:990px){
+  .about-mission__wrap{grid-template-columns:1fr;gap:36px}
+}
+.about-mission__wrap--reverse > .about-mission__copy{order:2}
+@media (max-width:990px){
+  .about-mission__wrap--reverse > .about-mission__copy{order:0}
+}
+.about-mission__eyebrow{
+  display:inline-block;
+  font-family:var(--font-mono);font-size:12px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--color-accent-dark);margin-bottom:14px
+}
+.about-mission__heading{
+  font-size:clamp(28px,3.8vw,48px);
+  font-weight:900;line-height:1.08;
+  letter-spacing:-.02em;
+  text-transform:none;
+  color:var(--color-primary);
+  margin:0 0 20px
+}
+.about-mission__heading em{font-style:normal;color:var(--color-accent)}
+.about-mission__body{font-size:17px;line-height:1.7;color:var(--color-text)}
+.about-mission__body p{margin:0 0 14px}
+.about-mission__body p:last-child{margin-bottom:0}
+.about-mission__media{
+  position:relative;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  aspect-ratio:4/3;
+  border:2px solid var(--color-primary);
+  background:linear-gradient(135deg,var(--color-primary),#2a2a2a)
+}
+.about-mission__media img,
+.about-mission__media video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;display:block
+}
+@media (max-width:990px){
+  .about-mission__media{aspect-ratio:16/10}
+}

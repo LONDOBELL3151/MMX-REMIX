@@ -1,0 +1,108 @@
+{%- liquid
+  assign s = section.settings
+  assign layout = s.layout | default: 'image_right'
+-%}
+
+<section class="about-mission" {{ section.shopify_attributes }}>
+  <div class="container about-mission__wrap{% if layout == 'image_left' %} about-mission__wrap--reverse{% endif %}">
+    <div class="about-mission__copy">
+      {%- if s.eyebrow != blank -%}
+        <span class="about-mission__eyebrow">{{ s.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if s.heading != blank -%}
+        <h2 class="about-mission__heading">{{ s.heading | newline_to_br }}</h2>
+      {%- endif -%}
+
+      {%- if s.body != blank -%}
+        <div class="about-mission__body">{{ s.body }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if s.media_image != blank or s.media_video_url != blank -%}
+    <div class="about-mission__media">
+      {%- if s.media_video_url != blank -%}
+        <video
+          src="{{ s.media_video_url }}"
+          {% if s.media_image != blank %}poster="{{ s.media_image | image_url: width: 1280 }}"{% endif %}
+          autoplay muted loop playsinline preload="metadata"></video>
+      {%- elsif s.media_image != blank -%}
+        <img
+          src="{{ s.media_image | image_url: width: 1280 }}"
+          srcset="{{ s.media_image | image_url: width: 640 }} 640w, {{ s.media_image | image_url: width: 960 }} 960w, {{ s.media_image | image_url: width: 1280 }} 1280w"
+          sizes="(max-width: 990px) 100vw, 50vw"
+          alt="{{ s.heading | strip_html | escape }}"
+          loading="lazy">
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Mission",
+  "tag": "section",
+  "class": "section-about-mission",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Mission statement"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Big statement shown in display font."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Optional media (image OR video)"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "image_right", "label": "Media on right" },
+        { "value": "image_left", "label": "Media on left" }
+      ],
+      "default": "image_right"
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Mission image / video poster",
+      "info": "Recommended: 1280x960 (4:3) or 1280x720 (16:9). PNG/JPG, <300KB."
+    },
+    {
+      "type": "text",
+      "id": "media_video_url",
+      "label": "Mission video URL (mp4)",
+      "info": "Recommended: 1280x720 mp4, H.264, <6MB."
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Mission",
+      "settings": {
+        "eyebrow": "Our Mission",
+        "heading": "Provide more U.S. riders with electric mobility that makes sense.",
+        "body": "<p>From seniors reclaiming their daily independence to families exploring together, we build electric trikes that solve real problems — at honest prices.</p>",
+        "layout": "image_right"
+      }
+    }
+  ]
+}
+{% endschema %}

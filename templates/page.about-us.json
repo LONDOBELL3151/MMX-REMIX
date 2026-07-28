@@ -21,9 +21,9 @@
       "type": "about-hero",
       "settings": {
         "media_video_url": "",
-        "eyebrow": "— About MaxFoot",
-        "title": "Built for <em>real rides,</em> not showroom rides.",
-        "subtitle": "We design electric trikes for the way Americans actually ride — grocery runs, family outings, daily commutes — and ship them direct from our factory, without the premium markup.",
+        "eyebrow": "— Our Philosophy",
+        "title": "Honest pricing. <em>Real-world</em> usability.",
+        "subtitle": "We are guided by honest pricing, dependable quality, real-world usability, and relentless innovation.",
         "meta_1": "Founded 2019",
         "meta_2": "U.S. Focused",
         "meta_3": "Direct From Factory",
@@ -69,9 +69,9 @@
         "stat_04"
       ],
       "settings": {
-        "story_eyebrow": "Our Story",
-        "story_title": "Designed for <em>real riders.</em>",
-        "story_body": "<p>MaxFoot is changing the face of electric mobility. We build dependable, affordable trikes that fit the way Americans actually ride, so you can keep going without compromise.</p>",
+        "story_eyebrow": "Who We Are",
+        "story_title": "Who is <em>MaxFoot?</em>",
+        "story_body": "<p>Founded in 2019, MaxFoot was born from a simple belief: everyone deserves the freedom of the open road. Recognizing a frustrating gap in the U.S. market between overpriced luxury trikes and low-quality alternatives, we stepped in to bridge the gap. By blending uncompromising safety, everyday practicality, and honest pricing, we engineer the best electric tricycles for adults.</p>",
         "story_image": "shopify://shop_images/33t.png",
         "story_video_url": "",
         "story_button_label": "See Our Trikes",
@@ -83,10 +83,10 @@
       "type": "about-founder",
       "settings": {
         "bg_video_url": "",
-        "eyebrow": "The Founder",
-        "title": "Why we started <em>MaxFoot.</em>",
-        "body": "<p>In 2019, after watching too many friends and family members choose between overpriced premium trikes and unsafe budget options, we decided to build something different. Not another gadget for tech bros — a real, dependable electric tricycle that an American senior, a working parent, or a weekend rider could actually afford and actually trust.</p><p>Six years later, we're still building every model around the same four commitments: affordable pricing, dependable quality, real-world usability, and continuous improvement. If it doesn't ride well in a grocery store parking lot, it doesn't ship.</p>",
-        "signature": "Coulson, Founder"
+        "eyebrow": "From Our Team",
+        "title": "A message <em>from our team.</em>",
+        "body": "<p>We didn't just want to engineer the best electric tricycle for adults; we wanted to bring back the pure joy of riding. Whether you're upgrading your daily commute or looking for the perfect electric tricycle for 2 adults to share with a loved one, we build every vehicle with your safety and freedom in mind.</p><p>We believe thoughtful product development is what makes safer and more accessible mobility possible for more people.</p>",
+        "signature": "From the MaxFoot Team"
       }
     },
     "mission": {
@@ -133,8 +133,8 @@
       ],
       "settings": {
         "eyebrow": "What We Stand For",
-        "heading": "Four commitments. <em>Every model, every shipment.</em>",
-        "subheading": "Every decision we make starts with these four commitments. They're how we balance affordability, safety, and everyday practicality — without cutting corners on the things that matter."
+        "heading": "Four commitments. <em>Real riders, every day.</em>",
+        "subheading": "Honest pricing, dependable quality, real-world usability, and relentless innovation — the four commitments that shape every model we ship."
       }
     },
     "who_serve": {
@@ -191,9 +191,9 @@
         "media_video_url": "",
         "media_caption": "Built for everyone",
         "media_style": "category_blocks",
-        "eyebrow": "Who We Serve",
+        "eyebrow": "Who We Serve & What We Solve",
         "title": "Built for <em>every kind of rider.</em>",
-        "lead_text": "<p>Our products are designed for seniors, families, commuters, and leisure riders, helping solve the everyday challenges that keep people from riding more.</p>",
+        "lead_text": "<p>Our vehicles are mindfully designed for seniors, active families, daily commuters, and leisure riders. We focus on solving the real challenges that keep you from riding: overcoming a lack of stability, removing physical discomfort, eliminating range anxiety, and offsetting the rising cost of everyday transportation.</p>",
         "body_text": "",
         "media_year": "",
         "media_tag": "Built for everyone",
@@ -270,6 +270,15 @@
     "evolution": {
       "type": "about-timeline",
       "blocks": {
+        "research": {
+          "type": "milestone",
+          "settings": {
+            "year": "Pre-2019",
+            "title": "Market Research",
+            "text": "Before the brand was officially established, we conducted extensive market research to better understand the real mobility needs of different riders in everyday life. By analyzing customer feedback, usage scenarios, and industry trends, we gradually defined our future direction.",
+            "media_video_url": ""
+          }
+        },
         "year_2019": {
           "type": "milestone",
           "settings": {
@@ -284,7 +293,7 @@
           "settings": {
             "year": "2020-2021",
             "title": "First Electric Tricycle",
-            "text": "Recognizing growing demand for stability and everyday practicality, we launched our first electric tricycle for adults and expanded our product direction.",
+            "text": "As we continued to listen to customer feedback and observe market trends, we recognized a growing demand for electric tricycles, especially among riders who valued greater stability and everyday practicality. During this stage, we launched our first electric tricycle for adults and expanded our product direction.",
             "media_video_url": ""
           }
         },
@@ -293,7 +302,7 @@
           "settings": {
             "year": "2021-2023",
             "title": "Monocoque Model Expansion",
-            "text": "As R&D capabilities grew, we launched our 20-inch and 24-inch fat tire monocoque electric trikes for adults, improving frame structure, stability, and ride quality.",
+            "text": "As our R&D capabilities grew, we launched our 20-inch and 24-inch fat tire monocoque electric trikes for adults. These two models further improved frame structure, overall stability, and ride quality, while making our product lineup more complete.",
             "media_video_url": ""
           }
         },
@@ -301,8 +310,8 @@
           "type": "milestone",
           "settings": {
             "year": "2023-2025",
-            "title": "Two-Seater Tricycle",
-            "text": "Engineered as a reliable electric tricycle for 2 adults, this model expands our lineup, making our trikes perfect for personal transportation and shared family rides.",
+            "title": "Two-Seater Tricycle Launch",
+            "text": "To meet the needs of family travel, we introduced our electric tricycle for adults with passenger seat. Engineered as a reliable electric tricycle for 2 adults, this model expands the practicality of our lineup, making our trikes perfect not only for personal transportation but also for family and shared rides.",
             "media_video_url": ""
           }
         },
@@ -311,12 +320,13 @@
           "settings": {
             "year": "2025-Present",
             "title": "Electric Motorcycle Development",
-            "text": "The next addition to our lineup, premium electric motorcycles for sale, is coming soon. Stay tuned.",
+            "text": "We always focus on what our users truly need. Every step forward stems from our commitment to creating the best electric tricycle for adults and developing products that genuinely serve our users. The next addition to our lineup, premium electric motorcycles for sale, is coming soon—stay tuned!",
             "media_video_url": ""
           }
         }
       },
       "block_order": [
+        "research",
         "year_2019",
         "year_2020",
         "year_2021",
@@ -324,8 +334,8 @@
         "year_2025"
       ],
       "settings": {
-        "heading": "Brand <em>Evolution.</em>",
-        "subheading": "From a single model to a full lineup of U.S.-focused electric trikes, in six years."
+        "heading": "The Evolution of <em>Our Ride.</em>",
+        "subheading": "From market research to a full lineup of U.S.-focused electric mobility — one step at a time."
       }
     },
     "trust": {
@@ -383,8 +393,8 @@
         "trust_06"
       ],
       "settings": {
-        "eyebrow": "Certified & Trusted",
-        "heading": "Tested, certified, and <em>backed by warranty.</em>"
+        "eyebrow": "Safety First",
+        "heading": "Certifications and <em>Compliance.</em>"
       }
     },
     "cta": {
@@ -458,18 +468,31 @@
       "settings": {
         "variant": "dark"
       }
+    },
+    "mission_text": {
+      "type": "about-mission",
+      "disabled": false,
+      "settings": {
+        "eyebrow": "Our Mission",
+        "heading": "Provide more U.S. riders with high-quality electric mobility solutions at a price that makes sense.",
+        "body": "<p>From seniors reclaiming their daily independence to families exploring together, we build electric trikes that solve real problems — at honest prices.</p>",
+        "layout": "image_right",
+        "media_image": "",
+        "media_video_url": ""
+      }
     }
   },
   "order": [
     "main",
     "hero",
     "floating_story",
-    "founder",
     "mission",
     "who_serve",
+    "founder",
+    "mission_text",
     "quality",
-    "evolution",
     "trust",
+    "evolution",
     "cta",
     "newsletter"
   ]
