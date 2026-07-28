@@ -79,16 +79,6 @@
         "story_button_external": false
       }
     },
-    "founder": {
-      "type": "about-founder",
-      "settings": {
-        "bg_video_url": "",
-        "eyebrow": "From Our Team",
-        "title": "A message <em>from our team.</em>",
-        "body": "<p>We didn't just want to engineer the best electric tricycle for adults; we wanted to bring back the pure joy of riding. Whether you're upgrading your daily commute or looking for the perfect electric tricycle for 2 adults to share with a loved one, we build every vehicle with your safety and freedom in mind.</p><p>We believe thoughtful product development is what makes safer and more accessible mobility possible for more people.</p>",
-        "signature": "From the MaxFoot Team"
-      }
-    },
     "who_serve": {
       "type": "about-story-grid",
       "blocks": {
@@ -146,11 +136,31 @@
         "eyebrow": "Who We Serve & What We Solve",
         "title": "Built for <em>every kind of rider.</em>",
         "lead_text": "<p>Our vehicles are mindfully designed for seniors, active families, daily commuters, and leisure riders. We focus on solving the real challenges that keep you from riding: overcoming a lack of stability, removing physical discomfort, eliminating range anxiety, and offsetting the rising cost of everyday transportation.</p>",
-        "body_text": "<h3>Design and Development</h3><p>Our products are conceptualized by our in-house R&amp;D team and crafted in partnership with world-class, trusted manufacturing facilities. This hands-on approach ensures rigorous quality control from the initial sketch to the final assembly line.</p>",
+        "body_text": "<h3>Design and Development</h3><p>Our products are conceptualized by our in-house R&D team and crafted in partnership with world-class, trusted manufacturing facilities. This hands-on approach ensures rigorous quality control from the initial sketch to the final assembly line.</p>",
         "media_year": "",
         "media_tag": "Built for everyone",
         "media_subtitle": "",
         "media_categories": "Seniors,Families,Commuters,Leisure"
+      }
+    },
+    "founder": {
+      "type": "about-founder",
+      "settings": {
+        "bg_video_url": "",
+        "eyebrow": "From Our Team",
+        "title": "A message <em>from our team.</em>",
+        "body": "<p>We didn't just want to engineer the best electric tricycle for adults; we wanted to bring back the pure joy of riding. Whether you're upgrading your daily commute or looking for the perfect electric tricycle for 2 adults to share with a loved one, we build every vehicle with your safety and freedom in mind.</p><p>We believe thoughtful product development is what makes safer and more accessible mobility possible for more people.</p>",
+        "signature": "From the MaxFoot Team"
+      }
+    },
+    "mission_text": {
+      "type": "about-mission",
+      "settings": {
+        "eyebrow": "Our Mission",
+        "heading": "Provide more U.S. riders with\nelectric mobility\nthat makes sense.",
+        "body": "<p>From seniors reclaiming their daily independence to families exploring together — we build electric trikes that solve real problems at honest prices.</p>",
+        "closing": "This is what keeps us moving forward.",
+        "bg_video_url": ""
       }
     },
     "quality": {
@@ -217,6 +227,65 @@
         "heading": "Built For Quality & Safety.",
         "subheading": "Every detail engineered to elevate your ride comfort and ensure maximum safety.",
         "columns": "3"
+      }
+    },
+    "trust": {
+      "type": "about-trust-strip",
+      "blocks": {
+        "trust_01": {
+          "type": "trust",
+          "settings": {
+            "title": "UL 2849",
+            "subtitle": "Whole eBike certified"
+          }
+        },
+        "trust_02": {
+          "type": "trust",
+          "settings": {
+            "title": "UL 2271",
+            "subtitle": "Battery certified"
+          }
+        },
+        "trust_03": {
+          "type": "trust",
+          "settings": {
+            "title": "2-Year",
+            "subtitle": "Full warranty"
+          }
+        },
+        "trust_04": {
+          "type": "trust",
+          "settings": {
+            "title": "Direct",
+            "subtitle": "From our factory"
+          }
+        },
+        "trust_05": {
+          "type": "trust",
+          "settings": {
+            "title": "U.S. Warehouse",
+            "subtitle": "Fast shipping"
+          }
+        },
+        "trust_06": {
+          "type": "trust",
+          "settings": {
+            "title": "U.S. Support",
+            "subtitle": "Real humans"
+          }
+        }
+      },
+      "block_order": [
+        "trust_01",
+        "trust_02",
+        "trust_03",
+        "trust_04",
+        "trust_05",
+        "trust_06"
+      ],
+      "settings": {
+        "eyebrow": "Safety First",
+        "heading": "Certifications and <em>Compliance.</em>"
       }
     },
     "evolution": {
@@ -290,65 +359,6 @@
         "subheading": "From market research to a full lineup of U.S.-focused electric mobility — one step at a time."
       }
     },
-    "trust": {
-      "type": "about-trust-strip",
-      "blocks": {
-        "trust_01": {
-          "type": "trust",
-          "settings": {
-            "title": "UL 2849",
-            "subtitle": "Whole eBike certified"
-          }
-        },
-        "trust_02": {
-          "type": "trust",
-          "settings": {
-            "title": "UL 2271",
-            "subtitle": "Battery certified"
-          }
-        },
-        "trust_03": {
-          "type": "trust",
-          "settings": {
-            "title": "2-Year",
-            "subtitle": "Full warranty"
-          }
-        },
-        "trust_04": {
-          "type": "trust",
-          "settings": {
-            "title": "Direct",
-            "subtitle": "From our factory"
-          }
-        },
-        "trust_05": {
-          "type": "trust",
-          "settings": {
-            "title": "U.S. Warehouse",
-            "subtitle": "Fast shipping"
-          }
-        },
-        "trust_06": {
-          "type": "trust",
-          "settings": {
-            "title": "U.S. Support",
-            "subtitle": "Real humans"
-          }
-        }
-      },
-      "block_order": [
-        "trust_01",
-        "trust_02",
-        "trust_03",
-        "trust_04",
-        "trust_05",
-        "trust_06"
-      ],
-      "settings": {
-        "eyebrow": "Safety First",
-        "heading": "Certifications and <em>Compliance.</em>"
-      }
-    },
     "cta": {
       "type": "about-cta",
       "blocks": {
@@ -420,29 +430,17 @@
       "settings": {
         "variant": "dark"
       }
-    },
-    "mission_text": {
-      "type": "about-mission",
-      "disabled": false,
-      "settings": {
-        "eyebrow": "Our Mission",
-        "heading": "Provide more U.S. riders with\nelectric mobility\nthat makes sense.",
-        "body": "<p>From seniors reclaiming their daily independence to families exploring together — we build electric trikes that solve real problems at honest prices.</p>",
-        "closing": "This is what keeps us moving forward.",
-        "bg_image": "",
-        "bg_video_url": ""
-      }
     }
   },
   "order": [
     "main",
     "hero",
     "floating_story",
-    "who_serve",
     "founder",
     "mission_text",
     "quality",
     "trust",
+    "who_serve",
     "evolution",
     "cta",
     "newsletter"
