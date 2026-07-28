@@ -81,50 +81,13 @@
     },
     "founder": {
       "type": "about-founder",
-      "blocks": {
-        "slogan_01": {
-          "type": "slogan",
-          "settings": {
-            "slogan": "Honest pricing.\nReal rides.",
-            "bg_image": "",
-            "content_title": "From Our Team",
-            "content_body": "<p>At MaxFoot, every decision starts with the rider — not the showroom. We design electric trikes for grocery runs, family outings, and daily commutes, and we ship them direct from our factory so you skip the premium markup.</p>"
-          }
-        },
-        "slogan_02": {
-          "type": "slogan",
-          "settings": {
-            "slogan": "Built for real\nriders.",
-            "bg_image": "",
-            "content_title": "Designed Around You",
-            "content_body": "<p>Stability, comfort, and storage for seniors. Two-seater options for families. Practical range and weather-ready components for commuters. We engineer every model around the people who actually use it — not around a marketing pitch.</p>"
-          }
-        },
-        "slogan_03": {
-          "type": "slogan",
-          "settings": {
-            "slogan": "Engineered for\neveryday.",
-            "bg_image": "",
-            "content_title": "Quality You Can Trust",
-            "content_body": "<p>UL-certified Samsung batteries, 750W motors tested on real hills, hydraulic brakes, and a 2-year warranty on every model. If it doesn't ride well in a grocery store parking lot, it doesn't ship.</p>"
-          }
-        },
-        "slogan_04": {
-          "type": "slogan",
-          "settings": {
-            "slogan": "Community on\nthree wheels.",
-            "bg_image": "",
-            "content_title": "From the MaxFoot Family",
-            "content_body": "<p>We didn't just want to engineer the best electric tricycle for adults — we wanted to bring back the pure joy of riding. Whether you're upgrading your daily commute or looking for the perfect electric tricycle for 2 adults to share with a loved one, we build every vehicle with your safety and freedom in mind.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "slogan_01",
-        "slogan_02",
-        "slogan_03",
-        "slogan_04"
-      ]
+      "settings": {
+        "bg_video_url": "",
+        "eyebrow": "From Our Team",
+        "title": "A message <em>from our team.</em>",
+        "body": "<p>We didn't just want to engineer the best electric tricycle for adults; we wanted to bring back the pure joy of riding. Whether you're upgrading your daily commute or looking for the perfect electric tricycle for 2 adults to share with a loved one, we build every vehicle with your safety and freedom in mind.</p><p>We believe thoughtful product development is what makes safer and more accessible mobility possible for more people.</p>",
+        "signature": "From the MaxFoot Team"
+      }
     },
     "who_serve": {
       "type": "about-story-grid",

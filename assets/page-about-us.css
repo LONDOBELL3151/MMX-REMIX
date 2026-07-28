@@ -255,85 +255,61 @@
 }
 
 /* ===================================================================
-   3. ABOUT FOUNDER — mokwheel-style stacked full-screen slogan blocks
-   Each slogan block: optional dark bg image, huge centered headline.
-   Followed by a white content block (heading + body).
+   3. ABOUT FOUNDER — lectric-style full-bleed banner + left text card
+   Dark bg image/video, gradient overlay darkens the left for the white card,
+   a white card sits on the left side carrying eyebrow + title + body + signature.
    =================================================================== */
-.about-founder{position:relative;background:var(--color-bg)}
-.about-founder__inner{display:flex;flex-direction:column}
-/* --- slogan block (the big H1) --- */
-.about-founder__slogan{
+.about-founder{
   position:relative;
-  display:flex;align-items:center;justify-content:center;
-  min-height:60vh;
-  padding:80px 0;
   background:var(--color-primary);
-  color:#fff;
-  overflow:hidden
+  overflow:hidden;
+  padding:96px 0 80px
 }
 @media (min-width:990px){
-  .about-founder__slogan{min-height:75vh;padding:120px 0}
+  .about-founder{padding:128px 0 112px;min-height:720px;display:flex;align-items:center}
 }
-.about-founder__slogan-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.about-founder__slogan-bg img{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;display:block
-}
-.about-founder__slogan-overlay{
+.about-founder__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.about-founder__bg-video,
+.about-founder__bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.about-founder__overlay{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.4) 60%,rgba(0,0,0,.7) 100%);
+  background:linear-gradient(100deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.45) 55%,rgba(0,0,0,.15) 100%);
   pointer-events:none
 }
-.about-founder__slogan-inner{
-  position:relative;z-index:2;
-  text-align:center
-}
-.about-founder__slogan-h{
-  font-family:var(--font-display);
-  font-weight:900;
-  font-size:clamp(48px,8vw,128px);
-  line-height:.95;
-  letter-spacing:-.03em;
-  text-transform:uppercase;
-  color:#fff;
-  margin:0;
-  max-width:14ch;
-  margin-left:auto;margin-right:auto
-}
-@media (min-width:990px){
-  .about-founder__slogan-h{font-size:clamp(72px,9vw,144px)}
-}
-/* --- content block (after each slogan) --- */
-.about-founder__content{
+.about-founder__inner{position:relative;z-index:2;display:flex;justify-content:flex-start;width:100%}
+.about-founder__card{
   background:#fff;
-  padding:80px 0;
-  text-align:center
+  border:2px solid var(--color-primary);
+  border-radius:24px;
+  padding:48px 44px;
+  max-width:560px;
+  width:100%
 }
-@media (min-width:990px){
-  .about-founder__content{padding:112px 0}
+@media (max-width:990px){
+  .about-founder__card{padding:32px 28px;border-radius:18px}
 }
-.about-founder__content-inner{
-  max-width:760px;
-  margin:0 auto
+.about-founder__icon{margin-bottom:20px}
+.about-founder__icon img{width:60px;height:60px;display:block;object-fit:contain}
+.about-founder__eyebrow{
+  display:inline-block;
+  font-family:var(--font-mono);font-size:12px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--color-accent-dark);margin-bottom:14px
 }
-.about-founder__content-title{
-  font-family:var(--font-display);
-  font-weight:900;
-  font-size:clamp(28px,3.5vw,44px);
-  line-height:1.1;
-  letter-spacing:-.02em;
-  text-transform:uppercase;
-  color:var(--color-primary);
-  margin:0 0 20px
+.about-founder__title{
+  font-size:clamp(28px,3.6vw,44px);
+  font-weight:900;line-height:1.05;margin:0 0 20px;
+  letter-spacing:-.02em;text-transform:uppercase;color:var(--color-primary)
 }
-.about-founder__content-body{
-  font-size:17px;
-  line-height:1.7;
-  color:var(--color-text)
+.about-founder__title em{font-style:normal;color:var(--color-accent)}
+.about-founder__body{font-size:17px;line-height:1.7;color:var(--color-text)}
+.about-founder__body p{margin:0 0 14px}
+.about-founder__body p:last-child{margin-bottom:0}
+.about-founder__signature{
+  margin-top:24px;padding-top:20px;border-top:2px solid var(--color-primary);
+  font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;
+  color:var(--color-text-soft);text-align:right;font-style:italic
 }
-.about-founder__content-body p{margin:0 0 14px}
-.about-founder__content-body p:last-child{margin-bottom:0}
 
 /* ===================================================================
    4. MISSION PILLARS — 4 commitments grid
