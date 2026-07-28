@@ -1,108 +1,49 @@
 {%- liquid
   assign s = section.settings
-  assign layout = s.layout | default: 'image_right'
 -%}
 
-<section class="about-mission" {{ section.shopify_attributes }}>
-  <div class="container about-mission__wrap{% if layout == 'image_left' %} about-mission__wrap--reverse{% endif %}">
-    <div class="about-mission__copy">
-      {%- if s.eyebrow != blank -%}
-        <span class="about-mission__eyebrow">{{ s.eyebrow }}</span>
-      {%- endif -%}
-
-      {%- if s.heading != blank -%}
-        <h2 class="about-mission__heading">{{ s.heading | newline_to_br }}</h2>
-      {%- endif -%}
-
-      {%- if s.body != blank -%}
-        <div class="about-mission__body">{{ s.body }}</div>
-      {%- endif -%}
+<section class="about-mission{% if s.bg_image == blank and s.bg_video_url == blank %} about-mission--no-bg{% endif %}" {{ section.shopify_attributes }}>
+  {%- if s.bg_video_url != blank -%}
+    <div class="about-mission__bg" aria-hidden="true">
+      <video
+        src="{{ s.bg_video_url }}"
+        {% if s.bg_image != blank %}poster="{{ s.bg_image | image_url: width: 1920 }}"{% endif %}
+        autoplay muted loop playsinline preload="metadata"></video>
     </div>
-
-    {%- if s.media_image != blank or s.media_video_url != blank -%}
-    <div class="about-mission__media">
-      {%- if s.media_video_url != blank -%}
-        <video
-          src="{{ s.media_video_url }}"
-          {% if s.media_image != blank %}poster="{{ s.media_image | image_url: width: 1280 }}"{% endif %}
-          autoplay muted loop playsinline preload="metadata"></video>
-      {%- elsif s.media_image != blank -%}
-        <img
-          src="{{ s.media_image | image_url: width: 1280 }}"
-          srcset="{{ s.media_image | image_url: width: 640 }} 640w, {{ s.media_image | image_url: width: 960 }} 960w, {{ s.media_image | image_url: width: 1280 }} 1280w"
-          sizes="(max-width: 990px) 100vw, 50vw"
-          alt="{{ s.heading | strip_html | escape }}"
-          loading="lazy">
-      {%- endif -%}
+    <div class="about-mission__overlay" aria-hidden="true"></div>
+  {%- elsif s.bg_image != blank -%}
+    <div class="about-mission__bg" aria-hidden="true">
+      <img
+        src="{{ s.bg_image | image_url: width: 1920 }}"
+        srcset="{{ s.bg_image | image_url: width: 960 }} 960w, {{ s.bg_image | image_url: width: 1280 }} 1280w, {{ s.bg_image | image_url: width: 1920 }} 1920w, {{ s.bg_image | image_url: width: 2560 }} 2560w"
+        sizes="100vw"
+        alt=""
+        loading="lazy">
     </div>
+    <div class="about-mission__overlay" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="container about-mission__inner">
+    <span class="about-mission__bar" aria-hidden="true"></span>
+
+    {%- if s.eyebrow != blank -%}
+      <span class="about-mission__eyebrow">{{ s.eyebrow }}</span>
+    {%- endif -%}
+
+    {%- if s.heading != blank -%}
+      <h1 class="about-mission__heading">{{ s.heading | newline_to_br }}</h1>
+    {%- endif -%}
+
+    {%- if s.body != blank -%}
+      <div class="about-mission__body">{{ s.body }}</div>
+    {%- endif -%}
+
+    {%- if s.closing != blank -%}
+      <p class="about-mission__closing">{{ s.closing }}</p>
     {%- endif -%}
   </div>
 </section>
 
 {% schema %}
-{
-  "name": "About Mission",
-  "tag": "section",
-  "class": "section-about-mission",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Mission statement"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Our Mission"
-    },
-    {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Heading",
-      "info": "Big statement shown in display font."
-    },
-    {
-      "type": "richtext",
-      "id": "body",
-      "label": "Body (optional)"
-    },
-    {
-      "type": "header",
-      "content": "Optional media (image OR video)"
-    },
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "Layout",
-      "options": [
-        { "value": "image_right", "label": "Media on right" },
-        { "value": "image_left", "label": "Media on left" }
-      ],
-      "default": "image_right"
-    },
-    {
-      "type": "image_picker",
-      "id": "media_image",
-      "label": "Mission image / video poster",
-      "info": "Recommended: 1280x960 (4:3) or 1280x720 (16:9). PNG/JPG, <300KB."
-    },
-    {
-      "type": "text",
-      "id": "media_video_url",
-      "label": "Mission video URL (mp4)",
-      "info": "Recommended: 1280x720 mp4, H.264, <6MB."
-    }
-  ],
-  "presets": [
-    {
-      "name": "About Mission",
-      "settings": {
-        "eyebrow": "Our Mission",
-        "heading": "Provide more U.S. riders with electric mobility that makes sense.",
-        "body": "<p>From seniors reclaiming their daily independence to families exploring together, we build electric trikes that solve real problems — at honest prices.</p>",
-        "layout": "image_right"
-      }
-    }
-  ]
-}
+{ "name": "About Mission", "tag": "section", "class": "section-about-mission", "settings": [ { "type": "header", "content": "Mission statement" }, { "type": "text", "id": "eyebrow", "label": "Eyebrow (small caps)", "default": "Our Mission" }, { "type": "textarea", "id": "heading", "label": "Heading (big H1)", "info": "Big statement shown in display font. Use <br> for line breaks." }, { "type": "richtext", "id": "body", "label": "Mission body (expanded statement)", "info": "Shown as a large H2 below the heading." }, { "type": "textarea", "id": "closing", "label": "Closing line (optional)", "info": "A short closing line shown below the mission body." }, { "type": "header", "content": "Background (image OR video)" }, { "type": "image_picker", "id": "bg_image", "label": "Background image / video poster", "info": "Recommended: 1920x1080 (16:9), JPG/PNG, <500KB." }, { "type": "text", "id": "bg_video_url", "label": "Background video URL (mp4)", "info": "Recommended: 1920x1080 mp4, H.264, <10MB. Takes priority over image." } ], "presets": [ { "name": "About Mission", "settings": { "eyebrow": "Our Mission", "heading": "Provide more U.S. riders with<br>electric mobility<br>that makes sense.", "body": "<p>From seniors reclaiming their daily independence to families exploring together — we build electric trikes that solve real problems at honest prices.</p>", "closing": "This is what keeps us moving forward." } } ] }
 {% endschema %}

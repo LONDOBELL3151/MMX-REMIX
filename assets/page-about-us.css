@@ -255,59 +255,85 @@
 }
 
 /* ===================================================================
-   3. ABOUT FOUNDER — large bg image/video with floating white card
+   3. ABOUT FOUNDER — mokwheel-style stacked full-screen slogan blocks
+   Each slogan block: optional dark bg image, huge centered headline.
+   Followed by a white content block (heading + body).
    =================================================================== */
-.about-founder{
+.about-founder{position:relative;background:var(--color-bg)}
+.about-founder__inner{display:flex;flex-direction:column}
+/* --- slogan block (the big H1) --- */
+.about-founder__slogan{
   position:relative;
+  display:flex;align-items:center;justify-content:center;
+  min-height:60vh;
+  padding:80px 0;
   background:var(--color-primary);
-  overflow:hidden;
-  padding:96px 0 80px
+  color:#fff;
+  overflow:hidden
 }
 @media (min-width:990px){
-  .about-founder{padding:128px 0 112px;min-height:720px;display:flex;align-items:center}
+  .about-founder__slogan{min-height:75vh;padding:120px 0}
 }
-.about-founder__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.about-founder__bg-video,
-.about-founder__bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.about-founder__overlay{
+.about-founder__slogan-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.about-founder__slogan-bg img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;display:block
+}
+.about-founder__slogan-overlay{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(260deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.15) 100%);
+  background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.4) 60%,rgba(0,0,0,.7) 100%);
   pointer-events:none
 }
-.about-founder__inner{position:relative;z-index:2;display:flex;justify-content:flex-start}
-.about-founder__card{
+.about-founder__slogan-inner{
+  position:relative;z-index:2;
+  text-align:center
+}
+.about-founder__slogan-h{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(48px,8vw,128px);
+  line-height:.95;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  color:#fff;
+  margin:0;
+  max-width:14ch;
+  margin-left:auto;margin-right:auto
+}
+@media (min-width:990px){
+  .about-founder__slogan-h{font-size:clamp(72px,9vw,144px)}
+}
+/* --- content block (after each slogan) --- */
+.about-founder__content{
   background:#fff;
-  border:2px solid var(--color-primary);
-  border-radius:24px;
-  padding:48px 44px;
-  max-width:560px;
-  width:100%
+  padding:80px 0;
+  text-align:center
 }
-@media (max-width:990px){
-  .about-founder__card{padding:32px 28px;border-radius:18px}
+@media (min-width:990px){
+  .about-founder__content{padding:112px 0}
 }
-.about-founder__icon{margin-bottom:20px}
-.about-founder__icon img{width:60px;height:60px;display:block;object-fit:contain}
-.about-founder__eyebrow{
-  display:inline-block;
-  font-family:var(--font-mono);font-size:12px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--color-accent-dark);margin-bottom:14px
+.about-founder__content-inner{
+  max-width:760px;
+  margin:0 auto
 }
-.about-founder__title{
-  font-size:clamp(28px,3.6vw,44px);
-  font-weight:900;line-height:1.05;margin:0 0 20px;
-  letter-spacing:-.02em;text-transform:uppercase;color:var(--color-primary)
+.about-founder__content-title{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(28px,3.5vw,44px);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  color:var(--color-primary);
+  margin:0 0 20px
 }
-.about-founder__title em{font-style:normal;color:var(--color-accent)}
-.about-founder__body{font-size:17px;line-height:1.7;color:var(--color-text)}
-.about-founder__body p{margin:0 0 14px}
-.about-founder__body p:last-child{margin-bottom:0}
-.about-founder__signature{
-  margin-top:24px;padding-top:20px;border-top:2px solid var(--color-primary);
-  font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;
-  color:var(--color-text-soft);text-align:right;font-style:italic
+.about-founder__content-body{
+  font-size:17px;
+  line-height:1.7;
+  color:var(--color-text)
 }
+.about-founder__content-body p{margin:0 0 14px}
+.about-founder__content-body p:last-child{margin-bottom:0}
 
 /* ===================================================================
    4. MISSION PILLARS — 4 commitments grid
@@ -748,62 +774,90 @@
 }
 
 /* ===================================================================
-   ABOUT MISSION — Centered mission statement (image optional)
+   ABOUT MISSION — aventon-style 100vh centered hero with optional dark bg
    =================================================================== */
 .about-mission{
-  padding:96px 0 80px;
-  background:var(--color-bg)
-}
-@media (max-width:990px){
-  .about-mission{padding:64px 0 56px}
-}
-.about-mission__wrap{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:64px;
-  align-items:center;
-  max-width:1180px;
-  margin:0 auto
-}
-@media (max-width:990px){
-  .about-mission__wrap{grid-template-columns:1fr;gap:36px}
-}
-.about-mission__wrap--reverse > .about-mission__copy{order:2}
-@media (max-width:990px){
-  .about-mission__wrap--reverse > .about-mission__copy{order:0}
-}
-.about-mission__eyebrow{
-  display:inline-block;
-  font-family:var(--font-mono);font-size:12px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--color-accent-dark);margin-bottom:14px
-}
-.about-mission__heading{
-  font-size:clamp(28px,3.8vw,48px);
-  font-weight:900;line-height:1.08;
-  letter-spacing:-.02em;
-  text-transform:none;
-  color:var(--color-primary);
-  margin:0 0 20px
-}
-.about-mission__heading em{font-style:normal;color:var(--color-accent)}
-.about-mission__body{font-size:17px;line-height:1.7;color:var(--color-text)}
-.about-mission__body p{margin:0 0 14px}
-.about-mission__body p:last-child{margin-bottom:0}
-.about-mission__media{
   position:relative;
-  border-radius:var(--radius-lg);
+  background:var(--color-primary);
+  color:#fff;
+  min-height:560px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:96px 0;
   overflow:hidden;
-  aspect-ratio:4/3;
-  border:2px solid var(--color-primary);
-  background:linear-gradient(135deg,var(--color-primary),#2a2a2a)
+  text-align:center
 }
-.about-mission__media img,
-.about-mission__media video{
+@media (min-width:990px){
+  .about-mission{min-height:100vh;padding:120px 0}
+}
+/* When no bg image/video is set, use a soft dark gradient instead of flat black */
+.about-mission--no-bg{
+  background:linear-gradient(135deg,#121212 0%,#2a2a2a 100%)
+}
+.about-mission__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.about-mission__bg img,
+.about-mission__bg video{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:cover;display:block
 }
-@media (max-width:990px){
-  .about-mission__media{aspect-ratio:16/10}
+.about-mission__overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.7) 100%);
+  pointer-events:none
+}
+.about-mission__inner{
+  position:relative;z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  max-width:900px;
+  gap:24px
+}
+/* small accent bar above the heading — like aventon's tw-bg-primary-500 divider */
+.about-mission__bar{
+  display:block;
+  width:80px;
+  height:6px;
+  background:var(--color-accent);
+  border-radius:3px
+}
+@media (min-width:990px){
+  .about-mission__bar{width:96px}
+}
+.about-mission__eyebrow{
+  display:inline-block;
+  font-family:var(--font-mono);font-size:13px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--color-accent);
+  margin-top:8px
+}
+.about-mission__heading{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(36px,5.5vw,72px);
+  line-height:1;
+  letter-spacing:-.02em;
+  text-transform:none;
+  color:#fff;
+  margin:0
+}
+.about-mission__heading em{font-style:normal;color:var(--color-accent)}
+.about-mission__body{
+  font-size:clamp(18px,2vw,22px);
+  line-height:1.55;
+  color:#fff;
+  opacity:.92;
+  max-width:680px
+}
+.about-mission__body p{margin:0 0 12px}
+.about-mission__body p:last-child{margin-bottom:0}
+.about-mission__closing{
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+  margin:8px 0 0
 }
