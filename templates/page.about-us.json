@@ -20,6 +20,7 @@
     "hero": {
       "type": "about-hero",
       "settings": {
+        "media_image": "shopify://shop_images/3333.png",
         "media_video_url": "",
         "eyebrow": "— Our Philosophy",
         "title": "Honest pricing. <em>Real-world</em> usability.",
@@ -27,7 +28,11 @@
         "meta_1": "Founded 2019",
         "meta_2": "U.S. Focused",
         "meta_3": "Direct From Factory",
-        "meta_4": "UL Certified"
+        "meta_4": "UL Certified",
+        "overlay_top": 45,
+        "overlay_mid": 90,
+        "overlay_bottom": 85,
+        "overlay_direction": "180"
       }
     },
     "floating_story": {
@@ -77,70 +82,6 @@
         "story_button_label": "See Our Trikes",
         "story_button_link": "/collections/electric-trikes",
         "story_button_external": false
-      }
-    },
-    "who_serve": {
-      "type": "about-story-grid",
-      "blocks": {
-        "list_01": {
-          "type": "list_item",
-          "settings": {
-            "text": "Stability & balance for seniors"
-          }
-        },
-        "list_02": {
-          "type": "list_item",
-          "settings": {
-            "text": "Two-seater family outings"
-          }
-        },
-        "list_03": {
-          "type": "list_item",
-          "settings": {
-            "text": "Reliable daily commuting"
-          }
-        },
-        "list_04": {
-          "type": "list_item",
-          "settings": {
-            "text": "Leisure rides & weekend trips"
-          }
-        },
-        "list_05": {
-          "type": "list_item",
-          "settings": {
-            "text": "Range anxiety, solved (up to 85 mi)"
-          }
-        },
-        "list_06": {
-          "type": "list_item",
-          "settings": {
-            "text": "Rising transport costs, offset"
-          }
-        }
-      },
-      "block_order": [
-        "list_01",
-        "list_02",
-        "list_03",
-        "list_04",
-        "list_05",
-        "list_06"
-      ],
-      "settings": {
-        "background": "soft",
-        "layout": "image_right",
-        "media_video_url": "",
-        "media_caption": "Built for everyone",
-        "media_style": "category_blocks",
-        "eyebrow": "Who We Serve & What We Solve",
-        "title": "Built for <em>every kind of rider.</em>",
-        "lead_text": "<p>Our vehicles are mindfully designed for seniors, active families, daily commuters, and leisure riders. We focus on solving the real challenges that keep you from riding: overcoming a lack of stability, removing physical discomfort, eliminating range anxiety, and offsetting the rising cost of everyday transportation.</p>",
-        "body_text": "<h3>Design and Development</h3><p>Our products are conceptualized by our in-house R&D team and crafted in partnership with world-class, trusted manufacturing facilities. This hands-on approach ensures rigorous quality control from the initial sketch to the final assembly line.</p>",
-        "media_year": "",
-        "media_tag": "Built for everyone",
-        "media_subtitle": "",
-        "media_categories": "Seniors,Families,Commuters,Leisure"
       }
     },
     "founder": {
@@ -286,6 +227,70 @@
       "settings": {
         "eyebrow": "Safety First",
         "heading": "Certifications and <em>Compliance.</em>"
+      }
+    },
+    "who_serve": {
+      "type": "about-story-grid",
+      "blocks": {
+        "list_01": {
+          "type": "list_item",
+          "settings": {
+            "text": "Stability & balance for seniors"
+          }
+        },
+        "list_02": {
+          "type": "list_item",
+          "settings": {
+            "text": "Two-seater family outings"
+          }
+        },
+        "list_03": {
+          "type": "list_item",
+          "settings": {
+            "text": "Reliable daily commuting"
+          }
+        },
+        "list_04": {
+          "type": "list_item",
+          "settings": {
+            "text": "Leisure rides & weekend trips"
+          }
+        },
+        "list_05": {
+          "type": "list_item",
+          "settings": {
+            "text": "Range anxiety, solved (up to 85 mi)"
+          }
+        },
+        "list_06": {
+          "type": "list_item",
+          "settings": {
+            "text": "Rising transport costs, offset"
+          }
+        }
+      },
+      "block_order": [
+        "list_01",
+        "list_02",
+        "list_03",
+        "list_04",
+        "list_05",
+        "list_06"
+      ],
+      "settings": {
+        "background": "soft",
+        "layout": "image_right",
+        "media_video_url": "",
+        "media_caption": "Built for everyone",
+        "media_style": "category_blocks",
+        "eyebrow": "Who We Serve & What We Solve",
+        "title": "Built for <em>every kind of rider.</em>",
+        "lead_text": "<p>Our vehicles are mindfully designed for seniors, active families, daily commuters, and leisure riders. We focus on solving the real challenges that keep you from riding: overcoming a lack of stability, removing physical discomfort, eliminating range anxiety, and offsetting the rising cost of everyday transportation.</p>",
+        "body_text": "<h3>Design and Development</h3><p>Our products are conceptualized by our in-house R&D team and crafted in partnership with world-class, trusted manufacturing facilities. This hands-on approach ensures rigorous quality control from the initial sketch to the final assembly line.</p>",
+        "media_year": "",
+        "media_tag": "Built for everyone",
+        "media_subtitle": "",
+        "media_categories": "Seniors,Families,Commuters,Leisure"
       }
     },
     "evolution": {
