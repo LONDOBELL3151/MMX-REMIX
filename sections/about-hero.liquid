@@ -1,5 +1,10 @@
 {%- liquid
   assign s = section.settings
+  assign overlay_top = s.overlay_top | default: 55
+  assign overlay_mid = s.overlay_mid | default: 40
+  assign overlay_bottom = s.overlay_bottom | default: 85
+  assign overlay_dir = s.overlay_direction | default: '180'
+  assign overlay_style = 'linear-gradient(' | append: overlay_dir | append: 'deg, rgba(0,0,0,' | append: overlay_top | append: ') 0%, rgba(0,0,0,' | append: overlay_mid | append: ') 45%, rgba(0,0,0,' | append: overlay_bottom | append: ') 100%)'
 -%}
 
 <section class="about-hero{% if s.media_video_url != blank or s.media_image != blank %} about-hero--has-media{% endif %}" aria-label="{{ s.eyebrow | default: 'About' | escape }}" {{ section.shopify_attributes }}>
@@ -28,7 +33,7 @@
     </div>
   {%- endif -%}
 
-  <div class="about-hero__overlay" aria-hidden="true"></div>
+  <div class="about-hero__overlay" aria-hidden="true" style="background:{{ overlay_style }}"></div>
 
   <div class="container about-hero__inner">
     {%- if s.eyebrow != blank -%}
@@ -126,6 +131,55 @@
       "id": "meta_4",
       "label": "Meta 4",
       "default": "UL Certified"
+    },
+    {
+      "type": "header",
+      "content": "Overlay (dark layer for text legibility)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_top",
+      "label": "Top darkness",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 55,
+      "info": "0 = invisible at top, 90 = nearly black. Increase if your background image is bright at the top."
+    },
+    {
+      "type": "range",
+      "id": "overlay_mid",
+      "label": "Middle darkness",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 40,
+      "info": "Darkness at the middle of the hero."
+    },
+    {
+      "type": "range",
+      "id": "overlay_bottom",
+      "label": "Bottom darkness (text area)",
+      "min": 0,
+      "max": 95,
+      "step": 5,
+      "unit": "%",
+      "default": 85,
+      "info": "Darkness where the headline sits (hero is bottom-aligned). Bump to 90+ if your image is bright at the bottom."
+    },
+    {
+      "type": "select",
+      "id": "overlay_direction",
+      "label": "Gradient direction",
+      "options": [
+        { "value": "180", "label": "Top → Bottom (default, header darker at bottom)" },
+        { "value": "0",   "label": "Bottom → Top (darker at top)" },
+        { "value": "100", "label": "Left → Right (dark on left, light on right)" },
+        { "value": "260", "label": "Right → Left (dark on right, light on left)" }
+      ],
+      "default": "180"
     }
   ],
   "presets": [
