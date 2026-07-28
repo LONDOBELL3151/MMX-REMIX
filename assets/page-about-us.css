@@ -459,10 +459,9 @@
     position:absolute;
     left:50%;
     top:0;bottom:0;
-    width:4px;
+    width:2px;
     transform:translateX(-50%);
     background:var(--color-primary);
-    border-radius:2px;
     z-index:0
   }
 }
@@ -483,17 +482,17 @@
 }
 .about-timeline__text{font-size:16px;color:var(--color-text-soft);line-height:1.7;margin:0}
 @media (min-width:991px){
-  /* badge pseudo-element on the spine, anchored per item side */
+  /* small dot badge sitting on the spine — lectric-style node */
   .about-timeline__item::before{
     content:"";
     position:absolute;
     left:50%;top:50%;
     transform:translate(-50%,-50%);
-    width:48px;height:48px;
+    width:18px;height:18px;
     border-radius:50%;
-    background:var(--color-accent);
-    border:4px solid var(--color-primary);
-    box-shadow:0 4px 12px rgba(0,0,0,.18);
+    background:#fff;
+    border:3px solid var(--color-primary);
+    box-shadow:0 2px 6px rgba(0,0,0,.12);
     z-index:2
   }
 }
@@ -505,15 +504,16 @@
   .about-timeline__item--image-left .about-timeline__media{order:2}
   /* vertical spine on the left edge for mobile */
   .about-timeline__list::before{
-    left:14px !important;
-    transform:none !important
+    left:9px !important;
+    transform:none !important;
+    width:2px
   }
   .about-timeline__item::before{
-    left:14px !important;
+    left:9px !important;
     transform:translate(-50%,-50%) !important;
-    width:28px;height:28px;border-width:3px
+    width:14px;height:14px;border-width:2px
   }
-  .about-timeline__copy{padding-left:44px}
+  .about-timeline__copy{padding-left:36px}
 }
 @media (min-width:991px){
   .about-timeline__item--image-right .about-timeline__copy{order:1;padding-right:32px;text-align:right}
@@ -524,7 +524,7 @@
 .about-timeline__media{
   border-radius:var(--radius-lg);overflow:hidden;
   aspect-ratio:4/3;background:linear-gradient(135deg,#2a2a2a,#121212);
-  border:2px solid var(--color-primary);
+  border:1px solid var(--color-border);
   position:relative;z-index:1
 }
 .about-timeline__media img,
@@ -533,8 +533,8 @@
 }
 .about-timeline__media-placeholder{
   width:100%;height:100%;
-  background:linear-gradient(135deg,var(--color-accent) 0%,#cc9900 100%);
-  display:grid;place-items:center;color:var(--color-primary)
+  background:linear-gradient(135deg,#fafafa,#f0f0f0);
+  display:grid;place-items:center;color:var(--color-text-soft)
 }
 .about-timeline__media-year{
   font-family:var(--font-display);font-weight:900;
