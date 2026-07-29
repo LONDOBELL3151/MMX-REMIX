@@ -29,11 +29,69 @@
     },
     "why_features": {
       "type": "why-features-grid",
-      "disabled": true,
+      "blocks": {
+        "feature_GNM7VP": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/95_-Pre-Assembled.png",
+            "icon": "check",
+            "title": "95% Pre-Assembled"
+          }
+        },
+        "feature_dX9GVd": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/2-year-warranty.png",
+            "icon": "check",
+            "title": "2-Year Limited Warranty"
+          }
+        },
+        "feature_xmdgyQ": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/Trusted.png",
+            "icon": "check",
+            "title": "Trusted by 50K+ US Riders"
+          }
+        },
+        "feature_BpX8mp": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/Installment-Payment.png",
+            "icon": "check",
+            "title": "Installment Payment"
+          }
+        },
+        "feature_LxWeXh": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/Free-Shipping.png",
+            "icon": "check",
+            "title": "Free Shipping"
+          }
+        },
+        "feature_DMekmn": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/Unbeatable-Value.png",
+            "icon": "check",
+            "title": "Unbeatable Value"
+          }
+        }
+      },
+      "block_order": [
+        "feature_GNM7VP",
+        "feature_dX9GVd",
+        "feature_xmdgyQ",
+        "feature_BpX8mp",
+        "feature_LxWeXh",
+        "feature_DMekmn"
+      ],
       "settings": {
-        "eyebrow": "",
-        "heading": "",
-        "subtitle": "",
+        "eyebrow": "Maxfoot Electric Commuter Bike",
+        "heading": "Why Choose MaxFoot Electric Commuter Bike?",
+        "subtitle": "Maxfoot is on a mission to make every ride simple, safe, and fun. Built with high-quality components and designed for comfort, our commuter electric bike are ready for wherever the road takes you.",
+        "image": "shopify://shop_images/2512.png",
         "padding_top": 80,
         "padding_bottom": 80
       }
