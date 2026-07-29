@@ -102,15 +102,17 @@
         "tab_go_further": {
           "type": "tab",
           "settings": {
-            "label": "Go Further",
-            "text": "Up to 60 miles on a single charge, giving you freedom to commute, cruise, and explore without worrying about battery."
+            "label": "Comfort & Range",
+            "text": "The Maxfoot MF-25 Electric Commuter Bike combines an easy-entry step-thru frame with stable 26\" x 1.95\" tires for premium comfort. Powered by a lockable, removable 500Wh battery, it delivers up to 50 miles of range, giving you the freedom to ride all week and charge securely indoors.",
+            "image_desktop": "shopify://shop_images/25c_1.png"
           }
         },
         "tab_smooth_power": {
           "type": "tab",
           "settings": {
-            "label": "Smooth Power",
-            "text": "A quiet 350W hub motor delivers steady, controlled support for starts, stops, and mild climbs."
+            "label": "Performance & Safety",
+            "text": "The Maxfoot MF-25 Electric Commuter Bike features a potent rear-hub motor with 1100W peak power and a smooth Shimano 7-speed system, ensuring rapid acceleration and effortless hill climbing. Complete with integrated LED lights and a reactive brake light, it keeps you moving safely day or night.",
+            "image_desktop": "shopify://shop_images/25c_2.png"
           }
         }
       },
@@ -118,10 +120,9 @@
         "tab_go_further",
         "tab_smooth_power"
       ],
-      "disabled": true,
       "settings": {
-        "heading": "Ride Further. Feel in Control",
-        "subtitle": "From City Streets To Gentle Hills",
+        "heading": "Effortless Commuting, Elegant Design<br>Maxfoot MF-25",
+        "subtitle": "Your Ultimate Companion for the Daily Commute.",
         "auto_rotate": true,
         "interval_ms": 6000,
         "progress_color": "#ffc000",
