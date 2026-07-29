@@ -550,7 +550,7 @@
           "type": "bikeSpecInfoBox",
           "settings": {
             "bikeSpecInfo_Item_title": "Tire",
-            "bikeSpecInfo_Item_value": "Puncture protection, 26x1.95\" fat tire"
+            "bikeSpecInfo_Item_value": "Puncture protection, 26x1.95\""
           }
         }
       },
