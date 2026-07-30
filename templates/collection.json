@@ -233,6 +233,70 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "faq_WMzaQr": {
+      "type": "faq",
+      "blocks": {
+        "question_EXaq3R": {
+          "type": "question",
+          "settings": {
+            "question": "What is an electric commuter bike?",
+            "answer": "<p>An electric commuter bike is an e‑bike designed for everyday trips like riding to work, school, or around the city. It combines a traditional bike with a motor and battery to give you extra help when you pedal, so you can ride farther, climb hills more easily, and arrive feeling fresher.</p>"
+          }
+        },
+        "question_MANd4H": {
+          "type": "question",
+          "settings": {
+            "question": "What should I consider before buying a commuter e-bike?",
+            "answer": "<p>When choosing a commuter e-bike, think about three key things: how far you ride, how it feels to ride, and how safe it is.<br/><br/>Range: Choose a battery that can comfortably cover your round-trip commute distance, including small detours, so you do not worry about running out of power.<br/><br/>Comfort: Choose a commuter electric bike with a step-thru frame, front suspension fork, suspension seatpost, and city tires to make it easier to get on and off, absorb bumps, and reduce fatigue on your daily rides.<br/><br/>Safety: Choose a model with bright front and rear lights, reliable brakes with strong stopping power, and a clear display so you can see and be seen in traffic and always know your speed and battery level.</p>"
+          }
+        },
+        "question_iCnf4V": {
+          "type": "question",
+          "settings": {
+            "question": "How do I ride? Do I have to pedal?",
+            "answer": "<p>You ride a Maxfoot e-bike like a regular bicycle, with the motor adding pedal assist to make each ride easier. The thumb throttle also lets you move without pedaling when you want a quick boost or a short rest.</p>"
+          }
+        },
+        "question_XQAhqt": {
+          "type": "question",
+          "settings": {
+            "question": "How far can it go on a full charge?",
+            "answer": "<p>Range will always depend on factors like rider weight, terrain, wind, and how much pedal assist or throttle you use.<br/>Under typical city riding conditions, this Maxfoot commuter e-bike can travel up to 50 miles on a single charge when using lower assist levels and active pedaling.<br/>If you use higher assist levels or the throttle more often, the actual range will be shorter, but still enough for most daily commutes and errands.</p>"
+          }
+        },
+        "question_KwCzBK": {
+          "type": "question",
+          "settings": {
+            "question": "What maintenance does a commuter e-bike need?",
+            "answer": "<p>The most important part of maintaining your commuter e-bike is taking care of the battery.<br/>Always use the original charger, avoid letting the battery sit completely empty for long periods, and try to charge it in a cool, dry place at room temperature.<br/><br/>If you will not ride for a while, store the battery around half charge and check it every few weeks to top it up, rather than leaving it fully drained or fully charged all the time.<br/><br/>Along with regular checks on your brakes, tires, and chain, these simple habits help your Maxfoot commuter e-bike stay safe, reliable, and keep its range for longer.</p>"
+          }
+        },
+        "question_KHAXbj": {
+          "type": "question",
+          "settings": {
+            "question": "What is the warranty on Maxfoot bike?",
+            "answer": "<p>MAXFOOT electric bikes come with a 1-year limited warranty on electrical parts and 2 years of technical support warranty for most mechanical parts. Click here to view the full warranty policy.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_EXaq3R",
+        "question_MANd4H",
+        "question_iCnf4V",
+        "question_XQAhqt",
+        "question_KwCzBK",
+        "question_KHAXbj"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "heading": "Before you buy",
+        "subheading": "",
+        "cta_text": "Still have questions?",
+        "cta_link": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -241,6 +305,7 @@
     "why_features",
     "mileage_tabs",
     "reliability_trust_grid_rictPT",
-    "feature_tabs_dmddNw"
+    "feature_tabs_dmddNw",
+    "faq_WMzaQr"
   ]
 }
