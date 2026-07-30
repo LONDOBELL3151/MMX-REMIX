@@ -1,10 +1,9 @@
 {%- liquid
   assign s = section.settings
+  assign overlay_dir = s.overlay_direction | default: '180'
   assign overlay_top = s.overlay_top | default: 55
   assign overlay_mid = s.overlay_mid | default: 40
   assign overlay_bottom = s.overlay_bottom | default: 85
-  assign overlay_dir = s.overlay_direction | default: '180'
-  assign overlay_style = 'linear-gradient(' | append: overlay_dir | append: 'deg, rgba(0,0,0,' | append: overlay_top | append: ') 0%, rgba(0,0,0,' | append: overlay_mid | append: ') 45%, rgba(0,0,0,' | append: overlay_bottom | append: ') 100%)'
 -%}
 
 <section class="about-hero{% if s.media_video_url != blank or s.media_image != blank %} about-hero--has-media{% endif %}" aria-label="{{ s.eyebrow | default: 'About' | escape }}" {{ section.shopify_attributes }}>
@@ -33,7 +32,7 @@
     </div>
   {%- endif -%}
 
-  <div class="about-hero__overlay" aria-hidden="true" style="background:{{ overlay_style }}"></div>
+  <div class="about-hero__overlay" aria-hidden="true" style="--hero-overlay-top:{{ overlay_top }}%;--hero-overlay-mid:{{ overlay_mid }}%;--hero-overlay-bottom:{{ overlay_bottom }}%;--hero-overlay-dir:{{ overlay_dir }}deg"></div>
 
   <div class="container about-hero__inner">
     {%- if s.eyebrow != blank -%}

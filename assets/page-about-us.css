@@ -27,7 +27,7 @@
 .about-hero__overlay{
   position:absolute;inset:0;z-index:1;
   pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.4) 45%,rgba(0,0,0,.85) 100%)
+  background:linear-gradient(var(--hero-overlay-dir,180deg), rgba(0,0,0,var(--hero-overlay-top,55%)) 0%, rgba(0,0,0,var(--hero-overlay-mid,40%)) 45%, rgba(0,0,0,var(--hero-overlay-bottom,85%)) 100%)
 }
 .about-hero__inner{position:relative;z-index:2;max-width:880px;width:100%}
 .about-hero__pill{
