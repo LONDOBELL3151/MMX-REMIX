@@ -22,6 +22,25 @@
     },
     "main": {
       "type": "main-collection",
+      "blocks": {
+        "promo_ihahkk": {
+          "type": "promo",
+          "settings": {
+            "heading": "MF-25 Electric Commuter Bike",
+            "body": "",
+            "image": "shopify://shop_images/25b.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "medium",
+            "overlay_opacity": 100,
+            "position": 0
+          }
+        }
+      },
+      "block_order": [
+        "promo_ihahkk"
+      ],
       "settings": {
         "show_specs": true,
         "products_per_page": 24
