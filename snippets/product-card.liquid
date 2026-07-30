@@ -108,15 +108,15 @@
     {%- if show_specs and card_product != blank -%}
       <div class="product-card__specs">
         <div class="product-card__spec">
-          <div class="product-card__spec-val">{% if card_product.metafields.motor.wattage %}{{ card_product.metafields.motor.wattage }}W{% else %}750W{% endif %}</div>
+          <div class="product-card__spec-val">{% if card_product.metafields.custom.motor_wattage %}{{ card_product.metafields.custom.motor_wattage }}W{% else %}750W{% endif %}</div>
           <div class="product-card__spec-label">Motor</div>
         </div>
         <div class="product-card__spec">
-          <div class="product-card__spec-val">{% if card_product.metafields.battery.range %}{{ card_product.metafields.battery.range }}{% else %}85{% endif %}mi</div>
+          <div class="product-card__spec-val">{% if card_product.metafields.custom.battery_range %}{{ card_product.metafields.custom.battery_range }}{% else %}85{% endif %}mi</div>
           <div class="product-card__spec-label">Range</div>
         </div>
         <div class="product-card__spec">
-          <div class="product-card__spec-val">{% if card_product.metafields.specs.payload %}{{ card_product.metafields.specs.payload }}{% else %}500{% endif %}lb</div>
+          <div class="product-card__spec-val">{% if card_product.metafields.custom.specs_payload %}{{ card_product.metafields.custom.specs_payload }}{% else %}500{% endif %}lb</div>
           <div class="product-card__spec-label">Payload</div>
         </div>
       </div>
