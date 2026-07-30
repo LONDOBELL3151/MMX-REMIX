@@ -137,27 +137,30 @@
         "feature_effyPw": {
           "type": "feature",
           "settings": {
-            "eyebrow": "Proven Reliability",
-            "title": "Rigorous Testing",
-            "description": "",
+            "image": "shopify://shop_images/25m2.png",
+            "eyebrow": "500Wh Capacity | Up to 50-Mile Range<br>Charges Safe. Locks Secure. Rides Far.",
+            "title": "Lockable & Removable Battery",
+            "description": "<p>Equipped with a 500Wh removable battery, Maxfoot commuter electric bike delivers up to 50 miles of range per charge. The lockable and removable system prevents battery theft while allowing for flexible charging either on or off the bike.</p>",
             "link": ""
           }
         },
         "feature_6QkBKB": {
           "type": "feature",
           "settings": {
-            "eyebrow": "Worry-Free Service",
-            "title": "Multi-Channel After-Sales Service",
-            "description": "",
+            "image": "shopify://shop_images/25motor_fcafa817-0588-48db-b15a-ef0a2e4c4865.png",
+            "eyebrow": "Peak Power 1100W | Smooth Shimano 7-Speed<br>Quick Start. Easy Climb. Full Control.",
+            "title": "500w Rear Drive Motor (peak 1100W)",
+            "description": "<p>Equipped with a 500W rear-drive motor (1100W peak) and a Shimano 7-speed system, Maxfoot electric bike for commuting provides reliable daily performance. This setup assists in smooth starting, efficient hill climbing, and precise speed control on urban streets.</p>",
             "link": ""
           }
         },
         "feature_tp3Ufw": {
           "type": "feature",
           "settings": {
-            "eyebrow": "Secure Servicing",
-            "title": "Safer Maintenance Mode",
-            "description": "",
+            "image": "shopify://shop_images/25f.png",
+            "eyebrow": "Easy Entry | Front Suspension Fork<br>Absorbs Bumps. Steps Easy. Rides Smooth.",
+            "title": "Step-Thru Frame + Front Fork Comfort",
+            "description": "<p>The Maxfoot electric commuter bike is designed for maximum accessibility and comfort. Its low step-thru frame allows for effortless mounting and dismounting. Equipped with a lockable front suspension fork and a suspension seatpost, it absorbs road bumps to deliver a smooth, stable ride.</p>",
             "link": ""
           }
         }
@@ -167,7 +170,6 @@
         "feature_6QkBKB",
         "feature_tp3Ufw"
       ],
-      "disabled": true,
       "name": "Reliability trust grid",
       "settings": {
         "eyebrow": "All-Round Reliability",
