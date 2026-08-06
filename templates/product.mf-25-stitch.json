@@ -43,7 +43,7 @@
       "type": "mf25-stitch-feature",
       "disabled": true,
       "settings": {
-        "layout": "image_right",
+        "desktop_layout": "image_right",
         "eyebrow": "Power",
         "title": "Conquer Every Hill with Peak 1000W Power",
         "body": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat.",
@@ -54,7 +54,7 @@
       "type": "mf25-stitch-feature",
       "disabled": true,
       "settings": {
-        "layout": "image_left",
+        "desktop_layout": "image_left",
         "eyebrow": "Battery",
         "title": "Go Further with the 500Wh Removable Battery",
         "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs.",
@@ -65,7 +65,7 @@
       "type": "mf25-stitch-feature",
       "disabled": true,
       "settings": {
-        "layout": "image_right",
+        "desktop_layout": "image_right",
         "eyebrow": "Display",
         "title": "Stay Informed with the Smart LCD Display",
         "body": "The bright, full-color LCD screen keeps you updated on your speed, battery level, distance traveled, and current assist mode. Its intuitive design ensures you have all the information you need at a glance.",

@@ -1,6 +1,5 @@
 {%- liquid
-  assign layout = s.layout | default: 'image_right'
-  assign is_alt = false
+  assign desktop_layout = s.desktop_layout | default: 'image_right'
 -%}
 <style>
 
@@ -88,11 +87,11 @@ a{color:inherit;text-decoration:none}
 
 /* FEATURE */
 .mf25-feat{padding:var(--section) 0;background:var(--paper)}
-.mf25-feat--alt{background:var(--surface)}
+.mf25-feat--img-left{background:var(--surface)}
 .mf25-feat-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 @media (max-width:960px){.mf25-feat-row{grid-template-columns:1fr;gap:24px}}
-.mf25-feat--alt .mf25-feat-copy{order:2}
-@media (max-width:960px){.mf25-feat--alt .mf25-feat-copy{order:0}}
+.mf25-feat--img-left .mf25-feat-copy{order:2}
+@media (max-width:960px){.mf25-feat--img-left .mf25-feat-copy{order:0}}
 .mf25-feat-img{aspect-ratio:4/3;background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative}
 .mf25-feat-img::before{content:"";position:absolute;top:50%;left:50%;width:64px;height:64px;background:var(--signal);border-radius:50%;opacity:.25;transform:translate(-50%,-50%)}
 .mf25-feat-img img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
@@ -186,7 +185,7 @@ a{color:inherit;text-decoration:none}
 
 </style>
 
-<section class="mf25-feat{% if layout == 'image_left' %} mf25-feat--alt{% endif %}" {{ section.shopify_attributes }}>
+<section class="mf25-feat{% if desktop_layout == 'image_left' %} mf25-feat--img-left{% endif %}" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-feat-row">
       <div class="mf25-feat-img">
@@ -207,45 +206,5 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
-{% schema %}
-{
-  "name": "MF25 Stitch Feature",
-  "tag": "section",
-  "class": "section-mf25-stitch-feature",
-  "settings": [
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "Layout",
-      "options": [
-        { "value": "image_right", "label": "Image right (default)" },
-        { "value": "image_left", "label": "Image left (alt gray bg)" }
-      ],
-      "default": "image_right"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow (small caps)",
-      "default": "Power"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "Conquer Every Hill with Peak 1000W Power"
-    },
-    {
-      "type": "textarea",
-      "id": "body",
-      "label": "Body",
-      "default": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Feature image"
-    }
-  ]
-}
+{% schema %}{"name": "MF25 Stitch Feature", "tag": "section", "class": "section-mf25-stitch-feature", "settings": [{"type": "select", "id": "desktop_layout", "label": "Desktop layout (image position)", "options": [{"value": "image_right", "label": "Image right (default)"}, {"value": "image_left", "label": "Image left (alt gray bg)"}], "default": "image_right", "info": "Image on left or right on desktop. Mobile always stacks single column."}, {"type": "text", "id": "eyebrow", "label": "Eyebrow (small caps)", "default": "Power"}, {"type": "text", "id": "title", "label": "Title", "default": "Conquer Every Hill with Peak 1000W Power"}, {"type": "textarea", "id": "body", "label": "Body", "default": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."}, {"type": "image_picker", "id": "image", "label": "Feature image"}]}
 {% endschema %}
