@@ -39,32 +39,6 @@
         "padding_bottom": 0
       }
     },
-    "nav": {
-      "type": "mf25-stitch-nav",
-      "disabled": true,
-      "settings": {}
-    },
-    "hero": {
-      "type": "mf25-stitch-hero",
-      "disabled": true,
-      "settings": {
-        "stock_label": "In Stock",
-        "title": "Maxfoot MF-25 Electric Commuter Bike | Step-Thru",
-        "price_now": "659",
-        "price_was": "1299",
-        "save_label": "Save $640",
-        "color_label": "Color",
-        "color_default": "Burning Orange",
-        "spec_motor": "Peak 1000W Motor",
-        "spec_battery": "500Wh Battery",
-        "spec_gears": "Shimano 7-Speed",
-        "spec_light": "LED Front/Tail",
-        "cta_label": "Add to Cart",
-        "trust_1": "FREE Shipping to 48 states",
-        "trust_2": "2-Year Warranty",
-        "trust_3": "US Warehouse CA Ships Fast"
-      }
-    },
     "feature_1": {
       "type": "mf25-stitch-feature",
       "disabled": true,
@@ -146,8 +120,6 @@
   },
   "order": [
     "main",
-    "nav",
-    "hero",
     "feature_1",
     "feature_2",
     "feature_3",
