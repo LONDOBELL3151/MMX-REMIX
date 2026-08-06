@@ -1,0 +1,76 @@
+<section class="mf25-specs" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-specs-head">
+      <h2>{{ s.title }}</h2>
+    </div>
+    <div class="mf25-specs-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category' -%}
+          <div class="mf25-spec-card" {{ block.shopify_attributes }}>
+            <div class="mf25-spec-card-head">
+              {%- if block.settings.icon != blank -%}
+                {{ block.settings.icon | inline_svg }}
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+              {%- endif -%}
+              <h3>{{ block.settings.title | escape }}</h3>
+            </div>
+            {%- if block.settings.feature_1_label != blank -%}
+              <div class="mf25-spec-row"><span>{{ block.settings.feature_1_label | escape }}</span><span>{{ block.settings.feature_1_value | escape }}</span></div>
+            {%- endif -%}
+            {%- if block.settings.feature_2_label != blank -%}
+              <div class="mf25-spec-row"><span>{{ block.settings.feature_2_label | escape }}</span><span>{{ block.settings.feature_2_value | escape }}</span></div>
+            {%- endif -%}
+            {%- if block.settings.feature_3_label != blank -%}
+              <div class="mf25-spec-row"><span>{{ block.settings.feature_3_label | escape }}</span><span>{{ block.settings.feature_3_value | escape }}</span></div>
+            {%- endif -%}
+            {%- if block.settings.feature_4_label != blank -%}
+              <div class="mf25-spec-row"><span>{{ block.settings.feature_4_label | escape }}</span><span>{{ block.settings.feature_4_value | escape }}</span></div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Specs",
+  "tag": "section",
+  "class": "section-mf25-stitch-specs",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Comprehensive Specifications" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Spec category",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Category title", "default": "Frameset" },
+        { "type": "html", "id": "icon", "label": "SVG icon (optional)" },
+        { "type": "text", "id": "feature_1_label", "label": "Row 1 label" },
+        { "type": "text", "id": "feature_1_value", "label": "Row 1 value" },
+        { "type": "text", "id": "feature_2_label", "label": "Row 2 label" },
+        { "type": "text", "id": "feature_2_value", "label": "Row 2 value" },
+        { "type": "text", "id": "feature_3_label", "label": "Row 3 label" },
+        { "type": "text", "id": "feature_3_value", "label": "Row 3 value" },
+        { "type": "text", "id": "feature_4_label", "label": "Row 4 label" },
+        { "type": "text", "id": "feature_4_value", "label": "Row 4 value" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF25 Stitch Specs",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Frameset", "feature_1_label": "Frame", "feature_1_value": "High-Strength Step-Thru Alloy", "feature_2_label": "Fork", "feature_2_value": "Front Suspension Fork with Lockout" } },
+        { "type": "category", "settings": { "title": "Display & Drivetrain", "feature_1_label": "Display", "feature_1_value": "Full-Color LCD Display", "feature_2_label": "Display Type", "feature_2_value": "LCD Color Screen Display", "feature_3_label": "Rear Derailleur", "feature_3_value": "Shimano 7-Speed", "feature_4_label": "Throttle", "feature_4_value": "Thumb Twist Throttle" } },
+        { "type": "category", "settings": { "title": "Wheels & Motor", "feature_1_label": "Motor", "feature_1_value": "Maxfoot Brushless Peak 1000W", "feature_2_label": "Tire", "feature_2_value": "26×1.95\" puncture protection" } },
+        { "type": "category", "settings": { "title": "Weight & Dimensions", "feature_1_label": "Weight limit", "feature_1_value": "300 lbs (136kg)", "feature_2_label": "Dimensions", "feature_2_value": "67.9\" × 38\" × 45\"" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

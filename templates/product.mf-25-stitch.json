@@ -1,0 +1,161 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "buy_buttons"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "nav": {
+      "type": "mf25-stitch-nav",
+      "disabled": true,
+      "settings": {}
+    },
+    "hero": {
+      "type": "mf25-stitch-hero",
+      "disabled": true,
+      "settings": {
+        "stock_label": "In Stock",
+        "title": "Maxfoot MF-25 Electric Commuter Bike | Step-Thru",
+        "price_now": "659",
+        "price_was": "1299",
+        "save_label": "Save $640",
+        "color_label": "Color",
+        "color_default": "Burning Orange",
+        "spec_motor": "Peak 1000W Motor",
+        "spec_battery": "500Wh Battery",
+        "spec_gears": "Shimano 7-Speed",
+        "spec_light": "LED Front/Tail",
+        "cta_label": "Add to Cart",
+        "trust_1": "FREE Shipping to 48 states",
+        "trust_2": "2-Year Warranty",
+        "trust_3": "US Warehouse CA Ships Fast"
+      }
+    },
+    "feature_1": {
+      "type": "mf25-stitch-feature",
+      "disabled": true,
+      "settings": {
+        "layout": "image_right",
+        "eyebrow": "Power",
+        "title": "Conquer Every Hill with Peak 1000W Power",
+        "body": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat.",
+        "image": ""
+      }
+    },
+    "feature_2": {
+      "type": "mf25-stitch-feature",
+      "disabled": true,
+      "settings": {
+        "layout": "image_left",
+        "eyebrow": "Battery",
+        "title": "Go Further with the 500Wh Removable Battery",
+        "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs.",
+        "image": ""
+      }
+    },
+    "feature_3": {
+      "type": "mf25-stitch-feature",
+      "disabled": true,
+      "settings": {
+        "layout": "image_right",
+        "eyebrow": "Display",
+        "title": "Stay Informed with the Smart LCD Display",
+        "body": "The bright, full-color LCD screen keeps you updated on your speed, battery level, distance traveled, and current assist mode. Its intuitive design ensures you have all the information you need at a glance.",
+        "image": ""
+      }
+    },
+    "size": {
+      "type": "mf25-stitch-size",
+      "disabled": true,
+      "settings": {
+        "title": "Find Your Perfect Fit",
+        "subtitle": "The step-thru design is engineered for riders between 5'3\" and 7'3\"."
+      }
+    },
+    "gallery": {
+      "type": "mf25-stitch-gallery",
+      "disabled": true,
+      "settings": {
+        "title": "Gallery of Adventure"
+      }
+    },
+    "reviews": {
+      "type": "mf25-stitch-reviews",
+      "disabled": true,
+      "settings": {
+        "title": "What Riders Are Saying"
+      }
+    },
+    "specs": {
+      "type": "mf25-stitch-specs",
+      "disabled": true,
+      "settings": {
+        "title": "Comprehensive Specifications"
+      }
+    },
+    "performance": {
+      "type": "mf25-stitch-performance",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Built for the ride",
+        "title": "Engineered for Performance"
+      }
+    },
+    "bundle": {
+      "type": "mf25-stitch-bundle",
+      "disabled": true,
+      "settings": {
+        "title": "Accessory Bundle & Save",
+        "subtitle": "Pair your MF-25 with curated kits and save up to 25%."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "nav",
+    "hero",
+    "feature_1",
+    "feature_2",
+    "feature_3",
+    "size",
+    "gallery",
+    "reviews",
+    "specs",
+    "performance",
+    "bundle"
+  ]
+}

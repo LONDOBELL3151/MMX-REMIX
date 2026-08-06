@@ -1,0 +1,51 @@
+<section class="mf25-gallery" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-gallery-head">
+      <h2>{{ s.title }}</h2>
+    </div>
+    <div class="mf25-gallery-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'image' -%}
+          <div class="mf25-gal-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.image.alt | default: 'MF-25 riding photo' | escape }}" loading="lazy">
+            {%- else -%}
+              <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=800&h=600&fit=crop" alt="" loading="lazy">
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Gallery",
+  "tag": "section",
+  "class": "section-mf25-stitch-gallery",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Gallery of Adventure" }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF25 Stitch Gallery",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+{%- liquid
+  assign layout = s.layout | default: 'image_right'
+  assign is_alt = false
+-%}
+<section class="mf25-feat{% if layout == 'image_left' %} mf25-feat--alt{% endif %}" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-feat-row">
+      <div class="mf25-feat-img">
+        {%- if s.image != blank -%}
+          <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.title | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=1200&h=900&fit=crop" alt="" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="mf25-feat-copy">
+        {%- if s.eyebrow != blank -%}
+          <span class="mf25-feat-eyebrow">{{ s.eyebrow }}</span>
+        {%- endif -%}
+        <h2>{{ s.title }}</h2>
+        <p>{{ s.body }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Feature",
+  "tag": "section",
+  "class": "section-mf25-stitch-feature",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "image_right", "label": "Image right (default)" },
+        { "value": "image_left", "label": "Image left (alt gray bg)" }
+      ],
+      "default": "image_right"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (small caps)",
+      "default": "Power"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Conquer Every Hill with Peak 1000W Power"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Feature image"
+    }
+  ]
+}
+{% endschema %}

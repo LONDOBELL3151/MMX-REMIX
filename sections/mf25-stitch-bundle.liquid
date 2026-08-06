@@ -1,0 +1,72 @@
+<section class="mf25-bundle" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-bundle-head">
+      <h2>{{ s.title }}</h2>
+      <p>{{ s.subtitle }}</p>
+    </div>
+    <div class="mf25-bundle-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'bundle' -%}
+          <div class="mf25-bun-card{% if block.settings.popular %} mf25-bun-card--popular{% endif %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.popular -%}
+              <span class="mf25-bun-badge">{{ block.settings.badge_text | default: 'Most Popular' }}</span>
+            {%- endif -%}
+            <h3 class="mf25-bun-name">{{ block.settings.title | escape }}</h3>
+            <ul class="mf25-bun-list">
+              {%- if block.settings.item_1 != blank -%}<li>{{ block.settings.item_1 | escape }}</li>{%- endif -%}
+              {%- if block.settings.item_2 != blank -%}<li>{{ block.settings.item_2 | escape }}</li>{%- endif -%}
+              {%- if block.settings.item_3 != blank -%}<li>{{ block.settings.item_3 | escape }}</li>{%- endif -%}
+            </ul>
+            <div class="mf25-bun-foot">
+              <div>
+                <div class="mf25-bun-price">${{ block.settings.price }}</div>
+                {%- if block.settings.saved_text != blank -%}
+                  <span class="mf25-bun-saved">{{ block.settings.saved_text | escape }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+            <button class="mf25-bun-btn{% if block.settings.popular %} mf25-bun-btn--primary{% endif %}" type="button">Add Bundle to Cart</button>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Bundle",
+  "tag": "section",
+  "class": "section-mf25-stitch-bundle",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Accessory Bundle & Save" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Pair your MF-25 with curated kits and save up to 25%." }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle",
+      "settings": [
+        { "type": "checkbox", "id": "popular", "label": "Mark as most popular", "default": false },
+        { "type": "text", "id": "badge_text", "label": "Badge text (e.g. Most Popular)", "default": "Most Popular" },
+        { "type": "text", "id": "title", "label": "Bundle title", "default": "Commuter Pro Bundle" },
+        { "type": "text", "id": "item_1", "label": "Item 1", "default": "Front Rack Bag" },
+        { "type": "text", "id": "item_2", "label": "Item 2", "default": "Front Basket for MF-25" },
+        { "type": "text", "id": "item_3", "label": "Item 3", "default": "Rearview Mirrors (pair)" },
+        { "type": "text", "id": "price", "label": "Price", "default": "114.98" },
+        { "type": "text", "id": "saved_text", "label": "Saved line text", "default": "Save 15%" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF25 Stitch Bundle",
+      "blocks": [
+        { "type": "bundle", "settings": { "title": "Commuter Pro Bundle", "item_1": "Front Rack Bag", "item_2": "Front Basket for MF-25", "item_3": "Rearview Mirrors (pair)", "price": "114.98", "saved_text": "Save 15%" } },
+        { "type": "bundle", "settings": { "popular": true, "title": "Adventure Pack", "item_1": "Rear Rack Bag", "item_2": "E-Bike Trailer", "item_3": "E-Bike Adapter", "price": "387.99", "saved_text": "Save $86" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

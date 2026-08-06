@@ -1,0 +1,60 @@
+<section class="mf25-eng" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-eng-head">
+      <span class="mf25-eng-eyebrow">{{ s.eyebrow }}</span>
+      <h2>{{ s.title }}</h2>
+    </div>
+    <div class="mf25-eng-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="mf25-eng-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {%- else -%}
+              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=800&h=600&fit=crop" alt="" loading="lazy">
+            {%- endif -%}
+            <div class="mf25-eng-card-body">
+              <h3>{{ block.settings.title | escape }}</h3>
+              <p>{{ block.settings.body | escape }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Performance",
+  "tag": "section",
+  "class": "section-mf25-stitch-performance",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Built for the ride" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Engineered for Performance" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Performance feature",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "1000W Peak Power" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "High-torque brushless hub motor designed to conquer steep city streets." },
+        { "type": "image_picker", "id": "image", "label": "Background image" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF25 Stitch Performance",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "1000W Peak Power", "body": "High-torque brushless hub motor designed to conquer steep city streets." } },
+        { "type": "feature", "settings": { "title": "Seamless Drivetrain", "body": "Premium Shimano 7-speed gearing, fully sealed for worry-free commuting." } },
+        { "type": "feature", "settings": { "title": "Smart Brake Activation", "body": "Hydraulic disc brakes that respond instantly to every safety-critical stop." } },
+        { "type": "feature", "settings": { "title": "Bright Color LCD", "body": "High-visibility under direct sunlight, designed to be read at a glance." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

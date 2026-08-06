@@ -1,0 +1,57 @@
+<section class="mf25-reviews" id="mf25-stitch-reviews" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-reviews-head">
+      <h2>{{ s.title }}</h2>
+    </div>
+    <div class="mf25-rv-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'video' -%}
+          <a href="{{ block.settings.video_url | default: '#' }}" class="mf25-rv-card" {{ block.shopify_attributes }}>
+            <div class="mf25-rv-thumb">
+              {%- if block.settings.thumbnail != blank -%}
+                <img src="{{ block.settings.thumbnail | image_url: width: 480 }}" alt="">
+              {%- endif -%}
+            </div>
+            <h4 class="mf25-rv-title">{{ block.settings.title | escape }}</h4>
+            <p class="mf25-rv-channel">{{ block.settings.channel | escape }}</p>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Reviews",
+  "tag": "section",
+  "class": "section-mf25-stitch-reviews",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "What Riders Are Saying" }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Video title", "default": "Maxfoot MF 25 E Bike" },
+        { "type": "text", "id": "channel", "label": "Channel name", "default": "Channel" },
+        { "type": "url", "id": "video_url", "label": "YouTube URL" },
+        { "type": "image_picker", "id": "thumbnail", "label": "Thumbnail" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF25 Stitch Reviews",
+      "blocks": [
+        { "type": "video", "settings": { "title": "Maxfoot MF 25 E Bike", "channel": "Shopping with Amy" } },
+        { "type": "video", "settings": { "title": "Maxfoot MF-25 eBike (ONLY $699)", "channel": "eBike Reviews & Adventures" } },
+        { "type": "video", "settings": { "title": "Can This E-Bike Handle My Neighborhood Streets?", "channel": "eBike Reviews & Adventures" } },
+        { "type": "video", "settings": { "title": "Maxfoot MF25 eBike Ride and Review", "channel": "eBike Reviews & Adventures" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

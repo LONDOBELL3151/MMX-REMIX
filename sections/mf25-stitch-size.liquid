@@ -1,0 +1,42 @@
+<section class="mf25-size" {{ section.shopify_attributes }}>
+  <div class="container">
+    <div class="mf25-size-head">
+      <h2>{{ s.title }}</h2>
+      <p>{{ s.subtitle }}</p>
+    </div>
+    <div class="mf25-size-frame">
+      <svg viewBox="0 0 560 360" fill="none" stroke="#121212" stroke-width="1.2" aria-label="MF-25 size diagram">
+        <circle cx="120" cy="280" r="55" fill="#f8f9fa"/>
+        <circle cx="380" cy="280" r="55" fill="#f8f9fa"/>
+        <line x1="120" y1="280" x2="220" y2="180"/>
+        <line x1="220" y1="180" x2="290" y2="180"/>
+        <line x1="290" y1="180" x2="380" y2="280"/>
+        <line x1="220" y1="180" x2="200" y2="280"/>
+        <line x1="220" y1="180" x2="220" y2="120"/>
+        <line x1="220" y1="120" x2="200" y2="180"/>
+        <line x1="200" y1="180" x2="180" y2="120"/>
+        <text x="265" y="155" font-family="Montserrat, sans-serif" font-size="10" fill="#6B675F" text-anchor="middle">17" FRAME</text>
+        <text x="490" y="60" font-family="Inter, sans-serif" font-size="10" fill="#121212" text-anchor="middle">5'3" — 7'3"</text>
+        <line x1="490" y1="70" x2="490" y2="280" stroke="#FFC000" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="490" y="295" font-family="Inter, sans-serif" font-size="9" fill="#6B675F" text-anchor="middle">RIDER HEIGHT</text>
+        <text x="70" y="60" font-family="Inter, sans-serif" font-size="10" fill="#121212" text-anchor="middle">17"</text>
+        <line x1="70" y1="70" x2="70" y2="220" stroke="#FFC000" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="70" y="232" font-family="Inter, sans-serif" font-size="9" fill="#6B675F" text-anchor="middle">STANDOVER</text>
+        <text x="250" y="350" font-family="Inter, sans-serif" font-size="10" fill="#121212" text-anchor="middle">44.3" WHEELBASE</text>
+        <line x1="120" y1="340" x2="380" y2="340" stroke="#FFC000" stroke-width="1" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Size",
+  "tag": "section",
+  "class": "section-mf25-stitch-size",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Find Your Perfect Fit" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The step-thru design is engineered for riders between 5'3\" and 7'3\"." }
+  ]
+}
+{% endschema %}
