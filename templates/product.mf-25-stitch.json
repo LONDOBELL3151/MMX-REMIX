@@ -56,7 +56,7 @@
     "feature_2": {
       "type": "mf25-stitch-feature",
       "settings": {
-        "desktop_layout": "image_right",
+        "desktop_layout": "image_left",
         "eyebrow": "Battery",
         "title": "Go Further with the 500Wh Removable Battery",
         "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs."
