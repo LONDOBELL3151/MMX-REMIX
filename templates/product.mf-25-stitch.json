@@ -14,7 +14,9 @@
       "blocks": {
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "font_size": "medium"
+          }
         },
         "price": {
           "type": "price",
@@ -34,47 +36,43 @@
         "buy_buttons"
       ],
       "settings": {
-        "enable_sticky_info": false,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "show_stock": true,
+        "stock_count": "",
+        "show_finance": true,
+        "finance_label": "Affirm financing",
+        "finance_link": "",
+        "show_extras": true
       }
     },
     "feature_1": {
       "type": "mf25-stitch-feature",
-      "disabled": true,
       "settings": {
         "desktop_layout": "image_right",
         "eyebrow": "Power",
         "title": "Conquer Every Hill with Peak 1000W Power",
-        "body": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat.",
-        "image": ""
+        "body": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."
       }
     },
     "feature_2": {
       "type": "mf25-stitch-feature",
-      "disabled": true,
       "settings": {
-        "desktop_layout": "image_left",
+        "desktop_layout": "image_right",
         "eyebrow": "Battery",
         "title": "Go Further with the 500Wh Removable Battery",
-        "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs.",
-        "image": ""
+        "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs."
       }
     },
     "feature_3": {
       "type": "mf25-stitch-feature",
-      "disabled": true,
       "settings": {
         "desktop_layout": "image_right",
         "eyebrow": "Display",
         "title": "Stay Informed with the Smart LCD Display",
-        "body": "The bright, full-color LCD screen keeps you updated on your speed, battery level, distance traveled, and current assist mode. Its intuitive design ensures you have all the information you need at a glance.",
-        "image": ""
+        "body": "The bright, full-color LCD screen keeps you updated on your speed, battery level, distance traveled, and current assist mode. Its intuitive design ensures you have all the information you need at a glance."
       }
     },
     "size": {
       "type": "mf25-stitch-size",
-      "disabled": true,
       "settings": {
         "title": "Find Your Perfect Fit",
         "subtitle": "The step-thru design is engineered for riders between 5'3\" and 7'3\"."
@@ -82,28 +80,24 @@
     },
     "gallery": {
       "type": "mf25-stitch-gallery",
-      "disabled": true,
       "settings": {
         "title": "Gallery of Adventure"
       }
     },
     "reviews": {
       "type": "mf25-stitch-reviews",
-      "disabled": true,
       "settings": {
         "title": "What Riders Are Saying"
       }
     },
     "specs": {
       "type": "mf25-stitch-specs",
-      "disabled": true,
       "settings": {
         "title": "Comprehensive Specifications"
       }
     },
     "performance": {
       "type": "mf25-stitch-performance",
-      "disabled": true,
       "settings": {
         "eyebrow": "Built for the ride",
         "title": "Engineered for Performance"
@@ -111,7 +105,6 @@
     },
     "bundle": {
       "type": "mf25-stitch-bundle",
-      "disabled": true,
       "settings": {
         "title": "Accessory Bundle & Save",
         "subtitle": "Pair your MF-25 with curated kits and save up to 25%."
