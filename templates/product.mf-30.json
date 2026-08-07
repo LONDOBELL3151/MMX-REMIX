@@ -27,11 +27,11 @@
         },
         "vendor": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "{{ product.metafields.custom.coupon.value }}",
             "text_style": "body"
-          },
-          "disabled": true
+          }
         },
         "1f60f836-5185-4665-9d70-2c6bf7f716f9": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
@@ -39,6 +39,7 @@
         },
         "caption": {
           "type": "text",
+          "name": "Keyword",
           "settings": {
             "text": "{{ product.metafields.descriptors.subtitle.value }}",
             "text_style": "subtitle"
@@ -46,24 +47,25 @@
         },
         "b40bca68-03f9-4fc8-8eab-b542d02e4ede": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Father's Day Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Save $100 OFF   ~2026.6.26</span>\n    </div>\n    <p style=\"margin: 0; color: #4a5568; font-size: 14px; line-height: 1.4;\">\n        Discount will be <strong>automatically applied</strong> at checkout.\n    </p>\n</div>",
             "padding_top": 0,
             "padding_bottom": 0
-          },
-          "disabled": true
+          }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "custom_liquid_YAG3id": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<div style=\"\nfont-size: 20px; \ncolor: black; \ntext-decoration: underline;\ntext-decoration-color: #ffc000;\nline-height: 1.2;\nfont-weight: bold;\nmargin-top: 0px;\nmargin-bottom: 5px !important;\n\">\n    Prime Month Lowest Price!<br>\n    Last day countdown\n</div>",
             "padding_top": 0,
             "padding_bottom": 0
-          },
-          "disabled": true
+          }
         },
         "ff378904-7e70-4524-903c-5249074a7628": {
           "type": "custom_liquid",
@@ -75,33 +77,35 @@
         },
         "41c03bb6-138d-4055-84fb-d946f1665560": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<img class=\"aabb\" src=\"https://cdn.shopify.com/s/files/1/0081/3039/6242/files/2_295d5f15-d437-4ae7-bdce-05424b5731e4.png?v=1704333433\">\n    <style>\n.aabb{\nmax-width: 400px;\n}\n        @media only screen and (max-width:750px) {\n            .aabb {\n                width: 360px\n            }\n        }\n    </style>",
             "padding_top": 0,
             "padding_bottom": 0
-          },
-          "disabled": true
+          }
         },
         "de90845d-69c7-4cd1-a5d7-7e6fb81d67b3": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
-            "custom_liquid": "<div class=\"product-form__ship-message\">\n    <strong>Best Electric Trike 2024 for Senior and Adults</strong><br>\n    \u00b7Rear Drive Motor<br>--Improved speed and climbing ability\n    <br>\n    \u00b7Rear Differential<br>--Improved stability\n    <br>\n    \u00b7UL-Certified 20Ah Battery<br>--Improved safety and endurance\n    </div>\n    \n    <p>\u3000</p>\n    \n    \n    <style>\n    .product-form__ship-message {\n        padding: 16px 24px;\n        background-color: #121212;\n        font-size: 16px;\n        font-weight: 400;\n        line-height: 29px;\n        margin-top: 5px;\n        margin-bottom: -26px;\n        letter-spacing: 0;\n        text-align: left;\n        color: #FFE14C;\n        width: 400px;\n    }\n    @media only screen and (max-width:750px) {\n                .product-form__ship-message {\n                    width: 300px\n                }\n            }\n    .pre-order {\n        padding: 16px 24px;\n        background-color: #121212;\n        font-size: 16px;\n        font-weight: 400;\n        line-height: 29px;\n        margin-top: 5px;\n        margin-bottom: -26px;\n        letter-spacing: 0;\n        text-align: left;\n        color: #FFE14C;\n        width: 400px;\n    }\n    @media only screen and (max-width:750px) {\n                .pre-order {\n                    width: 300px\n                }\n            }\n    </style>",
+            "custom_liquid": "<div class=\"product-form__ship-message\">\n    <strong>Best Electric Trike 2024 for Senior and Adults</strong><br>\n    ·Rear Drive Motor<br>--Improved speed and climbing ability\n    <br>\n    ·Rear Differential<br>--Improved stability\n    <br>\n    ·UL-Certified 20Ah Battery<br>--Improved safety and endurance\n    </div>\n    \n    <p>　</p>\n    \n    \n    <style>\n    .product-form__ship-message {\n        padding: 16px 24px;\n        background-color: #121212;\n        font-size: 16px;\n        font-weight: 400;\n        line-height: 29px;\n        margin-top: 5px;\n        margin-bottom: -26px;\n        letter-spacing: 0;\n        text-align: left;\n        color: #FFE14C;\n        width: 400px;\n    }\n    @media only screen and (max-width:750px) {\n                .product-form__ship-message {\n                    width: 300px\n                }\n            }\n    .pre-order {\n        padding: 16px 24px;\n        background-color: #121212;\n        font-size: 16px;\n        font-weight: 400;\n        line-height: 29px;\n        margin-top: 5px;\n        margin-bottom: -26px;\n        letter-spacing: 0;\n        text-align: left;\n        color: #FFE14C;\n        width: 400px;\n    }\n    @media only screen and (max-width:750px) {\n                .pre-order {\n                    width: 300px\n                }\n            }\n    </style>",
             "padding_top": 0,
             "padding_bottom": 0
-          },
-          "disabled": true
+          }
         },
         "9fb85954-ed29-473f-97d5-eddbfd61bb23": {
           "type": "text",
+          "disabled": true,
           "settings": {
-            "text": "{{ product.metafields.custom.badge_1.value }}\uff0c{{ product.metafields.custom.keyword_2.value }}\uff0c{{ product.metafields.custom.keyword_3.value }}",
+            "text": "{{ product.metafields.custom.badge_1.value }}，{{ product.metafields.custom.keyword_2.value }}，{{ product.metafields.custom.keyword_3.value }}",
             "text_style": "subtitle"
-          },
-          "disabled": true
+          }
         },
-        "buy_box": {
-          "type": "buy_box",
-          "settings": {}
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "color"
+          }
         },
         "20e31853-1748-4ea0-85b4-a617f6439f64": {
           "type": "inventory",
@@ -112,7 +116,7 @@
           }
         },
         "impact_accessories_Etj47N": {
-          "type": "accessories",
+          "type": "impact-accessories",
           "settings": {
             "accessories_product": "rearview-bicycle-mirrors",
             "accessories_is_fold": "no",
@@ -122,7 +126,7 @@
           }
         },
         "impact_accessories_cfH4RE": {
-          "type": "accessories",
+          "type": "impact-accessories",
           "settings": {
             "accessories_product": "electric-bicycle-weather-cover",
             "accessories_is_fold": "no",
@@ -132,7 +136,7 @@
           }
         },
         "impact_accessories_xC4PYq": {
-          "type": "accessories",
+          "type": "impact-accessories",
           "settings": {
             "accessories_product": "pet-bag",
             "accessories_is_fold": "no",
@@ -142,13 +146,24 @@
           }
         },
         "impact_accessories_8taGFN": {
-          "type": "accessories",
+          "type": "impact-accessories",
           "settings": {
             "accessories_product": "20ah-battery-for-mf-30-20ah-and-mf-23",
             "accessories_is_fold": "no",
             "accessories_is_checed": "no",
             "accessories_is_link": "no",
             "accessories_link": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
           }
         },
         "collapsible-row-0": {
@@ -169,7 +184,8 @@
         },
         "share": {
           "type": "share",
-          "disabled": true
+          "disabled": true,
+          "settings": {}
         }
       },
       "block_order": [
@@ -185,12 +201,14 @@
         "41c03bb6-138d-4055-84fb-d946f1665560",
         "de90845d-69c7-4cd1-a5d7-7e6fb81d67b3",
         "9fb85954-ed29-473f-97d5-eddbfd61bb23",
-        "buy_box",
+        "variant_picker",
         "20e31853-1748-4ea0-85b4-a617f6439f64",
         "impact_accessories_Etj47N",
         "impact_accessories_cfH4RE",
         "impact_accessories_xC4PYq",
         "impact_accessories_8taGFN",
+        "quantity_selector",
+        "buy_buttons",
         "collapsible-row-0",
         "collapsible-row-1",
         "share"
@@ -250,7 +268,7 @@
             "fourSquares_header_Pc": "Max Weight",
             "fourSquares_header_Phpne": "Max Weight",
             "fourSquares_header_color": "#000",
-            "fourSquares_desc": "Load up to 350 lbs on the\u00a0MF-30 electric trike\u00a0and embark on your journey with complete confidence. Whenever you need a moment, simply sit back and take a break, enjoying the stable comfort it provides."
+            "fourSquares_desc": "Load up to 350 lbs on the MF-30 electric trike and embark on your journey with complete confidence. Whenever you need a moment, simply sit back and take a break, enjoying the stable comfort it provides."
           }
         },
         "5338a5fe-483c-47a6-a633-eeb0d850e63d": {
@@ -260,7 +278,7 @@
             "fourSquares_header_Pc": "Ebike Commuting Era Now",
             "fourSquares_header_Phpne": "Ebike Commuting Era Now",
             "fourSquares_header_color": "#fff",
-            "fourSquares_desc": "Ditch the draining commute. The\u00a0MF-30 electric trike\u00a0is your efficient solution, effortlessly carrying you beyond traffic with a powerful 85+ mile range. Transform your daily travel into a relaxed and reliable journey."
+            "fourSquares_desc": "Ditch the draining commute. The MF-30 electric trike is your efficient solution, effortlessly carrying you beyond traffic with a powerful 85+ mile range. Transform your daily travel into a relaxed and reliable journey."
           }
         },
         "e2449adf-31c9-4cc6-ac9c-5aad10a11612": {
@@ -270,7 +288,7 @@
             "fourSquares_header_Pc": "Off-Road Champion",
             "fourSquares_header_Phpne": "Off-RoadChampion",
             "fourSquares_header_color": "#fff",
-            "fourSquares_desc": "Answer the call of the wild. The\u00a0MF-30 electric trike\u00a0is your stable guide, engineered for exploration. Its\u00a0Maxfoot 50mm Max Travel Suspension Fork\u00a0ensures control over uneven ground, while the\u00a0750W brushless geared motor's\u00a085N.m torque\u00a0provides relentless power to discover paths less traveled."
+            "fourSquares_desc": "Answer the call of the wild. The MF-30 electric trike is your stable guide, engineered for exploration. Its Maxfoot 50mm Max Travel Suspension Fork ensures control over uneven ground, while the 750W brushless geared motor's 85N.m torque provides relentless power to discover paths less traveled."
           }
         }
       },
@@ -607,7 +625,7 @@
         "template--14525860741202__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7-text-1"
       ],
       "custom_css": [
-        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539914764370__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539914764370__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/DSC_5465_4bcc54e9-47d4-48b5-a9c4-92a74bc49168.png",
@@ -721,17 +739,17 @@
           "type": "slide",
           "settings": {
             "heading": "Size",
-            "item_heading_1": "Handlebar Height \u00a0",
+            "item_heading_1": "Handlebar Height  ",
             "item_content_1": "44.3\" - 46.5\" (adjustable)",
-            "item_heading_2": "Standover Height \u00a0",
+            "item_heading_2": "Standover Height  ",
             "item_content_2": "18\"",
             "item_heading_3": "Handlebar Reach",
             "item_content_3": "16\"",
             "item_heading_4": "Seat Height",
             "item_content_4": "33.5\" - 40.5\"",
-            "item_heading_5": "Total Length \u00a0",
+            "item_heading_5": "Total Length  ",
             "item_content_5": "74.5\"",
-            "item_heading_6": "Total Width \u00a0",
+            "item_heading_6": "Total Width  ",
             "item_content_6": "34\"",
             "item_heading_7": "Seat Tube Length",
             "item_content_7": "12\"",
@@ -858,7 +876,7 @@
           "settings": {
             "heading": "What kind of warranty is included with Maxfoot electric trike in the United States?",
             "icon": "none",
-            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the\u00a0<a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
+            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
             "page": ""
           }
         }

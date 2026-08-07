@@ -19,10 +19,11 @@
           }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
-        "buy_box": {
-          "type": "buy_box",
+        "buy_buttons": {
+          "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": false
@@ -32,7 +33,7 @@
       "block_order": [
         "title",
         "price",
-        "buy_box"
+        "buy_buttons"
       ],
       "settings": {
         "show_stock": true,

@@ -26,16 +26,17 @@
           }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "custom_liquid_H7TAbJ": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror </span>\n    </div>\n   \n</div>",
             "padding_top": 0,
             "padding_bottom": 0
-          },
-          "disabled": true
+          }
         },
         "custom_liquid_DjAYXi": {
           "type": "custom_liquid",
@@ -53,7 +54,7 @@
           }
         },
         "impact_accessories_K9gFqW": {
-          "type": "accessories",
+          "type": "impact-accessories",
           "settings": {
             "accessories_product": "rearview-bicycle-mirrors",
             "accessories_is_fold": "no",
@@ -63,7 +64,7 @@
           }
         },
         "impact_accessories_NfaQgk": {
-          "type": "accessories",
+          "type": "impact-accessories",
           "settings": {
             "accessories_product": "electric-bicycle-weather-cover",
             "accessories_is_fold": "no",
@@ -72,9 +73,11 @@
             "accessories_link": ""
           }
         },
-        "buy_box": {
-          "type": "buy_box",
-          "settings": {}
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "color"
+          }
         },
         "inventory": {
           "type": "inventory",
@@ -84,12 +87,25 @@
             "show_inventory_quantity": true
           }
         },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
         "share": {
-          "type": "share"
+          "type": "share",
+          "settings": {}
         },
         "description": {
           "type": "description",
-          "disabled": true
+          "disabled": true,
+          "settings": {}
         }
       },
       "block_order": [
@@ -101,8 +117,10 @@
         "text_839WWa",
         "impact_accessories_K9gFqW",
         "impact_accessories_NfaQgk",
-        "buy_box",
+        "variant_picker",
         "inventory",
+        "quantity_selector",
+        "buy_buttons",
         "share",
         "description"
       ],
@@ -118,7 +136,7 @@
     "mf_banner": {
       "type": "mf-pdp-banner",
       "custom_css": [
-        ".mf-pdp-banner__content {transform: translateY(-50%); /* \u5411\u4e0a\u79fb\u52a8 */}",
+        ".mf-pdp-banner__content {transform: translateY(-50%); /* 向上移动 */}",
         " {padding: 0px;}"
       ],
       "settings": {
@@ -197,7 +215,7 @@
       "custom_css": [
         ".swiper-cover-box p {margin: 6px 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 3em; line-height: 1.5em;}"
       ],
-      "name": "\u89c6\u9891-\u8f6e\u64ad\u6a21\u5757",
+      "name": "视频-轮播模块",
       "settings": {
         "swiperVideo_title": "YouTube Reviews"
       }
@@ -342,7 +360,7 @@
           "type": "bundle",
           "settings": {
             "title": "Adventure Pack",
-            "description": "Includes:\n\u2022 Front Utility Basket\n\u2022 Rear Rack Bag\n\u2022 E-Bike Trailer",
+            "description": "Includes:\n• Front Utility Basket\n• Rear Rack Bag\n• E-Bike Trailer",
             "bundle_product": "",
             "product_1": "front-basket-for-mf-25",
             "product_2": "rear-rack-bag",
@@ -360,7 +378,7 @@
           "type": "bundle",
           "settings": {
             "title": "Essentials Kit",
-            "description": "Includes:\n\u2022 Rear Rack Bag\n\u2022 Rearview Bicycle Mirrors\n\u2022 E-Bike Trailer",
+            "description": "Includes:\n• Rear Rack Bag\n• Rearview Bicycle Mirrors\n• E-Bike Trailer",
             "bundle_product": "",
             "product_1": "rear-rack-bag",
             "product_2": "rearview-bicycle-mirrors",
@@ -560,7 +578,7 @@
           "type": "bikeSpecInfoBox",
           "settings": {
             "bikeSpecInfo_Item_title": "Size & Fit",
-            "bikeSpecInfo_Item_value": "5\u20183\u201c-7\u20193\u201c"
+            "bikeSpecInfo_Item_value": "5‘3“-7’3“"
           }
         },
         "bike_spec_info_box_RYTzhX": {
@@ -655,7 +673,7 @@
           "type": "bikeSpecInfoBox",
           "settings": {
             "bikeSpecInfo_Item_title": "Ebike Dimensions",
-            "bikeSpecInfo_Item_value": "67.8\" \u00d7 28\" \u00d7 45\"\n(Length \u00d7 Width \u00d7 Height)"
+            "bikeSpecInfo_Item_value": "67.8\" × 28\" × 45\"\n(Length × Width × Height)"
           }
         }
       },

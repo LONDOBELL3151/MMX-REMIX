@@ -68,30 +68,20 @@
   });
 
   // ============ Variant picker (PDP) ============
-  // Document-wide listener so variant radios/selects that live OUTSIDE the
-  // buy form (blocks-driven layout) still update the form's hidden variant id.
-  document.addEventListener('change', (e) => {
-    if (e.target.matches('input[type=radio], select') && e.target.dataset.optionIndex !== undefined) {
-      const form = e.target.closest('form') || document.querySelector('#pdp__form');
-      if (!form) return;
-      const productIdInput = form.querySelector('input[type="hidden"][name="id"]');
-      const labelEl = form.querySelector('[data-selected-option="' + e.target.dataset.optionIndex + '"]');
-      if (labelEl) labelEl.textContent = e.target.value;
-      const variantId = e.target.dataset.variantId;
-      if (variantId && productIdInput) {
-        productIdInput.value = variantId;
-      }
-    }
-  });
-  // Preserve the original form-scoped handler for fallback (non-blocks) mode.
   const pdpForm = document.querySelector('#pdp__form');
   if (pdpForm) {
     const productIdInput = pdpForm.querySelector('input[type="hidden"][name="id"]');
     pdpForm.addEventListener('change', (e) => {
       if (e.target.matches('input[type=radio], select')) {
+        const selectedOptions = Array.from(
+          pdpForm.querySelectorAll('input[type=radio]:checked, select')
+        ).map((el) => el.value);
+        // Update selected option label
         const index = e.target.dataset.optionIndex;
         const labelEl = pdpForm.querySelector('[data-selected-option="' + index + '"]');
         if (labelEl) labelEl.textContent = e.target.value;
+        // Try to find matching variant from data attribute (set server-side ideally)
+        // For now: try to read from data-variant-id if single option
         const variantId = e.target.dataset.variantId;
         if (variantId && productIdInput) {
           productIdInput.value = variantId;

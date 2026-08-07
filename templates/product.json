@@ -3,33 +3,7 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "buy_box": {
-          "type": "buy_box",
-          "settings": {
-            "show_dynamic_checkout": true
-          }
-        },
-        "inventory": {
-          "type": "inventory",
-          "settings": {}
-        },
-        "financing": {
-          "type": "financing",
-          "settings": {}
-        },
-        "extras": {
-          "type": "extras",
-          "settings": {}
-        },
-        "extra_1": {
+        "extra_truck": {
           "type": "extra",
           "settings": {
             "icon": "truck",
@@ -37,7 +11,7 @@
             "subtitle": "Ships within 2 business days"
           }
         },
-        "extra_2": {
+        "extra_shield": {
           "type": "extra",
           "settings": {
             "icon": "shield",
@@ -45,25 +19,19 @@
             "subtitle": "Full bumper-to-bumper coverage"
           }
         },
-        "extra_3": {
+        "extra_phone": {
           "type": "extra",
           "settings": {
             "icon": "phone",
             "title": "US Support",
-            "subtitle": "Reno, NV team"
+            "subtitle": "Reno, NV team · 1-866-MAXFOOT"
           }
         }
       },
       "block_order": [
-        "title",
-        "price",
-        "buy_box",
-        "inventory",
-        "financing",
-        "extras",
-        "extra_1",
-        "extra_2",
-        "extra_3"
+        "extra_truck",
+        "extra_shield",
+        "extra_phone"
       ]
     },
     "related-products": {
