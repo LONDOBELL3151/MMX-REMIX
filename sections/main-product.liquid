@@ -1,5 +1,27 @@
 {%- liquid
   assign s = section.settings
+
+  assign has_title = false
+  assign has_price = false
+  assign has_variant = false
+  assign has_inventory = false
+  assign has_qty = false
+  assign has_buy = false
+  for b in section.blocks
+    if b.type == 'title'
+      assign has_title = true
+    elsif b.type == 'price'
+      assign has_price = true
+    elsif b.type == 'variant_picker'
+      assign has_variant = true
+    elsif b.type == 'inventory'
+      assign has_inventory = true
+    elsif b.type == 'quantity_selector'
+      assign has_qty = true
+    elsif b.type == 'buy_buttons'
+      assign has_buy = true
+    endif
+  endfor
 -%}
 
 <section class="section pdp-gallery" {{ section.shopify_attributes }}>
@@ -10,7 +32,10 @@
 
     <div class="pdp__info">
       <div class="pdp__category">{{ product.type | default: 'Electric Trike' }}</div>
-      <h1 class="pdp__title">{{ product.title }}</h1>
+
+      {%- if has_title -%}
+        <h1 class="pdp__title">{{ product.title }}</h1>
+      {%- endif -%}
 
       {%- comment -%}
         Shopify's native `rating` metafield is a JSON object
@@ -33,9 +58,11 @@
         </div>
       {%- endif -%}
 
-      {% render 'price' %}
+      {%- if has_price -%}
+        {% render 'price' %}
+      {%- endif -%}
 
-      {%- if s.show_stock -%}
+      {%- if has_inventory and s.show_stock -%}
         <div class="pdp__stock">
           <span class="pdp__stock-status">
             {% render 'icon', icon: 'check', size: 14 %}
@@ -56,9 +83,10 @@
         {% render 'pdp-color-family' %}
       {%- endif -%}
 
-      {%- if product.options.size > 0 -%}
+      {%- if has_buy and product.options.size > 0 -%}
         {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+          {%- if has_variant -%}
           {%- for option in product.options_with_values -%}
             {%- if has_color_family and option.name == 'Color' -%}
               {%- continue -%}
@@ -138,13 +166,16 @@
               {%- endif -%}
             </div>
           {%- endfor -%}
+          {%- endif -%}
 
           <div class="pdp__qty-row">
+            {%- if has_qty -%}
             <div class="pdp__qty">
               <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
               <input type="number" name="quantity" value="1" min="1" data-qty-input>
               <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
             </div>
+            {%- endif -%}
             <button type="submit" name="add" class="btn btn--primary pdp__cta"{% unless product.available %} disabled{% endunless %}>
               {%- if product.available -%}
                 Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span>
@@ -163,11 +194,13 @@
         {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
           <div class="pdp__qty-row">
+            {%- if has_qty -%}
             <div class="pdp__qty">
               <button type="button" data-qty="dec">{% render 'icon', icon: 'minus' %}</button>
               <input type="number" name="quantity" value="1" min="1">
               <button type="button" data-qty="inc">{% render 'icon', icon: 'plus' %}</button>
             </div>
+            {%- endif -%}
             <button type="submit" class="btn btn--primary pdp__cta">Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span></button>
           </div>
           {%- if product.available -%}
