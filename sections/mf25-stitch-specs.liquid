@@ -177,6 +177,10 @@ a{color:inherit;text-decoration:none}
 
 </style>
 
+{%- liquid
+  assign s = section.settings
+-%}
+
 <section class="mf25-specs" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-specs-head">
@@ -188,7 +192,7 @@ a{color:inherit;text-decoration:none}
           <div class="mf25-spec-card" {{ block.shopify_attributes }}>
             <div class="mf25-spec-card-head">
               {%- if block.settings.icon != blank -%}
-                {{ block.settings.icon | inline_svg }}
+                {{ block.settings.icon | inline_asset_content }}
               {%- else -%}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
               {%- endif -%}

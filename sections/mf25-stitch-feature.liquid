@@ -1,4 +1,5 @@
 {%- liquid
+  assign s = section.settings
   assign desktop_layout = s.desktop_layout | default: 'image_right'
 -%}
 <style>
@@ -195,9 +196,9 @@ a{color:inherit;text-decoration:none}
     <div class="mf25-feat-row">
       <div class="mf25-feat-img">
         {%- if s.image != blank -%}
-          <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.title | escape }}" loading="lazy">
+          <img src="{{ s.image | image_url: width: 1200 }}" alt="{{ s.title | escape }}" loading="lazy" width="1200" height="900">
         {%- else -%}
-          <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=1200&h=900&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=1200&h=900&fit=crop" alt="" loading="lazy" width="1200" height="900">
         {%- endif -%}
       </div>
       <div class="mf25-feat-copy">

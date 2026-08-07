@@ -177,6 +177,10 @@ a{color:inherit;text-decoration:none}
 
 </style>
 
+{%- liquid
+  assign s = section.settings
+-%}
+
 <section class="mf25-eng" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-eng-head">
@@ -188,9 +192,9 @@ a{color:inherit;text-decoration:none}
         {%- if block.type == 'feature' -%}
           <div class="mf25-eng-card" {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="800" height="600">
             {%- else -%}
-              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=800&h=600&fit=crop" alt="" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=800&h=600&fit=crop" alt="" loading="lazy" width="800" height="600">
             {%- endif -%}
             <div class="mf25-eng-card-body">
               <h3>{{ block.settings.title | escape }}</h3>

@@ -177,6 +177,10 @@ a{color:inherit;text-decoration:none}
 
 </style>
 
+{%- liquid
+  assign s = section.settings
+-%}
+
 <section class="mf25-reviews" id="mf25-stitch-reviews" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-reviews-head">
@@ -188,7 +192,7 @@ a{color:inherit;text-decoration:none}
           <a href="{{ block.settings.video_url | default: '#' }}" class="mf25-rv-card" {{ block.shopify_attributes }}>
             <div class="mf25-rv-thumb">
               {%- if block.settings.thumbnail != blank -%}
-                <img src="{{ block.settings.thumbnail | image_url: width: 480 }}" alt="">
+                <img src="{{ block.settings.thumbnail | image_url: width: 480 }}" alt="" width="480" height="270">
               {%- endif -%}
             </div>
             <h4 class="mf25-rv-title">{{ block.settings.title | escape }}</h4>
