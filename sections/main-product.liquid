@@ -233,28 +233,13 @@
         </div>
       {%- endif -%}
 
-      {%- if s.show_extras -%}
-        <div class="pdp__extras">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'extra' -%}
-              <div class="pdp__extra" {{ block.shopify_attributes }}>
-                <span class="pdp__extra-icon">
-                  {%- case block.settings.icon -%}
-                    {%- when 'truck' -%}{% render 'icon', icon: 'truck', size: 20 %}
-                    {%- when 'shield' -%}{% render 'icon', icon: 'shield', size: 20 %}
-                    {%- when 'calendar' -%}{% render 'icon', icon: 'calendar', size: 20 %}
-                    {%- when 'phone' -%}{% render 'icon', icon: 'phone', size: 20 %}
-                    {%- else -%}{% render 'icon', icon: 'check', size: 20 %}
-                  {%- endcase -%}
-                </span>
-                <strong>{{ block.settings.title }}</strong>
-                <span class="pdp__extra-sub">{{ block.settings.subtitle }}</span>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
+      {%- comment -%}
+        Extras trust items + promo banners are appended blocks. They render
+        in their actual block_order (drag-and-drop order in the theme
+        editor), so repositioning works. Each extra/promo renders
+        independently (no wrapping container) so HTML open/close tags
+        always pair correctly.
+      {%- endcomment -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'promo_banner' -%}
           <div class="pdp__promo pdp__promo--{{ block.settings.tone }}" {{ block.shopify_attributes }}>
@@ -279,6 +264,20 @@
                 <a class="pdp__promo-link" href="{{ block.settings.link }}">{{ block.settings.link_text | default: 'Shop now' }}</a>
               {%- endif -%}
             </div>
+          </div>
+        {%- elsif block.type == 'extra' and s.show_extras -%}
+          <div class="pdp__extra" {{ block.shopify_attributes }}>
+            <span class="pdp__extra-icon">
+              {%- case block.settings.icon -%}
+                {%- when 'truck' -%}{% render 'icon', icon: 'truck', size: 20 %}
+                {%- when 'shield' -%}{% render 'icon', icon: 'shield', size: 20 %}
+                {%- when 'calendar' -%}{% render 'icon', icon: 'calendar', size: 20 %}
+                {%- when 'phone' -%}{% render 'icon', icon: 'phone', size: 20 %}
+                {%- else -%}{% render 'icon', icon: 'check', size: 20 %}
+              {%- endcase -%}
+            </span>
+            <strong>{{ block.settings.title }}</strong>
+            <span class="pdp__extra-sub">{{ block.settings.subtitle }}</span>
           </div>
         {%- endif -%}
       {%- endfor -%}

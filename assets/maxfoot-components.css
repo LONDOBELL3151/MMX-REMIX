@@ -568,7 +568,7 @@ body.mobile-menu-open{overflow:hidden}
 .pdp__finance{font-size:13px;color:var(--color-text-soft);margin:16px 0;padding:16px;background:var(--color-bg-soft);border-radius:var(--radius-md)}
 .pdp__finance a{color:var(--color-primary);font-weight:700;text-decoration:underline}
 .pdp__extras{display:flex;flex-direction:column;gap:12px;padding:24px;background:var(--color-bg-soft);border-radius:var(--radius-md);margin-top:24px}
-.pdp__extra{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--color-text-soft)}
+.pdp__extra{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--color-text-soft);padding:14px 16px;background:var(--color-bg-soft);border-radius:var(--radius-md);border:1px solid var(--color-border);margin:8px 0}
 .pdp__extra strong{display:block;color:var(--color-primary);font-family:var(--font-display);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
 .pdp__extra-icon{width:36px;height:36px;border-radius:var(--radius-md);background:#fff;display:grid;place-items:center;color:var(--color-primary);flex-shrink:0;border:1px solid var(--color-border)}
 .pdp__extra-sub{font-size:12px}
