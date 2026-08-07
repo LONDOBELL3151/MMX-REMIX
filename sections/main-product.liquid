@@ -24,6 +24,21 @@
   endfor
 -%}
 
+<style>
+.pdp__promo{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:var(--radius-md);margin:20px 0 4px}
+.pdp__promo--accent{background:rgba(255,192,0,.12);border:1px solid rgba(255,192,0,.5)}
+.pdp__promo--neutral{background:var(--color-bg-soft);border:1px solid var(--color-border)}
+.pdp__promo--danger{background:rgba(224,32,32,.06);border:1px solid rgba(224,32,32,.35)}
+.pdp__promo-icon{flex:0 0 40px;width:40px;height:40px;border-radius:var(--radius-md);background:var(--color-primary);color:var(--color-accent);display:grid;place-items:center}
+.pdp__promo--danger .pdp__promo-icon{background:var(--color-danger);color:#fff}
+.pdp__promo-content{display:flex;flex-direction:column;gap:2px}
+.pdp__promo-heading{font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;color:var(--color-primary)}
+.pdp__promo--danger .pdp__promo-heading{color:var(--color-danger)}
+.pdp__promo-body{font-size:14px;line-height:1.55;color:var(--color-text-soft)}
+.pdp__promo-link{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:var(--color-primary);text-decoration:underline;text-underline-offset:3px}
+.pdp__promo-link:hover{color:var(--color-accent-dark)}
+</style>
+
 <section class="section pdp-gallery" {{ section.shopify_attributes }}>
   <div class="container pdp__grid">
     <div class="pdp__media">
@@ -239,6 +254,34 @@
           {%- endfor -%}
         </div>
       {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'promo_banner' -%}
+          <div class="pdp__promo pdp__promo--{{ block.settings.tone }}" {{ block.shopify_attributes }}>
+            <span class="pdp__promo-icon">
+              {%- case block.settings.icon -%}
+                {%- when 'clock' -%}{% render 'icon', icon: 'clock', size: 22 %}
+                {%- when 'calendar' -%}{% render 'icon', icon: 'calendar', size: 22 %}
+                {%- when 'truck' -%}{% render 'icon', icon: 'truck', size: 22 %}
+                {%- when 'shield' -%}{% render 'icon', icon: 'shield', size: 22 %}
+                {%- when 'check' -%}{% render 'icon', icon: 'check', size: 22 %}
+                {%- else -%}{% render 'icon', icon: 'basket', size: 22 %}
+              {%- endcase -%}
+            </span>
+            <div class="pdp__promo-content">
+              {%- if block.settings.heading != blank -%}
+                <strong class="pdp__promo-heading">{{ block.settings.heading }}</strong>
+              {%- endif -%}
+              {%- if block.settings.body != blank -%}
+                <span class="pdp__promo-body">{{ block.settings.body }}</span>
+              {%- endif -%}
+              {%- if block.settings.link != blank -%}
+                <a class="pdp__promo-link" href="{{ block.settings.link }}">{{ block.settings.link_text | default: 'Shop now' }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -388,6 +431,41 @@
         },
         { "type": "text", "id": "title", "label": "Title", "default": "Free Shipping" },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Ships within 2 business days" }
+      ]
+    },
+    {
+      "type": "promo_banner",
+      "name": "Promo banner",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tone",
+          "label": "Tone",
+          "options": [
+            { "value": "accent", "label": "Accent (yellow)" },
+            { "value": "neutral", "label": "Neutral (soft gray)" },
+            { "value": "danger", "label": "Urgent (red)" }
+          ],
+          "default": "accent"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "basket", "label": "Basket (offer)" },
+            { "value": "clock", "label": "Clock (limited time)" },
+            { "value": "calendar", "label": "Calendar (event)" },
+            { "value": "truck", "label": "Truck (free ship)" },
+            { "value": "shield", "label": "Shield (guarantee)" },
+            { "value": "check", "label": "Check" }
+          ],
+          "default": "basket"
+        },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Limited-time offer" },
+        { "type": "textarea", "id": "body", "label": "Body text", "default": "Save $300 on the MF-25 when you add a bundle. Discount applied automatically at checkout." },
+        { "type": "url", "id": "link", "label": "Link (optional)" },
+        { "type": "text", "id": "link_text", "label": "Link text", "default": "Shop now" }
       ]
     }
   ],
