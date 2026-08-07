@@ -93,6 +93,19 @@ body.mobile-menu-open{overflow:hidden}
   .hero__badge{top:16px;left:16px;font-size:11px;padding:8px 12px}
 }
 
+/* Mobile hero: show the full 750x1080 mobile banner (no cropping).
+   The .hero__bg becomes the in-flow element that sets the section height
+   via aspect-ratio; .hero__content overlays on top. object-fit:cover with
+   a matching aspect ratio means nothing gets cropped. */
+@media (max-width:990px){
+  .hero{min-height:0}
+  .hero--compact,.hero--medium,.hero--tall{min-height:0}
+  .hero__bg{position:relative;aspect-ratio:750/1080;height:auto}
+  .hero__bg img,.hero__bg picture img{object-fit:cover}
+  .hero__content{position:absolute;inset:0;min-height:0;display:flex;align-items:flex-end;padding:32px 20px 40px}
+  .hero__badge{top:16px;left:16px}
+}
+
 /* ===== Proof bar ===== */
 .proof-bar{background:var(--color-primary);color:#fff;padding:24px 0}
 .proof-bar__grid{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
