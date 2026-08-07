@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -47,20 +56,7 @@
         "quantity_selector",
         "buy_buttons"
       ],
-      "settings": {
-        "enable_sticky_info": true,
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail_slider",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
+      "settings": {}
     },
     "related-products": {
       "type": "related-products",
@@ -262,7 +258,7 @@
         "text_amrJ9b"
       ],
       "custom_css": [
-        ".banner__box {background-color: rgba(255, 255, 255, 0.7); /* \u767d\u8272\u80cc\u666f\uff0c50% \u4e0d\u900f\u660e\u5ea6 */ color: rgba(0, 0, 0, 1); /* \u9ed1\u8272\u6587\u5b57\uff0c100% \u4e0d\u900f\u660e\u5ea6 */}",
+        ".banner__box {background-color: rgba(255, 255, 255, 0.7); /* 白色背景，50% 不透明度 */ color: rgba(0, 0, 0, 1); /* 黑色文字，100% 不透明度 */}",
         "* {max-width: 1200px; width: 100%; margin: auto;}"
       ],
       "settings": {
@@ -307,7 +303,7 @@
           "type": "bikeSpecInfoBox",
           "settings": {
             "bikeSpecInfo_Item_title": "Display",
-            "bikeSpecInfo_Item_value": "2.0\u201d LCD Display With USB Port"
+            "bikeSpecInfo_Item_value": "2.0” LCD Display With USB Port"
           }
         },
         "bike_spec_info_box_nf3N7F": {
@@ -384,7 +380,7 @@
           "type": "bikeSpecInfoBox",
           "settings": {
             "bikeSpecInfo_Item_title": "Appropriate Height",
-            "bikeSpecInfo_Item_value": "5\u20181\u201c-7\u20193\u201c"
+            "bikeSpecInfo_Item_value": "5‘1“-7’3“"
           }
         }
       },
@@ -559,7 +555,7 @@
           "type": "bikeSpecInfoBox",
           "settings": {
             "bikeSpecInfo_Item_title": "Ebike Dimensions",
-            "bikeSpecInfo_Item_value": "67.8\" \u00d7 28\" \u00d7 45\"\n(Length \u00d7 Width \u00d7 Height)"
+            "bikeSpecInfo_Item_value": "67.8\" × 28\" × 45\"\n(Length × Width × Height)"
           }
         }
       },

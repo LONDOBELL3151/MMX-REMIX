@@ -56,20 +56,7 @@
         "quantity_selector",
         "buy_buttons"
       ],
-      "settings": {
-        "enable_sticky_info": true,
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
+      "settings": {}
     },
     "related-products": {
       "type": "related-products",
@@ -104,7 +91,7 @@
         "text_nDkegV"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/1-600x450.jpg",
@@ -136,7 +123,7 @@
         "text_6pcjMr"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/2-600x450.jpg",
@@ -168,7 +155,7 @@
         "text_bW9dcM"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/3-600x450.jpg",
@@ -200,7 +187,7 @@
         "text_bANrLz"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/4-600x450.jpg",
@@ -232,7 +219,7 @@
         "text_N6zaWd"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/5-600x450.jpg",
@@ -264,7 +251,7 @@
         "text_DYLcaE"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/6-600x450.jpg",
@@ -296,7 +283,7 @@
         "text_At8wyx"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #e0e0e0; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #e0e0e0; /* 图片边框颜色 */}"
       ],
       "settings": {
         "image": "shopify://shop_images/7-600x450.jpg",

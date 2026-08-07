@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -47,16 +56,7 @@
         "quantity_selector",
         "buy_buttons"
       ],
-      "settings": {
-        "enable_sticky_info": true,
-        "media_size": "medium",
-        "gallery_layout": "thumbnail_slider",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
+      "settings": {}
     },
     "1647937422a497bc21": {
       "type": "text-module",
@@ -177,7 +177,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/DSC_3785.jpg",
-            "text": "<strong>Large Capacity Battery</strong><br>The large-capacity battery from Panasonic provides strong energy support for the MF-19's riding range. With PAS system, the riding range can even reach an amazing 60 miles. You just have to ride and don\u2019t need to worry about battery range."
+            "text": "<strong>Large Capacity Battery</strong><br>The large-capacity battery from Panasonic provides strong energy support for the MF-19's riding range. With PAS system, the riding range can even reach an amazing 60 miles. You just have to ride and don’t need to worry about battery range."
           }
         }
       },
@@ -294,15 +294,15 @@
           "type": "slide",
           "settings": {
             "heading": "Size",
-            "item_heading_1": "Handlebar Height \u00a0",
+            "item_heading_1": "Handlebar Height  ",
             "item_content_1": "46\" - 50\" (adjustable)",
             "item_heading_2": "Handlebar Reach",
             "item_content_2": "17\"",
             "item_heading_3": "Seat Height",
             "item_content_3": "34.5\" - 38\"\n(Measured from bottom of the pedal stroke)",
-            "item_heading_4": "Standover Height \u00a0",
+            "item_heading_4": "Standover Height  ",
             "item_content_4": "29\"",
-            "item_heading_5": "Total Length \u00a0",
+            "item_heading_5": "Total Length  ",
             "item_content_5": "72\"",
             "item_heading_6": "Wheelbase",
             "item_content_6": "47.5\"",
@@ -316,7 +316,7 @@
             "item_content_10": "35 mm",
             "item_heading_11": "Max Tire Width",
             "item_content_11": "4\"",
-            "item_heading_12": "Folded Dimensions\u00a0(LxWxH)",
+            "item_heading_12": "Folded Dimensions (LxWxH)",
             "item_content_12": "42\" x 21\" x 32\""
           }
         }

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -54,20 +63,7 @@
         ".icon-with-text--horizontal {column-gap: 0rem; justify-content: normal;}",
         "@media only screen and (max-width: 750px) {.icon-with-text--horizontal {column-gap: 0rem; } h4 {font-size: 1.4rem; }}"
       ],
-      "settings": {
-        "enable_sticky_info": true,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail_slider",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
+      "settings": {}
     },
     "1647937422a497bc21": {
       "type": "text-module",
@@ -172,7 +168,7 @@
         "template--14493881237586__f15dc9ba-fd80-43ff-9a71-49748cbb590f-1681272373392072e9-1": {
           "type": "text",
           "settings": {
-            "text": "<p>The brushless geared hub Motor on MF-19 500F comes with 500W power \uff08Peak power up to 750W\uff09and 80N.m torque which is going to help power you up steep inclines and get you up to top speed quickly from a dead stop, all while remaining quiet and inconspicuous.</p>",
+            "text": "<p>The brushless geared hub Motor on MF-19 500F comes with 500W power （Peak power up to 750W）and 80N.m torque which is going to help power you up steep inclines and get you up to top speed quickly from a dead stop, all while remaining quiet and inconspicuous.</p>",
             "text_style": "subtitle"
           }
         }
@@ -182,11 +178,11 @@
         "template--14493881237586__f15dc9ba-fd80-43ff-9a71-49748cbb590f-1681272373392072e9-1"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #121212; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}",
-        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: 0px solid #121212; /* 图片边框颜色 */}",
+        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".subtitle {font-size: 2rem;}",
         "@media only screen and (max-width: 750px) {.subtitle {font-size: 1.8rem; }}",
-        " /*\u6b63\u6587\u5b57\u4f53\u5927\u5c0f\u4e0e\u5a92\u4f53\u67e5\u8be2*/"
+        " /*正文字体大小与媒体查询*/"
       ],
       "settings": {
         "image": "shopify://shop_images/2_235a4978-2f2d-4701-adb3-14dacf6c1f32.png",
@@ -216,7 +212,7 @@
         "template--14493881237586__56f219d5-c6f7-4fd0-887a-3945a65aebdf-16812877321307846f-1": {
           "type": "text",
           "settings": {
-            "text": "<p>The large-capacity battery from SAMSUNG provides strong energy support for the MF-19's riding range. With PAS system, the riding range can even reach an amazing 60 miles. You just have to ride and don\u2019t need to worry about battery range.</p>",
+            "text": "<p>The large-capacity battery from SAMSUNG provides strong energy support for the MF-19's riding range. With PAS system, the riding range can even reach an amazing 60 miles. You just have to ride and don’t need to worry about battery range.</p>",
             "text_style": "subtitle"
           }
         }
@@ -226,11 +222,11 @@
         "template--14493881237586__56f219d5-c6f7-4fd0-887a-3945a65aebdf-16812877321307846f-1"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #121212; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}",
-        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: 0px solid #121212; /* 图片边框颜色 */}",
+        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".subtitle {font-size: 2rem;}",
         "@media only screen and (max-width: 750px) {.subtitle {font-size: 1.8rem; }}",
-        " /*\u6b63\u6587\u5b57\u4f53\u5927\u5c0f\u4e0e\u5a92\u4f53\u67e5\u8be2*/"
+        " /*正文字体大小与媒体查询*/"
       ],
       "settings": {
         "image": "shopify://shop_images/3_6b47773c-253e-494a-93f3-33de50fb190c.png",
@@ -270,11 +266,11 @@
         "template--14493881237586__544df995-f74e-46c8-abb3-4c61080d9b81-16812877321307846f-1"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #121212; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}",
-        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: 0px solid #121212; /* 图片边框颜色 */}",
+        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".subtitle {font-size: 2rem;}",
         "@media only screen and (max-width: 750px) {.subtitle {font-size: 1.8rem; }}",
-        " /*\u6b63\u6587\u5b57\u4f53\u5927\u5c0f\u4e0e\u5a92\u4f53\u67e5\u8be2*/"
+        " /*正文字体大小与媒体查询*/"
       ],
       "settings": {
         "image": "shopify://shop_images/4_3250b6ca-671a-4a0a-a2af-7f8e00bac195.png",
@@ -314,11 +310,11 @@
         "template--14493881237586__e44ba9b7-17ba-4e4b-ba01-10e7e56fef0c-16812877321307846f-1"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #121212; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}",
-        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: 0px solid #121212; /* 图片边框颜色 */}",
+        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".subtitle {font-size: 2rem;}",
         "@media only screen and (max-width: 750px) {.subtitle {font-size: 1.8rem; }}",
-        " /*\u6b63\u6587\u5b57\u4f53\u5927\u5c0f\u4e0e\u5a92\u4f53\u67e5\u8be2*/"
+        " /*正文字体大小与媒体查询*/"
       ],
       "settings": {
         "image": "shopify://shop_images/1_88744fc8-d195-472f-b599-fce693e6d2d1.png",
@@ -348,7 +344,7 @@
         "template--14493881237586__73540420-ef58-4995-b544-c598449743a4-1681367830db14bab1-1": {
           "type": "text",
           "settings": {
-            "text": "<p>The Maxfoot MF-19 headlight is integrated into the bike\u2019s design and provides a bright light source for night riding. It is powered by the bike\u2019s battery and designed to be durable and long-lasting. The angle is also adjustable, allowing riders to adjust the headlight to suit their needs.</p>",
+            "text": "<p>The Maxfoot MF-19 headlight is integrated into the bike’s design and provides a bright light source for night riding. It is powered by the bike’s battery and designed to be durable and long-lasting. The angle is also adjustable, allowing riders to adjust the headlight to suit their needs.</p>",
             "text_style": "subtitle"
           }
         }
@@ -358,11 +354,11 @@
         "template--14493881237586__73540420-ef58-4995-b544-c598449743a4-1681367830db14bab1-1"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #121212; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}",
-        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: 0px solid #121212; /* 图片边框颜色 */}",
+        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".subtitle {font-size: 2rem;}",
         "@media only screen and (max-width: 750px) {.subtitle {font-size: 1.8rem; }}",
-        " /*\u6b63\u6587\u5b57\u4f53\u5927\u5c0f\u4e0e\u5a92\u4f53\u67e5\u8be2*/"
+        " /*正文字体大小与媒体查询*/"
       ],
       "settings": {
         "image": "shopify://shop_images/MF-19_5F-1.png",
@@ -392,7 +388,7 @@
         "template--14493881237586__6c053b2c-c88b-41bc-87b4-dcc996439ed7-1681367830db14bab1-1": {
           "type": "text",
           "settings": {
-            "text": "<p>The tail light of MF-19 provides 3 working mode for riders to alert vehicles behind: 1. Braking Highlight Mode. 2. Riding Constant Light Mode. 3. Strobe Alert Mode. Riders can choose the working mode as they need. It is powered by the bike\u2019s battery and designed to be durable and long-lasting.</p>",
+            "text": "<p>The tail light of MF-19 provides 3 working mode for riders to alert vehicles behind: 1. Braking Highlight Mode. 2. Riding Constant Light Mode. 3. Strobe Alert Mode. Riders can choose the working mode as they need. It is powered by the bike’s battery and designed to be durable and long-lasting.</p>",
             "text_style": "subtitle"
           }
         }
@@ -402,11 +398,11 @@
         "template--14493881237586__6c053b2c-c88b-41bc-87b4-dcc996439ed7-1681367830db14bab1-1"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #121212; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}",
-        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: 0px solid #121212; /* 图片边框颜色 */}",
+        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
         ".subtitle {font-size: 2rem;}",
         "@media only screen and (max-width: 750px) {.subtitle {font-size: 1.8rem; }}",
-        " /*\u6b63\u6587\u5b57\u4f53\u5927\u5c0f\u4e0e\u5a92\u4f53\u67e5\u8be2*/"
+        " /*正文字体大小与媒体查询*/"
       ],
       "settings": {
         "image": "shopify://shop_images/MF-19_5F-2.1.png",
@@ -520,15 +516,15 @@
           "type": "slide",
           "settings": {
             "heading": "Size",
-            "item_heading_1": "Handlebar Height \u00a0",
+            "item_heading_1": "Handlebar Height  ",
             "item_content_1": "46\" - 50\" (adjustable)",
             "item_heading_2": "Handlebar Reach",
             "item_content_2": "17\"",
             "item_heading_3": "Seat Height",
             "item_content_3": "34.5\" - 38\"\n(Measured from bottom of the pedal stroke)",
-            "item_heading_4": "Standover Height \u00a0",
+            "item_heading_4": "Standover Height  ",
             "item_content_4": "29\"",
-            "item_heading_5": "Total Length \u00a0",
+            "item_heading_5": "Total Length  ",
             "item_content_5": "72\"",
             "item_heading_6": "Wheelbase",
             "item_content_6": "47.5\"",
@@ -542,7 +538,7 @@
             "item_content_10": "35 mm",
             "item_heading_11": "Max Tire Width",
             "item_content_11": "4\"",
-            "item_heading_12": "Folded Dimensions\u00a0(LxWxH)",
+            "item_heading_12": "Folded Dimensions (LxWxH)",
             "item_content_12": "42\" x 21\" x 32\""
           }
         }
@@ -573,7 +569,7 @@
           "settings": {
             "image": "shopify://shop_images/DSC_9108_4391f636-32a4-414a-90a5-d87b384228f8.jpg",
             "title": "Bafang Motor",
-            "text": "<p>This brushless geared hub Motor comes with 500W power \uff08Peak power up to 750W\uff09which is going to help power you up steep inclines and get you up to top speed quickly from a dead stop, all while remaining quiet and inconspicuous.</p>",
+            "text": "<p>This brushless geared hub Motor comes with 500W power （Peak power up to 750W）which is going to help power you up steep inclines and get you up to top speed quickly from a dead stop, all while remaining quiet and inconspicuous.</p>",
             "link_label": "",
             "link": ""
           }
@@ -584,7 +580,7 @@
           "settings": {
             "image": "shopify://shop_images/DSC_3785_dca7ad5b-30ea-4e95-8f4f-b4c4e24f8c20.jpg",
             "title": "Large Capacity Battery",
-            "text": "<p>The large-capacity battery from SAMSUNG provides strong energy support for the MF-19's riding range. With PAS system, the riding range can even reach an amazing 60 miles. You just have to ride and don\u2019t need to worry about battery range.</p>",
+            "text": "<p>The large-capacity battery from SAMSUNG provides strong energy support for the MF-19's riding range. With PAS system, the riding range can even reach an amazing 60 miles. You just have to ride and don’t need to worry about battery range.</p>",
             "link_label": "",
             "link": ""
           }

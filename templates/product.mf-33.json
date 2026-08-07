@@ -18,6 +18,18 @@
             "font_size": "medium"
           }
         },
+        "promo_banner_6z4dXz": {
+          "type": "promo_banner",
+          "disabled": true,
+          "settings": {
+            "tone": "accent",
+            "icon": "basket",
+            "heading": "Limited-time offer",
+            "body": "Save $300 on the MF-25 when you add a bundle. Discount applied automatically at checkout.",
+            "link": "",
+            "link_text": "Shop now"
+          }
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -50,6 +62,7 @@
       },
       "block_order": [
         "title",
+        "promo_banner_6z4dXz",
         "price",
         "variant_picker",
         "inventory",
@@ -98,7 +111,7 @@
         "max_width": "1400px",
         "main_title": "Share the Journey, Multiply the Joy",
         "subhead": "MF-33 E-Trike",
-        "text": "Over the years, our riders have told us one thing clear and loud: the best journeys are the ones shared. Driven by your feedback, we re-imagined what an electric tricycle could be and created the Maxfoot MF-33\u2014our very first multi-passenger E-Trike.\n\nAs a groundbreaking addition to the Maxfoot lineup, the MF-33 takes our industry-leading tricycle craftsmanship and elevates it for the whole family. While we\u2019ve meticulously optimized the rider\u2019s comfort and control, we\u2019ve also introduced a spacious, premium rear passenger seat. Whether you're cruising with family, running errands, or exploring with friends, the MF-33 is designed to turn every ride into a shared adventure.\n\nDon't just ride alone\u2014bring your favorite people along for the journey.",
+        "text": "Over the years, our riders have told us one thing clear and loud: the best journeys are the ones shared. Driven by your feedback, we re-imagined what an electric tricycle could be and created the Maxfoot MF-33—our very first multi-passenger E-Trike.\n\nAs a groundbreaking addition to the Maxfoot lineup, the MF-33 takes our industry-leading tricycle craftsmanship and elevates it for the whole family. While we’ve meticulously optimized the rider’s comfort and control, we’ve also introduced a spacious, premium rear passenger seat. Whether you're cruising with family, running errands, or exploring with friends, the MF-33 is designed to turn every ride into a shared adventure.\n\nDon't just ride alone—bring your favorite people along for the journey.",
         "pc_margin_top": "0px",
         "pc_margin_bottom": "0px",
         "mb_margin_top": "0px",
@@ -261,7 +274,7 @@
         "text_cYQpVD"
       ],
       "custom_css": [
-        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_JACfy6.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_JACfy6.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/MAXFOOT_30-2.jpg",
@@ -301,7 +314,7 @@
         "text_zbK8TH"
       ],
       "custom_css": [
-        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_KGV98L.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_KGV98L.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/d30e90ac4677d654ec8429fed5e29206.png",
@@ -341,7 +354,7 @@
         "text_6rtyPb"
       ],
       "custom_css": [
-        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_tU3wD3.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_tU3wD3.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/1_78849427-defb-4bd0-941e-ae605843f51a.jpg",
@@ -663,7 +676,7 @@
           "settings": {
             "heading": "What kind of warranty is included with Maxfoot electric trike in the United States?",
             "icon": "none",
-            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the\u00a0<a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
+            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
             "page": ""
           }
         }

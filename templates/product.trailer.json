@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -47,20 +56,7 @@
         "quantity_selector",
         "buy_buttons"
       ],
-      "settings": {
-        "enable_sticky_info": true,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "thumbnail_slider",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
+      "settings": {}
     },
     "related-products": {
       "type": "related-products",
@@ -157,7 +153,7 @@
         "swiper_box_bLpddx"
       ],
       "custom_css": [],
-      "name": "\u8f6e\u64ad\u6a21\u5757",
+      "name": "轮播模块",
       "settings": {
         "swiperGraphic_title": "Discover Tailer For E-bikes"
       }
@@ -177,7 +173,7 @@
         "text_akA94q"
       ],
       "custom_css": [
-        ".global-media-settings {border: 0px solid #ffffff; /* \u56fe\u7247\u8fb9\u6846\u989c\u8272 */}"
+        ".global-media-settings {border: 0px solid #ffffff; /* 图片边框颜色 */}"
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
