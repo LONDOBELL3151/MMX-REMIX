@@ -1,27 +1,5 @@
 {%- liquid
   assign s = section.settings
-
-  assign has_title = false
-  assign has_price = false
-  assign has_variant = false
-  assign has_inventory = false
-  assign has_qty = false
-  assign has_buy = false
-  for b in section.blocks
-    if b.type == 'title'
-      assign has_title = true
-    elsif b.type == 'price'
-      assign has_price = true
-    elsif b.type == 'variant_picker'
-      assign has_variant = true
-    elsif b.type == 'inventory'
-      assign has_inventory = true
-    elsif b.type == 'quantity_selector'
-      assign has_qty = true
-    elsif b.type == 'buy_buttons'
-      assign has_buy = true
-    endif
-  endfor
 -%}
 
 <style>
@@ -38,6 +16,112 @@
 .pdp__promo-link{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:var(--color-primary);text-decoration:underline;text-underline-offset:3px}
 .pdp__promo-link:hover{color:var(--color-accent-dark)}
 </style>
+{%- liquid
+  assign has_variant = false
+  assign has_qty = false
+  for b in section.blocks
+    if b.type == 'variant_picker'
+      assign has_variant = true
+    elsif b.type == 'quantity_selector'
+      assign has_qty = true
+    endif
+  endfor
+
+  assign has_color_family = false
+  if product.metafields.custom.product_family.value != blank
+    if product.metafields.custom.product_family.value.members.value.size > 1
+      assign has_color_family = true
+    endif
+  endif
+
+  assign pdp_rating = 0
+  if product.metafields.reviews.rating and product.metafields.reviews.rating.value
+    assign pdp_rating = product.metafields.reviews.rating.value | times: 1.0
+  endif
+  assign pdp_review_count = product.metafields.reviews.rating_count | default: 0
+-%}
+
+{%- capture variant_picker_html -%}
+  {%- if product.options.size > 0 -%}
+    {%- for option in product.options_with_values -%}
+      {%- if has_color_family and option.name == 'Color' -%}
+        {%- continue -%}
+      {%- endif -%}
+      <div class="pdp__option">
+        <label class="pdp__option-label">
+          {{ option.name }}:
+          <strong data-selected-option="{{ forloop.index0 }}">{{ option.selected_value }}</strong>
+        </label>
+        {%- if option.name == 'Color' -%}
+          <div class="pdp__swatches">
+            {%- for value in option.values -%}
+              {%- assign variant = nil -%}
+              {%- for v in product.variants -%}
+                {%- if v.option1 == value -%}
+                  {%- assign variant = v -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- assign swatch_hex = blank -%}
+              {%- if variant and variant.metafields.custom.color_hex != blank -%}
+                {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
+              {%- else -%}
+                {%- assign swatch_name = value | downcase | handleize -%}
+                {%- case swatch_name -%}
+                  {%- when 'red' -%}{%- assign swatch_hex = '#d32f2f' -%}
+                  {%- when 'crimson' -%}{%- assign swatch_hex = '#dc143c' -%}
+                  {%- when 'orange' -%}{%- assign swatch_hex = '#ff6b1a' -%}
+                  {%- when 'burning-orange' -%}{%- assign swatch_hex = '#ff5722' -%}
+                  {%- when 'vibrant-orange' -%}{%- assign swatch_hex = '#ff6f00' -%}
+                  {%- when 'yellow' -%}{%- assign swatch_hex = '#fbc02d' -%}
+                  {%- when 'gold' -%}{%- assign swatch_hex = '#d4af37' -%}
+                  {%- when 'green' -%}{%- assign swatch_hex = '#388e3c' -%}
+                  {%- when 'lime' -%}{%- assign swatch_hex = '#9ccc65' -%}
+                  {%- when 'pangea-green' -%}{%- assign swatch_hex = '#2e7d32' -%}
+                  {%- when 'teal' -%}{%- assign swatch_hex = '#00897b' -%}
+                  {%- when 'cyan' -%}{%- assign swatch_hex = '#00acc1' -%}
+                  {%- when 'blue' -%}{%- assign swatch_hex = '#1976d2' -%}
+                  {%- when 'navy' -%}{%- assign swatch_hex = '#0d2c54' -%}
+                  {%- when 'neptune-blue' -%}{%- assign swatch_hex = '#1e3a5f' -%}
+                  {%- when 'purple' -%}{%- assign swatch_hex = '#7b1fa2' -%}
+                  {%- when 'pink' -%}{%- assign swatch_hex = '#d81b60' -%}
+                  {%- when 'brown' -%}{%- assign swatch_hex = '#5d4037' -%}
+                  {%- when 'beige' -%}{%- assign swatch_hex = '#d7c3a5' -%}
+                  {%- when 'tan' -%}{%- assign swatch_hex = '#c9a87c' -%}
+                  {%- when 'black' -%}{%- assign swatch_hex = '#1a1a1a' -%}
+                  {%- when 'white' -%}{%- assign swatch_hex = '#ffffff' -%}
+                  {%- when 'gray', 'grey' -%}{%- assign swatch_hex = '#6b6b6b' -%}
+                  {%- when 'brooklyn-gray' -%}{%- assign swatch_hex = '#6b6b6b' -%}
+                  {%- when 'silver' -%}{%- assign swatch_hex = '#c0c0c0' -%}
+                {%- endcase -%}
+              {%- endif -%}
+              {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
+              <label class="swatch" data-swatch="{{ value | handleize }}">
+                <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
+                <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}"></span>
+                <span class="swatch__label">{{ value }}</span>
+              </label>
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <select name="options[{{ option.name | downcase }}]" class="pdp__select" data-option-index="{{ forloop.index0 }}">
+            {%- for value in option.values -%}
+              <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+            {%- endfor -%}
+          </select>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture qty_picker_html -%}
+  <div class="pdp__qty">
+    <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
+    <input type="number" name="quantity" value="1" min="1" data-qty-input>
+    <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
+  </div>
+{%- endcapture -%}
 
 <section class="section pdp-gallery" {{ section.shopify_attributes }}>
   <div class="container pdp__grid">
@@ -48,200 +132,67 @@
     <div class="pdp__info">
       <div class="pdp__category">{{ product.type | default: 'Electric Trike' }}</div>
 
-      {%- if has_title -%}
-        <h1 class="pdp__title">{{ product.title }}</h1>
-      {%- endif -%}
-
       {%- comment -%}
-        Shopify's native `rating` metafield is a JSON object
-        {scale_min, scale_max, value} — {{ }} on it would serialize
-        to a JSON string. Pull .value first so we get a plain number.
+        All blocks render in their block_order (drag-and-drop order).
+        variant_picker / quantity_selector are captured and emitted inside
+        the buy_buttons form so the buy box stays a single valid form.
+        rating + color family are auto-injected (not template blocks) and
+        stay in fixed positions.
       {%- endcomment -%}
-      {%- assign pdp_rating = 0 -%}
-      {%- if product.metafields.reviews.rating and product.metafields.reviews.rating.value -%}
-        {%- assign pdp_rating = product.metafields.reviews.rating.value | times: 1.0 -%}
-      {%- endif -%}
-      {%- assign pdp_review_count = product.metafields.reviews.rating_count | default: 0 -%}
-      {%- if pdp_rating > 0 -%}
-        <div class="pdp__rating">
-          {% render 'stars', rating: pdp_rating %}
-          <span class="pdp__rating-text">{{ pdp_rating }} ({{ pdp_review_count }} reviews)</span>
-        </div>
-      {%- else -%}
-        <div class="pdp__rating pdp__rating--empty">
-          <span class="pdp__rating-text">No reviews yet</span>
-        </div>
-      {%- endif -%}
 
-      {%- if has_price -%}
-        {% render 'price' %}
-      {%- endif -%}
-
-      {%- if has_inventory and s.show_stock -%}
-        <div class="pdp__stock">
-          <span class="pdp__stock-status">
-            {% render 'icon', icon: 'check', size: 14 %}
-            <strong>In stock</strong>
-          </span>
-          <span class="pdp__stock-detail">{{ s.stock_count | default: 24 }} available &mdash; Ships within 2 business days</span>
-        </div>
-      {%- endif -%}
-
-      {%- assign has_color_family = false -%}
-      {%- if product.metafields.custom.product_family.value != blank -%}
-        {%- if product.metafields.custom.product_family.value.members.value.size > 1 -%}
-          {%- assign has_color_family = true -%}
-        {%- endif -%}
-      {%- endif -%}
-
-      {%- if has_color_family -%}
-        {% render 'pdp-color-family' %}
-      {%- endif -%}
-
-      {%- if has_buy and product.options.size > 0 -%}
-        {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
-          {%- if has_variant -%}
-          {%- for option in product.options_with_values -%}
-            {%- if has_color_family and option.name == 'Color' -%}
-              {%- continue -%}
-            {%- endif -%}
-            <div class="pdp__option">
-              <label class="pdp__option-label">
-                {{ option.name }}:
-                <strong data-selected-option="{{ forloop.index0 }}">{{ option.selected_value }}</strong>
-              </label>
-              {%- if option.name == 'Color' -%}
-                <div class="pdp__swatches">
-                  {%- for value in option.values -%}
-                    {%- assign variant = nil -%}
-                    {%- for v in product.variants -%}
-                      {%- if v.option1 == value -%}
-                        {%- assign variant = v -%}
-                        {%- break -%}
-                      {%- endif -%}
-                    {%- endfor -%}
-                    {%- comment -%}
-                      Swatch color resolution order:
-                        1. variant.metafields.custom.color_hex  (per-variant override)
-                        2. name-based map (common colors + MaxFoot brand colors)
-                        3. neutral gray fallback
-                      The name map uses | handleize so "Neptune Blue" -> "neptune-blue".
-                      For brand-specific colors the merchant should set the
-                      color_hex metafield on each variant — that wins regardless
-                      of the name guess.
-                    {%- endcomment -%}
-                    {%- assign swatch_hex = blank -%}
-                    {%- if variant and variant.metafields.custom.color_hex != blank -%}
-                      {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
-                    {%- else -%}
-                      {%- assign swatch_name = value | downcase | handleize -%}
-                      {%- case swatch_name -%}
-                        {%- when 'red' -%}{%- assign swatch_hex = '#d32f2f' -%}
-                        {%- when 'crimson' -%}{%- assign swatch_hex = '#dc143c' -%}
-                        {%- when 'orange' -%}{%- assign swatch_hex = '#ff6b1a' -%}
-                        {%- when 'burning-orange' -%}{%- assign swatch_hex = '#ff5722' -%}
-                        {%- when 'vibrant-orange' -%}{%- assign swatch_hex = '#ff6f00' -%}
-                        {%- when 'yellow' -%}{%- assign swatch_hex = '#fbc02d' -%}
-                        {%- when 'gold' -%}{%- assign swatch_hex = '#d4af37' -%}
-                        {%- when 'green' -%}{%- assign swatch_hex = '#388e3c' -%}
-                        {%- when 'lime' -%}{%- assign swatch_hex = '#9ccc65' -%}
-                        {%- when 'pangea-green' -%}{%- assign swatch_hex = '#2e7d32' -%}
-                        {%- when 'teal' -%}{%- assign swatch_hex = '#00897b' -%}
-                        {%- when 'cyan' -%}{%- assign swatch_hex = '#00acc1' -%}
-                        {%- when 'blue' -%}{%- assign swatch_hex = '#1976d2' -%}
-                        {%- when 'navy' -%}{%- assign swatch_hex = '#0d2c54' -%}
-                        {%- when 'neptune-blue' -%}{%- assign swatch_hex = '#1e3a5f' -%}
-                        {%- when 'purple' -%}{%- assign swatch_hex = '#7b1fa2' -%}
-                        {%- when 'pink' -%}{%- assign swatch_hex = '#d81b60' -%}
-                        {%- when 'brown' -%}{%- assign swatch_hex = '#5d4037' -%}
-                        {%- when 'beige' -%}{%- assign swatch_hex = '#d7c3a5' -%}
-                        {%- when 'tan' -%}{%- assign swatch_hex = '#c9a87c' -%}
-                        {%- when 'black' -%}{%- assign swatch_hex = '#1a1a1a' -%}
-                        {%- when 'white' -%}{%- assign swatch_hex = '#ffffff' -%}
-                        {%- when 'gray', 'grey' -%}{%- assign swatch_hex = '#6b6b6b' -%}
-                        {%- when 'brooklyn-gray' -%}{%- assign swatch_hex = '#6b6b6b' -%}
-                        {%- when 'silver' -%}{%- assign swatch_hex = '#c0c0c0' -%}
-                      {%- endcase -%}
-                    {%- endif -%}
-                    {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
-                    <label class="swatch" data-swatch="{{ value | handleize }}">
-                      <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
-                      <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}"></span>
-                      <span class="swatch__label">{{ value }}</span>
-                    </label>
-                  {%- endfor -%}
-                </div>
-              {%- else -%}
-                <select name="options[{{ option.name | downcase }}]" class="pdp__select" data-option-index="{{ forloop.index0 }}">
-                  {%- for value in option.values -%}
-                    <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
-                  {%- endfor -%}
-                </select>
-              {%- endif -%}
-            </div>
-          {%- endfor -%}
-          {%- endif -%}
-
-          <div class="pdp__qty-row">
-            {%- if has_qty -%}
-            <div class="pdp__qty">
-              <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
-              <input type="number" name="quantity" value="1" min="1" data-qty-input>
-              <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
-            </div>
-            {%- endif -%}
-            <button type="submit" name="add" class="btn btn--primary pdp__cta"{% unless product.available %} disabled{% endunless %}>
-              {%- if product.available -%}
-                Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span>
-              {%- else -%}
-                Sold Out
-              {%- endif -%}
-            </button>
-          </div>
-          {%- if product.available -%}
-            <div class="pdp__dynamic-checkout">
-              {{ form | payment_button }}
-            </div>
-          {%- endif -%}
-        {%- endform -%}
-{%- else -%}
-        {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
-          <div class="pdp__qty-row">
-            {%- if has_qty -%}
-            <div class="pdp__qty">
-              <button type="button" data-qty="dec">{% render 'icon', icon: 'minus' %}</button>
-              <input type="number" name="quantity" value="1" min="1">
-              <button type="button" data-qty="inc">{% render 'icon', icon: 'plus' %}</button>
-            </div>
-            {%- endif -%}
-            <button type="submit" class="btn btn--primary pdp__cta">Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span></button>
-          </div>
-          {%- if product.available -%}
-            <div class="pdp__dynamic-checkout">
-              {{ form | payment_button }}
-            </div>
-          {%- endif -%}
-        {%- endform -%}
-      {%- endif -%}
-
-      {%- if s.show_finance -%}
-        <div class="pdp__finance">
-          Or <strong>4 payments of {{ product.price | divided_by: 4 | money }}</strong>
-          &mdash; <a href="{{ s.finance_link | default: '#' }}">{{ s.finance_label | default: 'Affirm financing' }}</a>
-        </div>
-      {%- endif -%}
-
-      {%- comment -%}
-        Extras trust items + promo banners are appended blocks. They render
-        in their actual block_order (drag-and-drop order in the theme
-        editor), so repositioning works. Each extra/promo renders
-        independently (no wrapping container) so HTML open/close tags
-        always pair correctly.
-      {%- endcomment -%}
       {%- for block in section.blocks -%}
-        {%- if block.type == 'promo_banner' -%}
+        {%- if block.type == 'title' -%}
+          <h1 class="pdp__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+          {%- if pdp_rating > 0 -%}
+            <div class="pdp__rating">
+              {% render 'stars', rating: pdp_rating %}
+              <span class="pdp__rating-text">{{ pdp_rating }} ({{ pdp_review_count }} reviews)</span>
+            </div>
+          {%- else -%}
+            <div class="pdp__rating pdp__rating--empty">
+              <span class="pdp__rating-text">No reviews yet</span>
+            </div>
+          {%- endif -%}
+        {%- elsif block.type == 'price' -%}
+          {% render 'price' %}
+        {%- elsif block.type == 'inventory' -%}
+          {%- if s.show_stock -%}
+            <div class="pdp__stock" {{ block.shopify_attributes }}>
+              <span class="pdp__stock-status">
+                {% render 'icon', icon: 'check', size: 14 %}
+                <strong>In stock</strong>
+              </span>
+              <span class="pdp__stock-detail">{{ s.stock_count | default: 24 }} available &mdash; Ships within 2 business days</span>
+            </div>
+          {%- endif -%}
+        {%- elsif block.type == 'buy_buttons' -%}
+          {%- if has_color_family -%}
+            {% render 'pdp-color-family' %}
+          {%- endif -%}
+          {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+            {%- if has_variant -%}
+              {{ variant_picker_html }}
+            {%- endif -%}
+            <div class="pdp__qty-row">
+              {%- if has_qty -%}
+                {{ qty_picker_html }}
+              {%- endif -%}
+              <button type="submit" name="add" class="btn btn--primary pdp__cta"{% unless product.available %} disabled{% endunless %}>
+                {%- if product.available -%}
+                  Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span>
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </button>
+            </div>
+            {%- if product.available -%}
+              <div class="pdp__dynamic-checkout">
+                {{ form | payment_button }}
+              </div>
+            {%- endif -%}
+          {%- endform -%}
+        {%- elsif block.type == 'promo_banner' -%}
           <div class="pdp__promo pdp__promo--{{ block.settings.tone }}" {{ block.shopify_attributes }}>
             <span class="pdp__promo-icon">
               {%- case block.settings.icon -%}
@@ -281,6 +232,13 @@
           </div>
         {%- endif -%}
       {%- endfor -%}
+
+      {%- if s.show_finance -%}
+        <div class="pdp__finance">
+          Or <strong>4 payments of {{ product.price | divided_by: 4 | money }}</strong>
+          &mdash; <a href="{{ s.finance_link | default: '#' }}">{{ s.finance_label | default: 'Affirm financing' }}</a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
