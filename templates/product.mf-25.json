@@ -29,50 +29,6 @@
           "type": "price",
           "settings": {}
         },
-        "custom_liquid_H7TAbJ": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror </span>\n    </div>\n   \n</div>",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
-        "custom_liquid_DjAYXi": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Limited Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Price Limited at $659. Buy and Get Free Rearview Mirror </span>\n    </div>\n   <p style=\"margin: 0; color: #4a5568; font-size: 14px; line-height: 1.4;\">\n        Discount will be <strong>automatically applied</strong> at checkout.\n    </p>\n</div>",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
-        "text_839WWa": {
-          "type": "text",
-          "settings": {
-            "text": "<strong>Buy MF-25 Get Rear Mirror Free</strong>",
-            "text_style": "subtitle"
-          }
-        },
-        "impact_accessories_K9gFqW": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "rearview-bicycle-mirrors",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "yes",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
-        "impact_accessories_NfaQgk": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "electric-bicycle-weather-cover",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -112,11 +68,6 @@
         "vendor",
         "title",
         "price",
-        "custom_liquid_H7TAbJ",
-        "custom_liquid_DjAYXi",
-        "text_839WWa",
-        "impact_accessories_K9gFqW",
-        "impact_accessories_NfaQgk",
         "variant_picker",
         "inventory",
         "quantity_selector",
