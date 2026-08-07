@@ -12,56 +12,23 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "Max Z SERIES",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {
             "font_size": "medium"
           }
         },
-        "custom_liquid_CHRMUT": {
-          "type": "custom_liquid",
-          "disabled": true,
-          "settings": {
-            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Father's Day Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Save $100 OFF ~2026.6.26</span>\n    </div>\n    <p style=\"margin: 0; color: #4a5568; font-size: 14px; line-height: 1.4;\">\n        Discount will be <strong>automatically applied</strong> at checkout.\n    </p>\n</div>",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
         "price": {
           "type": "price",
           "settings": {}
         },
-        "text_3MGYM8": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<strong>IN STOCK:</strong> Shipped in 1-2 Business Days",
-            "text_style": "body"
-          }
-        },
-        "text_3EqxyC": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<strong>PREORDER:</strong> Pangea Green Expect to Ship in Early-July",
-            "text_style": "body"
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
-          "repeater": "{{ product.metafields.shopify[\"color-pattern\"].value }}",
           "settings": {
             "picker_type": "color"
           }
         },
-        "inventory_EpnMeQ": {
+        "inventory": {
           "type": "inventory",
           "settings": {
             "text_style": "body",
@@ -73,69 +40,21 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "impact_accessories_wnmz9F": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "rearview-bicycle-mirrors",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
-        "impact_accessories_GeKFwj": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "electric-bicycle-weather-cover",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
-        "impact_accessories_TUngBX": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": false
           }
-        },
-        "description": {
-          "type": "description",
-          "disabled": true,
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
-          "settings": {}
         }
       },
       "block_order": [
-        "vendor",
         "title",
-        "custom_liquid_CHRMUT",
         "price",
-        "text_3MGYM8",
-        "text_3EqxyC",
         "variant_picker",
-        "inventory_EpnMeQ",
+        "inventory",
         "quantity_selector",
-        "impact_accessories_wnmz9F",
-        "impact_accessories_GeKFwj",
-        "impact_accessories_TUngBX",
-        "buy_buttons",
-        "description",
-        "share"
+        "buy_buttons"
       ],
       "custom_css": [
         ".product__text {color: #121212; text-shadow: 1px 1px #ffc000;}"
@@ -199,7 +118,7 @@
         "text_R8hjkF": {
           "type": "text",
           "settings": {
-            "text": "<h5><strong>·</strong> The unconventional undulating and extending ridges show beauty and strength.</h5><h5><strong>·</strong> The main body of the vehicle tube is formed in one piece and requires no welding.</h5>",
+            "text": "<h5><strong>\u00b7</strong> The unconventional undulating and extending ridges show beauty and strength.</h5><h5><strong>\u00b7</strong> The main body of the vehicle tube is formed in one piece and requires no welding.</h5>",
             "text_style": "body"
           }
         }
@@ -209,8 +128,8 @@
         "text_R8hjkF"
       ],
       "custom_css": [
-        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
-        ".global-media-settings {border: none; /*无边框*/}",
+        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: none; /*\u65e0\u8fb9\u6846*/}",
         "h5 {color: #fff;}",
         " {padding: 0px;}"
       ],
@@ -259,7 +178,7 @@
         "{padding: 0px;}"
       ],
       "settings": {
-        "custom_liquid": "<style>\n    /* 切换颜色 */\n.module_colorBike_bg {\n background-color: #121212;\n padding: 20px 0;\n display: flex;\n align-items: center;\n justify-content: center;\n flex-flow: column;\n color: #fff;\n}\n.module_colorBike_imgBox {\n margin: auto;\n position: relative;\n}\n.module_colorBike_imgBox img {\n display: block;\n margin: auto;\n max-width: 800px;\n width: 100%;\n}\n.module_colorBike_imgBox img:first-of-type {\n position: absolute;\n clip-path: inset(0 calc(100% - var(--pos, .5)* 100%) 0 0);\n}\n.module_colorBike_bg h5 {\n font-size: 35px;\n font-weight: 600;\n margin-bottom: 10px;\ncolor: #fff;\n}\n.module_colorBike_change {\n display: flex;\n align-items: center;\n justify-content: center;\n gap: 10px;\n font-size: 23px;\n flex-wrap: wrap;\n}\n.module_colorBike_change span{\n display: inline-block;\n width: 50px;\n height: 50px;\n}\n.module_colorBike_change >div {\n display: flex;\n align-items: center;\n gap: 10px;\n}\n.module_colorBike_change_one {\n background-color: #21bbfa;\n}\n.module_colorBike_change_two {\n background-color: #a2a77e;\n}\n.module_colorBike_change [type=\"range\"] {\n -webkit-appearance: none;\n appearance: none;\n margin: 0;\n outline: 0;\n background-color: transparent;\n width: 200px;\n cursor: pointer;\n box-shadow: none;\n}\n.module_colorBike_change [type=\"range\"]::-webkit-slider-runnable-track {\n height: 4px;\n background: #a2a77e;\n}\n.module_colorBike_change [type=\"range\" i]::-webkit-slider-container {\n height: 20px;\n overflow: hidden;\n}\n.module_colorBike_change [type=\"range\"]::-webkit-slider-thumb {\n -webkit-appearance: none;\n appearance: none;\n width: 20px;\n height: 20px;\n border-radius: 50%;\n background-color: #fff;\n border: 1px solid transparent;\n margin-top: -8px;\n border-image: linear-gradient(#21bbfa,#21bbfa) 0 fill / 8 20 8 0 / 0px 0px 0 2000px;\n}\n@media only screen and (max-width: 700px) {\n .module_colorBike_bg h5 {\n     font-size: 25px;\n }\n .module_colorBike_change {\n     font-size: 20px;\n }\n .module_colorBike_change span {\n     width: 30px;\n     height: 30px;\n }\n .module_colorBike_bg {\n     padding: 20px 10px;\n     box-sizing: border-box;\n     text-align: center;\n }\n}\n@media only screen and (max-width: 600px) {\n .module_colorBike_change {\n     flex-flow: column;\n }\n\n} \n </style>\n <div class=\"module_colorBike_bg\">\n     <div class=\"module_colorBike_imgBox\">\n         <img src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/MF31_63c84feb-6f77-4e43-9b95-8b5c467cb1b4.png?v=1715073362\" alt=\"\">\n         <img src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/MF31.png?v=1715073362\" alt=\"\">\n     </div>\n     <h5>2 Color For Your Choice</h5>\n     <div class=\"module_colorBike_change\">\n         <div>\n             <p>Picton Blue</p>\n             <span class=\"module_colorBike_change_one\"></span>\n         </div>\n         <input type=\"range\" oninput=\"this.parentNode.parentNode.style.setProperty('--pos', this.value / 100)\" >\n         <div>\n             <span class=\"module_colorBike_change_two\"></span>\n             <p>Pangea Green</p>\n         </div>\n     </div>\n </div>",
+        "custom_liquid": "<style>\n    /* \u5207\u6362\u989c\u8272 */\n.module_colorBike_bg {\n background-color: #121212;\n padding: 20px 0;\n display: flex;\n align-items: center;\n justify-content: center;\n flex-flow: column;\n color: #fff;\n}\n.module_colorBike_imgBox {\n margin: auto;\n position: relative;\n}\n.module_colorBike_imgBox img {\n display: block;\n margin: auto;\n max-width: 800px;\n width: 100%;\n}\n.module_colorBike_imgBox img:first-of-type {\n position: absolute;\n clip-path: inset(0 calc(100% - var(--pos, .5)* 100%) 0 0);\n}\n.module_colorBike_bg h5 {\n font-size: 35px;\n font-weight: 600;\n margin-bottom: 10px;\ncolor: #fff;\n}\n.module_colorBike_change {\n display: flex;\n align-items: center;\n justify-content: center;\n gap: 10px;\n font-size: 23px;\n flex-wrap: wrap;\n}\n.module_colorBike_change span{\n display: inline-block;\n width: 50px;\n height: 50px;\n}\n.module_colorBike_change >div {\n display: flex;\n align-items: center;\n gap: 10px;\n}\n.module_colorBike_change_one {\n background-color: #21bbfa;\n}\n.module_colorBike_change_two {\n background-color: #a2a77e;\n}\n.module_colorBike_change [type=\"range\"] {\n -webkit-appearance: none;\n appearance: none;\n margin: 0;\n outline: 0;\n background-color: transparent;\n width: 200px;\n cursor: pointer;\n box-shadow: none;\n}\n.module_colorBike_change [type=\"range\"]::-webkit-slider-runnable-track {\n height: 4px;\n background: #a2a77e;\n}\n.module_colorBike_change [type=\"range\" i]::-webkit-slider-container {\n height: 20px;\n overflow: hidden;\n}\n.module_colorBike_change [type=\"range\"]::-webkit-slider-thumb {\n -webkit-appearance: none;\n appearance: none;\n width: 20px;\n height: 20px;\n border-radius: 50%;\n background-color: #fff;\n border: 1px solid transparent;\n margin-top: -8px;\n border-image: linear-gradient(#21bbfa,#21bbfa) 0 fill / 8 20 8 0 / 0px 0px 0 2000px;\n}\n@media only screen and (max-width: 700px) {\n .module_colorBike_bg h5 {\n     font-size: 25px;\n }\n .module_colorBike_change {\n     font-size: 20px;\n }\n .module_colorBike_change span {\n     width: 30px;\n     height: 30px;\n }\n .module_colorBike_bg {\n     padding: 20px 10px;\n     box-sizing: border-box;\n     text-align: center;\n }\n}\n@media only screen and (max-width: 600px) {\n .module_colorBike_change {\n     flex-flow: column;\n }\n\n} \n </style>\n <div class=\"module_colorBike_bg\">\n     <div class=\"module_colorBike_imgBox\">\n         <img src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/MF31_63c84feb-6f77-4e43-9b95-8b5c467cb1b4.png?v=1715073362\" alt=\"\">\n         <img src=\"https://cdn.shopifycdn.net/s/files/1/0081/3039/6242/files/MF31.png?v=1715073362\" alt=\"\">\n     </div>\n     <h5>2 Color For Your Choice</h5>\n     <div class=\"module_colorBike_change\">\n         <div>\n             <p>Picton Blue</p>\n             <span class=\"module_colorBike_change_one\"></span>\n         </div>\n         <input type=\"range\" oninput=\"this.parentNode.parentNode.style.setProperty('--pos', this.value / 100)\" >\n         <div>\n             <span class=\"module_colorBike_change_two\"></span>\n             <p>Pangea Green</p>\n         </div>\n     </div>\n </div>",
         "color_scheme": "inverse",
         "padding_top": 100,
         "padding_bottom": 100
@@ -278,7 +197,7 @@
         "text_jNpXmj": {
           "type": "text",
           "settings": {
-            "text": "<p>The handlebar of the MF-31 provides an adjustable angle of <strong>±30</strong> degrees. You can choose the most suitable and comfortable angle according to your needs.</p>",
+            "text": "<p>The handlebar of the MF-31 provides an adjustable angle of <strong>\u00b130</strong> degrees. You can choose the most suitable and comfortable angle according to your needs.</p>",
             "text_style": "subtitle"
           }
         }
@@ -289,8 +208,8 @@
       ],
       "disabled": true,
       "custom_css": [
-        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
-        ".global-media-settings {border: none; /*无边框*/}"
+        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: none; /*\u65e0\u8fb9\u6846*/}"
       ],
       "settings": {
         "image": "shopify://shop_images/cheba.png",
@@ -330,8 +249,8 @@
         "text_YtHTwk"
       ],
       "custom_css": [
-        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
-        ".global-media-settings {border: none; /*无边框*/}",
+        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: none; /*\u65e0\u8fb9\u6846*/}",
         "h5 {color: #fff;}",
         " {padding: 0px;}"
       ],
@@ -373,8 +292,8 @@
         "text_kCpWfg"
       ],
       "custom_css": [
-        ".isolate {background-color: #121212; /*背景全黑*/ max-width: 100% !important; /*背景全宽*/}",
-        ".global-media-settings {border: none; /*无边框*/}",
+        ".isolate {background-color: #121212; /*\u80cc\u666f\u5168\u9ed1*/ max-width: 100% !important; /*\u80cc\u666f\u5168\u5bbd*/}",
+        ".global-media-settings {border: none; /*\u65e0\u8fb9\u6846*/}",
         "h5 {color: #fff;}",
         " {padding: 0px;}"
       ],
@@ -635,7 +554,7 @@
           "settings": {
             "heading": "What kind of warranty is included with Maxfoot electric trike in the United States?",
             "icon": "none",
-            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
+            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the\u00a0<a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
             "page": ""
           }
         }

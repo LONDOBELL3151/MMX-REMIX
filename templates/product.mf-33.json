@@ -18,36 +18,9 @@
             "font_size": "medium"
           }
         },
-        "text_p8jdJH": {
-          "type": "text",
-          "settings": {
-            "text": "Ride together, explore more. The MF-33 electric tricycle for 2-3 adults blends style and function for effortless shared adventures.",
-            "text_style": "body"
-          }
-        },
-        "judge_me_reviews_preview_badge_exgDXf": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "price": {
           "type": "price",
           "settings": {}
-        },
-        "custom_liquid_da73Nd": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div style=\"margin: 15px 0; padding: 12px; background-color: #fff5f5; border: 1px dashed #e53e3e; border-radius: 8px; font-family: sans-serif;\">\n    <div style=\"display: flex; align-items: center; gap: 8px; margin-bottom: 4px;\">\n        <span style=\"background-color: #e53e3e; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; text-transform: uppercase;\">\n            Special Offer\n        </span>\n        <span style=\"color: #e53e3e; font-weight: bold; font-size: 16px;\">Buy and Get Free Rearview Mirror </span>\n    </div>\n   \n</div>",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
-        "custom_liquid_fLnnFx": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"hidden_\" style=\"\nfont-size: 20px; \ncolor: black; \n/*text-decoration: underline;\ntext-decoration-color: #ffc000;*/\nmargin-top: 0px;\nmargin-bottom: 0px !important;\n\">\n    For riders: 5'2\" - 6'4\" \n</div>",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -55,60 +28,12 @@
             "picker_type": "color"
           }
         },
-        "inventory_WnUDXG": {
+        "inventory": {
           "type": "inventory",
           "settings": {
             "text_style": "body",
             "inventory_threshold": 10,
             "show_inventory_quantity": true
-          }
-        },
-        "custom_liquid_rppzzL": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"hidden_\" style=\"\n    background-color: rgba(177, 177, 177, 0.2);\n    color: #121212;\n    padding: 12px 20px;\n    display: inline-block;\n    border: none;\n    border-radius: 4px;\n    font-family: Arial, sans-serif;\nwidth: 100%;\n\">\n<strong>\nOrange Preorder Available<br>\nExpect to Ship on <strong>End-July</strong>\n</div>",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
-        "impact_accessories_i4XbDY": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "rearview-bicycle-mirrors",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "yes",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
-        "impact_accessories_xqd7Cr": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "electric-bicycle-weather-cover",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
-        "impact_accessories_jYwYXH": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "48v-2a-5-pins-battery-charger-for-mf-30-mf-33-maxz-series",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
-          }
-        },
-        "impact_accessories_GJDehi": {
-          "type": "impact-accessories",
-          "settings": {
-            "accessories_product": "20ah-battery-for-mf-30-20ah-and-mf-23",
-            "accessories_is_fold": "no",
-            "accessories_is_checed": "no",
-            "accessories_is_link": "no",
-            "accessories_link": ""
           }
         },
         "quantity_selector": {
@@ -121,47 +46,15 @@
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": false
           }
-        },
-        "share": {
-          "type": "share",
-          "settings": {}
-        },
-        "collapsible_tab_ApcEjL": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Return and Refund",
-            "content": "",
-            "icon": "return"
-          }
-        },
-        "collapsible_tab_mxAUKL": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Shipping",
-            "content": "",
-            "icon": "truck"
-          }
         }
       },
       "block_order": [
         "title",
-        "text_p8jdJH",
-        "judge_me_reviews_preview_badge_exgDXf",
         "price",
-        "custom_liquid_da73Nd",
-        "custom_liquid_fLnnFx",
         "variant_picker",
-        "inventory_WnUDXG",
-        "custom_liquid_rppzzL",
-        "impact_accessories_i4XbDY",
-        "impact_accessories_xqd7Cr",
-        "impact_accessories_jYwYXH",
-        "impact_accessories_GJDehi",
+        "inventory",
         "quantity_selector",
-        "buy_buttons",
-        "share",
-        "collapsible_tab_ApcEjL",
-        "collapsible_tab_mxAUKL"
+        "buy_buttons"
       ],
       "custom_css": [
         ".subtitle {color: #ffc200;}",
@@ -205,7 +98,7 @@
         "max_width": "1400px",
         "main_title": "Share the Journey, Multiply the Joy",
         "subhead": "MF-33 E-Trike",
-        "text": "Over the years, our riders have told us one thing clear and loud: the best journeys are the ones shared. Driven by your feedback, we re-imagined what an electric tricycle could be and created the Maxfoot MF-33—our very first multi-passenger E-Trike.\n\nAs a groundbreaking addition to the Maxfoot lineup, the MF-33 takes our industry-leading tricycle craftsmanship and elevates it for the whole family. While we’ve meticulously optimized the rider’s comfort and control, we’ve also introduced a spacious, premium rear passenger seat. Whether you're cruising with family, running errands, or exploring with friends, the MF-33 is designed to turn every ride into a shared adventure.\n\nDon't just ride alone—bring your favorite people along for the journey.",
+        "text": "Over the years, our riders have told us one thing clear and loud: the best journeys are the ones shared. Driven by your feedback, we re-imagined what an electric tricycle could be and created the Maxfoot MF-33\u2014our very first multi-passenger E-Trike.\n\nAs a groundbreaking addition to the Maxfoot lineup, the MF-33 takes our industry-leading tricycle craftsmanship and elevates it for the whole family. While we\u2019ve meticulously optimized the rider\u2019s comfort and control, we\u2019ve also introduced a spacious, premium rear passenger seat. Whether you're cruising with family, running errands, or exploring with friends, the MF-33 is designed to turn every ride into a shared adventure.\n\nDon't just ride alone\u2014bring your favorite people along for the journey.",
         "pc_margin_top": "0px",
         "pc_margin_bottom": "0px",
         "mb_margin_top": "0px",
@@ -368,7 +261,7 @@
         "text_cYQpVD"
       ],
       "custom_css": [
-        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_JACfy6.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_JACfy6.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/MAXFOOT_30-2.jpg",
@@ -408,7 +301,7 @@
         "text_zbK8TH"
       ],
       "custom_css": [
-        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_KGV98L.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_KGV98L.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/d30e90ac4677d654ec8429fed5e29206.png",
@@ -448,7 +341,7 @@
         "text_6rtyPb"
       ],
       "custom_css": [
-        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_tU3wD3.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539915223122__image_with_text_tU3wD3.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/1_78849427-defb-4bd0-941e-ae605843f51a.jpg",
@@ -770,7 +663,7 @@
           "settings": {
             "heading": "What kind of warranty is included with Maxfoot electric trike in the United States?",
             "icon": "none",
-            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
+            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the\u00a0<a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
             "page": ""
           }
         }

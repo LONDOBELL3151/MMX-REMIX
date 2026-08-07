@@ -3,36 +3,51 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "extra_truck": {
-          "type": "extra",
+        "title": {
+          "type": "title",
           "settings": {
-            "icon": "truck",
-            "title": "Free Shipping",
-            "subtitle": "Ships within 2 business days"
+            "font_size": "medium"
           }
         },
-        "extra_shield": {
-          "type": "extra",
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
           "settings": {
-            "icon": "shield",
-            "title": "2-Year Warranty",
-            "subtitle": "Full bumper-to-bumper coverage"
+            "picker_type": "color"
           }
         },
-        "extra_phone": {
-          "type": "extra",
+        "inventory": {
+          "type": "inventory",
           "settings": {
-            "icon": "phone",
-            "title": "US Support",
-            "subtitle": "Reno, NV team · 1-866-MAXFOOT"
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
           }
         }
       },
       "block_order": [
-        "extra_truck",
-        "extra_shield",
-        "extra_phone"
-      ]
+        "title",
+        "price",
+        "variant_picker",
+        "inventory",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {}
     },
     "related-products": {
       "type": "related-products",
