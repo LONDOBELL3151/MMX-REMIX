@@ -18,6 +18,17 @@
             "font_size": "medium"
           }
         },
+        "promo_banner_HGifym": {
+          "type": "promo_banner",
+          "settings": {
+            "tone": "accent",
+            "icon": "basket",
+            "heading": "Limited-time offer",
+            "body": "Only $1899. Save $700 for a limited time.<br>\nDiscount applied automatically at checkout.",
+            "link": "",
+            "link_text": "Shop now"
+          }
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -50,6 +61,7 @@
       },
       "block_order": [
         "title",
+        "promo_banner_HGifym",
         "price",
         "variant_picker",
         "inventory",
@@ -111,7 +123,7 @@
             "fourSquares_header_Pc": "Max Weight",
             "fourSquares_header_Phpne": "Max Weight",
             "fourSquares_header_color": "#000",
-            "fourSquares_desc": "Load up to 350 lbs on the\u00a0MF-30 electric trike\u00a0and embark on your journey with complete confidence. Whenever you need a moment, simply sit back and take a break, enjoying the stable comfort it provides."
+            "fourSquares_desc": "Load up to 350 lbs on the MF-30 electric trike and embark on your journey with complete confidence. Whenever you need a moment, simply sit back and take a break, enjoying the stable comfort it provides."
           }
         },
         "5338a5fe-483c-47a6-a633-eeb0d850e63d": {
@@ -121,7 +133,7 @@
             "fourSquares_header_Pc": "Ebike Commuting Era Now",
             "fourSquares_header_Phpne": "Ebike Commuting Era Now",
             "fourSquares_header_color": "#fff",
-            "fourSquares_desc": "Ditch the draining commute. The\u00a0MF-30 electric trike\u00a0is your efficient solution, effortlessly carrying you beyond traffic with a powerful 85+ mile range. Transform your daily travel into a relaxed and reliable journey."
+            "fourSquares_desc": "Ditch the draining commute. The MF-30 electric trike is your efficient solution, effortlessly carrying you beyond traffic with a powerful 85+ mile range. Transform your daily travel into a relaxed and reliable journey."
           }
         },
         "e2449adf-31c9-4cc6-ac9c-5aad10a11612": {
@@ -131,7 +143,7 @@
             "fourSquares_header_Pc": "Off-Road Champion",
             "fourSquares_header_Phpne": "Off-RoadChampion",
             "fourSquares_header_color": "#fff",
-            "fourSquares_desc": "Answer the call of the wild. The\u00a0MF-30 electric trike\u00a0is your stable guide, engineered for exploration. Its\u00a0Maxfoot 50mm Max Travel Suspension Fork\u00a0ensures control over uneven ground, while the\u00a0750W brushless geared motor's\u00a085N.m torque\u00a0provides relentless power to discover paths less traveled."
+            "fourSquares_desc": "Answer the call of the wild. The MF-30 electric trike is your stable guide, engineered for exploration. Its Maxfoot 50mm Max Travel Suspension Fork ensures control over uneven ground, while the 750W brushless geared motor's 85N.m torque provides relentless power to discover paths less traveled."
           }
         }
       },
@@ -468,7 +480,7 @@
         "template--14525860741202__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7-text-1"
       ],
       "custom_css": [
-        "{/* \u79fb\u52a8\u7aef\uff08\u2264749px\uff09\u8986\u76d6 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539914764370__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
+        "{/* 移动端（≤749px）覆盖 padding */ @media screen and (max-width: 749px) {#ImageWithText--template--16539914764370__50604ebd-31c0-4f1e-9ba0-dbfcf86dacc7.image-with-text__content {padding-top: 10px !important; padding-bottom: 10px !important; padding-left: 5px !important; padding-right: 5px !important; } }}"
       ],
       "settings": {
         "image": "shopify://shop_images/DSC_5465_4bcc54e9-47d4-48b5-a9c4-92a74bc49168.png",
@@ -582,17 +594,17 @@
           "type": "slide",
           "settings": {
             "heading": "Size",
-            "item_heading_1": "Handlebar Height \u00a0",
+            "item_heading_1": "Handlebar Height  ",
             "item_content_1": "44.3\" - 46.5\" (adjustable)",
-            "item_heading_2": "Standover Height \u00a0",
+            "item_heading_2": "Standover Height  ",
             "item_content_2": "18\"",
             "item_heading_3": "Handlebar Reach",
             "item_content_3": "16\"",
             "item_heading_4": "Seat Height",
             "item_content_4": "33.5\" - 40.5\"",
-            "item_heading_5": "Total Length \u00a0",
+            "item_heading_5": "Total Length  ",
             "item_content_5": "74.5\"",
-            "item_heading_6": "Total Width \u00a0",
+            "item_heading_6": "Total Width  ",
             "item_content_6": "34\"",
             "item_heading_7": "Seat Tube Length",
             "item_content_7": "12\"",
@@ -719,7 +731,7 @@
           "settings": {
             "heading": "What kind of warranty is included with Maxfoot electric trike in the United States?",
             "icon": "none",
-            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the\u00a0<a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
+            "row_content": "<p>Maxfoot electric trikes come with a 1-year warranty. Learn more about the <a href=\"https://maxfoot.bike/policies/terms-of-service\" title=\"Maxfoot electric trike warranty\">Maxfoot Warranty</a>.</p>",
             "page": ""
           }
         }
