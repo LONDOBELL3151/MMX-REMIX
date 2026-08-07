@@ -18,99 +18,17 @@
   endif
   assign pdp_review_count = product.metafields.reviews.rating_count | default: 0
 
-  assign block_has_variant = false
   assign block_has_qty = false
   for b in section.blocks
-    if b.type == 'variant_picker'
-      assign block_has_variant = true
-    elsif b.type == 'quantity_selector'
+    if b.type == 'quantity_selector'
       assign block_has_qty = true
     endif
   endfor
 -%}
 
-{%- capture variant_picker_html -%}
-  {%- if product.options.size > 0 -%}
-    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
-    {%- for option in product.options_with_values -%}
-      {%- if has_color_family and option.name == 'Color' -%}
-        {%- continue -%}
-      {%- endif -%}
-      <div class="pdp__option">
-        <label class="pdp__option-label">
-          {{ option.name }}:
-          <strong data-selected-option="{{ forloop.index0 }}">{{ option.selected_value }}</strong>
-        </label>
-        {%- if option.name == 'Color' -%}
-          <div class="pdp__swatches">
-            {%- for value in option.values -%}
-              {%- assign variant = nil -%}
-              {%- for v in product.variants -%}
-                {%- if v.option1 == value -%}
-                  {%- assign variant = v -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {%- assign swatch_hex = blank -%}
-              {%- if variant and variant.metafields.custom.color_hex != blank -%}
-                {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
-              {%- else -%}
-                {%- assign swatch_name = value | downcase | handleize -%}
-                {%- case swatch_name -%}
-                  {%- when 'red' -%}{%- assign swatch_hex = '#d32f2f' -%}
-                  {%- when 'crimson' -%}{%- assign swatch_hex = '#dc143c' -%}
-                  {%- when 'orange' -%}{%- assign swatch_hex = '#ff6b1a' -%}
-                  {%- when 'burning-orange' -%}{%- assign swatch_hex = '#ff5722' -%}
-                  {%- when 'vibrant-orange' -%}{%- assign swatch_hex = '#ff6f00' -%}
-                  {%- when 'yellow' -%}{%- assign swatch_hex = '#fbc02d' -%}
-                  {%- when 'gold' -%}{%- assign swatch_hex = '#d4af37' -%}
-                  {%- when 'green' -%}{%- assign swatch_hex = '#388e3c' -%}
-                  {%- when 'lime' -%}{%- assign swatch_hex = '#9ccc65' -%}
-                  {%- when 'pangea-green' -%}{%- assign swatch_hex = '#2e7d32' -%}
-                  {%- when 'teal' -%}{%- assign swatch_hex = '#00897b' -%}
-                  {%- when 'cyan' -%}{%- assign swatch_hex = '#00acc1' -%}
-                  {%- when 'blue' -%}{%- assign swatch_hex = '#1976d2' -%}
-                  {%- when 'navy' -%}{%- assign swatch_hex = '#0d2c54' -%}
-                  {%- when 'neptune-blue' -%}{%- assign swatch_hex = '#1e3a5f' -%}
-                  {%- when 'purple' -%}{%- assign swatch_hex = '#7b1fa2' -%}
-                  {%- when 'pink' -%}{%- assign swatch_hex = '#d81b60' -%}
-                  {%- when 'brown' -%}{%- assign swatch_hex = '#5d4037' -%}
-                  {%- when 'beige' -%}{%- assign swatch_hex = '#d7c3a5' -%}
-                  {%- when 'tan' -%}{%- assign swatch_hex = '#c9a87c' -%}
-                  {%- when 'black' -%}{%- assign swatch_hex = '#1a1a1a' -%}
-                  {%- when 'white' -%}{%- assign swatch_hex = '#ffffff' -%}
-                  {%- when 'gray', 'grey' -%}{%- assign swatch_hex = '#6b6b6b' -%}
-                  {%- when 'brooklyn-gray' -%}{%- assign swatch_hex = '#6b6b6b' -%}
-                  {%- when 'silver' -%}{%- assign swatch_hex = '#c0c0c0' -%}
-                {%- endcase -%}
-              {%- endif -%}
-              {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
-              <label class="swatch" data-swatch="{{ value | handleize }}">
-                <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
-                <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}"></span>
-                <span class="swatch__label">{{ value }}</span>
-              </label>
-            {%- endfor -%}
-          </div>
-        {%- else -%}
-          <select name="options[{{ option.name | downcase }}]" class="pdp__select" data-option-index="{{ forloop.index0 }}">
-            {%- for value in option.values -%}
-              <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
-            {%- endfor -%}
-          </select>
-        {%- endif -%}
-      </div>
-    {%- endfor -%}
-  {%- endif -%}
-{%- endcapture -%}
 
-{%- capture qty_html -%}
-  <div class="pdp__qty">
-    <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
-    <input type="number" name="quantity" value="1" min="1" data-qty-input>
-    <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
-  </div>
-{%- endcapture -%}
+
+
 
 <section class="section pdp-gallery" {{ section.shopify_attributes }}>
   <div class="container pdp__grid">
@@ -161,35 +79,100 @@
               </div>
 
             {%- when 'variant_picker' -%}
-              {%- comment -%}
-                variant_picker HTML is captured above; it is emitted inside
-                the buy_buttons form so the variant inputs stay in one form.
-                This block itself renders nothing — its presence just means
-                the variant picker is enabled for this template.
-              {%- endcomment -%}
+              {%- if product.options.size > 0 -%}
+                <div class="pdp__form pdp__variants" form="pdp__form">
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id" form="pdp__form">
+                  {%- for option in product.options_with_values -%}
+                    {%- if has_color_family and option.name == 'Color' -%}
+                      {%- continue -%}
+                    {%- endif -%}
+                    <div class="pdp__option" {{ block.shopify_attributes }}>
+                      <label class="pdp__option-label">
+                        {{ option.name }}:
+                        <strong data-selected-option="{{ forloop.index0 }}">{{ option.selected_value }}</strong>
+                      </label>
+                      {%- if option.name == 'Color' -%}
+                        <div class="pdp__swatches">
+                          {%- for value in option.values -%}
+                            {%- assign variant = nil -%}
+                            {%- for v in product.variants -%}
+                              {%- if v.option1 == value -%}
+                                {%- assign variant = v -%}
+                                {%- break -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                            {%- assign swatch_hex = blank -%}
+                            {%- if variant and variant.metafields.custom.color_hex != blank -%}
+                              {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
+                            {%- else -%}
+                              {%- assign swatch_name = value | downcase | handleize -%}
+                              {%- case swatch_name -%}
+                                {%- when 'red' -%}{%- assign swatch_hex = '#d32f2f' -%}
+                                {%- when 'crimson' -%}{%- assign swatch_hex = '#dc143c' -%}
+                                {%- when 'orange' -%}{%- assign swatch_hex = '#ff6b1a' -%}
+                                {%- when 'burning-orange' -%}{%- assign swatch_hex = '#ff5722' -%}
+                                {%- when 'vibrant-orange' -%}{%- assign swatch_hex = '#ff6f00' -%}
+                                {%- when 'yellow' -%}{%- assign swatch_hex = '#fbc02d' -%}
+                                {%- when 'gold' -%}{%- assign swatch_hex = '#d4af37' -%}
+                                {%- when 'green' -%}{%- assign swatch_hex = '#388e3c' -%}
+                                {%- when 'lime' -%}{%- assign swatch_hex = '#9ccc65' -%}
+                                {%- when 'pangea-green' -%}{%- assign swatch_hex = '#2e7d32' -%}
+                                {%- when 'teal' -%}{%- assign swatch_hex = '#00897b' -%}
+                                {%- when 'cyan' -%}{%- assign swatch_hex = '#00acc1' -%}
+                                {%- when 'blue' -%}{%- assign swatch_hex = '#1976d2' -%}
+                                {%- when 'navy' -%}{%- assign swatch_hex = '#0d2c54' -%}
+                                {%- when 'neptune-blue' -%}{%- assign swatch_hex = '#1e3a5f' -%}
+                                {%- when 'purple' -%}{%- assign swatch_hex = '#7b1fa2' -%}
+                                {%- when 'pink' -%}{%- assign swatch_hex = '#d81b60' -%}
+                                {%- when 'brown' -%}{%- assign swatch_hex = '#5d4037' -%}
+                                {%- when 'beige' -%}{%- assign swatch_hex = '#d7c3a5' -%}
+                                {%- when 'tan' -%}{%- assign swatch_hex = '#c9a87c' -%}
+                                {%- when 'black' -%}{%- assign swatch_hex = '#1a1a1a' -%}
+                                {%- when 'white' -%}{%- assign swatch_hex = '#ffffff' -%}
+                                {%- when 'gray', 'grey' -%}{%- assign swatch_hex = '#6b6b6b' -%}
+                                {%- when 'brooklyn-gray' -%}{%- assign swatch_hex = '#6b6b6b' -%}
+                                {%- when 'silver' -%}{%- assign swatch_hex = '#c0c0c0' -%}
+                              {%- endcase -%}
+                            {%- endif -%}
+                            {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
+                            <label class="swatch" data-swatch="{{ value | handleize }}">
+                              <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
+                              <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}"></span>
+                              <span class="swatch__label">{{ value }}</span>
+                            </label>
+                          {%- endfor -%}
+                        </div>
+                      {%- else -%}
+                        <select name="options[{{ option.name | downcase }}]" class="pdp__select" data-option-index="{{ forloop.index0 }}">
+                          {%- for value in option.values -%}
+                            <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+                          {%- endfor -%}
+                        </select>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
 
             {%- when 'quantity_selector' -%}
-              {%- comment -%}
-                Same capture strategy as variant_picker — qty HTML is
-                emitted inside the buy_buttons form.
-              {%- endcomment -%}
+              <div class="pdp__qty" {{ block.shopify_attributes }}>
+                <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
+                <input type="number" name="quantity" value="1" min="1" data-qty-input form="pdp__form">
+                <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
+              </div>
 
             {%- when 'buy_buttons' -%}
               <div class="pdp__buy" {{ block.shopify_attributes }}>
                 {%- form 'product', product, id: 'pdp__form', class: 'pdp__form' -%}
-                  {%- if block_has_variant -%}
-                    {{ variant_picker_html }}
-                  {%- endif -%}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
                   <div class="pdp__qty-row">
-                    {%- if block_has_qty -%}
-                      {{ qty_html }}
-                    {%- else -%}
-                      <div class="pdp__qty">
-                        <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
-                        <input type="number" name="quantity" value="1" min="1" data-qty-input>
-                        <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
-                      </div>
-                    {%- endif -%}
+                    {%- unless block_has_qty -%}
+                    <div class="pdp__qty">
+                      <button type="button" data-qty="dec" aria-label="Decrease">{% render 'icon', icon: 'minus' %}</button>
+                      <input type="number" name="quantity" value="1" min="1" data-qty-input>
+                      <button type="button" data-qty="inc" aria-label="Increase">{% render 'icon', icon: 'plus' %}</button>
+                    </div>
+                    {%- endunless -%}
                     <button type="submit" name="add" class="btn btn--primary pdp__cta"{% unless product.available %} disabled{% endunless %}>
                       {%- if product.available -%}
                         Add to Cart <span class="pdp__cta-price">&mdash; {{ product.price | money }}</span>
