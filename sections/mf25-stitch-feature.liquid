@@ -94,8 +94,9 @@ a{color:inherit;text-decoration:none}
 @media (max-width:960px){.mf25-feat--img-right .mf25-feat-img{order:0}.mf25-feat--img-right .mf25-feat-copy{order:0}}
 .mf25-feat-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 @media (max-width:960px){.mf25-feat-row{grid-template-columns:1fr;gap:24px}}
-.mf25-feat--img-left .mf25-feat-copy{order:2}
-@media (max-width:960px){.mf25-feat--img-left .mf25-feat-copy{order:0}}
+/* image_left: HTML order is image-then-copy, so image is already in col 1 (left) by default; no order swap needed */
+/* mobile always stacks single column */
+@media (max-width:960px){.mf25-feat--img-left .mf25-feat-img{order:0}.mf25-feat--img-left .mf25-feat-copy{order:0}}
 .mf25-feat-img{aspect-ratio:4/3;background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative}
 .mf25-feat-img::before{content:"";position:absolute;top:50%;left:50%;width:64px;height:64px;background:var(--signal);border-radius:50%;opacity:.25;transform:translate(-50%,-50%)}
 .mf25-feat-img img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
