@@ -134,7 +134,7 @@
   .container{padding:0 16px}
   .section{padding:48px 0}
   .section__head{margin-bottom:32px}
-  .hero{padding:32px 0 48px}
+  .hero{padding:0}
   .hero__title{font-size:36px}
   .hero__sub{font-size:16px}
   .hero__cta{flex-direction:column;width:100%}
