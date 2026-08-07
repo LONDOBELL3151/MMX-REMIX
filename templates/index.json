@@ -12,6 +12,26 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "eyebrow": "SALE",
+        "title": "<p>UP TO <em>$1000</em> OFF <em>Autumn Riding</em></p>",
+        "subtitle": "MF-25 Electric Commuter Bike<br>Peak 1000W Motor & 48V 500Wh Battery<br><br>MF-30 Cargo Electric Trike<br>750W Rear Drive Motor & 48V 20Ah Battery",
+        "button_text": "Shop MF-25 Electric Bike",
+        "button_link": "shopify://products/maxfoot-mf-25-commuter-step-thru-electric-bike-brooklyn-gray",
+        "button2_text": "Shop MF-30 Electric Trike",
+        "button2_link": "shopify://products/maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-candy-red",
+        "image": "shopify://shop_images/20260731-MF8_1920X820_b0ee6b65-eaa1-423a-9297-1dde507a59d2.jpg",
+        "image_mobile": "shopify://shop_images/20260731-MF8_750X1080_48b84172-de75-4716-bfc8-dc770b6b5559.jpg",
+        "badge_text": "FREE SHIPPING",
+        "show_urgency": true,
+        "urgency_text": "Ships from US warehouse - free 2-7 day in 48 states",
+        "height": "medium",
+        "bg_color": "#ffffff"
+      }
+    },
+    "hero_NijgLE": {
+      "type": "hero",
+      "disabled": true,
+      "settings": {
         "eyebrow": "New for 2026",
         "title": "<p>Built for the <em>ride home.</em></p>",
         "subtitle": "Pedal-assist adult electric trikes built for the whole family. UL-certified, US-shipping, 2-year warranty.",
@@ -456,6 +476,7 @@
   },
   "order": [
     "hero",
+    "hero_NijgLE",
     "trust",
     "story",
     "proof",
