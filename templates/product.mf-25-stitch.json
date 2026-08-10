@@ -73,8 +73,10 @@
           "settings": {
             "title": "1100W PEAK POWER",
             "body": "High-torque brushless hub motor for effortless climbing.",
+            "layout": "large",
             "image": "shopify://shop_images/25motor_fcafa817-0588-48db-b15a-ef0a2e4c4865.png",
-            "layout": "large"
+            "overlay_enabled": true,
+            "overlay_strength": 75
           }
         },
         "feature_hRUQzr": {
@@ -82,8 +84,10 @@
           "settings": {
             "title": "500WH REMOVABLE BATTERY",
             "body": "Up to 50 miles range per charge.",
-            "image": "shopify://shop_images/25m2.png",
-            "layout": "wide"
+            "layout": "wide",
+            "image": "shopify://shop_images/25m3_99c24a33-a300-4898-abd8-209cd160443b.png",
+            "overlay_enabled": true,
+            "overlay_strength": 75
           }
         },
         "feature_MA6aEM": {
@@ -91,7 +95,9 @@
           "settings": {
             "title": "SHIMANO 7-SPEED",
             "body": "Precision shifting for any terrain.",
-            "layout": "tile"
+            "layout": "tile",
+            "overlay_enabled": true,
+            "overlay_strength": 75
           }
         },
         "feature_nyhCNr": {
@@ -99,7 +105,9 @@
           "settings": {
             "title": "REAR RACK",
             "body": "Durable and lightweight with 25kg capacity for daily cargo.",
-            "layout": "tile"
+            "layout": "tile",
+            "overlay_enabled": true,
+            "overlay_strength": 75
           }
         },
         "feature_x3Jqee": {
@@ -107,7 +115,9 @@
           "settings": {
             "title": "SUSPENSION SEATPOST",
             "body": "Smooths out rough terrain to eliminate fatigue and vibration.",
-            "layout": "wide"
+            "layout": "wide",
+            "overlay_enabled": true,
+            "overlay_strength": 75
           }
         },
         "feature_9mDXk8": {
@@ -115,8 +125,10 @@
           "settings": {
             "title": "STEP-THRU FRAME",
             "body": "Effortless mounting and comfortable riding for all ages.",
+            "layout": "wide",
             "image": "shopify://shop_images/25f.png",
-            "layout": "wide"
+            "overlay_enabled": true,
+            "overlay_strength": 75
           }
         }
       },
