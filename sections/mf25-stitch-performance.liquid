@@ -46,9 +46,10 @@ a{color:inherit;text-decoration:none}
 .mf25-eng-card{position:relative;overflow:hidden;border-radius:8px;background:#1a1a1a;border:1px solid #2a2a2a}
 .mf25-eng-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.55;transition:transform .6s}
 .mf25-eng-card:hover img{transform:scale(1.05)}
-.mf25-eng-card-body{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85) 100%)}
-.mf25-eng-card-body h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#fff;margin-bottom:4px}
-.mf25-eng-card-body p{font-family:var(--body);font-size:13px;color:rgba(255,255,255,.85);line-height:1.4;margin:0}
+.mf25-eng-card-body{position:absolute;left:0;right:0;bottom:0;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,var(--eng-overlay,.75)) 55%,rgba(0,0,0,calc(var(--eng-overlay,.75) + .15)) 100%)}
+.mf25-eng-card--no-overlay .mf25-eng-card-body{background:transparent}
+.mf25-eng-card-body h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#fff;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.mf25-eng-card-body p{font-family:var(--body);font-size:13px;color:rgba(255,255,255,.9);line-height:1.4;margin:0;text-shadow:0 1px 3px rgba(0,0,0,.4)}
 
 /* large: 2 cols x 2 rows (hero of the grid) — fills two auto-rows */
 .mf25-eng-card--large{grid-column:span 2;grid-row:span 2}
@@ -79,7 +80,7 @@ a{color:inherit;text-decoration:none}
     <div class="mf25-eng-grid">
       {%- for block in section.blocks -%}
         {%- if block.type == 'feature' -%}
-          <div class="mf25-eng-card mf25-eng-card--{{ block.settings.layout }}" {{ block.shopify_attributes }}>
+          <div class="mf25-eng-card mf25-eng-card--{{ block.settings.layout }}{% if block.settings.overlay_enabled == false %} mf25-eng-card--no-overlay{% endif %}" {% if block.settings.overlay_enabled %}style="--eng-overlay:{{ block.settings.overlay_strength }}%"{% endif %} {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1600" height="1600">
             {%- else -%}
@@ -125,7 +126,11 @@ a{color:inherit;text-decoration:none}
           "default": "wide"
         },
         { "type": "image_picker", "id": "image", "label": "Background image",
-          "info": "Use the size shown in the Card size option above (it already matches this card). object-fit:cover — matching the ratio avoids cropping. <300KB." }
+          "info": "Use the size shown in the Card size option above (it already matches this card). object-fit:cover — matching the ratio avoids cropping. <300KB." },
+        { "type": "header", "content": "Text overlay" },
+        { "type": "checkbox", "id": "overlay_enabled", "label": "Enable dark overlay behind text", "default": true },
+        { "type": "range", "id": "overlay_strength", "label": "Overlay strength", "min": 0, "max": 95, "step": 5, "unit": "%", "default": 75,
+          "info": "Darkness of the gradient behind the text. Higher = text easier to read. Only affects this block." }
       ]
     }
   ],
