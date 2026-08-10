@@ -38,11 +38,11 @@ a{color:inherit;text-decoration:none}
 .mf25-eng-head{text-align:center;margin-bottom:40px}
 .mf25-eng-eyebrow{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin-bottom:8px;display:block}
 .mf25-eng-head h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.5vw,40px);letter-spacing:-0.02em;color:#fff;margin:0}
-.mf25-eng-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:8px}
-@media (max-width:960px){.mf25-eng-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.mf25-eng-grid{grid-template-columns:1fr}}
+.mf25-eng-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:8px}
+@media (max-width:960px){.mf25-eng-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}}
+@media (max-width:520px){.mf25-eng-grid{grid-template-columns:1fr;grid-auto-rows:160px}}
 
-/* 4 sizes — large (2x2), wide (2x1), tile (1x1) */
+/* 3 sizes — large (2x2), wide (2x1), tile (1x1) */
 .mf25-eng-card{position:relative;overflow:hidden;border-radius:8px;background:#1a1a1a;border:1px solid #2a2a2a}
 .mf25-eng-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.55;transition:transform .6s}
 .mf25-eng-card:hover img{transform:scale(1.05)}
@@ -50,16 +50,17 @@ a{color:inherit;text-decoration:none}
 .mf25-eng-card-body h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#fff;margin-bottom:4px}
 .mf25-eng-card-body p{font-family:var(--body);font-size:13px;color:rgba(255,255,255,.85);line-height:1.4;margin:0}
 
-/* large: 2 cols x 2 rows (hero of the grid) */
-.mf25-eng-card--large{grid-column:span 2;grid-row:span 2;aspect-ratio:1/1}
-.mf25-eng-card--large img{position:relative;aspect-ratio:1/1}
-@media (max-width:960px){.mf25-eng-card--large{grid-column:span 2;grid-row:span 1;aspect-ratio:4/3}}
-/* wide: 2 cols, short strip */
-.mf25-eng-card--wide{grid-column:span 2;height:200px}
-@media (max-width:520px){.mf25-eng-card--wide{grid-column:span 1;height:160px}}
-/* tile: 1 col, same height as wide strip */
-.mf25-eng-card--tile{grid-column:span 1;height:200px}
-@media (max-width:520px){.mf25-eng-card--tile{grid-column:span 1;height:160px}}
+/* large: 2 cols x 2 rows (hero of the grid) — fills two auto-rows */
+.mf25-eng-card--large{grid-column:span 2;grid-row:span 2}
+/* wide: 2 cols, one row */
+.mf25-eng-card--wide{grid-column:span 2}
+/* tile: 1 col, one row */
+.mf25-eng-card--tile{grid-column:span 1}
+@media (max-width:960px){
+  .mf25-eng-card--large{grid-column:span 2;grid-row:span 2}
+  .mf25-eng-card--wide{grid-column:span 1}
+  .mf25-eng-card--tile{grid-column:span 1}
+}
 </style>
 
 <section class="mf25-eng" {{ section.shopify_attributes }}>
@@ -110,8 +111,8 @@ a{color:inherit;text-decoration:none}
           "id": "layout",
           "label": "Card size",
           "options": [
-            { "value": "large", "label": "Large (2x2 hero) — image 1600x1600 (1:1)" },
-            { "value": "wide",  "label": "Wide (2-col strip) — image 1600x900 (16:9)" },
+            { "value": "large", "label": "Large (2x2 hero) — image 1200x800 (3:2)" },
+            { "value": "wide",  "label": "Wide (2-col strip) — image 1200x400 (3:1)" },
             { "value": "tile",  "label": "Tile (1x1) — image 600x400 (3:2)" }
           ],
           "default": "wide"
