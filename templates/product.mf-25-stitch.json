@@ -106,6 +106,7 @@
             "title": "REAR RACK",
             "body": "Durable and lightweight with 25kg capacity for daily cargo.",
             "layout": "tile",
+            "image": "shopify://shop_images/25rro.png",
             "overlay_enabled": true,
             "overlay_strength": 75
           }
