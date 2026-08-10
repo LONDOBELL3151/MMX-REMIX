@@ -72,13 +72,55 @@
           "type": "feature",
           "settings": {
             "title": "1100W PEAK POWER",
-            "body": "High-torque brushless hub motor designed to conquer steep city streets.",
+            "body": "High-torque brushless hub motor for effortless climbing.",
             "image": "shopify://shop_images/25motor_fcafa817-0588-48db-b15a-ef0a2e4c4865.png"
+          }
+        },
+        "feature_hRUQzr": {
+          "type": "feature",
+          "settings": {
+            "title": "500WH REMOVABLE BATTERY",
+            "body": "Up to 50 miles range per charge.",
+            "image": "shopify://shop_images/25m2.png"
+          }
+        },
+        "feature_MA6aEM": {
+          "type": "feature",
+          "settings": {
+            "title": "SHIMANO 7-SPEED",
+            "body": "Precision shifting for any terrain."
+          }
+        },
+        "feature_nyhCNr": {
+          "type": "feature",
+          "settings": {
+            "title": "REAR RACK",
+            "body": "Durable and lightweight with 25kg capacity for daily cargo."
+          }
+        },
+        "feature_x3Jqee": {
+          "type": "feature",
+          "settings": {
+            "title": "SUSPENSION SEATPOST",
+            "body": "Smooths out rough terrain to eliminate fatigue and vibration."
+          }
+        },
+        "feature_9mDXk8": {
+          "type": "feature",
+          "settings": {
+            "title": "STEP-THRU FRAME",
+            "body": "Effortless mounting and comfortable riding for all ages.",
+            "image": "shopify://shop_images/25f.png"
           }
         }
       },
       "block_order": [
-        "feature_mXeQXP"
+        "feature_mXeQXP",
+        "feature_hRUQzr",
+        "feature_MA6aEM",
+        "feature_nyhCNr",
+        "feature_x3Jqee",
+        "feature_9mDXk8"
       ],
       "settings": {
         "eyebrow": "Built for the ride",
