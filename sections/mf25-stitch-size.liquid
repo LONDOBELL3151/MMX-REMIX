@@ -98,6 +98,8 @@ a{color:inherit;text-decoration:none}
 .mf25-size-head p{font-family:var(--body);font-size:16px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.5}
 .mf25-size-frame{display:flex;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:32px}
 .mf25-size-frame svg{width:100%;max-width:560px;height:auto}
+.mf25-size-frame picture,.mf25-size-frame picture img{width:100%;height:auto;display:block;object-fit:contain}
+.mf25-size-picture{max-width:680px}
 
 /* GALLERY */
 .mf25-gallery{padding:var(--section) 0;background:var(--paper)}
@@ -188,6 +190,35 @@ a{color:inherit;text-decoration:none}
       <p>{{ s.subtitle }}</p>
     </div>
     <div class="mf25-size-frame">
+      {%- if s.image_mobile != blank or s.image != blank -%}
+        <picture class="mf25-size-picture">
+          {%- if s.image_mobile != blank -%}
+            <source
+              media="(max-width: 768px)"
+              srcset="{{ s.image_mobile | image_url: width: 375 }} 375w, {{ s.image_mobile | image_url: width: 640 }} 640w, {{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1080 }} 1080w"
+              sizes="100vw">
+          {%- endif -%}
+          {%- if s.image != blank -%}
+            <img
+              src="{{ s.image | image_url: width: 1200 }}"
+              srcset="{{ s.image | image_url: width: 600 }} 600w, {{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1200 }} 1200w"
+              sizes="(max-width: 768px) 100vw, 60vw"
+              alt="{{ s.title | escape }}"
+              loading="lazy"
+              width="1200"
+              height="900">
+          {%- else -%}
+            <img
+              src="{{ s.image_mobile | image_url: width: 1080 }}"
+              srcset="{{ s.image_mobile | image_url: width: 375 }} 375w, {{ s.image_mobile | image_url: width: 640 }} 640w, {{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1080 }} 1080w"
+              sizes="100vw"
+              alt="{{ s.title | escape }}"
+              loading="lazy"
+              width="1080"
+              height="1440">
+          {%- endif -%}
+        </picture>
+      {%- else -%}
       <svg viewBox="0 0 560 360" fill="none" stroke="#121212" stroke-width="1.2" aria-label="MF-25 size diagram">
         <circle cx="120" cy="280" r="55" fill="#f8f9fa"/>
         <circle cx="380" cy="280" r="55" fill="#f8f9fa"/>
@@ -208,6 +239,7 @@ a{color:inherit;text-decoration:none}
         <text x="250" y="350" font-family="Inter, sans-serif" font-size="10" fill="#121212" text-anchor="middle">44.3" WHEELBASE</text>
         <line x1="120" y1="340" x2="380" y2="340" stroke="#FFC000" stroke-width="1" stroke-dasharray="3 3"/>
       </svg>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -219,7 +251,10 @@ a{color:inherit;text-decoration:none}
   "class": "section-mf25-stitch-size",
   "settings": [
     { "type": "text", "id": "title", "label": "Title", "default": "Find Your Perfect Fit" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The step-thru design is engineered for riders between 5'3\" and 7'3\"." }
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The step-thru design is engineered for riders between 5'3\" and 7'3\"." },
+    { "type": "header", "content": "Size image" },
+    { "type": "image_picker", "id": "image", "label": "Image (desktop)", "info": "Recommended: 1200x900 (4:3). If empty, falls back to the built-in diagram." },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile, 750x1080 recommended)", "info": "Optional. Portrait size chart for mobile. If empty, the desktop image is used on all viewports." }
   ]
 }
 {% endschema %}
