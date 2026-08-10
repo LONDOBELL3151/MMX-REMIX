@@ -33,151 +33,33 @@ a{color:inherit;text-decoration:none}
 .mf25-container{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
 @media (max-width:720px){.mf25-container{padding:0 16px}}
 
-/* NAV */
-.mf25-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.mf25-nav-row{display:flex;align-items:center;justify-content:space-between;height:64px}
-.mf25-nav-brand{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-0.02em;color:var(--ink)}
-.mf25-nav-links{display:flex;gap:24px}
-.mf25-nav-links a{font-family:var(--body);font-weight:700;font-size:13px;color:#444;padding:8px 0;border-bottom:2px solid transparent;transition:.15s}
-.mf25-nav-links a:hover{color:var(--ink);border-color:var(--signal)}
-.mf25-nav-right{display:flex;align-items:center;gap:12px}
-.mf25-nav-icon{width:36px;height:36px;display:grid;place-items:center;border:0;background:transparent;color:#444;border-radius:999px;cursor:pointer}
-.mf25-nav-icon:hover{background:var(--surface-2);color:var(--ink)}
-.mf25-nav-cta{background:var(--signal);color:var(--ink);font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:10px 20px;border:0;border-radius:6px;cursor:pointer}
-.mf25-nav-cta:hover{background:var(--signal-deep)}
-@media (max-width:720px){.mf25-nav-links{display:none}.mf25-nav-cta{display:none}}
-
-/* HERO */
-.mf25-hero{padding:40px 0 var(--section)}
-.mf25-hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px}
-@media (max-width:960px){.mf25-hero-grid{grid-template-columns:1fr;gap:32px}}
-.mf25-gallery{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;align-items:center;justify-content:center}
-.mf25-gallery img{width:100%;height:auto;object-fit:contain}
-.mf25-buybox{display:flex;flex-direction:column;gap:24px}
-.mf25-stock-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(40,167,69,.1);color:var(--success);font-family:var(--body);font-weight:600;font-size:12px;border-radius:999px;align-self:flex-start}
-.mf25-stock-pill::before{content:"";width:6px;height:6px;background:var(--success);border-radius:50%}
-.mf25-title{font-family:var(--display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin:0}
-.mf25-price-row{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
-.mf25-price{font-family:var(--display);font-weight:700;font-size:32px;line-height:1;color:var(--ink)}
-.mf25-price-was{font-family:var(--body);font-size:18px;color:#999;text-decoration:line-through;line-height:1.3}
-.mf25-save-pill{background:var(--signal);color:var(--ink);font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:4px;line-height:1.3}
-.mf25-price-foot{font-family:var(--body);font-size:13px;color:var(--muted);margin-top:-12px}
-.mf25-color-row h3{font-family:var(--body);font-weight:700;font-size:14px;color:var(--ink);margin-bottom:10px}
-.mf25-swatches{display:flex;gap:12px}
-.mf25-swatch{width:32px;height:32px;border-radius:50%;border:2px solid transparent;cursor:pointer;outline:2px solid transparent;outline-offset:2px;transition:.15s}
-.mf25-swatch.is-active{outline-color:var(--signal)}
-.mf25-swatch-fire{background:#FF5F00}
-.mf25-swatch-graphite{background:#8C8C8C}
-.mf25-swatch-green{background:#2E4D44}
-.mf25-swatch-blue{background:#004B8D}
-.mf25-swatch-navy{background:#0d1d3a;border:1px solid #ccc}
-.mf25-spec-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;font-family:var(--body);font-size:14px;color:#444}
-.mf25-spec-strip div{display:flex;align-items:center;gap:6px}
-.mf25-spec-strip svg{color:var(--ink);flex:0 0 16px}
-.mf25-btn-primary{width:100%;background:var(--signal);color:var(--ink);font-family:var(--body);font-weight:700;font-size:18px;letter-spacing:.04em;text-transform:uppercase;padding:18px 24px;border:0;border-radius:8px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px}
-.mf25-btn-primary:hover{background:var(--signal-deep)}
-.mf25-trust-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-family:var(--body);font-size:12px;color:#555}
-.mf25-trust-item{padding:0 8px;border-right:1px solid var(--line)}
-.mf25-trust-item:last-child{border-right:none}
-.mf25-trust-item strong{display:block;font-weight:700;color:var(--ink);margin-bottom:2px;font-size:12px}
-.mf25-trust-item svg{display:block;margin:0 auto 4px;color:var(--ink)}
-@media (max-width:720px){.mf25-trust-bar{grid-template-columns:1fr;gap:12px}.mf25-trust-item{border-right:none;border-bottom:1px solid var(--line);padding-bottom:12px}.mf25-trust-item:last-child{border-bottom:none}}
-
-/* FEATURE */
-.mf25-feat{padding:var(--section) 0;background:var(--paper)}
-.mf25-feat-img::before{content:"";position:absolute;top:50%;left:50%;width:64px;height:64px;background:var(--signal);border-radius:50%;opacity:.25;transform:translate(-50%,-50%)}
-.mf25-feat-img img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
-.mf25-feat-copy h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.5vw,40px);line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:16px}
-.mf25-feat-copy p{font-family:var(--body);font-size:18px;line-height:1.6;color:#555;max-width:480px}
-.mf25-feat-eyebrow{display:inline-block;font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--signal);margin-bottom:8px}
-
-/* SIZE */
-.mf25-size{padding:var(--section) 0;background:var(--paper);border-top:1px solid var(--line)}
-.mf25-size-head{text-align:center;margin-bottom:32px}
-.mf25-size-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;color:var(--ink);margin-bottom:8px}
-.mf25-size-head p{font-family:var(--body);font-size:16px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.5}
-
-/* GALLERY */
-.mf25-gallery{padding:var(--section) 0;background:var(--paper)}
-.mf25-gallery-head{text-align:center;margin-bottom:40px}
-.mf25-gallery-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;color:var(--ink)}
-.mf25-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media (max-width:960px){.mf25-gallery-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.mf25-gallery-grid{grid-template-columns:1fr}}
-.mf25-gal-card{aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative}
-.mf25-gal-card img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.mf25-gal-card:hover img{transform:scale(1.05)}
-
-/* REVIEWS */
-.mf25-reviews{padding:var(--section) 0;background:var(--surface)}
-.mf25-reviews-head{text-align:center;margin-bottom:40px}
-.mf25-reviews-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;color:var(--ink)}
-.mf25-rv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media (max-width:960px){.mf25-rv-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:520px){.mf25-rv-grid{grid-template-columns:1fr}}
-.mf25-rv-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;transition:.15s;display:block}
-.mf25-rv-card:hover{border-color:var(--signal);box-shadow:0 4px 12px rgba(0,0,0,.04)}
-.mf25-rv-thumb{aspect-ratio:16/9;background:var(--surface-2);border-radius:8px;margin-bottom:12px;display:grid;place-items:center;position:relative;color:#888;overflow:hidden}
-.mf25-rv-thumb img{width:100%;height:100%;object-fit:cover}
-.mf25-rv-thumb::after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.85);font-size:36px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.4)}
-.mf25-rv-title{font-family:var(--body);font-weight:700;font-size:14px;color:var(--ink);line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.mf25-rv-channel{font-family:var(--body);font-size:12px;color:var(--muted)}
-
-/* SPECS */
-.mf25-specs{padding:var(--section) 0;background:var(--paper)}
-.mf25-specs-head{text-align:center;margin-bottom:40px}
-.mf25-specs-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;color:var(--ink)}
-.mf25-specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-@media (max-width:720px){.mf25-specs-grid{grid-template-columns:1fr}}
-.mf25-spec-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
-.mf25-spec-card-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.mf25-spec-card-head svg{color:var(--signal);width:24px;height:24px;flex:0 0 24px}
-.mf25-spec-card-head h3{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);margin:0}
-.mf25-spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line);gap:12px;font-family:var(--body);font-size:14px}
-.mf25-spec-row:last-child{border-bottom:none}
-.mf25-spec-row span:first-child{color:var(--muted);flex:1}
-.mf25-spec-row span:last-child{font-weight:600;color:var(--ink);text-align:right}
-
-/* PERFORMANCE (black band) */
+/* ENGINEERED FOR PERFORMANCE — Stitch irregular 6-block grid (4 sizes) */
 .mf25-eng{background:#0d0d0d;color:#fff;padding:var(--section) 0}
 .mf25-eng-head{text-align:center;margin-bottom:40px}
 .mf25-eng-eyebrow{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin-bottom:8px;display:block}
 .mf25-eng-head h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.5vw,40px);letter-spacing:-0.02em;color:#fff;margin:0}
-.mf25-eng-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media (max-width:960px){.mf25-eng-grid{grid-template-columns:1fr}}
-.mf25-eng-card{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#1a1a1a;border:1px solid #2a2a2a}
-.mf25-eng-card img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.mf25-eng-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:8px}
+@media (max-width:960px){.mf25-eng-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.mf25-eng-grid{grid-template-columns:1fr}}
+
+/* 4 sizes — large (2x2), wide (2x1), tile (1x1) */
+.mf25-eng-card{position:relative;overflow:hidden;border-radius:8px;background:#1a1a1a;border:1px solid #2a2a2a}
+.mf25-eng-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.55;transition:transform .6s}
+.mf25-eng-card:hover img{transform:scale(1.05)}
 .mf25-eng-card-body{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85) 100%)}
-.mf25-eng-card-body h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-0.02em;color:#fff;margin-bottom:4px}
-.mf25-eng-card-body p{font-family:var(--body);font-size:14px;color:rgba(255,255,255,.85);line-height:1.4;margin:0}
+.mf25-eng-card-body h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em;color:#fff;margin-bottom:4px}
+.mf25-eng-card-body p{font-family:var(--body);font-size:13px;color:rgba(255,255,255,.85);line-height:1.4;margin:0}
 
-/* BUNDLE */
-.mf25-bundle{padding:var(--section) 0;background:var(--paper)}
-.mf25-bundle-head{text-align:center;margin-bottom:40px}
-.mf25-bundle-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;color:var(--ink);margin-bottom:8px}
-.mf25-bundle-head p{font-family:var(--body);font-size:16px;color:var(--muted);margin:0}
-.mf25-bundle-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media (max-width:720px){.mf25-bundle-grid{grid-template-columns:1fr}}
-.mf25-bun-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px;position:relative}
-.mf25-bun-card--popular{border-color:var(--signal)}
-.mf25-bun-badge{position:absolute;top:-12px;right:24px;background:var(--signal);color:var(--ink);font-family:var(--body);font-weight:700;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
-.mf25-bun-name{font-family:var(--display);font-weight:700;font-size:22px;color:var(--ink);margin:0}
-.mf25-bun-list{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-family:var(--body);font-size:14px;color:#444}
-.mf25-bun-list li{padding-left:18px;position:relative}
-.mf25-bun-list li::before{content:"✓";position:absolute;left:0;color:var(--success);font-weight:700}
-.mf25-bun-foot{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--line);margin-top:auto}
-.mf25-bun-price{font-family:var(--display);font-weight:700;font-size:28px;color:var(--ink)}
-.mf25-bun-saved{font-family:var(--body);font-size:13px;color:var(--success);font-weight:600}
-.mf25-bun-btn{width:100%;background:var(--ink);color:#fff;font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:14px 20px;border:0;border-radius:8px;cursor:pointer}
-.mf25-bun-btn:hover{background:#222}
-.mf25-bun-btn--primary{background:var(--signal);color:var(--ink)}
-.mf25-bun-btn--primary:hover{background:var(--signal-deep)}
-
+/* large: 2 cols x 2 rows (hero of the grid) */
+.mf25-eng-card--large{grid-column:span 2;grid-row:span 2;aspect-ratio:1/1}
+.mf25-eng-card--large img{position:relative;aspect-ratio:1/1}
+@media (max-width:960px){.mf25-eng-card--large{grid-column:span 2;grid-row:span 1;aspect-ratio:4/3}}
+/* wide: 2 cols, short strip */
+.mf25-eng-card--wide{grid-column:span 2;height:200px}
+@media (max-width:520px){.mf25-eng-card--wide{grid-column:span 1;height:160px}}
+/* tile: 1 col, square-ish */
+.mf25-eng-card--tile{grid-column:span 1;aspect-ratio:1/1}
 </style>
-
-{%- liquid
-  assign s = section.settings
--%}
 
 <section class="mf25-eng" {{ section.shopify_attributes }}>
   <div class="container">
@@ -188,11 +70,11 @@ a{color:inherit;text-decoration:none}
     <div class="mf25-eng-grid">
       {%- for block in section.blocks -%}
         {%- if block.type == 'feature' -%}
-          <div class="mf25-eng-card" {{ block.shopify_attributes }}>
+          <div class="mf25-eng-card mf25-eng-card--{{ block.settings.layout }}" {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="900">
+              <img src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1600" height="1600">
             {%- else -%}
-              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=1200&h=900&fit=crop" alt="" loading="lazy" width="1200" height="900">
+              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=1600&h=1600&fit=crop" alt="" loading="lazy" width="1600" height="1600">
             {%- endif -%}
             <div class="mf25-eng-card-body">
               <h3>{{ block.settings.title | escape }}</h3>
@@ -222,8 +104,19 @@ a{color:inherit;text-decoration:none}
       "settings": [
         { "type": "text", "id": "title", "label": "Title", "default": "1000W Peak Power" },
         { "type": "textarea", "id": "body", "label": "Body", "default": "High-torque brushless hub motor designed to conquer steep city streets." },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Card size",
+          "options": [
+            { "value": "large", "label": "Large (2x2 hero card)" },
+            { "value": "wide",  "label": "Wide (2-col strip)" },
+            { "value": "tile",  "label": "Tile (1x1 square)" }
+          ],
+          "default": "wide"
+        },
         { "type": "image_picker", "id": "image", "label": "Background image",
-          "info": "Recommended: 1200×900 (4:3) or larger 1600×1200. The card is a 4:3 ratio with object-fit:cover — use a 4:3 image to avoid cropping. <300KB." }
+          "info": "Image size by card size — Large (2x2): 1600x1600 (1:1). Wide (2-col strip): 1600x900 (16:9). Tile (1x1): 800x800 (1:1). object-fit:cover, so matching the ratio avoids cropping. <300KB." }
       ]
     }
   ],
@@ -231,10 +124,12 @@ a{color:inherit;text-decoration:none}
     {
       "name": "MF25 Stitch Performance",
       "blocks": [
-        { "type": "feature", "settings": { "title": "1000W Peak Power", "body": "High-torque brushless hub motor designed to conquer steep city streets." } },
-        { "type": "feature", "settings": { "title": "Seamless Drivetrain", "body": "Premium Shimano 7-speed gearing, fully sealed for worry-free commuting." } },
-        { "type": "feature", "settings": { "title": "Smart Brake Activation", "body": "Hydraulic disc brakes that respond instantly to every safety-critical stop." } },
-        { "type": "feature", "settings": { "title": "Bright Color LCD", "body": "High-visibility under direct sunlight, designed to be read at a glance." } }
+        { "type": "feature", "settings": { "title": "1000W Peak Power", "body": "High-torque brushless hub motor for effortless climbing.", "layout": "large" } },
+        { "type": "feature", "settings": { "title": "500Wh Removable Battery", "body": "Up to 55 miles range per charge.", "layout": "wide" } },
+        { "type": "feature", "settings": { "title": "LCD Smart Display", "body": "All ride data at a glance.", "layout": "tile" } },
+        { "type": "feature", "settings": { "title": "Puncture-Resistant", "body": "Tough tires for any surface.", "layout": "tile" } },
+        { "type": "feature", "settings": { "title": "Shimano 7-Speed", "body": "Precision shifting for any terrain.", "layout": "wide" } },
+        { "type": "feature", "settings": { "title": "Step-Thru Alloy Frame", "body": "High-strength lightweight construction.", "layout": "wide" } }
       ]
     }
   ]

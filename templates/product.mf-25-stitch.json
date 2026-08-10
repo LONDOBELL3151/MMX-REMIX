@@ -73,7 +73,8 @@
           "settings": {
             "title": "1100W PEAK POWER",
             "body": "High-torque brushless hub motor for effortless climbing.",
-            "image": "shopify://shop_images/25motor_fcafa817-0588-48db-b15a-ef0a2e4c4865.png"
+            "image": "shopify://shop_images/25motor_fcafa817-0588-48db-b15a-ef0a2e4c4865.png",
+            "layout": "large"
           }
         },
         "feature_hRUQzr": {
@@ -81,28 +82,32 @@
           "settings": {
             "title": "500WH REMOVABLE BATTERY",
             "body": "Up to 50 miles range per charge.",
-            "image": "shopify://shop_images/25m2.png"
+            "image": "shopify://shop_images/25m2.png",
+            "layout": "wide"
           }
         },
         "feature_MA6aEM": {
           "type": "feature",
           "settings": {
             "title": "SHIMANO 7-SPEED",
-            "body": "Precision shifting for any terrain."
+            "body": "Precision shifting for any terrain.",
+            "layout": "tile"
           }
         },
         "feature_nyhCNr": {
           "type": "feature",
           "settings": {
             "title": "REAR RACK",
-            "body": "Durable and lightweight with 25kg capacity for daily cargo."
+            "body": "Durable and lightweight with 25kg capacity for daily cargo.",
+            "layout": "tile"
           }
         },
         "feature_x3Jqee": {
           "type": "feature",
           "settings": {
             "title": "SUSPENSION SEATPOST",
-            "body": "Smooths out rough terrain to eliminate fatigue and vibration."
+            "body": "Smooths out rough terrain to eliminate fatigue and vibration.",
+            "layout": "wide"
           }
         },
         "feature_9mDXk8": {
@@ -110,7 +115,8 @@
           "settings": {
             "title": "STEP-THRU FRAME",
             "body": "Effortless mounting and comfortable riding for all ages.",
-            "image": "shopify://shop_images/25f.png"
+            "image": "shopify://shop_images/25f.png",
+            "layout": "wide"
           }
         }
       },
