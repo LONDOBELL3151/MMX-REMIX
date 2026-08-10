@@ -56,8 +56,15 @@ a{color:inherit;text-decoration:none}
 .mf25-eng-card--wide{grid-column:span 2}
 /* tile: 1 col, one row */
 .mf25-eng-card--tile{grid-column:span 1}
-@media (max-width:960px){
+/* tablet 2-col: large spans 2 cols x 2 rows */
+@media (min-width:521px) and (max-width:960px){
   .mf25-eng-card--large{grid-column:span 2;grid-row:span 2}
+  .mf25-eng-card--wide{grid-column:span 1}
+  .mf25-eng-card--tile{grid-column:span 1}
+}
+/* mobile 1-col: every card one row, large not special */
+@media (max-width:520px){
+  .mf25-eng-card--large{grid-column:span 1;grid-row:span 1}
   .mf25-eng-card--wide{grid-column:span 1}
   .mf25-eng-card--tile{grid-column:span 1}
 }
