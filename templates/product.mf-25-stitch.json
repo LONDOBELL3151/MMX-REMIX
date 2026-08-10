@@ -97,7 +97,9 @@
       "type": "mf25-stitch-size",
       "settings": {
         "title": "Find Your Perfect Fit",
-        "subtitle": "The step-thru design is engineered for riders between 5'3\" and 7'3\"."
+        "subtitle": "The step-thru design is engineered for riders between 5'3\" and 7'3\".",
+        "image": "shopify://shop_images/f7d7c897f798fc44c391847188c3ac79.jpg",
+        "image_mobile": "shopify://shop_images/M.jpg"
       }
     },
     "gallery": {
