@@ -116,6 +116,7 @@
             "title": "SUSPENSION SEATPOST",
             "body": "Smooths out rough terrain to eliminate fatigue and vibration.",
             "layout": "wide",
+            "image": "shopify://shop_images/25sp.png",
             "overlay_enabled": true,
             "overlay_strength": 75
           }
