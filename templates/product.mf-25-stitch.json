@@ -65,6 +65,26 @@
         "show_extras": true
       }
     },
+    "performance": {
+      "type": "mf25-stitch-performance",
+      "blocks": {
+        "feature_mXeQXP": {
+          "type": "feature",
+          "settings": {
+            "title": "1100W PEAK POWER",
+            "body": "High-torque brushless hub motor designed to conquer steep city streets.",
+            "image": "shopify://shop_images/25motor_fcafa817-0588-48db-b15a-ef0a2e4c4865.png"
+          }
+        }
+      },
+      "block_order": [
+        "feature_mXeQXP"
+      ],
+      "settings": {
+        "eyebrow": "Built for the ride",
+        "title": "Engineered for Performance"
+      }
+    },
     "feature_1": {
       "type": "mf25-stitch-feature",
       "settings": {
@@ -116,15 +136,28 @@
     },
     "specs": {
       "type": "mf25-stitch-specs",
+      "blocks": {
+        "category_8zkJik": {
+          "type": "category",
+          "settings": {
+            "title": "Frameset",
+            "icon": "",
+            "feature_1_label": "",
+            "feature_1_value": "",
+            "feature_2_label": "",
+            "feature_2_value": "",
+            "feature_3_label": "",
+            "feature_3_value": "",
+            "feature_4_label": "",
+            "feature_4_value": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_8zkJik"
+      ],
       "settings": {
         "title": "Comprehensive Specifications"
-      }
-    },
-    "performance": {
-      "type": "mf25-stitch-performance",
-      "settings": {
-        "eyebrow": "Built for the ride",
-        "title": "Engineered for Performance"
       }
     },
     "bundle": {
@@ -137,6 +170,7 @@
   },
   "order": [
     "main",
+    "performance",
     "feature_1",
     "feature_2",
     "feature_3",
@@ -144,7 +178,6 @@
     "gallery",
     "reviews",
     "specs",
-    "performance",
     "bundle"
   ]
 }
