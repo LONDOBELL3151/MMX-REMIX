@@ -109,14 +109,14 @@ a{color:inherit;text-decoration:none}
           "id": "layout",
           "label": "Card size",
           "options": [
-            { "value": "large", "label": "Large (2x2 hero card)" },
-            { "value": "wide",  "label": "Wide (2-col strip)" },
-            { "value": "tile",  "label": "Tile (1x1 square)" }
+            { "value": "large", "label": "Large (2x2 hero) — image 1600x1600 (1:1)" },
+            { "value": "wide",  "label": "Wide (2-col strip) — image 1600x900 (16:9)" },
+            { "value": "tile",  "label": "Tile (1x1 square) — image 800x800 (1:1)" }
           ],
           "default": "wide"
         },
         { "type": "image_picker", "id": "image", "label": "Background image",
-          "info": "Image size by card size — Large (2x2): 1600x1600 (1:1). Wide (2-col strip): 1600x900 (16:9). Tile (1x1): 800x800 (1:1). object-fit:cover, so matching the ratio avoids cropping. <300KB." }
+          "info": "Use the size shown in the Card size option above (it already matches this card). object-fit:cover — matching the ratio avoids cropping. <300KB." }
       ]
     }
   ],
