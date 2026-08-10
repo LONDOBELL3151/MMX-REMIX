@@ -96,6 +96,7 @@
             "title": "SHIMANO 7-SPEED",
             "body": "Precision shifting for any terrain.",
             "layout": "tile",
+            "image": "shopify://shop_images/25ssshimano.png",
             "overlay_enabled": true,
             "overlay_strength": 75
           }
