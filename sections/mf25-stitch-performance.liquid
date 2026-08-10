@@ -190,9 +190,9 @@ a{color:inherit;text-decoration:none}
         {%- if block.type == 'feature' -%}
           <div class="mf25-eng-card" {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="800" height="600">
+              <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="900">
             {%- else -%}
-              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=800&h=600&fit=crop" alt="" loading="lazy" width="800" height="600">
+              <img src="https://images.unsplash.com/photo-1571068316344-75bc88f3a3d9?w=1200&h=900&fit=crop" alt="" loading="lazy" width="1200" height="900">
             {%- endif -%}
             <div class="mf25-eng-card-body">
               <h3>{{ block.settings.title | escape }}</h3>
@@ -222,7 +222,8 @@ a{color:inherit;text-decoration:none}
       "settings": [
         { "type": "text", "id": "title", "label": "Title", "default": "1000W Peak Power" },
         { "type": "textarea", "id": "body", "label": "Body", "default": "High-torque brushless hub motor designed to conquer steep city streets." },
-        { "type": "image_picker", "id": "image", "label": "Background image" }
+        { "type": "image_picker", "id": "image", "label": "Background image",
+          "info": "Recommended: 1200×900 (4:3) or larger 1600×1200. The card is a 4:3 ratio with object-fit:cover — use a 4:3 image to avoid cropping. <300KB." }
       ]
     }
   ],
