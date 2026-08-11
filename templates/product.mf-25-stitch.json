@@ -183,9 +183,10 @@
       "name": "MF25 Stitch Feature",
       "settings": {
         "desktop_layout": "image_left",
-        "eyebrow": "Power",
-        "title": "Conquer Every Hill with Peak 1000W Power",
-        "body": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."
+        "eyebrow": "",
+        "title": "Ride in Total Control with Smart Display & LED Lighting",
+        "body": "Where other e-bikes in this price range cut costs with dim displays and basic reflectors, we focus on delivering complete rider visibility and total control day or night. To ensure this is the best commuter electric bike for round-the-clock safety, the MF-25 features an intuitive, full-color LCD screen that stays crystal clear even under direct sunlight so your speed and battery level are always instantly readable.\n<br>\nPaired with integrated LED headlights and an automatic rear brake light that brightens when you slow down, it illuminates your path ahead while warning cars behind you, giving you complete peace of mind on every journey.",
+        "image": "shopify://shop_images/25dp.png"
       }
     },
     "size": {
