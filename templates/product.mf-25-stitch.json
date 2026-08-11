@@ -164,7 +164,8 @@
         "desktop_layout": "image_left",
         "eyebrow": "Battery",
         "title": "Go Further with the 500Wh Removable Battery",
-        "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs."
+        "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs.",
+        "image": "shopify://shop_images/bat.png"
       }
     },
     "feature_3": {
