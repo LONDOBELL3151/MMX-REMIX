@@ -174,7 +174,8 @@
         "desktop_layout": "image_right",
         "eyebrow": "Display",
         "title": "Stay Informed with the Smart LCD Display",
-        "body": "The bright, full-color LCD screen keeps you updated on your speed, battery level, distance traveled, and current assist mode. Its intuitive design ensures you have all the information you need at a glance."
+        "body": "The bright, full-color LCD screen keeps you updated on your speed, battery level, distance traveled, and current assist mode. Its intuitive design ensures you have all the information you need at a glance.",
+        "image": "shopify://shop_images/25ST1200.png"
       }
     },
     "size": {
