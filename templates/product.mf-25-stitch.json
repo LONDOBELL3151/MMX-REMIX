@@ -162,7 +162,7 @@
       "type": "mf25-stitch-feature",
       "settings": {
         "desktop_layout": "image_left",
-        "eyebrow": "Battery",
+        "eyebrow": "",
         "title": "Go Further with the 500Wh Removable Battery",
         "body": "Enjoy extended rides with our high-capacity 500Wh lithium-ion battery. It's easily removable for convenient indoor charging and provides reliable, long-range power for all your commuting and recreational needs.",
         "image": "shopify://shop_images/25bb1200.png"
@@ -176,6 +176,16 @@
         "title": "Glide Over Bumps with Dual Suspension & Step-Thru Frame",
         "body": "Unlike standard e-bikes that offer no rear cushioning to save on costs, we focus on protecting your spine and knees from harsh road impacts. Built as a comfortable commuter electric bike for adults, the MF-25 combines a front suspension fork with a cushioned suspension seatpost to absorb bumps, potholes, and speed bumps before they reach your body.\n<br>\nPaired with a low Step-Thru frame design, getting on and off is completely effortless in everyday clothing for riders of all ages, delivering a floating, stress-free riding experience.",
         "image": "shopify://shop_images/25ST1200.png"
+      }
+    },
+    "mf25_stitch_feature_j9WyXn": {
+      "type": "mf25-stitch-feature",
+      "name": "MF25 Stitch Feature",
+      "settings": {
+        "desktop_layout": "image_left",
+        "eyebrow": "Power",
+        "title": "Conquer Every Hill with Peak 1000W Power",
+        "body": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."
       }
     },
     "size": {
@@ -239,6 +249,7 @@
     "feature_1",
     "feature_2",
     "feature_3",
+    "mf25_stitch_feature_j9WyXn",
     "size",
     "gallery",
     "reviews",
