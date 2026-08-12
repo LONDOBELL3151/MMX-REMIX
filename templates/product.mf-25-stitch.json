@@ -244,15 +244,21 @@
       "blocks": {
         "image_RUj3Xf": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-March-24_-2026---3_25PM.jpg"
+          }
         },
         "image_hnBxqn": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-March-24_-2026---9_46AM.jpg"
+          }
         },
         "image_gtApgU": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/Generated-Image-March-24_-2026---6_06PM.jpg"
+          }
         }
       },
       "block_order": [
