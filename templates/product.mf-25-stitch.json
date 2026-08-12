@@ -610,7 +610,7 @@
           "type": "question",
           "settings": {
             "question": "What is the warranty on Maxfoot electric bike?",
-            "answer": "<p>MAXFOOT electric commuter bikes come with a 1-year limited warranty on electrical parts and 2 years of technical support warranty for most mechanical parts. <a href=\"https://maxfoot.bike/policies/terms-of-service\" target=\"_blank\" title=\"https://maxfoot.bike/policies/terms-of-service\">Click here</a> to view the full warranty policy.</p>"
+            "answer": "<p>MAXFOOT electric commuter bikes come with a 1-year limited warranty on electrical parts and 2 years of technical support warranty for most mechanical parts. <a href=\"https://maxfoot.bike/policies/terms-of-service\" target=\"_blank\" title=\"https://maxfoot.bike/policies/terms-of-service\"><strong>Click here</strong></a> to view the full warranty policy.</p>"
           }
         }
       },
