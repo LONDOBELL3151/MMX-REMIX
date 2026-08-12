@@ -3,7 +3,7 @@
 > **Handoff 文档**：下一个 AI 同胞接手时，从这个 README 入手。
 > 内容覆盖整个项目（不只是 about-us）— 写法、思路、规范、踩过的坑、常用任务模板，全部在这里。
 >
-> 最后一次工作：把 `/pages/about-us` 按 lectric eBikes 视觉重做（11 个 sections），并整理出这份完整 handoff。
+> 最后一次工作：全量审计仓库并补正本 README（2026-08-12）——131 sections / 60 templates / 31 种语言 locale / 9 个 social 链接等数字已核对；补齐 `customers/` 子目录、`about-mission`、`mf25-stitch-*` 家族。mf25-stitch 是最近的功能开发线。
 
 ---
 
@@ -21,8 +21,8 @@
 | 7 | [Liquid 编码规范](#7-liquid-编码规范) | settings、blocks、媒体、`\| t` 陷阱 |
 | 8 | [CSS 架构规范](#8-css-架构规范) | 分层、命名、模式 |
 | 9 | [JavaScript 规范](#9-javascript-规范) | maxfoot.js、data-attrs、defer |
-| 10 | [Section 库（全部 90+）](#10-section-库全部-90) | 文件位置、用途、当前状态 |
-| 11 | [Page 模板（全部 25+）](#11-page-模板全部-25) | 哪个模板配哪些 sections |
+| 10 | [Section 库（全部 131）](#10-section-库全部-131) | 文件位置、用途、当前状态 |
+| 11 | [Page 模板（全部 60）](#11-page-模板全部-60) | 哪个模板配哪些 sections |
 | 12 | [Product Card 完整规范](#12-product-card-完整规范) | 两种 card、metafields、rating |
 | 13 | [全局组件 (header / footer / cart)](#13-全局组件) | 跨页面共用元素 |
 | 14 | [App 集成 (Impact-cart / Judge.me / Pagefly)](#14-app-集成) | 第三方 app 怎么挂的 |
@@ -107,12 +107,13 @@ C:\Users\Coulson\Desktop\
 │   │   ├── header-group.json / footer-group.json / impact-overlay-group.json
 │   │   ├── header.liquid / footer.liquid / announcement-bar.liquid
 │   │   ├── main-*.liquid        page / product / collection / cart / account / order / search / blog...
-│   │   ├── about-*.liquid       about-us 11 个（最新重做）
+│   │   ├── about-*.liquid       about-us（11 个，含新增 `about-mission`）
+│   │   ├── mf25-stitch-*.liquid mf25 Stitch PDP 系列（7 个，最新）
 │   │   ├── mf-pdp-*.liquid      product detail page 模块
 │   │   ├── impact-*.liquid      Impact-cart app 集成
 │   │   ├── judgeme_*.liquid     Judge.me 评价 app 集成
 │   │   ├── blog-*.liquid / Home-*.liquid
-│   │   └── ... ~90 sections
+│   │   └── ... 131 sections（128 liquid + 3 group json）
 │   ├── snippets\
 │   │   ├── product-card.liquid                    主 product card
 │   │   ├── maxfoot-collection-card-product.liquid Dawn 版 product card
@@ -122,14 +123,16 @@ C:\Users\Coulson\Desktop\
 │   │   ├── social-icons.liquid / meta-tags.liquid / stars.liquid / price.liquid
 │   │   ├── product-*.liquid (media / thumbnail / variant)
 │   │   ├── impact-*.liquid / mf-quick-add-form.liquid / pdp-color-family.liquid
-│   │   └── ... ~75 snippets
+│   │   └── ... 91 snippets
 │   ├── templates\
-│   │   ├── index.json                  home (13 sections)
+│   │   ├── index.json                  home (14 sections, 2 个 hero)
 │   │   ├── collection.json / collection.collection.json  默认 + fallback
 │   │   ├── collection.e-trike.json     e-trike collection (10+ sections)
 │   │   ├── collection.e-bike.json      e-bike collection
-│   │   ├── product.json / product.mf-25.json / product.front-basket-for-mf25.json
+│   │   ├── customers\                  **7 个账户模板**（account / addresses / order / login / register / activate / reset）
+│   │   ├── product.json / product.mf-25.json / product.mf-25-stitch.json / product.front-basket-for-mf25.json
 │   │   ├── product.pet-bag.json / product.trailer.json / product.rear-rack-bag.json
+│   │   ├── product.mf-*.json           其它型号（mf-17/18/19 系列/21/22/23/30/31/32/33 等，共 ~20 个）
 │   │   ├── page.about-us.json / page.contact.json / page.affiliate-program.json
 │   │   ├── page.coming-soon.json / page.payment-plan.json / page.prime-day.json
 │   │   ├── page.judgeme_all_reviews.liquid
@@ -142,7 +145,7 @@ C:\Users\Coulson\Desktop\
 │   │   ├── settings_schema.json        主题 settings（color_scheme / typography / favicon / social_*-link）
 │   │   └── settings_data.json          实际 settings 值
 │   ├── blocks\                         Shopify 2.0+ theme app extension blocks（暂未广泛使用）
-│   ├── locales\en.default.json         翻译（单语言英文站）
+│   ├── locales\                      **31 种语言**翻译（en.default.json 为默认；各语言 `.json` + `.schema.json`）
 │   ├── _debug\                         临时 debug 截图（不要 commit）
 │   └── README.md                       ← 本文件
 │
@@ -634,9 +637,11 @@ level. Replaced 24px plain text with 64px outlined numbers using
 {{ 'foo.bar' | t: default: 'fallback' }}  <!-- default 只在 locale 没这个 key 时才用 -->
 ```
 
-- 一旦 `locales/en.default.json` 里有这个 key，Shopify 用 locale 值，**default 被忽略**
-- MaxFoot 是单语言英文站 → **直接硬编码**，不用 `| t`
-- 例外：像 `{{ 'general.electric_bike' | t: default: 'Electric Bike' }}` 这种通用短语可以加
+- 一旦 locale 文件里有这个 key，Shopify 用 locale 值，**default 被忽略**
+- **主题含 31 种语言 locale**（`locales/` 下各语言 `.json` + `.schema.json`，非单语言）。`| t` 会命中当前市场语言的 key：
+  - 若店铺只跑英文 market → 直接硬编码可行，但注意 31 种 locale 的 en.default 里已有 key 会覆盖 default
+  - 若店铺跑了多语言 market → 用户可见文案应走 locale key（在 31 个语言文件里加词条），别硬编码英文
+- 通用短语（如 `{{ 'general.electric_bike' | t: default: 'Electric Bike' }}`）可以直接加
 
 **实际踩坑**：`snippets/product-card.liquid` 改 `"Shop now"` 时只改 default 没生效，根因是 `locales/en.default.json:548` 有 `"choose_options": "Choose Options"` 覆盖了。
 
@@ -904,7 +909,7 @@ menuToggle.setAttribute('aria-label', 'Open menu');
 
 ---
 
-## 10. Section 库（全部 90+）
+## 10. Section 库（全部 131）
 
 按角色分类。所有 `sections/*.liquid` 都遵循 §6.5 的标准模板。
 
@@ -921,9 +926,12 @@ menuToggle.setAttribute('aria-label', 'Open menu');
 
 ### 10.2 Home (`templates/index.json`)
 
+> **实测 14 个 sections**（README 旧版说 13 是错的）：注意有 **2 个 hero**（`hero` + `hero_NijgLE`）。
+
 | Section key | Section type | 文件 | 说明 |
 |---|---|---|---|
 | hero | `hero` | `hero.liquid` | 大标题 + 副标题 + 按钮 + 视频/图背景 |
+| hero_NijgLE | `hero` | `hero.liquid` | **第二个 hero**（线上有 2 个，改首页先看实际配置） |
 | trust | `trust-badges` | `trust-badges.liquid` | 4 个 trust icons (Buy Now / Secure / Free Ship / 2yr Warranty) |
 | story | `brand-story` | `brand-story.liquid` | 品牌故事（hero 段） |
 | proof | `proof-bar` | `proof-bar.liquid` | 4 个数字（黑底） |
@@ -989,7 +997,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 ### 10.7 所有 section 一览（按字母序）
 
 <details>
-<summary>点击展开全部 90+ section 列表</summary>
+<summary>点击展开全部 131 section 列表（128 liquid + 3 group json）</summary>
 
 | 文件 | 角色 |
 |---|---|
@@ -998,7 +1006,8 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `about-floating-story.liquid` | about-us stats + story 合并卡 ⭐ |
 | `about-founder.liquid` | about-us 创始人卡片 |
 | `about-hero.liquid` | about-us hero（视频支持） |
-| `about-mission-pillars.liquid` | about-us 4 根支柱 |
+| `about-mission-pillars.liquid` | about-us 4 根支柱（**旧版，模板未用**） |
+| `about-mission.liquid` | about-us mission（**线上用的是这个**，`page.about-us.json` 的 `mission_text`） |
 | `about-newsletter.liquid` | about-us 邮件订阅（dark） |
 | `about-pillars.liquid` | about-us 6 张黑底卡 |
 | `about-stats.liquid` | about-us 旧 stats 段 |
@@ -1084,6 +1093,13 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `mf-pdp-banner.liquid` | PDP banner |
 | `mf-pdp-complete-ride.liquid` | PDP complete ride |
 | `mf-pdp-gallery.liquid` | PDP gallery |
+| `mf25-stitch-bundle.liquid` | mf25 Stitch PDP 配件 bundle（商品关联 + 加购 + Total Value） |
+| `mf25-stitch-feature.liquid` | mf25 Stitch PDP feature |
+| `mf25-stitch-gallery.liquid` | mf25 Stitch PDP gallery |
+| `mf25-stitch-performance.liquid` | mf25 Stitch PDP performance（**内联 CSS，共享样式例外**） |
+| `mf25-stitch-reviews.liquid` | mf25 Stitch PDP reviews |
+| `mf25-stitch-size.liquid` | mf25 Stitch PDP size |
+| `mf25-stitch-specs.liquid` | mf25 Stitch PDP specs |
 | `mileage-tabs.liquid` | 续航 tab（**title font-weight 900**） |
 | `multicolumn.liquid` | 多列 |
 | `multi-product-module.liquid` | 多产品模块 |
@@ -1118,19 +1134,24 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 
 ---
 
-## 11. Page 模板（全部 25+）
+## 11. Page 模板（全部 60）
+
+> 注意：模板 JSON 头部有 `/* ... */` 注释（JSONC），脚本解析需先 strip。以下列的是主要模板；完整清单以 `git ls-files templates/` 为准。
 
 | Template | 用途 | Sections |
 |---|---|---|
-| `index.json` | Home | 13 sections (hero, trust, story, proof, lineup, why, press, gallery, blog, riders, faq, cta, newsletter) |
+| `index.json` | Home | **14 sections（含 2 个 hero）** (hero×2, trust, story, proof, lineup, why, press, gallery, blog, riders, faq, cta, newsletter) |
 | `collection.json` | 默认 collection | Dawn 默认 |
 | `collection.e-trike.json` | **e-trike collection**（最重要） | 10+ sections (collection-banner, feature-tabs, main-collection, mileage-tabs, reliability, why, faq) |
 | `collection.e-bike.json` | e-bike collection | 复用 e-trike 结构 |
 | `collection.collection.json` | collection fallback | Dawn 默认 |
+| `customers/`（7 个） | 账户模板：`account` / `addresses` / `order` / `login` / `register` / `activate_account` / `reset_password` | 对应 `main-*` |
 | `product.json` | 默认 product | main-product + collapsible + related |
 | `product.mf-25.json` | MF-25 型号 | 包含 mf-pdp-* |
+| `product.mf-25-stitch.json` | **MF-25 Stitch PDP** | main-product + mf25-stitch-* 7 个 + swiper-graphic |
 | `product.front-basket-for-mf25.json` | 配件 | 单产品 |
 | `product.pet-bag.json` / `product.trailer.json` / `product.rear-rack-bag.json` | 配件 | 单产品 |
+| `product.mf-*.json`（~13 个） | 其它型号：mf-17/18/19 系列（500f/750p/1000f/1000p）/21/22/23/30/30-so/31/32/33/MF-21G/MF-22G/MF-25-2/test-product | 单型号 PDP |
 | `page.about-us.json` | **About Us（11 sections，详见附录 A）** | 11 sections |
 | `page.contact.json` | 联系我们 | contact-form + 时区 |
 | `page.affiliate-program.json` | 联盟营销 | rich-text + form |
@@ -1253,9 +1274,9 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 - `copyright_text` (text)
 
 **Social 链接**（**重点**）:
-- 用 `settings.social_facebook_link` (有 `_link` 后缀)
-- `settings.social_instagram_link`、`twitter_link`、`youtube_link`、`tiktok_link`
-- 漏 `_link` 后缀 → 静默失败 → 整个 footer social 区域不显示
+- **9 个**，全部 `settings.social_*_link`（带 `_link` 后缀，且都有 `social_` 前缀）：
+  `social_facebook_link`、`social_instagram_link`、`social_twitter_link`、`social_youtube_link`、`social_tiktok_link`、`social_snapchat_link`、`social_pinterest_link`、`social_tumblr_link`、`social_vimeo_link`
+- 漏 `_link` 后缀或 `social_` 前缀 → 静默失败 → 整个 footer social 区域不显示
 
 ### 13.3 Announcement Bar (sections/announcement-bar.liquid)
 
@@ -1358,8 +1379,8 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 
 ### 15.4 `| t` filter 的 `default:` 不可靠
 - `default:` 只在 locale 没这个 key 时才用
-- 一旦 `locales/en.default.json` 里有,Shopify 用 locale 值,**default 被忽略**
-- MaxFoot 是单语言英文站 → **直接硬编码**,不用 `| t`(除了 `general.electric_bike` 这类通用短语)
+- 一旦 locale 文件里有,Shopify 用 locale 值,**default 被忽略**
+- 主题含 **31 种语言 locale**（非单语言）——英文跑 en.default；若店铺有多语言 market，文案要走 locale key（见 §7.5）
 
 ### 15.5 `settings.X` key 名必须严格匹配 `settings_schema.json`
 - MaxFoot 的 `sections/footer.liquid` 早期漏写 `_link` 后缀(`social_facebook` vs `social_facebook_link`)
@@ -1721,7 +1742,10 @@ Coulson 的偏好 / MMX-REMIX workflow / 验证纪律 / Shopify schema 字节限
 
 > 11 个 sections 是最近一次大改（2026-07-21~24），从 lectric 视觉风格借鉴，套 maxfoot 配色。
 
-`templates/page.about-us.json` 顺序：
+`templates/page.about-us.json` 顺序（**实测**，main 为 disabled）：
+main → hero (`about-hero`) → floating_story (`about-floating-story`) → founder (`about-founder`) → **mission_text (`about-mission`)** → quality (`about-pillars`) → trust (`about-trust-strip`) → who_serve (`about-story-grid`) → evolution (`about-timeline`) → cta (`about-cta`) → newsletter (`about-newsletter`)
+
+> 注意：线上用的是 `about-mission`（不是 `about-mission-pillars`，见 A.4）。
 
 ### A.1 `about-hero` (sections/about-hero.liquid)
 - **视觉**：全宽图片或视频背景 + 暗色 overlay
@@ -1747,7 +1771,8 @@ Coulson 的偏好 / MMX-REMIX workflow / 验证纪律 / Shopify schema 字节限
 - **字段**：`bg_image` / `bg_video_url` / `icon` (icon_picker) / `eyebrow` / `title` / `body` / `signature`
 - **CSS**：`assets/page-about-us.css` 的 `.about-founder`
 
-### A.4 `about-mission-pillars` (sections/about-mission-pillars.liquid)
+### A.4 `about-mission` (sections/about-mission.liquid) ⭐ 线上在用
+- **线上模板用的是这个**（`page.about-us.json` 的 `mission_text`）。`about-mission-pillars.liquid` 是旧版，模板未用。
 - **视觉**：4 根柱子（白底圆角），居中
 - **块**：最多 6 个 `pillar` block,每个有 `number` / `icon` / `title` / `text`
 - **字段**：`eyebrow` / `heading` (inline_richtext) / `subheading`
@@ -1799,7 +1824,7 @@ Coulson 的偏好 / MMX-REMIX workflow / 验证纪律 / Shopify schema 字节限
 | about-hero | media_image, media_video_url | eyebrow, title, subtitle, meta_1-4 | — |
 | about-floating-story | story_image, story_video_url | story_eyebrow, story_title, story_body, story_button_label, story_button_link, story_button_external | stat (≤6) |
 | about-founder | bg_image, bg_video_url, icon | eyebrow, title, body, signature | — |
-| about-mission-pillars | — | eyebrow, heading, subheading | pillar (≤6) |
+| about-mission | — | eyebrow, heading, subheading | pillar (≤6) |
 | about-story-grid | 多种 image + video | eyebrow, title, lead_text, body_text | list_item (≤10) |
 | about-pillars | — | heading, subheading | pillar (≤6) |
 | about-timeline | image + video_url (per milestone) | year, title, text (per milestone) | milestone (≤8) |
