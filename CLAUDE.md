@@ -50,7 +50,8 @@
 
 ## 5. README 未收录的新 section（最新工作）
 
-- **`about-mission.liquid`**：about-us 家族新增（README §10.7 没列）。
+- **`about-mission.liquid`**：about-us 家族新增（README §10.7 没列），**且正挂在线上**：`page.about-us.json` 的 `mission_text` 用的是它，不是 README 附录 A 写的 `about-mission-pillars`。
+- **首页模板实测**：`index.json` 实际 **14 个 sections**，含 **2 个 hero**（`hero` + `hero_NijgLE`）——README §10.2 说 13 个 / 1 个 hero 是旧数据。改首页先看 `templates/index.json` 实际构成。
 - **mf25-stitch 家族**（7 个）：`mf25-stitch-bundle` / `-feature` / `-gallery` / `-performance` / `-reviews` / `-size` / `-specs`，全部挂在 `templates/product.mf-25-stitch.json`（MF-25 Stitch PDP）。
 - **共享 CSS**：section 顶部 `{% render 'mf25-stitch-styles' %}`（唯一源，含全部 `.mf25-*` 样式）。**例外**：`mf25-stitch-performance.liquid` 自带一份内联 copy（历史遗留，勿再复制）。
 - **bundle section 关键点**（已实现）：
