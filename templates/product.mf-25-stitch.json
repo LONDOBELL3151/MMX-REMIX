@@ -376,6 +376,8 @@
         "swiper_box_dHjE7A": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/battery_ec607340-d9ab-4a37-b396-0f2ab8f44b72.png",
+            "swiper_img_phone": "shopify://shop_images/battery_ec607340-d9ab-4a37-b396-0f2ab8f44b72.png",
             "swiper_title": "BATTERY",
             "swiper_copywriting": "500Wh lithium battery delivers long-range power,fast charging, and reliable performance for every\nride."
           }
@@ -383,6 +385,8 @@
         "swiper_box_DKFbCw": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/motor_2db51539-7ad9-4ac5-a155-2d206ba25be9.png",
+            "swiper_img_phone": "shopify://shop_images/motor_2db51539-7ad9-4ac5-a155-2d206ba25be9.png",
             "swiper_title": "MOTOR",
             "swiper_copywriting": "Peak 1000W motor provides powerful acceleration,smooth climbs, and unmatched performance for any terrain."
           }
@@ -390,6 +394,8 @@
         "swiper_box_4NQwDq": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2731_c47efcf9-b04b-4cca-b855-4e17ea9c2d21.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2731_c47efcf9-b04b-4cca-b855-4e17ea9c2d21.jpg",
             "swiper_title": "FRONT LICHT",
             "swiper_copywriting": "LED headlight ensures clear visibility, safe nightrides, and energy-efficient illumination for alladventures."
           }
@@ -397,6 +403,8 @@
         "swiper_box_NHafMB": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2850_a4665f34-6c78-4e22-988d-b12babf56fdc.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2850_a4665f34-6c78-4e22-988d-b12babf56fdc.jpg",
             "swiper_title": "TAILLIGHT",
             "swiper_copywriting": "High-visibility LED taillight enhances safety withbrake sensing and durable weatherproof design."
           }
@@ -404,6 +412,8 @@
         "swiper_box_id6VPe": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_3080.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_3080.jpg",
             "swiper_title": "LCD DISPLAY",
             "swiper_copywriting": "Bright LCD shows speed, battery, distance, andmode, ensuring a smart, intuitive ride experience."
           }
@@ -411,6 +421,8 @@
         "swiper_box_4KajmB": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/DSC_2809.jpg",
+            "swiper_img_phone": "shopify://shop_images/DSC_2809.jpg",
             "swiper_title": "SEATPOST",
             "swiper_copywriting": "Suspension seatpost absorbs shocks, reducesfatigue, and ensures a smooth, comfortable ride on any terrain."
           }
@@ -418,6 +430,8 @@
         "swiper_box_9N7WCN": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/step.png",
+            "swiper_img_phone": "shopify://shop_images/step.png",
             "swiper_title": "STEP-THRU FRAME",
             "swiper_copywriting": "A Step-thru design, enhancing convenience, stability,and easy getting on and off for effortless rides."
           }
@@ -425,6 +439,8 @@
         "swiper_box_mwtDaD": {
           "type": "swiperBox",
           "settings": {
+            "swiper_img_pc": "shopify://shop_images/RR.png",
+            "swiper_img_phone": "shopify://shop_images/RR.png",
             "swiper_title": "REAR RACK",
             "swiper_copywriting": "A durable, lightweight rear rack, supporting 25kg, designed for secure, versatile, and weatherproof functionality."
           }
@@ -441,7 +457,7 @@
         "swiper_box_mwtDaD"
       ],
       "custom_css": [
-        ".fontBgColor {background-image: linear-gradient(to right, #7db1a8 0, #fff), linear-gradient(to right, #7db1a8 0, #fff);}",
+        ".fontBgColor {background-image: linear-gradient(to right, #e07a23 0, #fff), linear-gradient(to right, #e07a23 0, #fff);}",
         ".swiperGraphic_section {max-width: 1200px;}",
         ".swiperGraphic_content p {font-size: 15px;}",
         ".swiperGraphic_section {max-width: 100%;}"
