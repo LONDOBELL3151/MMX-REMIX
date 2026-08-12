@@ -295,7 +295,11 @@
             "feature_3_label": "Seatpost",
             "feature_3_value": "Comfort Suspension Seatpost",
             "feature_4_label": "",
-            "feature_4_value": ""
+            "feature_4_value": "",
+            "feature_5_label": "",
+            "feature_5_value": "",
+            "feature_6_label": "",
+            "feature_6_value": ""
           }
         },
         "category_DKUKJa": {
@@ -310,7 +314,11 @@
             "feature_3_label": "",
             "feature_3_value": "",
             "feature_4_label": "",
-            "feature_4_value": ""
+            "feature_4_value": "",
+            "feature_5_label": "",
+            "feature_5_value": "",
+            "feature_6_label": "",
+            "feature_6_value": ""
           }
         },
         "category_7pbfzX": {
@@ -325,7 +333,11 @@
             "feature_3_label": "Rear Derailleur",
             "feature_3_value": "Shimano7 speed",
             "feature_4_label": "Throttle",
-            "feature_4_value": "Thumb-Twist Throttle"
+            "feature_4_value": "Thumb-Twist Throttle",
+            "feature_5_label": "Charger",
+            "feature_5_value": "2A Fast Charger",
+            "feature_6_label": "",
+            "feature_6_value": ""
           }
         },
         "category_8zkJik": {
@@ -340,7 +352,11 @@
             "feature_3_label": "Ebike Dimensions",
             "feature_3_value": "67.8\" x 28\" x 45\"",
             "feature_4_label": "Size & Fit",
-            "feature_4_value": "5'3\"-7'3\""
+            "feature_4_value": "5'3\"-7'3\"",
+            "feature_5_label": "Rear Rack",
+            "feature_5_value": "A durable, lightweight rear rack, supporting 25kg",
+            "feature_6_label": "",
+            "feature_6_value": ""
           }
         }
       },
