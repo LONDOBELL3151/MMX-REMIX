@@ -11,6 +11,7 @@
 - **绝不碰**：`Desktop\maxfoot-theme\`（legacy 备份）、`Desktop\dawn\`（Dawn 原版 workspace，**不是**本工程）。
 - **同步链路**：`git push origin main` → GitHub → Shopify GitHub 整合 → CDN。**经常卡 5+ 分钟**；看到 `Update from Shopify for theme MMX-REMIX/main` bot commit 属正常。
 - **设计稿**：根目录 `pdp-mockup-*.html`（mf25-stitch 的设计来源，已在 `.gitignore`，仅本地参考）。
+- **规模实测（README 已过时）**：131 sections（128 liquid + 3 group）、60 templates（含 `customers/` 7 个账户模板）、91 snippets、150 assets、**31 种语言 locale**。README 的"~90 sections / 单语言英文站"是旧数据。
 
 ## 1. 新对话开机序列
 
@@ -42,14 +43,15 @@
 - **重构 section 保留原 class / HTML 结构 / 标签**（CSS 依赖它们），改结构前先 grep 对应 CSS。
 - `<img>` 必须带 width/height —— 用 `image_tag` filter（自动带 w/h + 响应式 srcset）。
 - schema 按**字节**算：`header.content`/`label` ≤50，`info` ≤150（em-dash `—` = 3 字节）。
-- `| t` 的 `default:` 会被 `locales/en.default.json` 覆盖 → 单语言站直接硬编码。
+- `| t` 的 `default:` 会被 locale 文件覆盖。**主题含 31 种语言 locale**（README 的"单语言→硬编码"已过时）：用户可见文案要么走 locale key，要么确认当前市场语言，别默认是英文。
 - 单 CTA 原则；标题 `font-weight:900` + uppercase 是 DNA（不为对齐降重，改 line-height）。
 - CSS 不塞 `<div style>`；走 `assets/` 文件或共享 snippet。媒体字段必带 `info` 说明推荐尺寸。
 - 新 section 的 schema 必带 `presets`，否则 editor "Add section" 搜不到。
 
-## 5. mf25-stitch 家族（README 未收录 — 最新工作）
+## 5. README 未收录的新 section（最新工作）
 
-- **7 个 section**：`mf25-stitch-bundle` / `-feature` / `-gallery` / `-performance` / `-reviews` / `-size` / `-specs`，全部挂在 `templates/product.mf-25-stitch.json`（MF-25 Stitch PDP）。
+- **`about-mission.liquid`**：about-us 家族新增（README §10.7 没列）。
+- **mf25-stitch 家族**（7 个）：`mf25-stitch-bundle` / `-feature` / `-gallery` / `-performance` / `-reviews` / `-size` / `-specs`，全部挂在 `templates/product.mf-25-stitch.json`（MF-25 Stitch PDP）。
 - **共享 CSS**：section 顶部 `{% render 'mf25-stitch-styles' %}`（唯一源，含全部 `.mf25-*` 样式）。**例外**：`mf25-stitch-performance.liquid` 自带一份内联 copy（历史遗留，勿再复制）。
 - **bundle section 关键点**（已实现）：
   - 每个 item = `product_1/2/3`（关联商品）+ `image_1/2/3`（1:1 上传，空则回退商品主图）+ `item_1/2/3`（自定义短文案，空则回退商品标题）。
