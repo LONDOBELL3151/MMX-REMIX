@@ -204,9 +204,10 @@
         "video_qdcCF4": {
           "type": "video",
           "settings": {
-            "title": "Maxfoot MF 25 E Bike",
-            "channel": "Channel",
-            "video_url": ""
+            "title": "Maxfoot MF-25 eBike (ONLY $699)",
+            "channel": "eBike Reviews & Adventures",
+            "video_url": "https://www.youtube.com/watch?v=6UpGphswnMQ",
+            "thumbnail": "shopify://shop_images/ytbtu_maxresdefault-1755589035.jpg"
           }
         },
         "video_dgbGcQ": {
