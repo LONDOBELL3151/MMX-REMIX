@@ -14,15 +14,83 @@
     <div class="mf25-bundle-grid">
       {%- for block in section.blocks -%}
         {%- if block.type == 'bundle' -%}
+          {%- liquid
+            assign main_variant_id = blank
+            if product != blank
+              assign main_variant_id = product.selected_or_first_available_variant.id
+            endif
+          -%}
+          {%- capture bundle_items_json -%}
+            [
+            {%- assign has_item_json = false -%}
+            {%- for i in (1..3) -%}
+              {%- liquid
+                assign product_key = 'product_' | append: i
+                assign item_product = block.settings[product_key]
+              -%}
+              {%- if item_product != blank and item_product.selected_or_first_available_variant != blank -%}
+                {%- if has_item_json -%},{%- endif -%}
+                {"id":{{ item_product.selected_or_first_available_variant.id | json }},"quantity":1}
+                {%- assign has_item_json = true -%}
+              {%- endif -%}
+            {%- endfor -%}
+            ]
+          {%- endcapture -%}
+
           <div class="mf25-bun-card{% if block.settings.popular %} mf25-bun-card--popular{% endif %}" {{ block.shopify_attributes }}>
             {%- if block.settings.popular -%}
-              <span class="mf25-bun-badge">{{ block.settings.badge_text | default: 'Most Popular' }}</span>
+              <span class="mf25-bun-badge">{{ block.settings.badge_text | default: 'Most Popular' | escape }}</span>
             {%- endif -%}
+
+            <div class="mf25-bun-media">
+              {%- for i in (1..3) -%}
+                {%- liquid
+                  assign product_key = 'product_' | append: i
+                  assign label_key = 'item_' | append: i
+                  assign image_key = 'image_' | append: i
+                  assign item_product = block.settings[product_key]
+                  assign item_label = block.settings[label_key] | default: item_product.title
+                  assign item_image = block.settings[image_key]
+                -%}
+                <div class="mf25-bun-media-cell">
+                  {%- if item_image != blank -%}
+                    {{
+                      item_image
+                      | image_url: width: 240
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '120, 240, 360',
+                        sizes: '(min-width: 720px) 120px, 30vw',
+                        alt: item_image.alt | default: item_label | escape
+                    }}
+                  {%- elsif item_product != blank and item_product.featured_image != blank -%}
+                    {{
+                      item_product.featured_image
+                      | image_url: width: 240
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '120, 240, 360',
+                        sizes: '(min-width: 720px) 120px, 30vw',
+                        alt: item_product.featured_image.alt | default: item_label | escape
+                    }}
+                  {%- else -%}
+                    <span class="mf25-bun-media-ph">{{ item_label | default: 'Item' | escape }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+
             <h3 class="mf25-bun-name">{{ block.settings.title | escape }}</h3>
             <ul class="mf25-bun-list">
-              {%- if block.settings.item_1 != blank -%}<li>{{ block.settings.item_1 | escape }}</li>{%- endif -%}
-              {%- if block.settings.item_2 != blank -%}<li>{{ block.settings.item_2 | escape }}</li>{%- endif -%}
-              {%- if block.settings.item_3 != blank -%}<li>{{ block.settings.item_3 | escape }}</li>{%- endif -%}
+              {%- for i in (1..3) -%}
+                {%- liquid
+                  assign product_key = 'product_' | append: i
+                  assign label_key = 'item_' | append: i
+                  assign item_product = block.settings[product_key]
+                  assign item_label = block.settings[label_key] | default: item_product.title
+                -%}
+                {%- if item_label != blank -%}<li>{{ item_label | escape }}</li>{%- endif -%}
+              {%- endfor -%}
             </ul>
             <div class="mf25-bun-foot">
               <div>
@@ -32,13 +100,110 @@
                 {%- endif -%}
               </div>
             </div>
-            <button class="mf25-bun-btn{% if block.settings.popular %} mf25-bun-btn--primary{% endif %}" type="button">Add Bundle to Cart</button>
+            <button
+              class="mf25-bun-btn{% if block.settings.popular %} mf25-bun-btn--primary{% endif %}"
+              type="button"
+              data-mf25-add-bundle
+              data-items="{{ bundle_items_json | strip | escape }}"
+              data-main-variant="{{ main_variant_id }}"
+              data-bundle-title="{{ block.settings.title | escape }}"
+              data-default-label="Add Bundle to Cart"
+            >Add Bundle to Cart</button>
+            <p class="mf25-bun-status" data-mf25-bundle-status></p>
           </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
   </div>
 </section>
+
+<script>
+  (() => {
+    const sectionRoot = document.querySelector('.mf25-bundle');
+    if (!sectionRoot) return;
+
+    const buttons = Array.from(sectionRoot.querySelectorAll('[data-mf25-add-bundle]'));
+    if (!buttons.length) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', async () => {
+        const card = button.closest('.mf25-bun-card');
+        const status = card && card.querySelector('[data-mf25-bundle-status]');
+        const cartDrawer = document.querySelector('cart-drawer');
+        const defaultLabel = button.dataset.defaultLabel || button.textContent.trim();
+
+        if (status) status.textContent = '';
+        button.disabled = true;
+        button.textContent = 'Adding...';
+
+        try {
+          // 主产品跟随页面主商品区已选变体（#pdp__form 的 .product-variant-id），
+          // 找不到表单时回退到服务端输出的默认变体。
+          const mainForm = document.querySelector('#pdp__form');
+          const mainVariantInput = mainForm && mainForm.querySelector('.product-variant-id');
+          const mainVariantId = (mainVariantInput && mainVariantInput.value) || button.dataset.mainVariant;
+
+          if (!mainVariantId) {
+            throw new Error('The main product is not available.');
+          }
+
+          const items = JSON.parse(button.dataset.items || '[]');
+          if (!items.length) {
+            throw new Error('Please select products for this bundle.');
+          }
+
+          const formData = new FormData();
+          let index = 0;
+          const bundleTitle = button.dataset.bundleTitle || '';
+
+          const addLine = (id, quantity) => {
+            formData.append(`items[${index}][id]`, id);
+            formData.append(`items[${index}][quantity]`, quantity);
+            if (bundleTitle) formData.append(`items[${index}][properties][_bundle]`, bundleTitle);
+            index += 1;
+          };
+
+          addLine(mainVariantId, 1);
+          items.forEach((item) => addLine(item.id, item.quantity || 1));
+
+          if (cartDrawer) {
+            cartDrawer.setActiveElement(button);
+            cartDrawer.getSectionsToRender().forEach((section) => {
+              formData.append('sections', section.id);
+            });
+            formData.append('sections_url', window.location.pathname);
+          }
+
+          const response = await fetch((window.routes && window.routes.cart_add_url) || '/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+          });
+
+          const payload = await response.json();
+
+          if (!response.ok || payload.status) {
+            throw new Error(payload.description || payload.message || 'Unable to add this bundle.');
+          }
+
+          if (cartDrawer && payload.sections) {
+            cartDrawer.renderContents(payload);
+          } else {
+            window.location.href = (window.routes && window.routes.cart_url) || '/cart';
+          }
+        } catch (error) {
+          if (status) status.textContent = error.message;
+        } finally {
+          button.disabled = false;
+          button.textContent = defaultLabel;
+        }
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -58,9 +223,15 @@
         { "type": "checkbox", "id": "popular", "label": "Mark as most popular", "default": false },
         { "type": "text", "id": "badge_text", "label": "Badge text (e.g. Most Popular)", "default": "Most Popular" },
         { "type": "text", "id": "title", "label": "Bundle title", "default": "Commuter Pro Bundle" },
-        { "type": "text", "id": "item_1", "label": "Item 1", "default": "Front Rack Bag" },
-        { "type": "text", "id": "item_2", "label": "Item 2", "default": "Front Basket for MF-25" },
-        { "type": "text", "id": "item_3", "label": "Item 3", "default": "Rearview Mirrors (pair)" },
+        { "type": "product", "id": "product_1", "label": "Associated product 1" },
+        { "type": "image_picker", "id": "image_1", "label": "Image 1 (1:1, fallback: product image)" },
+        { "type": "text", "id": "item_1", "label": "Item 1 label", "default": "Front Rack Bag" },
+        { "type": "product", "id": "product_2", "label": "Associated product 2" },
+        { "type": "image_picker", "id": "image_2", "label": "Image 2 (1:1, fallback: product image)" },
+        { "type": "text", "id": "item_2", "label": "Item 2 label", "default": "Front Basket for MF-25" },
+        { "type": "product", "id": "product_3", "label": "Associated product 3" },
+        { "type": "image_picker", "id": "image_3", "label": "Image 3 (1:1, fallback: product image)" },
+        { "type": "text", "id": "item_3", "label": "Item 3 label", "default": "Rearview Mirrors (pair)" },
         { "type": "text", "id": "price", "label": "Price", "default": "114.98" },
         { "type": "text", "id": "saved_text", "label": "Saved line text", "default": "Save 15%" }
       ]
