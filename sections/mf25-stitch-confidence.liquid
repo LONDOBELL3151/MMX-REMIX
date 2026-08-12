@@ -7,9 +7,10 @@
 
 <section class="mf25-conf" {{ section.shopify_attributes }}>
   <div class="container">
-    {%- if s.title != blank -%}
+    {%- if s.title != blank or s.subtitle != blank -%}
       <div class="mf25-conf-head">
-        <h2>{{ s.title | escape }}</h2>
+        {%- if s.title != blank -%}<h2>{{ s.title | escape }}</h2>{%- endif -%}
+        {%- if s.subtitle != blank -%}<p>{{ s.subtitle | escape }}</p>{%- endif -%}
       </div>
     {%- endif -%}
     <div class="mf25-conf-grid">
@@ -49,7 +50,8 @@
   "tag": "section",
   "class": "section-mf25-stitch-confidence",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title (optional, blank = no heading)" }
+    { "type": "text", "id": "title", "label": "Title (optional, blank = no heading)" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle (optional)" }
   ],
   "blocks": [
     {
