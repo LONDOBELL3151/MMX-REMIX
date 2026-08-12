@@ -214,9 +214,21 @@
             "swiperVideo_url": ""
           }
         },
+        "swiper_video_box_F67qRL": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755589107.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "文案文案文案",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "文案文案文案",
+            "swiperVideo_url": ""
+          }
+        },
         "swiper_video_box_Rg8qEC": {
           "type": "swiperVideoBox",
           "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755589189.jpg",
             "swiperVideo_coverAlt": "",
             "swiperVideo_coverCopywriting": "文案文案文案",
             "swiperVideo_imgUserAlt": "",
@@ -228,6 +240,7 @@
       "block_order": [
         "swiper_video_box_KmFKje",
         "swiper_video_box_yGeDfG",
+        "swiper_video_box_F67qRL",
         "swiper_video_box_Rg8qEC"
       ],
       "name": "视频-轮播模块",
