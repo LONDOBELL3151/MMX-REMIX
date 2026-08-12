@@ -567,6 +567,70 @@
         "title": "Ride with Confidence",
         "subtitle": "Premium folding e-bikes and electric tricycles built for American families. Ships from our US warehouse with dedicated support."
       }
+    },
+    "faq_At6DFN": {
+      "type": "faq",
+      "blocks": {
+        "question_nxnxCB": {
+          "type": "question",
+          "settings": {
+            "question": "How long will it take to receive my bike after placing an order?",
+            "answer": "<p>Orders are processed and shipped from our US warehouse within 2 business days. Standard delivery typically takes 3–7 business days depending on your location. Once shipped, we’ll email you a tracking link so you can follow your order every step of the way.</p>"
+          }
+        },
+        "question_XAXXti": {
+          "type": "question",
+          "settings": {
+            "question": "Is it easy to assemble the Maxfoot electric bike?",
+            "answer": "<p>Maxfoot electric commuter bikes are delivered 95% pre-assembled for a quick 10-to-15-minute setup.  It makes assembling your new bike quick, simple, and effortless even for first-time riders.</p>"
+          }
+        },
+        "question_7fLmVE": {
+          "type": "question",
+          "settings": {
+            "question": "Can I remove the battery to charge it indoors?",
+            "answer": "<p>Yes, the 500Wh high-capacity battery on maxfoot commuter electric bike is fully removable and lockable. You can easily unlock it with your key and charge it at home, in the office, or at any standard indoor outlet.</p>"
+          }
+        },
+        "question_G6RL8X": {
+          "type": "question",
+          "settings": {
+            "question": "How far can I ride the Maxfoot MF-25 on a single charge?",
+            "answer": "<p>The Maxfoot MF-25 electric commuter bikes offers up to 50 miles per charge using pedal assist. Actual range may vary based on rider weight, terrain, incline, temperature, and assist level used.</p>"
+          }
+        },
+        "question_rrM9EU": {
+          "type": "question",
+          "settings": {
+            "question": "What are the rider height and weight limits for this bike?",
+            "answer": "<p>Built with a user-friendly step-thru frame, this robust commuter electric bike allows for effortless mounting and comfortably accommodates riders from 5'3\" to 6'3\". It supports a total weight capacity of 300 lbs (136 kg), easily handling you and your daily cargo.</p>"
+          }
+        },
+        "question_qw6QYt": {
+          "type": "question",
+          "settings": {
+            "question": "What is the warranty on Maxfoot electric bike?",
+            "answer": "<p>MAXFOOT electric commuter bikes come with a 1-year limited warranty on electrical parts and 2 years of technical support warranty for most mechanical parts. <a href=\"https://maxfoot.bike/policies/terms-of-service\" target=\"_blank\" title=\"https://maxfoot.bike/policies/terms-of-service\">Click here</a> to view the full warranty policy.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_nxnxCB",
+        "question_XAXXti",
+        "question_7fLmVE",
+        "question_G6RL8X",
+        "question_rrM9EU",
+        "question_qw6QYt"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "",
+        "cta_text": "Still have questions?",
+        "cta_link": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -582,6 +646,7 @@
     "specs",
     "swiper_graphic_4MJn6b",
     "bundle",
-    "mf25_stitch_confidence_PYqiW7"
+    "mf25_stitch_confidence_PYqiW7",
+    "faq_At6DFN"
   ]
 }
