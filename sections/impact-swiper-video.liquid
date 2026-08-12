@@ -3,6 +3,14 @@
 {{ 'swiper-bundle-10.min.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'swiper-bundle-10.min.js' | asset_url }} "></script>
 
+{%- comment -%}
+  Inline override so the latest .swiper-cover-box p styles render in the
+  editor preview without waiting for a theme action to refresh assets/...
+  impact-swiper-video.css. The rest of the rules still load via
+  stylesheet_tag below.
+{%- endcomment -%}
+<style>.swiper-cover-box p{margin:6px 0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;height:3em;line-height:1.5em}</style>
+
 {{ 'impact-swiper-video.css' | asset_url | stylesheet_tag }}
 <div  class="swiper_video_content {% if section.blocks.size == 1 %} swiper_video_one{% endif %} {% if section.blocks.size >= 2 and section.blocks.size <3 %} swiper_video_two{% endif %}">
   <h5 class="swiperVideo_title">{{ section.settings.swiperVideo_title }}</h5>
