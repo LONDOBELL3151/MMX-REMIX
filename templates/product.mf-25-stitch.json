@@ -370,6 +370,31 @@
         "title": "Comprehensive Specifications"
       }
     },
+    "swiper_graphic_4MJn6b": {
+      "type": "swiper-graphic",
+      "blocks": {
+        "swiper_box_mwtDaD": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        }
+      },
+      "block_order": [
+        "swiper_box_mwtDaD"
+      ],
+      "custom_css": [
+        ".fontBgColor {background-image: linear-gradient(to right, #7db1a8 0, #fff), linear-gradient(to right, #7db1a8 0, #fff);}",
+        ".swiperGraphic_section {max-width: 1200px;}",
+        ".swiperGraphic_content p {font-size: 15px;}",
+        ".swiperGraphic_section {max-width: 100%;}"
+      ],
+      "name": "轮播模块",
+      "settings": {
+        "swiperGraphic_title": "Discover <span class=\"fontBgColor\">Foldtan M</span> -120"
+      }
+    },
     "bundle": {
       "type": "mf25-stitch-bundle",
       "settings": {
@@ -389,6 +414,7 @@
     "gallery",
     "size",
     "specs",
+    "swiper_graphic_4MJn6b",
     "bundle"
   ]
 }
