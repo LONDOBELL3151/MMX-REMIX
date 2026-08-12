@@ -301,12 +301,12 @@
         "category_DKUKJa": {
           "type": "category",
           "settings": {
-            "title": "Frameset",
+            "title": "WHEELS & MOTOR",
             "icon": "",
-            "feature_1_label": "",
-            "feature_1_value": "",
-            "feature_2_label": "",
-            "feature_2_value": "",
+            "feature_1_label": "Motor",
+            "feature_1_value": "Rear 500W Maxfoot Brushless Motor (Peak 1100W)",
+            "feature_2_label": "Tire",
+            "feature_2_value": "26x1.95\" Puncture protection",
             "feature_3_label": "",
             "feature_3_value": "",
             "feature_4_label": "",
