@@ -19,6 +19,15 @@
             if product != blank
               assign main_variant_id = product.selected_or_first_available_variant.id
             endif
+
+            assign total_value = 0
+            for i in (1..3)
+              assign product_key = 'product_' | append: i
+              assign item_product = block.settings[product_key]
+              if item_product != blank and item_product.selected_or_first_available_variant != blank
+                assign total_value = total_value | plus: item_product.selected_or_first_available_variant.price
+              endif
+            endfor
           -%}
           {%- capture bundle_items_json -%}
             [
@@ -94,6 +103,9 @@
             </ul>
             <div class="mf25-bun-foot">
               <div>
+                {%- if total_value > 0 -%}
+                  <span class="mf25-bun-total">Total Value:&nbsp;<s>{{ total_value | money }}</s></span>
+                {%- endif -%}
                 <div class="mf25-bun-price">${{ block.settings.price }}</div>
                 {%- if block.settings.saved_text != blank -%}
                   <span class="mf25-bun-saved">{{ block.settings.saved_text | escape }}</span>
