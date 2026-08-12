@@ -469,8 +469,54 @@
     },
     "bundle": {
       "type": "mf25-stitch-bundle",
+      "blocks": {
+        "bundle_fnHdmN": {
+          "type": "bundle",
+          "settings": {
+            "popular": false,
+            "badge_text": "Most Popular",
+            "title": "Commuter Pro Bundle",
+            "item_1": "Front Rack Bag",
+            "item_2": "Front Basket for MF-25",
+            "item_3": "Rearview Mirrors (pair)",
+            "price": "114.98",
+            "saved_text": "Save 15%"
+          }
+        },
+        "bundle_qxchcP": {
+          "type": "bundle",
+          "settings": {
+            "popular": false,
+            "badge_text": "Most Popular",
+            "title": "Commuter Pro Bundle",
+            "item_1": "Front Rack Bag",
+            "item_2": "Front Basket for MF-25",
+            "item_3": "Rearview Mirrors (pair)",
+            "price": "114.98",
+            "saved_text": "Save 15%"
+          }
+        },
+        "bundle_4jkN8i": {
+          "type": "bundle",
+          "settings": {
+            "popular": false,
+            "badge_text": "Most Popular",
+            "title": "Commuter Pro Bundle",
+            "item_1": "Front Rack Bag",
+            "item_2": "Front Basket for MF-25",
+            "item_3": "Rearview Mirrors (pair)",
+            "price": "114.98",
+            "saved_text": "Save 15%"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_fnHdmN",
+        "bundle_qxchcP",
+        "bundle_4jkN8i"
+      ],
       "settings": {
-        "title": "Accessory Bundle & Save",
+        "title": "Accessory Bundles & Savings",
         "subtitle": "Pair your MF-25 with curated kits and save up to 25%."
       }
     }
