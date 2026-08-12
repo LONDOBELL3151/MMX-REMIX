@@ -189,6 +189,52 @@
         "image": "shopify://shop_images/25dp.png"
       }
     },
+    "impact_swiper_video_wbVHcJ": {
+      "type": "impact-swiper-video",
+      "blocks": {
+        "swiper_video_box_KmFKje": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755571898.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "文案文案文案",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "文案文案文案",
+            "swiperVideo_url": ""
+          }
+        },
+        "swiper_video_box_yGeDfG": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverImg": "shopify://shop_images/ytbtu_maxresdefault-1755589035.jpg",
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "文案文案文案",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "文案文案文案",
+            "swiperVideo_url": ""
+          }
+        },
+        "swiper_video_box_Rg8qEC": {
+          "type": "swiperVideoBox",
+          "settings": {
+            "swiperVideo_coverAlt": "",
+            "swiperVideo_coverCopywriting": "文案文案文案",
+            "swiperVideo_imgUserAlt": "",
+            "swiperVideo_userName": "文案文案文案",
+            "swiperVideo_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "swiper_video_box_KmFKje",
+        "swiper_video_box_yGeDfG",
+        "swiper_video_box_Rg8qEC"
+      ],
+      "name": "视频-轮播模块",
+      "settings": {
+        "swiperVideo_title": "YouTube Reviews"
+      }
+    },
     "size": {
       "type": "mf25-stitch-size",
       "settings": {
@@ -251,6 +297,7 @@
     "feature_2",
     "feature_3",
     "mf25_stitch_feature_j9WyXn",
+    "impact_swiper_video_wbVHcJ",
     "size",
     "gallery",
     "reviews",
