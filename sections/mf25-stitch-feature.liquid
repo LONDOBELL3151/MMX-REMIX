@@ -19,11 +19,11 @@
           <span class="mf25-feat-eyebrow">{{ s.eyebrow }}</span>
         {%- endif -%}
         <h2>{{ s.title }}</h2>
-        <p>{{ s.body }}</p>
+        <div class="mf25-feat-body">{{ s.body }}</div>
       </div>
     </div>
   </div>
 </section>
 
-{% schema %}{"name": "MF25 Stitch Feature", "tag": "section", "class": "section-mf25-stitch-feature", "settings": [{"type": "select", "id": "desktop_layout", "label": "Desktop layout (image position)", "options": [{"value": "image_right", "label": "Image right (copy on left)"}, {"value": "image_left", "label": "Image left (copy on right)"}], "default": "image_right", "info": "Image on left or right on desktop. Mobile always stacks single column."}, {"type": "text", "id": "eyebrow", "label": "Eyebrow (small caps)", "default": "Power"}, {"type": "text", "id": "title", "label": "Title", "default": "Conquer Every Hill with Peak 1000W Power"}, {"type": "textarea", "id": "body", "label": "Body", "default": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."}, {"type": "image_picker", "id": "image", "label": "Feature image", "info": "Recommended: 1200×900 (4:3). 1.5x for retina: 1800×1350. object-fit:cover fills the column, so a 4:3 source avoids cropping. <300KB."}], "presets": [{"name": "MF25 Stitch Feature"}]}
+{% schema %}{"name": "MF25 Stitch Feature", "tag": "section", "class": "section-mf25-stitch-feature", "settings": [{"type": "select", "id": "desktop_layout", "label": "Desktop layout (image position)", "options": [{"value": "image_right", "label": "Image right (copy on left)"}, {"value": "image_left", "label": "Image left (copy on right)"}], "default": "image_right", "info": "Image on left or right on desktop. Mobile always stacks single column."}, {"type": "text", "id": "eyebrow", "label": "Eyebrow (small caps)", "default": "Power"}, {"type": "text", "id": "title", "label": "Title", "default": "Conquer Every Hill with Peak 1000W Power"}, {"type": "richtext", "id": "body", "label": "Body", "info": "Rich text — HTML like <br> and <strong> supported.", "default": "The Maxfoot brushless hub motor delivers a staggering 1000W of peak power, providing you with smooth, robust acceleration and the torque needed to tackle steep inclines without breaking a sweat."}, {"type": "image_picker", "id": "image", "label": "Feature image", "info": "Recommended: 1200×900 (4:3). 1.5x for retina: 1800×1350. object-fit:cover fills the column, so a 4:3 source avoids cropping. <300KB."}], "presets": [{"name": "MF25 Stitch Feature"}]}
 {% endschema %}
