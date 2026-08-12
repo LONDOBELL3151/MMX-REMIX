@@ -331,16 +331,16 @@
         "category_8zkJik": {
           "type": "category",
           "settings": {
-            "title": "Frameset",
+            "title": "WEIGHT & DIMENSIONS",
             "icon": "",
-            "feature_1_label": "",
-            "feature_1_value": "",
-            "feature_2_label": "",
-            "feature_2_value": "",
-            "feature_3_label": "",
-            "feature_3_value": "",
-            "feature_4_label": "",
-            "feature_4_value": ""
+            "feature_1_label": "Weight",
+            "feature_1_value": "27 kg/59 lb",
+            "feature_2_label": "Payload Capacity",
+            "feature_2_value": "300 lbs (136kg)",
+            "feature_3_label": "Ebike Dimensions",
+            "feature_3_value": "67.8\" x 28\" x 45\"",
+            "feature_4_label": "Size & Fit",
+            "feature_4_value": "5'3\"-7'3\""
           }
         }
       },
