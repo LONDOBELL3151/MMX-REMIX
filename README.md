@@ -3,7 +3,7 @@
 > **Handoff 文档**：下一个 AI 同胞接手时，从这个 README 入手。
 > 内容覆盖整个项目（不只是 about-us）— 写法、思路、规范、踩过的坑、常用任务模板，全部在这里。
 >
-> 最后一次工作：全量审计仓库并补正本 README（2026-08-12）——131 sections / 60 templates / 31 种语言 locale / 9 个 social 链接等数字已核对；补齐 `customers/` 子目录、`about-mission`、`mf25-stitch-*` 家族。mf25-stitch 是最近的功能开发线。
+> 最后一次工作：全量审计仓库并补正本 README（2026-08-12）——132 sections / 60 templates / 31 种语言 locale / 9 个 social 链接等数字已核对；补齐 `customers/` 子目录、`about-mission`、`mf25-stitch-*` 家族（含新增 `-confidence`）。mf25-stitch 是最近的功能开发线。
 
 ---
 
@@ -21,7 +21,7 @@
 | 7 | [Liquid 编码规范](#7-liquid-编码规范) | settings、blocks、媒体、`\| t` 陷阱 |
 | 8 | [CSS 架构规范](#8-css-架构规范) | 分层、命名、模式 |
 | 9 | [JavaScript 规范](#9-javascript-规范) | maxfoot.js、data-attrs、defer |
-| 10 | [Section 库（全部 131）](#10-section-库全部-131) | 文件位置、用途、当前状态 |
+| 10 | [Section 库（全部 132）](#10-section-库全部-132) | 文件位置、用途、当前状态 |
 | 11 | [Page 模板（全部 60）](#11-page-模板全部-60) | 哪个模板配哪些 sections |
 | 12 | [Product Card 完整规范](#12-product-card-完整规范) | 两种 card、metafields、rating |
 | 13 | [全局组件 (header / footer / cart)](#13-全局组件) | 跨页面共用元素 |
@@ -108,12 +108,12 @@ C:\Users\Coulson\Desktop\
 │   │   ├── header.liquid / footer.liquid / announcement-bar.liquid
 │   │   ├── main-*.liquid        page / product / collection / cart / account / order / search / blog...
 │   │   ├── about-*.liquid       about-us（11 个，含新增 `about-mission`）
-│   │   ├── mf25-stitch-*.liquid mf25 Stitch PDP 系列（7 个，最新）
+│   │   ├── mf25-stitch-*.liquid mf25 Stitch PDP 系列（8 个，最新）
 │   │   ├── mf-pdp-*.liquid      product detail page 模块
 │   │   ├── impact-*.liquid      Impact-cart app 集成
 │   │   ├── judgeme_*.liquid     Judge.me 评价 app 集成
 │   │   ├── blog-*.liquid / Home-*.liquid
-│   │   └── ... 131 sections（128 liquid + 3 group json）
+│   │   └── ... 132 sections（129 liquid + 3 group json）
 │   ├── snippets\
 │   │   ├── product-card.liquid                    主 product card
 │   │   ├── maxfoot-collection-card-product.liquid Dawn 版 product card
@@ -909,7 +909,7 @@ menuToggle.setAttribute('aria-label', 'Open menu');
 
 ---
 
-## 10. Section 库（全部 131）
+## 10. Section 库（全部 132）
 
 按角色分类。所有 `sections/*.liquid` 都遵循 §6.5 的标准模板。
 
@@ -997,7 +997,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 ### 10.7 所有 section 一览（按字母序）
 
 <details>
-<summary>点击展开全部 131 section 列表（128 liquid + 3 group json）</summary>
+<summary>点击展开全部 132 section 列表（129 liquid + 3 group json）</summary>
 
 | 文件 | 角色 |
 |---|---|
@@ -1094,6 +1094,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `mf-pdp-complete-ride.liquid` | PDP complete ride |
 | `mf-pdp-gallery.liquid` | PDP gallery |
 | `mf25-stitch-bundle.liquid` | mf25 Stitch PDP 配件 bundle（商品关联 + 加购 + Total Value） |
+| `mf25-stitch-confidence.liquid` | mf25 Stitch PDP 信任条（bundle 之后：Warranty / Shipping / Inspection） |
 | `mf25-stitch-feature.liquid` | mf25 Stitch PDP feature |
 | `mf25-stitch-gallery.liquid` | mf25 Stitch PDP gallery |
 | `mf25-stitch-performance.liquid` | mf25 Stitch PDP performance（**内联 CSS，共享样式例外**） |
@@ -1148,7 +1149,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `customers/`（7 个） | 账户模板：`account` / `addresses` / `order` / `login` / `register` / `activate_account` / `reset_password` | 对应 `main-*` |
 | `product.json` | 默认 product | main-product + collapsible + related |
 | `product.mf-25.json` | MF-25 型号 | 包含 mf-pdp-* |
-| `product.mf-25-stitch.json` | **MF-25 Stitch PDP** | main-product + mf25-stitch-* 7 个 + swiper-graphic |
+| `product.mf-25-stitch.json` | **MF-25 Stitch PDP** | main-product + mf25-stitch-* 8 个 + swiper-graphic |
 | `product.front-basket-for-mf25.json` | 配件 | 单产品 |
 | `product.pet-bag.json` / `product.trailer.json` / `product.rear-rack-bag.json` | 配件 | 单产品 |
 | `product.mf-*.json`（~13 个） | 其它型号：mf-17/18/19 系列（500f/750p/1000f/1000p）/21/22/23/30/30-so/31/32/33/MF-21G/MF-22G/MF-25-2/test-product | 单型号 PDP |

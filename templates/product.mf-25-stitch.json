@@ -528,6 +528,41 @@
         "title": "Accessory Bundles & Savings",
         "subtitle": "Pair your MF-25 with curated kits and save up to 25%."
       }
+    },
+    "confidence": {
+      "type": "mf25-stitch-confidence",
+      "settings": {},
+      "blocks": {
+        "confidence_item_1": {
+          "type": "item",
+          "settings": {
+            "mark": "1",
+            "title": "1-Year Warranty",
+            "sub": "Frame, motor, battery, and electronics covered. Real humans in California answer the phone."
+          }
+        },
+        "confidence_item_2": {
+          "type": "item",
+          "settings": {
+            "mark": "→",
+            "title": "Free Shipping",
+            "sub": "FedEx ground included on every order in the contiguous US. No surcharge for accessories."
+          }
+        },
+        "confidence_item_3": {
+          "type": "item",
+          "settings": {
+            "mark": "✓",
+            "title": "100% Ride Inspection",
+            "sub": "Every trike is unboxed, assembled, test-ridden, and re-boxed at our California warehouse before it ships."
+          }
+        }
+      },
+      "block_order": [
+        "confidence_item_1",
+        "confidence_item_2",
+        "confidence_item_3"
+      ]
     }
   },
   "order": [
@@ -542,6 +577,7 @@
     "size",
     "specs",
     "swiper_graphic_4MJn6b",
-    "bundle"
+    "bundle",
+    "confidence"
   ]
 }

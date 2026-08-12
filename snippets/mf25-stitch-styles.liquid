@@ -186,6 +186,18 @@ a{color:inherit;text-decoration:none}
 .mf25-bun-btn--primary:hover{background:var(--signal-deep)}
 .mf25-bun-status{font-family:var(--body);font-size:12px;line-height:1.4;color:var(--danger);min-height:1em;text-align:center;margin:0}
 
+/* CONFIDENCE */
+.mf25-conf{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:48px 0}
+.mf25-conf-head{text-align:center;margin-bottom:32px}
+.mf25-conf-head h2{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;color:var(--ink);margin:0}
+.mf25-conf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start}
+@media (max-width:960px){.mf25-conf-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.mf25-conf-grid{grid-template-columns:1fr}}
+.mf25-conf-item{display:flex;gap:16px;align-items:flex-start}
+.mf25-conf-mark{flex:0 0 48px;height:48px;background:var(--ink);color:var(--signal);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:18px;border:2px solid var(--ink);border-radius:10px}
+.mf25-conf-key{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:4px;line-height:1.1}
+.mf25-conf-sub{font-size:13px;color:var(--muted);line-height:1.5}
+
 
 /* SIZE — full-width image, no container box */
 .mf25-size{padding:0;background:#fff;border-top:0}

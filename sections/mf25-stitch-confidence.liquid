@@ -1,0 +1,68 @@
+
+{% render 'mf25-stitch-styles' %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="mf25-conf" {{ section.shopify_attributes }}>
+  <div class="container">
+    {%- if s.title != blank -%}
+      <div class="mf25-conf-head">
+        <h2>{{ s.title | escape }}</h2>
+      </div>
+    {%- endif -%}
+    <div class="mf25-conf-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'item' -%}
+          <div class="mf25-conf-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.mark != blank -%}
+              <div class="mf25-conf-mark">{{ block.settings.mark | escape }}</div>
+            {%- endif -%}
+            <div>
+              {%- if block.settings.title != blank -%}
+                <div class="mf25-conf-key">{{ block.settings.title | escape }}</div>
+              {%- endif -%}
+              {%- if block.settings.sub != blank -%}
+                <p class="mf25-conf-sub">{{ block.settings.sub | escape }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MF25 Stitch Confidence",
+  "tag": "section",
+  "class": "section-mf25-stitch-confidence",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title (optional, blank = no heading)", "default": "" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Trust item",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "mark", "label": "Mark (square glyph, e.g. 1 / → / ✓)", "default": "1" },
+        { "type": "text", "id": "title", "label": "Title", "default": "1-Year Warranty" },
+        { "type": "textarea", "id": "sub", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF25 Stitch Confidence",
+      "blocks": [
+        { "type": "item", "settings": { "mark": "1", "title": "1-Year Warranty", "sub": "Frame, motor, battery, and electronics covered. Real humans in California answer the phone." } },
+        { "type": "item", "settings": { "mark": "→", "title": "Free Shipping", "sub": "FedEx ground included on every order in the contiguous US. No surcharge for accessories." } },
+        { "type": "item", "settings": { "mark": "✓", "title": "100% Ride Inspection", "sub": "Every trike is unboxed, assembled, test-ridden, and re-boxed at our California warehouse before it ships." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

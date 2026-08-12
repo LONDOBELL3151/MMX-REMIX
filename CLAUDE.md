@@ -11,7 +11,7 @@
 - **绝不碰**：`Desktop\maxfoot-theme\`（legacy 备份）、`Desktop\dawn\`（Dawn 原版 workspace，**不是**本工程）。
 - **同步链路**：`git push origin main` → GitHub → Shopify GitHub 整合 → CDN。**经常卡 5+ 分钟**；看到 `Update from Shopify for theme MMX-REMIX/main` bot commit 属正常。
 - **设计稿**：根目录 `pdp-mockup-*.html`（mf25-stitch 的设计来源，已在 `.gitignore`，仅本地参考）。
-- **规模实测（README 已过时）**：131 sections（128 liquid + 3 group）、60 templates（含 `customers/` 7 个账户模板）、91 snippets、150 assets、**31 种语言 locale**。README 的"~90 sections / 单语言英文站"是旧数据。
+- **规模实测（README 已过时）**：132 sections（129 liquid + 3 group）、60 templates（含 `customers/` 7 个账户模板）、91 snippets、150 assets、**31 种语言 locale**。README 的"~90 sections / 单语言英文站"是旧数据。
 
 ## 1. 新对话开机序列
 
@@ -54,7 +54,8 @@
 
 - **`about-mission.liquid`**：about-us 家族新增（README §10.7 没列），**且正挂在线上**：`page.about-us.json` 的 `mission_text` 用的是它，不是 README 附录 A 写的 `about-mission-pillars`。
 - **首页模板实测**：`index.json` 实际 **14 个 sections**，含 **2 个 hero**（`hero` + `hero_NijgLE`）——README §10.2 说 13 个 / 1 个 hero 是旧数据。改首页先看 `templates/index.json` 实际构成。
-- **mf25-stitch 家族**（7 个）：`mf25-stitch-bundle` / `-feature` / `-gallery` / `-performance` / `-reviews` / `-size` / `-specs`，全部挂在 `templates/product.mf-25-stitch.json`（MF-25 Stitch PDP）。
+- **mf25-stitch 家族**（8 个）：`mf25-stitch-bundle` / `-confidence` / `-feature` / `-gallery` / `-performance` / `-reviews` / `-size` / `-specs`，全部挂在 `templates/product.mf-25-stitch.json`（MF-25 Stitch PDP）。
+- **confidence section**（bundle 之后）：信任条（1-Year Warranty / Free Shipping / 100% Ride Inspection），块驱动（mark/title/sub），设计源 `pdp-mockup-mf25.html` 的 CONFIDENCE BAND。
 - **共享 CSS**：section 顶部 `{% render 'mf25-stitch-styles' %}`（唯一源，含全部 `.mf25-*` 样式）。**例外**：`mf25-stitch-performance.liquid` 自带一份内联 copy（历史遗留，勿再复制）。
 - **bundle section 关键点**（已实现）：
   - 每个 item = `product_1/2/3`（关联商品）+ `image_1/2/3`（1:1 上传，空则回退商品主图）+ `item_1/2/3`（自定义短文案，空则回退商品标题）。
