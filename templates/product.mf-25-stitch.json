@@ -316,16 +316,16 @@
         "category_7pbfzX": {
           "type": "category",
           "settings": {
-            "title": "Frameset",
+            "title": "E-SYSTEM & DRIVETRAIN",
             "icon": "",
-            "feature_1_label": "",
-            "feature_1_value": "",
-            "feature_2_label": "",
-            "feature_2_value": "",
-            "feature_3_label": "",
-            "feature_3_value": "",
-            "feature_4_label": "",
-            "feature_4_value": ""
+            "feature_1_label": "Battery",
+            "feature_1_value": "500Wh Removable Lithium-ion Battery",
+            "feature_2_label": "Display Type",
+            "feature_2_value": "LCD Color Screen Display",
+            "feature_3_label": "Rear Derailleur",
+            "feature_3_value": "Shimano7 speed",
+            "feature_4_label": "Throttle",
+            "feature_4_value": "Thumb-Twist Throttle"
           }
         },
         "category_8zkJik": {
