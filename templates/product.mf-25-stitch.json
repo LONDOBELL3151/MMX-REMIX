@@ -373,6 +373,55 @@
     "swiper_graphic_4MJn6b": {
       "type": "swiper-graphic",
       "blocks": {
+        "swiper_box_dHjE7A": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
+        "swiper_box_DKFbCw": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
+        "swiper_box_4NQwDq": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
+        "swiper_box_NHafMB": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
+        "swiper_box_id6VPe": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
+        "swiper_box_4KajmB": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
+        "swiper_box_9N7WCN": {
+          "type": "swiperBox",
+          "settings": {
+            "swiper_title": "750W Motor",
+            "swiper_copywriting": "The 180mm Rotors Hydraulic Disc Brakes providesgreater, and more precise stopping power with less force required to engage the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers the brake levers"
+          }
+        },
         "swiper_box_mwtDaD": {
           "type": "swiperBox",
           "settings": {
@@ -382,6 +431,13 @@
         }
       },
       "block_order": [
+        "swiper_box_dHjE7A",
+        "swiper_box_DKFbCw",
+        "swiper_box_4NQwDq",
+        "swiper_box_NHafMB",
+        "swiper_box_id6VPe",
+        "swiper_box_4KajmB",
+        "swiper_box_9N7WCN",
         "swiper_box_mwtDaD"
       ],
       "custom_css": [
