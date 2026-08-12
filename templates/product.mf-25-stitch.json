@@ -529,40 +529,43 @@
         "subtitle": "Pair your MF-25 with curated kits and save up to 25%."
       }
     },
-    "confidence": {
+    "mf25_stitch_confidence_PYqiW7": {
       "type": "mf25-stitch-confidence",
-      "settings": {},
       "blocks": {
-        "confidence_item_1": {
+        "item_mUFYrf": {
           "type": "item",
           "settings": {
             "mark": "1",
             "title": "1-Year Warranty",
-            "sub": "Frame, motor, battery, and electronics covered. Real humans in California answer the phone."
+            "sub": "Comprehensive coverage on all e-bikes."
           }
         },
-        "confidence_item_2": {
+        "item_ciNcj6": {
           "type": "item",
           "settings": {
             "mark": "→",
-            "title": "Free Shipping",
-            "sub": "FedEx ground included on every order in the contiguous US. No surcharge for accessories."
+            "title": "US Warehouse",
+            "sub": "Fast shipping within 2 business days."
           }
         },
-        "confidence_item_3": {
+        "item_mdTpdW": {
           "type": "item",
           "settings": {
             "mark": "✓",
-            "title": "100% Ride Inspection",
-            "sub": "Every trike is unboxed, assembled, test-ridden, and re-boxed at our California warehouse before it ships."
+            "title": "US-Based Support",
+            "sub": "Pre-sales & after-sales dodicated service."
           }
         }
       },
       "block_order": [
-        "confidence_item_1",
-        "confidence_item_2",
-        "confidence_item_3"
-      ]
+        "item_mUFYrf",
+        "item_ciNcj6",
+        "item_mdTpdW"
+      ],
+      "name": "MF25 Stitch Confidence",
+      "settings": {
+        "title": ""
+      }
     }
   },
   "order": [
@@ -578,6 +581,6 @@
     "specs",
     "swiper_graphic_4MJn6b",
     "bundle",
-    "confidence"
+    "mf25_stitch_confidence_PYqiW7"
   ]
 }
