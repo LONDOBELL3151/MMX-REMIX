@@ -189,6 +189,53 @@
         "image": "shopify://shop_images/25dp.png"
       }
     },
+    "reviews": {
+      "type": "mf25-stitch-reviews",
+      "blocks": {
+        "video_MCDFmL": {
+          "type": "video",
+          "settings": {
+            "title": "Maxfoot MF 25 E Bike",
+            "channel": "Shopping with Amy",
+            "video_url": "https://www.youtube.com/watch?v=RZg5C6C-DSU&t=2s",
+            "thumbnail": "shopify://shop_images/ytbtu_maxresdefault-1755571898.jpg"
+          }
+        },
+        "video_qdcCF4": {
+          "type": "video",
+          "settings": {
+            "title": "Maxfoot MF 25 E Bike",
+            "channel": "Channel",
+            "video_url": ""
+          }
+        },
+        "video_dgbGcQ": {
+          "type": "video",
+          "settings": {
+            "title": "Maxfoot MF 25 E Bike",
+            "channel": "Channel",
+            "video_url": ""
+          }
+        },
+        "video_qtV8fy": {
+          "type": "video",
+          "settings": {
+            "title": "Maxfoot MF 25 E Bike",
+            "channel": "Channel",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_MCDFmL",
+        "video_qdcCF4",
+        "video_dgbGcQ",
+        "video_qtV8fy"
+      ],
+      "settings": {
+        "title": "What Riders Are Saying"
+      }
+    },
     "impact_swiper_video_wbVHcJ": {
       "type": "impact-swiper-video",
       "blocks": {
@@ -267,12 +314,6 @@
         "title": "Gallery of Adventure"
       }
     },
-    "reviews": {
-      "type": "mf25-stitch-reviews",
-      "settings": {
-        "title": "What Riders Are Saying"
-      }
-    },
     "specs": {
       "type": "mf25-stitch-specs",
       "blocks": {
@@ -314,10 +355,10 @@
     "feature_2",
     "feature_3",
     "mf25_stitch_feature_j9WyXn",
+    "reviews",
     "impact_swiper_video_wbVHcJ",
     "size",
     "gallery",
-    "reviews",
     "specs",
     "bundle"
   ]
