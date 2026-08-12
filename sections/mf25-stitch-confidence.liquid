@@ -16,8 +16,17 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'item' -%}
           <div class="mf25-conf-item" {{ block.shopify_attributes }}>
-            {%- if block.settings.mark != blank -%}
-              <div class="mf25-conf-mark">{{ block.settings.mark | escape }}</div>
+            {%- if block.settings.icon != blank and block.settings.icon != 'none' -%}
+              <div class="mf25-conf-mark">
+                {%- case block.settings.icon -%}
+                  {%- when 'truck' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  {%- when 'headset' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/></svg>
+                {%- endcase -%}
+              </div>
             {%- endif -%}
             <div>
               {%- if block.settings.title != blank -%}
@@ -48,7 +57,18 @@
       "name": "Trust item",
       "limit": 6,
       "settings": [
-        { "type": "text", "id": "mark", "label": "Mark (square glyph, e.g. 1 / → / ✓)", "default": "1" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shield", "label": "Warranty / shield" },
+            { "value": "truck", "label": "Shipping / truck" },
+            { "value": "headset", "label": "Customer service / headset" },
+            { "value": "none", "label": "None (no icon)" }
+          ],
+          "default": "shield"
+        },
         { "type": "text", "id": "title", "label": "Title", "default": "1-Year Warranty" },
         { "type": "textarea", "id": "sub", "label": "Description" }
       ]
@@ -58,9 +78,9 @@
     {
       "name": "MF25 Stitch Confidence",
       "blocks": [
-        { "type": "item", "settings": { "mark": "1", "title": "1-Year Warranty", "sub": "Frame, motor, battery, and electronics covered. Real humans in California answer the phone." } },
-        { "type": "item", "settings": { "mark": "→", "title": "Free Shipping", "sub": "FedEx ground included on every order in the contiguous US. No surcharge for accessories." } },
-        { "type": "item", "settings": { "mark": "✓", "title": "100% Ride Inspection", "sub": "Every trike is unboxed, assembled, test-ridden, and re-boxed at our California warehouse before it ships." } }
+        { "type": "item", "settings": { "icon": "shield", "title": "1-Year Warranty", "sub": "Frame, motor, battery, and electronics covered. Real humans in California answer the phone." } },
+        { "type": "item", "settings": { "icon": "truck", "title": "Free Shipping", "sub": "FedEx ground included on every order in the contiguous US. No surcharge for accessories." } },
+        { "type": "item", "settings": { "icon": "headset", "title": "Customer Service", "sub": "Real support in California — help with assembly, service, and answers whenever you need us." } }
       ]
     }
   ]

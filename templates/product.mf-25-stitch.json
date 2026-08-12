@@ -535,7 +535,7 @@
         "item_mUFYrf": {
           "type": "item",
           "settings": {
-            "mark": "1",
+            "icon": "shield",
             "title": "1-Year Warranty",
             "sub": "Comprehensive coverage on all e-bikes."
           }
@@ -543,7 +543,7 @@
         "item_ciNcj6": {
           "type": "item",
           "settings": {
-            "mark": "→",
+            "icon": "truck",
             "title": "US Warehouse",
             "sub": "Fast shipping within 2 business days."
           }
@@ -551,7 +551,7 @@
         "item_mdTpdW": {
           "type": "item",
           "settings": {
-            "mark": "✓",
+            "icon": "headset",
             "title": "US-Based Support",
             "sub": "Pre-sales & after-sales dodicated service."
           }

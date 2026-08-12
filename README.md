@@ -1094,7 +1094,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `mf-pdp-complete-ride.liquid` | PDP complete ride |
 | `mf-pdp-gallery.liquid` | PDP gallery |
 | `mf25-stitch-bundle.liquid` | mf25 Stitch PDP 配件 bundle（商品关联 + 加购 + Total Value） |
-| `mf25-stitch-confidence.liquid` | mf25 Stitch PDP 信任条（bundle 之后：Warranty / Shipping / Inspection） |
+| `mf25-stitch-confidence.liquid` | mf25 Stitch PDP 信任条（bundle 之后：Warranty / Shipping / Customer Service，SVG 图标） |
 | `mf25-stitch-feature.liquid` | mf25 Stitch PDP feature |
 | `mf25-stitch-gallery.liquid` | mf25 Stitch PDP gallery |
 | `mf25-stitch-performance.liquid` | mf25 Stitch PDP performance（**内联 CSS，共享样式例外**） |
