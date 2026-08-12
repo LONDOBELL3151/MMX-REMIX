@@ -239,6 +239,31 @@
         "title": "What Riders Are Saying"
       }
     },
+    "gallery": {
+      "type": "mf25-stitch-gallery",
+      "blocks": {
+        "image_RUj3Xf": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_hnBxqn": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_gtApgU": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_RUj3Xf",
+        "image_hnBxqn",
+        "image_gtApgU"
+      ],
+      "settings": {
+        "title": "Gallery of Adventure"
+      }
+    },
     "size": {
       "type": "mf25-stitch-size",
       "settings": {
@@ -246,12 +271,6 @@
         "subtitle": "The step-thru design is engineered for riders between 5'3\" and 7'3\".",
         "image": "shopify://shop_images/f7d7c897f798fc44c391847188c3ac79.jpg",
         "image_mobile": "shopify://shop_images/M.jpg"
-      }
-    },
-    "gallery": {
-      "type": "mf25-stitch-gallery",
-      "settings": {
-        "title": "Gallery of Adventure"
       }
     },
     "specs": {
@@ -296,8 +315,8 @@
     "feature_3",
     "mf25_stitch_feature_j9WyXn",
     "reviews",
-    "size",
     "gallery",
+    "size",
     "specs",
     "bundle"
   ]
