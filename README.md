@@ -32,7 +32,7 @@
 | 18 | [问题排查 (troubleshooting)](#18-问题排查-troubleshooting) | 症状 → 根因 → 修法 |
 | 19 | [设计原则 (Coulson 偏好)](#19-设计原则-coulson-偏好) | 单 CTA、不加旁白、bold DNA |
 | 20 | [历史 commit 与里程碑](#20-历史-commit-与里程碑) | 关键节点 |
-| 21 | [Memory 与继续](#21-memory-与继续) | 跨 session 上下文怎么读 |
+| 21 | [Memory 与继续](#21-memory-与继续) | 跨 session 上下文怎么读 + **文档维护规范 (§21.4)** |
 | A | [附录 A: About Us 11 Sections 详解](#附录-a-about-us-11-sections-详解) | 单页深度文档（最近一次大改） |
 
 ---
@@ -1511,6 +1511,10 @@ git diff
 # 改完本地验证
 python C:\Users\Coulson\AppData\Roaming\npm\validate-about-schemas.py
 
+# 结构性改动 → 先同步文档（见 §21.4）再提交
+#   新增/删 section/template、新模式/坑、数量或命名变化
+#   → 更新 README 相应章节 + CLAUDE.md 相应条目
+
 # 提交（带详细 message）
 git add -A
 git commit -m "feat(scope): short description
@@ -1523,6 +1527,8 @@ git rebase origin/main  # 如果有
 git push origin main    # 如果 push rejected
 # 如果 rebase 一直冲突 → git push --force-with-lease origin main
 ```
+
+> **文档同步是流程的一部分**：代码改了 README/CLAUDE.md 没改，等于给下一个接手埋雷（2026-08 审计发现 README 的"单语言/13 sections/25+ 模板"全错）。规范见 §21.4。
 
 ---
 
@@ -1735,6 +1741,19 @@ Coulson 的偏好 / MMX-REMIX workflow / 验证纪律 / Shopify schema 字节限
 
 - Shopify admin 翻一遍所有 sections 实操
 - 问 Mavis（memory 里也有 thread）
+
+### 21.4 文档维护规范（硬性）
+
+**README + CLAUDE.md 是活的**，随项目进度更新，不是一次性 handoff。代码改动里，凡是会"把文档说旧"的，都要同步改文档：
+
+- **必须同步**（结构性改动）：
+  - 新增 / 删除 / 改名 section 或 template → 更新 §10/§11 列表、§2 结构、CLAUDE.md §5 家族 / §0 计数
+  - 新增模式 / 新踩的坑 → 补进 §15 踩坑清单（或对应规范节）
+  - 数量变化（sections/templates/locales/链接数）→ 更新对应计数
+  - 新增关于某功能的约定 → 补 CLAUDE.md §4/§5 或 README 对应节
+- **不必强求**：纯文案 / 样式微调 / 不改结构的 bug 修复。
+- **判断标准**：commit 前问一句"这次改动会让 README 或 CLAUDE.md 的哪一句变成旧的？"有 → 改掉再提交。
+- **流程位置**：见 §16.3（提交前同步）。CLAUDE.md §2/§3 已把这条列为硬规则 + 验证清单项。
 
 ---
 

@@ -28,12 +28,14 @@
 - **push 前**：`git fetch origin main` 看有无 bot commit → 有则 `git pull --rebase` 再推。push rejected → rebase 是常态。bot commit 可 `git push --force-with-lease` 覆盖。
 - **不要删**：`index.json` / `product.json` / `page.json` / `collection.json`（Shopify fallback，删了 bot 会 auto-restore 制造噪音 commit）。
 - **改 schema 后**：Shopify admin 里旧 section instance 仍引用旧字段 → 需用户 reset / 删了重加。GitHub 整合不重 process 时，`--force-with-lease` 或改个 literal 值触发。
+- **文档同步（硬性）**：结构性改动（新增/删 section/template、新模式/坑、数量或命名变化）必须同步 `README.md` + 本文件。文档漂移 = 踩坑（例：首页实测 14 sections 非 13、主题实测 31 语言非单语言）。
 
 ## 3. 验证清单（改完 commit 前）
 
 1. `shopify theme check --fail-level error` → 本次文件零问题。更快只查改动文件：`--output json` 输出 + python 过滤（命令见记忆 `liquid-section-rules.md`）。
 2. 涉及 about-*/schema 字节 → `python C:\Users\Coulson\AppData\Roaming\npm\validate-about-schemas.py`。
 3. `git status` 确认没误加 `_debug\`、mockup html（已在 .gitignore）。
+4. **结构性改动 → 同步文档再 commit**：新增/删 section/template、新模式/坑、数量或命名变化 → 更新 `README.md`（§10/§11 列表、§15 坑、附录）与本文件（§0 计数、§5 家族）。
 
 ## 4. Section / Liquid / CSS 规范
 
