@@ -9,6 +9,9 @@
   <div class="container">
     <div class="mf25-gallery-head">
       <h2>{{ s.title }}</h2>
+      {%- if s.subtitle != blank -%}
+        <p class="mf25-gallery-sub">{{ s.subtitle }}</p>
+      {%- endif -%}
     </div>
     <div class="mf25-gallery-grid">
       {%- for block in section.blocks -%}
@@ -33,7 +36,8 @@
   "class": "section-mf25-stitch-gallery",
   "max_blocks": 6,
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Gallery of Adventure" }
+    { "type": "text", "id": "title", "label": "Title", "default": "Gallery of Adventure" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle (optional)", "default": "" }
   ],
   "blocks": [
     {
