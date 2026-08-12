@@ -283,6 +283,51 @@
     "specs": {
       "type": "mf25-stitch-specs",
       "blocks": {
+        "category_NzygNp": {
+          "type": "category",
+          "settings": {
+            "title": "Frameset",
+            "icon": "",
+            "feature_1_label": "Frame",
+            "feature_1_value": "Step-Thru Frame",
+            "feature_2_label": "Fork",
+            "feature_2_value": "Front Suspension Fork with Switch",
+            "feature_3_label": "Seatpost",
+            "feature_3_value": "Comfort Suspension Seatpost",
+            "feature_4_label": "",
+            "feature_4_value": ""
+          }
+        },
+        "category_DKUKJa": {
+          "type": "category",
+          "settings": {
+            "title": "Frameset",
+            "icon": "",
+            "feature_1_label": "",
+            "feature_1_value": "",
+            "feature_2_label": "",
+            "feature_2_value": "",
+            "feature_3_label": "",
+            "feature_3_value": "",
+            "feature_4_label": "",
+            "feature_4_value": ""
+          }
+        },
+        "category_7pbfzX": {
+          "type": "category",
+          "settings": {
+            "title": "Frameset",
+            "icon": "",
+            "feature_1_label": "",
+            "feature_1_value": "",
+            "feature_2_label": "",
+            "feature_2_value": "",
+            "feature_3_label": "",
+            "feature_3_value": "",
+            "feature_4_label": "",
+            "feature_4_value": ""
+          }
+        },
         "category_8zkJik": {
           "type": "category",
           "settings": {
@@ -300,6 +345,9 @@
         }
       },
       "block_order": [
+        "category_NzygNp",
+        "category_DKUKJa",
+        "category_7pbfzX",
         "category_8zkJik"
       ],
       "settings": {
