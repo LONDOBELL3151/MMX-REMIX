@@ -1,3 +1,7 @@
 # Design mockups (local references only — not Shopify code)
 pdp-mockup-*.html
 stitch_maxfoot*.zip
+
+# Local credentials / secrets (never commit)
+.env
+*.token-cache.json
