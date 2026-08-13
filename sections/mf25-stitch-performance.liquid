@@ -150,7 +150,7 @@ a{color:inherit;text-decoration:none}
           "info": "Applies to the first 6 blocks. Any blocks after the 6th render as a uniform 4:3 row below (layout ignored)."
         },
         { "type": "image_picker", "id": "image", "label": "Background image",
-          "info": "Use the size shown in the Card size option above (it already matches this card). object-fit:cover — matching the ratio avoids cropping. <300KB." },
+          "info": "Blocks 1-6: match the ratio in Card size. Blocks 7-9 (uniform 4:3 row): use 1200x900. object-fit:cover crops if you don't match. <300KB." },
         { "type": "header", "content": "Text overlay" },
         { "type": "checkbox", "id": "overlay_enabled", "label": "Enable dark overlay behind text", "default": true },
         { "type": "range", "id": "overlay_strength", "label": "Overlay strength", "min": 0, "max": 95, "step": 5, "unit": "%", "default": 75,
