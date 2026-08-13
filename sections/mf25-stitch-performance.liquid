@@ -36,11 +36,11 @@ a{color:inherit;text-decoration:none}
 /* ENGINEERED FOR PERFORMANCE — Stitch irregular 6-block grid (4 sizes) */
 .mf25-eng{background:#0d0d0d;color:#fff;padding:var(--section) 0}
 .mf25-eng-head{text-align:center;margin-bottom:40px}
-.mf25-eng-eyebrow{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin-bottom:8px;display:block}
 .mf25-eng-head h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.5vw,40px);letter-spacing:-0.02em;color:#fff;margin:0}
-.mf25-eng-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:8px}
-@media (max-width:960px){.mf25-eng-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}}
-@media (max-width:520px){.mf25-eng-grid{grid-template-columns:1fr;grid-auto-rows:160px}}
+.mf25-eng-head p{font-family:var(--body);font-size:16px;color:rgba(255,255,255,.7);max-width:560px;margin:8px auto 0;line-height:1.5}
+.mf25-eng-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:300px;gap:8px}
+@media (max-width:960px){.mf25-eng-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:270px}}
+@media (max-width:520px){.mf25-eng-grid{grid-template-columns:1fr;grid-auto-rows:240px}}
 
 /* 3 sizes — large (2x2), wide (2x1), tile (1x1) */
 .mf25-eng-card{position:relative;overflow:hidden;border-radius:8px;background:#1a1a1a;border:1px solid #2a2a2a}
@@ -78,8 +78,10 @@ a{color:inherit;text-decoration:none}
 <section class="mf25-eng" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-eng-head">
-      <span class="mf25-eng-eyebrow">{{ s.eyebrow }}</span>
       <h2>{{ s.title }}</h2>
+      {%- if s.subtitle != blank -%}
+        <p>{{ s.subtitle }}</p>
+      {%- endif -%}
     </div>
     <div class="mf25-eng-grid">
       {%- for block in section.blocks -%}
@@ -108,8 +110,8 @@ a{color:inherit;text-decoration:none}
   "class": "section-mf25-stitch-performance",
   "max_blocks": 6,
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Built for the ride" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Engineered for Performance" }
+    { "type": "text", "id": "title", "label": "Title", "default": "Engineered for Performance" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Built for the ride" }
   ],
   "blocks": [
     {
@@ -123,9 +125,9 @@ a{color:inherit;text-decoration:none}
           "id": "layout",
           "label": "Card size",
           "options": [
-            { "value": "large", "label": "Large (2x2 hero) — image 1200x800 (3:2)" },
-            { "value": "wide",  "label": "Wide (2-col strip) — image 1200x400 (3:1)" },
-            { "value": "tile",  "label": "Tile (1x1) — image 600x400 (3:2)" }
+            { "value": "large", "label": "Large (2x2 hero) — image 1200x1200 (1:1)" },
+            { "value": "wide",  "label": "Wide (2-col strip) — image 1200x600 (2:1)" },
+            { "value": "tile",  "label": "Tile (1x1) — image 600x600 (1:1)" }
           ],
           "default": "wide"
         },
