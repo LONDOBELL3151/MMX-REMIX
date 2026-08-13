@@ -492,6 +492,7 @@
         "swiper_box_9N7WCN",
         "swiper_box_mwtDaD"
       ],
+      "disabled": true,
       "custom_css": [
         ".fontBgColor {background-image: linear-gradient(to right, #e07a23 0, #fff), linear-gradient(to right, #e07a23 0, #fff);}",
         ".swiperGraphic_section {max-width: 1200px;}",
