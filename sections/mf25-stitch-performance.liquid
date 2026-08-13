@@ -69,6 +69,12 @@ a{color:inherit;text-decoration:none}
   .mf25-eng-card--wide{grid-column:span 1}
   .mf25-eng-card--tile{grid-column:span 1}
 }
+
+/* blocks 7+ — uniform 4:3 cards in 3 equal columns below the mosaic */
+.mf25-eng-grid--thirds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.mf25-eng-grid--thirds .mf25-eng-card{aspect-ratio:4/3;grid-column:auto;grid-row:auto}
+@media (max-width:960px){.mf25-eng-grid--thirds{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.mf25-eng-grid--thirds{grid-template-columns:1fr}}
 </style>
 
 {%- liquid
@@ -83,10 +89,12 @@ a{color:inherit;text-decoration:none}
         <p>{{ s.subtitle }}</p>
       {%- endif -%}
     </div>
-    <div class="mf25-eng-grid">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'feature' -%}
-          <div class="mf25-eng-card mf25-eng-card--{{ block.settings.layout }}{% if block.settings.overlay_enabled == false %} mf25-eng-card--no-overlay{% endif %}" {% if block.settings.overlay_enabled %}style="--eng-overlay:{{ block.settings.overlay_strength | default: 75 | divided_by: 100.0 | round: 2 }};--eng-overlay-end:{{ block.settings.overlay_strength | default: 75 | plus: 15 | divided_by: 100.0 | round: 2 }}"{% endif %} {{ block.shopify_attributes }}>
+    {%- assign mosaic_cards = '' -%}
+    {%- assign thirds_cards = '' -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'feature' -%}
+        {%- capture card_html -%}
+          <div class="mf25-eng-card mf25-eng-card--{{ block.settings.layout }}{% if block.settings.overlay_enabled == false %} mf25-eng-card--no-overlay{% endif %}"{% if block.settings.overlay_enabled %} style="--eng-overlay:{{ block.settings.overlay_strength | default: 75 | divided_by: 100.0 | round: 2 }};--eng-overlay-end:{{ block.settings.overlay_strength | default: 75 | plus: 15 | divided_by: 100.0 | round: 2 }}"{% endif %} {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1600" height="1600">
             {%- else -%}
@@ -97,9 +105,18 @@ a{color:inherit;text-decoration:none}
               <p>{{ block.settings.body | escape }}</p>
             </div>
           </div>
+        {%- endcapture -%}
+        {%- if forloop.index <= 6 -%}
+          {%- assign mosaic_cards = mosaic_cards | append: card_html -%}
+        {%- else -%}
+          {%- assign thirds_cards = thirds_cards | append: card_html -%}
         {%- endif -%}
-      {%- endfor -%}
-    </div>
+      {%- endif -%}
+    {%- endfor -%}
+    <div class="mf25-eng-grid">{{ mosaic_cards }}</div>
+    {%- if thirds_cards != '' -%}
+      <div class="mf25-eng-grid--thirds">{{ thirds_cards }}</div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -108,7 +125,7 @@ a{color:inherit;text-decoration:none}
   "name": "MF25 Stitch Performance",
   "tag": "section",
   "class": "section-mf25-stitch-performance",
-  "max_blocks": 6,
+  "max_blocks": 9,
   "settings": [
     { "type": "text", "id": "title", "label": "Title", "default": "Engineered for Performance" },
     { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Built for the ride" }
@@ -129,7 +146,8 @@ a{color:inherit;text-decoration:none}
             { "value": "wide",  "label": "Wide (2-col strip) — image 1200x600 (2:1)" },
             { "value": "tile",  "label": "Tile (1x1) — image 600x600 (1:1)" }
           ],
-          "default": "wide"
+          "default": "wide",
+          "info": "Applies to the first 6 blocks. Any blocks after the 6th render as a uniform 4:3 row below (layout ignored)."
         },
         { "type": "image_picker", "id": "image", "label": "Background image",
           "info": "Use the size shown in the Card size option above (it already matches this card). object-fit:cover — matching the ratio avoids cropping. <300KB." },
