@@ -140,6 +140,7 @@
             "title": "1000W Peak Power",
             "body": "High-torque brushless hub motor designed to conquer steep city streets.",
             "layout": "wide",
+            "image": "shopify://shop_images/hl_55eba05d-1b82-4a21-a688-56c34c941734.png",
             "overlay_enabled": true,
             "overlay_strength": 75
           }
@@ -150,6 +151,7 @@
             "title": "1000W Peak Power",
             "body": "High-torque brushless hub motor designed to conquer steep city streets.",
             "layout": "wide",
+            "image": "shopify://shop_images/tl_da21d4c3-4c97-4aaa-8475-5fb3d1bcd0d4.png",
             "overlay_enabled": true,
             "overlay_strength": 75
           }
@@ -160,6 +162,7 @@
             "title": "1000W Peak Power",
             "body": "High-torque brushless hub motor designed to conquer steep city streets.",
             "layout": "wide",
+            "image": "shopify://shop_images/dp_5d1cc7b2-3538-4ca6-ae82-1cc6ebf1ed56.png",
             "overlay_enabled": true,
             "overlay_strength": 75
           }
