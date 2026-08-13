@@ -144,8 +144,8 @@
         "feature_9mDXk8"
       ],
       "settings": {
-        "subtitle": "Maxfoot crafts the best electric bike for commuting in every detail.",
-        "title": "Designed for Comfort, Built for Performance"
+        "title": "Designed for Comfort, Built for Performance",
+        "subtitle": "Maxfoot crafts the best electric bike for commuting in every detail."
       }
     },
     "feature_1": {
@@ -336,8 +336,8 @@
             "feature_4_value": "Thumb-Twist Throttle",
             "feature_5_label": "Charger",
             "feature_5_value": "2A Fast Charger",
-            "feature_6_label": "",
-            "feature_6_value": ""
+            "feature_6_label": "Lighting System",
+            "feature_6_value": "Integrated LED headlight and taillight with brake light"
           }
         },
         "category_8zkJik": {
