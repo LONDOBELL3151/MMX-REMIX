@@ -184,6 +184,40 @@
         "subtitle": "Maxfoot crafts the best electric bike for commuting in every detail."
       }
     },
+    "rich_text_iPYAJN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rnWLc3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Engineered for a Superior Commuting Experience",
+            "heading_size": "h0"
+          }
+        },
+        "text_tXdAwy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover what makes the MF-25 one of the best electric bikes for commuting.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rnWLc3",
+        "text_tXdAwy"
+      ],
+      "custom_css": [
+        "h2 {font-family: var(--display); font-weight: 700; font-size: clamp(24px,3vw,32px); letter-spacing: -0.02em; color: var(--ink);}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "feature_1": {
       "type": "mf25-stitch-feature",
       "settings": {
@@ -673,6 +707,7 @@
   "order": [
     "main",
     "performance",
+    "rich_text_iPYAJN",
     "feature_1",
     "feature_2",
     "feature_3",
