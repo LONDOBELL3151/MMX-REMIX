@@ -323,7 +323,7 @@
           "type": "category",
           "settings": {
             "title": "Frameset",
-            "icon": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M4 17l4-4 3 3 9-9\"></path></svg>",
+            "icon": "frame",
             "feature_1_label": "Frame",
             "feature_1_value": "Step-Thru Frame",
             "feature_2_label": "Fork",
@@ -342,7 +342,7 @@
           "type": "category",
           "settings": {
             "title": "WHEELS & MOTOR",
-            "icon": "",
+            "icon": "motor",
             "feature_1_label": "Motor",
             "feature_1_value": "Rear 500W Maxfoot Brushless Motor (Peak 1100W)",
             "feature_2_label": "Tire",
@@ -361,7 +361,7 @@
           "type": "category",
           "settings": {
             "title": "E-SYSTEM & DRIVETRAIN",
-            "icon": "",
+            "icon": "battery",
             "feature_1_label": "Battery",
             "feature_1_value": "500Wh Removable Lithium-ion Battery",
             "feature_2_label": "Display Type",
@@ -380,7 +380,7 @@
           "type": "category",
           "settings": {
             "title": "WEIGHT & DIMENSIONS",
-            "icon": "",
+            "icon": "scale",
             "feature_1_label": "Weight",
             "feature_1_value": "27 kg/59 lb",
             "feature_2_label": "Payload Capacity",
