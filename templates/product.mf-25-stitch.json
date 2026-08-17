@@ -181,7 +181,9 @@
       ],
       "settings": {
         "title": "Designed for Comfort, Built for Performance",
-        "subtitle": "Maxfoot crafts the best electric bike for commuting in every detail."
+        "subtitle": "Maxfoot crafts the best electric bike for commuting in every detail.",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "rich_text_iPYAJN": {
@@ -207,7 +209,7 @@
       ],
       "custom_css": [
         "h2 {font-family: var(--display); font-weight: 700; font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; color: var(--ink);}",
-        "{padding-bottom: 0px; padding-top: 80px;}"
+        " {padding-bottom: 0px; padding-top: 80px;}"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -307,7 +309,9 @@
         "video_qtV8fy"
       ],
       "settings": {
-        "title": "What Riders Are Saying"
+        "title": "What Riders Are Saying",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "gallery": {
@@ -339,7 +343,9 @@
       ],
       "settings": {
         "title": "Where Will Your MF-25 Take You?",
-        "subtitle": "From morning city commutes to weekend park escapes, see how this versatile electric commuter bike fits seamlessly into your everyday life."
+        "subtitle": "From morning city commutes to weekend park escapes, see how this versatile electric commuter bike fits seamlessly into your everyday life.",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "size": {
@@ -348,7 +354,9 @@
         "title": "Designed for Your Height & Comfort",
         "subtitle": "The Maxfoot Electric Commuter Bike Step-Thru Frame comfortably fits riders between 5'3\" and 7'3\".",
         "image": "shopify://shop_images/OOSIZE.png",
-        "image_mobile": "shopify://shop_images/OSIZE.png"
+        "image_mobile": "shopify://shop_images/OSIZE.png",
+        "padding_top": 80,
+        "padding_bottom": 0
       }
     },
     "specs": {
@@ -438,7 +446,9 @@
         "category_8zkJik"
       ],
       "settings": {
-        "title": "Comprehensive Specifications"
+        "title": "Comprehensive Specifications",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "swiper_graphic_4MJn6b": {
@@ -598,7 +608,9 @@
       ],
       "settings": {
         "title": "Accessory Bundles & Savings",
-        "subtitle": "Pair your MF-25 with curated kits and save up to 25%."
+        "subtitle": "Pair your MF-25 with curated kits and save up to 25%.",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "mf25_stitch_confidence_PYqiW7": {
@@ -637,7 +649,9 @@
       "name": "MF25 Stitch Confidence",
       "settings": {
         "title": "Ride with Confidence",
-        "subtitle": "Premium folding e-bikes and electric tricycles built for American families. Ships from our US warehouse with dedicated support."
+        "subtitle": "Premium folding e-bikes and electric tricycles built for American families. Ships from our US warehouse with dedicated support.",
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     },
     "faq_At6DFN": {
