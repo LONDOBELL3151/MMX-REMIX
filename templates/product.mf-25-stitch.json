@@ -323,7 +323,7 @@
           "type": "category",
           "settings": {
             "title": "Frameset",
-            "icon": "",
+            "icon": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M4 17l4-4 3 3 9-9\"></path></svg>",
             "feature_1_label": "Frame",
             "feature_1_value": "Step-Thru Frame",
             "feature_2_label": "Fork",
