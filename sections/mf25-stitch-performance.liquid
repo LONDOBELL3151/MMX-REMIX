@@ -81,7 +81,7 @@ a{color:inherit;text-decoration:none}
   assign s = section.settings
 -%}
 
-<section class="mf25-eng" {{ section.shopify_attributes }}>
+<section class="mf25-eng" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-eng-head">
       <h2>{{ s.title }}</h2>
@@ -128,7 +128,9 @@ a{color:inherit;text-decoration:none}
   "max_blocks": 9,
   "settings": [
     { "type": "text", "id": "title", "label": "Title", "default": "Engineered for Performance" },
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Built for the ride" }
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Built for the ride" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80 }
   ],
   "blocks": [
     {

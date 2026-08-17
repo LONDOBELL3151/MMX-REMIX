@@ -5,7 +5,7 @@
   assign s = section.settings
 -%}
 
-<section class="mf25-gallery" {{ section.shopify_attributes }}>
+<section class="mf25-gallery" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-gallery-head">
       <h2>{{ s.title }}</h2>
@@ -37,7 +37,9 @@
   "max_blocks": 6,
   "settings": [
     { "type": "text", "id": "title", "label": "Title", "default": "Gallery of Adventure" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle (optional)" }
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle (optional)" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80 }
   ],
   "blocks": [
     {

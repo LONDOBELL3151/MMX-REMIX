@@ -5,7 +5,7 @@
   assign s = section.settings
 -%}
 
-<section class="mf25-size" {{ section.shopify_attributes }}>
+<section class="mf25-size" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-size-head">
       <h2>{{ s.title }}</h2>
@@ -76,7 +76,9 @@
     { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The step-thru design is engineered for riders between 5'3\" and 7'3\"." },
     { "type": "header", "content": "Size image" },
     { "type": "image_picker", "id": "image", "label": "Image (desktop)", "info": "Recommended: 1200x900 (4:3). If empty, falls back to the built-in diagram." },
-    { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile, 750x1080 recommended)", "info": "Optional. Portrait size chart for mobile. If empty, the desktop image is used on all viewports." }
+    { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile, 750x1080 recommended)", "info": "Optional. Portrait size chart for mobile. If empty, the desktop image is used on all viewports." },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 }
   ],
   "presets": [
     { "name": "MF25 Stitch Size" }

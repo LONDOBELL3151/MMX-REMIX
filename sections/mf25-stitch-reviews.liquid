@@ -5,7 +5,7 @@
   assign s = section.settings
 -%}
 
-<section class="mf25-reviews" id="mf25-stitch-reviews" {{ section.shopify_attributes }}>
+<section class="mf25-reviews" id="mf25-stitch-reviews" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="mf25-reviews-head">
       <h2>{{ s.title }}</h2>
@@ -35,7 +35,9 @@
   "class": "section-mf25-stitch-reviews",
   "max_blocks": 8,
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "What Riders Are Saying" }
+    { "type": "text", "id": "title", "label": "Title", "default": "What Riders Are Saying" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 80 }
   ],
   "blocks": [
     {

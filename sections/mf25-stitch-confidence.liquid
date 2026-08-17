@@ -5,7 +5,7 @@
   assign s = section.settings
 -%}
 
-<section class="mf25-conf" {{ section.shopify_attributes }}>
+<section class="mf25-conf" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
   <div class="container">
     {%- if s.title != blank or s.subtitle != blank -%}
       <div class="mf25-conf-head">
@@ -51,7 +51,9 @@
   "class": "section-mf25-stitch-confidence",
   "settings": [
     { "type": "text", "id": "title", "label": "Title (optional, blank = no heading)" },
-    { "type": "text", "id": "subtitle", "label": "Subtitle (optional)" }
+    { "type": "text", "id": "subtitle", "label": "Subtitle (optional)" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 48 }
   ],
   "blocks": [
     {
