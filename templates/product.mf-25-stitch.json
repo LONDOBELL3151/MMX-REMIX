@@ -26,7 +26,7 @@
           "type": "promo_banner",
           "settings": {
             "tone": "accent",
-            "icon": "basket",
+            "icon": "clock",
             "heading": "Limited-time offer",
             "body": "Get MF-25 for only <b>$599</b>. <br>Discount applied automatically at checkout.",
             "link": "",
