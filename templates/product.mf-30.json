@@ -18,6 +18,10 @@
             "font_size": "medium"
           }
         },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "promo_banner_HGifym": {
           "type": "promo_banner",
           "settings": {
@@ -28,10 +32,6 @@
             "link": "",
             "link_text": "Shop now"
           }
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -61,8 +61,8 @@
       },
       "block_order": [
         "title",
-        "promo_banner_HGifym",
         "price",
+        "promo_banner_HGifym",
         "variant_picker",
         "inventory",
         "quantity_selector",
