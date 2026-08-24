@@ -1,0 +1,130 @@
+{% render 'swoope-styles' %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<style>
+.sw-qual{padding:var(--sw-section) 0;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
+.sw-qual-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.sw-qual-copy h2{font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0 0 32px}
+.sw-qual-copy h2 .sw-accent{color:var(--sw-lime)}
+.sw-qual-copy p{font-family:var(--sw-body);font-size:18px;line-height:1.6;color:var(--sw-on-surface-variant);margin:0 0 24px}
+.sw-qual-copy p:last-child{margin-bottom:0}
+.sw-qual-card-wrap{position:relative}
+.sw-qual-glow{position:absolute;inset:0;background:var(--sw-lime);opacity:0.1;filter:blur(100px);border-radius:50%;pointer-events:none;z-index:0}
+.sw-qual-card{position:relative;z-index:1;background:var(--sw-surface);border:1px solid var(--sw-surface-highest);border-radius:var(--sw-r-xl);padding:32px;display:flex;flex-direction:column;gap:32px}
+.sw-qual-feat{display:flex;align-items:flex-start;gap:16px}
+.sw-qual-feat .sw-icon{flex:0 0 32px;width:32px;height:32px;margin-top:4px}
+.sw-qual-feat h4{font-family:var(--sw-mono);font-size:20px;font-weight:700;line-height:1.3;color:var(--sw-on-surface);margin:0 0 4px}
+.sw-qual-feat p{font-family:var(--sw-body);font-size:14px;line-height:1.5;color:var(--sw-on-surface-variant);margin:0}
+@media (max-width:960px){
+  .sw-qual-row{grid-template-columns:1fr;gap:48px}
+  .sw-qual-copy h2{margin-bottom:24px}
+}
+@media (max-width:720px){.sw-qual{padding:64px 0}}
+</style>
+
+<section class="sw-qual" style="padding-top:{{ s.padding_top | default: 96 }}px;padding-bottom:{{ s.padding_bottom | default: 96 }}px" {{ section.shopify_attributes }}>
+  <div class="sw-container">
+    <div class="sw-qual-row">
+      <div class="sw-qual-copy">
+        <h2>
+          {{ s.title | escape }}
+          {%- if s.title_accent != blank -%}<br><span class="sw-accent">{{ s.title_accent | escape }}.</span>{%- endif -%}
+        </h2>
+        {%- if s.body_1 != blank -%}
+          <p>{{ s.body_1 }}</p>
+        {%- endif -%}
+        {%- if s.body_2 != blank -%}
+          <p>{{ s.body_2 }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="sw-qual-card-wrap">
+        <div class="sw-qual-glow" aria-hidden="true"></div>
+        <div class="sw-qual-card">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <div class="sw-qual-feat" {{ block.shopify_attributes }}>
+                <span class="sw-icon" aria-hidden="true">
+                  {%- case block.settings.icon -%}
+                    {%- when 'layers' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    {%- when 'water' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    {%- when 'shield' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/></svg>
+                    {%- when 'bolt' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+                  {%- endcase -%}
+                </span>
+                <div>
+                  <h4>{{ block.settings.title | escape }}</h4>
+                  <p>{{ block.settings.body }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "SWOOPE Quality",
+  "tag": "section",
+  "class": "section-swoope-quality",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title (first line)", "default": "Zero Compromise" },
+    { "type": "text", "id": "title_accent", "label": "Title (accent line, with period)", "default": "Quality" },
+    { "type": "textarea", "id": "body_1", "label": "Body paragraph 1",
+      "default": "Built to withstand the most brutal environments on earth. The foundation of the NEON-DIRT is an ultra-lightweight, aerospace-grade carbon fiber monocoque frame that offers unprecedented torsional rigidity while shedding crucial pounds." },
+    { "type": "textarea", "id": "body_2", "label": "Body paragraph 2",
+      "default": "We don't let a little water stop the ride. The entire powertrain, battery enclosure, and all critical electronics boast a rigorous IP67 waterproof rating, allowing for deep water crossings and muddy bogs without a second thought." },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Quality feature",
+      "limit": 4,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon",
+          "options": [
+            { "value": "layers", "label": "Layers / carbon" },
+            { "value": "water",  "label": "Water / IP rating" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "bolt",   "label": "Bolt / power" },
+            { "value": "none",   "label": "None" }
+          ],
+          "default": "layers" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Carbon Monocoque" },
+        { "type": "textarea", "id": "body", "label": "Body",
+          "default": "Aerospace-grade layup for ultimate strength-to-weight ratio." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SWOOPE Quality",
+      "blocks": [
+        { "type": "feature", "settings": {
+          "icon": "layers", "title": "Carbon Monocoque",
+          "body": "Aerospace-grade layup for ultimate strength-to-weight ratio."
+        } },
+        { "type": "feature", "settings": {
+          "icon": "water", "title": "IP67 Rated",
+          "body": "Fully sealed electronics and powertrain for extreme conditions."
+        } }
+      ]
+    }
+  ]
+}
+{% endschema %}

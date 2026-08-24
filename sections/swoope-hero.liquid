@@ -1,0 +1,260 @@
+{% render 'swoope-styles' %}
+
+{%- liquid
+  assign s = section.settings
+  assign s_count = 0
+  for block in section.blocks
+    if block.type == 'spec'
+      assign s_count = s_count | plus: 1
+    endif
+  endfor
+-%}
+
+<style>
+.sw-hero{position:relative;min-height:760px;padding-top:96px;display:flex;align-items:center;background:var(--sw-surface-0);overflow:hidden}
+.sw-hero-bg{position:absolute;inset:0;background-size:58%;background-position:15% 85%;background-repeat:no-repeat;background-color:var(--sw-surface-0);z-index:0}
+.sw-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 0%,rgba(19,19,19,0.6) 40%,var(--sw-surface-0) 75%);z-index:1}
+.sw-hero-bg img{position:absolute;left:5%;bottom:5%;width:55%;max-width:780px;height:auto;object-fit:contain;z-index:1}
+.sw-hero-inner{position:relative;z-index:2;width:100%;max-width:var(--sw-container);margin:0 auto;padding:0 var(--sw-gutter);display:flex;justify-content:flex-end}
+.sw-hero-card{width:100%;max-width:520px;background:rgba(46,46,46,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r-xl);padding:40px;box-shadow:0 24px 48px rgba(0,0,0,0.4)}
+.sw-hero-name{font-family:var(--sw-display);font-size:clamp(56px,7vw,80px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:var(--sw-lime);margin:0 0 16px}
+.sw-hero-price{font-family:var(--sw-display);font-size:clamp(36px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0 0 16px}
+.sw-hero-desc{font-family:var(--sw-body);font-size:16px;line-height:1.6;color:var(--sw-on-surface-variant);margin:0 0 40px}
+.sw-hero-specs{display:flex;flex-direction:column;gap:24px;margin-bottom:32px}
+.sw-hero-spec{display:flex;align-items:center;gap:16px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sw-hero-spec:last-child{border-bottom:0;padding-bottom:0}
+.sw-hero-spec-icon{color:var(--sw-lime);width:32px;height:32px;flex:0 0 32px;display:inline-flex;align-items:center;justify-content:center}
+.sw-hero-spec-icon svg{width:100%;height:100%;display:block}
+.sw-hero-spec-meta .sw-spec-value{margin-bottom:2px}
+.sw-hero-config{background:rgba(32,31,31,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:var(--sw-r-lg);border:1px solid var(--sw-surface-highest);padding:24px}
+.sw-hero-config-title{font-family:var(--sw-display);font-size:24px;font-weight:600;line-height:1.3;color:var(--sw-on-surface);margin:0 0 24px}
+.sw-hero-config-row{margin-bottom:24px}
+.sw-hero-config-row:last-of-type{margin-bottom:0}
+.sw-hero-config-label{font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);margin:0 0 12px;display:flex;gap:8px;align-items:baseline}
+.sw-hero-config-label .sw-current{color:var(--sw-on-surface);font-weight:700}
+.sw-hero-colors{display:flex;gap:12px}
+.sw-hero-color{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);transition:border-color .15s,box-shadow .15s;padding:0;position:relative;cursor:pointer}
+.sw-hero-color:hover{border-color:var(--sw-lime)}
+.sw-hero-color[aria-checked="true"]{border-color:var(--sw-lime);box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
+.sw-hero-tires{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:rgba(28,27,27,0.5);border-radius:var(--sw-r-lg);border:1px solid rgba(255,255,255,0.1)}
+.sw-hero-tire{padding:10px 12px;border-radius:var(--sw-r);background:transparent;color:var(--sw-on-surface-variant);font-family:var(--sw-body);font-size:14px;font-weight:700;text-transform:none;letter-spacing:0;transition:background .15s,color .15s}
+.sw-hero-tire[aria-checked="true"]{background:var(--sw-lime);color:var(--sw-on-lime)}
+.sw-hero-tire:hover:not([aria-checked="true"]){color:var(--sw-on-surface)}
+.sw-hero-actions{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+@media (max-width:960px){
+  .sw-hero{min-height:auto;padding:120px 0 64px}
+  .sw-hero-bg{background-size:80%;background-position:center 100%;opacity:0.35}
+  .sw-hero-bg::after{background:linear-gradient(180deg,rgba(10,10,10,0.7) 0%,var(--sw-surface-0) 80%)}
+  .sw-hero-bg img{display:none}
+  .sw-hero-inner{justify-content:center}
+  .sw-hero-card{max-width:100%;padding:28px}
+  .sw-hero-desc{margin-bottom:32px}
+  .sw-hero-specs{gap:20px;margin-bottom:28px}
+}
+</style>
+
+<section class="sw-hero" style="padding-top:{{ s.padding_top | default: 96 }}px;padding-bottom:{{ s.padding_bottom | default: 96 }}px" {{ section.shopify_attributes }}>
+  <div class="sw-hero-bg">
+    {%- if s.bg_image != blank -%}
+      <img src="{{ s.bg_image | image_url: width: 1600 }}" alt="{{ s.product_name | escape }}" loading="eager" width="1600" height="1067">
+    {%- endif -%}
+  </div>
+  <div class="sw-hero-inner">
+    <div class="sw-hero-card">
+      {%- if s.product_name != blank -%}
+        <h1 class="sw-hero-name">{{ s.product_name | escape }}</h1>
+      {%- endif -%}
+      {%- if s.price != blank -%}
+        <p class="sw-hero-price">{{ s.price | escape }}</p>
+      {%- endif -%}
+      {%- if s.description != blank -%}
+        <p class="sw-hero-desc">{{ s.description }}</p>
+      {%- endif -%}
+
+      {%- if s_count > 0 -%}
+        <div class="sw-hero-specs">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'spec' -%}
+              <div class="sw-hero-spec" {{ block.shopify_attributes }}>
+                <span class="sw-hero-spec-icon">
+                  {%- case block.settings.icon -%}
+                    {%- when 'bolt' -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                    {%- when 'route' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+                    {%- when 'weight' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5h11l2 14a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2l2-14z"/><circle cx="12" cy="4" r="2"/><path d="M12 6v2"/></svg>
+                    {%- when 'speed' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+                  {%- endcase -%}
+                </span>
+                <div class="sw-hero-spec-meta">
+                  <p class="sw-spec-value">{{ block.settings.value | escape }}</p>
+                  <p class="sw-spec-label">{{ block.settings.label | escape }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="sw-hero-config">
+        <h3 class="sw-hero-config-title">Configure Your Ride</h3>
+
+        {%- assign color_count = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'color' -%}
+            {%- assign color_count = color_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if color_count > 0 -%}
+          <div class="sw-hero-config-row">
+            <p class="sw-hero-config-label">Color: <span class="sw-current" data-color-label>{{ s.color_default_label | default: 'Phantom Black' }}</span></p>
+            <div class="sw-hero-colors" role="radiogroup" aria-label="Color">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'color' -%}
+                  <button type="button" class="sw-hero-color" style="background:{{ block.settings.swatch }}" data-color-label="{{ block.settings.name | escape }}" title="{{ block.settings.name | escape }}" aria-label="{{ block.settings.name | escape }}" aria-checked="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}></button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- assign tire_count = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tire' -%}
+            {%- assign tire_count = tire_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if tire_count > 0 -%}
+          <div class="sw-hero-config-row">
+            <p class="sw-hero-config-label">Tire Setup</p>
+            <div class="sw-hero-tires" role="radiogroup" aria-label="Tire setup">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'tire' -%}
+                  <button type="button" class="sw-hero-tire" aria-checked="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="sw-hero-actions">
+          {%- if s.reserve_link != blank -%}
+            <a href="{{ s.reserve_link }}" class="sw-btn sw-btn--primary">Reserve Now</a>
+          {%- else -%}
+            <button type="button" class="sw-btn sw-btn--primary">Reserve Now</button>
+          {%- endif -%}
+          {%- if s.dealer_link != blank -%}
+            <a href="{{ s.dealer_link }}" class="sw-btn sw-btn--ghost">Find a Dealer</a>
+          {%- else -%}
+            <button type="button" class="sw-btn sw-btn--ghost">Find a Dealer</button>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Color swatches
+  document.querySelectorAll('.sw-hero-colors').forEach(function(group){
+    var label = group.parentElement.querySelector('[data-color-label]');
+    group.querySelectorAll('.sw-hero-color').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('.sw-hero-color').forEach(function(b){ b.setAttribute('aria-checked','false'); });
+        btn.setAttribute('aria-checked','true');
+        if(label) label.textContent = btn.getAttribute('data-color-label') || label.textContent;
+      });
+    });
+  });
+  // Tire radios
+  document.querySelectorAll('.sw-hero-tires').forEach(function(group){
+    group.querySelectorAll('.sw-hero-tire').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('.sw-hero-tire').forEach(function(b){ b.setAttribute('aria-checked','false'); });
+        btn.setAttribute('aria-checked','true');
+      });
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "SWOOPE Hero",
+  "tag": "section",
+  "class": "section-swoope-hero",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Hero bike image",
+      "info": "Recommended: 1600×1067 (3:2). object-position: bottom-left. <300KB." },
+    { "type": "text", "id": "product_name", "label": "Product name (display)", "default": "S3" },
+    { "type": "text", "id": "price", "label": "Price (text)", "default": "$12,500" },
+    { "type": "textarea", "id": "description", "label": "Description",
+      "default": "Experience the thrill of electric silence. Tear through the wilderness with explosive power, leaving nothing but dust in your wake. No noise, no emissions, pure adrenaline." },
+    { "type": "text", "id": "color_default_label", "label": "Default color label", "default": "Phantom Black" },
+    { "type": "url", "id": "reserve_link", "label": "Reserve Now link (optional)" },
+    { "type": "url", "id": "dealer_link", "label": "Find a Dealer link (optional)" },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Hero spec",
+      "limit": 6,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon",
+          "options": [
+            { "value": "bolt",   "label": "Bolt (power)" },
+            { "value": "route",  "label": "Route (range)" },
+            { "value": "weight", "label": "Weight (mass)" },
+            { "value": "speed",  "label": "Speed (top)" },
+            { "value": "none",   "label": "Other (generic circle)" }
+          ],
+          "default": "bolt" },
+        { "type": "text", "id": "value", "label": "Value (display)", "default": "80 HP" },
+        { "type": "text", "id": "label", "label": "Label (uppercase)", "default": "Peak Power" }
+      ]
+    },
+    {
+      "type": "color",
+      "name": "Color swatch",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "name", "label": "Color name", "default": "Phantom Black" },
+        { "type": "color", "id": "swatch", "label": "Swatch color", "default": "#0e0e0e" }
+      ]
+    },
+    {
+      "type": "tire",
+      "name": "Tire option",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Tire label", "default": "All-Terrain" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SWOOPE Hero",
+      "blocks": [
+        { "type": "spec", "settings": { "icon": "bolt",   "value": "80 HP",   "label": "Peak Power" } },
+        { "type": "spec", "settings": { "icon": "route",  "value": "60 Miles","label": "Max Range" } },
+        { "type": "spec", "settings": { "icon": "weight", "value": "240 lbs", "label": "Curb Weight" } },
+        { "type": "color", "settings": { "name": "Phantom Black",   "swatch": "#0e0e0e" } },
+        { "type": "color", "settings": { "name": "Electric Lime",   "swatch": "#abd600" } },
+        { "type": "color", "settings": { "name": "Slate Grey",      "swatch": "#474747" } },
+        { "type": "tire",  "settings": { "label": "All-Terrain" } },
+        { "type": "tire",  "settings": { "label": "Supermoto" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

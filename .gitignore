@@ -1,6 +1,8 @@
 # Design mockups (local references only — not Shopify code)
 pdp-mockup-*.html
 stitch_maxfoot*.zip
+stitch_electric_dirt_bike_pdp.zip
+electric_dirt_bike_pdp/
 
 # Local credentials / secrets (never commit)
 .env

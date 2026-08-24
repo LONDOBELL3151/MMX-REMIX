@@ -4,6 +4,8 @@
 > 内容覆盖整个项目（不只是 about-us）— 写法、思路、规范、踩过的坑、常用任务模板，全部在这里。
 >
 > 最后一次工作：全量审计仓库并补正本 README（2026-08-12）——132 sections / 60 templates / 31 种语言 locale / 9 个 social 链接等数字已核对；补齐 `customers/` 子目录、`about-mission`、`mf25-stitch-*` 家族（含新增 `-confidence`）。mf25-stitch 是最近的功能开发线。
+> 
+> 追加（2026-08-24）：新增 `swoope-*` 家族（6 section + 共享 styles snippet + `product.electric-dirt-bike.json` 模板）——SWOOPE 子品牌 electric dirt bike PDP，Electric Lime `#C3F400` + Carbon Black 调性，PC 端完成。sections 总数 132 → **138**；templates 60 → **61**。详细工作要点看 CLAUDE.md §5.1。
 
 ---
 
@@ -109,6 +111,7 @@ C:\Users\Coulson\Desktop\
 │   │   ├── main-*.liquid        page / product / collection / cart / account / order / search / blog...
 │   │   ├── about-*.liquid       about-us（11 个，含新增 `about-mission`）
 │   │   ├── mf25-stitch-*.liquid mf25 Stitch PDP 系列（8 个，最新）
+│   │   ├── swoope-*.liquid      SWOOPE electric dirt bike PDP（6 个 + 共享 swoope-styles snippet）
 │   │   ├── mf-pdp-*.liquid      product detail page 模块
 │   │   ├── impact-*.liquid      Impact-cart app 集成
 │   │   ├── judgeme_*.liquid     Judge.me 评价 app 集成
@@ -1101,6 +1104,12 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `mf25-stitch-reviews.liquid` | mf25 Stitch PDP reviews |
 | `mf25-stitch-size.liquid` | mf25 Stitch PDP size |
 | `mf25-stitch-specs.liquid` | mf25 Stitch PDP specs |
+| `swoope-hero.liquid` | **SWOOPE electric dirt bike PDP hero**（含配置器：spec/颜色/轮胎/Reserve Now） |
+| `swoope-performance.liquid` | **SWOOPE PDP** Dynamic Performance 滑块（Eco/Trail/Track + HP 联动） |
+| `swoope-terrain.liquid` | **SWOOPE PDP** Master Any Terrain（3 栏 ride profile） |
+| `swoope-mechanical.liquid` | **SWOOPE PDP** Mechanical Breakdown（4 栏 spec 卡，Motor/Battery/Suspension/Brakes） |
+| `swoope-quality.liquid` | **SWOOPE PDP** Zero Compromise Quality（text + Carbon/IP67 feature 卡） |
+| `swoope-app.liquid` | **SWOOPE PDP** Total Control App（App Store/Google Play + phone 截图） |
 | `mileage-tabs.liquid` | 续航 tab（**title font-weight 900**） |
 | `multicolumn.liquid` | 多列 |
 | `multi-product-module.liquid` | 多产品模块 |
@@ -1150,6 +1159,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `product.json` | 默认 product | main-product + collapsible + related |
 | `product.mf-25.json` | MF-25 型号 | 包含 mf-pdp-* |
 | `product.mf-25-stitch.json` | **MF-25 Stitch PDP** | main-product + mf25-stitch-* 8 个 + swiper-graphic |
+| `product.electric-dirt-bike.json` | **SWOOPE electric dirt bike PDP**（MaxFoot 旗下子品牌，独立 electric lime + black 调性） | swoope-hero + -performance + -terrain + -mechanical + -quality + -app（6 个 section） |
 | `product.front-basket-for-mf25.json` | 配件 | 单产品 |
 | `product.pet-bag.json` / `product.trailer.json` / `product.rear-rack-bag.json` | 配件 | 单产品 |
 | `product.mf-*.json`（~13 个） | 其它型号：mf-17/18/19 系列（500f/750p/1000f/1000p）/21/22/23/30/30-so/31/32/33/MF-21G/MF-22G/MF-25-2/test-product | 单型号 PDP |

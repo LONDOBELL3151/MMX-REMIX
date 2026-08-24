@@ -1,0 +1,94 @@
+{% render 'swoope-styles' %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<style>
+.sw-app{padding:var(--sw-section) 0;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
+.sw-app-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.sw-app-copy h2{font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0 0 32px}
+.sw-app-copy h2 .sw-accent{color:var(--sw-lime)}
+.sw-app-copy p{font-family:var(--sw-body);font-size:18px;line-height:1.6;color:var(--sw-on-surface-variant);margin:0 0 32px;max-width:520px}
+.sw-app-ctas{display:flex;gap:16px;flex-wrap:wrap}
+.sw-app-cta{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;background:var(--sw-surface-high);border:1px solid var(--sw-surface-highest);border-radius:var(--sw-r);font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface);transition:background .15s}
+.sw-app-cta:hover{background:var(--sw-surface-highest)}
+.sw-app-cta svg{width:18px;height:18px;flex:0 0 18px}
+.sw-app-phone-wrap{position:relative;display:flex;justify-content:center;align-items:center}
+.sw-app-glow{position:absolute;inset:0;background:var(--sw-lime);opacity:0.2;filter:blur(120px);border-radius:50%;pointer-events:none;z-index:0}
+.sw-app-phone{position:relative;z-index:1;width:100%;max-width:520px;max-height:600px;height:auto;object-fit:contain;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.5))}
+.sw-app-phone-ph{position:relative;z-index:1;width:280px;height:560px;background:var(--sw-surface-low);border:1px solid var(--sw-surface-highest);border-radius:36px;display:grid;place-items:center;font-family:var(--sw-mono);font-size:13px;color:var(--sw-on-surface-variant);text-transform:uppercase;letter-spacing:0.1em}
+@media (max-width:960px){
+  .sw-app-row{grid-template-columns:1fr;gap:48px}
+  .sw-app-copy h2{margin-bottom:24px}
+  .sw-app-copy p{margin-bottom:24px}
+}
+@media (max-width:720px){.sw-app{padding:64px 0}.sw-app-phone-ph{width:240px;height:480px}}
+</style>
+
+<section class="sw-app" style="padding-top:{{ s.padding_top | default: 96 }}px;padding-bottom:{{ s.padding_bottom | default: 96 }}px" {{ section.shopify_attributes }}>
+  <div class="sw-container">
+    <div class="sw-app-row">
+      <div class="sw-app-copy">
+        <h2>
+          {{ s.title | escape }}
+          {%- if s.title_accent_1 != blank -%}<br><span class="sw-accent">{{ s.title_accent_1 | escape }}.</span>{%- endif -%}
+          {%- if s.title_accent_2 != blank -%}<br>{{ s.title_accent_2 | escape }}.{%- endif -%}
+        </h2>
+        {%- if s.body != blank -%}
+          <p>{{ s.body }}</p>
+        {%- endif -%}
+        <div class="sw-app-ctas">
+          {%- if s.app_store_link != blank -%}
+            <a href="{{ s.app_store_link }}" class="sw-app-cta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09M12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25"/></svg>
+              App Store
+            </a>
+          {%- endif -%}
+          {%- if s.google_play_link != blank -%}
+            <a href="{{ s.google_play_link }}" class="sw-app-cta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5c0-.6.2-1.1.6-1.5l11 10-11 10c-.4-.4-.6-.9-.6-1.5m13.8-7.2l2.6 1.5c.8.4.8 1.6 0 2l-2.6 1.5-2.5-2.5 2.5-2.5M4.7 2.4l12.4 7-2.5 2.6L4.7 2.4m0 19.2l9.9-9.6 2.5 2.6-12.4 7z"/></svg>
+              Google Play
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="sw-app-phone-wrap">
+        <div class="sw-app-glow" aria-hidden="true"></div>
+        {%- if s.phone_image != blank -%}
+          <img class="sw-app-phone" src="{{ s.phone_image | image_url: width: 800 }}" alt="{{ s.title | escape }} app screenshot" loading="lazy" width="800" height="1000">
+        {%- else -%}
+          <div class="sw-app-phone-ph">App Screenshot</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "SWOOPE App",
+  "tag": "section",
+  "class": "section-swoope-app",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title (line 1)", "default": "Total Control" },
+    { "type": "text", "id": "title_accent_1", "label": "Title (line 2, accent color)", "default": "OTA Updates" },
+    { "type": "text", "id": "title_accent_2", "label": "Title (line 3, normal)", "default": "GPS Security" },
+    { "type": "textarea", "id": "body", "label": "Body",
+      "default": "The NEON LINK app transforms your smartphone into a digital dashboard. Monitor battery health down to the cell, track your ride telemetry, and receive over-the-air performance upgrades seamlessly." },
+    { "type": "image_picker", "id": "phone_image", "label": "Phone mockup image",
+      "info": "Recommended: 800×1000 (4:5 portrait). <300KB." },
+    { "type": "url", "id": "app_store_link", "label": "App Store link (optional)" },
+    { "type": "url", "id": "google_play_link", "label": "Google Play link (optional)" },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "presets": [
+    {
+      "name": "SWOOPE App"
+    }
+  ]
+}
+{% endschema %}

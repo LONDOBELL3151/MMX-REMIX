@@ -1,0 +1,155 @@
+{% render 'swoope-styles' %}
+
+{%- liquid
+  assign s = section.settings
+  assign mode_count = 0
+  for block in section.blocks
+    if block.type == 'mode'
+      assign mode_count = mode_count | plus: 1
+    endif
+  endfor
+-%}
+
+<style>
+.sw-perf{padding:var(--sw-section) 0;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
+.sw-perf-card{position:relative;background:rgba(46,46,46,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r-xl);padding:48px 64px;overflow:hidden}
+.sw-perf-bg{position:absolute;inset:0;z-index:0;opacity:0.4;pointer-events:none}
+.sw-perf-bg img{width:100%;height:100%;object-fit:cover}
+.sw-perf-row{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;gap:24px}
+.sw-perf-label{font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);margin:0 0 8px}
+.sw-perf-mode{font-family:var(--sw-display);font-size:clamp(56px,7vw,80px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:var(--sw-lime);margin:0}
+.sw-perf-hp{font-family:var(--sw-mono);font-size:24px;font-weight:700;line-height:32px;color:var(--sw-on-surface);margin:0}
+.sw-perf-slider-wrap{position:relative;z-index:1;padding-top:24px;padding-bottom:8px}
+.sw-perf-slider{appearance:none;-webkit-appearance:none;width:100%;height:6px;background:linear-gradient(to right,var(--sw-lime) 0%,var(--sw-lime) var(--sw-pct,50%),var(--sw-surface-high) var(--sw-pct,50%),var(--sw-surface-high) 100%);border-radius:3px;outline:none;cursor:pointer;margin:0}
+.sw-perf-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--sw-lime);box-shadow:0 0 20px var(--sw-lime);cursor:pointer;border:0}
+.sw-perf-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--sw-lime);box-shadow:0 0 20px var(--sw-lime);cursor:pointer;border:0}
+.sw-perf-ticks{display:flex;justify-content:space-between;margin-top:24px;font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant)}
+.sw-perf-tick{transition:color .15s}
+.sw-perf-tick.is-active{color:var(--sw-lime)}
+@media (max-width:720px){
+  .sw-perf-card{padding:32px 24px}
+  .sw-perf-row{flex-direction:column;align-items:flex-start;gap:16px}
+  .sw-perf-mode{font-size:48px}
+}
+</style>
+
+<section class="sw-perf" style="padding-top:{{ s.padding_top | default: 96 }}px;padding-bottom:{{ s.padding_bottom | default: 96 }}px" {{ section.shopify_attributes }}>
+  <div class="sw-container">
+    <div class="sw-head">
+      <h2>{{ s.title | escape }}</h2>
+      {%- if s.body != blank -%}
+        <p>{{ s.body }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="sw-perf-card" data-mode-card>
+      {%- if s.bg_image != blank -%}
+        <div class="sw-perf-bg"><img src="{{ s.bg_image | image_url: width: 1600 }}" alt="" loading="lazy" width="1600" height="900"></div>
+      {%- endif -%}
+
+      <div class="sw-perf-row">
+        <div>
+          <p class="sw-perf-label">Power Output</p>
+          <p class="sw-perf-mode" data-mode-display>
+            {%- if section.blocks.first.type == 'mode' -%}
+              {{ section.blocks.first.settings.name | escape }}
+            {%- else -%}
+              TRACK
+            {%- endif -%}
+          </p>
+        </div>
+        <p class="sw-perf-hp" data-hp-display>
+          {%- if section.blocks.first.type == 'mode' -%}
+            {{ section.blocks.first.settings.hp | escape }}
+          {%- else -%}
+            80 HP
+          {%- endif -%}
+        </p>
+      </div>
+
+      {%- if mode_count > 0 -%}
+        <div class="sw-perf-slider-wrap">
+          <input type="range" min="1" max="{{ mode_count }}" step="1" value="{{ mode_count }}" class="sw-perf-slider" data-slider aria-label="Ride mode">
+          <div class="sw-perf-ticks" data-ticks>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'mode' -%}
+                <span class="sw-perf-tick{% if forloop.last %} is-active{% endif %}" data-idx="{{ forloop.index }}" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var cards = document.querySelectorAll('[data-mode-card]');
+  cards.forEach(function(card){
+    var slider = card.querySelector('[data-slider]');
+    var modeEl = card.querySelector('[data-mode-display]');
+    var hpEl = card.querySelector('[data-hp-display]');
+    var ticks = card.querySelectorAll('[data-ticks] .sw-perf-tick');
+    var total = ticks.length;
+    if(!slider || total === 0) return;
+
+    function apply(){
+      var v = parseInt(slider.value, 10);
+      var pct = ((v - 1) / Math.max(total - 1, 1)) * 100;
+      slider.style.setProperty('--sw-pct', pct + '%');
+      var tick = card.querySelector('[data-ticks] .sw-perf-tick[data-idx="'+v+'"]');
+      if(tick){
+        modeEl.textContent = tick.textContent.trim();
+        ticks.forEach(function(t){ t.classList.remove('is-active'); });
+        tick.classList.add('is-active');
+      }
+      var matched = ticks[v - 1];
+      if(matched && matched.dataset.hp){
+        hpEl.textContent = matched.dataset.hp;
+      }
+    }
+    slider.addEventListener('input', apply);
+    apply();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "SWOOPE Performance",
+  "tag": "section",
+  "class": "section-swoope-performance",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Dynamic Performance" },
+    { "type": "textarea", "id": "body", "label": "Body",
+      "default": "Tune your ride instantly. From technical single-track to wide-open desert runs, adjust power delivery on the fly. The proprietary Neon-Drive controller technology guarantees immediate response, unleashing a massive 250Nm of instant torque at any speed, pushing the boundaries of what an electric dirt bike can achieve." },
+    { "type": "image_picker", "id": "bg_image", "label": "Card background image (subtle, behind slider)",
+      "info": "Optional. 1600×900 (16:9). Rendered at 40% opacity behind the slider card. <200KB." },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "mode",
+      "name": "Ride mode",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "name", "label": "Mode name (UPPERCASE shown)", "default": "TRACK" },
+        { "type": "text", "id": "hp", "label": "HP label", "default": "80 HP" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SWOOPE Performance",
+      "blocks": [
+        { "type": "mode", "settings": { "name": "ECO",   "hp": "40 HP" } },
+        { "type": "mode", "settings": { "name": "TRAIL", "hp": "60 HP" } },
+        { "type": "mode", "settings": { "name": "TRACK", "hp": "80 HP" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

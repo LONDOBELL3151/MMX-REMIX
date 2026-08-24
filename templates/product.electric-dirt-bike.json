@@ -1,0 +1,262 @@
+{
+  "sections": {
+    "hero": {
+      "type": "swoope-hero",
+      "blocks": {
+        "spec_bolt": {
+          "type": "spec",
+          "settings": {
+            "icon": "bolt",
+            "value": "80 HP",
+            "label": "Peak Power"
+          }
+        },
+        "spec_route": {
+          "type": "spec",
+          "settings": {
+            "icon": "route",
+            "value": "60 Miles",
+            "label": "Max Range"
+          }
+        },
+        "spec_weight": {
+          "type": "spec",
+          "settings": {
+            "icon": "weight",
+            "value": "240 lbs",
+            "label": "Curb Weight"
+          }
+        },
+        "color_black": {
+          "type": "color",
+          "settings": {
+            "name": "Phantom Black",
+            "swatch": "#0e0e0e"
+          }
+        },
+        "color_lime": {
+          "type": "color",
+          "settings": {
+            "name": "Electric Lime",
+            "swatch": "#abd600"
+          }
+        },
+        "color_slate": {
+          "type": "color",
+          "settings": {
+            "name": "Slate Grey",
+            "swatch": "#474747"
+          }
+        },
+        "tire_at": {
+          "type": "tire",
+          "settings": {
+            "label": "All-Terrain"
+          }
+        },
+        "tire_sm": {
+          "type": "tire",
+          "settings": {
+            "label": "Supermoto"
+          }
+        }
+      },
+      "block_order": [
+        "spec_bolt",
+        "spec_route",
+        "spec_weight",
+        "color_black",
+        "color_lime",
+        "color_slate",
+        "tire_at",
+        "tire_sm"
+      ],
+      "settings": {
+        "product_name": "S3",
+        "price": "$12,500",
+        "description": "Experience the thrill of electric silence. Tear through the wilderness with explosive power, leaving nothing but dust in your wake. No noise, no emissions, pure adrenaline.",
+        "color_default_label": "Phantom Black",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "performance": {
+      "type": "swoope-performance",
+      "blocks": {
+        "mode_eco": {
+          "type": "mode",
+          "settings": {
+            "name": "ECO",
+            "hp": "40 HP"
+          }
+        },
+        "mode_trail": {
+          "type": "mode",
+          "settings": {
+            "name": "TRAIL",
+            "hp": "60 HP"
+          }
+        },
+        "mode_track": {
+          "type": "mode",
+          "settings": {
+            "name": "TRACK",
+            "hp": "80 HP"
+          }
+        }
+      },
+      "block_order": [
+        "mode_eco",
+        "mode_trail",
+        "mode_track"
+      ],
+      "settings": {
+        "title": "Dynamic Performance",
+        "body": "Tune your ride instantly. From technical single-track to wide-open desert runs, adjust power delivery on the fly. The proprietary Neon-Drive controller technology guarantees immediate response, unleashing a massive 250Nm of instant torque at any speed, pushing the boundaries of what an electric dirt bike can achieve.",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "terrain": {
+      "type": "swoope-terrain",
+      "blocks": {
+        "card_enduro": {
+          "type": "card",
+          "settings": {
+            "heading": "Enduro",
+            "body": "Optimized for maximum efficiency and range. Smooth torque delivery preserves battery life for long, technical backcountry explorations without sacrificing necessary low-end grunt."
+          }
+        },
+        "card_trail": {
+          "type": "card",
+          "settings": {
+            "heading": "Trail",
+            "body": "The perfect balance of power and agility. Dialed for responsive acceleration and precise handling on tight, winding tracks and varied off-road conditions."
+          }
+        },
+        "card_racer": {
+          "type": "card",
+          "settings": {
+            "heading": "Racer",
+            "body": "Unleash the full 80 HP and 250Nm of torque. Minimal intervention, maximum aggressive mapping for competitive track days and wide-open throttle blasts."
+          }
+        }
+      },
+      "block_order": [
+        "card_enduro",
+        "card_trail",
+        "card_racer"
+      ],
+      "settings": {
+        "title": "Master Any Terrain",
+        "body": "Switch seamlessly between three distinct ride profiles engineered for varying demands, putting total control over the powertrain directly at your fingertips.",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "mechanical": {
+      "type": "swoope-mechanical",
+      "blocks": {
+        "card_motor": {
+          "type": "card",
+          "settings": {
+            "icon": "motor",
+            "label": "Motor",
+            "value": "60kW Liquid Cooled",
+            "body": "Direct drive permanent magnet motor delivering instantaneous torque. The advanced liquid cooling system guarantees sustained peak performance, completely eliminating thermal throttling even during the most demanding climbs or prolonged high-speed runs."
+          }
+        },
+        "card_battery": {
+          "type": "card",
+          "settings": {
+            "icon": "battery",
+            "label": "Battery",
+            "value": "6.5kWh Lithium Ion",
+            "body": "High-density performance pack housed in a structural carbon fiber casing utilizing premium Samsung 21700 cells. Capable of a rapid 45-minute fast charge to 80%, ensuring you spend more time riding and less time waiting."
+          }
+        },
+        "card_suspension": {
+          "type": "card",
+          "settings": {
+            "icon": "suspension",
+            "label": "Suspension",
+            "value": "310mm Travel",
+            "body": "Fully adjustable inverted front forks and rear monoshock, meticulously tuned for extreme off-road compression. Features a sophisticated 24-way adjustable high-speed compression damping system to perfectly dial in the ride feel for any rider weight or terrain type."
+          }
+        },
+        "card_brakes": {
+          "type": "card",
+          "settings": {
+            "icon": "brakes",
+            "label": "Brakes",
+            "value": "Brembo Performance",
+            "body": "4-piston radial-mount calipers on oversized floating rotors provide fade-free, maximum stopping power. This is seamlessly integrated with an aggressive regenerative braking system that recaptures kinetic energy, extending your range while saving pad wear."
+          }
+        }
+      },
+      "block_order": [
+        "card_motor",
+        "card_battery",
+        "card_suspension",
+        "card_brakes"
+      ],
+      "settings": {
+        "title": "Mechanical Breakdown",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "quality": {
+      "type": "swoope-quality",
+      "blocks": {
+        "feat_carbon": {
+          "type": "feature",
+          "settings": {
+            "icon": "layers",
+            "title": "Carbon Monocoque",
+            "body": "Aerospace-grade layup for ultimate strength-to-weight ratio."
+          }
+        },
+        "feat_ip67": {
+          "type": "feature",
+          "settings": {
+            "icon": "water",
+            "title": "IP67 Rated",
+            "body": "Fully sealed electronics and powertrain for extreme conditions."
+          }
+        }
+      },
+      "block_order": [
+        "feat_carbon",
+        "feat_ip67"
+      ],
+      "settings": {
+        "title": "Zero Compromise",
+        "title_accent": "Quality",
+        "body_1": "Built to withstand the most brutal environments on earth. The foundation of the NEON-DIRT is an ultra-lightweight, aerospace-grade carbon fiber monocoque frame that offers unprecedented torsional rigidity while shedding crucial pounds.",
+        "body_2": "We don't let a little water stop the ride. The entire powertrain, battery enclosure, and all critical electronics boast a rigorous IP67 waterproof rating, allowing for deep water crossings and muddy bogs without a second thought.",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "app": {
+      "type": "swoope-app",
+      "settings": {
+        "title": "Total Control",
+        "title_accent_1": "OTA Updates",
+        "title_accent_2": "GPS Security",
+        "body": "The NEON LINK app transforms your smartphone into a digital dashboard. Monitor battery health down to the cell, track your ride telemetry, and receive over-the-air performance upgrades seamlessly.",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "performance",
+    "terrain",
+    "mechanical",
+    "quality",
+    "app"
+  ]
+}

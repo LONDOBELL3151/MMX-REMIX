@@ -1,0 +1,106 @@
+{%- comment -%}
+  SWOOPE PDP — shared inline CSS
+  Rendered via {% render "swoope-styles" %}. Single source of truth for all
+  swoope-* sections in product.electric-dirt-bike.json.
+
+  Brand: SWOOPE (MaxFoot sub-line, electric dirt bike)
+  Style: Hyper-Performance Tech — Glassmorphism + Corporate Modern
+  Palette: Carbon Black #0E0E0E + Electric Lime #C3F400
+{%- endcomment -%}
+<style>
+/* ============================================================
+   SWOOPE PDP — design tokens
+   ============================================================ */
+:root{
+  --sw-surface-0:#0a0a0a;
+  --sw-surface-lowest:#0e0e0e;
+  --sw-surface-low:#1c1b1b;
+  --sw-surface:#201f1f;
+  --sw-surface-high:#2a2a2a;
+  --sw-surface-highest:#353534;
+  --sw-on-surface:#e5e2e1;
+  --sw-on-surface-variant:#c4c9ac;
+  --sw-outline:#8e9379;
+  --sw-outline-variant:#444933;
+  --sw-lime:#c3f400;
+  --sw-lime-dim:#abd600;
+  --sw-lime-deep:#506600;
+  --sw-on-lime:#161e00;
+  --sw-display:"Sora","Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --sw-body:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,sans-serif;
+  --sw-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sw-container:1280px;
+  --sw-gutter:24px;
+  --sw-section:96px;
+  --sw-r-sm:0.125rem;
+  --sw-r:0.25rem;
+  --sw-r-md:0.375rem;
+  --sw-r-lg:0.5rem;
+  --sw-r-xl:0.75rem;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--sw-surface-0);color:var(--sw-on-surface);font-family:var(--sw-body);line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+/* container — same 1280px convention as mf25 */
+.sw-container{max-width:var(--sw-container);margin:0 auto;padding:0 var(--sw-gutter)}
+@media (max-width:720px){.sw-container{padding:0 20px}}
+
+/* glass panel — backbone of all cards */
+.sw-glass{
+  background:rgba(46,46,46,0.4);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--sw-r-lg);
+  transition:background .2s,border-color .2s;
+}
+.sw-glass:hover{background:rgba(46,46,46,0.55);border-color:rgba(195,244,0,0.25)}
+
+/* shared section frame */
+.sw-section{padding:var(--sw-section) 0;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
+.sw-section--first{border-top:0}
+
+/* shared section heading */
+.sw-head{margin-bottom:48px}
+.sw-head h2{font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0}
+.sw-head h2 .sw-accent{color:var(--sw-lime)}
+.sw-head p{font-family:var(--sw-body);font-size:18px;line-height:1.6;color:var(--sw-on-surface-variant);max-width:640px;margin:16px 0 0}
+.sw-head--center{text-align:center}
+.sw-head--center p{margin-left:auto;margin-right:auto}
+@media (max-width:720px){.sw-section{padding:64px 0}.sw-head{margin-bottom:32px}}
+
+/* shared button styles */
+.sw-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--sw-mono);font-size:14px;font-weight:700;
+  letter-spacing:0.05em;text-transform:uppercase;
+  padding:16px 24px;border-radius:var(--sw-r-lg);
+  transition:filter .15s,transform .1s,background .15s;
+  text-align:center;width:100%;
+}
+.sw-btn--primary{background:var(--sw-lime);color:var(--sw-on-lime)}
+.sw-btn--primary:hover{filter:brightness(1.1)}
+.sw-btn--primary:active{transform:scale(0.98)}
+.sw-btn--ghost{background:transparent;color:var(--sw-lime);border:1px solid var(--sw-lime)}
+.sw-btn--ghost:hover{background:rgba(195,244,0,0.1)}
+.sw-btn--ghost:active{transform:scale(0.98)}
+
+/* shared spec label/value pair */
+.sw-spec-label{font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);line-height:20px;margin:0}
+.sw-spec-value{font-family:var(--sw-mono);font-size:24px;font-weight:700;line-height:32px;color:var(--sw-on-surface);margin:0}
+
+/* shared icon wrap */
+.sw-icon{color:var(--sw-lime);width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 32px}
+.sw-icon svg{width:100%;height:100%;display:block}
+
+/* glow utility — behind key elements */
+.sw-glow{position:absolute;inset:0;background:var(--sw-lime);opacity:0.1;filter:blur(100px);border-radius:50%;pointer-events:none;z-index:0}
+
+/* display headline utility (used in hero + performance) */
+.sw-display{font-family:var(--sw-display);font-size:clamp(48px,6vw,72px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:var(--sw-lime);margin:0}
+</style>

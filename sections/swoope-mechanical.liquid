@@ -1,0 +1,132 @@
+{% render 'swoope-styles' %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<style>
+.sw-mech{padding:var(--sw-section) 0;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
+.sw-mech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.sw-mech-card{display:flex;flex-direction:column;height:100%;background:rgba(46,46,46,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r-lg);padding:24px;transition:background .2s,border-color .2s}
+.sw-mech-card:hover{background:var(--sw-surface-high);border-color:rgba(195,244,0,0.3)}
+.sw-mech-card-media{margin:-24px -24px 24px;border-radius:var(--sw-r-lg) var(--sw-r-lg) 0 0;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.1);aspect-ratio:16/9;background:var(--sw-surface-low)}
+.sw-mech-card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.sw-mech-card-head{flex:1;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.sw-mech-card-head .sw-icon{font-size:32px;width:36px;height:36px;margin-bottom:8px}
+.sw-mech-card-head .sw-spec-label{margin-bottom:4px}
+.sw-mech-card-head .sw-spec-value{margin:0}
+.sw-mech-card-body{font-family:var(--sw-body);font-size:14px;line-height:1.6;color:var(--sw-on-surface-variant);margin:0}
+@media (max-width:960px){.sw-mech-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.sw-mech-grid{grid-template-columns:1fr}.sw-mech{padding:64px 0}}
+</style>
+
+<section class="sw-mech" style="padding-top:{{ s.padding_top | default: 96 }}px;padding-bottom:{{ s.padding_bottom | default: 96 }}px" {{ section.shopify_attributes }}>
+  <div class="sw-container">
+    <div class="sw-head">
+      <h2>{{ s.title | escape }}</h2>
+    </div>
+
+    <div class="sw-mech-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'card' -%}
+          <div class="sw-mech-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <div class="sw-mech-card-media">
+                <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.label | escape }}" loading="lazy" width="800" height="450">
+              </div>
+            {%- endif -%}
+            <div class="sw-mech-card-head">
+              <span class="sw-icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'motor' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                  {%- when 'battery' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 11v2M10 11v2M14 11v2"/></svg>
+                  {%- when 'frame' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l4 8-3 8M19 4l-4 8 3 8M5 4h14M5 20h14M9 12h6"/></svg>
+                  {%- when 'suspension' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 8h8M10 8v12M14 8v12M8 20h8"/><circle cx="12" cy="3" r="1.5"/></svg>
+                  {%- when 'brakes' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+                  {%- when 'layers' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  {%- when 'water' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+                {%- endcase -%}
+              </span>
+              <p class="sw-spec-label">{{ block.settings.label | escape }}</p>
+              <p class="sw-spec-value">{{ block.settings.value | escape }}</p>
+            </div>
+            <p class="sw-mech-card-body">{{ block.settings.body }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "SWOOPE Mechanical",
+  "tag": "section",
+  "class": "section-swoope-mechanical",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Mechanical Breakdown" },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Spec card",
+      "limit": 6,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Top image (optional)",
+          "info": "Optional hero image at top of card. 800×450 (16:9). <200KB." },
+        { "type": "select", "id": "icon", "label": "Icon (if no image)",
+          "options": [
+            { "value": "motor",      "label": "Motor" },
+            { "value": "battery",    "label": "Battery" },
+            { "value": "frame",      "label": "Frame" },
+            { "value": "suspension", "label": "Suspension" },
+            { "value": "brakes",     "label": "Brakes" },
+            { "value": "layers",     "label": "Carbon / layers" },
+            { "value": "water",      "label": "Water / IP rating" },
+            { "value": "none",       "label": "None" }
+          ],
+          "default": "motor" },
+        { "type": "text", "id": "label", "label": "Label (UPPERCASE shown)", "default": "MOTOR" },
+        { "type": "text", "id": "value", "label": "Value (display)", "default": "60kW Liquid Cooled" },
+        { "type": "textarea", "id": "body", "label": "Body",
+          "default": "Direct drive permanent magnet motor delivering instantaneous torque. The advanced liquid cooling system guarantees sustained peak performance, completely eliminating thermal throttling even during the most demanding climbs or prolonged high-speed runs." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SWOOPE Mechanical",
+      "blocks": [
+        { "type": "card", "settings": {
+          "icon": "motor", "label": "Motor", "value": "60kW Liquid Cooled",
+          "body": "Direct drive permanent magnet motor delivering instantaneous torque. The advanced liquid cooling system guarantees sustained peak performance, completely eliminating thermal throttling even during the most demanding climbs or prolonged high-speed runs."
+        } },
+        { "type": "card", "settings": {
+          "icon": "battery", "label": "Battery", "value": "6.5kWh Lithium Ion",
+          "body": "High-density performance pack housed in a structural carbon fiber casing utilizing premium Samsung 21700 cells. Capable of a rapid 45-minute fast charge to 80%, ensuring you spend more time riding and less time waiting."
+        } },
+        { "type": "card", "settings": {
+          "icon": "suspension", "label": "Suspension", "value": "310mm Travel",
+          "body": "Fully adjustable inverted front forks and rear monoshock, meticulously tuned for extreme off-road compression. Features a sophisticated 24-way adjustable high-speed compression damping system to perfectly dial in the ride feel for any rider weight or terrain type."
+        } },
+        { "type": "card", "settings": {
+          "icon": "brakes", "label": "Brakes", "value": "Brembo Performance",
+          "body": "4-piston radial-mount calipers on oversized floating rotors provide fade-free, maximum stopping power. This is seamlessly integrated with an aggressive regenerative braking system that recaptures kinetic energy, extending your range while saving pad wear."
+        } }
+      ]
+    }
+  ]
+}
+{% endschema %}

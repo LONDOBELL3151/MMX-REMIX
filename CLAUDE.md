@@ -11,7 +11,7 @@
 - **绝不碰**：`Desktop\maxfoot-theme\`（legacy 备份）、`Desktop\dawn\`（Dawn 原版 workspace，**不是**本工程）。
 - **同步链路**：`git push origin main` → GitHub → Shopify GitHub 整合 → CDN。**经常卡 5+ 分钟**；看到 `Update from Shopify for theme MMX-REMIX/main` bot commit 属正常。
 - **设计稿**：根目录 `pdp-mockup-*.html`（mf25-stitch 的设计来源，已在 `.gitignore`，仅本地参考）。
-- **规模实测（README 已过时）**：132 sections（129 liquid + 3 group）、60 templates（含 `customers/` 7 个账户模板）、91 snippets、150 assets、**31 种语言 locale**。README 的"~90 sections / 单语言英文站"是旧数据。
+- **规模实测**：138 sections（135 liquid + 3 group）、61 templates（含 `customers/` 7 个账户模板 + `product.electric-dirt-bike.json`）、91 snippets、150 assets、**31 种语言 locale**。
 
 ## 1. 新对话开机序列
 
@@ -62,6 +62,20 @@
   - "Add Bundle to Cart" = POST `/cart/add.js`，加**主产品（跟随 `#pdp__form` 已选变体，回退默认）+ 全部关联产品**，刷新 `cart-drawer`。JS 模式参考 `sections/mf-pdp-accessory-bundles.liquid`（同款 data-items JSON + cart drawer renderContents）。
   - `Total Value` = 三个关联产品 `selected_or_first_available_variant.price` 之和（渲染删除线），位于 Price 上方。
 - **加购/购物车机制**：cart-drawer + `window.routes.cart_add_url`；`assets/maxfoot.js` 处理变体选择（更新 `.product-variant-id` hidden input）；`assets/product-form.js` 是 main-product 加购参考。
+
+### 5.1 swoope 家族（electric dirt bike 子品牌 PDP，最新工作）
+
+- **背景**：MaxFoot 旗下 electric_dirt_bike 子产品线（独立子品牌 **SWOOPE**），设计稿在 `electric_dirt_bike_pdp/`（gitignore 之外、独立归档）。与 MaxFoot yellow `#FFC000` 调性刻意不同：**Electric Lime `#C3F400` + Carbon Black `#0E0E0E` + Glassmorphism**，定位"Hyper-Performance Tech"。
+- **6 个 section + 1 共享样式**：挂在 `templates/product.electric-dirt-bike.json`，PC 端全部：
+  - `swoope-hero`：左侧 hero 大图 + 右侧 glass-panel 配置器卡（产品名/价/3 项 spec/3 色/2 轮胎/Reserve Now+Find a Dealer）。`spec` block (icon select: bolt/route/weight/speed) + `color` block (swatch + name) + `tire` block。JS 纯前端切换 aria-checked。
+  - `swoope-performance`：玻璃面板 + 3 档 power slider (Eco/Trail/Track)，slider 拖动实时联动 mode 名 + HP 数字 + 当前档高亮。`mode` block (name + hp)。
+  - `swoope-terrain`：3 栏 ride profile 卡（Enduro/Trail/Racer），居中标题。`card` block (heading + body)。
+  - `swoope-mechanical`：4 栏 spec 卡（Motor/Battery/Suspension/Brakes），每卡可选 top image + icon select (motor/battery/frame/suspension/brakes/layers/water)。`card` block。
+  - `swoope-quality`：左右两栏（左 text + 右带 lime glow 的 feature 卡）。`feature` block (icon + title + body)。
+  - `swoope-app`：左右两栏（左 text + App Store/Google Play CTA + 右 phone 截图，带 lime glow）。无 block。
+- **共享 CSS**：`snippets/swoope-styles.liquid`（唯一源，含 design tokens：Sora/Inter/JetBrains Mono + Carbon Black/Electric Lime tokens + glass panel utility + shared button/head/spec styles）。**所有 swoope section 顶部 `{% render 'swoope-styles' %}`**，不内联 copy（吸取 mf25-stitch-performance 的教训）。
+- **本模板无 main-product**：swoope 走 Reserve Now 模式（不下单），配置器即"主商品区"，全靠 `swoope-hero` 承担。如要加，加到 `swoope-hero` 之前即可。
+- **类名前缀**：所有 class 用 `.sw-*`（区别于 mf25 的 `.mf25-*`），避免两家族样式互相污染。
 
 ## 6. README 导航速查（深度文档入口）
 
