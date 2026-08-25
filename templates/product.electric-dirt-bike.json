@@ -102,19 +102,115 @@
     "features": {
       "type": "swoope-features",
       "blocks": {
-        "tile_1": { "type": "tile", "settings": { "size": "wide",   "value_1": "4160W",   "value_1_accent": true,  "label_1": "Mid-Drive Motor", "value_2": "—", "label_2": "—" } },
-        "tile_2": { "type": "tile", "settings": { "size": "wide",   "value_1": "Max Speed 45MPH", "value_1_accent": true, "label_1": "—", "value_2": "—", "label_2": "—" } },
-        "tile_3": { "type": "tile", "settings": { "size": "tall",   "value_1": "Programmable Far-Driver Controller", "value_1_accent": false, "label_1": "—", "value_2": "Magnetic Emergency Switch", "value_2_accent": false, "label_2": "—" } },
-        "tile_4": { "type": "tile", "settings": { "size": "medium", "value_1": "52V 26Ah", "value_1_accent": true, "label_1": "Large Battery", "value_2": "—", "label_2": "—" } },
-        "tile_5": { "type": "tile", "settings": { "size": "medium", "value_1": "Heavy-duty Hydraulic Brakes", "value_1_accent": false, "label_1": "—", "value_2": "—", "label_2": "—" } },
-        "tile_6": { "type": "tile", "settings": { "size": "tall",   "value_1": "Hydraulic Front Fork & Nitrogen Rear Shock", "value_1_accent": false, "label_1": "—", "value_2": "Adjustable Suspension", "value_2_accent": false, "label_2": "—" } },
-        "tile_7": { "type": "tile", "settings": { "size": "medium", "value_1": "50 Miles", "value_1_accent": true, "label_1": "—", "value_2": "—", "label_2": "—" } },
-        "tile_8": { "type": "tile", "settings": { "size": "medium", "value_1": "—", "label_1": "—", "value_2": "—", "label_2": "—" } }
+        "tile_1": {
+          "type": "tile",
+          "settings": {
+            "size": "wide",
+            "value_1": "4160W",
+            "value_1_accent": true,
+            "label_1": "Mid-Drive Motor",
+            "value_2": "—",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_2": {
+          "type": "tile",
+          "settings": {
+            "size": "wide",
+            "value_1": "Max Speed 45MPH",
+            "value_1_accent": true,
+            "label_1": "—",
+            "value_2": "—",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_3": {
+          "type": "tile",
+          "settings": {
+            "size": "tall",
+            "value_1": "Programmable Far-Driver Controller",
+            "value_1_accent": false,
+            "label_1": "—",
+            "value_2": "Magnetic Emergency Switch",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_4": {
+          "type": "tile",
+          "settings": {
+            "size": "medium",
+            "value_1": "52V 26Ah",
+            "value_1_accent": true,
+            "label_1": "Large Battery",
+            "value_2": "—",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_5": {
+          "type": "tile",
+          "settings": {
+            "size": "medium",
+            "value_1": "Heavy-duty Hydraulic Brakes",
+            "value_1_accent": false,
+            "label_1": "—",
+            "value_2": "—",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_6": {
+          "type": "tile",
+          "settings": {
+            "size": "tall",
+            "value_1": "Hydraulic Front Fork & Nitrogen Rear Shock",
+            "value_1_accent": false,
+            "label_1": "—",
+            "value_2": "Adjustable Suspension",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_7": {
+          "type": "tile",
+          "settings": {
+            "size": "medium",
+            "value_1": "50 Miles",
+            "value_1_accent": true,
+            "label_1": "—",
+            "value_2": "—",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        },
+        "tile_8": {
+          "type": "tile",
+          "settings": {
+            "size": "medium",
+            "value_1": "—",
+            "value_1_accent": false,
+            "label_1": "—",
+            "value_2": "—",
+            "value_2_accent": false,
+            "label_2": "—"
+          }
+        }
       },
       "block_order": [
-        "tile_1", "tile_2", "tile_3", "tile_4", "tile_5", "tile_6", "tile_7", "tile_8"
+        "tile_1",
+        "tile_2",
+        "tile_3",
+        "tile_4",
+        "tile_5",
+        "tile_6",
+        "tile_7",
+        "tile_8"
       ],
       "settings": {
+        "title": "",
         "padding_top": 64,
         "padding_bottom": 64
       }
@@ -125,6 +221,7 @@
         "card_enduro": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/MF30-3.jpg",
             "heading": "Enduro",
             "body": "Optimized for maximum efficiency and range. Smooth torque delivery preserves battery life for long, technical backcountry explorations without sacrificing necessary low-end grunt."
           }
@@ -132,6 +229,7 @@
         "card_trail": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/MF30-5.png",
             "heading": "Trail",
             "body": "The perfect balance of power and agility. Dialed for responsive acceleration and precise handling on tight, winding tracks and varied off-road conditions."
           }
@@ -139,6 +237,7 @@
         "card_racer": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/MF33-10.jpg",
             "heading": "Racer",
             "body": "Unleash the full 80 HP and 250Nm of torque. Minimal intervention, maximum aggressive mapping for competitive track days and wide-open throttle blasts."
           }
@@ -152,6 +251,7 @@
       "settings": {
         "title": "Master Any Terrain",
         "body": "Switch seamlessly between three distinct ride profiles engineered for varying demands, putting total control over the powertrain directly at your fingertips.",
+        "interval": 3000,
         "padding_top": 96,
         "padding_bottom": 96
       }
