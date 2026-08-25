@@ -12,10 +12,13 @@
 .sw-feat{background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);padding:64px 0;box-sizing:border-box}
 .sw-feat-head{margin-bottom:24px}
 .sw-feat-head h2{font-family:var(--sw-display);font-weight:700;font-size:clamp(28px,3.5vw,40px);letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0}
-/* 2-col grid, 4 rows total (8 wide tiles). Each row ~240px on a 1080-tall
-   viewport so 4 rows + gaps + padding fit in one screen. */
-.sw-feat-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(200px,calc((100vh - 228px) / 4),320px);gap:12px}
+/* 6-col grid, 3 explicit rows. Block sizes span grid columns/rows:
+   wide = 50% (span 3 cols), medium = 33% (span 2 cols), tall = 16% wide × 2 rows tall. */
+.sw-feat-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,clamp(160px,calc((100vh - 228px) / 3),260px));gap:14px}
 .sw-feat-tile{position:relative;overflow:hidden;border-radius:12px;background:var(--sw-surface-low);border:1px solid rgba(255,255,255,0.06)}
+.sw-feat-tile[data-size="wide"]{grid-column:span 3}
+.sw-feat-tile[data-size="medium"]{grid-column:span 2}
+.sw-feat-tile[data-size="tall"]{grid-column:span 1;grid-row:span 2}
 .sw-feat-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .sw-feat-tile:hover img{transform:scale(1.04)}
 .sw-feat-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.5) 35%,rgba(10,10,10,0.15) 70%,transparent 100%);z-index:1;pointer-events:none}
@@ -24,9 +27,17 @@
 .sw-feat-value{font-family:var(--sw-mono);font-size:clamp(18px,2vw,26px);font-weight:700;line-height:1.2;color:var(--sw-on-surface);margin:0;letter-spacing:-0.01em}
 .sw-feat-value[data-accent="lime"]{color:var(--sw-lime)}
 .sw-feat-label{font-family:var(--sw-body);font-size:14px;font-weight:500;line-height:1.35;color:rgba(255,255,255,0.85);margin:0}
+.sw-feat-tile[data-size="wide"] .sw-feat-overlay{padding:28px 32px}
+.sw-feat-tile[data-size="wide"] .sw-feat-value{font-size:clamp(24px,2.6vw,34px)}
+.sw-feat-tile[data-size="wide"] .sw-feat-label{font-size:15px}
+.sw-feat-tile[data-size="tall"] .sw-feat-overlay{padding:20px 16px;justify-content:flex-end}
+.sw-feat-tile[data-size="tall"] .sw-feat-pair+ .sw-feat-pair{margin-top:auto}
+.sw-feat-tile[data-size="tall"] .sw-feat-value{font-size:clamp(16px,1.6vw,20px)}
+.sw-feat-tile[data-size="tall"] .sw-feat-label{font-size:12px}
 @media (max-width:960px){
-  .sw-feat-grid{display:flex;flex-direction:column;gap:12px}
+  .sw-feat-grid{display:flex;flex-direction:column;gap:14px}
   .sw-feat-tile{flex:0 0 auto;aspect-ratio:16/9}
+  .sw-feat-tile[data-size="tall"]{aspect-ratio:16/9}
 }
 </style>
 
@@ -42,7 +53,7 @@
       <div class="sw-feat-grid">
         {%- for block in section.blocks -%}
           {%- if block.type == 'tile' -%}
-            <div class="sw-feat-tile" {{ block.shopify_attributes }}>
+            <div class="sw-feat-tile" data-size="{{ block.settings.size | default: 'medium' }}" {{ block.shopify_attributes }}>
               {%- if block.settings.image != blank -%}
                 <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.label_1 | escape }}" loading="lazy" width="1200" height="675">
               {%- endif -%}
@@ -91,12 +102,20 @@
       "limit": 8,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Tile image",
-          "info": "All tiles render ~600×240px on desktop → upload at 1200×480 (5:2) for crisp 2x. object-fit:cover crops so loose aspect is fine. A wider source (e.g. 1600×600) also works." },
-        { "type": "header", "content": "Primary value (required for visible tile)" },
-        { "type": "text", "id": "value_1", "label": "Value", "default": "80 HP" },
+          "info": "Three sizes, three recommended sources (object-fit:cover crops so loose aspect OK): Wide renders ~635×240px on desktop → upload 1600×600 (8:3) for 2x. Medium renders ~420×240px → upload 1000×600 (5:3). Tall renders ~210×480px → upload 600×1400 (3:7) PORTRAIT." },
+        { "type": "select", "id": "size", "label": "Tile size",
+          "options": [
+            { "value": "wide",   "label": "Wide — 50% wide × 1 row" },
+            { "value": "medium", "label": "Medium — 33% wide × 1 row" },
+            { "value": "tall",   "label": "Tall — 16% wide × 2 rows (use value_2 to stack two specs)" }
+          ],
+          "default": "medium",
+          "info": "Fixed 8-slot layout. Row 1 = 2 wide. Rows 2-3: 2 tall (sides) + 4 medium (middle, 2 per row). Block order in the preset matches positions top-to-bottom, left-to-right; don't reorder." },
+        { "type": "header", "content": "Primary value" },
+        { "type": "text", "id": "value_1", "label": "Value", "default": "" },
         { "type": "checkbox", "id": "value_1_accent", "label": "Value in Electric Lime", "default": false },
-        { "type": "text", "id": "label_1", "label": "Label (description under value)", "default": "Peak Power" },
-        { "type": "header", "content": "Secondary value (for combined tiles — leave blank for single-spec tiles)" },
+        { "type": "text", "id": "label_1", "label": "Label", "default": "" },
+        { "type": "header", "content": "Secondary value (tall tiles stack two specs vertically)" },
         { "type": "text", "id": "value_2", "label": "Value", "default": "" },
         { "type": "checkbox", "id": "value_2_accent", "label": "Value in Electric Lime", "default": false },
         { "type": "text", "id": "label_2", "label": "Label", "default": "" }
@@ -108,29 +127,37 @@
       "name": "SWOOPE Features",
       "blocks": [
         { "type": "tile", "settings": {
+          "size": "wide",
           "value_1": "4160W", "value_1_accent": true, "label_1": "Mid-Drive Motor"
         } },
         { "type": "tile", "settings": {
+          "size": "wide",
           "value_1": "Max Speed 45MPH", "value_1_accent": true, "label_1": ""
         } },
         { "type": "tile", "settings": {
-          "value_1": "Programmable Far-Driver Controller", "label_1": "",
-          "value_2": "Magnetic Emergency Switch", "label_2": ""
+          "size": "tall",
+          "value_1": "Programmable Far-Driver Controller", "value_1_accent": false, "label_1": "",
+          "value_2": "Magnetic Emergency Switch", "value_2_accent": false, "label_2": ""
         } },
         { "type": "tile", "settings": {
-          "value_1": "Heavy-duty Hydraulic Brakes", "label_1": "",
-          "value_2": "Hydraulic Front Fork & Nitrogen Rear Shock", "label_2": ""
-        } },
-        { "type": "tile", "settings": {
+          "size": "medium",
           "value_1": "52V 26Ah", "value_1_accent": true, "label_1": "Large Battery"
         } },
         { "type": "tile", "settings": {
+          "size": "medium",
+          "value_1": "Heavy-duty Hydraulic Brakes", "value_1_accent": false, "label_1": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "tall",
+          "value_1": "Hydraulic Front Fork & Nitrogen Rear Shock", "value_1_accent": false, "label_1": "",
+          "value_2": "Adjustable Suspension", "value_2_accent": false, "label_2": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium",
           "value_1": "50 Miles", "value_1_accent": true, "label_1": ""
         } },
         { "type": "tile", "settings": {
-          "value_1": "", "label_1": ""
-        } },
-        { "type": "tile", "settings": {
+          "size": "medium",
           "value_1": "", "label_1": ""
         } }
       ]
