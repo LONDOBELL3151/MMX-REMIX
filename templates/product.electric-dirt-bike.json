@@ -102,14 +102,14 @@
     "features": {
       "type": "swoope-features",
       "blocks": {
-        "tile_1": { "type": "tile", "settings": { "size": "wide",    "value": "4160W",   "value_accent": true,  "label": "Mid-Drive Motor" } },
-        "tile_2": { "type": "tile", "settings": { "size": "wide",    "value": "Max Speed 45MPH", "value_accent": true, "label": "" } },
-        "tile_3": { "type": "tile", "settings": { "size": "medium",  "value": "Programmable Far-Driver Controller", "value_accent": false, "label": "" } },
-        "tile_4": { "type": "tile", "settings": { "size": "medium",  "value": "52V 26Ah", "value_accent": true, "label": "Large Battery" } },
-        "tile_5": { "type": "tile", "settings": { "size": "medium",  "value": "Heavy-duty Hydraulic Brakes", "value_accent": false, "label": "" } },
-        "tile_6": { "type": "tile", "settings": { "size": "medium",  "value": "Magnetic Emergency Switch", "value_accent": false, "label": "" } },
-        "tile_7": { "type": "tile", "settings": { "size": "medium",  "value": "50 Miles", "value_accent": true, "label": "" } },
-        "tile_8": { "type": "tile", "settings": { "size": "medium",  "value": "Hydraulic Front Fork & Nitrogen Rear Shock", "value_accent": false, "label": "" } }
+        "tile_1": { "type": "tile", "settings": { "value_1": "4160W",   "value_1_accent": true,  "label_1": "Mid-Drive Motor", "value_2": "", "label_2": "" } },
+        "tile_2": { "type": "tile", "settings": { "value_1": "Max Speed 45MPH", "value_1_accent": true, "label_1": "", "value_2": "", "label_2": "" } },
+        "tile_3": { "type": "tile", "settings": { "value_1": "Programmable Far-Driver Controller", "value_1_accent": false, "label_1": "", "value_2": "Magnetic Emergency Switch", "value_2_accent": false, "label_2": "" } },
+        "tile_4": { "type": "tile", "settings": { "value_1": "Heavy-duty Hydraulic Brakes", "value_1_accent": false, "label_1": "", "value_2": "Hydraulic Front Fork & Nitrogen Rear Shock", "value_2_accent": false, "label_2": "" } },
+        "tile_5": { "type": "tile", "settings": { "value_1": "52V 26Ah", "value_1_accent": true, "label_1": "Large Battery", "value_2": "", "label_2": "" } },
+        "tile_6": { "type": "tile", "settings": { "value_1": "50 Miles", "value_1_accent": true, "label_1": "", "value_2": "", "label_2": "" } },
+        "tile_7": { "type": "tile", "settings": { "value_1": "", "label_1": "", "value_2": "", "label_2": "" } },
+        "tile_8": { "type": "tile", "settings": { "value_1": "", "label_1": "", "value_2": "", "label_2": "" } }
       },
       "block_order": [
         "tile_1", "tile_2", "tile_3", "tile_4", "tile_5", "tile_6", "tile_7", "tile_8"
