@@ -1,0 +1,32 @@
+{%- comment -%}
+  SWOOPE — color short name extractor.
+  Renders the SHORT color name (last 2 words of the full name) when the
+  full name has > 2 words; otherwise returns the full name unchanged.
+
+  Usage:
+    {% render 'swoope-color-short', name: member.title %}
+
+  Examples:
+    "MAXFOOT MF-25 ELECTRIC COMMUTER BIKE | STEP-THRU BROOKLYN GRAY" -> "BROOKLYN GRAY"
+    "Phantom Black" -> "Phantom Black"  (already short)
+    "Step-Thru Brooklyn Gray" -> "Brooklyn Gray"
+{%- endcomment -%}
+{%- liquid
+  assign short_name = name
+  assign parts = name | split: ' '
+  assign parts_size = parts | size
+  if parts_size > 2
+    assign drop = parts_size | minus: 2
+    assign short_name = ''
+    assign i = 0
+    for part in parts
+      if i >= drop
+        if short_name != ''
+          assign short_name = short_name | append: ' '
+        endif
+        assign short_name = short_name | append: part
+      endif
+      assign i = i | plus: 1
+    endfor
+  endif
+-%}{{ short_name }}

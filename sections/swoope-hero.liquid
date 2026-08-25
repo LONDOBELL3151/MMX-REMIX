@@ -60,14 +60,16 @@
 .sw-hero-swatch-name{font-family:var(--sw-mono);font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface)}
 .sw-hero-swatch input:checked + .sw-hero-swatch-dot{box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
 .sw-hero-swatch input:checked ~ .sw-hero-swatch-name{color:var(--sw-lime)}
-/* family swatches (external links) — vertical, with color name under dot */
-.sw-hero-swatches--family{flex-wrap:wrap;gap:16px}
-.sw-hero-swatches--family .sw-hero-swatch{flex-direction:column;align-items:center;gap:6px;padding:8px;border-radius:var(--sw-r-lg);background:transparent;border-color:transparent}
-.sw-hero-swatches--family .sw-hero-swatch:hover{border-color:rgba(195,244,0,0.25);background:rgba(46,46,46,0.3)}
-.sw-hero-swatches--family .sw-hero-swatch-dot{width:44px;height:44px;border:2px solid rgba(255,255,255,0.1);transition:border-color .15s,box-shadow .15s}
+/* family swatches (external links) — small filled card with dot + name */
+.sw-hero-swatches--family{flex-wrap:wrap;gap:10px}
+.sw-hero-swatches--family .sw-hero-swatch{flex-direction:row;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(32,31,31,0.6);border:1px solid rgba(255,255,255,0.08);transition:border-color .15s,background .15s,transform .1s}
+.sw-hero-swatches--family .sw-hero-swatch:hover{border-color:rgba(195,244,0,0.35);background:rgba(46,46,46,0.55)}
+.sw-hero-swatches--family .sw-hero-swatch:active{transform:scale(0.97)}
+.sw-hero-swatches--family .sw-hero-swatch-dot{width:28px;height:28px;border:1px solid rgba(255,255,255,0.12);transition:border-color .15s,box-shadow .15s;flex:0 0 28px}
 .sw-hero-swatches--family .sw-hero-swatch:hover .sw-hero-swatch-dot{border-color:var(--sw-lime)}
-.sw-hero-swatch--current{cursor:default;pointer-events:none}
-.sw-hero-swatch--current:hover{border-color:transparent;background:transparent}
+.sw-hero-swatches--family .sw-hero-swatch-name{font-family:var(--sw-mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sw-on-surface);white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.sw-hero-swatch--current{cursor:default;pointer-events:none;border-color:rgba(195,244,0,0.4);background:rgba(195,244,0,0.08)}
+.sw-hero-swatch--current:hover{border-color:rgba(195,244,0,0.4);background:rgba(195,244,0,0.08)}
 .sw-hero-swatch--current .sw-hero-swatch-dot{border-color:var(--sw-lime);box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
 .sw-hero-swatch--current .sw-hero-swatch-name{color:var(--sw-lime)}
 /* option dropdown (non-color) */
@@ -222,7 +224,7 @@
                           {%- if member.id == product.id -%}
                             {%- assign member_color_name = member.metafields.custom.color_name -%}
                             {%- if member_color_name == blank -%}{%- assign member_color_name = member.title -%}{%- endif -%}
-                            {{ member_color_name | escape }}
+                            {% render 'swoope-color-short', name: member_color_name %}
                           {%- endif -%}
                         {%- endfor -%}
                       {%- else -%}
@@ -290,7 +292,7 @@
                             {%- else -%}
                               <span class="sw-hero-swatch-dot" style="background:{{ member_hex }};{% if member_hex == '#ffffff' %}border:1px solid rgba(255,255,255,0.25){% endif %}"></span>
                             {%- endif -%}
-                            <span class="sw-hero-swatch-name">{{ member_color_name | escape }}</span>
+                            <span class="sw-hero-swatch-name">{% render 'swoope-color-short', name: member_color_name %}</span>
                           </span>
                         {%- else -%}
                           <a class="sw-hero-swatch"
@@ -303,7 +305,7 @@
                             {%- else -%}
                               <span class="sw-hero-swatch-dot" style="background:{{ member_hex }};{% if member_hex == '#ffffff' %}border:1px solid rgba(255,255,255,0.25){% endif %}"></span>
                             {%- endif -%}
-                            <span class="sw-hero-swatch-name">{{ member_color_name | escape }}</span>
+                            <span class="sw-hero-swatch-name">{% render 'swoope-color-short', name: member_color_name %}</span>
                           </a>
                         {%- endif -%}
                       {%- endfor -%}
