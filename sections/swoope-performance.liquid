@@ -8,6 +8,12 @@
       assign mode_count = mode_count | plus: 1
     endif
   endfor
+  # Default to the MIDDLE mode so the thumb sits off-center on load — that
+  # signals the slider is interactive (otherwise it'd look stuck at one end).
+  assign initial_idx = 1
+  if mode_count > 0
+    assign initial_idx = mode_count | plus: 1 | divided_by: 2
+  endif
 -%}
 
 <style>
@@ -56,16 +62,32 @@
           <div>
             <p class="sw-perf-label">Power Output</p>
             <p class="sw-perf-mode" data-mode-display>
-              {%- if section.blocks.first.type == 'mode' -%}
-                {{ section.blocks.first.settings.name | escape }}
+              {%- if mode_count > 0 -%}
+                {%- assign mode_found = false -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'mode' and mode_found == false -%}
+                    {%- if forloop.index == initial_idx -%}
+                      {{ block.settings.name | escape }}
+                      {%- assign mode_found = true -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
               {%- else -%}
                 TRACK
               {%- endif -%}
             </p>
           </div>
           <p class="sw-perf-hp" data-hp-display>
-            {%- if section.blocks.first.type == 'mode' -%}
-              {{ section.blocks.first.settings.hp | escape }}
+            {%- if mode_count > 0 -%}
+              {%- assign mode_found = false -%}
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'mode' and mode_found == false -%}
+                  {%- if forloop.index == initial_idx -%}
+                    {{ block.settings.hp | escape }}
+                    {%- assign mode_found = true -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
             {%- else -%}
               80 HP
             {%- endif -%}
@@ -74,11 +96,11 @@
 
         {%- if mode_count > 0 -%}
           <div class="sw-perf-slider-wrap">
-            <input type="range" min="1" max="{{ mode_count }}" step="1" value="{{ mode_count }}" class="sw-perf-slider" data-slider aria-label="Ride mode">
+            <input type="range" min="1" max="{{ mode_count }}" step="1" value="{{ initial_idx }}" class="sw-perf-slider" data-slider aria-label="Ride mode">
             <div class="sw-perf-ticks" data-ticks>
               {%- for block in section.blocks -%}
                 {%- if block.type == 'mode' -%}
-                  <span class="sw-perf-tick{% if forloop.last %} is-active{% endif %}" data-idx="{{ forloop.index }}" data-hp="{{ block.settings.hp | escape }}" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</span>
+                  <span class="sw-perf-tick{% if forloop.index == initial_idx %} is-active{% endif %}" data-idx="{{ forloop.index }}" data-hp="{{ block.settings.hp | escape }}" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</span>
                 {%- endif -%}
               {%- endfor -%}
             </div>
