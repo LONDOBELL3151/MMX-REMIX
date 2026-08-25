@@ -43,7 +43,7 @@
   top:0;
   bottom:0;
   width:0;
-  background:var(--sw-lime);
+  background:var(--sw-lime-dim,#abd600);
   z-index:0;
   pointer-events:none;
 }
@@ -57,7 +57,7 @@
 .sw-terrain-card p{font-family:var(--sw-body);font-size:15px;line-height:1.6;color:#fff;margin:0;text-shadow:-0.5px -0.5px 0 #000,0 -0.5px 0 #000,0.5px -0.5px 0 #000,-0.5px 0 0 #000,0.5px 0 0 #000,-0.5px 0.5px 0 #000,0 0.5px 0 #000,0.5px 0.5px 0 #000,0 1px 8px rgba(0,0,0,0.8);-webkit-text-stroke:0.5px rgba(0,0,0,0.6)}
 .sw-terrain-indicators{display:flex;justify-content:center;gap:8px;margin-top:32px;position:relative;z-index:2}
 .sw-terrain-indicator{width:80px;height:3px;background:rgba(255,255,255,0.15);border-radius:2px;position:relative;overflow:hidden}
-.sw-terrain-indicator::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sw-lime);box-shadow:0 0 8px rgba(195,244,0,0.4)}
+.sw-terrain-indicator::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sw-lime-dim,#abd600);box-shadow:0 0 8px rgba(171,214,0,0.45)}
 .sw-terrain-indicator.is-active::after{width:100%;transition:width var(--sw-terrain-interval,3000ms) linear}
 @media (max-width:960px){
   .sw-terrain-grid{grid-template-columns:1fr;gap:16px}
