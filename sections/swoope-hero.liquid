@@ -32,7 +32,7 @@
    Card overlaps via negative margin so hero total height = card height. */
 .sw-hero-bg{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;background:var(--sw-surface-0);z-index:0}
 .sw-hero-bg img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
-.sw-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 0%,rgba(19,19,19,0.55) 35%,rgba(19,19,19,0.85) 70%,var(--sw-surface-0) 100%);z-index:1;pointer-events:none}
+.sw-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 0%,transparent 60%,rgba(19,19,19,0.25) 85%,rgba(19,19,19,0.45) 100%);z-index:1;pointer-events:none}
 /* Inner: overlaps bg with -100vh top margin. Card drives hero height. */
 .sw-hero-inner{position:relative;z-index:2;margin:-100vh auto 0;width:100%;max-width:var(--sw-container);padding:96px var(--sw-gutter);display:flex;justify-content:flex-end}
 .sw-hero-card{width:100%;max-width:520px;background:rgba(46,46,46,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r-xl);padding:40px;box-shadow:0 24px 48px rgba(0,0,0,0.4)}
@@ -158,7 +158,11 @@
     <div class="sw-hero-card">
       {%- liquid
         assign hero_title = s.heading_override | default: product.title
-        assign hero_desc = s.description_override | default: product.description
+        # Description only renders when the editor explicitly fills
+        # description_override. Default is empty so we don't dump the raw
+        # product body copy (which is often SEO fluff like "EFFICIENT URBAN
+        # RIDING WITH THE MF-25...") into the hero.
+        assign hero_desc = s.description_override
       -%}
       <h1 class="sw-hero-name" data-hero-name>{{ hero_title | escape }}</h1>
 
