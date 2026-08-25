@@ -13,8 +13,9 @@
 <style>
 .sw-terrain{position:relative;padding:var(--sw-section) 0;background:rgba(28,27,27,0.3);border-top:1px solid var(--sw-surface-highest);overflow:hidden}
 .sw-terrain-carousel{position:absolute;inset:0;z-index:0;pointer-events:none}
-.sw-terrain-slide{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--sw-surface-low);opacity:0;transition:opacity var(--sw-terrain-fade,1000ms) ease-in-out}
+.sw-terrain-slide{position:absolute;inset:0;background:var(--sw-surface-low);opacity:0;transition:opacity var(--sw-terrain-fade,1000ms) ease-in-out;overflow:hidden}
 .sw-terrain-slide.is-active{opacity:1}
+.sw-terrain-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .sw-terrain-slide::after{content:"";position:absolute;inset:0;background:rgba(14,14,14,0.55)}
 .sw-terrain-head{text-align:center;margin-bottom:48px;max-width:768px;margin-left:auto;margin-right:auto;position:relative;z-index:2}
 .sw-terrain-head h2{font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0}
@@ -24,10 +25,10 @@
 .sw-terrain-card .sw-terrain-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sw-lime);z-index:1;pointer-events:none;transition:none}
 .sw-terrain-card.is-active .sw-terrain-fill{width:100%;transition:width var(--sw-terrain-interval,3000ms) linear}
 .sw-terrain-card .sw-terrain-overlay{position:relative;z-index:2;display:flex;flex-direction:column;gap:16px}
-.sw-terrain-card h3{font-family:var(--sw-display);font-size:24px;font-weight:600;line-height:1.3;color:var(--sw-lime);margin:0;transition:color .35s ease .15s}
-.sw-terrain-card p{font-family:var(--sw-body);font-size:15px;line-height:1.6;color:var(--sw-on-surface);margin:0;transition:color .35s ease .15s}
-.sw-terrain-card.is-active h3{color:var(--sw-on-lime)}
-.sw-terrain-card.is-active p{color:var(--sw-on-lime)}
+.sw-terrain-card h3{font-family:var(--sw-display);font-size:24px;font-weight:600;line-height:1.3;color:var(--sw-on-surface);margin:0;transition:color .25s ease .2s}
+.sw-terrain-card p{font-family:var(--sw-body);font-size:15px;line-height:1.6;color:var(--sw-on-surface);margin:0;transition:color .25s ease .2s}
+.sw-terrain-card.is-active h3{color:#000}
+.sw-terrain-card.is-active p{color:#0a0a0a}
 .sw-terrain-indicators{display:flex;justify-content:center;gap:8px;margin-top:32px;position:relative;z-index:2}
 .sw-terrain-indicator{flex:1;max-width:120px;height:3px;background:rgba(255,255,255,0.15);border-radius:2px;overflow:hidden;position:relative}
 .sw-terrain-indicator::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sw-lime);box-shadow:0 0 8px rgba(195,244,0,0.4)}
@@ -46,7 +47,11 @@
     <div class="sw-terrain-carousel" data-terrain-carousel aria-hidden="true">
       {%- for block in section.blocks -%}
         {%- if block.type == 'card' -%}
-          <div class="sw-terrain-slide{% if forloop.first %} is-active{% endif %}" data-terrain-slide style="{% if block.settings.image != blank %}background-image:url('{{ block.settings.image | image_url: width: 1600 }}'){% endif %}"></div>
+          <div class="sw-terrain-slide{% if forloop.first %} is-active{% endif %}" data-terrain-slide>
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 1600 }}" alt="" loading="eager" width="1600" height="900">
+            {%- endif -%}
+          </div>
         {%- endif -%}
       {%- endfor -%}
     </div>
