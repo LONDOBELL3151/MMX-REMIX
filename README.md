@@ -1104,7 +1104,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `mf25-stitch-reviews.liquid` | mf25 Stitch PDP reviews |
 | `mf25-stitch-size.liquid` | mf25 Stitch PDP size |
 | `mf25-stitch-specs.liquid` | mf25 Stitch PDP specs |
-| `swoope-hero.liquid` | **SWOOPE electric dirt bike PDP 主商品区**（从 `product` 对象读 title/price/options/featured_image；变体选择自动循环 `product.options_with_values`；加购走 `<product-form>` + `payment_button`；form id=`swoope-hero__form` 避免 maxfoot.js 误绑） |
+| `swoope-hero.liquid` | **SWOOPE electric dirt bike PDP 主商品区**（从 `product` 对象读 title/price/options/featured_image；Color 行走 `product_family` metaobject 外联（每个色 = 一个 product URL）；其他选项保留 in-page 变体选择 + 前端 price/库存/bg 图联动；加购走 `<product-form>` + `payment_button`；form id=`swoope-hero__form` 避免 maxfoot.js 误绑） |
 | `swoope-performance.liquid` | **SWOOPE PDP** Dynamic Performance 滑块（Eco/Trail/Track + HP 联动） |
 | `swoope-terrain.liquid` | **SWOOPE PDP** Master Any Terrain（3 栏 ride profile） |
 | `swoope-mechanical.liquid` | **SWOOPE PDP** Mechanical Breakdown（4 栏 spec 卡，Motor/Battery/Suspension/Brakes） |

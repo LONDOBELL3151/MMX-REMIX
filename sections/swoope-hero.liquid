@@ -14,6 +14,16 @@
       assign s_count = s_count | plus: 1
     endif
   endfor
+
+  # Color family resolution: if the product has a `product_family` metaobject
+  # with >1 members, the Color row becomes an external-link swatch row
+  # (each member is a separate Product — click = navigate to that PDP).
+  # Otherwise, fall back to in-page Color variant swatches (radio inputs).
+  assign family_members = blank
+  assign product_family = product.metafields.custom.product_family.value
+  if product_family and product_family.members.value.size > 1
+    assign family_members = product_family.members.value
+  endif
 -%}
 
 <style>
@@ -43,13 +53,23 @@
 .sw-hero-config-label .sw-current{color:var(--sw-on-surface);font-weight:700}
 /* variant swatch row */
 .sw-hero-swatches{display:flex;flex-wrap:wrap;gap:12px}
-.sw-hero-swatch{position:relative;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);background:rgba(46,46,46,0.4);cursor:pointer;transition:border-color .15s,background .15s}
+.sw-hero-swatch{position:relative;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);background:rgba(46,46,46,0.4);cursor:pointer;transition:border-color .15s,background .15s;text-decoration:none;color:inherit}
 .sw-hero-swatch:hover{border-color:rgba(195,244,0,0.4)}
 .sw-hero-swatch input{position:absolute;opacity:0;pointer-events:none}
 .sw-hero-swatch-dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);flex:0 0 20px}
 .sw-hero-swatch-name{font-family:var(--sw-mono);font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface)}
 .sw-hero-swatch input:checked + .sw-hero-swatch-dot{box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
 .sw-hero-swatch input:checked ~ .sw-hero-swatch-name{color:var(--sw-lime)}
+/* family swatches (external links) — vertical, with color name under dot */
+.sw-hero-swatches--family{flex-wrap:wrap;gap:16px}
+.sw-hero-swatches--family .sw-hero-swatch{flex-direction:column;align-items:center;gap:6px;padding:8px;border-radius:var(--sw-r-lg);background:transparent;border-color:transparent}
+.sw-hero-swatches--family .sw-hero-swatch:hover{border-color:rgba(195,244,0,0.25);background:rgba(46,46,46,0.3)}
+.sw-hero-swatches--family .sw-hero-swatch-dot{width:44px;height:44px;border:2px solid rgba(255,255,255,0.1);transition:border-color .15s,box-shadow .15s}
+.sw-hero-swatches--family .sw-hero-swatch:hover .sw-hero-swatch-dot{border-color:var(--sw-lime)}
+.sw-hero-swatch--current{cursor:default;pointer-events:none}
+.sw-hero-swatch--current:hover{border-color:transparent;background:transparent}
+.sw-hero-swatch--current .sw-hero-swatch-dot{border-color:var(--sw-lime);box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
+.sw-hero-swatch--current .sw-hero-swatch-name{color:var(--sw-lime)}
 /* option dropdown (non-color) */
 .sw-hero-select-wrap{position:relative}
 .sw-hero-select{width:100%;appearance:none;-webkit-appearance:none;background:rgba(46,46,46,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r);color:var(--sw-on-surface);font-family:var(--sw-mono);font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;padding:12px 40px 12px 14px;cursor:pointer}
@@ -91,6 +111,7 @@
 <script type="application/json" data-swoope-variants>
   {
     "productId": {{ product.id | json }},
+    "familySize": {% if family_members != blank %}{{ family_members | size }}{% else %}0{% endif %},
     "variants": [
       {%- for v in product.variants -%}
         {
@@ -193,9 +214,106 @@
                 {%- endif -%}
                 {%- assign opt_pos = forloop.index0 -%}
                 <div class="sw-hero-config-row">
-                  <p class="sw-hero-config-label">{{ option.name }}: <span class="sw-current" data-option-label="{{ opt_pos }}">{{ option.selected_value }}</span></p>
+                  <p class="sw-hero-config-label">
+                    {{ option.name }}:
+                    <span class="sw-current" data-option-label="{{ opt_pos }}">
+                      {%- if is_color and family_members != blank -%}
+                        {%- for member in family_members -%}
+                          {%- if member.id == product.id -%}
+                            {%- assign member_color_name = member.metafields.custom.color_name -%}
+                            {%- if member_color_name == blank -%}{%- assign member_color_name = member.title -%}{%- endif -%}
+                            {{ member_color_name | escape }}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {%- else -%}
+                        {{ option.selected_value }}
+                      {%- endif -%}
+                    </span>
+                  </p>
 
-                  {%- if is_color -%}
+                  {%- if is_color and family_members != blank -%}
+                    {%- comment -%}
+                      Color family: each member is a separate product, swatches
+                      are external <a> links to member.url. Current product is
+                      rendered as a non-clickable <span> with ring.
+                    {%- endcomment -%}
+                    <div class="sw-hero-swatches sw-hero-swatches--family" role="list">
+                      {%- for member in family_members -%}
+                        {%- liquid
+                          assign member_color_name = member.metafields.custom.color_name
+                          if member_color_name == blank
+                            assign member_color_name = member.title
+                          endif
+
+                          # color resolution: hex metafield → keyword match → featured_image → neutral
+                          assign member_hex = member.metafields.custom.color_hex
+                          assign use_image = false
+                          assign member_image_url = blank
+                          if member_hex == blank
+                            assign m_lower = member_color_name | downcase
+                            if m_lower contains 'lime' or m_lower contains 'electric-lime'
+                              assign member_hex = '#abd600'
+                            elsif m_lower contains 'phantom' or m_lower contains 'black'
+                              assign member_hex = '#0e0e0e'
+                            elsif m_lower contains 'slate' or m_lower contains 'gray' or m_lower contains 'grey'
+                              assign member_hex = '#474747'
+                            elsif m_lower contains 'white'
+                              assign member_hex = '#ffffff'
+                            elsif m_lower contains 'red'
+                              assign member_hex = '#d32f2f'
+                            elsif m_lower contains 'orange'
+                              assign member_hex = '#ff6b1a'
+                            elsif m_lower contains 'blue'
+                              assign member_hex = '#1976d2'
+                            endif
+                          endif
+                          if member_hex == blank and member.featured_image != blank
+                            assign member_image_url = member.featured_image | image_url: width: 120
+                            assign use_image = true
+                          elsif member_hex == blank
+                            assign member_hex = '#888888'
+                          endif
+
+                          assign is_current = false
+                          if member.id == product.id
+                            assign is_current = true
+                          endif
+                        -%}
+                        {%- if is_current -%}
+                          <span class="sw-hero-swatch sw-hero-swatch--current"
+                                data-swatch="{{ member.handle }}"
+                                title="{{ member_color_name | escape }}"
+                                aria-current="page"
+                                aria-label="{{ member_color_name | escape }}">
+                            {%- if use_image -%}
+                              <span class="sw-hero-swatch-dot sw-hero-swatch-dot--image" style="background-image:url('{{ member_image_url }}');background-size:cover;background-position:center"></span>
+                            {%- else -%}
+                              <span class="sw-hero-swatch-dot" style="background:{{ member_hex }};{% if member_hex == '#ffffff' %}border:1px solid rgba(255,255,255,0.25){% endif %}"></span>
+                            {%- endif -%}
+                            <span class="sw-hero-swatch-name">{{ member_color_name | escape }}</span>
+                          </span>
+                        {%- else -%}
+                          <a class="sw-hero-swatch"
+                             href="{{ member.url }}"
+                             data-swatch="{{ member.handle }}"
+                             title="{{ member_color_name | escape }}"
+                             aria-label="{{ member_color_name | escape }}">
+                            {%- if use_image -%}
+                              <span class="sw-hero-swatch-dot sw-hero-swatch-dot--image" style="background-image:url('{{ member_image_url }}');background-size:cover;background-position:center"></span>
+                            {%- else -%}
+                              <span class="sw-hero-swatch-dot" style="background:{{ member_hex }};{% if member_hex == '#ffffff' %}border:1px solid rgba(255,255,255,0.25){% endif %}"></span>
+                            {%- endif -%}
+                            <span class="sw-hero-swatch-name">{{ member_color_name | escape }}</span>
+                          </a>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  {%- elsif is_color -%}
+                    {%- comment -%}
+                      No product_family set up yet: fall back to in-page Color
+                      variant radio swatches so the section still works while
+                      family is being configured in admin.
+                    {%- endcomment -%}
                     <div class="sw-hero-swatches" role="radiogroup" aria-label="{{ option.name | escape }}">
                       {%- for value in option.values -%}
                         {%- assign variant = nil -%}
@@ -205,9 +323,6 @@
                             {%- break -%}
                           {%- endif -%}
                         {%- endfor -%}
-                        {%- comment -%}
-                          hex lookup: option value -> color hex
-                        {%- endcomment -%}
                         {%- assign swatch_hex = blank -%}
                         {%- if variant and variant.metafields.custom.color_hex != blank -%}
                           {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
@@ -342,21 +457,41 @@
   var bgImg = document.querySelector('[data-hero-bg-img]');
   var qtyEl = card.querySelector('[data-qty]');
 
-  function findVariantByOptions(opts){
-    return variants.find(function(v){
-      return v.options.every(function(o, i){ return o === opts[i]; });
+  // Non-color option positions. Color is external-link when product_family
+  // has members (each member is a separate product — click = navigate), so we
+  // never include it in the in-page variant matcher. When no family exists,
+  // Color is an in-page radio and IS included.
+  function nonColorPositions(){
+    var out = [];
+    data.options.forEach(function(o, i){
+      var h = (o.name || '').toLowerCase().replace(/[^a-z0-9]/g,'');
+      var skip = (h === 'color' || h === 'colour');
+      if (data.familySize > 1 && skip) return;
+      out.push(i);
     });
+    return out;
   }
+  var ncPos = nonColorPositions();
 
-  function getSelectedOptions(){
+  function getSelectedNonColorOptions(){
     var form = card.querySelector('#swoope-hero__form');
     if (!form) return [];
     var inputs = form.querySelectorAll('input[type="radio"]:checked, select');
-    var selected = [];
+    var out = [];
     inputs.forEach(function(el){
-      selected.push(el.value);
+      var idx = parseInt(el.dataset.optionIndex || '-1', 10);
+      if (ncPos.indexOf(idx) >= 0) out.push({ idx: idx, value: el.value });
     });
-    return selected;
+    out.sort(function(a, b){ return a.idx - b.idx; });
+    return out.map(function(o){ return o.value; });
+  }
+
+  function findVariantByNonColorOptions(values){
+    return variants.find(function(v){
+      return ncPos.every(function(pos, i){
+        return v.options[pos] === values[i];
+      });
+    });
   }
 
   function applyVariant(v){
@@ -389,17 +524,20 @@
     }
   }
 
-  // Listen for option changes
+  // Listen for option changes (only non-color ones drive variant switching)
   var form = card.querySelector('#swoope-hero__form');
   if (form){
     form.addEventListener('change', function(e){
       if (!e.target.matches('input[type=radio], select')) return;
-      var idx = e.target.dataset.optionIndex;
+      var idx = parseInt(e.target.dataset.optionIndex || '-1', 10);
+      // Always update the label for whichever option changed
       var labelEl = card.querySelector('[data-option-label="' + idx + '"]');
       if (labelEl) labelEl.textContent = e.target.value;
-      var opts = getSelectedOptions();
-      if (opts.length === data.options.length){
-        var v = findVariantByOptions(opts);
+      // Only re-resolve variant on non-color option changes
+      if (ncPos.indexOf(idx) < 0) return;
+      var opts = getSelectedNonColorOptions();
+      if (opts.length === ncPos.length){
+        var v = findVariantByNonColorOptions(opts);
         if (v) applyVariant(v);
       }
     });

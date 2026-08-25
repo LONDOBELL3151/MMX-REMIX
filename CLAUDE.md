@@ -67,7 +67,8 @@
 
 - **背景**：MaxFoot 旗下 electric_dirt_bike 子产品线（独立子品牌 **SWOOPE**），设计稿在 `electric_dirt_bike_pdp/`（gitignore 之外、独立归档）。与 MaxFoot yellow `#FFC000` 调性刻意不同：**Electric Lime `#C3F400` + Carbon Black `#0E0E0E` + Glassmorphism**，定位"Hyper-Performance Tech"。
 - **6 个 section + 1 共享样式**：挂在 `templates/product.electric-dirt-bike.json`，PC 端全部：
-  - `swoope-hero`：**本模板的主商品区**（不是装饰 hero）。直接从 `product` 对象读取数据——标题默认 = `product.title`（可 `heading_override`）、价格 = `product.price`（compare_at_price 划掉 + "On Sale" badge）、描述默认 = `product.description`（可 `description_override`）、变体选择器自动循环 `product.options_with_values`（Color 选项渲染 swatch dot，其他渲染下拉），买按钮走 Shopify `<product-form>` + AJAX 加购 + `payment_button`。bg 大图 fallback `product.featured_image`。Spec blocks（80HP/60Miles/240lbs）保留为装饰性 hero 数值（不走 product 数据）。
+  - `swoope-hero`：**本模板的主商品区**（不是装饰 hero）。直接从 `product` 对象读取数据——标题默认 = `product.title`（可 `heading_override`）、价格 = `product.price`（compare_at_price 划掉 + "On Sale" badge）、描述默认 = `product.description`（可 `description_override`）、变体选择器自动循环 `product.options_with_values`，买按钮走 Shopify `<product-form>` + AJAX 加购 + `payment_button`。bg 大图 fallback `product.featured_image`。Spec blocks（80HP/60Miles/240lbs）保留为装饰性 hero 数值（不走 product 数据）。
+- **Color 走外联**：hero 上的 Color 行读 `product.metafields.custom.product_family.value.members`（同 MF-XX 模式，见 `snippets/pdp-color-family.liquid`）。每个 family member 是一个独立 Product —— 色卡渲染成 `<a href="{{ member.url }}">`，点 = 跳到对应 PDP；当前 product 渲染为非交互 `<span>` 加 ring。**没设置 product_family 时降级到 in-page Color radio swatch**（向后兼容）。其他非 Color 选项（Tire 等）保留 in-page 变体下拉 + 前端变体切换。
   - `swoope-performance`：玻璃面板 + 3 档 power slider (Eco/Trail/Track)，slider 拖动实时联动 mode 名 + HP 数字 + 当前档高亮。`mode` block (name + hp)。
   - `swoope-terrain`：3 栏 ride profile 卡（Enduro/Trail/Racer），居中标题。`card` block (heading + body)。
   - `swoope-mechanical`：4 栏 spec 卡（Motor/Battery/Suspension/Brakes），每卡可选 top image + icon select (motor/battery/frame/suspension/brakes/layers/water)。`card` block。
