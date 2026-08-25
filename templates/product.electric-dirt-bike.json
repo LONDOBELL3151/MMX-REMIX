@@ -12,6 +12,14 @@
     "hero": {
       "type": "swoope-hero",
       "blocks": {
+        "spec_YYVXPx": {
+          "type": "spec",
+          "settings": {
+            "icon": "bolt",
+            "value": "80 HP",
+            "label": "Peak Power"
+          }
+        },
         "spec_bolt": {
           "type": "spec",
           "settings": {
@@ -38,6 +46,7 @@
         }
       },
       "block_order": [
+        "spec_YYVXPx",
         "spec_bolt",
         "spec_route",
         "spec_weight"
