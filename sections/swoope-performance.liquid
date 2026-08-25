@@ -12,6 +12,8 @@
 
 <style>
 .sw-perf{padding:var(--sw-section) 0;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
+.sw-perf .sw-head p{max-width:none;margin-top:12px}
+/* override the swoope-styles .sw-head p (640px) — perf body wants full width */
 .sw-perf-card{position:relative;background:rgba(46,46,46,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r-xl);overflow:hidden}
 .sw-perf-bg{position:relative;aspect-ratio:16/9;background:var(--sw-surface-low)}
 .sw-perf-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0.4}
@@ -20,7 +22,7 @@
 .sw-perf-slider-wrap{position:relative;padding-top:24px;padding-bottom:8px}
 .sw-perf-label{font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);margin:0 0 8px}
 .sw-perf-mode{font-family:var(--sw-display);font-size:clamp(56px,7vw,80px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:var(--sw-lime);margin:0}
-.sw-perf-hp{font-family:var(--sw-mono);font-size:24px;font-weight:700;line-height:32px;color:var(--sw-on-surface);margin:0}
+.sw-perf-hp{font-family:var(--sw-mono);font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.1;color:var(--sw-on-surface);margin:0}
 .sw-perf-slider-wrap{position:relative;z-index:1;padding-top:24px;padding-bottom:8px}
 .sw-perf-slider{appearance:none;-webkit-appearance:none;width:100%;height:6px;background:linear-gradient(to right,var(--sw-lime) 0%,var(--sw-lime) var(--sw-pct,50%),var(--sw-surface-high) var(--sw-pct,50%),var(--sw-surface-high) 100%);border-radius:3px;outline:none;cursor:pointer;margin:0}
 .sw-perf-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--sw-lime);box-shadow:0 0 20px var(--sw-lime);cursor:pointer;border:0}
@@ -76,7 +78,7 @@
             <div class="sw-perf-ticks" data-ticks>
               {%- for block in section.blocks -%}
                 {%- if block.type == 'mode' -%}
-                  <span class="sw-perf-tick{% if forloop.last %} is-active{% endif %}" data-idx="{{ forloop.index }}" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</span>
+                  <span class="sw-perf-tick{% if forloop.last %} is-active{% endif %}" data-idx="{{ forloop.index }}" data-hp="{{ block.settings.hp | escape }}" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</span>
                 {%- endif -%}
               {%- endfor -%}
             </div>
