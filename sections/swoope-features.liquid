@@ -1,0 +1,134 @@
+{% render 'swoope-styles' %}
+
+{%- liquid
+  assign s = section.settings
+  assign block_count = 0
+  for block in section.blocks
+    assign block_count = block_count | plus: 1
+  endfor
+-%}
+
+<style>
+.sw-feat{height:100vh;min-height:640px;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);padding:64px 0;display:flex;flex-direction:column;box-sizing:border-box}
+.sw-feat .sw-container{display:flex;flex-direction:column;flex:1;min-height:0}
+.sw-feat-head{margin-bottom:24px;flex:0 0 auto}
+.sw-feat-head h2{font-family:var(--sw-display);font-weight:700;font-size:clamp(28px,3.5vw,40px);letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0}
+.sw-feat-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:1fr;gap:12px;flex:1;min-height:0}
+.sw-feat-tile{position:relative;overflow:hidden;border-radius:12px;background:var(--sw-surface-low);border:1px solid rgba(255,255,255,0.06)}
+.sw-feat-tile[data-size="wide"]{grid-column:span 3}
+.sw-feat-tile[data-size="medium"]{grid-column:span 2}
+.sw-feat-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.sw-feat-tile:hover img{transform:scale(1.04)}
+.sw-feat-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.85) 0%,rgba(10,10,10,0.45) 35%,rgba(10,10,10,0.1) 70%,transparent 100%);z-index:1;pointer-events:none}
+.sw-feat-overlay{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.sw-feat-value{font-family:var(--sw-mono);font-size:clamp(18px,2vw,26px);font-weight:700;line-height:1.2;color:var(--sw-on-surface);margin:0;letter-spacing:-0.01em}
+.sw-feat-value[data-accent="lime"]{color:var(--sw-lime)}
+.sw-feat-label{font-family:var(--sw-body);font-size:14px;font-weight:500;line-height:1.35;color:rgba(255,255,255,0.85);margin:0}
+.sw-feat-tile[data-size="wide"] .sw-feat-overlay{padding:28px 32px}
+.sw-feat-tile[data-size="wide"] .sw-feat-value{font-size:clamp(24px,2.6vw,34px)}
+.sw-feat-tile[data-size="wide"] .sw-feat-label{font-size:15px}
+@media (max-width:960px){
+  .sw-feat{height:auto;min-height:0;padding:48px 0}
+  .sw-feat-grid{display:flex;flex-direction:column;gap:12px}
+  .sw-feat-tile{flex:0 0 auto;aspect-ratio:16/9}
+}
+</style>
+
+<section class="sw-feat" style="padding-top:{{ s.padding_top | default: 64 }}px;padding-bottom:{{ s.padding_bottom | default: 64 }}px" {{ section.shopify_attributes }}>
+  <div class="sw-container">
+    {%- if s.title != blank -%}
+      <div class="sw-feat-head">
+        <h2>{{ s.title | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if block_count > 0 -%}
+      <div class="sw-feat-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tile' -%}
+            <div class="sw-feat-tile" data-size="{{ block.settings.size | default: 'medium' }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.label | escape }}" loading="lazy" width="1200" height="675">
+              {%- endif -%}
+              <div class="sw-feat-overlay">
+                {%- if block.settings.value != blank -%}
+                  <p class="sw-feat-value"{% if block.settings.value_accent %} data-accent="lime"{% endif %}>{{ block.settings.value | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.label != blank -%}
+                  <p class="sw-feat-label">{{ block.settings.label | escape }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "SWOOPE Features",
+  "tag": "section",
+  "class": "section-swoope-features",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading (optional)",
+      "info": "Leave blank to render the feature grid without a heading." },
+    { "type": "header", "content": "Section spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Feature tile",
+      "limit": 8,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Tile image",
+          "info": "Wide tiles (size=Wide) render ~636×358px on desktop → upload at 1600×900 (16:9) for crisp 2x. Medium tiles (size=Medium) render ~424×358px → 800×600 (4:3) is enough. object-fit:cover crops to fit, so the aspect can be loose." },
+        { "type": "select", "id": "size", "label": "Grid size",
+          "options": [
+            { "value": "wide", "label": "Wide — 1/2 row (50% width)" },
+            { "value": "medium", "label": "Medium — 1/3 row (33% width)" }
+          ],
+          "default": "medium",
+          "info": "Row 1 holds 2 wide tiles. Rows 2-3 each hold 3 medium tiles. Total = 2 wide + 6 medium = 8 slots. The block_order in the preset matches the slots top-to-bottom, left-to-right; don't reorder unless you also re-arrange the grid CSS." },
+        { "type": "text", "id": "value", "label": "Value (display number/headline)", "default": "80 HP" },
+        { "type": "checkbox", "id": "value_accent", "label": "Value in Electric Lime", "default": false },
+        { "type": "text", "id": "label", "label": "Label (description under value)", "default": "Peak Power" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SWOOPE Features",
+      "blocks": [
+        { "type": "tile", "settings": {
+          "size": "wide", "value": "4160W", "value_accent": true, "label": "Mid-Drive Motor"
+        } },
+        { "type": "tile", "settings": {
+          "size": "wide", "value": "Max Speed 45MPH", "value_accent": true, "label": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium", "value": "Programmable Far-Driver Controller", "value_accent": false, "label": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium", "value": "52V 26Ah", "value_accent": true, "label": "Large Battery"
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium", "value": "Heavy-duty Hydraulic Brakes", "value_accent": false, "label": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium", "value": "Magnetic Emergency Switch", "value_accent": false, "label": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium", "value": "50 Miles", "value_accent": true, "label": ""
+        } },
+        { "type": "tile", "settings": {
+          "size": "medium", "value": "Hydraulic Front Fork & Nitrogen Rear Shock", "value_accent": false, "label": ""
+        } }
+      ]
+    }
+  ]
+}
+{% endschema %}

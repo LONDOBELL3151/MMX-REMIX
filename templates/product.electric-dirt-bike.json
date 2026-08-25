@@ -99,6 +99,26 @@
         "padding_bottom": 96
       }
     },
+    "features": {
+      "type": "swoope-features",
+      "blocks": {
+        "tile_1": { "type": "tile", "settings": { "size": "wide",    "value": "4160W",   "value_accent": true,  "label": "Mid-Drive Motor" } },
+        "tile_2": { "type": "tile", "settings": { "size": "wide",    "value": "Max Speed 45MPH", "value_accent": true, "label": "" } },
+        "tile_3": { "type": "tile", "settings": { "size": "medium",  "value": "Programmable Far-Driver Controller", "value_accent": false, "label": "" } },
+        "tile_4": { "type": "tile", "settings": { "size": "medium",  "value": "52V 26Ah", "value_accent": true, "label": "Large Battery" } },
+        "tile_5": { "type": "tile", "settings": { "size": "medium",  "value": "Heavy-duty Hydraulic Brakes", "value_accent": false, "label": "" } },
+        "tile_6": { "type": "tile", "settings": { "size": "medium",  "value": "Magnetic Emergency Switch", "value_accent": false, "label": "" } },
+        "tile_7": { "type": "tile", "settings": { "size": "medium",  "value": "50 Miles", "value_accent": true, "label": "" } },
+        "tile_8": { "type": "tile", "settings": { "size": "medium",  "value": "Hydraulic Front Fork & Nitrogen Rear Shock", "value_accent": false, "label": "" } }
+      },
+      "block_order": [
+        "tile_1", "tile_2", "tile_3", "tile_4", "tile_5", "tile_6", "tile_7", "tile_8"
+      ],
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
     "terrain": {
       "type": "swoope-terrain",
       "blocks": {
@@ -238,6 +258,7 @@
   "order": [
     "hero",
     "performance",
+    "features",
     "terrain",
     "mechanical",
     "quality",
