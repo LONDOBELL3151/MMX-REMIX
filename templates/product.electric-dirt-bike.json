@@ -262,6 +262,7 @@
         "card_motor": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/25mm1200.png",
             "icon": "motor",
             "label": "Motor",
             "value": "60kW Liquid Cooled",
@@ -271,6 +272,7 @@
         "card_battery": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/25bb1200.png",
             "icon": "battery",
             "label": "Battery",
             "value": "6.5kWh Lithium Ion",
