@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -34,9 +43,13 @@
         "spec_weight"
       ],
       "settings": {
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "show_dynamic_checkout": true
+        "heading_override": "SWOOPE S3",
+        "description_override": "",
+        "bg_image": "shopify://shop_images/ChatGPT_Image_Aug_25_2026_10_21_37_AM.png",
+        "dealer_link": "",
+        "show_dynamic_checkout": true,
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "performance": {
@@ -205,6 +218,8 @@
         "title_accent_1": "OTA Updates",
         "title_accent_2": "GPS Security",
         "body": "The NEON LINK app transforms your smartphone into a digital dashboard. Monitor battery health down to the cell, track your ride telemetry, and receive over-the-air performance upgrades seamlessly.",
+        "app_store_link": "",
+        "google_play_link": "",
         "padding_top": 96,
         "padding_bottom": 96
       }
