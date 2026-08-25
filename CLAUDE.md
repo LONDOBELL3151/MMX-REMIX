@@ -67,14 +67,15 @@
 
 - **背景**：MaxFoot 旗下 electric_dirt_bike 子产品线（独立子品牌 **SWOOPE**），设计稿在 `electric_dirt_bike_pdp/`（gitignore 之外、独立归档）。与 MaxFoot yellow `#FFC000` 调性刻意不同：**Electric Lime `#C3F400` + Carbon Black `#0E0E0E` + Glassmorphism**，定位"Hyper-Performance Tech"。
 - **6 个 section + 1 共享样式**：挂在 `templates/product.electric-dirt-bike.json`，PC 端全部：
-  - `swoope-hero`：左侧 hero 大图 + 右侧 glass-panel 配置器卡（产品名/价/3 项 spec/3 色/2 轮胎/Reserve Now+Find a Dealer）。`spec` block (icon select: bolt/route/weight/speed) + `color` block (swatch + name) + `tire` block。JS 纯前端切换 aria-checked。
+  - `swoope-hero`：**本模板的主商品区**（不是装饰 hero）。直接从 `product` 对象读取数据——标题默认 = `product.title`（可 `heading_override`）、价格 = `product.price`（compare_at_price 划掉 + "On Sale" badge）、描述默认 = `product.description`（可 `description_override`）、变体选择器自动循环 `product.options_with_values`（Color 选项渲染 swatch dot，其他渲染下拉），买按钮走 Shopify `<product-form>` + AJAX 加购 + `payment_button`。bg 大图 fallback `product.featured_image`。Spec blocks（80HP/60Miles/240lbs）保留为装饰性 hero 数值（不走 product 数据）。
   - `swoope-performance`：玻璃面板 + 3 档 power slider (Eco/Trail/Track)，slider 拖动实时联动 mode 名 + HP 数字 + 当前档高亮。`mode` block (name + hp)。
   - `swoope-terrain`：3 栏 ride profile 卡（Enduro/Trail/Racer），居中标题。`card` block (heading + body)。
   - `swoope-mechanical`：4 栏 spec 卡（Motor/Battery/Suspension/Brakes），每卡可选 top image + icon select (motor/battery/frame/suspension/brakes/layers/water)。`card` block。
   - `swoope-quality`：左右两栏（左 text + 右带 lime glow 的 feature 卡）。`feature` block (icon + title + body)。
   - `swoope-app`：左右两栏（左 text + App Store/Google Play CTA + 右 phone 截图，带 lime glow）。无 block。
+- **swoope-hero 表单 ID = `#swoope-hero__form`**（不是 `#pdp__form`），避免 `assets/maxfoot.js` 误绑——后者只对单选项产品有效，多选项会写出错的 variant id。变体切换、价/库存/可用性联动、bg 图随变体切换，全部由 hero 内置 JS 走（用 `<script type="application/json">` 一次性把全 variants dump 给前端）。
 - **共享 CSS**：`snippets/swoope-styles.liquid`（唯一源，含 design tokens：Sora/Inter/JetBrains Mono + Carbon Black/Electric Lime tokens + glass panel utility + shared button/head/spec styles）。**所有 swoope section 顶部 `{% render 'swoope-styles' %}`**，不内联 copy（吸取 mf25-stitch-performance 的教训）。
-- **本模板无 main-product**：swoope 走 Reserve Now 模式（不下单），配置器即"主商品区"，全靠 `swoope-hero` 承担。如要加，加到 `swoope-hero` 之前即可。
+- **swoope 走 Reserve Now 模式**：`swoope-hero` 加购按钮文案 "Reserve Now — {{ price }}"（非默认主题的 "Add to Cart"）。如要让其他产品复用此 section，文案会自动降级到 "Add to Cart"（条件判断 `product.template_suffix == 'electric-dirt-bike'`）。
 - **类名前缀**：所有 class 用 `.sw-*`（区别于 mf25 的 `.mf25-*`），避免两家族样式互相污染。
 
 ## 6. README 导航速查（深度文档入口）

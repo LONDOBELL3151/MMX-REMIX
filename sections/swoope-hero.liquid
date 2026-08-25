@@ -1,7 +1,13 @@
 {% render 'swoope-styles' %}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign s = section.settings
+  assign current_variant = product.selected_or_first_available_variant
+  assign has_compare = false
+  if current_variant.compare_at_price > current_variant.price
+    assign has_compare = true
+  endif
   assign s_count = 0
   for block in section.blocks
     if block.type == 'spec'
@@ -12,13 +18,16 @@
 
 <style>
 .sw-hero{position:relative;min-height:760px;padding-top:96px;display:flex;align-items:center;background:var(--sw-surface-0);overflow:hidden}
-.sw-hero-bg{position:absolute;inset:0;background-size:58%;background-position:15% 85%;background-repeat:no-repeat;background-color:var(--sw-surface-0);z-index:0}
-.sw-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 0%,rgba(19,19,19,0.6) 40%,var(--sw-surface-0) 75%);z-index:1}
+.sw-hero-bg{position:absolute;inset:0;background-color:var(--sw-surface-0);z-index:0}
 .sw-hero-bg img{position:absolute;left:5%;bottom:5%;width:55%;max-width:780px;height:auto;object-fit:contain;z-index:1}
-.sw-hero-inner{position:relative;z-index:2;width:100%;max-width:var(--sw-container);margin:0 auto;padding:0 var(--sw-gutter);display:flex;justify-content:flex-end}
+.sw-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 0%,rgba(19,19,19,0.6) 40%,var(--sw-surface-0) 75%);z-index:2}
+.sw-hero-inner{position:relative;z-index:3;width:100%;max-width:var(--sw-container);margin:0 auto;padding:0 var(--sw-gutter);display:flex;justify-content:flex-end}
 .sw-hero-card{width:100%;max-width:520px;background:rgba(46,46,46,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r-xl);padding:40px;box-shadow:0 24px 48px rgba(0,0,0,0.4)}
 .sw-hero-name{font-family:var(--sw-display);font-size:clamp(56px,7vw,80px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:var(--sw-lime);margin:0 0 16px}
-.sw-hero-price{font-family:var(--sw-display);font-size:clamp(36px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0 0 16px}
+.sw-hero-price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.sw-hero-price{font-family:var(--sw-display);font-size:clamp(36px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0}
+.sw-hero-price--compare{font-family:var(--sw-mono);font-size:20px;font-weight:500;color:var(--sw-on-surface-variant);text-decoration:line-through;opacity:0.7}
+.sw-hero-badge-on-sale{display:inline-block;font-family:var(--sw-mono);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 8px;background:var(--sw-lime);color:var(--sw-on-lime);border-radius:var(--sw-r-sm)}
 .sw-hero-desc{font-family:var(--sw-body);font-size:16px;line-height:1.6;color:var(--sw-on-surface-variant);margin:0 0 40px}
 .sw-hero-specs{display:flex;flex-direction:column;gap:24px;margin-bottom:32px}
 .sw-hero-spec{display:flex;align-items:center;gap:16px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1)}
@@ -32,20 +41,42 @@
 .sw-hero-config-row:last-of-type{margin-bottom:0}
 .sw-hero-config-label{font-family:var(--sw-mono);font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);margin:0 0 12px;display:flex;gap:8px;align-items:baseline}
 .sw-hero-config-label .sw-current{color:var(--sw-on-surface);font-weight:700}
-.sw-hero-colors{display:flex;gap:12px}
-.sw-hero-color{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);transition:border-color .15s,box-shadow .15s;padding:0;position:relative;cursor:pointer}
-.sw-hero-color:hover{border-color:var(--sw-lime)}
-.sw-hero-color[aria-checked="true"]{border-color:var(--sw-lime);box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
-.sw-hero-tires{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:rgba(28,27,27,0.5);border-radius:var(--sw-r-lg);border:1px solid rgba(255,255,255,0.1)}
-.sw-hero-tire{padding:10px 12px;border-radius:var(--sw-r);background:transparent;color:var(--sw-on-surface-variant);font-family:var(--sw-body);font-size:14px;font-weight:700;text-transform:none;letter-spacing:0;transition:background .15s,color .15s}
-.sw-hero-tire[aria-checked="true"]{background:var(--sw-lime);color:var(--sw-on-lime)}
-.sw-hero-tire:hover:not([aria-checked="true"]){color:var(--sw-on-surface)}
-.sw-hero-actions{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+/* variant swatch row */
+.sw-hero-swatches{display:flex;flex-wrap:wrap;gap:12px}
+.sw-hero-swatch{position:relative;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);background:rgba(46,46,46,0.4);cursor:pointer;transition:border-color .15s,background .15s}
+.sw-hero-swatch:hover{border-color:rgba(195,244,0,0.4)}
+.sw-hero-swatch input{position:absolute;opacity:0;pointer-events:none}
+.sw-hero-swatch-dot{width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);flex:0 0 20px}
+.sw-hero-swatch-name{font-family:var(--sw-mono);font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface)}
+.sw-hero-swatch input:checked + .sw-hero-swatch-dot{box-shadow:0 0 0 2px var(--sw-surface-0),0 0 0 4px var(--sw-lime)}
+.sw-hero-swatch input:checked ~ .sw-hero-swatch-name{color:var(--sw-lime)}
+/* option dropdown (non-color) */
+.sw-hero-select-wrap{position:relative}
+.sw-hero-select{width:100%;appearance:none;-webkit-appearance:none;background:rgba(46,46,46,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r);color:var(--sw-on-surface);font-family:var(--sw-mono);font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;padding:12px 40px 12px 14px;cursor:pointer}
+.sw-hero-select:focus{outline:none;border-color:var(--sw-lime);box-shadow:0 0 0 2px rgba(195,244,0,0.25)}
+.sw-hero-select-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--sw-on-surface-variant);pointer-events:none}
+.sw-hero-select-arrow svg{width:14px;height:14px;display:block}
+/* qty row */
+.sw-hero-qty-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sw-hero-qty{display:inline-flex;align-items:center;background:rgba(46,46,46,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:var(--sw-r);overflow:hidden}
+.sw-hero-qty button{width:36px;height:36px;color:var(--sw-on-surface);font-size:18px;line-height:1;display:grid;place-items:center}
+.sw-hero-qty button:hover{background:rgba(195,244,0,0.1);color:var(--sw-lime)}
+.sw-hero-qty input{width:48px;height:36px;background:transparent;border:0;border-left:1px solid rgba(255,255,255,0.1);border-right:1px solid rgba(255,255,255,0.1);color:var(--sw-on-surface);font-family:var(--sw-mono);font-size:14px;text-align:center;-moz-appearance:textfield}
+.sw-hero-qty input::-webkit-outer-spin-button,.sw-hero-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.sw-hero-stock{font-family:var(--sw-mono);font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);margin-bottom:16px}
+.sw-hero-stock--out{color:#ff8a80}
+.sw-hero-stock--low{color:var(--sw-lime)}
+.sw-hero-actions{display:flex;flex-direction:column;gap:12px}
+.sw-hero-actions .sw-btn{position:relative}
+.sw-hero-submit-state{display:none}
+.sw-hero-submit-state.is-loading{display:inline-flex;align-items:center;gap:8px}
+.sw-hero-submit-state .spinner{width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:sw-spin .6s linear infinite}
+@keyframes sw-spin{to{transform:rotate(360deg)}}
+.sw-hero-err{min-height:18px;font-family:var(--sw-mono);font-size:12px;color:#ff8a80;margin-top:8px}
 @media (max-width:960px){
   .sw-hero{min-height:auto;padding:120px 0 64px}
-  .sw-hero-bg{background-size:80%;background-position:center 100%;opacity:0.35}
+  .sw-hero-bg img{opacity:0.3;left:50%;transform:translateX(-50%)}
   .sw-hero-bg::after{background:linear-gradient(180deg,rgba(10,10,10,0.7) 0%,var(--sw-surface-0) 80%)}
-  .sw-hero-bg img{display:none}
   .sw-hero-inner{justify-content:center}
   .sw-hero-card{max-width:100%;padding:28px}
   .sw-hero-desc{margin-bottom:32px}
@@ -53,22 +84,68 @@
 }
 </style>
 
+{%- comment -%}
+  Variant data exposed to JS: full map so client-side switching can update
+  price + availability + button state without a server round-trip.
+{%- endcomment -%}
+<script type="application/json" data-swoope-variants>
+  {
+    "productId": {{ product.id | json }},
+    "variants": [
+      {%- for v in product.variants -%}
+        {
+          "id": {{ v.id | json }},
+          "available": {{ v.available | json }},
+          "price": {{ v.price | json }},
+          "compareAtPrice": {{ v.compare_at_price | json }},
+          "priceFormatted": {{ v.price | money | json }},
+          "compareAtPriceFormatted": {{ v.compare_at_price | money | json }},
+          "options": {{ v.options | json }},
+          "featuredImage": {% if v.featured_image %}{{ v.featured_image | image_url: width: 1600 | json }}{% else %}null{% endif %}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    "options": [
+      {%- for opt in product.options_with_values -%}
+        {
+          "name": {{ opt.name | json }},
+          "position": {{ opt.position | json }},
+          "values": {{ opt.values | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    "bgImage": {% if s.bg_image %}{{ s.bg_image | image_url: width: 1600 | json }}{% elsif product.featured_image %}{{ product.featured_image | image_url: width: 1600 | json }}{% else %}null{% endif %},
+    "currency": {{ shop.currency | json }}
+  }
+</script>
+
 <section class="sw-hero" style="padding-top:{{ s.padding_top | default: 96 }}px;padding-bottom:{{ s.padding_bottom | default: 96 }}px" {{ section.shopify_attributes }}>
-  <div class="sw-hero-bg">
+  <div class="sw-hero-bg" data-hero-bg>
     {%- if s.bg_image != blank -%}
-      <img src="{{ s.bg_image | image_url: width: 1600 }}" alt="{{ s.product_name | escape }}" loading="eager" width="1600" height="1067">
+      <img src="{{ s.bg_image | image_url: width: 1600 }}" alt="{{ product.title | escape }}" loading="eager" width="1600" height="1067" data-hero-bg-img>
+    {%- elsif product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 1600 }}" alt="{{ product.title | escape }}" loading="eager" width="1600" height="1067" data-hero-bg-img>
     {%- endif -%}
   </div>
+
   <div class="sw-hero-inner">
     <div class="sw-hero-card">
-      {%- if s.product_name != blank -%}
-        <h1 class="sw-hero-name">{{ s.product_name | escape }}</h1>
-      {%- endif -%}
-      {%- if s.price != blank -%}
-        <p class="sw-hero-price">{{ s.price | escape }}</p>
-      {%- endif -%}
-      {%- if s.description != blank -%}
-        <p class="sw-hero-desc">{{ s.description }}</p>
+      {%- liquid
+        assign hero_title = s.heading_override | default: product.title
+        assign hero_desc = s.description_override | default: product.description
+      -%}
+      <h1 class="sw-hero-name" data-hero-name>{{ hero_title | escape }}</h1>
+
+      <div class="sw-hero-price-row">
+        <p class="sw-hero-price" data-hero-price>{{ current_variant.price | money }}</p>
+        {%- if has_compare -%}
+          <s class="sw-hero-price--compare" data-hero-compare>{{ current_variant.compare_at_price | money }}</s>
+          <span class="sw-hero-badge-on-sale">On Sale</span>
+        {%- endif -%}
+      </div>
+
+      {%- if hero_desc != blank -%}
+        <div class="sw-hero-desc" data-hero-desc>{{ hero_desc }}</div>
       {%- endif -%}
 
       {%- if s_count > 0 -%}
@@ -103,58 +180,149 @@
       <div class="sw-hero-config">
         <h3 class="sw-hero-config-title">Configure Your Ride</h3>
 
-        {%- assign color_count = 0 -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'color' -%}
-            {%- assign color_count = color_count | plus: 1 -%}
-          {%- endif -%}
-        {%- endfor -%}
+        {%- if product.has_only_default_variant == false -%}
+          <product-form class="product-form" data-hide-errors="true">
+            {%- form 'product', product, id: 'swoope-hero__form', class: 'pdp__form swoope-hero__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ current_variant.id }}" disabled class="product-variant-id" data-variant-input>
 
-        {%- if color_count > 0 -%}
-          <div class="sw-hero-config-row">
-            <p class="sw-hero-config-label">Color: <span class="sw-current" data-color-label>{{ s.color_default_label | default: 'Phantom Black' }}</span></p>
-            <div class="sw-hero-colors" role="radiogroup" aria-label="Color">
-              {%- for block in section.blocks -%}
-                {%- if block.type == 'color' -%}
-                  <button type="button" class="sw-hero-color" style="background:{{ block.settings.swatch }}" data-color-label="{{ block.settings.name | escape }}" title="{{ block.settings.name | escape }}" aria-label="{{ block.settings.name | escape }}" aria-checked="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}></button>
+              {%- for option in product.options_with_values -%}
+                {%- assign opt_handle = option.name | downcase | handleize -%}
+                {%- assign is_color = false -%}
+                {%- if opt_handle == 'color' or opt_handle == 'colour' -%}
+                  {%- assign is_color = true -%}
                 {%- endif -%}
+                {%- assign opt_pos = forloop.index0 -%}
+                <div class="sw-hero-config-row">
+                  <p class="sw-hero-config-label">{{ option.name }}: <span class="sw-current" data-option-label="{{ opt_pos }}">{{ option.selected_value }}</span></p>
+
+                  {%- if is_color -%}
+                    <div class="sw-hero-swatches" role="radiogroup" aria-label="{{ option.name | escape }}">
+                      {%- for value in option.values -%}
+                        {%- assign variant = nil -%}
+                        {%- for v in product.variants -%}
+                          {%- if v.options[opt_pos] == value -%}
+                            {%- assign variant = v -%}
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                        {%- comment -%}
+                          hex lookup: option value -> color hex
+                        {%- endcomment -%}
+                        {%- assign swatch_hex = blank -%}
+                        {%- if variant and variant.metafields.custom.color_hex != blank -%}
+                          {%- assign swatch_hex = variant.metafields.custom.color_hex -%}
+                        {%- else -%}
+                          {%- assign sn = value | downcase | handleize -%}
+                          {%- case sn -%}
+                            {%- when 'black','phantom-black' -%}{%- assign swatch_hex = '#0e0e0e' -%}
+                            {%- when 'lime','electric-lime' -%}{%- assign swatch_hex = '#abd600' -%}
+                            {%- when 'slate','slate-grey','gray','grey' -%}{%- assign swatch_hex = '#474747' -%}
+                            {%- when 'white' -%}{%- assign swatch_hex = '#ffffff' -%}
+                            {%- when 'red' -%}{%- assign swatch_hex = '#d32f2f' -%}
+                            {%- when 'blue' -%}{%- assign swatch_hex = '#1976d2' -%}
+                            {%- else -%}{%- assign swatch_hex = '#888888' -%}
+                          {%- endcase -%}
+                        {%- endif -%}
+                        <label class="sw-hero-swatch" title="{{ value | escape }}">
+                          <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-option-index="{{ opt_pos }}" data-variant-id="{{ variant.id | default: '' }}">
+                          <span class="sw-hero-swatch-dot" style="background:{{ swatch_hex }};{% if swatch_hex == '#ffffff' %}border:1px solid rgba(255,255,255,0.2){% endif %}"></span>
+                          <span class="sw-hero-swatch-name">{{ value | escape }}</span>
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                  {%- else -%}
+                    <div class="sw-hero-select-wrap">
+                      <select name="options[{{ option.name | downcase }}]" class="sw-hero-select" data-option-index="{{ opt_pos }}">
+                        {%- for value in option.values -%}
+                          {%- assign variant = nil -%}
+                          {%- for v in product.variants -%}
+                            {%- if v.options[opt_pos] == value -%}
+                              {%- assign variant = v -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+                          <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %} data-variant-id="{{ variant.id | default: '' }}">{{ value | escape }}</option>
+                        {%- endfor -%}
+                      </select>
+                      <span class="sw-hero-select-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </div>
+                  {%- endif -%}
+                </div>
               {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
 
-        {%- assign tire_count = 0 -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'tire' -%}
-            {%- assign tire_count = tire_count | plus: 1 -%}
-          {%- endif -%}
-        {%- endfor -%}
+              <div class="sw-hero-qty-row">
+                <div class="sw-hero-qty" data-qty>
+                  <button type="button" data-qty-step="-1" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" name="quantity" value="1" min="1" data-qty-input aria-label="Quantity">
+                  <button type="button" data-qty-step="1" aria-label="Increase quantity">&plus;</button>
+                </div>
+              </div>
 
-        {%- if tire_count > 0 -%}
-          <div class="sw-hero-config-row">
-            <p class="sw-hero-config-label">Tire Setup</p>
-            <div class="sw-hero-tires" role="radiogroup" aria-label="Tire setup">
-              {%- for block in section.blocks -%}
-                {%- if block.type == 'tire' -%}
-                  <button type="button" class="sw-hero-tire" aria-checked="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</button>
+              <div class="sw-hero-actions">
+                <button type="submit" name="add" class="sw-btn sw-btn--primary" data-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+                  <span data-add-label>
+                    {%- if current_variant.available -%}
+                      {%- if product.template_suffix == 'electric-dirt-bike' -%}
+                        Reserve Now &mdash; {{ current_variant.price | money }}
+                      {%- else -%}
+                        Add to Cart &mdash; {{ current_variant.price | money }}
+                      {%- endif -%}
+                    {%- else -%}
+                      Sold Out
+                    {%- endif -%}
+                  </span>
+                  <span class="sw-hero-submit-state" data-add-spinner><span class="spinner"></span><span>Adding</span></span>
+                </button>
+                {%- if s.show_dynamic_checkout and current_variant.available -%}
+                  <div class="sw-hero-dynamic-checkout">{{ form | payment_button }}</div>
                 {%- endif -%}
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
+                {%- if s.dealer_link != blank -%}
+                  <a href="{{ s.dealer_link }}" class="sw-btn sw-btn--ghost">Find a Dealer</a>
+                {%- endif -%}
+              </div>
 
-        <div class="sw-hero-actions">
-          {%- if s.reserve_link != blank -%}
-            <a href="{{ s.reserve_link }}" class="sw-btn sw-btn--primary">Reserve Now</a>
-          {%- else -%}
-            <button type="button" class="sw-btn sw-btn--primary">Reserve Now</button>
-          {%- endif -%}
-          {%- if s.dealer_link != blank -%}
-            <a href="{{ s.dealer_link }}" class="sw-btn sw-btn--ghost">Find a Dealer</a>
-          {%- else -%}
-            <button type="button" class="sw-btn sw-btn--ghost">Find a Dealer</button>
-          {%- endif -%}
-        </div>
+              <div class="sw-hero-err" data-add-error role="alert"></div>
+            {%- endform -%}
+          </product-form>
+        {%- else -%}
+          {%- comment -%}
+            Product has no variants — still render the buy form with just qty
+          {%- endcomment -%}
+          <product-form class="product-form" data-hide-errors="true">
+            {%- form 'product', product, id: 'swoope-hero__form', class: 'pdp__form swoope-hero__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ current_variant.id }}" disabled class="product-variant-id" data-variant-input>
+
+              <div class="sw-hero-qty-row">
+                <div class="sw-hero-qty" data-qty>
+                  <button type="button" data-qty-step="-1" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" name="quantity" value="1" min="1" data-qty-input aria-label="Quantity">
+                  <button type="button" data-qty-step="1" aria-label="Increase quantity">&plus;</button>
+                </div>
+              </div>
+
+              <div class="sw-hero-actions">
+                <button type="submit" name="add" class="sw-btn sw-btn--primary" data-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+                  <span data-add-label>
+                    {%- if current_variant.available -%}
+                      Reserve Now &mdash; {{ current_variant.price | money }}
+                    {%- else -%}
+                      Sold Out
+                    {%- endif -%}
+                  </span>
+                  <span class="sw-hero-submit-state" data-add-spinner><span class="spinner"></span><span>Adding</span></span>
+                </button>
+                {%- if s.show_dynamic_checkout and current_variant.available -%}
+                  <div class="sw-hero-dynamic-checkout">{{ form | payment_button }}</div>
+                {%- endif -%}
+                {%- if s.dealer_link != blank -%}
+                  <a href="{{ s.dealer_link }}" class="sw-btn sw-btn--ghost">Find a Dealer</a>
+                {%- endif -%}
+              </div>
+
+              <div class="sw-hero-err" data-add-error role="alert"></div>
+            {%- endform -%}
+          </product-form>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -162,26 +330,117 @@
 
 <script>
 (function(){
-  // Color swatches
-  document.querySelectorAll('.sw-hero-colors').forEach(function(group){
-    var label = group.parentElement.querySelector('[data-color-label]');
-    group.querySelectorAll('.sw-hero-color').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        group.querySelectorAll('.sw-hero-color').forEach(function(b){ b.setAttribute('aria-checked','false'); });
-        btn.setAttribute('aria-checked','true');
-        if(label) label.textContent = btn.getAttribute('data-color-label') || label.textContent;
-      });
+  // --- Variant switching (scoped to swoope-hero) ---
+  var card = document.querySelector('.section-swoope-hero .sw-hero-card');
+  if (!card) return;
+  var dataEl = document.querySelector('[data-swoope-variants]');
+  if (!dataEl) return;
+  var data = JSON.parse(dataEl.textContent || '{}');
+  var variants = data.variants || [];
+  var priceEl = card.querySelector('[data-hero-price]');
+  var compareEl = card.querySelector('[data-hero-compare]');
+  var bgImg = document.querySelector('[data-hero-bg-img]');
+  var qtyEl = card.querySelector('[data-qty]');
+
+  function findVariantByOptions(opts){
+    return variants.find(function(v){
+      return v.options.every(function(o, i){ return o === opts[i]; });
     });
-  });
-  // Tire radios
-  document.querySelectorAll('.sw-hero-tires').forEach(function(group){
-    group.querySelectorAll('.sw-hero-tire').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        group.querySelectorAll('.sw-hero-tire').forEach(function(b){ b.setAttribute('aria-checked','false'); });
-        btn.setAttribute('aria-checked','true');
-      });
+  }
+
+  function getSelectedOptions(){
+    var form = card.querySelector('#swoope-hero__form');
+    if (!form) return [];
+    var inputs = form.querySelectorAll('input[type="radio"]:checked, select');
+    var selected = [];
+    inputs.forEach(function(el){
+      selected.push(el.value);
     });
-  });
+    return selected;
+  }
+
+  function applyVariant(v){
+    var form = card.querySelector('#swoope-hero__form');
+    var idInput = form && form.querySelector('[data-variant-input]');
+    var addBtn = card.querySelector('[data-add-to-cart]');
+    var labelEl = card.querySelector('[data-add-label]');
+    if (!v) return;
+    if (idInput) idInput.value = v.id;
+    if (priceEl) priceEl.textContent = v.priceFormatted;
+    if (compareEl){
+      if (v.compareAtPrice && v.compareAtPrice > v.price){
+        compareEl.textContent = v.compareAtPriceFormatted;
+        compareEl.style.display = '';
+      } else {
+        compareEl.style.display = 'none';
+      }
+    }
+    if (bgImg && v.featuredImage){
+      bgImg.src = v.featuredImage;
+    }
+    if (addBtn && labelEl){
+      if (v.available){
+        addBtn.disabled = false;
+        labelEl.textContent = 'Reserve Now — ' + v.priceFormatted;
+      } else {
+        addBtn.disabled = true;
+        labelEl.textContent = 'Sold Out';
+      }
+    }
+  }
+
+  // Listen for option changes
+  var form = card.querySelector('#swoope-hero__form');
+  if (form){
+    form.addEventListener('change', function(e){
+      if (!e.target.matches('input[type=radio], select')) return;
+      var idx = e.target.dataset.optionIndex;
+      var labelEl = card.querySelector('[data-option-label="' + idx + '"]');
+      if (labelEl) labelEl.textContent = e.target.value;
+      var opts = getSelectedOptions();
+      if (opts.length === data.options.length){
+        var v = findVariantByOptions(opts);
+        if (v) applyVariant(v);
+      }
+    });
+  }
+
+  // --- Quantity stepper ---
+  if (qtyEl){
+    var input = qtyEl.querySelector('[data-qty-input]');
+    qtyEl.addEventListener('click', function(e){
+      var step = parseInt(e.target.dataset.qtyStep || '0', 10);
+      if (!step || !input) return;
+      var cur = parseInt(input.value, 10) || 1;
+      var next = Math.max(1, cur + step);
+      input.value = next;
+    });
+  }
+
+  // --- Add-to-cart submit state ---
+  var submitBtn = card.querySelector('[data-add-to-cart]');
+  var spinner = card.querySelector('[data-add-spinner]');
+  var errEl = card.querySelector('[data-add-error]');
+  if (submitBtn){
+    submitBtn.addEventListener('click', function(){
+      submitBtn.classList.add('is-loading');
+      if (spinner) spinner.classList.add('is-loading');
+      if (errEl) errEl.textContent = '';
+      // product-form.js handles the actual submit; reset state after a tick
+      setTimeout(function(){
+        submitBtn.classList.remove('is-loading');
+        if (spinner) spinner.classList.remove('is-loading');
+      }, 1200);
+    });
+  }
+  // Catch cart error events from product-form.js via pubsub
+  if (typeof subscribe === 'function' && typeof window.PUB_SUB_EVENTS !== 'undefined' && errEl){
+    subscribe(window.PUB_SUB_EVENTS.cartError, function(data){
+      if (data && data.message){
+        errEl.textContent = data.message;
+      }
+    });
+  }
 })();
 </script>
 
@@ -191,15 +450,16 @@
   "tag": "section",
   "class": "section-swoope-hero",
   "settings": [
-    { "type": "image_picker", "id": "bg_image", "label": "Hero bike image",
-      "info": "Recommended: 1600×1067 (3:2). object-position: bottom-left. <300KB." },
-    { "type": "text", "id": "product_name", "label": "Product name (display)", "default": "S3" },
-    { "type": "text", "id": "price", "label": "Price (text)", "default": "$12,500" },
-    { "type": "textarea", "id": "description", "label": "Description",
-      "default": "Experience the thrill of electric silence. Tear through the wilderness with explosive power, leaving nothing but dust in your wake. No noise, no emissions, pure adrenaline." },
-    { "type": "text", "id": "color_default_label", "label": "Default color label", "default": "Phantom Black" },
-    { "type": "url", "id": "reserve_link", "label": "Reserve Now link (optional)" },
+    { "type": "header", "content": "Product overrides (blank = use product data)" },
+    { "type": "text", "id": "heading_override", "label": "Heading override",
+      "info": "Leave blank to use product.title." },
+    { "type": "richtext", "id": "description_override", "label": "Description override",
+      "info": "Leave blank to use product.description." },
+    { "type": "image_picker", "id": "bg_image", "label": "Background bike image override",
+      "info": "Recommended: 1600×1067 (3:2). Falls back to product.featured_image. <300KB." },
+    { "type": "header", "content": "Calls to action" },
     { "type": "url", "id": "dealer_link", "label": "Find a Dealer link (optional)" },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout button", "default": true },
     { "type": "header", "content": "Section spacing" },
     { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 96 },
     { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 96 }
@@ -207,7 +467,7 @@
   "blocks": [
     {
       "type": "spec",
-      "name": "Hero spec",
+      "name": "Hero spec (decoration)",
       "limit": 6,
       "settings": [
         { "type": "select", "id": "icon", "label": "Icon",
@@ -222,23 +482,6 @@
         { "type": "text", "id": "value", "label": "Value (display)", "default": "80 HP" },
         { "type": "text", "id": "label", "label": "Label (uppercase)", "default": "Peak Power" }
       ]
-    },
-    {
-      "type": "color",
-      "name": "Color swatch",
-      "limit": 6,
-      "settings": [
-        { "type": "text", "id": "name", "label": "Color name", "default": "Phantom Black" },
-        { "type": "color", "id": "swatch", "label": "Swatch color", "default": "#0e0e0e" }
-      ]
-    },
-    {
-      "type": "tire",
-      "name": "Tire option",
-      "limit": 4,
-      "settings": [
-        { "type": "text", "id": "label", "label": "Tire label", "default": "All-Terrain" }
-      ]
     }
   ],
   "presets": [
@@ -247,12 +490,7 @@
       "blocks": [
         { "type": "spec", "settings": { "icon": "bolt",   "value": "80 HP",   "label": "Peak Power" } },
         { "type": "spec", "settings": { "icon": "route",  "value": "60 Miles","label": "Max Range" } },
-        { "type": "spec", "settings": { "icon": "weight", "value": "240 lbs", "label": "Curb Weight" } },
-        { "type": "color", "settings": { "name": "Phantom Black",   "swatch": "#0e0e0e" } },
-        { "type": "color", "settings": { "name": "Electric Lime",   "swatch": "#abd600" } },
-        { "type": "color", "settings": { "name": "Slate Grey",      "swatch": "#474747" } },
-        { "type": "tire",  "settings": { "label": "All-Terrain" } },
-        { "type": "tire",  "settings": { "label": "Supermoto" } }
+        { "type": "spec", "settings": { "icon": "weight", "value": "240 lbs", "label": "Curb Weight" } }
       ]
     }
   ]

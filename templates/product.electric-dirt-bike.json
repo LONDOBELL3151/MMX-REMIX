@@ -26,58 +26,17 @@
             "value": "240 lbs",
             "label": "Curb Weight"
           }
-        },
-        "color_black": {
-          "type": "color",
-          "settings": {
-            "name": "Phantom Black",
-            "swatch": "#0e0e0e"
-          }
-        },
-        "color_lime": {
-          "type": "color",
-          "settings": {
-            "name": "Electric Lime",
-            "swatch": "#abd600"
-          }
-        },
-        "color_slate": {
-          "type": "color",
-          "settings": {
-            "name": "Slate Grey",
-            "swatch": "#474747"
-          }
-        },
-        "tire_at": {
-          "type": "tire",
-          "settings": {
-            "label": "All-Terrain"
-          }
-        },
-        "tire_sm": {
-          "type": "tire",
-          "settings": {
-            "label": "Supermoto"
-          }
         }
       },
       "block_order": [
         "spec_bolt",
         "spec_route",
-        "spec_weight",
-        "color_black",
-        "color_lime",
-        "color_slate",
-        "tire_at",
-        "tire_sm"
+        "spec_weight"
       ],
       "settings": {
-        "product_name": "S3",
-        "price": "$12,500",
-        "description": "Experience the thrill of electric silence. Tear through the wilderness with explosive power, leaving nothing but dust in your wake. No noise, no emissions, pure adrenaline.",
-        "color_default_label": "Phantom Black",
         "padding_top": 96,
-        "padding_bottom": 96
+        "padding_bottom": 96,
+        "show_dynamic_checkout": true
       }
     },
     "performance": {
