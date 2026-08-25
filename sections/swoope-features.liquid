@@ -59,19 +59,19 @@
               {%- endif -%}
               <div class="sw-feat-overlay">
                 {%- assign v1 = block.settings.value_1 -%}
-                {%- if v1 != blank and v1 != ' ' -%}
+                {%- if v1 != blank and v1 != '—' -%}
                   <div class="sw-feat-pair">
                     <p class="sw-feat-value"{% if block.settings.value_1_accent %} data-accent="lime"{% endif %}>{{ v1 | escape }}</p>
-                    {%- if block.settings.label_1 != blank and block.settings.label_1 != ' ' -%}
+                    {%- if block.settings.label_1 != blank and block.settings.label_1 != '—' -%}
                       <p class="sw-feat-label">{{ block.settings.label_1 | escape }}</p>
                     {%- endif -%}
                   </div>
                 {%- endif -%}
                 {%- assign v2 = block.settings.value_2 -%}
-                {%- if v2 != blank and v2 != ' ' -%}
+                {%- if v2 != blank and v2 != '—' -%}
                   <div class="sw-feat-pair">
                     <p class="sw-feat-value"{% if block.settings.value_2_accent %} data-accent="lime"{% endif %}>{{ v2 | escape }}</p>
-                    {%- if block.settings.label_2 != blank and block.settings.label_2 != ' ' -%}
+                    {%- if block.settings.label_2 != blank and block.settings.label_2 != '—' -%}
                       <p class="sw-feat-label">{{ block.settings.label_2 | escape }}</p>
                     {%- endif -%}
                   </div>
@@ -114,13 +114,13 @@
           "default": "medium",
           "info": "Fixed 8-slot layout. Row 1 = 2 wide. Rows 2-3: 2 tall (sides) + 4 medium (middle, 2 per row). Block order in the preset matches positions top-to-bottom, left-to-right; don't reorder." },
         { "type": "header", "content": "Primary value" },
-        { "type": "text", "id": "value_1", "label": "Value", "default": " " },
+        { "type": "text", "id": "value_1", "label": "Value", "default": "—" },
         { "type": "checkbox", "id": "value_1_accent", "label": "Value in Electric Lime", "default": false },
-        { "type": "text", "id": "label_1", "label": "Label", "default": " " },
+        { "type": "text", "id": "label_1", "label": "Label", "default": "—" },
         { "type": "header", "content": "Secondary value (tall tiles only)" },
-        { "type": "text", "id": "value_2", "label": "Value", "default": " " },
+        { "type": "text", "id": "value_2", "label": "Value", "default": "—" },
         { "type": "checkbox", "id": "value_2_accent", "label": "Value in Electric Lime", "default": false },
-        { "type": "text", "id": "label_2", "label": "Label", "default": " " }
+        { "type": "text", "id": "label_2", "label": "Label", "default": "—" }
       ]
     }
   ],
