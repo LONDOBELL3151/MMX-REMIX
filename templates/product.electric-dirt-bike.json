@@ -262,7 +262,7 @@
         "card_motor": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/25mm1200.png",
+            "image": "shopify://shop_images/7f0fb319ea4308d8ceb272937d5fec20.png",
             "icon": "motor",
             "label": "Motor",
             "value": "60kW Liquid Cooled",
