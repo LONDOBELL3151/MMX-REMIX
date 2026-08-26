@@ -14,7 +14,7 @@
 -%}
 
 <style>
-.sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);min-height:calc(var(--sw-mech-count,1) * 220vh)}
+.sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);min-height:calc(var(--sw-mech-count,1) * 220vh);padding-bottom:200vh}
 .sw-mech-stage{position:sticky;top:0;height:100vh;overflow:hidden;z-index:1}
 .sw-mech-bg{position:absolute;inset:0;z-index:0}
 .sw-mech-bg-slide{position:absolute;inset:0;background:var(--sw-surface-low);opacity:0;transition:opacity .25s linear;overflow:hidden}
@@ -117,8 +117,9 @@
       range = 1; // safety against zero
     }
     var progress = Math.min(1, Math.max(0, scrolled / range));
-    // Floating index 0..N-1
-    var idx = progress * (N - 1);
+    // Floating index 0..N-1, clamped at N-1 so the last spec stays
+    // visible during the extra sticky-pin time after cycling completes.
+    var idx = Math.min(N - 1, progress * (N - 1));
 
     for(var i = 0; i < bgSlides.length; i++){
       var distance = Math.abs(i - idx);
