@@ -104,11 +104,15 @@
   var N = bgSlides.length;
 
   function update(){
-    var rect = stage.getBoundingClientRect();
-    // How far we've scrolled past the stage's top edge, in vh units
+    // Use the SECTION's rect (not the sticky stage's — a sticky element
+    // pinned at top:0 has rect.top = 0 throughout pinning, which would
+    // freeze our progress. The section itself scrolls past viewport top
+    // normally while the stage is pinned inside it, so its top going
+    // negative is what we use to track scroll progress through the section).
+    var rect = section.getBoundingClientRect();
     var scrolled = -rect.top;
-    // Total scrollable range while stage is pinned = section height - stage height
-    var range = section.offsetHeight - stage.offsetHeight;
+    // Scroll range while stage is pinned = section height - 1 viewport
+    var range = section.offsetHeight - window.innerHeight;
     if (range <= 0) {
       range = 1; // safety against zero
     }
@@ -118,13 +122,16 @@
 
     for(var i = 0; i < bgSlides.length; i++){
       var distance = Math.abs(i - idx);
-      var opacity = Math.max(0, Math.min(1, 1 - distance));
+      // Steeper fade — only the active card and its immediate neighbor
+      // hold visible opacity; anything further away is fully hidden so
+      // stacked cards don't visually overlap their text.
+      var opacity = Math.max(0, 1 - distance * 1.4);
       bgSlides[i].style.opacity = opacity;
       bgSlides[i].classList.toggle('is-active', opacity > 0.5);
     }
     for(var j = 0; j < cards.length; j++){
       var d = Math.abs(j - idx);
-      var o = Math.max(0, Math.min(1, 1 - d));
+      var o = Math.max(0, 1 - d * 1.4);
       cards[j].style.opacity = o;
       cards[j].classList.toggle('is-active', o > 0.5);
       cards[j].setAttribute('aria-hidden', o > 0.5 ? 'false' : 'true');
