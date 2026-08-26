@@ -17,7 +17,8 @@
 .sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest)}
 .sw-mech-stage{position:sticky;top:0;height:100vh;overflow:hidden;z-index:1}
 .sw-mech-bg{position:absolute;inset:0;z-index:0}
-.sw-mech-bg-slide{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--sw-surface-low);opacity:0;transition:opacity .25s linear}
+.sw-mech-bg-slide{position:absolute;inset:0;background:var(--sw-surface-low);opacity:0;transition:opacity .25s linear;overflow:hidden}
+.sw-mech-bg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .sw-mech-bg-slide::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,0.55)}
 .sw-mech-bg-slide.is-active{opacity:1}
 .sw-mech-heading{position:absolute;top:72px;left:0;right:0;text-align:center;z-index:3;font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0;padding:0 var(--sw-gutter);text-shadow:0 2px 12px rgba(0,0,0,0.6)}
@@ -43,7 +44,11 @@
       <div class="sw-mech-bg" data-mech-bg>
         {%- for block in section.blocks -%}
           {%- if block.type == 'card' -%}
-            <div class="sw-mech-bg-slide{% if forloop.first %} is-active{% endif %}" data-mech-bg-slide style="{% if block.settings.image != blank %}background-image:url('{{ block.settings.image | image_url: width: 1600 }}'){% endif %}"></div>
+            <div class="sw-mech-bg-slide{% if forloop.first %} is-active{% endif %}" data-mech-bg-slide>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1920 }}" alt="" loading="eager" width="1920" height="1080">
+              {%- endif -%}
+            </div>
           {%- endif -%}
         {%- endfor -%}
       </div>
@@ -160,7 +165,7 @@
       "limit": 8,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Background image for this spec",
-          "info": "Renders as the section's background image when this spec is active. Recommended: 1600×900 (16:9). Image is full-bleed with a dark overlay so the card text stays readable." },
+          "info": "Renders as the section's fullscreen background image when this spec is active (one viewport tall — covers the whole sticky stage). Recommended: 1920×1080 (16:9) for 1× desktop coverage, 3840×2160 for 2× retina. object-fit:cover crops loose aspect so a wider source also works." },
         { "type": "select", "id": "icon", "label": "Icon",
           "options": [
             { "value": "motor",      "label": "Motor" },
