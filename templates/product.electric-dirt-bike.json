@@ -292,6 +292,7 @@
         "card_brakes": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/9689a29a27fa48b47a4e6db8756929c9.png",
             "icon": "brakes",
             "label": "Brakes",
             "value": "Brembo Performance",
