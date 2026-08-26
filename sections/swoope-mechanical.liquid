@@ -14,24 +14,48 @@
 -%}
 
 <style>
-.sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);--sw-mech-block:220;min-height:calc(var(--sw-mech-count,1) * var(--sw-mech-block) * 1vh)}
-.sw-mech-stage{position:fixed;top:0;left:0;right:0;height:100vh;overflow:hidden;z-index:1;opacity:0;transition:opacity .3s linear;pointer-events:none}
-.sw-mech-stage.is-visible{opacity:1;pointer-events:auto}
+.sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);--sw-mech-block:220;min-height:calc(var(--sw-mech-count,1) * var(--sw-mech-block) * 1vh);view-timeline:--sw-mech-timeline block}
+.sw-mech-stage{position:fixed;top:0;left:0;right:0;height:100vh;overflow:hidden;z-index:1;animation:sw-mech-stage linear both;animation-timeline:--sw-mech-timeline;animation-range:contain;animation-fill-mode:both}
 .sw-mech-bg{position:absolute;inset:0;z-index:0}
-.sw-mech-bg-slide{position:absolute;inset:0;background:var(--sw-surface-low);opacity:0;transition:opacity .25s linear;overflow:hidden}
+.sw-mech-bg-slide{position:absolute;inset:0;background:var(--sw-surface-low);opacity:0;overflow:hidden;animation-timeline:--sw-mech-timeline;animation-range:contain;animation-fill-mode:both;animation-timing-function:linear}
 .sw-mech-bg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .sw-mech-bg-slide::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,0.55)}
-.sw-mech-bg-slide.is-active{opacity:1}
-.sw-mech-heading{position:absolute;top:140px;left:0;right:0;text-align:center;z-index:3;font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0;padding:0 var(--sw-gutter);text-shadow:0 2px 12px rgba(0,0,0,0.6)}
+.sw-mech-heading{position:absolute;top:140px;left:0;right:0;text-align:center;z-index:3;font-family:var(--sw-display);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;color:var(--sw-on-surface);margin:0;padding:0 var(--sw-gutter);text-shadow:0 2px 12px rgba(0,0,0,0.6);animation:sw-mech-stage linear both;animation-timeline:--sw-mech-timeline;animation-range:contain;animation-fill-mode:both}
 .sw-mech-cards{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:flex-end;justify-content:flex-start;padding:64px var(--sw-gutter);pointer-events:none}
-.sw-mech-card{position:absolute;left:var(--sw-gutter);bottom:64px;display:flex;flex-direction:row;align-items:center;gap:24px;background:rgba(20,20,20,0.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);border-radius:var(--sw-r-xl);padding:24px 32px;max-width:760px;opacity:0;transition:opacity .25s linear}
-.sw-mech-card.is-active{opacity:1}
+.sw-mech-card{position:absolute;left:var(--sw-gutter);bottom:64px;display:flex;flex-direction:row;align-items:center;gap:24px;background:rgba(20,20,20,0.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);border-radius:var(--sw-r-xl);padding:24px 32px;max-width:760px;opacity:0;animation-timeline:--sw-mech-timeline;animation-range:contain;animation-fill-mode:both;animation-timing-function:linear}
 .sw-mech-card .sw-mech-icon{flex:0 0 56px;width:56px;height:56px;color:var(--sw-lime);display:flex;align-items:center;justify-content:center}
 .sw-mech-card .sw-mech-icon svg{width:100%;height:100%;display:block}
 .sw-mech-card .sw-mech-content{display:flex;flex-direction:column;gap:6px;min-width:0}
 .sw-mech-card .sw-mech-label{font-family:var(--sw-mono);font-size:13px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sw-on-surface-variant);margin:0}
 .sw-mech-card .sw-mech-value{font-family:var(--sw-display);font-size:28px;font-weight:600;line-height:1.1;color:var(--sw-lime);margin:0}
 .sw-mech-card .sw-mech-body{font-family:var(--sw-body);font-size:14px;line-height:1.5;color:var(--sw-on-surface-variant);margin:6px 0 0;max-width:60ch}
+
+/* Stage fade: visible only while section is in viewport. Fades in 0-5%,
+   holds 5-95%, fades out 95-100%. Animation only runs during contain
+   (i.e. when the section is in viewport), so the stage hides the
+   moment the user scrolls past — no JS observer needed. */
+@keyframes sw-mech-stage{
+  0%{opacity:0}
+  5%,95%{opacity:1}
+  100%{opacity:0}
+}
+
+/* Per-block fade keyframes. Each of the 4 blocks owns 25% of the
+   section view-timeline, with a 5% fade margin at each boundary.
+   Last block has no fade-out (extends to section end). Scrollytelling
+   fades are interpolated by the browser based on actual scroll position,
+   so big wheel scrolls don't jump to the last block — the user sweeps
+   through each transition. */
+.sw-mech-bg-slide:nth-child(1),.sw-mech-card:nth-child(1){animation-name:sw-mech-fade-1}
+.sw-mech-bg-slide:nth-child(2),.sw-mech-card:nth-child(2){animation-name:sw-mech-fade-2}
+.sw-mech-bg-slide:nth-child(3),.sw-mech-card:nth-child(3){animation-name:sw-mech-fade-3}
+.sw-mech-bg-slide:nth-child(4),.sw-mech-card:nth-child(4){animation-name:sw-mech-fade-4}
+
+@keyframes sw-mech-fade-1{0%{opacity:0}5%,20%{opacity:1}25%,100%{opacity:0}}
+@keyframes sw-mech-fade-2{0%{opacity:0}30%{opacity:0}35%,45%{opacity:1}50%,100%{opacity:0}}
+@keyframes sw-mech-fade-3{0%{opacity:0}55%{opacity:0}60%,70%{opacity:1}75%,100%{opacity:0}}
+@keyframes sw-mech-fade-4{0%{opacity:0}80%{opacity:0}85%,100%{opacity:1}}
+
 @media (max-width:960px){
   .sw-mech-cards{padding:32px 20px}
   .sw-mech-card{left:20px;right:20px;bottom:32px;padding:20px;gap:16px;flex-direction:column;align-items:flex-start}
@@ -45,7 +69,7 @@
       <div class="sw-mech-bg" data-mech-bg>
         {%- for block in section.blocks -%}
           {%- if block.type == 'card' -%}
-            <div class="sw-mech-bg-slide{% if forloop.first %} is-active{% endif %}" data-mech-bg-slide>
+            <div class="sw-mech-bg-slide" data-mech-bg-slide>
               {%- if block.settings.image != blank -%}
                 <img src="{{ block.settings.image | image_url: width: 1920 }}" alt="" loading="eager" width="1920" height="1080">
               {%- endif -%}
@@ -59,7 +83,7 @@
       <div class="sw-mech-cards" data-mech-cards aria-live="polite">
         {%- for block in section.blocks -%}
           {%- if block.type == 'card' -%}
-            <div class="sw-mech-card{% if forloop.first %} is-active{% endif %}" data-mech-card aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
+            <div class="sw-mech-card" data-mech-card>
               <div class="sw-mech-icon" aria-hidden="true">
                 {%- case block.settings.icon -%}
                   {%- when 'motor' -%}
@@ -93,90 +117,6 @@
   </div>
 </section>
 
-<script>
-(function(){
-  var section = document.querySelector('[data-mech-section]');
-  if(!section) return;
-  var stage = section.querySelector('[data-mech-stage]');
-  var bgSlides = section.querySelectorAll('[data-mech-bg-slide]');
-  var cards = section.querySelectorAll('[data-mech-card]');
-  if(!stage || bgSlides.length === 0) return;
-
-  var N = bgSlides.length;
-
-  // Show/hide stage based on whether the section is in the viewport.
-  // Stage is position:fixed so it's always at viewport top; we just
-  // need to fade it out when the user has scrolled past the section.
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        stage.classList.toggle('is-visible', entry.isIntersecting);
-      });
-    }, { threshold: 0 });
-    io.observe(section);
-  }
-
-  // Plateau fade: each block phase (220vh) splits as 15% fade-in /
-  // 70% plateau / 15% fade-out. Last block skips the fade-out so
-  // every block ends up with ~154vh of full visibility + 33vh of
-  // cross-fade on each side = 220vh/phase total. Distributes the
-  // "dwell time" evenly across all blocks instead of letting the
-  // middle blocks steal time from the first/last.
-  function blockOpacityAt(i, currentIdx, phaseProgress, total){
-    if (i < currentIdx || i > currentIdx + 1) return 0;
-    if (i === currentIdx) {
-      if (i === total - 1) return 1; // last block: stay full
-      if (phaseProgress < 0.85) return 1;
-      return Math.max(0, (1 - phaseProgress) / 0.15);
-    }
-    return Math.max(0, (phaseProgress - 0.85) / 0.15);
-  }
-
-  function update(){
-    var rect = section.getBoundingClientRect();
-    // scrolled = distance the section has been scrolled past the
-    // viewport top. 0 when section top hits viewport top, N*block
-    // when section bottom hits viewport bottom.
-    var scrolled = -rect.top;
-    var blockPx = parseFloat(getComputedStyle(section).getPropertyValue('--sw-mech-block')) || 220;
-    var range = N * blockPx;
-    // Clamp scrolled to [0, range] so blocks don't shift past their
-    // final state when the user keeps scrolling through the section.
-    if (scrolled < 0) scrolled = 0;
-    if (scrolled > range) scrolled = range;
-    var exactIdx = scrolled / blockPx;  // 0..N
-    var blockFloor = Math.min(N - 1, Math.floor(exactIdx));
-    var phaseProgress = exactIdx - blockFloor;
-
-    for(var i = 0; i < bgSlides.length; i++){
-      var opacity = blockOpacityAt(i, blockFloor, phaseProgress, N);
-      bgSlides[i].style.opacity = opacity;
-      bgSlides[i].classList.toggle('is-active', opacity > 0.5);
-    }
-    for(var j = 0; j < cards.length; j++){
-      var o = blockOpacityAt(j, blockFloor, phaseProgress, N);
-      cards[j].style.opacity = o;
-      cards[j].classList.toggle('is-active', o > 0.5);
-      cards[j].setAttribute('aria-hidden', o > 0.5 ? 'false' : 'true');
-    }
-  }
-
-  var ticking = false;
-  function onScroll(){
-    if(ticking) return;
-    ticking = true;
-    requestAnimationFrame(function(){
-      update();
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  update();
-})();
-</script>
-
 {% schema %}
 {
   "name": "SWOOPE Mechanical",
@@ -192,10 +132,10 @@
     {
       "type": "card",
       "name": "Spec card",
-      "limit": 8,
+      "limit": 4,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Background image for this spec",
-          "info": "Renders as the section's fullscreen background image when this spec is active. Recommended: 1920×1080 (16:9). The section is N×220vh tall (e.g. 880vh for 4 specs); each spec gets 220vh of scroll, so the spec stays visible while you read it before the next fades in." },
+          "info": "Renders as the section's fullscreen background image when this spec is active. Recommended: 1920×1080 (16:9). The section is exactly 4×220 = 880vh tall — each of the 4 spec blocks owns 25% of that scroll range, fading in and out at the boundaries." },
         { "type": "select", "id": "icon", "label": "Icon",
           "options": [
             { "value": "motor",      "label": "Motor" },
