@@ -272,7 +272,7 @@
         "card_battery": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/25bb1200.png",
+            "image": "shopify://shop_images/8d851d36cab09a17332268f3b0bd383b.png",
             "icon": "battery",
             "label": "Battery",
             "value": "6.5kWh Lithium Ion",
