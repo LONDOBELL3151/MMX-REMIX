@@ -14,8 +14,9 @@
 -%}
 
 <style>
-.sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);--sw-mech-block:220;min-height:calc(var(--sw-mech-count,1) * var(--sw-mech-block) * 1vh + 100vh)}
-.sw-mech-stage{position:sticky;top:0;height:100vh;overflow:hidden;z-index:1}
+.sw-mech{position:relative;background:var(--sw-surface-0);border-top:1px solid var(--sw-surface-highest);--sw-mech-block:220;min-height:calc(var(--sw-mech-count,1) * var(--sw-mech-block) * 1vh)}
+.sw-mech-stage{position:fixed;top:0;left:0;right:0;height:100vh;overflow:hidden;z-index:1;opacity:0;transition:opacity .3s linear;pointer-events:none}
+.sw-mech-stage.is-visible{opacity:1;pointer-events:auto}
 .sw-mech-bg{position:absolute;inset:0;z-index:0}
 .sw-mech-bg-slide{position:absolute;inset:0;background:var(--sw-surface-low);opacity:0;transition:opacity .25s linear;overflow:hidden}
 .sw-mech-bg-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -103,37 +104,16 @@
 
   var N = bgSlides.length;
 
-  function update(){
-    // Use the SECTION's rect (not the sticky stage's — a sticky element
-    // pinned at top:0 has rect.top = 0 throughout pinning, which would
-    // freeze our progress. The section itself scrolls past viewport top
-    // normally while the stage is pinned inside it, so its top going
-    // negative is what we use to track scroll progress through the section).
-    var rect = section.getBoundingClientRect();
-    var scrolled = -rect.top;
-    // Cycle range (where blocks transition) is N × per-block. Read the
-    // per-block value from the CSS var so JS and CSS stay in sync. This
-    // is intentionally SHORTER than the sticky range (which is
-    // section.height - viewport) so the last block fully appears
-    // BEFORE the section ends, instead of right at the moment sticky releases.
-    var blockPx = parseFloat(getComputedStyle(section).getPropertyValue('--sw-mech-block')) || 220;
-    var range = N * blockPx;
-    var exactIdx = scrolled / range;
-    // Discretize to the current block + phase progress within it
-    var blockFloor = Math.min(N - 1, Math.floor(exactIdx));
-    var phaseProgress = exactIdx - blockFloor;
-
-    for(var i = 0; i < bgSlides.length; i++){
-      var opacity = blockOpacityAt(i, blockFloor, phaseProgress, N);
-      bgSlides[i].style.opacity = opacity;
-      bgSlides[i].classList.toggle('is-active', opacity > 0.5);
-    }
-    for(var j = 0; j < cards.length; j++){
-      var o = blockOpacityAt(j, blockFloor, phaseProgress, N);
-      cards[j].style.opacity = o;
-      cards[j].classList.toggle('is-active', o > 0.5);
-      cards[j].setAttribute('aria-hidden', o > 0.5 ? 'false' : 'true');
-    }
+  // Show/hide stage based on whether the section is in the viewport.
+  // Stage is position:fixed so it's always at viewport top; we just
+  // need to fade it out when the user has scrolled past the section.
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        stage.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    io.observe(section);
   }
 
   // Plateau fade: each block phase (220vh) splits as 15% fade-in /
@@ -149,8 +129,36 @@
       if (phaseProgress < 0.85) return 1;
       return Math.max(0, (1 - phaseProgress) / 0.15);
     }
-    // i === currentIdx + 1: next block fades in during last 15% of phase
     return Math.max(0, (phaseProgress - 0.85) / 0.15);
+  }
+
+  function update(){
+    var rect = section.getBoundingClientRect();
+    // scrolled = distance the section has been scrolled past the
+    // viewport top. 0 when section top hits viewport top, N*block
+    // when section bottom hits viewport bottom.
+    var scrolled = -rect.top;
+    var blockPx = parseFloat(getComputedStyle(section).getPropertyValue('--sw-mech-block')) || 220;
+    var range = N * blockPx;
+    // Clamp scrolled to [0, range] so blocks don't shift past their
+    // final state when the user keeps scrolling through the section.
+    if (scrolled < 0) scrolled = 0;
+    if (scrolled > range) scrolled = range;
+    var exactIdx = scrolled / blockPx;  // 0..N
+    var blockFloor = Math.min(N - 1, Math.floor(exactIdx));
+    var phaseProgress = exactIdx - blockFloor;
+
+    for(var i = 0; i < bgSlides.length; i++){
+      var opacity = blockOpacityAt(i, blockFloor, phaseProgress, N);
+      bgSlides[i].style.opacity = opacity;
+      bgSlides[i].classList.toggle('is-active', opacity > 0.5);
+    }
+    for(var j = 0; j < cards.length; j++){
+      var o = blockOpacityAt(j, blockFloor, phaseProgress, N);
+      cards[j].style.opacity = o;
+      cards[j].classList.toggle('is-active', o > 0.5);
+      cards[j].setAttribute('aria-hidden', o > 0.5 ? 'false' : 'true');
+    }
   }
 
   var ticking = false;
@@ -187,7 +195,7 @@
       "limit": 8,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Background image for this spec",
-          "info": "Renders as the section's fullscreen background image when this spec is active (one viewport tall — covers the whole sticky stage). Recommended: 1920×1080 (16:9) for 1× desktop coverage, 3840×2160 for 2× retina. object-fit:cover crops loose aspect so a wider source also works." },
+          "info": "Renders as the section's fullscreen background image when this spec is active. Recommended: 1920×1080 (16:9). The section is N×220vh tall (e.g. 880vh for 4 specs); each spec gets 220vh of scroll, so the spec stays visible while you read it before the next fades in." },
         { "type": "select", "id": "icon", "label": "Icon",
           "options": [
             { "value": "motor",      "label": "Motor" },
