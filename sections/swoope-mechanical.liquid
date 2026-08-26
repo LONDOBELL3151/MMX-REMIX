@@ -118,24 +118,39 @@
     // BEFORE the section ends, instead of right at the moment sticky releases.
     var blockPx = parseFloat(getComputedStyle(section).getPropertyValue('--sw-mech-block')) || 220;
     var range = N * blockPx;
-    var progress = scrolled / range;
-    // Floating index 0..N-1, clamped at N-1 so once a block reaches
-    // full opacity it stays there even if the user keeps scrolling.
-    var idx = Math.min(N - 1, progress * (N - 1));
+    var exactIdx = scrolled / range;
+    // Discretize to the current block + phase progress within it
+    var blockFloor = Math.min(N - 1, Math.floor(exactIdx));
+    var phaseProgress = exactIdx - blockFloor;
 
     for(var i = 0; i < bgSlides.length; i++){
-      var distance = Math.abs(i - idx);
-      var opacity = Math.max(0, 1 - distance * 1.4);
+      var opacity = blockOpacityAt(i, blockFloor, phaseProgress, N);
       bgSlides[i].style.opacity = opacity;
       bgSlides[i].classList.toggle('is-active', opacity > 0.5);
     }
     for(var j = 0; j < cards.length; j++){
-      var d = Math.abs(j - idx);
-      var o = Math.max(0, 1 - d * 1.4);
+      var o = blockOpacityAt(j, blockFloor, phaseProgress, N);
       cards[j].style.opacity = o;
       cards[j].classList.toggle('is-active', o > 0.5);
       cards[j].setAttribute('aria-hidden', o > 0.5 ? 'false' : 'true');
     }
+  }
+
+  // Plateau fade: each block phase (220vh) splits as 15% fade-in /
+  // 70% plateau / 15% fade-out. Last block skips the fade-out so
+  // every block ends up with ~154vh of full visibility + 33vh of
+  // cross-fade on each side = 220vh/phase total. Distributes the
+  // "dwell time" evenly across all blocks instead of letting the
+  // middle blocks steal time from the first/last.
+  function blockOpacityAt(i, currentIdx, phaseProgress, total){
+    if (i < currentIdx || i > currentIdx + 1) return 0;
+    if (i === currentIdx) {
+      if (i === total - 1) return 1; // last block: stay full
+      if (phaseProgress < 0.85) return 1;
+      return Math.max(0, (1 - phaseProgress) / 0.15);
+    }
+    // i === currentIdx + 1: next block fades in during last 15% of phase
+    return Math.max(0, (phaseProgress - 0.85) / 0.15);
   }
 
   var ticking = false;
