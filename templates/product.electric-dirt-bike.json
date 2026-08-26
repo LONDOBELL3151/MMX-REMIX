@@ -282,6 +282,7 @@
         "card_suspension": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/b9da4e1d11e2036063c879871fb2cb3f.png",
             "icon": "suspension",
             "label": "Suspension",
             "value": "310mm Travel",
