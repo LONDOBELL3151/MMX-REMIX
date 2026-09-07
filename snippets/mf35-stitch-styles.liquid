@@ -97,6 +97,7 @@
 .mf35-feat--img-right .mf35-feat-img{order:2}
 .mf35-feat--img-right .mf35-feat-copy{order:1}
 @media (max-width:960px){.mf35-feat-row{grid-template-columns:1fr;gap:32px}.mf35-feat--img-right .mf35-feat-img,.mf35-feat--img-right .mf35-feat-copy{order:0}}
+.mf35-feat-media{position:relative;height:100%}
 .mf35-feat-img{aspect-ratio:16/10;background:var(--mf35-surface);border-radius:var(--mf35-radius);overflow:hidden;border:1px solid var(--mf35-line);position:relative}
 .mf35-feat-img img{width:100%;height:100%;object-fit:cover;display:block}
 .mf35-feat-copy{display:flex;flex-direction:column;gap:16px}
@@ -110,9 +111,10 @@
 .mf35-feat-bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
 .mf35-feat-bullets li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:var(--mf35-ink);font-weight:500}
 .mf35-feat-bullets li::before{content:"";flex:0 0 18px;width:18px;height:18px;background:var(--mf35-accent);border-radius:50%;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='black'/></svg>") center/contain no-repeat;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='black'/></svg>") center/contain no-repeat}
-.mf35-feat-caption{position:absolute;left:-16px;bottom:-16px;background:var(--mf35-paper);border:1px solid var(--mf35-line);padding:12px 16px;border-radius:6px;box-shadow:0 4px 12px rgba(15,17,21,0.08);max-width:240px}
+.mf35-feat-caption{position:absolute;left:-16px;bottom:-16px;background:var(--mf35-paper);border:1px solid var(--mf35-line);padding:12px 16px;border-radius:6px;box-shadow:0 4px 12px rgba(15,17,21,0.08);max-width:240px;z-index:2}
+.mf35-feat-caption--right{left:auto;right:-16px}
 .mf35-feat-caption-label{font-family:var(--mf35-mono);font-size:11px;letter-spacing:0.08em;color:var(--mf35-accent-hover);text-transform:uppercase;font-weight:500;display:block;margin-bottom:4px}
-.mf35-feat-caption-body{font-size:12px;color:var(--mf35-ink);line-height:1.4;font-weight:500}
+.mf35-feat-caption-body{font-size:12px;color:var(--mf35-ink);line-height:1.4;font-weight:500;display:block}
 @media (max-width:720px){.mf35-feat-caption{display:none}}
 
 /* SIZE / FIT SECTION */

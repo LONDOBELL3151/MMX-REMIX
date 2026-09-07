@@ -8,12 +8,14 @@
   <section class="mf35-feat{% if desktop_layout == 'image_left' %} mf35-feat--img-left{% else %} mf35-feat--img-right{% endif %}" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
     <div class="mf35-container">
       <div class="mf35-feat-row">
-        <div class="mf35-feat-img">
-          {%- if s.image != blank -%}
-            <img src="{{ s.image | image_url: width: 1200 }}" srcset="{{ s.image | image_url: width: 600 }} 600w, {{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1200 }} 1200w" sizes="(max-width: 960px) 100vw, 50vw" alt="{{ s.title | escape }}" loading="lazy" width="1200" height="750">
-          {%- endif -%}
+        <div class="mf35-feat-media">
+          <div class="mf35-feat-img">
+            {%- if s.image != blank -%}
+              <img src="{{ s.image | image_url: width: 1200 }}" srcset="{{ s.image | image_url: width: 600 }} 600w, {{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1200 }} 1200w" sizes="(max-width: 960px) 100vw, 50vw" alt="{{ s.title | escape }}" loading="lazy" width="1200" height="750">
+            {%- endif -%}
+          </div>
 
-          {%- if s.caption_label != blank -%}
+          {%- if s.image != blank and s.caption_label != blank -%}
             <div class="mf35-feat-caption{% if desktop_layout == 'image_left' %} mf35-feat-caption--right{% endif %}">
               <span class="mf35-feat-caption-label">{{ s.caption_label | escape }}</span>
               <span class="mf35-feat-caption-body">{{ s.caption_body | escape }}</span>
