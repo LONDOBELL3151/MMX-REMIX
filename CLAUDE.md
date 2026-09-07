@@ -10,8 +10,8 @@
 - **唯一编辑目录**：`C:\Users\Coulson\Desktop\MMX-REMIX`（本仓库）。
 - **绝不碰**：`Desktop\maxfoot-theme\`（legacy 备份）、`Desktop\dawn\`（Dawn 原版 workspace，**不是**本工程）。
 - **同步链路**：`git push origin main` → GitHub → Shopify GitHub 整合 → CDN。**经常卡 5+ 分钟**；看到 `Update from Shopify for theme MMX-REMIX/main` bot commit 属正常。
-- **设计稿**：根目录 `pdp-mockup-*.html`（mf25-stitch 的设计来源，已在 `.gitignore`，仅本地参考）。
-- **规模实测**：138 sections（135 liquid + 3 group）、61 templates（含 `customers/` 7 个账户模板 + `product.electric-dirt-bike.json`）、91 snippets、150 assets、**31 种语言 locale**。
+- **设计稿**：根目录 `pdp-mockup-*.html`（mf25-stitch 的设计来源，已在 `.gitignore`，仅本地参考）；`stitch_mf_35_trike_pdp_design.zip`（mf35-stitch 设计源，**未 gitignore——commit 前决定是否纳入**，当前仅解到 `temp_mf35_design/` 用作设计参考）。
+- **规模实测**：143 sections（140 liquid + 3 group）、62 templates（含 `customers/` 7 个账户模板 + `product.electric-dirt-bike.json` + `product.mf-35-stitch.json`）、92 snippets、150 assets、**31 种语言 locale**。
 
 ## 1. 新对话开机序列
 
@@ -78,6 +78,24 @@
 - **共享 CSS**：`snippets/swoope-styles.liquid`（唯一源，含 design tokens：Sora/Inter/JetBrains Mono + Carbon Black/Electric Lime tokens + glass panel utility + shared button/head/spec styles）。**所有 swoope section 顶部 `{% render 'swoope-styles' %}`**，不内联 copy（吸取 mf25-stitch-performance 的教训）。
 - **swoope 走 Reserve Now 模式**：`swoope-hero` 加购按钮文案 "Reserve Now — {{ price }}"（非默认主题的 "Add to Cart"）。如要让其他产品复用此 section，文案会自动降级到 "Add to Cart"（条件判断 `product.template_suffix == 'electric-dirt-bike'`）。
 - **类名前缀**：所有 class 用 `.sw-*`（区别于 mf25 的 `.mf25-*`），避免两家族样式互相污染。
+
+### 5.2 mf35-stitch 家族（MF-35 折叠三轮 PDP，Kinetic Volt Light 设计系统）
+
+- **背景**：MF-35 = MaxFoot 新款**低价高性价比折叠三轮**。设计稿 `stitch_mf_35_trike_pdp_design.zip`（desktop light + mobile）已交付到仓库根目录；**仅本地参考**——是否纳入 git 暂未定。
+- **设计系统**：与 mf25-stitch（Kinetic Volt **暗**）成对的 **Kinetic Volt Light**：白底 + Volt Yellow `#FFC000` 点睛 + Obsidian Black `#0F1115` 字 + 浅灰 `#F8F9FA` chassis 表面。字体 Oswald (display) / Space Grotesk (body) / JetBrains Mono (metrics)。调性轻量级、可亲、"瑞士表精度"。
+- **5 个 section + 1 共享样式 snippet + 1 模板**：挂在 `templates/product.mf-35-stitch.json`：
+  - **`mf35-stitch-performance`**：4 卡片 metric 网格（block-driven max 8，icon select + 大数字 + unit + 标题 + 描述 + 底部 mono 标签 2 行）。预设 4 卡：750W Peak Hub Motor / 55-75MI Tested Range / 400LBS Gross Payload / 10SEC Quick-Fold Action。
+  - **`mf35-stitch-feature`** ×3：6/6 split 图文面板（settings-driven，无 blocks——`desktop_layout` 选 image_left/right 切换图文换位；kicker + heading + body + image + 2 stat boxes + 2 bullets + image caption）。3 个实例分别是：折叠铰链（image_right）/ step-thru 14.5"（image_left）/ 差速器（image_right）。
+  - **`mf35-stitch-size`**`：7/5 split。左 blueprint SVG（Obsidian 黑底 + 黄色虚线标注 standover 14.5" / wheelbase 46.5" / total length 66.9"） + 身高 range slider（59-74 英寸，4'11"-6'2"，实时显示 ft'in + cm + 切换 Ideal/Tall/Short verdict 文案）；右 spec 表 9 行（block-driven max 16 `row` block，每行 attribute + value）+ mono footer link。预设填满 MF-35 全套规格。
+  - **`mf35-stitch-compare`**：居中标题 + 横向滚动 3 列对比表（MF-35 winner 列黄边 + 浅黄背景 `#FFFBEB`，对比 Lectric XP Trike + Addmotor Citytan）。block-driven max 12 `row` block，每行 attribute + mf35_value + comp_1_value + comp_2_value + 可选 ✓/✕ 标记。预设 7 行：Direct Factory Price / Folding Portability / Rear Cargo Basket / Differential / Carrying Capacity / Standover / Warranty。
+  - **`mf35-stitch-sticky-buy`**`：底部 fixed sticky bar（z-index 40，背景白色 + 16px backdrop-blur）。左 product 缩略图 + 标题 + 价格（`current_variant.price`，当 `compare_at_price > price` 时显示删除线 + `Save $X` badge）。右 mono trust 文字 + Volt Yellow CTA 按钮（"ORDER NOW • SAVE $500"）。IntersectionObserver 监听首个 `.mf35-size` section——滚过 hero 后出现，回到上方时收回；点击 CTA 触发默认 main-product 的 `<form action="/cart/add">` 提交。
+- **buy box 复用默认 `main-product`**：未自建 buybox section（per Coulson 决定，避开 #pdp__form 多选项坑）。Variant picker `picker_type: color`（Color 走 swatch，第二选项 Battery 走 button）。
+- **FAQ 复用 `sections/faq.liquid`**：5 条问题 block（组装 / 电池充电 / 14 天试用 / Street legal / 2 年保修）。
+- **Reviews 复用 Judge.me 插件**：`apps` 块挂 `shopify://apps/judge-me-reviews/blocks/review_widget/...`，不建独立 mf35-stitch-reviews。
+- **字体加载**：`layout/theme.liquid` line ~235 Google Fonts URL 上**追加** `Oswald:wght@500;600;700` + `Space+Grotesk:wght@400;500;600;700`（原有 Big Shoulders Display / Inter Tight 不动**——mf25 / 默认产品继续用旧字体）。mf35-stitch-styles.snippet 内部 `.mf35-root` 局部覆盖 `--font-display` / `--font-body` token 切到 Oswald / Space Grotesk。
+- **共享 CSS**：`snippets/mf35-stitch-styles.liquid`（唯一源，含全部 `.mf35-*` 样式 + `.mf35-root` token scoped 覆盖）。**所有 mf35-stitch section 顶部 `{% render 'mf35-stitch-styles' %}`**，无任何内联 copy（吸取 mf25-stitch-performance + swoope 的教训）。
+- **类名前缀**：所有 class 用 `.mf35-*`（区别于 mf25 的 `.mf25-*` + swoope 的 `.sw-*`），三家族样式互不污染。
+- **Sticky buy CTA 触发逻辑**：默认 main-product form action 含 `/cart/add`，sticky CTA 直接 `form.querySelector('button[name="add"]').click()` 触发——继承 Shopify 的 AJAX 加购 + cart drawer renderContents（参见 `assets/product-form.js` + `snippets/cart-drawer.liquid`）。
 
 ## 6. README 导航速查（深度文档入口）
 

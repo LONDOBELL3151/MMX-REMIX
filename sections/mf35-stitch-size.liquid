@@ -1,0 +1,175 @@
+{%- liquid
+  assign s = section.settings
+-%}
+{% render 'mf35-stitch-styles' %}
+
+<div class="mf35-root">
+  <section class="mf35-size" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
+    <div class="mf35-container">
+      <div class="mf35-size-head">
+        <span class="mf35-kicker">{{ s.kicker | escape }}</span>
+        <h2>{{ s.heading | escape }}</h2>
+        <p>{{ s.subheading | escape }}</p>
+      </div>
+
+      <div class="mf35-size-grid">
+        <div class="mf35-blueprint" data-mf35-fit-host>
+          <div class="mf35-blueprint-head">
+            <span class="mf35-blueprint-title">{{ s.blueprint_title }}</span>
+            <span class="mf35-blueprint-tag">{{ s.blueprint_tag }}</span>
+          </div>
+
+          <div class="mf35-blueprint-canvas">
+            <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-label="{{ s.heading | escape }}">
+              <defs>
+                <pattern id="mf35-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#475569" stroke-opacity="0.3" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#mf35-grid)"/>
+              <circle cx="120" cy="230" r="50" stroke="#FFC000" stroke-dasharray="4 2" stroke-width="3" fill="none"/>
+              <circle cx="120" cy="230" r="12" fill="#FFC000"/>
+              <circle cx="480" cy="230" r="55" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+              <circle cx="480" cy="230" r="14" fill="#FFFFFF"/>
+              <path d="M 120 230 L 220 230 L 300 245 L 420 160 L 480 230" stroke="#FFFFFF" stroke-linecap="round" stroke-width="4" fill="none"/>
+              <path d="M 300 245 L 260 140" stroke="#FFC000" stroke-linecap="round" stroke-width="4" fill="none"/>
+              <path d="M 420 160 L 400 90 L 380 90" stroke="#FFFFFF" stroke-linecap="round" stroke-width="4" fill="none"/>
+              <path d="M 260 140 L 240 135" stroke="#FFC000" stroke-linecap="round" stroke-width="6" fill="none"/>
+              <path d="M 120 200 L 120 150 L 220 150 L 220 230" stroke="#94A3B8" stroke-dasharray="3 3" stroke-width="2" fill="none"/>
+              <line x1="300" x2="300" y1="245" y2="295" stroke="#FFC000" stroke-width="1.5"/>
+              <line x1="280" x2="320" y1="285" y2="285" stroke="#FFC000" stroke-width="1.5"/>
+              <text fill="#FFC000" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" x="330" y="289">{{ s.standover_label | escape }}</text>
+              <line x1="120" x2="480" y1="295" y2="295" stroke="#FFFFFF" stroke-dasharray="2 2" stroke-width="1"/>
+              <text fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="11" x="260" y="310">{{ s.wheelbase_label | escape }}</text>
+              <line x1="60" x2="540" y1="70" y2="70" stroke="#94A3B8" stroke-width="1"/>
+              <text fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="11" x="250" y="65">{{ s.length_label | escape }}</text>
+            </svg>
+          </div>
+
+          <div class="mf35-fit-calc">
+            <div class="mf35-fit-calc-head">
+              <span class="mf35-fit-calc-label">{{ s.slider_label | escape }}</span>
+              <span class="mf35-fit-calc-val" data-mf35-height-label>5' 6" (168 cm)</span>
+            </div>
+            <input
+              type="range"
+              class="mf35-fit-slider"
+              min="59"
+              max="74"
+              step="1"
+              value="66"
+              data-mf35-height-slider
+              aria-label="{{ s.slider_label | escape }}">
+            <div class="mf35-fit-ticks">
+              <span>4'11"</span><span>5'4"</span><span>5'8"</span><span>6'0"</span><span>6'2"</span>
+            </div>
+            <div class="mf35-fit-verdict" data-mf35-fit-verdict>
+              <svg class="mf35-fit-verdict-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg>
+              <span><strong>Ideal Match:</strong> Upright relaxed spine with full flat-foot stops at intersections.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mf35-spec-table">
+          <span class="mf35-spec-table-title">{{ s.spec_table_title | escape }}</span>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'row' -%}
+              <div class="mf35-spec-row" {{ block.shopify_attributes }}>
+                <span class="mf35-spec-row-attr">{{ block.settings.attribute | escape }}</span>
+                <span class="mf35-spec-row-val">{{ block.settings.value | escape }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if s.foot_link_text != blank -%}
+            <a href="{{ s.foot_link_url | default: '#' }}" class="mf35-spec-foot-link">[ {{ s.foot_link_text | escape }} → ]</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  var host = document.querySelector('[data-mf35-fit-host]');
+  if (!host) return;
+  var slider = host.querySelector('[data-mf35-height-slider]');
+  var label = host.querySelector('[data-mf35-height-label]');
+  var verdict = host.querySelector('[data-mf35-fit-verdict]');
+  if (!slider || !label || !verdict) return;
+
+  function updateFit(inches){
+    var ft = Math.floor(inches / 12);
+    var remInches = inches % 12;
+    var cm = Math.round(inches * 2.54);
+    label.textContent = ft + "' " + remInches + '" (' + cm + ' cm)';
+
+    var msg = '';
+    if (inches <= 62) {
+      msg = '<strong>Comfort Fit:</strong> Lower saddle clamp to minimum position. Handlebars angled slightly backward for relaxed reach.';
+    } else if (inches >= 72) {
+      msg = '<strong>Tall Rider Setup:</strong> Extend seatpost to line 7. Stem can be raised 3 inches for zero knee interference.';
+    } else {
+      msg = '<strong>Ideal Match:</strong> Upright relaxed spine with full flat-foot stops at intersections.';
+    }
+    verdict.innerHTML = '<svg class="mf35-fit-verdict-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg><span>' + msg + '</span>';
+  }
+
+  slider.addEventListener('input', function(){ updateFit(parseInt(slider.value, 10)); });
+  updateFit(parseInt(slider.value, 10));
+})();
+</script>
+
+{% schema %}
+{
+  "name": "MF35 Stitch Size",
+  "tag": "section",
+  "class": "section-mf35-stitch-size",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "// ERGONOMIC MATRIX & FIT GUIDE" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "WILL IT FIT YOU COMFORTABLY?" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading",
+      "default": "Adjustable saddle post (10\" travel) and tool-free quick-tilt handlebar stem ensure tailored fit for riders 4'11\" to 6'2\"." },
+    { "type": "header", "content": "Blueprint schematic (left column)" },
+    { "type": "text", "id": "blueprint_title", "label": "Blueprint title", "default": "CHASSIS SCHEMATIC & CLEARANCES" },
+    { "type": "text", "id": "blueprint_tag", "label": "Blueprint tag (mono)", "default": "MEASUREMENTS IN INCHES / MM" },
+    { "type": "text", "id": "standover_label", "label": "Standover dimension label", "default": "STANDOVER: 14.5\"" },
+    { "type": "text", "id": "wheelbase_label", "label": "Wheelbase dimension label", "default": "WHEELBASE: 46.5\" (1180mm)" },
+    { "type": "text", "id": "length_label", "label": "Total length dimension label", "default": "TOTAL LENGTH: 66.9\"" },
+    { "type": "text", "id": "slider_label", "label": "Height slider label", "default": "Select Your Height:" },
+    { "type": "header", "content": "Spec table (right column)" },
+    { "type": "text", "id": "spec_table_title", "label": "Spec table title", "default": "TECHNICAL SPECIFICATIONS TEARDOWN" },
+    { "type": "text", "id": "foot_link_text", "label": "Footer link text (mono bracket)", "default": "DOWNLOAD PDF USER MANUAL & ASSEMBLY GUIDE" },
+    { "type": "url", "id": "foot_link_url", "label": "Footer link URL" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Spec row",
+      "settings": [
+        { "type": "text", "id": "attribute", "label": "Attribute (left)", "default": "Motor Type" },
+        { "type": "text", "id": "value", "label": "Value (right)", "default": "Bafang 750W Peak (500W Continuous)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF35 Stitch Size",
+      "blocks": [
+        { "type": "row", "settings": { "attribute": "Motor Type", "value": "Bafang 750W Peak (500W Continuous)" } },
+        { "type": "row", "settings": { "attribute": "Battery Chemistry", "value": "48V 14Ah (672Wh) UL-2849 Li-ion" } },
+        { "type": "row", "settings": { "attribute": "Drivetrain & Gearing", "value": "Shimano Altus 7-Speed Indexed" } },
+        { "type": "row", "settings": { "attribute": "Tire Specifications", "value": "Front 20\" × 3.0\" | Rear 16\" × 3.0\" Puncture-Proof" } },
+        { "type": "row", "settings": { "attribute": "Braking Hardware", "value": "Triple 160mm Discs + Dual Parking Brake" } },
+        { "type": "row", "settings": { "attribute": "Frame Composition", "value": "6061 Heat-Treated Aluminum Alloy" } },
+        { "type": "row", "settings": { "attribute": "Total Net Weight", "value": "68 lbs (With Battery Installed)" } },
+        { "type": "row", "settings": { "attribute": "Top Assist Velocity", "value": "Class 2: 20 MPH (Legal on Bike Paths)" } },
+        { "type": "row", "settings": { "attribute": "Water Resistance", "value": "IPX5 Weatherproof Sealed Harness" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,102 @@
+{%- liquid
+  assign s = section.settings
+  assign desktop_layout = s.desktop_layout | default: 'image_right'
+-%}
+{% render 'mf35-stitch-styles' %}
+
+<div class="mf35-root">
+  <section class="mf35-feat{% if desktop_layout == 'image_left' %} mf35-feat--img-left{% else %} mf35-feat--img-right{% endif %}" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
+    <div class="mf35-container">
+      <div class="mf35-feat-row">
+        <div class="mf35-feat-img">
+          {%- if s.image != blank -%}
+            <img src="{{ s.image | image_url: width: 1200 }}" srcset="{{ s.image | image_url: width: 600 }} 600w, {{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1200 }} 1200w" sizes="(max-width: 960px) 100vw, 50vw" alt="{{ s.title | escape }}" loading="lazy" width="1200" height="750">
+          {%- endif -%}
+
+          {%- if s.caption_label != blank -%}
+            <div class="mf35-feat-caption{% if desktop_layout == 'image_left' %} mf35-feat-caption--right{% endif %}">
+              <span class="mf35-feat-caption-label">{{ s.caption_label | escape }}</span>
+              <span class="mf35-feat-caption-body">{{ s.caption_body | escape }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="mf35-feat-copy">
+          {%- if s.kicker != blank -%}
+            <span class="mf35-kicker">{{ s.kicker | escape }}</span>
+          {%- endif -%}
+          <h2>{{ s.title }}</h2>
+          <div class="mf35-feat-body">{{ s.body }}</div>
+
+          {%- if s.stat_1_value != blank or s.stat_2_value != blank -%}
+            <div class="mf35-feat-stats">
+              {%- if s.stat_1_value != blank -%}
+                <div class="mf35-feat-stat">
+                  <span class="mf35-feat-stat-val{% if s.stat_1_accent %} mf35-accent{% endif %}">{{ s.stat_1_value | escape }}</span>
+                  <span class="mf35-feat-stat-lbl">{{ s.stat_1_label | escape }}</span>
+                </div>
+              {%- endif -%}
+              {%- if s.stat_2_value != blank -%}
+                <div class="mf35-feat-stat">
+                  <span class="mf35-feat-stat-val{% if s.stat_2_accent %} mf35-accent{% endif %}">{{ s.stat_2_value | escape }}</span>
+                  <span class="mf35-feat-stat-lbl">{{ s.stat_2_label | escape }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if s.bullet_1 != blank or s.bullet_2 != blank -%}
+            <ul class="mf35-feat-bullets">
+              {%- if s.bullet_1 != blank -%}
+                <li><span>{{ s.bullet_1 | escape }}</span></li>
+              {%- endif -%}
+              {%- if s.bullet_2 != blank -%}
+                <li><span>{{ s.bullet_2 | escape }}</span></li>
+              {%- endif -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "MF35 Stitch Feature",
+  "tag": "section",
+  "class": "section-mf35-stitch-feature",
+  "settings": [
+    { "type": "select", "id": "desktop_layout", "label": "Desktop layout",
+      "options": [
+        { "value": "image_right", "label": "Image right (copy on left)" },
+        { "value": "image_left", "label": "Image left (copy on right)" }
+      ],
+      "default": "image_right",
+      "info": "Image on left or right on desktop. Mobile always stacks single column." },
+    { "type": "text", "id": "kicker", "label": "Kicker (small mono caption)", "default": "PATENTED MOBILITY FOLD HINGE", "info": "≤50 chars. em-dash counts as 3 bytes." },
+    { "type": "text", "id": "title", "label": "Title", "default": "BIG-TRIKE STABILITY. COMPACT TRUNK FOOTPRINT." },
+    { "type": "richtext", "id": "body", "label": "Body", "info": "Rich text — HTML like <br> and <strong> supported.",
+      "default": "Traditional three-wheel trikes are notorious for being bulky garage-hogs that cannot be transported without dedicated pickup truck beds. The Maxfoot MF-35 shatters this limitation with an aerospace forged alloy quick-fold mechanism." },
+    { "type": "image_picker", "id": "image", "label": "Feature image", "info": "Recommended: 1200×750 (16:10). object-fit:cover crops if you don't match. <300KB." },
+    { "type": "header", "content": "Stat boxes (optional)" },
+    { "type": "text", "id": "stat_1_value", "label": "Stat 1 value", "info": "e.g. 41.3\" × 31.5\"" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label" },
+    { "type": "checkbox", "id": "stat_1_accent", "label": "Stat 1 accent (Volt Yellow)", "default": false },
+    { "type": "text", "id": "stat_2_value", "label": "Stat 2 value", "info": "e.g. DUAL SAFETY" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label" },
+    { "type": "checkbox", "id": "stat_2_accent", "label": "Stat 2 accent (Volt Yellow)", "default": false },
+    { "type": "header", "content": "Bullets (optional)" },
+    { "type": "text", "id": "bullet_1", "label": "Bullet 1" },
+    { "type": "text", "id": "bullet_2", "label": "Bullet 2" },
+    { "type": "header", "content": "Image caption (optional, bottom-left)" },
+    { "type": "text", "id": "caption_label", "label": "Caption label (small mono)" },
+    { "type": "text", "id": "caption_body", "label": "Caption body" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "presets": [
+    { "name": "MF35 Stitch Feature" }
+  ]
+}
+{% endschema %}

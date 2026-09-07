@@ -1,0 +1,509 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "font_size": "medium"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "color"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 9,
+            "show_inventory_quantity": true
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "inventory",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "show_stock": true,
+        "stock_count": "",
+        "show_finance": true,
+        "finance_label": "0% APR financing",
+        "finance_link": "",
+        "show_extras": true
+      }
+    },
+    "performance": {
+      "type": "mf35-stitch-performance",
+      "blocks": {
+        "metric_Hk8aPq": {
+          "type": "metric",
+          "settings": {
+            "icon": "motor",
+            "tag": "TORQUE: 65 NM",
+            "metric_value": "750",
+            "metric_unit": "W",
+            "title": "Peak Hub Motor",
+            "body": "High-efficiency geared brushless motor climbs 20-degree hills with smooth, responsive low-end torque delivery.",
+            "foot_left": "5-LEVEL PEDAL ASSIST",
+            "foot_right": "+ THUMB THROTTLE"
+          }
+        },
+        "metric_Vb3mTn": {
+          "type": "metric",
+          "settings": {
+            "icon": "battery",
+            "tag": "48V ARCHITECTURE",
+            "metric_value": "55-75",
+            "metric_unit": "MI",
+            "title": "Tested Range",
+            "body": "UL 2849 certified grade-A lithium cells with Smart BMS safeguard against overcharge, short circuit, and cell thermal drift.",
+            "foot_left": "CHARGE TIME: 4-6 HRS",
+            "foot_right": "REMOVABLE PACK"
+          }
+        },
+        "metric_Fp7qWx": {
+          "type": "metric",
+          "settings": {
+            "icon": "weight",
+            "tag": "REINFORCED CHASSIS",
+            "metric_value": "400",
+            "metric_unit": "LBS",
+            "title": "Gross Payload",
+            "body": "Accommodates adult riders up to 250 lbs alongside a dedicated 150 lb rear cargo crate for groceries, pets, and supplies.",
+            "foot_left": "CARGO BASKET: 52L VOL",
+            "foot_right": "STEEL GUSSETED"
+          }
+        },
+        "metric_Nm4jRc": {
+          "type": "metric",
+          "settings": {
+            "icon": "folder",
+            "tag": "LATCH MECHANISM",
+            "metric_value": "10",
+            "metric_unit": "SEC",
+            "title": "Quick-Fold Action",
+            "body": "Two quick-release clamps fold the central frame and handlebar post to fit conveniently into SUV trunks, elevators, or closets.",
+            "foot_left": "FOLDED: 41\" × 31\"",
+            "foot_right": "ZERO TOOLS NEEDED"
+          }
+        }
+      },
+      "block_order": [
+        "metric_Hk8aPq",
+        "metric_Vb3mTn",
+        "metric_Fp7qWx",
+        "metric_Nm4jRc"
+      ],
+      "settings": {
+        "kicker": "// POWERTRAIN & CHASSIS DYNAMICS",
+        "heading": "ENGINEERED FOR ABSOLUTE STABILITY",
+        "subheading": "The MF-35 integrates proprietary differential rear-wheel drive and balanced weight distribution for zero-lean riding confidence on pavement, gravel, and grass.",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "feature_1": {
+      "type": "mf35-stitch-feature",
+      "settings": {
+        "desktop_layout": "image_right",
+        "kicker": "PATENTED MOBILITY FOLD HINGE",
+        "title": "BIG-TRIKE STABILITY. COMPACT TRUNK FOOTPRINT.",
+        "body": "Traditional three-wheel trikes are notorious for being bulky garage-hogs that cannot be transported without dedicated pickup truck beds or trailer hitches. The Maxfoot MF-35 shatters this limitation with an aerospace forged alloy quick-fold mechanism.",
+        "image": "",
+        "stat_1_value": "41.3\" × 31.5\"",
+        "stat_1_label": "Folded overall dimensions",
+        "stat_1_accent": false,
+        "stat_2_value": "DUAL SAFETY",
+        "stat_2_label": "Self-locking latch pin system",
+        "stat_2_accent": false,
+        "bullet_1": "Fits inside Honda CR-V, Toyota RAV4, Ford Explorer, and standard SUV hatchbacks.",
+        "bullet_2": "Tuck it easily into condo elevators, hallway closets, or camper van storage bays.",
+        "caption_label": "// REAL-WORLD PORTABILITY",
+        "caption_body": "Fold and unfold in under 10 seconds without detaching wheels or wiring cables.",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "feature_2": {
+      "type": "mf35-stitch-feature",
+      "settings": {
+        "desktop_layout": "image_left",
+        "kicker": "ACCESSIBILITY FIRST GEOMETRY",
+        "title": "EFFORTLESS 14.5\" MOUNTING. NO LEG SWINGING REQUIRED.",
+        "body": "Engineered specifically with ergonomic accessibility at the center. The ultra-low step-through standover clearance allows riders of any mobility level to step straight through the chassis without swinging a leg over a tall crossbar or dangerous saddle.",
+        "image": "",
+        "stat_1_value": "14.5\"",
+        "stat_1_label": "Standover",
+        "stat_1_accent": false,
+        "stat_2_value": "4'11\" — 6'2\"",
+        "stat_2_label": "Min / Max Rider Height",
+        "stat_2_accent": true,
+        "bullet_1": "Combined with swept-back cruiser handlebars and an upright sitting posture, you preserve spinal alignment and eliminate wrist and shoulder joint fatigue.",
+        "bullet_2": "Rider friendly design certified for all ages, physical rehabilitation, and leisure cruising.",
+        "caption_label": "// ZERO HIP STRAIN",
+        "caption_body": "Step straight through — no swinging leg over crossbar required.",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "feature_3": {
+      "type": "mf35-stitch-feature",
+      "settings": {
+        "desktop_layout": "image_right",
+        "kicker": "AUTOMOTIVE SAFETY ENGINEERING",
+        "title": "AUTOMOTIVE DIFFERENTIAL AXLE. SMOOTH CORNERING WITHOUT TIPPING.",
+        "body": "Cheap direct-drive trikes force both rear wheels to spin at identical speeds, resulting in tire scrub, jerking turns, and dangerous roll risks. The MF-35 integrates a precision rear differential that automatically divides power, allowing the outer wheel to spin faster through sharp curves.",
+        "image": "",
+        "stat_1_value": "3×",
+        "stat_1_label": "Mechanical Disc Brakes",
+        "stat_1_accent": false,
+        "stat_2_value": "160mm",
+        "stat_2_label": "Front + Dual Rear Rotors",
+        "stat_2_accent": false,
+        "bullet_1": "Triple Mechanical Disc Brake Calipers — 160mm front and dual rear rotor configuration stops 400 lbs smoothly under any wet or dusty road conditions.",
+        "bullet_2": "Dual Integrated Parking Levers — Lock your trike instantly at the brake levers when loading heavy groceries or parking on a 15-degree driveway incline.",
+        "caption_label": "",
+        "caption_body": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "size": {
+      "type": "mf35-stitch-size",
+      "blocks": {
+        "row_motor": {
+          "type": "row",
+          "settings": {
+            "attribute": "Motor Type",
+            "value": "Bafang 750W Peak (500W Continuous)"
+          }
+        },
+        "row_battery": {
+          "type": "row",
+          "settings": {
+            "attribute": "Battery Chemistry",
+            "value": "48V 14Ah (672Wh) UL-2849 Li-ion"
+          }
+        },
+        "row_drivetrain": {
+          "type": "row",
+          "settings": {
+            "attribute": "Drivetrain & Gearing",
+            "value": "Shimano Altus 7-Speed Indexed"
+          }
+        },
+        "row_tires": {
+          "type": "row",
+          "settings": {
+            "attribute": "Tire Specifications",
+            "value": "Front 20\" × 3.0\" | Rear 16\" × 3.0\" Puncture-Proof"
+          }
+        },
+        "row_brakes": {
+          "type": "row",
+          "settings": {
+            "attribute": "Braking Hardware",
+            "value": "Triple 160mm Discs + Dual Parking Brake"
+          }
+        },
+        "row_frame": {
+          "type": "row",
+          "settings": {
+            "attribute": "Frame Composition",
+            "value": "6061 Heat-Treated Aluminum Alloy"
+          }
+        },
+        "row_weight": {
+          "type": "row",
+          "settings": {
+            "attribute": "Total Net Weight",
+            "value": "68 lbs (With Battery Installed)"
+          }
+        },
+        "row_speed": {
+          "type": "row",
+          "settings": {
+            "attribute": "Top Assist Velocity",
+            "value": "Class 2: 20 MPH (Legal on Bike Paths)"
+          }
+        },
+        "row_water": {
+          "type": "row",
+          "settings": {
+            "attribute": "Water Resistance",
+            "value": "IPX5 Weatherproof Sealed Harness"
+          }
+        }
+      },
+      "block_order": [
+        "row_motor",
+        "row_battery",
+        "row_drivetrain",
+        "row_tires",
+        "row_brakes",
+        "row_frame",
+        "row_weight",
+        "row_speed",
+        "row_water"
+      ],
+      "settings": {
+        "kicker": "// ERGONOMIC MATRIX & FIT GUIDE",
+        "heading": "WILL IT FIT YOU COMFORTABLY?",
+        "subheading": "Adjustable saddle post (10\" travel) and tool-free quick-tilt handlebar stem ensure tailored fit for riders 4'11\" to 6'2\".",
+        "blueprint_title": "CHASSIS SCHEMATIC & CLEARANCES",
+        "blueprint_tag": "MEASUREMENTS IN INCHES / MM",
+        "standover_label": "STANDOVER: 14.5\"",
+        "wheelbase_label": "WHEELBASE: 46.5\" (1180mm)",
+        "length_label": "TOTAL LENGTH: 66.9\"",
+        "slider_label": "Select Your Height:",
+        "spec_table_title": "TECHNICAL SPECIFICATIONS TEARDOWN",
+        "foot_link_text": "DOWNLOAD PDF USER MANUAL & ASSEMBLY GUIDE",
+        "foot_link_url": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "compare": {
+      "type": "mf35-stitch-compare",
+      "blocks": {
+        "row_price": {
+          "type": "row",
+          "settings": {
+            "attribute": "Direct Factory Price",
+            "winner_value": "$1,099.00",
+            "winner_is_check": false,
+            "comp_1_value": "$1,499.00",
+            "comp_1_is_check": false,
+            "comp_1_is_x": false,
+            "comp_2_value": "$1,899.00",
+            "comp_2_is_check": false,
+            "comp_2_is_x": false
+          }
+        },
+        "row_fold": {
+          "type": "row",
+          "settings": {
+            "attribute": "Folding Portability",
+            "winner_value": "YES (10-Sec Quick Fold)",
+            "winner_is_check": true,
+            "comp_1_value": "YES (Bulkier Fold)",
+            "comp_1_is_check": true,
+            "comp_1_is_x": false,
+            "comp_2_value": "NO (Rigid Frame Only)",
+            "comp_2_is_check": false,
+            "comp_2_is_x": true
+          }
+        },
+        "row_basket": {
+          "type": "row",
+          "settings": {
+            "attribute": "Rear Cargo Basket Included",
+            "winner_value": "INCLUDED ($129 FREE)",
+            "winner_is_check": false,
+            "comp_1_value": "Extra +$120 Add-on",
+            "comp_1_is_check": false,
+            "comp_1_is_x": false,
+            "comp_2_value": "Extra +$150 Add-on",
+            "comp_2_is_check": false,
+            "comp_2_is_x": false
+          }
+        },
+        "row_diff": {
+          "type": "row",
+          "settings": {
+            "attribute": "Rear Wheel Differential",
+            "winner_value": "Automotive Dual Drive",
+            "winner_is_check": true,
+            "comp_1_value": "Standard Differential",
+            "comp_1_is_check": false,
+            "comp_1_is_x": false,
+            "comp_2_value": "Standard Differential",
+            "comp_2_is_check": false,
+            "comp_2_is_x": false
+          }
+        },
+        "row_capacity": {
+          "type": "row",
+          "settings": {
+            "attribute": "Total Carrying Capacity",
+            "winner_value": "400 LBS TOTAL",
+            "winner_is_check": false,
+            "comp_1_value": "415 LBS TOTAL",
+            "comp_1_is_check": false,
+            "comp_1_is_x": false,
+            "comp_2_value": "350 LBS TOTAL",
+            "comp_2_is_check": false,
+            "comp_2_is_x": false
+          }
+        },
+        "row_standover": {
+          "type": "row",
+          "settings": {
+            "attribute": "Lowest Standover Step",
+            "winner_value": "14.5 Inches",
+            "winner_is_check": false,
+            "comp_1_value": "13.8 Inches",
+            "comp_1_is_check": false,
+            "comp_1_is_x": false,
+            "comp_2_value": "17.2 Inches",
+            "comp_2_is_check": false,
+            "comp_2_is_x": false
+          }
+        },
+        "row_warranty": {
+          "type": "row",
+          "settings": {
+            "attribute": "Factory Direct Warranty",
+            "winner_value": "2-YEAR EXTENDED",
+            "winner_is_check": false,
+            "comp_1_value": "1-Year Standard",
+            "comp_1_is_check": false,
+            "comp_1_is_x": false,
+            "comp_2_value": "1-Year Standard",
+            "comp_2_is_check": false,
+            "comp_2_is_x": false
+          }
+        }
+      },
+      "block_order": [
+        "row_price",
+        "row_fold",
+        "row_basket",
+        "row_diff",
+        "row_capacity",
+        "row_standover",
+        "row_warranty"
+      ],
+      "settings": {
+        "kicker": "// VALUE BENCHMARK ANALYSIS",
+        "heading": "HOW THE MF-35 CRUSHES THE COMPETITION",
+        "subheading": "Honest feature-by-feature comparison against the leading electric trikes in the US market.",
+        "col_label": "SPEC / FEATURE",
+        "winner_label": "MAXFOOT MF-35 (WINNER)",
+        "comp_1_label": "LECTRIC XP TRIKE",
+        "comp_2_label": "ADDMOTOR CITYTAN",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "question_assembly": {
+          "type": "question",
+          "settings": {
+            "question": "How much assembly is required out of the shipping crate?",
+            "answer": "<p>The Maxfoot MF-35 arrives approximately <strong>85% pre-assembled</strong>. You simply unfold the main chassis latch, slide in the front handlebar stem, attach the front wheel with the quick-release skewer, install the pedals, and clip on the rear cargo basket. Complete technical tools, a multi-wrench, and step-by-step video tutorials are included in the box. Average unboxing to ride time is 20-30 minutes.</p>"
+          }
+        },
+        "question_battery": {
+          "type": "question",
+          "settings": {
+            "question": "Can I charge the lithium battery off the bike?",
+            "answer": "<p>Yes! The 48V battery locks into place with an included anti-theft key. You can charge it directly while mounted to the frame, or unlock and remove it to charge inside your home, apartment, or office using any standard 110V household AC wall outlet.</p>"
+          }
+        },
+        "question_trial": {
+          "type": "question",
+          "settings": {
+            "question": "How does the 14-Day At-Home Trial Policy work?",
+            "answer": "<p>From the delivery date shown on tracking, you have 14 full days to test-ride your MF-35 in your own neighborhood (up to 10 miles of usage). If you are not completely thrilled with the comfort, stability, and build quality, simply contact our California customer service team to arrange a return.</p>"
+          }
+        },
+        "question_legal": {
+          "type": "question",
+          "settings": {
+            "question": "Is the MF-35 street legal in bike lanes without a license?",
+            "answer": "<p>Yes. The MF-35 is certified as a Class 2 electric bicycle under US Federal law (CPSC regulations) with a maximum motor-assisted speed capped at 20 MPH. It requires no driver's license, no DMV vehicle registration, and no compulsory insurance to operate in bike lanes and neighborhood streets across all 50 states.</p>"
+          }
+        },
+        "question_warranty": {
+          "type": "question",
+          "settings": {
+            "question": "What does the 2-Year Maxfoot Factory Warranty cover?",
+            "answer": "<p>Our comprehensive warranty covers all major core powertrain elements including the structural aluminum chassis, folding joint, Bafang electric hub motor, lithium battery pack, LED display controller, throttle, and wiring harness against manufacturer defects for a full 24 months. Replacement parts ship promptly from our Ontario, California fulfillment center.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_assembly",
+        "question_battery",
+        "question_trial",
+        "question_legal",
+        "question_warranty"
+      ],
+      "settings": {
+        "heading": "FREQUENTLY ASKED QUESTIONS",
+        "subheading": "Everything you need to know about delivery, unboxing, and ownership.",
+        "cta_text": "",
+        "cta_link": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "sticky_buy": {
+      "type": "mf35-stitch-sticky-buy",
+      "settings": {
+        "cta_text": "ORDER NOW • SAVE $500",
+        "save_text": "SAVE",
+        "trust_text": "FREE US FREIGHT • 2-YR WARRANTY"
+      }
+    },
+    "apps": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "performance",
+    "feature_1",
+    "feature_2",
+    "feature_3",
+    "size",
+    "compare",
+    "faq",
+    "sticky_buy",
+    "apps"
+  ]
+}

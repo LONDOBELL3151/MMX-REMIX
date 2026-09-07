@@ -6,6 +6,8 @@
 > 最后一次工作：全量审计仓库并补正本 README（2026-08-12）——132 sections / 60 templates / 31 种语言 locale / 9 个 social 链接等数字已核对；补齐 `customers/` 子目录、`about-mission`、`mf25-stitch-*` 家族（含新增 `-confidence`）。mf25-stitch 是最近的功能开发线。
 > 
 > 追加（2026-08-24）：新增 `swoope-*` 家族（6 section + 共享 styles snippet + `product.electric-dirt-bike.json` 模板）——SWOOPE 子品牌 electric dirt bike PDP，Electric Lime `#C3F400` + Carbon Black 调性，PC 端完成。sections 总数 132 → **138**；templates 60 → **61**。详细工作要点看 CLAUDE.md §5.1。
+> 
+> 追加（2026-09-07）：新增 `mf35-stitch-*` 家族（5 section + 共享 `mf35-stitch-styles` snippet + `product.mf-35-stitch.json` 模板）——MF-35 低价高性价比折叠三轮 PDP，Kinetic Volt **Light** 设计系统（白底 + Volt Yellow `#FFC000` + Obsidian Black `#0F1115`，字体 Oswald/Space Grotesk/JetBrains Mono），模板=默认 `main-product`（Color swatch + Battery button）+ 4 卡片性能矩阵 + 3 个交替 split 特征 + 7/5 fit guide（blueprint SVG + 身高 slider + spec 表）+ 3 列对比表 + 复用 `faq` + sticky 加购条 + Judge.me。sections 138 → **143**；templates 61 → **62**。
 
 ---
 
@@ -23,7 +25,7 @@
 | 7 | [Liquid 编码规范](#7-liquid-编码规范) | settings、blocks、媒体、`\| t` 陷阱 |
 | 8 | [CSS 架构规范](#8-css-架构规范) | 分层、命名、模式 |
 | 9 | [JavaScript 规范](#9-javascript-规范) | maxfoot.js、data-attrs、defer |
-| 10 | [Section 库（全部 132）](#10-section-库全部-132) | 文件位置、用途、当前状态 |
+| 10 | [Section 库（全部 143）](#10-section-库全部-143) | 文件位置、用途、当前状态 |
 | 11 | [Page 模板（全部 60）](#11-page-模板全部-60) | 哪个模板配哪些 sections |
 | 12 | [Product Card 完整规范](#12-product-card-完整规范) | 两种 card、metafields、rating |
 | 13 | [全局组件 (header / footer / cart)](#13-全局组件) | 跨页面共用元素 |
@@ -116,7 +118,7 @@ C:\Users\Coulson\Desktop\
 │   │   ├── impact-*.liquid      Impact-cart app 集成
 │   │   ├── judgeme_*.liquid     Judge.me 评价 app 集成
 │   │   ├── blog-*.liquid / Home-*.liquid
-│   │   └── ... 132 sections（129 liquid + 3 group json）
+│   │   └── ... 143 sections（140 liquid + 3 group json）
 │   ├── snippets\
 │   │   ├── product-card.liquid                    主 product card
 │   │   ├── maxfoot-collection-card-product.liquid Dawn 版 product card
@@ -912,7 +914,7 @@ menuToggle.setAttribute('aria-label', 'Open menu');
 
 ---
 
-## 10. Section 库（全部 132）
+## 10. Section 库（全部 143）
 
 按角色分类。所有 `sections/*.liquid` 都遵循 §6.5 的标准模板。
 
@@ -1104,6 +1106,11 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `mf25-stitch-reviews.liquid` | mf25 Stitch PDP reviews |
 | `mf25-stitch-size.liquid` | mf25 Stitch PDP size |
 | `mf25-stitch-specs.liquid` | mf25 Stitch PDP specs |
+| `mf35-stitch-feature.liquid` | **MF-35 Stitch PDP** feature 6/6 split 面板（settings-driven：image_left/right, kicker, heading, body, 2 stats + 2 bullets + image caption；复用 3x） |
+| `mf35-stitch-performance.liquid` | **MF-35 Stitch PDP** 4 卡片 metric 网格（block-driven max 8：icon select + 大数字 + unit + 标题 + 描述 + 底部 mono 标签 2 行） |
+| `mf35-stitch-size.liquid` | **MF-35 Stitch PDP** 7/5 split：左 blueprint SVG（standover/wheelbase/length 标注）+ 身高 range slider (4'11"–6'2") + 实时 verdict；右 9-row spec table + PDF footer link |
+| `mf35-stitch-compare.liquid` | **MF-35 Stitch PDP** 3 列对比表（MF-35 winner 高亮黄边 vs 2 个竞品），block-driven max 12 rows + ✓/✕ inline |
+| `mf35-stitch-sticky-buy.liquid` | **MF-35 Stitch PDP** 底部 fixed sticky bar（thumbnail + 价格 + Save badge + Volt Yellow CTA）；IntersectionObserver 监听首个 `.mf35-size` section，滚过 hero 后出现；CTA 提交 main-product 的 `#pdp__form` |
 | `swoope-hero.liquid` | **SWOOPE electric dirt bike PDP 主商品区**（从 `product` 对象读 title/price/options/featured_image；Color 行走 `product_family` metaobject 外联（每个色 = 一个 product URL）；其他选项保留 in-page 变体选择 + 前端 price/库存/bg 图联动；加购走 `<product-form>` + `payment_button`；form id=`swoope-hero__form` 避免 maxfoot.js 误绑） |
 | `swoope-performance.liquid` | **SWOOPE PDP** Dynamic Performance 滑块（Eco/Trail/Track + HP 联动） |
 | `swoope-terrain.liquid` | **SWOOPE PDP** Master Any Terrain（3 栏 ride profile） |
@@ -1144,7 +1151,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 
 ---
 
-## 11. Page 模板（全部 60）
+## 11. Page 模板（全部 62）
 
 > 注意：模板 JSON 头部有 `/* ... */` 注释（JSONC），脚本解析需先 strip。以下列的是主要模板；完整清单以 `git ls-files templates/` 为准。
 
@@ -1159,6 +1166,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `product.json` | 默认 product | main-product + collapsible + related |
 | `product.mf-25.json` | MF-25 型号 | 包含 mf-pdp-* |
 | `product.mf-25-stitch.json` | **MF-25 Stitch PDP** | main-product + mf25-stitch-* 8 个 + swiper-graphic |
+| `product.mf-35-stitch.json` | **MF-35 Stitch PDP**（低价高性价比折叠三轮，Kinetic Volt Light 设计系统：白底 + `#FFC000` Volt Yellow + Oswald/Space Grotesk/JetBrains Mono） | main-product + mf35-stitch-performance + mf35-stitch-feature×3 + mf35-stitch-size + mf35-stitch-compare + faq (复用) + mf35-stitch-sticky-buy + apps (Judge.me 复用) |
 | `product.electric-dirt-bike.json` | **SWOOPE electric dirt bike PDP**（MaxFoot 旗下子品牌，独立 electric lime + black 调性） | swoope-hero + -performance + -terrain + -mechanical + -quality + -app（6 个 section） |
 | `product.front-basket-for-mf25.json` | 配件 | 单产品 |
 | `product.pet-bag.json` / `product.trailer.json` / `product.rear-rack-bag.json` | 配件 | 单产品 |

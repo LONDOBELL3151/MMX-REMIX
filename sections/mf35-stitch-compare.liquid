@@ -1,0 +1,116 @@
+{%- liquid
+  assign s = section.settings
+-%}
+{% render 'mf35-stitch-styles' %}
+
+<div class="mf35-root">
+  <section class="mf35-compare" style="padding-top:{{ s.padding_top }}px;padding-bottom:{{ s.padding_bottom }}px" {{ section.shopify_attributes }}>
+    <div class="mf35-container">
+      <div class="mf35-compare-head">
+        <span class="mf35-kicker">{{ s.kicker | escape }}</span>
+        <h2>{{ s.heading | escape }}</h2>
+        <p>{{ s.subheading | escape }}</p>
+      </div>
+
+      <div class="mf35-compare-scroll">
+        <table class="mf35-compare-table">
+          <thead>
+            <tr>
+              <th>{{ s.col_label | default: 'SPEC / FEATURE' | escape }}</th>
+              <th class="mf35-compare-winner"><span class="mf35-compare-winner-cell">{{ s.winner_label | escape }}</span></th>
+              <th>{{ s.comp_1_label | escape }}</th>
+              <th>{{ s.comp_2_label | escape }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'row' -%}
+                {%- assign is_last = false -%}
+                {%- if forloop.last -%}{%- assign is_last = true -%}{%- endif -%}
+                <tr {{ block.shopify_attributes }}>
+                  <td class="td-attr">{{ block.settings.attribute | escape }}</td>
+                  <td class="td-winner{% if is_last %} td-bottom{% endif %}">
+                    {%- if block.settings.winner_is_check -%}
+                      <span class="td-winner-flex"><span class="check-icon">✓</span> {{ block.settings.winner_value | escape }}</span>
+                    {%- else -%}
+                      {{ block.settings.winner_value | escape }}
+                    {%- endif -%}
+                  </td>
+                  <td>
+                    {%- if block.settings.comp_1_is_check -%}
+                      <span class="check-icon">✓</span>
+                    {%- elsif block.settings.comp_1_is_x -%}
+                      <span class="x-icon">✕</span>
+                    {%- endif -%}
+                    {{ block.settings.comp_1_value | escape }}
+                  </td>
+                  <td>
+                    {%- if block.settings.comp_2_is_check -%}
+                      <span class="check-icon">✓</span>
+                    {%- elsif block.settings.comp_2_is_x -%}
+                      <span class="x-icon">✕</span>
+                    {%- endif -%}
+                    {{ block.settings.comp_2_value | escape }}
+                  </td>
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "MF35 Stitch Compare",
+  "tag": "section",
+  "class": "section-mf35-stitch-compare",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "// VALUE BENCHMARK ANALYSIS" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "HOW THE MF-35 CRUSHES THE COMPETITION" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading",
+      "default": "Honest feature-by-feature comparison against the leading electric trikes in the US market." },
+    { "type": "header", "content": "Column labels" },
+    { "type": "text", "id": "col_label", "label": "First column header (attribute)", "default": "SPEC / FEATURE" },
+    { "type": "text", "id": "winner_label", "label": "Winner column header", "default": "MAXFOOT MF-35 (WINNER)" },
+    { "type": "text", "id": "comp_1_label", "label": "Competitor 1 header", "default": "LECTRIC XP TRIKE" },
+    { "type": "text", "id": "comp_2_label", "label": "Competitor 2 header", "default": "ADDMOTOR CITYTAN" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison row",
+      "settings": [
+        { "type": "text", "id": "attribute", "label": "Attribute (left)", "default": "Direct Factory Price" },
+        { "type": "text", "id": "winner_value", "label": "MF-35 value (winner column)", "default": "$1,099.00" },
+        { "type": "checkbox", "id": "winner_is_check", "label": "Show ✓ before MF-35 value", "default": false },
+        { "type": "text", "id": "comp_1_value", "label": "Competitor 1 value", "default": "$1,499.00" },
+        { "type": "checkbox", "id": "comp_1_is_check", "label": "Show ✓ before competitor 1", "default": false },
+        { "type": "checkbox", "id": "comp_1_is_x", "label": "Show ✕ before competitor 1", "default": false },
+        { "type": "text", "id": "comp_2_value", "label": "Competitor 2 value", "default": "$1,899.00" },
+        { "type": "checkbox", "id": "comp_2_is_check", "label": "Show ✓ before competitor 2", "default": false },
+        { "type": "checkbox", "id": "comp_2_is_x", "label": "Show ✕ before competitor 2", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MF35 Stitch Compare",
+      "blocks": [
+        { "type": "row", "settings": { "attribute": "Direct Factory Price", "winner_value": "$1,099.00", "comp_1_value": "$1,499.00", "comp_2_value": "$1,899.00" } },
+        { "type": "row", "settings": { "attribute": "Folding Portability", "winner_value": "YES (10-Sec Quick Fold)", "winner_is_check": true, "comp_1_value": "YES (Bulkier Fold)", "comp_1_is_check": true, "comp_2_value": "NO (Rigid Frame Only)", "comp_2_is_x": true } },
+        { "type": "row", "settings": { "attribute": "Rear Cargo Basket Included", "winner_value": "INCLUDED ($129 FREE)", "comp_1_value": "Extra +$120 Add-on", "comp_2_value": "Extra +$150 Add-on" } },
+        { "type": "row", "settings": { "attribute": "Rear Wheel Differential", "winner_value": "Automotive Dual Drive", "winner_is_check": true, "comp_1_value": "Standard Differential", "comp_2_value": "Standard Differential" } },
+        { "type": "row", "settings": { "attribute": "Total Carrying Capacity", "winner_value": "400 LBS TOTAL", "comp_1_value": "415 LBS TOTAL", "comp_2_value": "350 LBS TOTAL" } },
+        { "type": "row", "settings": { "attribute": "Lowest Standover Step", "winner_value": "14.5 Inches", "comp_1_value": "13.8 Inches", "comp_2_value": "17.2 Inches" } },
+        { "type": "row", "settings": { "attribute": "Factory Direct Warranty", "winner_value": "2-YEAR EXTENDED", "comp_1_value": "1-Year Standard", "comp_2_value": "1-Year Standard" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

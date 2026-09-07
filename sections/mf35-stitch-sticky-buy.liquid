@@ -1,0 +1,119 @@
+{%- liquid
+  assign s = section.settings
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+{% render 'mf35-stitch-styles' %}
+
+<div class="mf35-root">
+  <div
+    class="mf35-sticky-buy"
+    data-mf35-sticky-buy
+    data-mf35-sticky-trigger-class="mf35-size"
+    {{ section.shopify_attributes }}
+  >
+    <div class="mf35-sticky-buy-row">
+      <div class="mf35-sticky-buy-left">
+        {%- if product.featured_image -%}
+          <div class="mf35-sticky-buy-thumb">
+            <img
+              src="{{ product.featured_image | image_url: width: 200 }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy"
+              width="120"
+              height="100">
+          </div>
+        {%- endif -%}
+        <div class="mf35-sticky-buy-meta">
+          <span class="mf35-sticky-buy-title">{{ product.title | escape }}</span>
+          <span class="mf35-sticky-buy-price" data-mf35-sticky-price>
+            {{ current_variant.price | money }}
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              <span class="mf35-sticky-buy-was">{{ current_variant.compare_at_price | money }}</span>
+              {%- assign save_amount = current_variant.compare_at_price | minus: current_variant.price -%}
+              {%- if save_amount > 0 -%}
+                <span class="mf35-sticky-buy-save">{{ s.save_text | default: 'SAVE' | escape }} {{ save_amount | money }}</span>
+              {%- endif -%}
+            {%- endif -%}
+          </span>
+        </div>
+      </div>
+
+      <div class="mf35-sticky-buy-right">
+        <span class="mf35-sticky-buy-trust">{{ s.trust_text | escape }}</span>
+        <button type="button" class="mf35-sticky-buy-cta" data-mf35-sticky-cta>
+          {{ s.cta_text | default: 'ORDER NOW • SAVE $500' | escape }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var bar = document.querySelector('[data-mf35-sticky-buy]');
+  if (!bar) return;
+
+  var triggerClass = bar.getAttribute('data-mf35-sticky-trigger-class') || 'mf35-size';
+  var trigger = document.querySelector('.' + triggerClass);
+  var cta = bar.querySelector('[data-mf35-sticky-cta]');
+
+  // Reveal after user scrolls past the trigger (e.g. performance/size section).
+  if (trigger && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          bar.classList.add('is-visible');
+        } else if (e.boundingClientRect.top < 0) {
+          // Scrolled past trigger upward — keep bar visible (we want to buy)
+          bar.classList.add('is-visible');
+        } else {
+          // Above the trigger — hide bar so hero is clean
+          bar.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0 });
+    io.observe(trigger);
+  } else {
+    bar.classList.add('is-visible');
+  }
+
+  // Click CTA → submit the default main-product form
+  if (cta) {
+    cta.addEventListener('click', function(){
+      var form = document.querySelector('form[action*="/cart/add"]');
+      if (form) {
+        // Trigger native form submission (Shopify product-form handles AJAX)
+        var btn = form.querySelector('button[name="add"], input[name="add"]');
+        if (btn) {
+          btn.click();
+        } else {
+          form.submit();
+        }
+      } else if (typeof window.routes !== 'undefined' && window.routes.cart_add_url) {
+        // Fallback: scroll to top where main-product lives
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "MF35 Stitch Sticky Buy",
+  "tag": "section",
+  "class": "section-mf35-stitch-sticky-buy",
+  "settings": [
+    { "type": "text", "id": "cta_text", "label": "CTA button text", "default": "ORDER NOW • SAVE $500", "info": "≤50 chars" },
+    { "type": "text", "id": "save_text", "label": "Save badge prefix", "default": "SAVE", "info": "Displayed inline next to the strikethrough price when product is on sale." },
+    { "type": "text", "id": "trust_text", "label": "Trust line text (mono)", "default": "FREE US FREIGHT • 2-YR WARRANTY" },
+    { "type": "header", "content": "Behavior" },
+    { "type": "paragraph", "content": "Bar appears after user scrolls past the first content section (mf35-stitch-performance). CTA click triggers the main-product form's submit." }
+  ],
+  "presets": [
+    { "name": "MF35 Stitch Sticky Buy" }
+  ]
+}
+{% endschema %}
