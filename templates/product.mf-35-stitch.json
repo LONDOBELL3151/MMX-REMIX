@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -133,7 +142,7 @@
         "kicker": "PATENTED MOBILITY FOLD HINGE",
         "title": "BIG-TRIKE STABILITY. COMPACT TRUNK FOOTPRINT.",
         "body": "<p>Traditional three-wheel trikes are notorious for being bulky garage-hogs that cannot be transported without dedicated pickup truck beds or trailer hitches. The Maxfoot MF-35 shatters this limitation with an aerospace forged alloy quick-fold mechanism.</p>",
-        "image": "",
+        "image": "shopify://shop_images/DSC_2767.jpg",
         "stat_1_value": "41.3\" × 31.5\"",
         "stat_1_label": "Folded overall dimensions",
         "stat_1_accent": false,
@@ -155,7 +164,7 @@
         "kicker": "ACCESSIBILITY FIRST GEOMETRY",
         "title": "EFFORTLESS 14.5\" MOUNTING. NO LEG SWINGING REQUIRED.",
         "body": "<p>Engineered specifically with ergonomic accessibility at the center. The ultra-low step-through standover clearance allows riders of any mobility level to step straight through the chassis without swinging a leg over a tall crossbar or dangerous saddle.</p>",
-        "image": "",
+        "image": "shopify://shop_images/DSC_2749_31efc17a-b62b-486f-a5b7-f15bc148968f.jpg",
         "stat_1_value": "14.5\"",
         "stat_1_label": "Standover",
         "stat_1_accent": false,
@@ -177,7 +186,7 @@
         "kicker": "AUTOMOTIVE SAFETY ENGINEERING",
         "title": "AUTOMOTIVE DIFFERENTIAL AXLE. SMOOTH CORNERING WITHOUT TIPPING.",
         "body": "<p>Cheap direct-drive trikes force both rear wheels to spin at identical speeds, resulting in tire scrub, jerking turns, and dangerous roll risks. The MF-35 integrates a precision rear differential that automatically divides power, allowing the outer wheel to spin faster through sharp curves.</p>",
-        "image": "",
+        "image": "shopify://shop_images/Capture01528.jpg",
         "stat_1_value": "3×",
         "stat_1_label": "Mechanical Disc Brakes",
         "stat_1_accent": false,
