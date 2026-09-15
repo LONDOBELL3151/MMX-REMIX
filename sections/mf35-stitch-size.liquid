@@ -13,7 +13,18 @@
       </div>
 
       <div class="mf35-size-grid">
-        <div class="mf35-blueprint" data-mf35-fit-host>
+        <div class="mf35-blueprint"
+             data-mf35-fit-host
+             data-min="{{ s.slider_min | default: 59 | at_least: 1 }}"
+             data-max="{{ s.slider_max | default: 74 }}"
+             data-low-max="{{ s.verdict_low_max | default: 62 }}"
+             data-tall-min="{{ s.verdict_tall_min | default: 72 }}"
+             data-low-label="{{ s.verdict_low_label | default: 'Comfort Fit' | escape }}"
+             data-low-body="{{ s.verdict_low_body | default: 'Lower saddle clamp to minimum position. Handlebars angled slightly backward for relaxed reach.' | escape }}"
+             data-ideal-label="{{ s.verdict_ideal_label | default: 'Ideal Match' | escape }}"
+             data-ideal-body="{{ s.verdict_ideal_body | default: 'Upright relaxed spine with full flat-foot stops at intersections.' | escape }}"
+             data-tall-label="{{ s.verdict_tall_label | default: 'Tall Rider Setup' | escape }}"
+             data-tall-body="{{ s.verdict_tall_body | default: 'Extend seatpost to line 7. Stem can be raised 3 inches for zero knee interference.' | escape }}">
           <div class="mf35-blueprint-head">
             <span class="mf35-blueprint-title">{{ s.blueprint_title }}</span>
             <span class="mf35-blueprint-tag">{{ s.blueprint_tag }}</span>
@@ -32,26 +43,35 @@
             </picture>
           </div>
 
+          {%- assign slider_default = s.slider_default | default: 66 | at_least: s.slider_min | default: 59 | at_most: s.slider_max | default: 74 -%}
+          {%- assign slider_default_ft = slider_default | divided_by: 12 | floor -%}
+          {%- assign slider_default_in = slider_default | modulo: 12 -%}
+          {%- assign slider_default_cm = slider_default | times: 2.54 | round -%}
           <div class="mf35-fit-calc">
             <div class="mf35-fit-calc-head">
               <span class="mf35-fit-calc-label">{{ s.slider_label | escape }}</span>
-              <span class="mf35-fit-calc-val" data-mf35-height-label>5' 6" (168 cm)</span>
+              <span class="mf35-fit-calc-val" data-mf35-height-label>{{ slider_default_ft }}' {{ slider_default_in }}" ({{ slider_default_cm }} cm)</span>
             </div>
             <input
               type="range"
               class="mf35-fit-slider"
-              min="59"
-              max="74"
+              min="{{ s.slider_min | default: 59 | at_least: 1 }}"
+              max="{{ s.slider_max | default: 74 }}"
               step="1"
-              value="66"
+              value="{{ slider_default }}"
               data-mf35-height-slider
               aria-label="{{ s.slider_label | escape }}">
+
             <div class="mf35-fit-ticks">
-              <span>4'11"</span><span>5'4"</span><span>5'8"</span><span>6'0"</span><span>6'2"</span>
+              <span>{{ s.tick_1 | default: "4'11\"" | escape }}</span>
+              <span>{{ s.tick_2 | default: "5'4\"" | escape }}</span>
+              <span>{{ s.tick_3 | default: "5'8\"" | escape }}</span>
+              <span>{{ s.tick_4 | default: "6'0\"" | escape }}</span>
+              <span>{{ s.tick_5 | default: "6'2\"" | escape }}</span>
             </div>
             <div class="mf35-fit-verdict" data-mf35-fit-verdict>
               <svg class="mf35-fit-verdict-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg>
-              <span><strong>Ideal Match:</strong> Upright relaxed spine with full flat-foot stops at intersections.</span>
+              <span data-mf35-fit-verdict-text></span>
             </div>
           </div>
         </div>
@@ -81,24 +101,33 @@
   if (!host) return;
   var slider = host.querySelector('[data-mf35-height-slider]');
   var label = host.querySelector('[data-mf35-height-label]');
-  var verdict = host.querySelector('[data-mf35-fit-verdict]');
+  var verdict = host.querySelector('[data-mf35-fit-verdict-text]');
   if (!slider || !label || !verdict) return;
 
-  function updateFit(inches){
+  var cfg = host.dataset;
+  var lowMax = parseInt(cfg.lowMax, 10);
+  var tallMin = parseInt(cfg.tallMin, 10);
+
+  function formatLabel(inches){
     var ft = Math.floor(inches / 12);
     var remInches = inches % 12;
     var cm = Math.round(inches * 2.54);
-    label.textContent = ft + "' " + remInches + '" (' + cm + ' cm)';
+    return ft + "' " + remInches + '" (' + cm + ' cm)';
+  }
 
-    var msg = '';
-    if (inches <= 62) {
-      msg = '<strong>Comfort Fit:</strong> Lower saddle clamp to minimum position. Handlebars angled slightly backward for relaxed reach.';
-    } else if (inches >= 72) {
-      msg = '<strong>Tall Rider Setup:</strong> Extend seatpost to line 7. Stem can be raised 3 inches for zero knee interference.';
-    } else {
-      msg = '<strong>Ideal Match:</strong> Upright relaxed spine with full flat-foot stops at intersections.';
+  function pickVerdict(inches){
+    if (inches <= lowMax) {
+      return '<strong>' + cfg.lowLabel + ':</strong> ' + cfg.lowBody;
     }
-    verdict.innerHTML = '<svg class="mf35-fit-verdict-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg><span>' + msg + '</span>';
+    if (inches >= tallMin) {
+      return '<strong>' + cfg.tallLabel + ':</strong> ' + cfg.tallBody;
+    }
+    return '<strong>' + cfg.idealLabel + ':</strong> ' + cfg.idealBody;
+  }
+
+  function updateFit(inches){
+    label.textContent = formatLabel(inches);
+    verdict.innerHTML = pickVerdict(inches);
   }
 
   slider.addEventListener('input', function(){ updateFit(parseInt(slider.value, 10)); });
@@ -125,6 +154,32 @@
     { "type": "image_picker", "id": "image_mobile", "label": "Schematic image (mobile, ≤768px)",
       "info": "Recommended: 1080×576 (~1.87:1) or any wide ratio. Used on mobile. If empty, falls back to the desktop image." },
     { "type": "text", "id": "slider_label", "label": "Height slider label", "default": "Select Your Height:" },
+    { "type": "header", "content": "Height slider range" },
+    { "type": "number", "id": "slider_min", "label": "Min (inches)", "default": 59,
+      "info": "Lower bound of the slider in inches. Tick 1 sits here." },
+    { "type": "number", "id": "slider_max", "label": "Max (inches)", "default": 74,
+      "info": "Upper bound of the slider in inches. Tick 5 sits here." },
+    { "type": "number", "id": "slider_default", "label": "Default (inches)", "default": 66,
+      "info": "Initial slider position. Display auto-converts to ft'in + cm. Should fall between min and max." },
+    { "type": "header", "content": "Tick labels (left → right)" },
+    { "type": "text", "id": "tick_1", "label": "Tick 1 (leftmost)", "default": "4'11\"" },
+    { "type": "text", "id": "tick_2", "label": "Tick 2", "default": "5'4\"" },
+    { "type": "text", "id": "tick_3", "label": "Tick 3", "default": "5'8\"" },
+    { "type": "text", "id": "tick_4", "label": "Tick 4", "default": "6'0\"" },
+    { "type": "text", "id": "tick_5", "label": "Tick 5 (rightmost)", "default": "6'2\"" },
+    { "type": "header", "content": "Verdict messages (shown based on slider position)" },
+    { "type": "paragraph", "content": "Three verdicts cover the slider range. The low and tall ranges use ≤low_max and ≥tall_min thresholds; the ideal range covers everything in between." },
+    { "type": "number", "id": "verdict_low_max", "label": "Low verdict max inches (≤ this)", "default": 62 },
+    { "type": "text", "id": "verdict_low_label", "label": "Low verdict label", "default": "Comfort Fit" },
+    { "type": "textarea", "id": "verdict_low_body", "label": "Low verdict body",
+      "default": "Lower saddle clamp to minimum position. Handlebars angled slightly backward for relaxed reach." },
+    { "type": "number", "id": "verdict_tall_min", "label": "Tall verdict min inches (≥ this)", "default": 72 },
+    { "type": "text", "id": "verdict_tall_label", "label": "Tall verdict label", "default": "Tall Rider Setup" },
+    { "type": "textarea", "id": "verdict_tall_body", "label": "Tall verdict body",
+      "default": "Extend seatpost to line 7. Stem can be raised 3 inches for zero knee interference." },
+    { "type": "text", "id": "verdict_ideal_label", "label": "Ideal verdict label", "default": "Ideal Match" },
+    { "type": "textarea", "id": "verdict_ideal_body", "label": "Ideal verdict body",
+      "default": "Upright relaxed spine with full flat-foot stops at intersections." },
     { "type": "header", "content": "Spec table (right column)" },
     { "type": "text", "id": "spec_table_title", "label": "Spec table title", "default": "TECHNICAL SPECIFICATIONS TEARDOWN" },
     { "type": "text", "id": "foot_link_text", "label": "Footer link text (mono bracket)", "default": "DOWNLOAD PDF USER MANUAL & ASSEMBLY GUIDE" },
