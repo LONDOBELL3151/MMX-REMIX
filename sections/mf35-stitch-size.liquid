@@ -20,30 +20,16 @@
           </div>
 
           <div class="mf35-blueprint-canvas">
-            <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" aria-label="{{ s.heading | escape }}">
-              <defs>
-                <pattern id="mf35-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#475569" stroke-opacity="0.3" stroke-width="0.5"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#mf35-grid)"/>
-              <circle cx="120" cy="230" r="50" stroke="#FFC000" stroke-dasharray="4 2" stroke-width="3" fill="none"/>
-              <circle cx="120" cy="230" r="12" fill="#FFC000"/>
-              <circle cx="480" cy="230" r="55" stroke="#FFFFFF" stroke-width="3" fill="none"/>
-              <circle cx="480" cy="230" r="14" fill="#FFFFFF"/>
-              <path d="M 120 230 L 220 230 L 300 245 L 420 160 L 480 230" stroke="#FFFFFF" stroke-linecap="round" stroke-width="4" fill="none"/>
-              <path d="M 300 245 L 260 140" stroke="#FFC000" stroke-linecap="round" stroke-width="4" fill="none"/>
-              <path d="M 420 160 L 400 90 L 380 90" stroke="#FFFFFF" stroke-linecap="round" stroke-width="4" fill="none"/>
-              <path d="M 260 140 L 240 135" stroke="#FFC000" stroke-linecap="round" stroke-width="6" fill="none"/>
-              <path d="M 120 200 L 120 150 L 220 150 L 220 230" stroke="#94A3B8" stroke-dasharray="3 3" stroke-width="2" fill="none"/>
-              <line x1="300" x2="300" y1="245" y2="295" stroke="#FFC000" stroke-width="1.5"/>
-              <line x1="280" x2="320" y1="285" y2="285" stroke="#FFC000" stroke-width="1.5"/>
-              <text fill="#FFC000" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" x="330" y="289">{{ s.standover_label | escape }}</text>
-              <line x1="120" x2="480" y1="295" y2="295" stroke="#FFFFFF" stroke-dasharray="2 2" stroke-width="1"/>
-              <text fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="11" x="260" y="310">{{ s.wheelbase_label | escape }}</text>
-              <line x1="60" x2="540" y1="70" y2="70" stroke="#94A3B8" stroke-width="1"/>
-              <text fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="11" x="250" y="65">{{ s.length_label | escape }}</text>
-            </svg>
+            <picture>
+              {%- if s.image_mobile != blank -%}
+                <source media="(max-width: 768px)" srcset="{{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1080 }} 1080w" sizes="(max-width: 768px) 100vw, 750px">
+              {%- endif -%}
+              {%- if s.image != blank -%}
+                <img src="{{ s.image | image_url: width: 1080 }}" srcset="{{ s.image | image_url: width: 750 }} 750w, {{ s.image | image_url: width: 1080 }} 1080w, {{ s.image | image_url: width: 1440 }} 1440w" sizes="(min-width: 769px) 60vw, 100vw" alt="{{ s.heading | escape }}" loading="lazy" width="1200" height="640">
+              {%- else -%}
+                <img src="{{ s.image_mobile | image_url: width: 1080 }}" alt="{{ s.heading | escape }}" loading="lazy" width="1080" height="576">
+              {%- endif -%}
+            </picture>
           </div>
 
           <div class="mf35-fit-calc">
@@ -134,9 +120,10 @@
     { "type": "header", "content": "Blueprint schematic (left column)" },
     { "type": "text", "id": "blueprint_title", "label": "Blueprint title", "default": "CHASSIS SCHEMATIC & CLEARANCES" },
     { "type": "text", "id": "blueprint_tag", "label": "Blueprint tag (mono)", "default": "MEASUREMENTS IN INCHES / MM" },
-    { "type": "text", "id": "standover_label", "label": "Standover dimension label", "default": "STANDOVER: 14.5\"" },
-    { "type": "text", "id": "wheelbase_label", "label": "Wheelbase dimension label", "default": "WHEELBASE: 46.5\" (1180mm)" },
-    { "type": "text", "id": "length_label", "label": "Total length dimension label", "default": "TOTAL LENGTH: 66.9\"" },
+    { "type": "image_picker", "id": "image", "label": "Schematic image (desktop, ≥769px)",
+      "info": "Recommended: 1200×640 (~1.87:1). Used on tablet & desktop. If empty, falls back to the mobile image." },
+    { "type": "image_picker", "id": "image_mobile", "label": "Schematic image (mobile, ≤768px)",
+      "info": "Recommended: 1080×576 (~1.87:1) or any wide ratio. Used on mobile. If empty, falls back to the desktop image." },
     { "type": "text", "id": "slider_label", "label": "Height slider label", "default": "Select Your Height:" },
     { "type": "header", "content": "Spec table (right column)" },
     { "type": "text", "id": "spec_table_title", "label": "Spec table title", "default": "TECHNICAL SPECIFICATIONS TEARDOWN" },

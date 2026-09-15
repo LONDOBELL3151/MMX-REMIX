@@ -129,8 +129,9 @@
 .mf35-blueprint-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .mf35-blueprint-title{font-family:var(--mf35-display);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mf35-ink);font-weight:600}
 .mf35-blueprint-tag{font-family:var(--mf35-mono);font-size:10px;letter-spacing:0.08em;color:var(--mf35-accent);text-transform:uppercase;font-weight:500}
-.mf35-blueprint-canvas{width:100%;aspect-ratio:600/320;background:transparent;border-radius:4px;display:flex;align-items:center;justify-content:center}
-.mf35-blueprint-canvas svg{width:100%;height:100%;max-width:560px}
+.mf35-blueprint-canvas{width:100%;aspect-ratio:600/320;background:var(--mf35-surface);border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mf35-blueprint-canvas picture,.mf35-blueprint-canvas picture img{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.mf35-blueprint-canvas img{width:100%;height:100%;object-fit:contain;display:block}
 .mf35-fit-calc{background:var(--mf35-surface);border:1px solid var(--mf35-line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px}
 .mf35-fit-calc-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .mf35-fit-calc-label{font-size:14px;color:var(--mf35-ink);font-weight:600}
