@@ -20,11 +20,17 @@
              data-low-max="{{ s.verdict_low_max | default: 62 }}"
              data-tall-min="{{ s.verdict_tall_min | default: 72 }}"
              data-low-label="{{ s.verdict_low_label | default: 'Comfort Fit' | escape }}"
-             data-low-body="{{ s.verdict_low_body | default: 'Lower saddle clamp to minimum position. Handlebars angled slightly backward for relaxed reach.' | escape }}"
+             {%- if s.verdict_low_body != blank -%}
+               data-low-body="{{ s.verdict_low_body | escape }}"
+             {%- endif -%}
              data-ideal-label="{{ s.verdict_ideal_label | default: 'Ideal Match' | escape }}"
-             data-ideal-body="{{ s.verdict_ideal_body | default: 'Upright relaxed spine with full flat-foot stops at intersections.' | escape }}"
+             {%- if s.verdict_ideal_body != blank -%}
+               data-ideal-body="{{ s.verdict_ideal_body | escape }}"
+             {%- endif -%}
              data-tall-label="{{ s.verdict_tall_label | default: 'Tall Rider Setup' | escape }}"
-             data-tall-body="{{ s.verdict_tall_body | default: 'Extend seatpost to line 7. Stem can be raised 3 inches for zero knee interference.' | escape }}">
+             {%- if s.verdict_tall_body != blank -%}
+               data-tall-body="{{ s.verdict_tall_body | escape }}"
+             {%- endif -%}>
           <div class="mf35-blueprint-head">
             <span class="mf35-blueprint-title">{{ s.blueprint_title }}</span>
             <span class="mf35-blueprint-tag">{{ s.blueprint_tag }}</span>
@@ -115,19 +121,28 @@
     return ft + "' " + remInches + '" (' + cm + ' cm)';
   }
 
+  function buildVerdict(label, body){
+    if (!body) return '';
+    var labelTag = label ? '<strong>' + label + ':</strong> ' : '';
+    return labelTag + body;
+  }
+
   function pickVerdict(inches){
-    if (inches <= lowMax) {
-      return '<strong>' + cfg.lowLabel + ':</strong> ' + cfg.lowBody;
-    }
-    if (inches >= tallMin) {
-      return '<strong>' + cfg.tallLabel + ':</strong> ' + cfg.tallBody;
-    }
-    return '<strong>' + cfg.idealLabel + ':</strong> ' + cfg.idealBody;
+    if (inches <= lowMax) return buildVerdict(cfg.lowLabel, cfg.lowBody);
+    if (inches >= tallMin) return buildVerdict(cfg.tallLabel, cfg.tallBody);
+    return buildVerdict(cfg.idealLabel, cfg.idealBody);
   }
 
   function updateFit(inches){
     label.textContent = formatLabel(inches);
-    verdict.innerHTML = pickVerdict(inches);
+    var msg = pickVerdict(inches);
+    if (msg) {
+      verdict.innerHTML = msg;
+      verdict.parentElement.hidden = false;
+    } else {
+      verdict.innerHTML = '';
+      verdict.parentElement.hidden = true;
+    }
   }
 
   slider.addEventListener('input', function(){ updateFit(parseInt(slider.value, 10)); });
