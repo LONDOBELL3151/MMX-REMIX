@@ -206,65 +206,90 @@
       "blocks": {
         "row_motor": {
           "type": "row",
+          "name": " Rider Height",
           "settings": {
-            "attribute": "Motor Type",
+            "attribute": "Rider Height",
             "value": "Bafang 750W Peak (500W Continuous)"
           }
         },
         "row_battery": {
           "type": "row",
+          "name": "Tire Size",
           "settings": {
-            "attribute": "Battery Chemistry",
+            "attribute": "Tire Size",
             "value": "48V 14Ah (672Wh) UL-2849 Li-ion"
           }
         },
         "row_drivetrain": {
           "type": "row",
+          "name": "Reach",
           "settings": {
-            "attribute": "Drivetrain & Gearing",
+            "attribute": "Reach",
             "value": "Shimano Altus 7-Speed Indexed"
           }
         },
         "row_tires": {
           "type": "row",
+          "name": "Total Length",
           "settings": {
-            "attribute": "Tire Specifications",
+            "attribute": "Total Length",
             "value": "Front 20\" × 3.0\" | Rear 16\" × 3.0\" Puncture-Proof"
           }
         },
         "row_brakes": {
           "type": "row",
+          "name": "Wheel Base",
           "settings": {
-            "attribute": "Braking Hardware",
+            "attribute": "Wheel Base",
             "value": "Triple 160mm Discs + Dual Parking Brake"
           }
         },
         "row_frame": {
           "type": "row",
+          "name": "Total Width",
           "settings": {
-            "attribute": "Frame Composition",
+            "attribute": "Total Width",
             "value": "6061 Heat-Treated Aluminum Alloy"
           }
         },
         "row_weight": {
           "type": "row",
+          "name": "Standover Height",
           "settings": {
-            "attribute": "Total Net Weight",
+            "attribute": "Standover Height",
             "value": "68 lbs (With Battery Installed)"
           }
         },
         "row_speed": {
           "type": "row",
+          "name": "Mini Saddle Height",
           "settings": {
-            "attribute": "Top Assist Velocity",
+            "attribute": "Mini Saddle Height",
             "value": "Class 2: 20 MPH (Legal on Bike Paths)"
           }
         },
         "row_water": {
           "type": "row",
+          "name": "Max Saddle Height",
           "settings": {
-            "attribute": "Water Resistance",
+            "attribute": "Max Saddle Height",
             "value": "IPX5 Weatherproof Sealed Harness"
+          }
+        },
+        "row_GrgMRy": {
+          "type": "row",
+          "name": "Handlebar Height",
+          "settings": {
+            "attribute": "Handlebar Height",
+            "value": "Bafang 750W Peak (500W Continuous)"
+          }
+        },
+        "row_R6a8Jq": {
+          "type": "row",
+          "name": "Folded Size",
+          "settings": {
+            "attribute": "Folded Size",
+            "value": "Bafang 750W Peak (500W Continuous)"
           }
         }
       },
@@ -277,7 +302,9 @@
         "row_frame",
         "row_weight",
         "row_speed",
-        "row_water"
+        "row_water",
+        "row_GrgMRy",
+        "row_R6a8Jq"
       ],
       "settings": {
         "kicker": "// ERGONOMIC MATRIX & FIT GUIDE",
