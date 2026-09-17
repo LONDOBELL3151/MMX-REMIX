@@ -123,8 +123,8 @@
 
   function buildVerdict(label, body){
     if (!label && !body) return '';
-    var labelTag = label ? '<strong>' + label + ':</strong> ' : '';
-    return labelTag + (body || '');
+    var separator = (label && body) ? ': ' : '';
+    return (label ? '<strong>' + label + separator + '</strong>' : '') + (body || '');
   }
 
   function pickVerdict(inches){
