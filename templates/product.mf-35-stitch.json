@@ -209,7 +209,7 @@
           "name": " Rider Height",
           "settings": {
             "attribute": "Rider Height",
-            "value": "Bafang 750W Peak (500W Continuous)"
+            "value": "5'1\"-5'9\""
           }
         },
         "row_battery": {
@@ -217,7 +217,7 @@
           "name": "Tire Size",
           "settings": {
             "attribute": "Tire Size",
-            "value": "48V 14Ah (672Wh) UL-2849 Li-ion"
+            "value": "20\" X 3.0\""
           }
         },
         "row_drivetrain": {
@@ -225,7 +225,7 @@
           "name": "Reach",
           "settings": {
             "attribute": "Reach",
-            "value": "Shimano Altus 7-Speed Indexed"
+            "value": "15.5\""
           }
         },
         "row_tires": {
@@ -233,7 +233,7 @@
           "name": "Total Length",
           "settings": {
             "attribute": "Total Length",
-            "value": "Front 20\" × 3.0\" | Rear 16\" × 3.0\" Puncture-Proof"
+            "value": "66\""
           }
         },
         "row_brakes": {
@@ -241,7 +241,7 @@
           "name": "Wheel Base",
           "settings": {
             "attribute": "Wheel Base",
-            "value": "Triple 160mm Discs + Dual Parking Brake"
+            "value": "45.5\""
           }
         },
         "row_frame": {
@@ -249,7 +249,7 @@
           "name": "Total Width",
           "settings": {
             "attribute": "Total Width",
-            "value": "6061 Heat-Treated Aluminum Alloy"
+            "value": "23.5\""
           }
         },
         "row_weight": {
@@ -257,7 +257,7 @@
           "name": "Standover Height",
           "settings": {
             "attribute": "Standover Height",
-            "value": "68 lbs (With Battery Installed)"
+            "value": "12\""
           }
         },
         "row_speed": {
@@ -265,7 +265,7 @@
           "name": "Mini Saddle Height",
           "settings": {
             "attribute": "Mini Saddle Height",
-            "value": "Class 2: 20 MPH (Legal on Bike Paths)"
+            "value": "27.5\""
           }
         },
         "row_water": {
@@ -273,7 +273,7 @@
           "name": "Max Saddle Height",
           "settings": {
             "attribute": "Max Saddle Height",
-            "value": "IPX5 Weatherproof Sealed Harness"
+            "value": "38.5\""
           }
         },
         "row_GrgMRy": {
@@ -281,7 +281,7 @@
           "name": "Handlebar Height",
           "settings": {
             "attribute": "Handlebar Height",
-            "value": "Bafang 750W Peak (500W Continuous)"
+            "value": "46.5\" - 52.5\""
           }
         },
         "row_R6a8Jq": {
@@ -289,7 +289,7 @@
           "name": "Folded Size",
           "settings": {
             "attribute": "Folded Size",
-            "value": "Bafang 750W Peak (500W Continuous)"
+            "value": "47\" * 27.5\" * 35.3\""
           }
         }
       },
