@@ -309,7 +309,7 @@
       "settings": {
         "kicker": "// ERGONOMIC MATRIX & FIT GUIDE",
         "heading": "WILL IT FIT YOU COMFORTABLY?",
-        "subheading": "Adjustable saddle post (10\" travel) and tool-free quick-tilt handlebar stem ensure tailored fit for riders 4'11\" to 6'2\".",
+        "subheading": "Adjustable saddle post (10\" travel) and tool-free quick-tilt handlebar stem ensure tailored fit for riders 5'1\" to 5'9\".",
         "blueprint_title": "CHASSIS SCHEMATIC & CLEARANCES",
         "blueprint_tag": "MEASUREMENTS IN INCHES / MM",
         "image": "shopify://shop_images/size_ae90f5d7-daf6-4e09-ba3a-77dae9d46e6c.png",
@@ -330,8 +330,8 @@
         "verdict_tall_body": "",
         "verdict_ideal_label": "Ideal Match",
         "verdict_ideal_body": "",
-        "spec_table_title": "TECHNICAL SPECIFICATIONS TEARDOWN",
-        "foot_link_text": "DOWNLOAD PDF USER MANUAL & ASSEMBLY GUIDE",
+        "spec_table_title": "Size & Fit",
+        "foot_link_text": "",
         "foot_link_url": "",
         "padding_top": 60,
         "padding_bottom": 60
