@@ -122,9 +122,9 @@
   }
 
   function buildVerdict(label, body){
-    if (!body) return '';
+    if (!label && !body) return '';
     var labelTag = label ? '<strong>' + label + ':</strong> ' : '';
-    return labelTag + body;
+    return labelTag + (body || '');
   }
 
   function pickVerdict(inches){
