@@ -85,12 +85,12 @@
           "type": "metric",
           "settings": {
             "icon": "battery",
-            "tag": "48V ARCHITECTURE",
-            "metric_value": "55-75",
+            "tag": "48V 13Ah (624Wh)",
+            "metric_value": "50",
             "metric_unit": "MI",
-            "title": "Tested Range",
-            "body": "UL 2849 certified grade-A lithium cells with Smart BMS safeguard against overcharge, short circuit, and cell thermal drift.",
-            "foot_left": "CHARGE TIME: 4-6 HRS",
+            "title": "Range",
+            "body": "The removable rear-mounted lithium battery lets you charge on or off the trike for convenient power whenever you need it.",
+            "foot_left": "CHARGE TIME: 6.75HRS",
             "foot_right": "REMOVABLE PACK"
           }
         },
@@ -99,10 +99,10 @@
           "settings": {
             "icon": "weight",
             "tag": "REINFORCED CHASSIS",
-            "metric_value": "400",
+            "metric_value": "230+80",
             "metric_unit": "LBS",
             "title": "Gross Payload",
-            "body": "Accommodates adult riders up to 250 lbs alongside a dedicated 150 lb rear cargo crate for groceries, pets, and supplies.",
+            "body": "Built to handle real-world hauling, the 230+80-lb payload capacity keeps daily errands and longer trips within easy reach.",
             "foot_left": "CARGO BASKET: 52L VOL",
             "foot_right": "STEEL GUSSETED"
           }
@@ -111,13 +111,13 @@
           "type": "metric",
           "settings": {
             "icon": "folder",
-            "tag": "LATCH MECHANISM",
-            "metric_value": "10",
-            "metric_unit": "SEC",
-            "title": "Quick-Fold Action",
-            "body": "Two quick-release clamps fold the central frame and handlebar post to fit conveniently into SUV trunks, elevators, or closets.",
-            "foot_left": "FOLDED: 41\" × 31\"",
-            "foot_right": "ZERO TOOLS NEEDED"
+            "tag": "Drivetrain",
+            "metric_value": "7",
+            "metric_unit": "SPEED",
+            "title": "Rear derailleur",
+            "body": "The Shimano 7-speed rear derailleur shifts smoothly across seven gears to make flat roads, hills, and everyday routes feel easier.",
+            "foot_left": "WIDE GEAR RANGE",
+            "foot_right": "47\" L * 27.5\" W * 35.3\" H ZERO TOOLS NEEDED"
           }
         }
       },
