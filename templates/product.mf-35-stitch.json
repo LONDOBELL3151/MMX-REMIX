@@ -72,13 +72,13 @@
           "type": "metric",
           "settings": {
             "icon": "motor",
-            "tag": "TORQUE: 65 NM",
+            "tag": "REAR DRIVE MOTOR",
             "metric_value": "750",
             "metric_unit": "W",
-            "title": "Peak Hub Motor",
-            "body": "High-efficiency geared brushless motor climbs 20-degree hills with smooth, responsive low-end torque delivery.",
+            "title": "Peak 1200W",
+            "body": "The 750W rear-wheel drive brushless motor produces up to 1200W of peak power for smooth starts and easier everyday rides.",
             "foot_left": "5-LEVEL PEDAL ASSIST",
-            "foot_right": "+ THUMB THROTTLE"
+            "foot_right": "HALF-TWIST THROTTLE"
           }
         },
         "metric_Vb3mTn": {
