@@ -467,36 +467,36 @@
         "question_assembly": {
           "type": "question",
           "settings": {
-            "question": "How much assembly is required out of the shipping crate?",
-            "answer": "<p>The Maxfoot MF-35 arrives approximately <strong>85% pre-assembled</strong>. You simply unfold the main chassis latch, slide in the front handlebar stem, attach the front wheel with the quick-release skewer, install the pedals, and clip on the rear cargo basket. Complete technical tools, a multi-wrench, and step-by-step video tutorials are included in the box. Average unboxing to ride time is 20-30 minutes.</p>"
+            "question": "What are the folded dimensions of the MF-35?",
+            "answer": "<p>When folded, the MF-35 folding electric tricycle measures 66\" L * 23.5\" W * 46.5\" H. Its folding design helps reduce its storage footprint for garages, sheds, RV travel, and transport. Please measure your intended storage space before purchase.</p>"
           }
         },
         "question_battery": {
           "type": "question",
           "settings": {
-            "question": "Can I charge the lithium battery off the bike?",
-            "answer": "<p>Yes! The 48V battery locks into place with an included anti-theft key. You can charge it directly while mounted to the frame, or unlock and remove it to charge inside your home, apartment, or office using any standard 110V household AC wall outlet.</p>"
+            "question": "Why choose the MF-35 folding electric trike?",
+            "answer": "<p>The MF-35 folding electric trike gives you the confidence, carrying capability, and electric assist of a full-size trike without demanding full-time storage space. Use it for errands, neighborhood rides, and everyday cargo, then fold it down to make storage, RV travel, and transport more manageable.</p>"
           }
         },
         "question_trial": {
           "type": "question",
           "settings": {
-            "question": "How does the 14-Day At-Home Trial Policy work?",
-            "answer": "<p>From the delivery date shown on tracking, you have 14 full days to test-ride your MF-35 in your own neighborhood (up to 10 miles of usage). If you are not completely thrilled with the comfort, stability, and build quality, simply contact our California customer service team to arrange a return.</p>"
+            "question": "Will the MF-35 folding electric tricycle fit in my car trunk?",
+            "answer": "<p>The MF-35 folding electric tricycle folds for easier transport, but fit depends on your vehicle. It may fit in larger SUVs, vans, pickup beds, or vehicles with fold-flat rear seats. Please compare your vehicle’s cargo space and payload capacity with the MF-35’s folded dimensions and weight before purchase; two people may be needed for loading.</p>"
           }
         },
         "question_legal": {
           "type": "question",
           "settings": {
-            "question": "Is the MF-35 street legal in bike lanes without a license?",
-            "answer": "<p>Yes. The MF-35 is certified as a Class 2 electric bicycle under US Federal law (CPSC regulations) with a maximum motor-assisted speed capped at 20 MPH. It requires no driver's license, no DMV vehicle registration, and no compulsory insurance to operate in bike lanes and neighborhood streets across all 50 states.</p>"
+            "question": "Who is the MF-35 folding electric tricycle best suited for?",
+            "answer": "<p>The MF-35 folding electric tricycle is designed for adult riders who value the added confidence of three wheels, electric assistance for everyday trips, and practical capacity for errands or gear. Its adjustable saddle post and Telescopic handlebar stem are designed to accommodate riders from 5'1\" to 5'9\".</p>"
           }
         },
         "question_warranty": {
           "type": "question",
           "settings": {
-            "question": "What does the 2-Year Maxfoot Factory Warranty cover?",
-            "answer": "<p>Our comprehensive warranty covers all major core powertrain elements including the structural aluminum chassis, folding joint, Bafang electric hub motor, lithium battery pack, LED display controller, throttle, and wiring harness against manufacturer defects for a full 24 months. Replacement parts ship promptly from our Ontario, California fulfillment center.</p>"
+            "question": "What range can I expect on a charge?",
+            "answer": "<p>The MF-35 folding electric trike offers a range of up to 50 miles under ideal riding conditions. Actual range varies based on rider and cargo weight, terrain, tire pressure, temperature, battery condition, assist level, throttle use, and riding style.</p>"
           }
         }
       },
