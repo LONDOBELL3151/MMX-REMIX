@@ -346,10 +346,10 @@
             "attribute": "Direct Factory Price",
             "winner_value": "$1,099.00",
             "winner_is_check": false,
-            "comp_1_value": "$1,499.00",
+            "comp_1_value": "$2,254.00",
             "comp_1_is_check": false,
             "comp_1_is_x": false,
-            "comp_2_value": "$1,899.00",
+            "comp_2_value": "$1,499.00",
             "comp_2_is_check": false,
             "comp_2_is_x": false
           }
@@ -372,18 +372,19 @@
           "type": "row",
           "settings": {
             "attribute": "TOP SPEED",
-            "winner_value": "INCLUDED ($129 FREE)",
+            "winner_value": "19 MPH",
             "winner_is_check": false,
-            "comp_1_value": "Extra +$120 Add-on",
+            "comp_1_value": "17 MPH",
             "comp_1_is_check": false,
             "comp_1_is_x": false,
-            "comp_2_value": "Extra +$150 Add-on",
+            "comp_2_value": "20 MPH",
             "comp_2_is_check": false,
             "comp_2_is_x": false
           }
         },
         "row_diff": {
           "type": "row",
+          "disabled": true,
           "settings": {
             "attribute": "Rear Wheel Differential",
             "winner_value": "Automotive Dual Drive",
@@ -400,12 +401,12 @@
           "type": "row",
           "settings": {
             "attribute": "Total Carrying Capacity",
-            "winner_value": "400 LBS TOTAL",
+            "winner_value": "230 lbs (rider) + 80 lbs (cargo)",
             "winner_is_check": false,
             "comp_1_value": "415 LBS TOTAL",
             "comp_1_is_check": false,
             "comp_1_is_x": false,
-            "comp_2_value": "350 LBS TOTAL",
+            "comp_2_value": "230 lbs (rider) + 80 lbs (cargo)",
             "comp_2_is_check": false,
             "comp_2_is_x": false
           }
@@ -414,12 +415,12 @@
           "type": "row",
           "settings": {
             "attribute": "Lowest Standover Step",
-            "winner_value": "14.5 Inches",
+            "winner_value": "12 Inches",
             "winner_is_check": false,
-            "comp_1_value": "13.8 Inches",
+            "comp_1_value": "13.5 Inches",
             "comp_1_is_check": false,
             "comp_1_is_x": false,
-            "comp_2_value": "17.2 Inches",
+            "comp_2_value": "14.1 Inches",
             "comp_2_is_check": false,
             "comp_2_is_x": false
           }
@@ -433,7 +434,7 @@
             "comp_1_value": "1-Year Standard",
             "comp_1_is_check": false,
             "comp_1_is_x": false,
-            "comp_2_value": "1-Year Standard",
+            "comp_2_value": "2-YEAR EXTENDED",
             "comp_2_is_check": false,
             "comp_2_is_x": false
           }
