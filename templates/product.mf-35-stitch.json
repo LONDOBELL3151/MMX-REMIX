@@ -309,7 +309,7 @@
       "settings": {
         "kicker": "ERGONOMIC MATRIX & FIT GUIDE",
         "heading": "WILL IT FIT YOU COMFORTABLY?",
-        "subheading": "Adjustable saddle post and handlebar stem ensure a tailored fit for riders 5'1\" to 5'9\".",
+        "subheading": "The MF-35 folding electric trike features an adjustable saddle post and a quick-tilt handlebar stem, helping riders from 5'1\" to 5'9\" find a comfortable, personalized fit.",
         "blueprint_title": "CHASSIS SCHEMATIC & CLEARANCES",
         "blueprint_tag": "MEASUREMENTS IN INCHES / MM",
         "image": "shopify://shop_images/size_ae90f5d7-daf6-4e09-ba3a-77dae9d46e6c.png",
@@ -360,18 +360,18 @@
             "attribute": "Folding Portability",
             "winner_value": "YES (10-Sec Quick Fold)",
             "winner_is_check": true,
-            "comp_1_value": "YES (Bulkier Fold)",
+            "comp_1_value": "YES",
             "comp_1_is_check": true,
             "comp_1_is_x": false,
-            "comp_2_value": "NO (Rigid Frame Only)",
-            "comp_2_is_check": false,
-            "comp_2_is_x": true
+            "comp_2_value": "YES",
+            "comp_2_is_check": true,
+            "comp_2_is_x": false
           }
         },
         "row_basket": {
           "type": "row",
           "settings": {
-            "attribute": "Rear Cargo Basket Included",
+            "attribute": "TOP SPEED",
             "winner_value": "INCLUDED ($129 FREE)",
             "winner_is_check": false,
             "comp_1_value": "Extra +$120 Add-on",
@@ -450,7 +450,7 @@
       ],
       "settings": {
         "kicker": "// VALUE BENCHMARK ANALYSIS",
-        "heading": "HOW THE MF-35 CRUSHES THE COMPETITION",
+        "heading": "HOW THE MF-35 FOLDING ELECTRIC TRIKES CRUSHES THE COMPETITION",
         "subheading": "Honest feature-by-feature comparison against the leading electric trikes in the US market.",
         "col_label": "SPEC / FEATURE",
         "winner_label": "MAXFOOT MF-35 (WINNER)",
