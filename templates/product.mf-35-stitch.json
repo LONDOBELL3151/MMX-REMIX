@@ -518,6 +518,7 @@
     },
     "sticky_buy": {
       "type": "mf35-stitch-sticky-buy",
+      "disabled": true,
       "settings": {
         "cta_text": "ORDER NOW • SAVE $500",
         "save_text": "SAVE",
