@@ -24,6 +24,34 @@
     "main": {
       "type": "main-collection",
       "blocks": {
+        "promo_TwdXVy": {
+          "type": "promo",
+          "settings": {
+            "heading": "Easily fits into the trunk",
+            "body": "",
+            "image": "shopify://shop_images/storecollection.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "medium",
+            "overlay_opacity": 100,
+            "position": 3
+          }
+        },
+        "promo_VFcUyM": {
+          "type": "promo",
+          "settings": {
+            "heading": "Maxfoot MF-35",
+            "body": "",
+            "image": "shopify://shop_images/collection35.png",
+            "button_text": "Learn more",
+            "button_link": "",
+            "alignment": "bottom",
+            "font_size": "medium",
+            "overlay_opacity": 100,
+            "position": 2
+          }
+        },
         "promo_6GyD9w": {
           "type": "promo",
           "settings": {
@@ -82,6 +110,8 @@
         }
       },
       "block_order": [
+        "promo_TwdXVy",
+        "promo_VFcUyM",
         "promo_6GyD9w",
         "promo_7qD3xN",
         "promo_mfmVeH",
@@ -298,7 +328,7 @@
         "eyebrow": "",
         "headline": "Premium Quality. Powerful Performance",
         "bg_color": "#000000",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "accent_color": "#ffc000",
         "padding_top": 80,
         "padding_bottom": 80
