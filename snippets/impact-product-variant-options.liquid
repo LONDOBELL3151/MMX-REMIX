@@ -72,22 +72,7 @@
         <span class="visually-hidden">{{ value | escape }}</span>
       {%- endif -%}
     {%- endcapture -%}
-    {%
-      render 'impact-swatch-input',
-      id: input_id,
-      name: input_name,
-      value: value | escape,
-      value_: value,
-      swatch: value.swatch,
-      product_form_id: product_form_id,
-      checked: value.selected,
-      visually_disabled: option_disabled,
-      shape: block.settings.swatch_shape,
-      help_text: help_text,
-      additional_props: input_dataset,
-      input_color_dataset: input_color_dataset,
-      is_only_color: is_only_color
-    %}
+    {% render 'impact-swatch-input', id: input_id, name: input_name, value: value, value_: value, swatch: value.swatch, product_form_id: product_form_id, checked: value.selected, visually_disabled: option_disabled, shape: block.settings.swatch_shape, help_text: help_text, additional_props: input_dataset, input_color_dataset: input_color_dataset, is_only_color: is_only_color %}
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"
@@ -130,3 +115,33 @@
     </option>
   {%- endif -%}
 {%- endfor -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%
+          render 'impact-swatch-input',
+          id: input_id,
+          name: input_name,
+          value: value | escape,
+          value_: value,
+          swatch: value.swatch,
+          product_form_id: product_form_id,
+          checked: value.selected,
+          visually_disabled: option_disabled,
+          shape: block.settings.swatch_shape,
+          help_text: help_text,
+          additional_props: input_dataset,
+          input_color_dataset: input_color_dataset,
+          is_only_color: is_only_color
+        %}
+  to: "{% render 'impact-swatch-input', id: input_id, name: input_name, value: value,
+    value_: value, swatch: value.swatch, product_form_id: product_form_id, checked:
+    value.selected, visually_disabled: option_disabled, shape: block.settings.swatch_shape,
+    help_text: help_text, additional_props: input_dataset, input_color_dataset: input_color_dataset,
+    is_only_color: is_only_color %}"
+  position: 2223..2598
+{% endcomment %}

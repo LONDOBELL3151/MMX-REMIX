@@ -301,13 +301,7 @@
                         {{ hotspot_product.selected_or_first_available_variant.price | money }}
                       </p>
                       <div class="mf-gallery__quick-add">
-                        {% render 'mf-quick-add-form',
-                          product: hotspot_product,
-                          button_label: 'Add to cart',
-                          button_class: 'button button--primary',
-                          section_id: section.id,
-                          id_suffix: block.id | append: '-' | append: hotspot_index
-                        %}
+                        {% render 'mf-quick-add-form', product: hotspot_product, button_label: 'Add to cart', button_class: 'button button--primary', section_id: section.id, id_suffix: block.id, append: hotspot_index %}
                       </div>
                     </div>
                   </div>
@@ -705,3 +699,22 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'mf-quick-add-form',
+                              product: hotspot_product,
+                              button_label: 'Add to cart',
+                              button_class: 'button button--primary',
+                              section_id: section.id,
+                              id_suffix: block.id | append: '-' | append: hotspot_index
+                            %}
+  to: "{% render 'mf-quick-add-form', product: hotspot_product, button_label: 'Add
+    to cart', button_class: 'button button--primary', section_id: section.id, id_suffix:
+    block.id, append: hotspot_index %}"
+  position: 9907..10102
+{% endcomment %}
