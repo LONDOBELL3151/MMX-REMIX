@@ -553,7 +553,8 @@
           "settings": {
             "video": "shopify://files/videos/MF35.mp4",
             "desktop_width_percent": 100,
-            "overlay_opacity": 50,
+            "overlay_opacity": 35,
+            "mobile_ratio": "4:5",
             "heading": "Explore the city boundaries",
             "copy": "<p>Start every new journey with electric riding.</p>"
           },
