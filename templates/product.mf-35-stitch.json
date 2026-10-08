@@ -65,6 +65,27 @@
         "show_extras": true
       }
     },
+    "1791444885e3e6a449": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1480707_kbjaNt": {
+          "type": "ai_gen_block_1480707",
+          "settings": {
+            "video": "shopify://files/videos/MF35.mp4",
+            "overlay_opacity": 35,
+            "mobile_ratio": "4:5",
+            "heading": "Explore the city boundaries",
+            "copy": "<p>Start every new journey with electric riding.</p>",
+            "debug_shade": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1480707_kbjaNt"
+      ],
+      "settings": {}
+    },
     "performance": {
       "type": "mf35-stitch-performance",
       "blocks": {
@@ -544,31 +565,11 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "1791444885e3e6a449": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_1480707_kbjaNt": {
-          "type": "ai_gen_block_1480707",
-          "settings": {
-            "video": "shopify://files/videos/MF35.mp4",
-            "desktop_width_percent": 100,
-            "overlay_opacity": 35,
-            "mobile_ratio": "4:5",
-            "heading": "Explore the city boundaries",
-            "copy": "<p>Start every new journey with electric riding.</p>"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_1480707_kbjaNt"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "main",
+    "1791444885e3e6a449",
     "performance",
     "feature_1",
     "feature_2",
@@ -577,7 +578,6 @@
     "compare",
     "faq",
     "sticky_buy",
-    "apps",
-    "1791444885e3e6a449"
+    "apps"
   ]
 }
