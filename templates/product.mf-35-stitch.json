@@ -548,27 +548,20 @@
     "1791444885e3e6a449": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_137062a_dRJtNx": {
-          "type": "ai_gen_block_137062a",
+        "ai_gen_block_1480707_kbjaNt": {
+          "type": "ai_gen_block_1480707",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/8398c337d90b4e83943d751e256b4ec1.mp4",
-            "video_label": "背景视频",
+            "video": "shopify://files/videos/MF35.mp4",
             "desktop_width_percent": 100,
-            "video_height": 600,
-            "mobile_video_height": 450,
+            "overlay_opacity": 35,
             "heading": "Explore the city boundaries",
-            "text": "<p>Start every new journey with electric riding.</p>",
-            "text_color": "#FFFFFF",
-            "heading_size": 48,
-            "body_size": 18,
-            "content_padding": 48,
-            "overlay_opacity": 10
+            "copy": "<p>Start every new journey with electric riding.</p>"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_137062a_dRJtNx"
+        "ai_gen_block_1480707_kbjaNt"
       ],
       "settings": {}
     }
