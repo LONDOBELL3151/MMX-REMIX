@@ -178,7 +178,7 @@
   .shopify-section.section-header:has(> .header--sticky){position:sticky;top:0;z-index:100;background:#fff}
   {%- endif -%}
   /* Badge labels: "[NEW]" syntax becomes a yellow chip on the right. */
-  .nav__item-label{display:inline-flex;align-items:baseline;gap:0}
+  .nav__item-label{display:inline}
   .nav__badge{
     display:inline-block;
     background:var(--color-accent,#FFC000);
@@ -193,7 +193,7 @@
     text-transform:uppercase;
     line-height:1;
     vertical-align:super;
-    transform:translateY(-2px);
+    transform:translateY(-3px);
     white-space:nowrap;
   }
   .mobile-menu__item-label{display:inline-flex;align-items:center;gap:0}
