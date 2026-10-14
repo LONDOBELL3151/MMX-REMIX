@@ -1,92 +1,255 @@
 {%- liquid
   assign s = section.settings
   assign height_class = 'hero--' | append: s.height
+  assign has_slides = false
+  if section.blocks.size > 0
+    assign has_slides = true
+  endif
 -%}
+
+{%- if has_slides -%}
 <style>
-  .hero__bg picture, .hero__bg picture img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-carousel{position:relative;width:100%}
+  .hero-carousel__viewport{position:relative;width:100%;overflow:hidden}
+  .hero-carousel__viewport.hero--compact{min-height:480px}
+  .hero-carousel__viewport.hero--medium{min-height:640px}
+  .hero-carousel__viewport.hero--tall{min-height:720px}
+  .hero-carousel .hero{position:absolute;inset:0;min-height:0;overflow:hidden;color:#fff}
+  .hero-carousel .hero.is-active{z-index:1}
+  .hero-carousel__slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 600ms ease;pointer-events:none}
+  .hero-carousel__slide.is-active{opacity:1;visibility:visible;pointer-events:auto}
+  .hero-carousel__dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:3}
+  .hero-carousel__dot{width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,.65);background:transparent;cursor:pointer;padding:0;transition:background .3s,border-color .3s,transform .3s}
+  .hero-carousel__dot:hover{transform:scale(1.15)}
+  .hero-carousel__dot.is-active{background:#FFC000;border-color:#FFC000}
+  .hero-carousel__arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(0,0,0,.4);color:#fff;border:none;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;transition:background .3s,opacity .3s;opacity:.85;line-height:1}
+  .hero-carousel__arrow:hover{background:rgba(0,0,0,.7);opacity:1}
+  .hero-carousel__arrow--prev{left:20px}
+  .hero-carousel__arrow--next{right:20px}
   @media (max-width:990px){
-    .hero{min-height:0;padding:0 !important}
-    .hero--compact,.hero--medium,.hero--tall{min-height:0}
-    .hero__bg{position:relative;aspect-ratio:750/1080;height:auto}
-    .hero__bg img,.hero__bg picture img{object-fit:cover}
-    .hero__content{position:absolute;inset:0;min-height:0;display:flex;align-items:flex-end;padding:24px 20px 32px}
+    .hero-carousel__viewport.hero--compact,
+    .hero-carousel__viewport.hero--medium,
+    .hero-carousel__viewport.hero--tall{min-height:0}
+    .hero-carousel__viewport::before{content:"";display:block;aspect-ratio:750/1080;width:100%}
+    .hero-carousel__arrow{width:40px;height:40px;font-size:18px}
+    .hero-carousel__arrow--prev{left:12px}
+    .hero-carousel__arrow--next{right:12px}
+    .hero-carousel__dots{bottom:14px}
+  }
+  @media (max-width:480px){
+    .hero-carousel__arrow{width:36px;height:36px}
+    .hero-carousel__arrow--prev{left:8px}
+    .hero-carousel__arrow--next{right:8px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-carousel__slide{transition:none}
   }
 </style>
 
-<section class="hero {{ height_class }}" aria-label="Hero" {{ section.shopify_attributes }} style="background: {{ s.bg_color | default: 'transparent' }}">
-  <div class="hero__bg">
-    {%- if s.image_mobile != blank or s.image != blank -%}
-      <picture>
-        {%- if s.image_mobile != blank -%}
-          <source
-            media="(max-width: 768px)"
-            srcset="{{ s.image_mobile | image_url: width: 360 }} 360w, {{ s.image_mobile | image_url: width: 375 }} 375w, {{ s.image_mobile | image_url: width: 640 }} 640w, {{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1080 }} 1080w"
-            sizes="100vw">
+<section
+  class="hero-carousel section-hero {{ height_class }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="hero"
+  aria-roledescription="carousel"
+  aria-label="Hero banner"
+>
+  <div class="hero-carousel__viewport {{ height_class }}" style="background: {{ s.bg_color | default: 'transparent' }}">
+
+    {%- for block in section.blocks -%}
+      {%- assign b = block.settings -%}
+      {%- assign slide_index = forloop.index0 -%}
+      <div
+        class="hero-carousel__slide hero {{ height_class }}{% if slide_index == 0 %} is-active{% endif %}"
+        data-slide-index="{{ slide_index }}"
+        role="group"
+        aria-roledescription="slide"
+        aria-label="{{ forloop.index }} of {{ section.blocks.size }}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="hero__bg">
+          {%- if b.image_mobile != blank or b.image != blank -%}
+            <picture>
+              {%- if b.image_mobile != blank -%}
+                <source
+                  media="(max-width: 768px)"
+                  srcset="{{ b.image_mobile | image_url: width: 360 }} 360w, {{ b.image_mobile | image_url: width: 375 }} 375w, {{ b.image_mobile | image_url: width: 640 }} 640w, {{ b.image_mobile | image_url: width: 750 }} 750w, {{ b.image_mobile | image_url: width: 1080 }} 1080w"
+                  sizes="100vw">
+              {%- endif -%}
+              {%- if b.image != blank -%}
+                <img src="{{ b.image | image_url: width: 1600 }}"
+                     srcset="{{ b.image | image_url: width: 800 }} 800w, {{ b.image | image_url: width: 1200 }} 1200w, {{ b.image | image_url: width: 1600 }} 1600w, {{ b.image | image_url: width: 2000 }} 2000w"
+                     sizes="100vw"
+                     alt="{{ b.image.alt | default: 'MaxFoot family riding electric trike' | escape }}"
+                     loading="{% if slide_index == 0 %}eager{% else %}lazy{% endif %}"
+                     width="1600"
+                     height="900">
+              {%- else -%}
+                <img src="{{ b.image_mobile | image_url: width: 750 }}"
+                     srcset="{{ b.image_mobile | image_url: width: 360 }} 360w, {{ b.image_mobile | image_url: width: 375 }} 375w, {{ b.image_mobile | image_url: width: 640 }} 640w, {{ b.image_mobile | image_url: width: 750 }} 750w, {{ b.image_mobile | image_url: width: 1080 }} 1080w"
+                     sizes="100vw"
+                     alt="{{ b.image_mobile.alt | default: 'MaxFoot family riding electric trike' | escape }}"
+                     loading="{% if slide_index == 0 %}eager{% else %}lazy{% endif %}"
+                     width="750"
+                     height="1080">
+              {%- endif -%}
+            </picture>
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg hero__bg--placeholder' }}
+          {%- endif -%}
+        </div>
+
+        {%- if b.badge_text != blank -%}
+          <div class="hero__badge">{{ b.badge_text }}</div>
         {%- endif -%}
-        {%- if s.image != blank -%}
-          <img src="{{ s.image | image_url: width: 1600 }}"
-               srcset="{{ s.image | image_url: width: 800 }} 800w, {{ s.image | image_url: width: 1200 }} 1200w, {{ s.image | image_url: width: 1600 }} 1600w, {{ s.image | image_url: width: 2000 }} 2000w"
-               sizes="100vw"
-               alt="{{ s.image.alt | default: 'MaxFoot family riding electric trike' | escape }}"
-               loading="eager"
-               width="1600"
-               height="900">
-        {%- else -%}
-          <img src="{{ s.image_mobile | image_url: width: 750 }}"
-               srcset="{{ s.image_mobile | image_url: width: 360 }} 360w, {{ s.image_mobile | image_url: width: 375 }} 375w, {{ s.image_mobile | image_url: width: 640 }} 640w, {{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1080 }} 1080w"
-               sizes="100vw"
-               alt="{{ s.image_mobile.alt | default: 'MaxFoot family riding electric trike' | escape }}"
-               loading="eager"
-               width="750"
-               height="1080">
-        {%- endif -%}
-      </picture>
-    {%- else -%}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg hero__bg--placeholder' }}
+
+        <div class="container hero__content">
+          <div class="hero__copy">
+            {%- if b.eyebrow != blank -%}
+              <span class="hero__eyebrow">{{ b.eyebrow }}</span>
+            {%- endif -%}
+            <h1 class="hero__title">
+              {%- if b.title != blank -%}
+                {{ b.title }}
+              {%- else -%}
+                Built for the <em>ride home.</em>
+              {%- endif -%}
+            </h1>
+            {%- if b.subtitle != blank -%}
+              <p class="hero__sub">{{ b.subtitle }}</p>
+            {%- else -%}
+              <p class="hero__sub">Foldable electric trikes built for the whole family. UL-certified, US-shipping, 14-day trial, 2-year warranty.</p>
+            {%- endif -%}
+            <div class="hero__cta">
+              {%- if b.button_text != blank -%}
+                <a href="{{ b.button_link | default: '/collections/all' }}" class="btn btn--primary btn--lg">
+                  {{ b.button_text }}
+                  {% render 'icon', icon: 'arrow-right' %}
+                </a>
+              {%- endif -%}
+              {%- if b.button2_text != blank -%}
+                <a href="{{ b.button2_link | default: '/collections/electric-trikes' }}" class="btn btn--ghost btn--lg">{{ b.button2_text }}</a>
+              {%- endif -%}
+            </div>
+            {%- if b.show_urgency -%}
+              <div class="hero__urgency">
+                {% render 'icon', icon: 'truck', size: 16 %}
+                <span>{{ b.urgency_text | default: 'Ships from US warehouse — free 2-day in 48 states' }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+
+    {%- if s.show_arrows and section.blocks.size > 1 -%}
+      <button class="hero-carousel__arrow hero-carousel__arrow--prev" type="button" aria-label="Previous slide" data-carousel-action="prev">
+        {% render 'icon', icon: 'chevron-left' %}
+      </button>
+      <button class="hero-carousel__arrow hero-carousel__arrow--next" type="button" aria-label="Next slide" data-carousel-action="next">
+        {% render 'icon', icon: 'chevron-right' %}
+      </button>
     {%- endif -%}
   </div>
 
-  {%- if s.badge_text != blank -%}
-    <div class="hero__badge">{{ s.badge_text }}</div>
-  {%- endif -%}
-
-  <div class="container hero__content">
-    <div class="hero__copy">
-      {%- if s.eyebrow != blank -%}
-        <span class="hero__eyebrow">{{ s.eyebrow }}</span>
-      {%- endif -%}
-      <h1 class="hero__title">
-        {%- if s.title != blank -%}
-          {{ s.title }}
-        {%- else -%}
-          Built for the <em>ride home.</em>
-        {%- endif -%}
-      </h1>
-      {%- if s.subtitle != blank -%}
-        <p class="hero__sub">{{ s.subtitle }}</p>
-      {%- else -%}
-        <p class="hero__sub">Foldable electric trikes built for the whole family. UL-certified, US-shipping, 14-day trial, 2-year warranty.</p>
-      {%- endif -%}
-      <div class="hero__cta">
-        {%- if s.button_text != blank -%}
-          <a href="{{ s.button_link | default: '/collections/all' }}" class="btn btn--primary btn--lg">
-            {{ s.button_text }}
-            {% render 'icon', icon: 'arrow-right' %}
-          </a>
-        {%- endif -%}
-        {%- if s.button2_text != blank -%}
-          <a href="{{ s.button2_link | default: '/collections/electric-trikes' }}" class="btn btn--ghost btn--lg">{{ s.button2_text }}</a>
-        {%- endif -%}
-      </div>
-      {%- if s.show_urgency -%}
-        <div class="hero__urgency">
-          {% render 'icon', icon: 'truck', size: 16 %}
-          <span>{{ s.urgency_text | default: 'Ships from US warehouse — free 2-day in 48 states' }}</span>
-        </div>
-      {%- endif -%}
+  {%- if s.show_dots and section.blocks.size > 1 -%}
+    <div class="hero-carousel__dots" role="tablist" aria-label="Slide navigation">
+      {%- for block in section.blocks -%}
+        <button
+          class="hero-carousel__dot{% if forloop.first %} is-active{% endif %}"
+          type="button"
+          role="tab"
+          aria-label="Go to slide {{ forloop.index }}"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          data-carousel-dot="{{ forloop.index0 }}"
+        ></button>
+      {%- endfor -%}
     </div>
-  </div>
+  {%- endif -%}
 </section>
+
+<script>
+(function(){
+  var sectionId = {{ section.id | json }};
+  var root = document.querySelector('[data-section-id="' + sectionId + '"]');
+  if (!root) return;
+  var viewport = root.querySelector('.hero-carousel__viewport');
+  if (!viewport) return;
+  var slides = root.querySelectorAll('.hero-carousel__slide');
+  var dots = root.querySelectorAll('.hero-carousel__dot');
+  var prevBtn = root.querySelector('[data-carousel-action="prev"]');
+  var nextBtn = root.querySelector('[data-carousel-action="next"]');
+  if (slides.length === 0) return;
+
+  var total = slides.length;
+  var current = 0;
+  var autoPlay = {{ s.auto_play | json }};
+  var interval = {{ s.auto_play_interval | times: 1000 | json }};
+  var timer = null;
+
+  function go(i){
+    var next = (i % total + total) % total;
+    slides.forEach(function(s, idx){
+      var on = idx === next;
+      s.classList.toggle('is-active', on);
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    dots.forEach(function(d, idx){
+      var on = idx === next;
+      d.classList.toggle('is-active', on);
+      d.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    current = next;
+  }
+
+  function stop(){
+    if (timer){ clearInterval(timer); timer = null; }
+  }
+  function start(){
+    if (!autoPlay || total <= 1) return;
+    stop();
+    timer = setInterval(function(){ go(current + 1); }, interval);
+  }
+
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){
+      var idx = parseInt(d.getAttribute('data-carousel-dot'), 10);
+      if (!isNaN(idx)){ go(idx); start(); }
+    });
+  });
+  if (prevBtn) prevBtn.addEventListener('click', function(){ go(current - 1); start(); });
+  if (nextBtn) nextBtn.addEventListener('click', function(){ go(current + 1); start(); });
+
+  var touchStartX = 0, touchDX = 0, touching = false;
+  viewport.addEventListener('touchstart', function(e){
+    if (e.touches.length !== 1) return;
+    touching = true; touchStartX = e.touches[0].clientX; touchDX = 0;
+    stop();
+  }, { passive: true });
+  viewport.addEventListener('touchmove', function(e){
+    if (!touching) return;
+    touchDX = e.touches[0].clientX - touchStartX;
+  }, { passive: true });
+  viewport.addEventListener('touchend', function(){
+    if (!touching) return;
+    touching = false;
+    if (Math.abs(touchDX) > 40){ go(touchDX < 0 ? current + 1 : current - 1); }
+    start();
+  });
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) stop(); else start();
+  });
+
+  slides.forEach(function(s, idx){
+    s.setAttribute('aria-hidden', idx === 0 ? 'false' : 'true');
+  });
+
+  start();
+})();
+</script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -94,91 +257,6 @@
   "tag": "section",
   "class": "section-hero",
   "settings": [
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "New for 2026"
-    },
-    {
-      "type": "richtext",
-      "id": "title",
-      "label": "Title (use <em> for highlight)",
-      "default": "<p>Built for the <em>ride home.</em></p>"
-    },
-    {
-      "type": "textarea",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Foldable electric trikes built for the whole family. UL-certified, US-shipping, 14-day trial, 2-year warranty."
-    },
-    {
-      "type": "header",
-      "content": "Primary CTA"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button text",
-      "default": "Shop Electric Trikes"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
-    },
-    {
-      "type": "header",
-      "content": "Secondary CTA"
-    },
-    {
-      "type": "text",
-      "id": "button2_text",
-      "label": "Button text",
-      "default": "Compare Models"
-    },
-    {
-      "type": "url",
-      "id": "button2_link",
-      "label": "Button link"
-    },
-    {
-      "type": "header",
-      "content": "Hero image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image (desktop)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_mobile",
-      "label": "Image (mobile, 750×1080 recommended)",
-      "info": "Optional. Recommended size: 750×1080 (portrait, 2x retina for 375 CSS-px viewports). If empty, the desktop image is used on all viewports."
-    },
-    {
-      "type": "text",
-      "id": "badge_text",
-      "label": "Badge text (overlay)",
-      "default": "FREE 14-DAY TRIAL"
-    },
-    {
-      "type": "header",
-      "content": "Urgency line"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_urgency",
-      "label": "Show urgency line",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "urgency_text",
-      "label": "Urgency text",
-      "default": "Ships from US warehouse - free 2-day in 48 states"
-    },
     {
       "type": "header",
       "content": "Layout"
@@ -197,13 +275,152 @@
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Background color (behind image if no image)",
+      "label": "Background color (behind slides)",
       "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Carousel controls"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "Auto-play slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_play_interval",
+      "label": "Auto-play interval (seconds)",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "info": "Only applies when auto-play is on."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show prev / next arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show dot indicators",
+      "default": true
     }
   ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Hero image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image (mobile, 750×1080 recommended)",
+          "info": "Optional. Recommended size: 750×1080 (portrait, 2x retina for 375 CSS-px viewports). If empty, the desktop image is used on all viewports."
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "New for 2026"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title (use <em> for highlight)",
+          "default": "<p>Built for the <em>ride home.</em></p>"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Foldable electric trikes built for the whole family. UL-certified, US-shipping, 14-day trial, 2-year warranty."
+        },
+        {
+          "type": "header",
+          "content": "Primary CTA"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop Electric Trikes"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Secondary CTA"
+        },
+        {
+          "type": "text",
+          "id": "button2_text",
+          "label": "Button text",
+          "default": "Compare Models"
+        },
+        {
+          "type": "url",
+          "id": "button2_link",
+          "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Overlay badge"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text (top-left overlay)",
+          "default": "FREE 14-DAY TRIAL"
+        },
+        {
+          "type": "header",
+          "content": "Urgency line"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_urgency",
+          "label": "Show urgency line",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "urgency_text",
+          "label": "Urgency text",
+          "default": "Ships from US warehouse - free 2-day in 48 states"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
     }
   ]
 }

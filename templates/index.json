@@ -12,40 +12,53 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "SALE",
-        "title": "<p>UP TO <em>$1100</em> OFF <em>PRIME MONTH</em></p>",
-        "subtitle": "MF-25 Electric Commuter Bike<br>Peak 1000W Motor & 48V 500Wh Battery<br><br>MF-30 Cargo Electric Trike<br>750W Rear Drive Motor & 48V 20Ah Battery",
-        "button_text": "$1100 OFF - MF-25 Electric Bike",
-        "button_link": "shopify://products/maxfoot-mf-25-commuter-step-thru-electric-bike-brooklyn-gray",
-        "button2_text": "$900 OFF - MF-30 Electric Trike",
-        "button2_link": "shopify://products/maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-candy-red",
-        "image": "shopify://shop_images/20260911-_1920X820_e8f8d6da-9feb-4ccb-bb04-6eb3de8e6712.jpg",
-        "image_mobile": "shopify://shop_images/20260911-_750X1080_c1697bdd-73d3-4953-a2df-7783f757352c.jpg",
-        "badge_text": "FREE SHIPPING",
-        "show_urgency": true,
-        "urgency_text": "Ships from US warehouse - free 2-7 day in 48 states",
         "height": "medium",
-        "bg_color": "#ffffff"
-      }
-    },
-    "hero_NijgLE": {
-      "type": "hero",
-      "disabled": true,
-      "settings": {
-        "eyebrow": "New for 2026",
-        "title": "<p>Built for the <em>ride home.</em></p>",
-        "subtitle": "Pedal-assist adult electric trikes built for the whole family. UL-certified, US-shipping, 2-year warranty.",
-        "button_text": "Shop Electric Trikes",
-        "button_link": "shopify://collections/all-collection",
-        "button2_text": "",
-        "button2_link": "shopify://collections/all-collection",
-        "image": "shopify://shop_images/MF-30_097f12c0-38f2-4c36-8db9-490b5a6dd608.png",
-        "badge_text": "FREE SHIPPING",
-        "show_urgency": true,
-        "urgency_text": "Ships from US warehouse - free 2-7 day in 48 states",
-        "height": "medium",
-        "bg_color": "#ffffff"
-      }
+        "bg_color": "#ffffff",
+        "auto_play": true,
+        "auto_play_interval": 5,
+        "show_arrows": true,
+        "show_dots": true
+      },
+      "blocks": {
+        "slide_PRiMe": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "SALE",
+            "title": "<p>UP TO <em>$1100</em> OFF <em>PRIME MONTH</em></p>",
+            "subtitle": "MF-25 Electric Commuter Bike<br>Peak 1000W Motor & 48V 500Wh Battery<br><br>MF-30 Cargo Electric Trike<br>750W Rear Drive Motor & 48V 20Ah Battery",
+            "button_text": "$1100 OFF - MF-25 Electric Bike",
+            "button_link": "shopify://products/maxfoot-mf-25-commuter-step-thru-electric-bike-brooklyn-gray",
+            "button2_text": "$900 OFF - MF-30 Electric Trike",
+            "button2_link": "shopify://products/maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-candy-red",
+            "image": "shopify://shop_images/20260911-_1920X820_e8f8d6da-9feb-4ccb-bb04-6eb3de8e6712.jpg",
+            "image_mobile": "shopify://shop_images/20260911-_750X1080_c1697bdd-73d3-4953-a2df-7783f757352c.jpg",
+            "badge_text": "FREE SHIPPING",
+            "show_urgency": true,
+            "urgency_text": "Ships from US warehouse - free 2-7 day in 48 states"
+          }
+        },
+        "slide_bAnNe": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "New for 2026",
+            "title": "<p>Built for the <em>ride home.</em></p>",
+            "subtitle": "Pedal-assist adult electric trikes built for the whole family. UL-certified, US-shipping, 2-year warranty.",
+            "button_text": "Shop Electric Trikes",
+            "button_link": "shopify://collections/all-collection",
+            "button2_text": "",
+            "button2_link": "shopify://collections/all-collection",
+            "image": "shopify://shop_images/MF-30_097f12c0-38f2-4c36-8db9-490b5a6dd608.png",
+            "image_mobile": "",
+            "badge_text": "FREE SHIPPING",
+            "show_urgency": true,
+            "urgency_text": "Ships from US warehouse - free 2-7 day in 48 states"
+          }
+        }
+      },
+      "block_order": [
+        "slide_PRiMe",
+        "slide_bAnNe"
+      ]
     },
     "trust": {
       "type": "trust-badges",
@@ -476,7 +489,6 @@
   },
   "order": [
     "hero",
-    "hero_NijgLE",
     "trust",
     "story",
     "proof",
