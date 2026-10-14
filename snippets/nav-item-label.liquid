@@ -10,12 +10,15 @@
 {%- assign badge = '' -%}
 {%- assign title_clean = raw -%}
 {%- if raw contains '[' and raw contains ']' -%}
-  {%- assign before_text = raw | split: '[' | first -%}
-  {%- assign rest = raw | remove: before_text | remove_first: '[' -%}
-  {%- if rest contains ']' -%}
-    {%- assign badge = rest | split: ']' | first | strip -%}
-    {%- assign rest_after = rest | split: ']' | last -%}
-    {%- assign title_clean = before_text | append: rest_after | strip -%}
+  {%- assign parts = raw | split: '[' -%}
+  {%- if parts.size > 1 -%}
+    {%- assign before_text = parts[0] -%}
+    {%- assign rest = parts[1] -%}
+    {%- if rest contains ']' -%}
+      {%- assign close_parts = rest | split: ']' -%}
+      {%- assign badge = close_parts[0] | strip -%}
+      {%- assign title_clean = before_text | strip -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}
 {%- assign label_class = prefix | append: '__item-label' -%}
