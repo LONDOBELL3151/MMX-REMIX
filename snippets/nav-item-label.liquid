@@ -14,7 +14,8 @@
   {%- assign rest = raw | remove: before_text | remove_first: '[' -%}
   {%- if rest contains ']' -%}
     {%- assign badge = rest | split: ']' | first | strip -%}
-    {%- assign title_clean = before_text | append: (rest | split: ']' | last) | strip -%}
+    {%- assign rest_after = rest | split: ']' | last -%}
+    {%- assign title_clean = before_text | append: rest_after | strip -%}
   {%- endif -%}
 {%- endif -%}
 {%- assign label_class = prefix | append: '__item-label' -%}
