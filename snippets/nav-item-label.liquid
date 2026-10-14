@@ -1,0 +1,41 @@
+{%- comment -%}
+  Renders a nav link title with optional badge chip when the title contains
+  the inline syntax "[BADGE]" (e.g. "MF-25 [NEW]" → "MF-25" + yellow NEW chip).
+
+  Required:
+    - title: the raw link.title
+  Optional:
+    - class_prefix: "nav" (default) → .nav__badge; "mobile-menu" → .mobile-menu__badge
+    - extra_class: extra class on the wrapping label span
+{%- endcomment -%}
+{%- assign raw = title -%}
+{%- assign badge_text = '' -%}
+{%- assign clean_title = raw -%}
+{%- assign has_badge = false -%}
+{%- if raw contains '[' and raw contains ']' -%}
+  {%- assign parts = raw | split: '[' -%}
+  {%- assign before = parts[0] -%}
+  {%- if parts.size > 1 -%}
+    {%- assign rest = parts[1] | split: ']' -%}
+    {%- if rest.size > 1 -%}
+      {%- assign badge_text_candidate = rest[0] | strip -%}
+      {%- assign after = rest[1] -%}
+      {%- assign combined = before | append: after -%}
+      {%- assign clean_title = combined | strip -%}
+      {%- assign badge_text = badge_text_candidate -%}
+      {%- assign has_badge = true -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign prefix = class_prefix | default: 'nav' -%}
+{%- assign label_class = prefix | append: '__item-label' -%}
+{%- if extra_class != blank -%}
+  {%- assign label_class = label_class | append: ' ' | append: extra_class -%}
+{%- endif -%}
+{%- assign badge_class = prefix | append: '__badge' -%}
+<span class="{{ label_class }}">
+  {{- clean_title | escape -}}
+  {%- if has_badge and badge_text != blank -%}
+    <span class="{{ badge_class }}" aria-label="{{ badge_text | escape }}">{{ badge_text | escape }}</span>
+  {%- endif -%}
+</span>
