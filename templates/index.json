@@ -166,6 +166,12 @@
     "lineup": {
       "type": "featured-collection",
       "blocks": {
+        "product_cCAmdV": {
+          "type": "product",
+          "settings": {
+            "product": "mf-35"
+          }
+        },
         "product_8FqeYX": {
           "type": "product",
           "settings": {
@@ -186,14 +192,15 @@
         }
       },
       "block_order": [
+        "product_cCAmdV",
         "product_8FqeYX",
         "product_pENM3z",
         "product_NQg4Fx"
       ],
       "settings": {
         "heading": "The lineup",
-        "subheading": "Three trikes built for three kinds of families.",
-        "columns": "3",
+        "subheading": "Four trikes built for four kinds of families.",
+        "columns": "4",
         "bg": "white"
       }
     },
