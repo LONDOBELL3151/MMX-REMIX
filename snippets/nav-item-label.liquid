@@ -2,40 +2,28 @@
   Renders a nav link title with optional badge chip when the title contains
   the inline syntax "[BADGE]" (e.g. "MF-25 [NEW]" → "MF-25" + yellow NEW chip).
 
-  Required:
-    - title: the raw link.title
-  Optional:
-    - class_prefix: "nav" (default) → .nav__badge; "mobile-menu" → .mobile-menu__badge
-    - extra_class: extra class on the wrapping label span
+  Required: title (the raw link.title)
+  Optional: class_prefix (default "nav"), extra_class
 {%- endcomment -%}
 {%- assign raw = title -%}
-{%- assign badge_text = '' -%}
-{%- assign clean_title = raw -%}
-{%- assign has_badge = false -%}
+{%- assign prefix = class_prefix | default: 'nav' -%}
+{%- assign badge = '' -%}
+{%- assign title_clean = raw -%}
 {%- if raw contains '[' and raw contains ']' -%}
-  {%- assign parts = raw | split: '[' -%}
-  {%- assign before = parts[0] -%}
-  {%- if parts.size > 1 -%}
-    {%- assign rest = parts[1] | split: ']' -%}
-    {%- if rest.size > 1 -%}
-      {%- assign badge_text_candidate = rest[0] | strip -%}
-      {%- assign after = rest[1] -%}
-      {%- assign combined = before | append: after -%}
-      {%- assign clean_title = combined | strip -%}
-      {%- assign badge_text = badge_text_candidate -%}
-      {%- assign has_badge = true -%}
-    {%- endif -%}
+  {%- assign before_text = raw | split: '[' | first -%}
+  {%- assign rest = raw | remove: before_text | remove_first: '[' -%}
+  {%- if rest contains ']' -%}
+    {%- assign badge = rest | split: ']' | first | strip -%}
+    {%- assign title_clean = before_text | append: (rest | split: ']' | last) | strip -%}
   {%- endif -%}
 {%- endif -%}
-{%- assign prefix = class_prefix | default: 'nav' -%}
 {%- assign label_class = prefix | append: '__item-label' -%}
 {%- if extra_class != blank -%}
   {%- assign label_class = label_class | append: ' ' | append: extra_class -%}
 {%- endif -%}
-{%- assign badge_class = prefix | append: '__badge' -%}
 <span class="{{ label_class }}">
-  {{- clean_title | escape -}}
-  {%- if has_badge and badge_text != blank -%}
-    <span class="{{ badge_class }}" aria-label="{{ badge_text | escape }}">{{ badge_text | escape }}</span>
+  {{- title_clean | escape -}}
+  {%- if badge != blank -%}
+    <span class="{{ prefix }}__badge" aria-label="{{ badge | escape }}">{{ badge | escape }}</span>
   {%- endif -%}
 </span>
