@@ -97,6 +97,16 @@
 - **类名前缀**：所有 class 用 `.mf35-*`（区别于 mf25 的 `.mf25-*` + swoope 的 `.sw-*`），三家族样式互不污染。
 - **Sticky buy CTA 触发逻辑**：默认 main-product form action 含 `/cart/add`，sticky CTA 直接 `form.querySelector('button[name="add"]').click()` 触发——继承 Shopify 的 AJAX 加购 + cart drawer renderContents（参见 `assets/product-form.js` + `snippets/cart-drawer.liquid`）。
 
+### 5.3 header nav badge 约定（admin 操作，无需碰 theme editor）
+
+- **目的**：让 admin 在 Shopify `Online Store > Navigation > Main menu` 给任意 menu 项的 link.title 加 `[NEW]` `[SALE]` `[SOON]` `[HOT]` 等标记，前端自动渲染右上角黄底黑字 chip。
+- **用法**：admin 在 Navigation 改 link.title 为 `"MF-25 Electric Bike [NEW]"` → 前端 = `MF-25 Electric Bike` + 右上角黄底 `NEW` chip。**无需碰 theme editor**。
+- **实现**：`snippets/nav-item-label.liquid` 接 `title`（raw title）+ optional `class_prefix`（默认 `nav`，mobile menu 用 `mobile-menu`）。解析 `[xxx]` 内嵌语法，剥出 badge + 渲染 clean title + chip。
+- **`sections/header.liquid`** 在 4 处调用（桌面 nav 父级 has-sub、桌面 no-sub、mobile summary、mobile 单 link），统一走 snippet。
+- **section setting 新增**: `enable_badge_labels`（checkbox, default true）—— 一键关闭整套 badge 渲染。
+- **CSS**：纯 inline（写在 section 顶部 `<style>` 块），`.nav__badge` `.mobile-menu__badge` 类；不动 `maxfoot-components.css` / `maxfoot-responsive.css`。
+- **限制**：一个标题只剥**第一个** `[xxx]`（多个方括号会忽略第二个）；bracket 内必须非空 + 含字符（`[]` 自身被忽略）。
+
 ## 6. README 导航速查（深度文档入口）
 
 | 想查 | README § |

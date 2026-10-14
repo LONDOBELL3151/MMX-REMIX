@@ -1266,6 +1266,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 - **Submenu**: 自动从 menu link depth 检测（`link.links.size > 0`）
 - **Mobile menu**: 独立的 `<aside id="MobileMenu">` 在 header 元素外
 - **必带 setting**: `sticky_header` (default true), `show_search` (default true), `show_account` (default true), `logo_height` / `logo_height_mobile`
+- **Nav badge 标记** (snippets/nav-item-label.liquid): admin 在 `Online Store > Navigation` 改 link.title 加 `[NEW]` `[SALE]` 等方括号标记 → 前端自动渲染右上角黄底 chip。Setting `enable_badge_labels` (default true) 一键关闭。详见 CLAUDE.md §5.3。
 
 **Sticky 实现**（§6 + §8 + §13 联动）:
 1. `layout/theme.liquid` body 必须是 `display: block`（**不是 grid**）
