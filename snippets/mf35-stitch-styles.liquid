@@ -174,6 +174,35 @@
 .mf35-compare-table .check-icon{color:var(--mf35-accent-hover);font-weight:700}
 .mf35-compare-table .x-icon{color:var(--mf35-danger);font-weight:700}
 
+/* Mobile (≤ 767px): collapse 4-col table into stacked spec cards. */
+@media screen and (max-width: 767px) {
+  .mf35-compare{padding-top:48px;padding-bottom:48px}
+  .mf35-compare-head{margin-bottom:24px;padding:0 16px}
+  .mf35-compare-head h2{font-size:clamp(24px,7vw,32px)}
+  .mf35-compare-scroll{overflow-x:visible;-webkit-overflow-scrolling:auto}
+  .mf35-compare-table,
+  .mf35-compare-table thead,
+  .mf35-compare-table tbody,
+  .mf35-compare-table tr,
+  .mf35-compare-table th,
+  .mf35-compare-table td{display:block;width:auto;min-width:0}
+  .mf35-compare-table{min-width:0;border:none;background:transparent;border-radius:0}
+  .mf35-compare-table thead{display:none}
+  .mf35-compare-table tbody tr{background:var(--mf35-paper);border:1px solid var(--mf35-line);border-radius:var(--mf35-radius);margin-bottom:12px;padding:0;overflow:hidden}
+  .mf35-compare-table tbody tr:last-child{margin-bottom:0}
+  .mf35-compare-table .td-attr{font-family:var(--mf35-display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;padding:12px 16px 8px;background:var(--mf35-surface);border-bottom:1px solid var(--mf35-line);color:var(--mf35-ink);display:flex;align-items:center;gap:8px}
+  .mf35-compare-table .td-attr::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mf35-accent);flex:0 0 auto}
+  .mf35-compare-table td{padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;border-bottom:1px solid var(--mf35-surface);color:var(--mf35-ink-soft)}
+  .mf35-compare-table tbody tr td:last-child{border-bottom:none}
+  .mf35-compare-table td::before{content:attr(data-label);font-family:var(--mf35-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--mf35-muted);font-weight:500;flex:0 0 auto;text-align:left;max-width:45%}
+  .mf35-compare-table td.td-winner{background:#FFFBEB;border-left:none;border-right:none;border-top:2px solid var(--mf35-accent);color:var(--mf35-ink);font-weight:600}
+  .mf35-compare-table td.td-winner::before{color:var(--mf35-accent-hover);font-weight:600}
+  .mf35-compare-table td.td-winner.td-bottom{border-bottom:none}
+  .mf35-compare-table .td-winner-flex{align-items:center;gap:6px}
+  .mf35-compare-table .check-icon,
+  .mf35-compare-table .x-icon{flex:0 0 auto}
+}
+
 /* STICKY BUY BAR */
 .mf35-sticky-buy{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--mf35-line);padding:12px var(--mf35-gutter);box-shadow:0 -8px 24px rgba(15,17,21,0.06);transform:translateY(100%);transition:transform .3s ease-out}
 .mf35-sticky-buy.is-visible{transform:translateY(0)}

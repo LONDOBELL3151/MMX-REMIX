@@ -28,15 +28,15 @@
                 {%- assign is_last = false -%}
                 {%- if forloop.last -%}{%- assign is_last = true -%}{%- endif -%}
                 <tr {{ block.shopify_attributes }}>
-                  <td class="td-attr">{{ block.settings.attribute | escape }}</td>
-                  <td class="td-winner{% if is_last %} td-bottom{% endif %}">
+                  <td class="td-attr" data-label="{{ s.col_label | default: 'SPEC / FEATURE' | escape }}">{{ block.settings.attribute | escape }}</td>
+                  <td class="td-winner{% if is_last %} td-bottom{% endif %}" data-label="{{ s.winner_label | escape }}">
                     {%- if block.settings.winner_is_check -%}
                       <span class="td-winner-flex"><span class="check-icon">✓</span> {{ block.settings.winner_value | escape }}</span>
                     {%- else -%}
                       {{ block.settings.winner_value | escape }}
                     {%- endif -%}
                   </td>
-                  <td>
+                  <td data-label="{{ s.comp_1_label | escape }}">
                     {%- if block.settings.comp_1_is_check -%}
                       <span class="check-icon">✓</span>
                     {%- elsif block.settings.comp_1_is_x -%}
@@ -44,7 +44,7 @@
                     {%- endif -%}
                     {{ block.settings.comp_1_value | escape }}
                   </td>
-                  <td>
+                  <td data-label="{{ s.comp_2_label | escape }}">
                     {%- if block.settings.comp_2_is_check -%}
                       <span class="check-icon">✓</span>
                     {%- elsif block.settings.comp_2_is_x -%}
