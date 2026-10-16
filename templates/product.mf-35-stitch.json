@@ -358,6 +358,44 @@
         "padding_bottom": 60
       }
     },
+    "image_with_text_eHWL7y": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_DfPWmA": {
+          "type": "heading",
+          "settings": {
+            "heading": "Pack Your Basket \nChase the Breeze",
+            "heading_size": "h2"
+          }
+        },
+        "text_aBGEyE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Leave the heavy lifting behind. The Maxfoot’s roomy rear basket makes grocery shopping and outdoor exploring a breeze, letting you cruise comfortably while keeping all your essentials safely within reach.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DfPWmA",
+        "text_aBGEyE"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Lakeside_Grocery_Ride.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "compare": {
       "type": "mf35-stitch-compare",
       "blocks": {
@@ -575,6 +613,7 @@
     "feature_2",
     "feature_3",
     "size",
+    "image_with_text_eHWL7y",
     "compare",
     "faq",
     "sticky_buy",
