@@ -171,9 +171,9 @@
         "stat_2_label": "Max Rider Ht",
         "stat_2_accent": false,
         "bullet_1": "Easy access for a wider range of adult riders.",
-        "bullet_2": "Folded overall dimenslons：",
+        "bullet_2": "Folded overall dimensions",
         "caption_label": "// REAL-WORLD PORTABILITY",
-        "caption_body": "Fold Fold and unfold in under 10 seconds without detaching wheels or wiring cables.unfold in under 10 seconds without detaching wheels or wiring cables.",
+        "caption_body": "Fold and unfold in under 10 seconds without detaching wheels or wiring cables.unfold in under 10 seconds without detaching wheels or wiring cables.",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -195,7 +195,7 @@
         "bullet_1": "Brushless, Low-Maintenance Design",
         "bullet_2": "Smooth, Dependable Power for Everyday Rides",
         "caption_label": "// CONFIDENT REAR-WHEEL DRIVE",
-        "caption_body": "Step strSteady rear-wheel power for smoother starts and everyday rides.aight through — no swinging leg over crossbar required.",
+        "caption_body": "Step Steady rear-wheel power for smoother starts and everyday rides.aight through — no swinging leg over crossbar required.",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -205,7 +205,7 @@
       "settings": {
         "desktop_layout": "image_right",
         "kicker": "Flexible Charging",
-        "title": "Removable BatteryFlexible Charging",
+        "title": "Removable Battery<br>Flexible Charging",
         "body": "<p>The MF-35 folding electric tricycle features a 48V 13AH rear-mounted removable lithium battery that can be charged on or off the trike for added everyday convenience. Simply remove the battery and charge it indoors when the trike is stored in a garage, apartment parking area, or other location without easy access to an outlet. A full charge takes approximately 6.75 hours with the included charger.</p>",
         "image": "shopify://shop_images/DSC_2767.jpg",
         "stat_1_value": "Removable, Rear-Mounted Battery",
@@ -511,8 +511,8 @@
       ],
       "settings": {
         "kicker": "// VALUE BENCHMARK ANALYSIS",
-        "heading": "HOW THE MF-35 FOLDING ELECTRIC TRIKES CRUSHES THE COMPETITION",
-        "subheading": "Honest feature-by-feature comparison against the leading electric trikes in the US market.",
+        "heading": "HOW THE MF-35 FOLDING ELECTRIC TRIKE STANDS OUT",
+        "subheading": "Honest feature-by-feature comparison against the leading folding electric trikes in the US market.",
         "col_label": "SPEC / FEATURE",
         "winner_label": "MAXFOOT MF-35 (WINNER)",
         "comp_1_label": "LECTRIC XP TRIKE",
@@ -528,7 +528,7 @@
           "type": "question",
           "settings": {
             "question": "What are the folded dimensions of the MF-35?",
-            "answer": "<p>When folded, the MF-35 folding electric tricycle measures 66\" L * 23.5\" W * 46.5\" H. Its folding design helps reduce its storage footprint for garages, sheds, RV travel, and transport. Please measure your intended storage space before purchase.</p>"
+            "answer": "<p>When folded, the MF-35 folding electric tricycle measures 47\" L × 27.5\" W × 35.3\" H. Its folding design helps reduce its storage footprint for garages, sheds, RV travel, and transport. Please measure your intended storage space before purchase.</p>"
           }
         },
         "question_battery": {
