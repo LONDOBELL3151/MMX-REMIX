@@ -222,6 +222,29 @@
         "padding_bottom": 60
       }
     },
+    "mf35_stitch_feature_fNhqYe": {
+      "type": "mf35-stitch-feature",
+      "name": "MF35 Stitch Feature",
+      "settings": {
+        "desktop_layout": "image_left",
+        "kicker": "High-lumen LED Headlight",
+        "title": "Integrated power supply high lumen headlight",
+        "body": "<p>Designed for maximum efficiency and seamless operation, this headlight features an integrated power supply that eliminates bulky external wiring. Built with high-output LEDs, it delivers exceptional lumen performance with a long-reaching, crystal-clear beam—ensuring superior visibility, stability, and durability in the most demanding night-time conditions.</p>",
+        "image": "shopify://shop_images/Cinematic_Bicycle_Headlight_Beam_at_Night.png",
+        "stat_1_value": "",
+        "stat_1_label": "",
+        "stat_1_accent": false,
+        "stat_2_value": "",
+        "stat_2_label": "",
+        "stat_2_accent": false,
+        "bullet_1": "",
+        "bullet_2": "",
+        "caption_label": "",
+        "caption_body": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "size": {
       "type": "mf35-stitch-size",
       "blocks": {
@@ -613,6 +636,7 @@
     "feature_1",
     "feature_2",
     "feature_3",
+    "mf35_stitch_feature_fNhqYe",
     "size",
     "image_with_text_eHWL7y",
     "compare",
