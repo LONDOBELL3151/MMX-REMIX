@@ -15,10 +15,10 @@
         "slide_PRiMe": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/20260911-_1920X820_e8f8d6da-9feb-4ccb-bb04-6eb3de8e6712.jpg",
-            "image_mobile": "shopify://shop_images/20260911-_750X1080_c1697bdd-73d3-4953-a2df-7783f757352c.jpg",
-            "eyebrow": "SALE",
-            "title": "<p>UP TO <em>$1100</em> OFF <em>PRIME MONTH</em></p>",
+            "image": "shopify://shop_images/1920x820px.jpg",
+            "image_mobile": "shopify://shop_images/750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg",
+            "eyebrow": "",
+            "title": "<p>MAXFOOT&nbsp;<br/><em>BLACK FRIDAY 2026</em><br/>EARLY ACCESS</p>",
             "subtitle": "MF-25 Electric Commuter Bike<br>Peak 1000W Motor & 48V 500Wh Battery<br><br>MF-30 Cargo Electric Trike<br>750W Rear Drive Motor & 48V 20Ah Battery",
             "button_text": "$1100 OFF - MF-25 Electric Bike",
             "button_link": "shopify://products/maxfoot-mf-25-commuter-step-thru-electric-bike-brooklyn-gray",
@@ -31,6 +31,7 @@
         },
         "slide_bAnNe": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/20261015-MF-35-1905X705.jpg",
             "image_mobile": "shopify://shop_images/20261015-MF-35-1080X1553.jpg",
