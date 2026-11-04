@@ -568,6 +568,12 @@ body.mobile-menu-open{overflow:hidden}
 .pdp__installment{display:block;margin:-8px 0 20px;font-size:13px;line-height:1.5;letter-spacing:0}
 .pdp__installment shopify-payment-terms{display:block;font-size:13px}
 .pdp__installment shopify-payment-terms *{font-size:inherit!important;line-height:inherit!important}
+/* The instalment amount. Shopify owns the markup inside <shopify-payment-terms>,
+   so cover both shapes it ships and keep the brand name out of it. */
+.pdp__installment shopify-payment-terms strong,
+.pdp__installment shopify-payment-terms [class*="amount"]{color:var(--color-accent)!important}
+.pdp__installment shopify-payment-terms [class*="brand"],
+.pdp__installment shopify-payment-terms [class*="logo"]{color:inherit!important}
 .pdp__finance{font-size:13px;color:var(--color-text-soft);margin:16px 0;padding:16px;background:var(--color-bg-soft);border-radius:var(--radius-md)}
 .pdp__finance a{color:var(--color-primary);font-weight:700;text-decoration:underline}
 .pdp__extras{display:flex;flex-direction:column;gap:12px;padding:24px;background:var(--color-bg-soft);border-radius:var(--radius-md);margin-top:24px}
