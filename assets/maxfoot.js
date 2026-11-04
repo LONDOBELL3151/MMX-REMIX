@@ -71,22 +71,64 @@
   const pdpForm = document.querySelector('#pdp__form');
   if (pdpForm) {
     const productIdInput = pdpForm.querySelector('input[type="hidden"][name="id"]');
-    pdpForm.addEventListener('change', (e) => {
-      if (e.target.matches('input[type=radio], select')) {
-        const selectedOptions = Array.from(
-          pdpForm.querySelectorAll('input[type=radio]:checked, select')
-        ).map((el) => el.value);
-        // Update selected option label
-        const index = e.target.dataset.optionIndex;
-        const labelEl = pdpForm.querySelector('[data-selected-option="' + index + '"]');
-        if (labelEl) labelEl.textContent = e.target.value;
-        // Try to find matching variant from data attribute (set server-side ideally)
-        // For now: try to read from data-variant-id if single option
-        const variantId = e.target.dataset.variantId;
-        if (variantId && productIdInput) {
-          productIdInput.value = variantId;
-        }
+    const variantDataEl = document.querySelector('[data-pdp-variants]');
+    const variantData = variantDataEl ? JSON.parse(variantDataEl.textContent || '{}') : null;
+    // The Shop Pay instalments live in their own form (Dawn's pattern) so the
+    // add-to-cart form keeps exactly one `name="id"` input.
+    const installmentIdInput = document.querySelector('[data-pdp-installment-id]');
+    const pdpScope = document.querySelector('.pdp-gallery');
+    const addToCartBtn = pdpForm.querySelector('button[name="add"]');
+
+    // Resolve the variant matching every option the shopper can pick here.
+    // Options that are not on the page (the colour of a product_family
+    // sibling product) fall back to this product's own value.
+    function resolvePdpVariant() {
+      if (!variantData || !variantData.options) return null;
+      const chosen = variantData.options.map((o) => {
+        if (!o.inPage) return o.currentValue;
+        const el = pdpForm.querySelector('[name="' + o.controlName + '"]');
+        return el ? el.value : null;
+      });
+      if (chosen.some((v) => v === null || v === undefined)) return null;
+      const variants = variantData.variants || [];
+      return variants.find((v) => v.options.every((val, i) => val === chosen[i])) || null;
+    }
+
+    function applyPdpVariant(v) {
+      if (!v) return;
+      if (productIdInput) productIdInput.value = v.id;
+      if (installmentIdInput) {
+        installmentIdInput.value = v.id;
+        // Shopify's <shopify-payment-terms> re-renders off this change event.
+        installmentIdInput.dispatchEvent(new Event('change', { bubbles: true }));
       }
+      if (addToCartBtn) addToCartBtn.disabled = !v.available;
+      if (!pdpScope || !v.priceFormatted) return;
+
+      const current = pdpScope.querySelector('.pdp__price-current');
+      if (current) current.textContent = v.priceFormatted;
+      const ctaPrice = pdpScope.querySelector('.pdp__cta-price');
+      if (ctaPrice) ctaPrice.textContent = '— ' + v.priceFormatted;
+
+      const onSale = !!(v.compareAtPrice && v.compareAtPrice > v.price);
+      const compare = pdpScope.querySelector('.pdp__price-compare');
+      if (compare) {
+        compare.textContent = v.compareAtPriceFormatted || '';
+        compare.style.display = onSale ? '' : 'none';
+      }
+      const save = pdpScope.querySelector('.pdp__price-save');
+      if (save) {
+        if (onSale && v.saveFormatted) save.textContent = 'Save ' + v.saveFormatted;
+        save.style.display = onSale && v.saveFormatted ? '' : 'none';
+      }
+    }
+
+    pdpForm.addEventListener('change', (e) => {
+      if (!e.target.matches('input[type=radio], select')) return;
+      const index = e.target.dataset.optionIndex;
+      const labelEl = pdpForm.querySelector('[data-selected-option="' + index + '"]');
+      if (labelEl) labelEl.textContent = e.target.value;
+      applyPdpVariant(resolvePdpVariant());
     });
   }
 

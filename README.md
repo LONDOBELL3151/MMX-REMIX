@@ -1090,7 +1090,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `main-page.liquid` | 通用 page |
 | `main-password-footer.liquid` | 密码页底部 |
 | `main-password-header.liquid` | 密码页头部 |
-| `main-product.liquid` | **主 product page** |
+| `main-product.liquid` | **主 product page**（左媒体右买区；block 驱动按 `block_order` 渲染；价格块下方挂**独立 form** 的 Shop Pay 分期 `{{ form \| payment_terms }}`；section 顶部 dump 全量 variant JSON 给 `assets/maxfoot.js` 做多选项变体解析，切换变体时同步加购 id + 分期金额 + 价格显示） |
 | `main-register.liquid` | 注册 page |
 | `main-reset-password.liquid` | 重置密码 page |
 | `main-search.liquid` | 搜索 page |
@@ -1489,6 +1489,12 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 ### 15.23 Bash heredoc / `&&` 在 PowerShell 远程执行会乱
 - 必须用 PowerShell 语法（`;`, `Get-ChildItem`, `Select-String`）
 - 不要 `cmd && cmd`、`ls -la`、`head`、`tail`
+
+### 15.24 Shop Pay 分期必须放在**独立的 form** 里
+- `{{ form | payment_terms }}` 需要一个 `{% form 'product' %}` 作用域，且这个 form 里**只能有一个 `name="id"` input**
+- 放进买区 form 会和加购用的 `id` input 撞车 → 加购变体错乱，所以 Dawn 的做法是另开一个 form（id = `product-form-installment-{{ section.id }}`）
+- 分期金额是平台组件 `<shopify-payment-terms>` 渲染的，它**监听所在 form 里 `input[name=id]` 的 `change` 事件**才重算 → 变体切换时必须手动 `dispatchEvent(new Event('change', {bubbles:true}))`，否则金额永远停在默认变体
+- `main-product.liquid` 现在的做法：变体解析用 section 顶部 `<script type="application/json" data-pdp-variants>` 里的全量 variant 表，按每个 option 的 `name="options[...]"` 控件名逐位匹配（`inPage:false` 的 option = 被 product_family 外联藏起来的 Color，回落到本商品自己的值）
 
 ---
 

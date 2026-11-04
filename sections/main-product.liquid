@@ -44,13 +44,14 @@
 {%- capture variant_picker_html -%}
   {%- if product.options.size > 0 -%}
     {%- for option in product.options_with_values -%}
+      {%- assign option_index = forloop.index0 -%}
       {%- if has_color_family and option.name == 'Color' -%}
         {%- continue -%}
       {%- endif -%}
       <div class="pdp__option">
         <label class="pdp__option-label">
           {{ option.name }}:
-          <strong data-selected-option="{{ forloop.index0 }}">{{ option.selected_value }}</strong>
+          <strong data-selected-option="{{ option_index }}">{{ option.selected_value }}</strong>
         </label>
         {%- if option.name == 'Color' -%}
           <div class="pdp__swatches">
@@ -97,7 +98,7 @@
               {%- endif -%}
               {%- if swatch_hex == blank -%}{%- assign swatch_hex = '#cccccc' -%}{%- endif -%}
               <label class="swatch" data-swatch="{{ value | handleize }}">
-                <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-variant-id="{{ variant.id | default: '' }}" data-option-index="{{ forloop.index0 }}">
+                <input type="radio" name="options[{{ option.name | downcase }}]" value="{{ value }}" {% if option.selected_value == value %}checked{% endif %} data-option-index="{{ option_index }}">
                 <span class="swatch__color" style="background:{{ swatch_hex }}{% if swatch_hex == '#ffffff' %};border:1px solid #ccc{% endif %}"></span>
                 <span class="swatch__label">{{ value }}</span>
               </label>
@@ -124,6 +125,43 @@
 {%- endcapture -%}
 
 <section class="section pdp-gallery" {{ section.shopify_attributes }}>
+  {%- comment -%}
+    Variant map for the client-side variant resolver (assets/maxfoot.js).
+    Every option the shopper can pick in this form is matched by control
+    name, so multi-option products resolve to the right variant instead of
+    the first colour match. Options hidden behind a product_family link
+    (the colour of a sibling product) are not in the form and fall back to
+    this product's own value.
+  {%- endcomment -%}
+  <script type="application/json" data-pdp-variants>
+    {
+      "options": [
+        {%- for opt in product.options_with_values -%}
+          {
+            "name": {{ opt.name | json }},
+            "controlName": {{ 'options[' | append: opt.name | downcase | append: ']' | json }},
+            "inPage": {% if has_color_family and opt.name == 'Color' %}false{% else %}true{% endif %},
+            "currentValue": {{ opt.selected_value | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      "variants": [
+        {%- for v in product.variants -%}
+          {
+            "id": {{ v.id | json }},
+            "available": {{ v.available | json }},
+            "price": {{ v.price | json }},
+            "priceFormatted": {{ v.price | money | json }},
+            "compareAtPrice": {% if v.compare_at_price %}{{ v.compare_at_price | json }}{% else %}null{% endif %},
+            "compareAtPriceFormatted": {% if v.compare_at_price %}{{ v.compare_at_price | money | json }}{% else %}null{% endif %},
+            "saveFormatted": {% if v.compare_at_price and v.compare_at_price > v.price %}{{ v.compare_at_price | minus: v.price | money | json }}{% else %}null{% endif %},
+            "options": {{ v.options | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+
   <div class="container pdp__grid">
     <div class="pdp__media">
       {% render 'product-media' %}
@@ -155,6 +193,18 @@
           {%- endif -%}
         {%- elsif block.type == 'price' -%}
           {% render 'price' %}
+          {%- comment -%}
+            Shop Pay instalments. Kept in their own form (Dawn's pattern) so
+            the add-to-cart form keeps exactly one `name="id"` input, and so
+            the instalment amount can follow the variant the shopper picked.
+          {%- endcomment -%}
+          {%- if s.show_finance -%}
+            {%- assign installment_form_id = 'product-form-installment-' | append: section.id -%}
+            {%- form 'product', product, id: installment_form_id, class: 'installment caption-large pdp__installment' -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-pdp-installment-id>
+              {{ form | payment_terms }}
+            {%- endform -%}
+          {%- endif -%}
         {%- elsif block.type == 'inventory' -%}
           {%- if s.show_stock -%}
             <div class="pdp__stock" {{ block.shopify_attributes }}>
@@ -233,10 +283,14 @@
         {%- endif -%}
       {%- endfor -%}
 
-      {%- if s.show_finance -%}
+      {%- comment -%}
+        Optional hand-rolled financing line. The real instalment terms render
+        above the price (Shop Pay); this only shows when a merchant fills in
+        a link of their own.
+      {%- endcomment -%}
+      {%- if s.show_finance and s.finance_link != blank -%}
         <div class="pdp__finance">
-          Or <strong>4 payments of {{ product.price | divided_by: 4 | money }}</strong>
-          &mdash; <a href="{{ s.finance_link | default: '#' }}">{{ s.finance_label | default: 'Affirm financing' }}</a>
+          {{ s.finance_label | default: 'Financing available' }} &mdash; <a href="{{ s.finance_link }}">Learn more</a>
         </div>
       {%- endif -%}
     </div>
@@ -251,9 +305,9 @@
   "settings": [
     { "type": "checkbox", "id": "show_stock", "label": "Show stock status", "default": true },
     { "type": "text", "id": "stock_count", "label": "Stock count" },
-    { "type": "checkbox", "id": "show_finance", "label": "Show financing line", "default": true },
+    { "type": "checkbox", "id": "show_finance", "label": "Show financing info", "default": true },
     { "type": "text", "id": "finance_label", "label": "Finance label", "default": "Affirm financing" },
-    { "type": "url", "id": "finance_link", "label": "Finance link" },
+    { "type": "url", "id": "finance_link", "label": "Finance link", "info": "Optional. When set, an extra financing line with this link shows below the buy box." },
     { "type": "checkbox", "id": "show_extras", "label": "Show extras (free shipping, etc.)", "default": true }
   ],
   "blocks": [
