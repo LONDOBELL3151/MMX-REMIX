@@ -200,7 +200,7 @@
           {%- endcomment -%}
           {%- if s.show_finance -%}
             {%- assign installment_form_id = 'product-form-installment-' | append: section.id -%}
-            {%- form 'product', product, id: installment_form_id, class: 'installment caption-large pdp__installment' -%}
+            {%- form 'product', product, id: installment_form_id, class: 'installment pdp__installment' -%}
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-pdp-installment-id>
               {{ form | payment_terms }}
             {%- endform -%}
