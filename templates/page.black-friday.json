@@ -1,0 +1,184 @@
+{
+  "sections": {
+    "hero": {
+      "type": "bf-hero",
+      "name": "BF Hero",
+      "settings": {
+        "image": "shopify://shop_images/1920x820px.jpg",
+        "image_mobile": "shopify://shop_images/750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg",
+        "eyebrow": "BLACK FRIDAY 2026",
+        "heading": "BLACK FRIDAY",
+        "subheading": "Up to $1,100 off select electric trikes and e-bikes. Factory-direct pricing, no middlemen.",
+        "badge_text": "UP TO $1,100 OFF",
+        "ends_at": "2026-11-30T23:59:59-08:00",
+        "countdown_label": "Black Friday ends in",
+        "ended_text": "This deal has ended. More Black Friday savings are coming soon.",
+        "button_text": "Shop Black Friday Deals",
+        "button_link": "shopify://collections/all-products",
+        "button2_text": "",
+        "button2_link": "",
+        "overlay_opacity": 25,
+        "text_align": "left"
+      }
+    },
+    "offers": {
+      "type": "bf-offers",
+      "name": "BF Offers",
+      "blocks": {
+        "offer_flash": {
+          "type": "offer",
+          "settings": {
+            "image": "",
+            "image_mobile": "",
+            "kicker": "48-HOUR FLASH SALE",
+            "heading": "Buy 2. Get a FREE Battery.",
+            "value_text": "FREE - $299 VALUE",
+            "date_text": "NOV 5-6 ONLY",
+            "button_text": "Shop Trikes",
+            "button_link": "shopify://collections/trike",
+            "accent": "yellow"
+          }
+        },
+        "offer_full": {
+          "type": "offer",
+          "settings": {
+            "image": "",
+            "image_mobile": "",
+            "kicker": "FULL EVENT",
+            "heading": "Our biggest savings of the year.",
+            "value_text": "UP TO $1,100 OFF",
+            "date_text": "NOV 5 - NOV 30",
+            "button_text": "Shop E-Bikes",
+            "button_link": "shopify://collections/e-bike",
+            "accent": "black"
+          }
+        }
+      },
+      "block_order": ["offer_flash", "offer_full"],
+      "settings": {
+        "heading": "Two ways to save",
+        "subheading": "Pick the window that works for you. Black Friday pricing is already applied to every marked bike.",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "deals": {
+      "type": "featured-collection",
+      "name": "Black Friday Deals",
+      "blocks": {
+        "product_mf35": {
+          "type": "product",
+          "settings": {
+            "product": "mf-35"
+          }
+        },
+        "product_mf30": {
+          "type": "product",
+          "settings": {
+            "product": "maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-neptune-blue"
+          }
+        },
+        "product_mf33": {
+          "type": "product",
+          "settings": {
+            "product": "mf-33-passenger-electric-tricycle-yellow"
+          }
+        },
+        "product_mf25": {
+          "type": "product",
+          "settings": {
+            "product": "mf-25-step-thru-commuter-e-bike-burning-orange"
+          }
+        }
+      },
+      "block_order": ["product_mf35", "product_mf30", "product_mf33", "product_mf25"],
+      "settings": {
+        "heading": "BLACK FRIDAY DEALS",
+        "subheading": "Every bike below is already marked down. The strikethrough price is what you save.",
+        "columns": "4",
+        "bg": "white"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "name": "Black Friday FAQ",
+      "blocks": {
+        "question_savings": {
+          "type": "question",
+          "settings": {
+            "question": "How much can I save during Black Friday?",
+            "answer": "<p>Every bike on this page is already discounted - look for the strikethrough price on each card. Right now that is up to $1,100 off the MF-25 Step-Thru Commuter E-Bike, $900 off the MF-30 Electric Trike, $600 off the MF-33 Passenger Trike and $500 off the MF-35 Folding Electric Tricycle. No coupon code needed.</p>"
+          }
+        },
+        "question_dates": {
+          "type": "question",
+          "settings": {
+            "question": "When does the Black Friday sale end?",
+            "answer": "<p>Black Friday pricing runs through November 30. The countdown at the top of this page shows exactly how long is left, and the 48-hour flash offer is live only on November 5-6.</p>"
+          }
+        },
+        "question_shipping": {
+          "type": "question",
+          "settings": {
+            "question": "Is shipping included in the Black Friday price?",
+            "answer": "<p>Yes. Shipping is free to all 48 contiguous US states, and orders ship from our California warehouse in 2-7 business days. Alaska, Hawaii and remote areas are excluded.</p>"
+          }
+        },
+        "question_warranty": {
+          "type": "question",
+          "settings": {
+            "question": "Does the warranty still apply to Black Friday purchases?",
+            "answer": "<p>Absolutely. Every bike sold during the sale carries the same 2-year warranty on the motor, battery and frame, backed by our US-based support team. Black Friday is a discount, not a different product.</p>"
+          }
+        },
+        "question_payments": {
+          "type": "question",
+          "settings": {
+            "question": "Can I pay in installments during the sale?",
+            "answer": "<p>Yes. Shop Pay is available at checkout for interest-free financing, so you can split the Black Friday price into monthly payments and still get the full discount.</p>"
+          }
+        }
+      },
+      "block_order": ["question_savings", "question_dates", "question_shipping", "question_warranty", "question_payments"],
+      "settings": {
+        "heading": "Black Friday questions",
+        "subheading": "Everything else you might be wondering about.",
+        "cta_text": "Still have questions?",
+        "cta_link": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "cta-strip",
+      "name": "BF CTA",
+      "settings": {
+        "title": "Ready to ride?",
+        "subtitle": "Ships from our CA warehouse. Delivery in 2-7 business days.",
+        "button_text": "Shop Black Friday Deals",
+        "button_link": "shopify://collections/all-products",
+        "button2_text": "",
+        "button2_link": "",
+        "bg": "yellow"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "name": "BF Newsletter",
+      "settings": {
+        "title": "SEE THE DROP FIRST",
+        "subtitle": "Black Friday pricing, secret deals and restock alerts - straight to your inbox before they hit the site.",
+        "show_first_name": false,
+        "placeholder": "Your email",
+        "button_label": "Get early access",
+        "disclaimer": "<p>We respect your inbox. Unsubscribe anytime.</p>",
+        "bg_color": "#ffc000",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": ["hero", "offers", "deals", "faq", "cta", "newsletter"]
+}

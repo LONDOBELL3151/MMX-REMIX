@@ -1,0 +1,230 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+{% render 'bf-styles' %}
+
+<section
+  class="bf-root bf-offers"
+  style="padding-top: {{ s.padding_top }}px; padding-bottom: {{ s.padding_bottom }}px;"
+  {{ section.shopify_attributes }}
+>
+  <div class="bf-container">
+    {%- if s.heading != blank or s.subheading != blank -%}
+      <div class="bf-offers__head">
+        {%- if s.heading != blank -%}
+          <h2 class="bf-offers__heading">{{ s.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if s.subheading != blank -%}
+          <p class="bf-offers__sub">{{ s.subheading | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="bf-offers__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'offer' -%}
+          {%- liquid
+            assign b = block.settings
+            assign has_mobile_image = false
+            if b.image_mobile != blank
+              assign has_mobile_image = true
+            endif
+          -%}
+          <article
+            class="bf-offer{% if b.accent == 'black' %} bf-offer--dark{% endif %}{% if has_mobile_image %} bf-offer--has-mobile{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="bf-offer__media" aria-hidden="true">
+              {%- if b.image != blank -%}
+                <div class="bf-offer__img bf-offer__img--desk">
+                  {{
+                    b.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '500, 800, 1200',
+                      sizes: '(min-width: 990px) 50vw, 100vw',
+                      alt: b.image.alt | default: b.heading | escape
+                  }}
+                </div>
+              {%- endif -%}
+              {%- if b.image_mobile != blank -%}
+                <div class="bf-offer__img bf-offer__img--mob">
+                  {{
+                    b.image_mobile
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '375, 550, 750, 900',
+                      sizes: '100vw',
+                      alt: b.image_mobile.alt | default: b.heading | escape
+                  }}
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="bf-offer__scrim" aria-hidden="true"></div>
+
+            <div class="bf-offer__body">
+              {%- if b.kicker != blank -%}
+                <p class="bf-offer__kicker">{{ b.kicker | escape }}</p>
+              {%- endif -%}
+
+              {%- if b.heading != blank -%}
+                <h3 class="bf-offer__heading">{{ b.heading | escape }}</h3>
+              {%- endif -%}
+
+              {%- if b.value_text != blank -%}
+                <span class="bf-offer__value">{{ b.value_text | escape }}</span>
+              {%- endif -%}
+
+              {%- if b.date_text != blank -%}
+                <p class="bf-offer__date">{{ b.date_text | escape }}</p>
+              {%- endif -%}
+
+              {%- if b.button_text != blank -%}
+                <a class="bf-btn bf-btn--primary" href="{{ b.button_link | default: '#' }}">{{ b.button_text | escape }}</a>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BF Offers",
+  "tag": "section",
+  "class": "section-bf-offers",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Two ways to save"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Pick the window that works for you. Both offers stack with the sale price on every marked bike."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Offer",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image (1200x900)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile image (750x1000)"
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Kicker",
+          "default": "48-HOUR FLASH SALE"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Buy 2. Get a FREE Battery."
+        },
+        {
+          "type": "text",
+          "id": "value_text",
+          "label": "Value text",
+          "default": "FREE - $299 VALUE"
+        },
+        {
+          "type": "text",
+          "id": "date_text",
+          "label": "Date text",
+          "default": "NOV 5-6 ONLY"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop Trikes"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "accent",
+          "label": "Accent",
+          "options": [
+            { "value": "yellow", "label": "Yellow" },
+            { "value": "black", "label": "Black" }
+          ],
+          "default": "yellow"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BF Offers",
+      "blocks": [
+        {
+          "type": "offer",
+          "settings": {
+            "kicker": "48-HOUR FLASH SALE",
+            "heading": "Buy 2. Get a FREE Battery.",
+            "value_text": "FREE - $299 VALUE",
+            "date_text": "NOV 5-6 ONLY",
+            "button_text": "Shop Trikes",
+            "accent": "yellow"
+          }
+        },
+        {
+          "type": "offer",
+          "settings": {
+            "kicker": "FULL EVENT",
+            "heading": "Our biggest savings of the year.",
+            "value_text": "UP TO $1,100 OFF",
+            "date_text": "NOV 5 - NOV 30",
+            "button_text": "Shop E-Bikes",
+            "accent": "black"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -914,7 +914,7 @@ menuToggle.setAttribute('aria-label', 'Open menu');
 
 ---
 
-## 10. Section 库（全部 143）
+## 10. Section 库（全部 146）
 
 按角色分类。所有 `sections/*.liquid` 都遵循 §6.5 的标准模板。
 
@@ -990,6 +990,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | 模板 | 用途 |
 |---|---|
 | `page.about-us.json` | 关于我们（11 sections） |
+| `page.black-friday.json` | **黑五活动页**（bf-hero + bf-offers + 复用 featured-collection / faq / cta-strip / newsletter） |
 | `page.contact.json` | 联系我们（表单 + 时区） |
 | `page.affiliate-program.json` | 联盟营销 |
 | `page.coming-soon.json` | 即将推出 |
@@ -1002,7 +1003,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 ### 10.7 所有 section 一览（按字母序）
 
 <details>
-<summary>点击展开全部 132 section 列表（129 liquid + 3 group json）</summary>
+<summary>点击展开全部 146 section 列表（143 liquid + 3 group json）</summary>
 
 | 文件 | 角色 |
 |---|---|
@@ -1024,6 +1025,8 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `aannouncement-bar.liquid` | **typo** 版本（typo 文件，勿用） |
 | `announcement-bar.liquid` | 顶部滚动文字 |
 | `apps.liquid` | app 集成预留位 |
+| `bf-hero.liquid` | **黑五主视觉**（含全期结束倒计时，详见 §10.8） |
+| `bf-offers.liquid` | **黑五双档 offer 卡**（block 驱动，详见 §10.8） |
 | `bicycle-collection.liquid` | 老式 collection |
 | `bicycle_tabs.liquid` | 老式 tabs |
 | `bike-spec-info.liquid` | bike 规格信息 |
@@ -1149,9 +1152,30 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 
 </details>
 
+### 10.8 黑五活动页（bf- 家族）
+
+参考 `mooncool.com/pages/black-friday` 的结构做的**精简营销版**（6 段）。落地页 `templates/page.black-friday.json`，admin 建一个 handle = `black-friday` 的 page 即自动套用。
+
+| 段落 | 用什么 | 说明 |
+|---|---|---|
+| 1 主视觉 + 倒计时 | **新** `bf-hero` | 大图（桌面/移动双图）+ eyebrow + 大标题 + 副标题 + badge + **全期结束倒计时** + CTA |
+| 2 双档 offer | **新** `bf-offers` | block 驱动，2 块（48h 闪促 / 全期），图片卡 + kicker + value chip + 日期 + CTA |
+| 3 商品网格 | 复用 `featured-collection` | block 选品；`product-card` 自动出划线价 + `Save $X OFF` + `SALE` badge + Add to Cart |
+| 4 FAQ | 复用 `faq.liquid` | 5 条黑五相关问答 |
+| 5 底部 CTA | 复用 `cta-strip` | 黄底 |
+| 6 邮件订阅 | 复用 `newsletter.liquid` | settings 模式；全局 CSS 已是黑底 + 黄标题 |
+
+**促销机制 = 直接降价**：不给前端写任何折扣逻辑。在 Shopify admin 给商品设 `compare_at_price`（原价），`snippets/product-card.liquid` 就会自动输出「划线原价 + `Save $X OFF` + `SALE` badge」。BF 上架的 MF-25 / MF-30 / MF-33 / MF-35 线上都已设好原价。
+
+**共享 CSS**：`snippets/bf-styles.liquid`（唯一源，`.bf-root` + `--bf-*` token 全隔离）。照抄 `mf35-stitch-styles` 的隔离模式（**不要**抄 mf25 那份——它写全局 `:root` / `*{margin:0}`）。两个 section 顶部各 `{% render 'bf-styles' %}`（同 swoope 家族做法，Liquid 无法跨 section 去重）。
+
+**倒计时**：`ends_at` 是 **text** 设置（Shopify schema **没有** `date` 类型），格式 ISO 8601 带时区偏移，如 `2026-11-30T23:59:59-08:00`。JS 用 `Date.parse` 解析（带偏移=绝对时刻，无歧义）。三条降级路径都实现了：正常 → 走秒；**已过期** → 隐藏格子显示 `ended_text`；**解析失败** → 整个倒计时隐藏。
+
+**语言**：文案硬编码英文，跟 `mf25-stitch-*` / `mf35-stitch-*` / `swoope-*` 三个家族一致（活动页生命周期短、US 单语市场）。其他 30 种语言不翻译。
+
 ---
 
-## 11. Page 模板（全部 62）
+## 11. Page 模板（全部 63）
 
 > 注意：模板 JSON 头部有 `/* ... */` 注释（JSONC），脚本解析需先 strip。以下列的是主要模板；完整清单以 `git ls-files templates/` 为准。
 
@@ -1177,6 +1201,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `page.coming-soon.json` | 即将推出 | 简单 |
 | `page.payment-plan.json` | 付款计划 | rich-text |
 | `page.prime-day.json` | Prime Day | **单独 template，不挂首页** |
+| `page.black-friday.json` | **黑五活动页**（详见 §10.8） | bf-hero + bf-offers + featured-collection + faq + cta-strip + newsletter（6 sections） |
 | `page.test-page.json` | 测试 | 各种 sections |
 | `page.judgeme_all_reviews.liquid` | Judge.me 全部评价 | liquid page |
 | `page.pormo.json` / `page.register-page.json` / `page.reviewp.json` / `page.get-your-special-discount.json` | 各种 landing | 各种 |
@@ -1495,6 +1520,22 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 - 放进买区 form 会和加购用的 `id` input 撞车 → 加购变体错乱，所以 Dawn 的做法是另开一个 form（id = `product-form-installment-{{ section.id }}`）
 - 分期金额是平台组件 `<shopify-payment-terms>` 渲染的，它**监听所在 form 里 `input[name=id]` 的 `change` 事件**才重算 → 变体切换时必须手动 `dispatchEvent(new Event('change', {bubbles:true}))`，否则金额永远停在默认变体
 - `main-product.liquid` 现在的做法：变体解析用 section 顶部 `<script type="application/json" data-pdp-variants>` 里的全量 variant 表，按每个 option 的 `name="options[...]"` 控件名逐位匹配（`inPage:false` 的 option = 被 product_family 外联藏起来的 Color，回落到本商品自己的值）
+
+### 15.25 Shopify section schema **没有** `date` 类型
+- 合法 setting type 只有：`article` / `article_list` / `blog` / `checkbox` / `collection` / `collection_list` / `color` / `color_background` / `color_palette` / `color_scheme` / `color_scheme_group` / `font_picker` / `header` / `html` / `image_picker` / `inline_richtext` / `link_list` / `liquid` / `metaobject` / `metaobject_list` / `number` / `page` / `paragraph` / `product` / `product_list` / `radio` / `range` / `richtext` / `select` / `text` / `text_alignment` / `textarea` / `url` / `video` / `video_url`
+- 写 `"type": "date"` → `theme check` 报 `ValidSchema` error（报错信息里列的是**合法 setting type 全集**，很容易看错成在报别的字段）
+- **替代**：用 `text` + **ISO 8601 带时区偏移**（`2026-11-30T23:59:59-08:00`），前端 `Date.parse()` 解析成绝对时刻——没有时区歧义，比 Shopify 的 `| date: '%s'` 干净
+- schema 的 `"tag": "section"` **是合法的**（全主题 101/144 个 section 都有，含 mf35 / swoope 家族），别跟 setting type 混在一起看
+
+### 15.26 collection handle ≠ template 文件名
+- `templates/collection.e-trike.json` 是**模板**名，不代表有 handle = `e-trike` 的 collection
+- 线上真实 handle：`trike` / `e-bike` / `all-products` / `all` / `electronic` / `storage` / `safety-and-protection` / `convenience-and-maintenance` / `mf-25-step-thru-commuter-e-bike`
+- `shopify://collections/e-trike` → **404**。写 CTA 链接前先 `curl -o /dev/null -w "%{http_code}" https://maxfoot.bike/collections/<handle>` 验一下
+
+### 15.27 `impact-product-card` 的 `regular-price` 无条件渲染
+- `snippets/impact-product-card.liquid` 的 `regular-price` 直接输出 `product.compare_at_price`，**没设原价时输出 `$0.00`**（划线显示）
+- 用这个 section 做活动页商品网格时，要么保证每款都设了 `compare_at_price`，要么自己加 `{%- if product.compare_at_price > product.price -%}` 保护
+- 本次 BF 页改用 `featured-collection`（→ `product-card`），它有 `compare_at_price > price` 保护，更安全
 
 ---
 

@@ -1,0 +1,287 @@
+{%- liquid
+  assign s = section.settings
+  assign has_mobile_image = false
+  if s.image_mobile != blank
+    assign has_mobile_image = true
+  endif
+-%}
+
+{% render 'bf-styles' %}
+
+<section
+  class="bf-root bf-hero{% if s.text_align == 'center' %} bf-hero--center{% endif %}{% if has_mobile_image %} bf-hero--has-mobile{% endif %}"
+  style="--bf-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};"
+  {{ section.shopify_attributes }}
+>
+  <div class="bf-hero__media" aria-hidden="true">
+    {%- if s.image != blank -%}
+      <div class="bf-hero__img bf-hero__img--desk">
+        {{
+          s.image
+          | image_url: width: 1920
+          | image_tag:
+            loading: 'eager',
+            widths: '750, 1100, 1500, 1920',
+            sizes: '100vw',
+            alt: s.image.alt | default: s.heading | escape
+        }}
+      </div>
+    {%- endif -%}
+    {%- if s.image_mobile != blank -%}
+      <div class="bf-hero__img bf-hero__img--mob">
+        {{
+          s.image_mobile
+          | image_url: width: 900
+          | image_tag:
+            loading: 'eager',
+            widths: '375, 550, 750, 900',
+            sizes: '100vw',
+            alt: s.image_mobile.alt | default: s.heading | escape
+        }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="bf-hero__scrim" aria-hidden="true"></div>
+
+  <div class="bf-hero__inner">
+    {%- if s.eyebrow != blank -%}
+      <span class="bf-hero__eyebrow">{{ s.eyebrow | escape }}</span>
+    {%- endif -%}
+
+    {%- if s.heading != blank -%}
+      <h1 class="bf-hero__heading">{{ s.heading | escape }}</h1>
+    {%- endif -%}
+
+    {%- if s.subheading != blank -%}
+      <p class="bf-hero__sub">{{ s.subheading | escape }}</p>
+    {%- endif -%}
+
+    {%- if s.badge_text != blank -%}
+      <span class="bf-hero__badge">{{ s.badge_text | escape }}</span>
+    {%- endif -%}
+
+    {%- if s.ends_at != blank -%}
+      <div
+        class="bf-countdown"
+        data-bf-countdown
+        data-ends-at="{{ s.ends_at | escape }}"
+      >
+        <span class="bf-countdown__label">{{ s.countdown_label | escape }}</span>
+        <div class="bf-countdown__cells" data-bf-countdown-cells>
+          <div class="bf-countdown__cell">
+            <span class="bf-countdown__num" data-bf-cd="days">--</span>
+            <span class="bf-countdown__unit">Days</span>
+          </div>
+          <div class="bf-countdown__cell">
+            <span class="bf-countdown__num" data-bf-cd="hours">--</span>
+            <span class="bf-countdown__unit">Hours</span>
+          </div>
+          <div class="bf-countdown__cell">
+            <span class="bf-countdown__num" data-bf-cd="minutes">--</span>
+            <span class="bf-countdown__unit">Minutes</span>
+          </div>
+          <div class="bf-countdown__cell">
+            <span class="bf-countdown__num" data-bf-cd="seconds">--</span>
+            <span class="bf-countdown__unit">Seconds</span>
+          </div>
+        </div>
+        <p class="bf-countdown__end" data-bf-countdown-end hidden>{{ s.ended_text | escape }}</p>
+        <span class="visually-hidden">Ends {{ s.ends_at | date: '%B %-d, %Y' }}.</span>
+      </div>
+    {%- endif -%}
+
+    {%- if s.button_text != blank or s.button2_text != blank -%}
+      <div class="bf-hero__cta">
+        {%- if s.button_text != blank -%}
+          <a class="bf-btn bf-btn--primary" href="{{ s.button_link | default: '#' }}">{{ s.button_text | escape }}</a>
+        {%- endif -%}
+        {%- if s.button2_text != blank -%}
+          <a class="bf-btn bf-btn--ghost" href="{{ s.button2_link | default: '#' }}">{{ s.button2_text | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (() => {
+    const roots = document.querySelectorAll('[data-bf-countdown]');
+    if (!roots.length) return;
+
+    roots.forEach((root) => {
+      const target = Date.parse(root.dataset.endsAt || '');
+
+      const cells = root.querySelector('[data-bf-countdown-cells]');
+      const endNote = root.querySelector('[data-bf-countdown-end]');
+
+      if (!Number.isFinite(target)) {
+        root.hidden = true;
+        return;
+      }
+
+      const num = {
+        days: root.querySelector('[data-bf-cd="days"]'),
+        hours: root.querySelector('[data-bf-cd="hours"]'),
+        minutes: root.querySelector('[data-bf-cd="minutes"]'),
+        seconds: root.querySelector('[data-bf-cd="seconds"]')
+      };
+
+      const pad = (value) => String(value).padStart(2, '0');
+      let finished = false;
+      let timer = null;
+
+      const tick = () => {
+        const diff = target - Date.now();
+
+        if (diff <= 0) {
+          if (!finished) {
+            finished = true;
+            if (cells) cells.hidden = true;
+            if (endNote) endNote.hidden = false;
+          }
+          clearInterval(timer);
+          return;
+        }
+
+        const total = Math.floor(diff / 1000);
+        if (num.days) num.days.textContent = pad(Math.floor(total / 86400));
+        if (num.hours) num.hours.textContent = pad(Math.floor(total / 3600) % 24);
+        if (num.minutes) num.minutes.textContent = pad(Math.floor(total / 60) % 60);
+        if (num.seconds) num.seconds.textContent = pad(total % 60);
+      };
+
+      tick();
+      timer = setInterval(tick, 1000);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "BF Hero",
+  "tag": "section",
+  "class": "section-bf-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image (1920x820)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image (750x1080)"
+    },
+    {
+      "type": "header",
+      "content": "Copy"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "BLACK FRIDAY 2026"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "BLACK FRIDAY"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Factory-direct savings on our best-selling electric trikes and e-bikes. No middlemen, no inflated prices."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "FREE ACCESSORY PACK - $200 VALUE"
+    },
+    {
+      "type": "header",
+      "content": "Countdown"
+    },
+    {
+      "type": "text",
+      "id": "ends_at",
+      "label": "Ends at",
+      "default": "2026-11-30T23:59:59-08:00",
+      "info": "ISO 8601 with timezone offset, e.g. 2026-11-30T23:59:59-08:00"
+    },
+    {
+      "type": "text",
+      "id": "countdown_label",
+      "label": "Countdown label",
+      "default": "Black Friday ends in"
+    },
+    {
+      "type": "text",
+      "id": "ended_text",
+      "label": "Ended text",
+      "default": "This deal has ended. More Black Friday savings are coming soon."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary button text",
+      "default": "Shop Black Friday Deals"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button2_text",
+      "label": "Secondary button text"
+    },
+    {
+      "type": "url",
+      "id": "button2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "default": 25
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BF Hero"
+    }
+  ]
+}
+{% endschema %}
