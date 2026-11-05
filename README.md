@@ -25,8 +25,8 @@
 | 7 | [Liquid 编码规范](#7-liquid-编码规范) | settings、blocks、媒体、`\| t` 陷阱 |
 | 8 | [CSS 架构规范](#8-css-架构规范) | 分层、命名、模式 |
 | 9 | [JavaScript 规范](#9-javascript-规范) | maxfoot.js、data-attrs、defer |
-| 10 | [Section 库（全部 143）](#10-section-库全部-143) | 文件位置、用途、当前状态 |
-| 11 | [Page 模板（全部 60）](#11-page-模板全部-60) | 哪个模板配哪些 sections |
+| 10 | [Section 库（全部 147）](#10-section-库全部-147) | 文件位置、用途、当前状态 |
+| 11 | [Page 模板（全部 63）](#11-page-模板全部-63) | 哪个模板配哪些 sections |
 | 12 | [Product Card 完整规范](#12-product-card-完整规范) | 两种 card、metafields、rating |
 | 13 | [全局组件 (header / footer / cart)](#13-全局组件) | 跨页面共用元素 |
 | 14 | [App 集成 (Impact-cart / Judge.me / Pagefly)](#14-app-集成) | 第三方 app 怎么挂的 |
@@ -914,7 +914,7 @@ menuToggle.setAttribute('aria-label', 'Open menu');
 
 ---
 
-## 10. Section 库（全部 146）
+## 10. Section 库（全部 147）
 
 按角色分类。所有 `sections/*.liquid` 都遵循 §6.5 的标准模板。
 
@@ -1003,7 +1003,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 ### 10.7 所有 section 一览（按字母序）
 
 <details>
-<summary>点击展开全部 146 section 列表（143 liquid + 3 group json）</summary>
+<summary>点击展开全部 147 section 列表（144 liquid + 3 group json）</summary>
 
 | 文件 | 角色 |
 |---|---|
@@ -1027,6 +1027,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `apps.liquid` | app 集成预留位 |
 | `bf-hero.liquid` | **黑五主视觉**（含全期结束倒计时，详见 §10.8） |
 | `bf-offers.liquid` | **黑五双档 offer 卡**（block 驱动，详见 §10.8） |
+| `bf-ticker.liquid` | **黑五滚动促销条**（黄底黑字 marquee，详见 §10.8） |
 | `bicycle-collection.liquid` | 老式 collection |
 | `bicycle_tabs.liquid` | 老式 tabs |
 | `bike-spec-info.liquid` | bike 规格信息 |
@@ -1154,22 +1155,35 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 
 ### 10.8 黑五活动页（bf- 家族）
 
-参考 `mooncool.com/pages/black-friday` 的结构做的**精简营销版**（6 段）。落地页 `templates/page.black-friday.json`，admin 建一个 handle = `black-friday` 的 page 即自动套用。
+参考 `mooncool.com/pages/black-friday` 的结构做的**精简营销版**（7 段）。落地页 `templates/page.black-friday.json`，admin 建一个 handle = `black-friday` 的 page 即自动套用。
+
+**视觉方向 = 全黑金质感**：`#0E0E0E` 近黑底 + `#FFC000` 金色唯一亮色 + 颗粒噪点 + 黄色辉光。整页无白底段。
 
 | 段落 | 用什么 | 说明 |
 |---|---|---|
-| 1 主视觉 + 倒计时 | **新** `bf-hero` | 大图（桌面/移动双图）+ eyebrow + 大标题 + 副标题 + badge + **全期结束倒计时** + CTA |
-| 2 双档 offer | **新** `bf-offers` | block 驱动，2 块（48h 闪促 / 全期），图片卡 + kicker + value chip + 日期 + CTA |
-| 3 商品网格 | 复用 `featured-collection` | block 选品；`product-card` 自动出划线价 + `Save $X OFF` + `SALE` badge + Add to Cart |
-| 4 FAQ | 复用 `faq.liquid` | 5 条黑五相关问答 |
-| 5 底部 CTA | 复用 `cta-strip` | 黄底 |
-| 6 邮件订阅 | 复用 `newsletter.liquid` | settings 模式；全局 CSS 已是黑底 + 黄标题 |
+| 1 主视觉 + 倒计时 | **新** `bf-hero` | 桌面/移动双图（可留空）+ eyebrow 胶章 + 巨字标题 + 黄下划线 + 副标题 + badge + **全期结束倒计时** + 发光 CTA |
+| 2 滚动促销条 | **新** `bf-ticker` | 黄底黑字 marquee 无限滚动，鼠标悬停暂停 |
+| 3 双档 offer | **新** `bf-offers` | block 驱动，2 块（48h 闪促 / 全期），暗底卡片 + 黄边 + kicker + value chip + 日期 + CTA |
+| 4 商品网格 | 复用 `featured-collection`（`bg: dark`） | 暗卡 + 黄边 + 黄价 + `Save $X OFF` chip + Add to Cart |
+| 5 FAQ | 复用 `faq.liquid`（`bg: dark`） | 5 条黑五相关问答，暗底暗卡 |
+| 6 底部 CTA | 复用 `cta-strip`（`bg: black`） | 黑底 + 黄色顶边 |
+| 7 邮件订阅 | 复用 `newsletter.liquid` | settings 模式；全局 CSS 已是黑底 + 黄标题 |
 
 **促销机制 = 直接降价**：不给前端写任何折扣逻辑。在 Shopify admin 给商品设 `compare_at_price`（原价），`snippets/product-card.liquid` 就会自动输出「划线原价 + `Save $X OFF` + `SALE` badge」。BF 上架的 MF-25 / MF-30 / MF-33 / MF-35 线上都已设好原价。
 
-**共享 CSS**：`snippets/bf-styles.liquid`（唯一源，`.bf-root` + `--bf-*` token 全隔离）。照抄 `mf35-stitch-styles` 的隔离模式（**不要**抄 mf25 那份——它写全局 `:root` / `*{margin:0}`）。两个 section 顶部各 `{% render 'bf-styles' %}`（同 swoope 家族做法，Liquid 无法跨 section 去重）。
+**共享 CSS**：`snippets/bf-styles.liquid`（唯一源，`.bf-root` + `--bf-*` token 全隔离）。照抄 `mf35-stitch-styles` 的隔离模式（**不要**抄 mf25 那份——它写全局 `:root` / `*{margin:0}`）。每个 bf section 顶部各 `{% render 'bf-styles' %}`（同 swoope 家族做法，Liquid 无法跨 section 去重）。
+
+**共享 section 补了暗色能力**（原本 `bg` 设置是**死的**，schema 里有、liquid 不读）：
+
+| Section | 改动 | 兼容性 |
+|---|---|---|
+| `featured-collection.liquid` | `bg` 设置接上（white / soft / **dark**）+ 区块内 scoped 暗色 product-card 样式 | 默认 white = 原样，首页不动 |
+| `cta-strip.liquid` | `bg` 设置接上（yellow / **black**） | 默认 yellow = 原样，首页不动 |
+| `faq.liquid` | **新增** `bg` 设置（light / **dark**） | 默认 light = 原样，首页不动 |
 
 **倒计时**：`ends_at` 是 **text** 设置（Shopify schema **没有** `date` 类型），格式 ISO 8601 带时区偏移，如 `2026-11-30T23:59:59-08:00`。JS 用 `Date.parse` 解析（带偏移=绝对时刻，无歧义）。三条降级路径都实现了：正常 → 走秒；**已过期** → 隐藏格子显示 `ended_text`；**解析失败** → 整个倒计时隐藏。
+
+**暗底标题必须显式上色**：`maxfoot-base.css` 有 `h1..h6{color:var(--color-primary)}`（黑），它会压过父级继承的白色 → 暗底标题变黑。bf 家族用主题既有的覆盖写法（`.bf-hero h1,.bf-hero h2,...{color:#fff}`）处理，详见 §15.28。
 
 **语言**：文案硬编码英文，跟 `mf25-stitch-*` / `mf35-stitch-*` / `swoope-*` 三个家族一致（活动页生命周期短、US 单语市场）。其他 30 种语言不翻译。
 
@@ -1201,7 +1215,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | `page.coming-soon.json` | 即将推出 | 简单 |
 | `page.payment-plan.json` | 付款计划 | rich-text |
 | `page.prime-day.json` | Prime Day | **单独 template，不挂首页** |
-| `page.black-friday.json` | **黑五活动页**（详见 §10.8） | bf-hero + bf-offers + featured-collection + faq + cta-strip + newsletter（6 sections） |
+| `page.black-friday.json` | **黑五活动页**（详见 §10.8） | bf-hero + bf-ticker + bf-offers + featured-collection + faq + cta-strip + newsletter（7 sections） |
 | `page.test-page.json` | 测试 | 各种 sections |
 | `page.judgeme_all_reviews.liquid` | Judge.me 全部评价 | liquid page |
 | `page.pormo.json` / `page.register-page.json` / `page.reviewp.json` / `page.get-your-special-discount.json` | 各种 landing | 各种 |
@@ -1536,6 +1550,13 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 - `snippets/impact-product-card.liquid` 的 `regular-price` 直接输出 `product.compare_at_price`，**没设原价时输出 `$0.00`**（划线显示）
 - 用这个 section 做活动页商品网格时，要么保证每款都设了 `compare_at_price`，要么自己加 `{%- if product.compare_at_price > product.price -%}` 保护
 - 本次 BF 页改用 `featured-collection`（→ `product-card`），它有 `compare_at_price > price` 保护，更安全
+
+### 15.28 暗底上的标题会被主题压成黑色
+- `assets/maxfoot-base.css` 有 `h1,h2,h3,h4,h5,h6{color:var(--color-primary)}`（#121212 黑）
+- 这条规则**压过父级继承的白色**（继承色优先级最低）→ 暗底 section 里的标题变黑底黑字
+- 主题里已有既有解法：`maxfoot-components.css` 的 "Dark-section heading override" 段，用 `.X h1,.X h2,...{color:#fff}`（特异度 0,1,1）压过 0,0,1
+- 新增暗底 section 时照抄这个写法，别只给父容器写 `color:#fff`
+- ⚠️ 本地预览时如果没加载 `layout/theme.liquid` 的 `:root` token 块，`var(--color-primary)` 会 undefined → 标题反而是白的 → **预览和线上不一致**，容易漏掉这个 bug
 
 ---
 

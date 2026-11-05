@@ -1,0 +1,68 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+{% render 'bf-styles' %}
+
+<section
+  class="bf-root bf-ticker"
+  style="--bf-ticker-duration: {{ s.duration }}s;"
+  {{ section.shopify_attributes }}
+>
+  <div class="bf-ticker__track">
+    {%- for group in (1..2) -%}
+      <div class="bf-ticker__group"{% if group > 1 %} aria-hidden="true"{% endif %}>
+        {%- for repeat in (1..s.repeats) -%}
+          <span class="bf-ticker__text">{{ s.text | escape }}</span>
+          <span class="bf-ticker__sep">{{ s.separator | escape }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BF Ticker",
+  "tag": "section",
+  "class": "section-bf-ticker",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Message",
+      "default": "BLACK FRIDAY - UP TO $1,100 OFF - ENDS NOV 30"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "*"
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "s",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "repeats",
+      "label": "Repeats per loop",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "BF Ticker"
+    }
+  ]
+}
+{% endschema %}

@@ -13,6 +13,23 @@
       padding-bottom: {{ s.padding_bottom }}px;
     }
   }
+  {%- if s.bg == 'dark' -%}
+    .faq-{{ section.id }} {
+      background: #0E0E0E;
+      color: #fff;
+    }
+    .faq-{{ section.id }} .section__title { color: #fff; }
+    .faq-{{ section.id }} h1, .faq-{{ section.id }} h2, .faq-{{ section.id }} h3,
+    .faq-{{ section.id }} h4, .faq-{{ section.id }} h5, .faq-{{ section.id }} h6 { color: #fff; }
+    .faq-{{ section.id }} .section__sub { color: rgba(255, 255, 255, 0.72); }
+    .faq-{{ section.id }} .faq__item { background: #161616; border-color: rgba(255, 192, 0, 0.22); }
+    .faq-{{ section.id }} .faq__item[open] { border-color: rgba(255, 192, 0, 0.55); }
+    .faq-{{ section.id }} .faq__item summary { color: #fff; }
+    .faq-{{ section.id }} .faq__item summary:hover { background: rgba(255, 192, 0, 0.07); }
+    .faq-{{ section.id }} .faq__a { color: rgba(255, 255, 255, 0.72); }
+    .faq-{{ section.id }} .btn--outline { color: #fff; border-color: rgba(255, 255, 255, 0.45); }
+    .faq-{{ section.id }} .btn--outline:hover { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-primary); }
+  {%- endif -%}
 {%- endstyle -%}
 
 <section class="section section--faq faq-{{ section.id }} section--soft" {{ section.shopify_attributes }}>
@@ -69,6 +86,16 @@
       "type": "url",
       "id": "cta_link",
       "label": "CTA link"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Background",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "light"
     },
     {
       "type": "range",

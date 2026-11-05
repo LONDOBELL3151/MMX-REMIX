@@ -2,7 +2,28 @@
   assign s = section.settings
 -%}
 
-<section class="cta-strip" {{ section.shopify_attributes }}>
+{%- style -%}
+  {%- if s.bg == 'black' -%}
+    .cta-strip-{{ section.id }} {
+      background: #0E0E0E;
+      color: #fff;
+      border-top: 3px solid var(--color-accent);
+    }
+    .cta-strip-{{ section.id }} .cta-strip__title { color: #fff; }
+    .cta-strip-{{ section.id }} h1, .cta-strip-{{ section.id }} h2, .cta-strip-{{ section.id }} h3,
+    .cta-strip-{{ section.id }} h4, .cta-strip-{{ section.id }} h5, .cta-strip-{{ section.id }} h6 { color: #fff; }
+    .cta-strip-{{ section.id }} .cta-strip__sub { color: rgba(255, 255, 255, 0.72); opacity: 1; }
+    .cta-strip-{{ section.id }} .btn--primary {
+      background: var(--color-accent);
+      color: var(--color-primary);
+      border-color: var(--color-accent);
+    }
+    .cta-strip-{{ section.id }} .btn--primary:hover { background: #FFD340; color: var(--color-primary); }
+    .cta-strip-{{ section.id }} .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.45); }
+  {%- endif -%}
+{%- endstyle -%}
+
+<section class="cta-strip cta-strip-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="container cta-strip__inner">
     <div class="cta-strip__copy">
       <h2 class="cta-strip__title">

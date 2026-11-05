@@ -4,8 +4,8 @@
       "type": "bf-hero",
       "name": "BF Hero",
       "settings": {
-        "image": "shopify://shop_images/1920x820px.jpg",
-        "image_mobile": "shopify://shop_images/750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg",
+        "image": "",
+        "image_mobile": "",
         "eyebrow": "BLACK FRIDAY 2026",
         "heading": "BLACK FRIDAY",
         "subheading": "Up to $1,100 off select electric trikes and e-bikes. Factory-direct pricing, no middlemen.",
@@ -17,8 +17,18 @@
         "button_link": "shopify://collections/all-products",
         "button2_text": "",
         "button2_link": "",
-        "overlay_opacity": 25,
+        "overlay_opacity": 20,
         "text_align": "left"
+      }
+    },
+    "ticker": {
+      "type": "bf-ticker",
+      "name": "BF Ticker",
+      "settings": {
+        "text": "BLACK FRIDAY - UP TO $1,100 OFF - ENDS NOV 30 - FREE SHIPPING IN 48 STATES",
+        "separator": "*",
+        "duration": 35,
+        "repeats": 6
       }
     },
     "offers": {
@@ -96,7 +106,7 @@
         "heading": "BLACK FRIDAY DEALS",
         "subheading": "Every bike below is already marked down. The strikethrough price is what you save.",
         "columns": "4",
-        "bg": "white"
+        "bg": "dark"
       }
     },
     "faq": {
@@ -145,6 +155,7 @@
         "subheading": "Everything else you might be wondering about.",
         "cta_text": "Still have questions?",
         "cta_link": "",
+        "bg": "dark",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -159,7 +170,7 @@
         "button_link": "shopify://collections/all-products",
         "button2_text": "",
         "button2_link": "",
-        "bg": "yellow"
+        "bg": "black"
       }
     },
     "newsletter": {
@@ -180,5 +191,5 @@
       }
     }
   },
-  "order": ["hero", "offers", "deals", "faq", "cta", "newsletter"]
+  "order": ["hero", "ticker", "offers", "deals", "faq", "cta", "newsletter"]
 }

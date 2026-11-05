@@ -4,12 +4,16 @@
   if s.image_mobile != blank
     assign has_mobile_image = true
   endif
+  assign has_image = false
+  if s.image != blank or s.image_mobile != blank
+    assign has_image = true
+  endif
 -%}
 
 {% render 'bf-styles' %}
 
 <section
-  class="bf-root bf-hero{% if s.text_align == 'center' %} bf-hero--center{% endif %}{% if has_mobile_image %} bf-hero--has-mobile{% endif %}"
+  class="bf-root bf-hero{% if s.text_align == 'center' %} bf-hero--center{% endif %}{% if has_mobile_image %} bf-hero--has-mobile{% endif %}{% unless has_image %} bf-hero--no-image{% endunless %}"
   style="--bf-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};"
   {{ section.shopify_attributes }}
 >
@@ -43,6 +47,8 @@
   </div>
 
   <div class="bf-hero__scrim" aria-hidden="true"></div>
+  <div class="bf-hero__glow" aria-hidden="true"></div>
+  <div class="bf-hero__grain" aria-hidden="true"></div>
 
   <div class="bf-hero__inner">
     {%- if s.eyebrow != blank -%}

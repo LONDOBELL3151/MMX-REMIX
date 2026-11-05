@@ -2,7 +2,46 @@
   assign s = section.settings
 -%}
 
-<section class="section section--lineup" {{ section.shopify_attributes }}>
+{%- style -%}
+  .lineup-{{ section.id }} {
+    background: {% if s.bg == 'dark' %}#0E0E0E{% elsif s.bg == 'soft' %}var(--color-bg-soft){% else %}transparent{% endif %};
+    color: {% if s.bg == 'dark' %}#fff{% else %}inherit{% endif %};
+  }
+  {%- if s.bg == 'dark' -%}
+    .lineup-{{ section.id }} .section__title { color: #fff; }
+    .lineup-{{ section.id }} h1, .lineup-{{ section.id }} h2, .lineup-{{ section.id }} h3,
+    .lineup-{{ section.id }} h4, .lineup-{{ section.id }} h5, .lineup-{{ section.id }} h6 { color: #fff; }
+    .lineup-{{ section.id }} .section__sub { color: rgba(255, 255, 255, 0.72); }
+    .lineup-{{ section.id }} .product-card {
+      background: #161616;
+      border-color: rgba(255, 192, 0, 0.24);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .lineup-{{ section.id }} .product-card:hover {
+      border-color: rgba(255, 192, 0, 0.6);
+      box-shadow: 0 18px 46px rgba(255, 192, 0, 0.12);
+      transform: translateY(-4px);
+    }
+    .lineup-{{ section.id }} .product-card__media { background: linear-gradient(135deg, #1C1C1C, #111); }
+    .lineup-{{ section.id }} .product-card__category { color: rgba(255, 255, 255, 0.55); }
+    .lineup-{{ section.id }} .product-card__title a { color: #fff; }
+    .lineup-{{ section.id }} .product-card__rating strong { color: #fff; }
+    .lineup-{{ section.id }} .product-card__specs {
+      border-top-color: rgba(255, 192, 0, 0.35);
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+    .lineup-{{ section.id }} .product-card__spec-val { color: var(--color-accent); }
+    .lineup-{{ section.id }} .product-card__spec-label { color: rgba(255, 255, 255, 0.5); }
+    .lineup-{{ section.id }} .product-card__price { color: var(--color-accent); }
+    .lineup-{{ section.id }} .product-card__price--old { color: rgba(255, 255, 255, 0.45); }
+    .lineup-{{ section.id }} .product-card__price-save { background: var(--color-accent); color: #121212; }
+    .lineup-{{ section.id }} .product-card__badge--sale { background: var(--color-accent); color: #121212; }
+    .lineup-{{ section.id }} .product-card__cta { background: var(--color-accent); color: #121212; }
+    .lineup-{{ section.id }} .product-card__cta:hover { background: #FFD340; color: #121212; }
+  {%- endif -%}
+{%- endstyle -%}
+
+<section class="section section--lineup lineup-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="container">
     <div class="section__head">
       <h2 class="section__title">{{ s.heading | default: 'The lineup' }}</h2>

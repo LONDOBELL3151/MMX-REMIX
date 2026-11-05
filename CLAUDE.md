@@ -11,7 +11,7 @@
 - **绝不碰**：`Desktop\maxfoot-theme\`（legacy 备份）、`Desktop\dawn\`（Dawn 原版 workspace，**不是**本工程）。
 - **同步链路**：`git push origin main` → GitHub → Shopify GitHub 整合 → CDN。**经常卡 5+ 分钟**；看到 `Update from Shopify for theme MMX-REMIX/main` bot commit 属正常。
 - **设计稿**：根目录 `pdp-mockup-*.html`（mf25-stitch 的设计来源，已在 `.gitignore`，仅本地参考）；`stitch_mf_35_trike_pdp_design.zip`（mf35-stitch 设计源，**未 gitignore——commit 前决定是否纳入**，当前仅解到 `temp_mf35_design/` 用作设计参考）。
-- **规模实测**：146 sections（143 liquid + 3 group）、63 templates（含 `customers/` 7 个账户模板 + `product.electric-dirt-bike.json` + `product.mf-35-stitch.json` + `page.black-friday.json`）、96 snippets、150 assets、**31 种语言 locale**。
+- **规模实测**：147 sections（144 liquid + 3 group）、63 templates（含 `customers/` 7 个账户模板 + `product.electric-dirt-bike.json` + `product.mf-35-stitch.json` + `page.black-friday.json`）、96 snippets、150 assets、**31 种语言 locale**。
 
 ## 1. 新对话开机序列
 
@@ -111,11 +111,14 @@
 
 - **背景**：参考 `mooncool.com/pages/black-friday` 做的**精简营销版**落地页。首页 hero 早已在跑 "BLACK FRIDAY 2026 EARLY ACCESS"（$1100 OFF MF-25 / $900 OFF MF-30），这次补一个专属会场页。模板 `templates/page.black-friday.json`，admin 建 handle = `black-friday` 的 page 即自动套用。
 - **2 个 section + 1 共享样式 snippet**：
-  - `bf-hero`：黑五主视觉（桌面/移动双图 + eyebrow + 大标题 + 副标题 + badge + **全期结束倒计时** + CTA）。倒计时 4 格 DAYS/HRS/MIN/SEC。
-  - `bf-offers`：双档 offer 卡（block 驱动，max 4，presets 预填 2 块：48h 闪促 / 全期）。图片卡 + kicker + value chip + 日期行 + CTA。
+  - `bf-hero`：黑五主视觉（桌面/移动双图 + eyebrow 胶章 + 巨字标题 + 黄下划线 + 副标题 + badge + **全期结束倒计时** + 发光 CTA）。倒计时 4 格 DAYS/HRS/MIN/SEC。
+  - `bf-offers`：双档 offer 卡（block 驱动，max 4，presets 预填 2 块：48h 闪促 / 全期）。暗底卡片 + 黄边 + kicker + value chip + 日期行 + CTA。
+  - `bf-ticker`：黄底黑字 marquee 滚动促销条（每 section 顶部 `{% render 'bf-styles' %}`，同 swoope 家族做法）。
   - `snippets/bf-styles.liquid` 是唯一 CSS 源。**照抄 `mf35-stitch-styles` 的隔离模式**（`.bf-root` + `--bf-*` token + `.bf-` 前缀）；**不要**抄 mf25 那份——它写全局 `:root` / `*{margin:0}` 会污染全站。
+- **视觉方向 = 全黑金质感**：`#0E0E0E` 近黑底 + `#FFC000` 金色唯一亮色 + 颗粒噪点（SVG feTurbulence data URI）+ 黄色辉光（CTA / 倒计时数字 / 卡片边框）。**整页无白底段**。
+- **暗底标题必须显式上色**：`maxfoot-base.css` 的 `h1..h6{color:var(--color-primary)}` 会压过继承的白色 → 暗底标题变黑。照主题既有写法用 `.bf-hero h1,.bf-hero h2,...{color:#fff}` 覆盖（README §15.28）。
 - **促销机制 = 直接降价，前端零折扣逻辑**：在 admin 给商品设 `compare_at_price`（原价），`snippets/product-card.liquid` 自动输出「划线原价 + `Save $X OFF` + `SALE` badge」。BF 上架的 MF-25 / MF-30 / MF-33 / MF-35 线上**已经都设好原价**（$1100 / $900 / $600 / $500 OFF）。
-- **其余 4 段全部复用现有 section，零改动**：`featured-collection`（商品网格，带 Add to Cart）/ `faq.liquid` / `cta-strip.liquid` / `newsletter.liquid`（settings 模式；全局 CSS 已是黑底 + 黄标题）。
+- **其余 4 段复用现有 section**，并给它们补了暗色能力（原本 `bg` 设置是死的，schema 里有、liquid 不读）：`featured-collection`（bg 接上 white/soft/**dark** + scoped 暗色 product-card 样式）、`cta-strip`（bg 接上 yellow/**black**）、`faq.liquid`（**新增** bg 设置 light/**dark**）。三者默认值都保持原样，**首页零影响**。
 - **倒计时实现**：`ends_at` 是 **text** 设置（Shopify schema **没有** `date` 类型！），格式 ISO 8601 带时区偏移 `2026-11-30T23:59:59-08:00`；JS 用 `Date.parse()` 得到绝对时刻，无时区歧义。三条降级路径都实现了：正常走秒 / **已过期** → 隐藏格子显示 `ended_text` / **解析失败** → 整个倒计时隐藏。
 - **文案硬编码英文**（同 mf25 / mf35 / swoope 三个家族）——活动页生命周期短、US 单语市场；其他 30 种语言不翻译。
 - **类名前缀** `.bf-*`（第四个家族，与 `.mf25-*` / `.mf35-*` / `.sw-*` 互不污染）。
