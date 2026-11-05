@@ -1,11 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "bf-hero",
       "name": "BF Hero",
       "settings": {
-        "image": "",
-        "image_mobile": "",
+        "image": "shopify://shop_images/1920x820px.jpg",
+        "image_mobile": "shopify://shop_images/750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg",
         "eyebrow": "BLACK FRIDAY 2026",
         "heading": "BLACK FRIDAY",
         "subheading": "Up to $1,100 off select electric trikes and e-bikes. Factory-direct pricing, no middlemen.",
@@ -33,13 +42,10 @@
     },
     "offers": {
       "type": "bf-offers",
-      "name": "BF Offers",
       "blocks": {
         "offer_flash": {
           "type": "offer",
           "settings": {
-            "image": "",
-            "image_mobile": "",
             "kicker": "48-HOUR FLASH SALE",
             "heading": "Buy 2. Get a FREE Battery.",
             "value_text": "FREE - $299 VALUE",
@@ -52,8 +58,6 @@
         "offer_full": {
           "type": "offer",
           "settings": {
-            "image": "",
-            "image_mobile": "",
             "kicker": "FULL EVENT",
             "heading": "Our biggest savings of the year.",
             "value_text": "UP TO $1,100 OFF",
@@ -64,7 +68,11 @@
           }
         }
       },
-      "block_order": ["offer_flash", "offer_full"],
+      "block_order": [
+        "offer_flash",
+        "offer_full"
+      ],
+      "name": "BF Offers",
       "settings": {
         "heading": "Two ways to save",
         "subheading": "Pick the window that works for you. Black Friday pricing is already applied to every marked bike.",
@@ -74,7 +82,6 @@
     },
     "deals": {
       "type": "featured-collection",
-      "name": "Black Friday Deals",
       "blocks": {
         "product_mf35": {
           "type": "product",
@@ -101,7 +108,13 @@
           }
         }
       },
-      "block_order": ["product_mf35", "product_mf30", "product_mf33", "product_mf25"],
+      "block_order": [
+        "product_mf35",
+        "product_mf30",
+        "product_mf33",
+        "product_mf25"
+      ],
+      "name": "Black Friday Deals",
       "settings": {
         "heading": "BLACK FRIDAY DEALS",
         "subheading": "Every bike below is already marked down. The strikethrough price is what you save.",
@@ -111,7 +124,6 @@
     },
     "faq": {
       "type": "faq",
-      "name": "Black Friday FAQ",
       "blocks": {
         "question_savings": {
           "type": "question",
@@ -149,7 +161,14 @@
           }
         }
       },
-      "block_order": ["question_savings", "question_dates", "question_shipping", "question_warranty", "question_payments"],
+      "block_order": [
+        "question_savings",
+        "question_dates",
+        "question_shipping",
+        "question_warranty",
+        "question_payments"
+      ],
+      "name": "Black Friday FAQ",
       "settings": {
         "heading": "Black Friday questions",
         "subheading": "Everything else you might be wondering about.",
@@ -191,5 +210,13 @@
       }
     }
   },
-  "order": ["hero", "ticker", "offers", "deals", "faq", "cta", "newsletter"]
+  "order": [
+    "hero",
+    "ticker",
+    "offers",
+    "deals",
+    "faq",
+    "cta",
+    "newsletter"
+  ]
 }
