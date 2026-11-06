@@ -1183,6 +1183,22 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 
 **倒计时**：`ends_at` 是 **text** 设置（Shopify schema **没有** `date` 类型），格式 ISO 8601 带时区偏移，如 `2026-11-30T23:59:59-08:00`。JS 用 `Date.parse` 解析（带偏移=绝对时刻，无歧义）。三条降级路径都实现了：正常 → 走秒；**已过期** → 隐藏格子显示 `ended_text`；**解析失败** → 整个倒计时隐藏。
 
+**移动端 hero 布局（≤749px）**：文案贴顶、倒计时压底、中间整段留给图里的车。
+
+| 手法 | 值 |
+|---|---|
+| hero 高度 | `max(92svh, 680px)`（矮屏兜底 680px） |
+| 文案 | `justify-content: flex-start`（桌面仍是 flex-end 底部左对齐） |
+| 倒计时 | 移动端 `position:absolute; bottom:22px` —— 落在图底部那片暗色倒影上，不压车 |
+| scrim | 移动端重画：0-26% 近全黑（文字区）→ 38-50% 几乎透明（车区）→ 70% 后再压暗（倒计时区） |
+
+实测净空（375px 宽）：812 高 → 文案↔车 **40px**、车↔倒计时 **144px**；667 高 → **16px** / **119px**。
+⚠️ 这套净空是按当前移动端图 `750x1080_1b73c194…`（车在画面 35%-63% 高度带）调的。**换移动端图必须重新核对净空**，否则文字又会压到车。
+
+**hero 无按钮**：`page.black-friday.json` 的 hero `button_text` 留空（页面靠底部 `cta-strip` 和两张 offer 卡转化）。**section 的按钮设置保留**，想加随时打开。
+
+**⚠️ admin 改的图必须回写模板**：theme editor 存的就是 `templates/page.black-friday.json` 本身，Shopify GitHub 整合会用 main 分支的版本覆盖它 → 每次改这个模板，都要把它在 admin 里设的图 handle 一起写回去（当前是 `Electric_Bikes_in_Golden_Studio_Light.png` + `750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg`），否则会被清空。
+
 **暗底标题必须显式上色**：`maxfoot-base.css` 有 `h1..h6{color:var(--color-primary)}`（黑），它会压过父级继承的白色 → 暗底标题变黑。bf 家族用主题既有的覆盖写法（`.bf-hero h1,.bf-hero h2,...{color:#fff}`）处理，详见 §15.28。
 
 **语言**：文案硬编码英文，跟 `mf25-stitch-*` / `mf35-stitch-*` / `swoope-*` 三个家族一致（活动页生命周期短、US 单语市场）。其他 30 种语言不翻译。
@@ -1557,6 +1573,12 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 - 主题里已有既有解法：`maxfoot-components.css` 的 "Dark-section heading override" 段，用 `.X h1,.X h2,...{color:#fff}`（特异度 0,1,1）压过 0,0,1
 - 新增暗底 section 时照抄这个写法，别只给父容器写 `color:#fff`
 - ⚠️ 本地预览时如果没加载 `layout/theme.liquid` 的 `:root` token 块，`var(--color-primary)` 会 undefined → 标题反而是白的 → **预览和线上不一致**，容易漏掉这个 bug
+
+### 15.29 theme editor 改的图会被 GitHub 整合覆盖
+- theme editor 存的就是 `templates/<page>.<handle>.json` 这个文件本身（section 实例的设置存在模板 JSON 里，不是 settings_data.json）
+- Shopify GitHub 整合把 main 分支的版本推回 theme branch → **你在 admin 传的图片 / 删的按钮 / 改的文案会被仓库里的版本覆盖**
+- 所以每次改某个 page template，都要把它在 admin 里的当前值一起写回仓库（图片 handle 写成 `shopify://shop_images/<文件名>`）
+- 判断有没有被覆盖：`curl https://maxfoot.bike/pages/<handle>` 看渲染出来的 srcset / 按钮在不在，再跟仓库里的 JSON 对一遍
 
 ---
 

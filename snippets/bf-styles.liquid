@@ -397,9 +397,37 @@
   }
   @media screen and (max-width: 749px) {
     .bf-root { --bf-gutter: 20px; }
-    .bf-hero__inner { min-height: clamp(460px, 80vh, 640px); padding-top: 48px; padding-bottom: 48px; }
+    .bf-hero .bf-hero__inner {
+      min-height: 92svh;
+      min-height: max(92svh, 680px);
+      padding-top: 26px;
+      padding-bottom: 0;
+      justify-content: flex-start;
+      gap: 11px;
+    }
+    .bf-hero--no-image .bf-hero__inner {
+      min-height: clamp(460px, 62svh, 640px);
+      padding-bottom: 26px;
+    }
+    .bf-hero__badge { padding: 8px 13px; }
+    .bf-hero__heading { font-size: clamp(46px, 13vw, 58px); }
+    .bf-hero__sub { font-size: 15px; line-height: 1.45; margin-top: 6px; }
+    /* copy sits on the image's empty black top band, the bikes keep the middle,
+       and the countdown drops onto the dark floor reflection at the bottom */
+    .bf-hero__scrim {
+      background: linear-gradient(180deg, rgba(14, 14, 14, 0.96) 0%, rgba(14, 14, 14, 0.9) 26%, rgba(14, 14, 14, 0.4) 38%, rgba(14, 14, 14, 0.1) 50%, rgba(14, 14, 14, 0.5) 70%, rgba(14, 14, 14, 0.92) 100%);
+    }
+    .bf-hero__scrim::after { opacity: 0; }
+    .bf-countdown {
+      position: absolute;
+      left: var(--bf-gutter);
+      right: var(--bf-gutter);
+      bottom: 22px;
+      margin-top: 0;
+    }
     .bf-countdown__cells { gap: 8px; }
     .bf-countdown__cell { min-width: 0; flex: 1 1 0; padding: 12px 6px 10px; }
+    .bf-countdown__num { font-size: 36px; }
     .bf-offer__body { padding: 24px 20px 22px; }
     .bf-hero--has-mobile .bf-hero__img--desk { display: none; }
     .bf-hero--has-mobile .bf-hero__img--mob { display: block; }
