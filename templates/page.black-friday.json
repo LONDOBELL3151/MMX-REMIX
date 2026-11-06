@@ -47,6 +47,7 @@
           "type": "offer",
           "settings": {
             "image": "shopify://shop_images/351200.png",
+            "image_mobile": "shopify://shop_images/35M.png",
             "kicker": "NEW ARRIVAL",
             "heading": "LATEST FOLDING E-TRIKE",
             "value_text": "$500 OFF EARLY BIRD",
