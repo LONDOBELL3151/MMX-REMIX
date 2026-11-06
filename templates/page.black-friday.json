@@ -58,6 +58,7 @@
         "offer_full": {
           "type": "offer",
           "settings": {
+            "image": "shopify://shop_images/251200.png",
             "kicker": "FULL EVENT",
             "heading": "Our biggest savings of the year.",
             "value_text": "UP TO $1,100 OFF",
