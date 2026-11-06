@@ -52,7 +52,7 @@
             "value_text": "$500 OFF EARLY BIRD",
             "date_text": "NOV 5-30 ONLY",
             "button_text": "Shop MF-35 NOW",
-            "button_link": "shopify://collections/trike",
+            "button_link": "shopify://products/mf-35",
             "accent": "yellow"
           }
         },
