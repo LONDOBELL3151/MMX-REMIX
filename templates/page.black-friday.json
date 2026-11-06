@@ -17,7 +17,7 @@
         "image_mobile": "shopify://shop_images/pageM.png",
         "eyebrow": "BLACK FRIDAY 2026",
         "heading": "BLACK FRIDAY",
-        "subheading": "Up to $1,100 off select electric trikes and e-bikes. Factory-direct pricing, no middlemen.",
+        "subheading": "Up to $1,100 off select electric trikes and e-bikes. Don’t miss out—the lowest price of the year!",
         "badge_text": "UP TO $1,100 OFF",
         "ends_at": "2026-11-30T23:59:59-08:00",
         "countdown_label": "Black Friday ends in",
@@ -133,14 +133,14 @@
           "type": "question",
           "settings": {
             "question": "How much can I save during Black Friday?",
-            "answer": "<p>Every bike on this page is already discounted - look for the strikethrough price on each card. Right now that is up to $1,100 off the MF-25 Step-Thru Commuter E-Bike, $900 off the MF-30 Electric Trike, $600 off the MF-33 Passenger Trike and $500 off the MF-35 Folding Electric Tricycle. No coupon code needed.</p>"
+            "answer": "<p>Every bike on this page is already discounted - look for the strikethrough price on each card. Take advantage of the best prices of the year during our Black Friday event—don’t miss out! Please check the individual product pages for specific discount details.</p>"
           }
         },
         "question_dates": {
           "type": "question",
           "settings": {
             "question": "When does the Black Friday sale end?",
-            "answer": "<p>Black Friday pricing runs through November 30. The countdown at the top of this page shows exactly how long is left, and the 48-hour flash offer is live only on November 5-6.</p>"
+            "answer": "<p>Black Friday pricing runs through November 30. The countdown at the top of this page shows exactly how long is left.</p>"
           }
         },
         "question_shipping": {
