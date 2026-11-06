@@ -47,7 +47,7 @@
           "type": "offer",
           "settings": {
             "image": "shopify://shop_images/351200.png",
-            "image_mobile": "shopify://shop_images/35M.png",
+            "image_mobile": "shopify://shop_images/35M_cd69b2d2-664e-4245-bc02-62c8ec33f622.png",
             "kicker": "NEW ARRIVAL",
             "heading": "LATEST FOLDING E-TRIKE",
             "value_text": "$500 OFF EARLY BIRD",
@@ -61,6 +61,7 @@
           "type": "offer",
           "settings": {
             "image": "shopify://shop_images/252.png",
+            "image_mobile": "shopify://shop_images/25m.png",
             "kicker": "FULL EVENT",
             "heading": "Our biggest savings of the year.",
             "value_text": "UP TO $1,100 OFF",
