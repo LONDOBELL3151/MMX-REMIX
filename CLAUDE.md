@@ -120,9 +120,9 @@
 - **促销机制 = 直接降价，前端零折扣逻辑**：在 admin 给商品设 `compare_at_price`（原价），`snippets/product-card.liquid` 自动输出「划线原价 + `Save $X OFF` + `SALE` badge」。BF 上架的 MF-25 / MF-30 / MF-33 / MF-35 线上**已经都设好原价**（$1100 / $900 / $600 / $500 OFF）。
 - **其余 4 段复用现有 section**，并给它们补了暗色能力（原本 `bg` 设置是死的，schema 里有、liquid 不读）：`featured-collection`（bg 接上 white/soft/**dark** + scoped 暗色 product-card 样式）、`cta-strip`（bg 接上 yellow/**black**）、`faq.liquid`（**新增** bg 设置 light/**dark**）。三者默认值都保持原样，**首页零影响**。
 - **倒计时实现**：`ends_at` 是 **text** 设置（Shopify schema **没有** `date` 类型！），格式 ISO 8601 带时区偏移 `2026-11-30T23:59:59-08:00`；JS 用 `Date.parse()` 得到绝对时刻，无时区歧义。三条降级路径都实现了：正常走秒 / **已过期** → 隐藏格子显示 `ended_text` / **解析失败** → 整个倒计时隐藏。
-- **移动端 hero 布局（≤749px）**：文案贴顶（`justify-content:flex-start`）、倒计时 `position:absolute; bottom:22px` 压在图底部暗色倒影上、中间整段留给图里的车。hero 高度 `max(92svh, 680px)`；scrim 移动端重画（顶部近全黑 → 车区几乎透明 → 底部再压暗）。**桌面不变**（仍底部左对齐、倒计时在流内）。⚠️ 净空是按当前移动端图（车在 35%-63% 高度带）调的，**换图要重新核对**（README §10.8）。
+- **移动端 hero 布局（≤749px）**：文案贴顶（`justify-content:flex-start`）、倒计时 `position:absolute; bottom:22px` 压在图底部暗色倒影上、中间整段留给图里的车。hero 高度 `max(92svh, 680px)`；scrim 移动端重画（顶部近全黑 → 车区几乎透明 → 底部再压暗）。**桌面不变**（仍底部左对齐、倒计时在流内）。⚠️ 净空是按当前移动端图调的，**换图要重新核对**（README §10.8）。
 - **hero 无按钮**：模板里 hero 的 `button_text` 留空，页面靠底部 `cta-strip` + 两张 offer 卡转化；section 的按钮设置保留。
-- **⚠️ admin 改的图会被 GitHub 整合覆盖**：theme editor 存的就是 `templates/page.black-friday.json` 本身，整合会用 main 分支版本覆盖它 → **每次改这个模板都要把 admin 里设的图 handle 一起写回仓库**（当前：`Electric_Bikes_in_Golden_Studio_Light.png` + `750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg`），否则会被清空（README §15.29）。
+- **⚠️ admin 改的图会被 GitHub 整合覆盖**：theme editor 存的就是 `templates/page.black-friday.json` 本身，整合会用 main 分支版本覆盖它 → **每次改这个模板都要把 admin 里设的图 handle 一起写回仓库**（当前：桌面 `Electric_Bikes_in_Golden_Studio_Light.png` + 移动 `pageM.png` 1080×2160），否则会被清空（README §15.29）。
 - **文案硬编码英文**（同 mf25 / mf35 / swoope 三个家族）——活动页生命周期短、US 单语市场；其他 30 种语言不翻译。
 - **类名前缀** `.bf-*`（第四个家族，与 `.mf25-*` / `.mf35-*` / `.sw-*` 互不污染）。
 

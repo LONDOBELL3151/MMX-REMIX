@@ -1193,11 +1193,15 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 | scrim | 移动端重画：0-26% 近全黑（文字区）→ 38-50% 几乎透明（车区）→ 70% 后再压暗（倒计时区） |
 
 实测净空（375px 宽）：812 高 → 文案↔车 **40px**、车↔倒计时 **144px**；667 高 → **16px** / **119px**。
-⚠️ 这套净空是按当前移动端图 `750x1080_1b73c194…`（车在画面 35%-63% 高度带）调的。**换移动端图必须重新核对净空**，否则文字又会压到车。
+**当前移动端图 = `pageM.png` 1080×2160（1:2）**：1:2 正好等于 hero 盒子的实测比例（0.49-0.55），所以 `cover` 几乎零裁切（横向 0-2%）。内容带在画面 43%-70%，上面留给文案、下面留给倒计时。Coulson 已用真机实测确认效果 OK。
+
+⚠️ **换移动端图必须重新核对净空**：图里车的纵向位置一变，文字就可能重新压到车。量法：先测出照片带在源图里的 y 范围，再换算成 CSS px（源图 y × 缩放系数），跟文案底 / 倒计时顶比。
+
+⚠️ **srcset 上限没跟上**：`bf-hero.liquid` 移动端 `widths` 还是 `'375, 550, 750, 900'`，而源图已经 1080 宽 —— DPR3 手机要 1170 设备px，浏览器只能拿 900w，边缘会略软。要用满就改成 `'375, 550, 750, 900, 1080, 1290'`，桌面同理加 `'2560'`。
 
 **hero 无按钮**：`page.black-friday.json` 的 hero `button_text` 留空（页面靠底部 `cta-strip` 和两张 offer 卡转化）。**section 的按钮设置保留**，想加随时打开。
 
-**⚠️ admin 改的图必须回写模板**：theme editor 存的就是 `templates/page.black-friday.json` 本身，Shopify GitHub 整合会用 main 分支的版本覆盖它 → 每次改这个模板，都要把它在 admin 里设的图 handle 一起写回去（当前是 `Electric_Bikes_in_Golden_Studio_Light.png` + `750x1080_1b73c194-fd03-447c-a2ca-197ff6e864bd.jpg`），否则会被清空。
+**⚠️ admin 改的图必须回写模板**：theme editor 存的就是 `templates/page.black-friday.json` 本身，Shopify GitHub 整合会用 main 分支的版本覆盖它 → 每次改这个模板，都要把它在 admin 里设的图 handle 一起写回去（当前是 `Electric_Bikes_in_Golden_Studio_Light.png` + `pageM.png`），否则会被清空。
 
 **暗底标题必须显式上色**：`maxfoot-base.css` 有 `h1..h6{color:var(--color-primary)}`（黑），它会压过父级继承的白色 → 暗底标题变黑。bf 家族用主题既有的覆盖写法（`.bf-hero h1,.bf-hero h2,...{color:#fff}`）处理，详见 §15.28。
 
