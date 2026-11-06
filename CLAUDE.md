@@ -112,7 +112,7 @@
 - **背景**：参考 `mooncool.com/pages/black-friday` 做的**精简营销版**落地页。首页 hero 早已在跑 "BLACK FRIDAY 2026 EARLY ACCESS"（$1100 OFF MF-25 / $900 OFF MF-30），这次补一个专属会场页。模板 `templates/page.black-friday.json`，admin 建 handle = `black-friday` 的 page 即自动套用。
 - **2 个 section + 1 共享样式 snippet**：
   - `bf-hero`：黑五主视觉（桌面/移动双图 + eyebrow 胶章 + 巨字标题 + 黄下划线 + 副标题 + badge + **全期结束倒计时** + 发光 CTA）。倒计时 4 格 DAYS/HRS/MIN/SEC。
-  - `bf-offers`：双档 offer 卡（block 驱动，max 4，presets 预填 2 块：48h 闪促 / 全期）。暗底卡片 + 黄边 + kicker + value chip + 日期行 + CTA。
+  - `bf-offers`：双档 offer 卡（block 驱动，max 4，presets 预填 2 块：48h 闪促 / 全期）。暗底卡片 + 黄边 + kicker + value chip + 日期行 + CTA。**桌面端文案贴顶、按钮贴底**（`.bf-offer__body` 改 flex 列，按钮 `margin-top:auto` 压底，scrim 重画成「上暗→中透→底暗」），中间整段留给图里的车；**移动端（≤990px）保持文案在底部**。
   - `bf-ticker`：黄底黑字 marquee 滚动促销条（每 section 顶部 `{% render 'bf-styles' %}`，同 swoope 家族做法）。
   - `snippets/bf-styles.liquid` 是唯一 CSS 源。**照抄 `mf35-stitch-styles` 的隔离模式**（`.bf-root` + `--bf-*` token + `.bf-` 前缀）；**不要**抄 mf25 那份——它写全局 `:root` / `*{margin:0}` 会污染全站。
 - **视觉方向 = 全黑金质感**：`#0E0E0E` 近黑底 + `#FFC000` 金色唯一亮色 + 颗粒噪点（SVG feTurbulence data URI）+ 黄色辉光（CTA / 倒计时数字 / 卡片边框）。**整页无白底段**。

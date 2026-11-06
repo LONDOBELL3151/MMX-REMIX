@@ -48,7 +48,8 @@
      beats inherited white on a dark background. Same override pattern the
      theme already uses for .newsletter / .proof-bar / .footer. */
   .bf-hero h1, .bf-hero h2, .bf-hero h3, .bf-hero h4, .bf-hero h5, .bf-hero h6,
-  .bf-offers h1, .bf-offers h2, .bf-offers h3, .bf-offers h4, .bf-offers h5, .bf-offers h6 { color: #fff; }
+  .bf-offers h1, .bf-offers h2, .bf-offers h3, .bf-offers h4, .bf-offers h5, .bf-offers h6,
+  .bf-offer h1, .bf-offer h2, .bf-offer h3, .bf-offer h4, .bf-offer h5, .bf-offer h6 { color: #fff; }
 
   /* ---------- buttons ---------- */
   .bf-btn {
@@ -307,7 +308,7 @@
     position: relative;
     isolation: isolate;
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     min-height: 420px;
     overflow: hidden;
     border-radius: var(--bf-radius);
@@ -330,7 +331,7 @@
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(14, 14, 14, 0.35) 0%, rgba(14, 14, 14, 0.72) 45%, rgba(14, 14, 14, 0.97) 100%);
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0.8) 0%, rgba(14, 14, 14, 0.72) 26%, rgba(14, 14, 14, 0.2) 42%, rgba(14, 14, 14, 0.04) 66%, rgba(14, 14, 14, 0.08) 78%, rgba(14, 14, 14, 0.55) 92%, rgba(14, 14, 14, 0.8) 100%);
   }
   .bf-offer__glow {
     position: absolute;
@@ -342,7 +343,8 @@
     pointer-events: none;
     background: radial-gradient(circle, rgba(255, 192, 0, 0.14) 0%, rgba(255, 192, 0, 0) 70%);
   }
-  .bf-offer__body { position: relative; z-index: 2; width: 100%; padding: 30px 28px 26px; }
+  .bf-offer__body { position: relative; z-index: 2; width: 100%; padding: 26px 28px 24px; display: flex; flex-direction: column; }
+  .bf-offer__body .bf-btn { margin-top: auto; align-self: flex-start; }
   .bf-offer__kicker {
     font-family: var(--bf-mono);
     font-size: 12px;
@@ -362,6 +364,7 @@
   }
   .bf-offer__value {
     display: inline-block;
+    align-self: flex-start;
     font-family: var(--bf-mono);
     font-size: 12px;
     font-weight: 700;
@@ -393,7 +396,12 @@
   /* ---------- responsive ---------- */
   @media screen and (max-width: 990px) {
     .bf-offers__grid { grid-template-columns: 1fr; }
-    .bf-offer { min-height: 360px; }
+    .bf-offer { min-height: 360px; align-items: flex-end; }
+    .bf-offer__body { display: block; height: auto; }
+    .bf-offer__body .bf-btn { margin-top: 0; }
+    .bf-offer__scrim {
+      background: linear-gradient(180deg, rgba(14, 14, 14, 0.35) 0%, rgba(14, 14, 14, 0.72) 45%, rgba(14, 14, 14, 0.97) 100%);
+    }
   }
   @media screen and (max-width: 749px) {
     .bf-root { --bf-gutter: 20px; }

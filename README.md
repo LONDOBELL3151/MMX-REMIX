@@ -1163,7 +1163,7 @@ main-product → collapsible-content (multiple rows) → related-products → mu
 |---|---|---|
 | 1 主视觉 + 倒计时 | **新** `bf-hero` | 桌面/移动双图（可留空）+ eyebrow 胶章 + 巨字标题 + 黄下划线 + 副标题 + badge + **全期结束倒计时** + 发光 CTA |
 | 2 滚动促销条 | **新** `bf-ticker` | 黄底黑字 marquee 无限滚动，鼠标悬停暂停 |
-| 3 双档 offer | **新** `bf-offers` | block 驱动，2 块（48h 闪促 / 全期），暗底卡片 + 黄边 + kicker + value chip + 日期 + CTA |
+| 3 双档 offer | **新** `bf-offers` | block 驱动，2 块（48h 闪促 / 全期）。**桌面：文案贴顶、按钮贴底，中间整段留给图里的车**；scrim 重画成「上暗（文案）→ 中透（车）→ 底暗（按钮）」。移动端仍是文案在底部 |
 | 4 商品网格 | 复用 `featured-collection`（`bg: dark`） | 暗卡 + 黄边 + 黄价 + `Save $X OFF` chip + Add to Cart |
 | 5 FAQ | 复用 `faq.liquid`（`bg: dark`） | 5 条黑五相关问答，暗底暗卡 |
 | 6 底部 CTA | 复用 `cta-strip`（`bg: black`） | 黑底 + 黄色顶边 |
