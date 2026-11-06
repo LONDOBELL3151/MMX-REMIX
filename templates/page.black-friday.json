@@ -46,11 +46,12 @@
         "offer_flash": {
           "type": "offer",
           "settings": {
-            "kicker": "48-HOUR FLASH SALE",
-            "heading": "Buy 2. Get a FREE Battery.",
-            "value_text": "FREE - $299 VALUE",
-            "date_text": "NOV 5-6 ONLY",
-            "button_text": "Shop Trikes",
+            "image": "shopify://shop_images/351200.png",
+            "kicker": "NEW ARRIVAL",
+            "heading": "LATEST FOLDING E-TRIKE",
+            "value_text": "$500 OFF EARLY BIRD",
+            "date_text": "NOV 5-30 ONLY",
+            "button_text": "Shop MF-35 NOW",
             "button_link": "shopify://collections/trike",
             "accent": "yellow"
           }
@@ -63,7 +64,7 @@
             "heading": "Our biggest savings of the year.",
             "value_text": "UP TO $1,100 OFF",
             "date_text": "NOV 5 - NOV 30",
-            "button_text": "Shop E-Bikes",
+            "button_text": "Shop MF-25 NOW",
             "button_link": "shopify://collections/e-bike",
             "accent": "black"
           }
