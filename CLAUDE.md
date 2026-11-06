@@ -121,6 +121,7 @@
 - **其余 4 段复用现有 section**，并给它们补了暗色能力（原本 `bg` 设置是死的，schema 里有、liquid 不读）：`featured-collection`（bg 接上 white/soft/**dark** + scoped 暗色 product-card 样式）、`cta-strip`（bg 接上 yellow/**black**）、`faq.liquid`（**新增** bg 设置 light/**dark**）。三者默认值都保持原样，**首页零影响**。
 - **倒计时实现**：`ends_at` 是 **text** 设置（Shopify schema **没有** `date` 类型！），格式 ISO 8601 带时区偏移 `2026-11-30T23:59:59-08:00`；JS 用 `Date.parse()` 得到绝对时刻，无时区歧义。三条降级路径都实现了：正常走秒 / **已过期** → 隐藏格子显示 `ended_text` / **解析失败** → 整个倒计时隐藏。
 - **移动端 hero 布局（≤749px）**：文案贴顶（`justify-content:flex-start`）、倒计时 `position:absolute; bottom:22px` 压在图底部暗色倒影上、中间整段留给图里的车。hero 高度 `max(92svh, 680px)`；scrim 移动端重画（顶部近全黑 → 车区几乎透明 → 底部再压暗）。**桌面不变**（仍底部左对齐、倒计时在流内）。⚠️ 净空是按当前移动端图调的，**换图要重新核对**（README §10.8）。
+- **推荐 banner 尺寸**：hero 桌面 **2560×1070**（2.4:1，车中右 + 左侧 40% 黑）/ hero 移动 **1080×2160**（1:2，车在 43%-70% 带，上下留黑）/ offer 卡桌面 1200×850 / 移动 750×800。写在各 section 的 image 字段 `info` 里。移动端 1:2 = hero 盒子实测比例 0.49-0.55 → 横向几乎零裁切。
 - **hero 无按钮**：模板里 hero 的 `button_text` 留空，页面靠底部 `cta-strip` + 两张 offer 卡转化；section 的按钮设置保留。
 - **⚠️ admin 改的图会被 GitHub 整合覆盖**：theme editor 存的就是 `templates/page.black-friday.json` 本身，整合会用 main 分支版本覆盖它 → **每次改这个模板都要把 admin 里设的图 handle 一起写回仓库**（当前：桌面 `Electric_Bikes_in_Golden_Studio_Light.png` + 移动 `pageM.png` 1080×2160），否则会被清空（README §15.29）。
 - **文案硬编码英文**（同 mf25 / mf35 / swoope 三个家族）——活动页生命周期短、US 单语市场；其他 30 种语言不翻译。
