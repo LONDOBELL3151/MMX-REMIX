@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MaxFoot MF-35 Folding Electric Tricycle — Product Description</title>
+<meta name="description" content="Full HTML product description for the MaxFoot MF-35 Folding Electric Tricycle. Built for Shopify product description field / agentic sales channel catalog.">
+
+<!--
+  ============================================================================
+  MaxFoot MF-35 Folding Electric Tricycle — Product Description HTML
+  ============================================================================
+  Source of truth .... templates/product.mf-35-stitch.json
+                      + sections/mf35-stitch-*.liquid
+                      + snippets/mf35-stitch-styles.liquid
+                      + sections/main-product.liquid
+  Built for ......... Shopify agentic sales channel (AI shopping assistants).
+                      Content is mirrored 1:1 from the live PDP so the AI
+                      agent sees exactly what a human shopper sees.
+
+  HOW TO USE
+  ----------
+  1. Preferred: set the product description via Admin API / Shopify CLI so
+     the inline style block and the JSON-LD script blocks survive.
+        - API : PUT /admin/api/2025-01/products/PRODUCT_ID.json
+                { "product": { "body_html": "FILE CONTENTS" } }
+        - CLI: shopify app dev (or any Admin API client you already use)
+  2. If you must paste into the admin WYSIWYG editor: it strips style and
+     script tags. The content still reads correctly (semantic headings, real
+     table elements, details/summary FAQ) because every rule is a real HTML
+     element, not a CSS-only construct. Only the cosmetic layer is lost.
+
+  AI-EXTRACTION DESIGN NOTES
+  ---------------------------
+  - One h1 that carries brand + model + full product category keyword.
+  - Lede paragraph answers "what is it / how much / what are the headline
+    numbers" in the first 2 sentences (most agents only read the first
+    ~500 chars of a description).
+  - JSON-LD: Product (with Offer, AggregateRating, shipping + return
+    policy), FAQPage, BreadcrumbList. This is what structured-price /
+    structured-availability agents read first.
+  - Every number carries an explicit unit (W, V, Ah, Wh, mi, mph, lbs, in).
+  - Key facts live in real table elements with caption, thead and
+    th[scope] so table-scraping agents can index them.
+  - Comparison table kept as a real table element (not CSS columns).
+  - FAQ kept as details/summary elements AND duplicated into FAQPage JSON-LD.
+  - A definition list is used for the at-a-glance highlights so key/value
+    pairs are machine-addressable.
+
+  CONTENT NOTES (deliberate edits vs. the raw template values)
+  ------------------------------------------------------------
+  - Cleaned 3 copy artifacts present in the live template JSON:
+      * caption_body of the folding feature repeated "...wiring cables."
+        twice -> deduplicated.
+      * caption_body of the motor feature had "everyday rides.aight through"
+        -> "everyday rides. Step right through".
+      * feature 3 title was "Removable BatteryFlexible Charging"
+        -> "Removable Battery, Flexible Charging".
+    These read as broken text to both shoppers and AI agents.
+  - The "Rear Wheel Differential" comparison row is disabled in the live
+    template (section block has "disabled": true) so it does NOT render on
+    the page -> omitted here.
+  - The "mf35-stitch-sticky-buy" section is disabled in the live template
+    -> omitted here.
+  ============================================================================
+-->
+
+<style>
+/* Scoped to .mf35-desc so this can never leak into the storefront theme. */
+.mf35-desc{font-family:'Space Grotesk','Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#0F1115;line-height:1.6;max-width:960px;margin:0 auto;padding:0 16px}
+.mf35-desc *{box-sizing:border-box}
+.mf35-desc h1,.mf35-desc h2,.mf35-desc h3,.mf35-desc h4{font-family:'Oswald','Big Shoulders Display',Impact,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.01em;line-height:1.15;color:#0F1115;margin:32px 0 12px}
+.mf35-desc h1{font-size:clamp(28px,4.5vw,44px);font-weight:700;margin-top:0;padding-bottom:14px;border-bottom:4px solid #FFC000}
+.mf35-desc h2{font-size:clamp(22px,3vw,32px)}
+.mf35-desc h3{font-size:clamp(18px,2.2vw,22px)}
+.mf35-desc p{margin:0 0 14px}
+.mf35-desc a{color:#0F1115;font-weight:600}
+.mf35-desc ul,.mf35-desc ol{margin:0 0 16px;padding-left:22px}
+.mf35-desc li{margin-bottom:8px}
+.mf35-desc .mf35-kicker{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0F1115;background:#FFC000;padding:4px 10px;border-radius:3px;margin:0 0 10px}
+.mf35-desc .mf35-lede{font-size:18px;color:#18181B}
+.mf35-desc .mf35-price-bar{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;background:#F8F9FA;border:1px solid #E4E4E7;border-left:4px solid #FFC000;border-radius:6px;padding:16px 20px;margin:20px 0}
+.mf35-desc .mf35-price{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:#0F1115}
+.mf35-desc .mf35-price-was{font-family:'JetBrains Mono',monospace;font-size:16px;color:#71717A;text-decoration:line-through}
+.mf35-desc .mf35-price-save{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFC000;color:#0F1115;padding:3px 8px;border-radius:3px}
+.mf35-desc .mf35-stock{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#0F1115}
+.mf35-desc .mf35-stock::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#0284C7;margin-right:6px}
+.mf35-desc .mf35-trust{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:18px 0 24px}
+.mf35-desc .mf35-trust li{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:#F1F3F5;border:1px solid #E4E4E7;border-radius:999px;padding:6px 12px;margin:0}
+.mf35-desc table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px;background:#FFFFFF}
+.mf35-desc caption{text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#71717A;padding-bottom:8px}
+.mf35-desc th,.mf35-desc td{padding:10px 14px;border-bottom:1px solid #E4E4E7;text-align:left;vertical-align:top}
+.mf35-desc thead th{background:#F8F9FA;font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0F1115;border-bottom:1px solid #D1D5DB}
+.mf35-desc tbody th{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#71717A;width:38%}
+.mf35-desc tbody td{color:#18181B;font-weight:600}
+.mf35-desc .mf35-metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:16px 0 24px}
+.mf35-desc .mf35-metric{border:1px solid #E4E4E7;border-radius:8px;padding:16px;background:#FFFFFF}
+.mf35-desc .mf35-metric-tag{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#18181B;background:#F8F9FA;border:1px solid #E4E4E7;border-radius:4px;padding:5px 9px;margin-bottom:10px}
+.mf35-desc .mf35-metric-val{font-family:'Oswald',sans-serif;font-size:40px;font-weight:700;line-height:1;color:#0F1115}
+.mf35-desc .mf35-metric-unit{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#E5AC00;margin-left:4px}
+.mf35-desc .mf35-metric-title{display:block;font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;text-transform:uppercase;margin:8px 0 6px}
+.mf35-desc .mf35-metric-body{display:block;font-size:14px;color:#18181B;margin:0 0 10px}
+.mf35-desc .mf35-metric-foot{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#71717A;border-top:1px solid #E4E4E7;padding-top:8px}
+.mf35-desc .mf35-feature{border-top:1px solid #E4E4E7;padding-top:20px;margin-top:20px}
+.mf35-desc .mf35-feature:first-of-type{border-top:0}
+.mf35-desc .mf35-feature ul{list-style:none;padding:0}
+.mf35-desc .mf35-feature li{padding-left:24px;position:relative}
+.mf35-desc .mf35-feature li::before{content:"✓";position:absolute;left:0;top:0;color:#E5AC00;font-weight:700}
+.mf35-desc .mf35-stat-grid{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.mf35-desc .mf35-stat{background:#F8F9FA;border:1px solid #E4E4E7;border-radius:6px;padding:10px 14px}
+.mf35-desc .mf35-stat-val{display:block;font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:#0F1115}
+.mf35-desc .mf35-stat-val.mf35-accent{color:#E5AC00}
+.mf35-desc .mf35-stat-lbl{display:block;font-size:12px;color:#71717A}
+.mf35-desc .mf35-note{background:#F8F9FA;border:1px solid #E4E4E7;border-left:4px solid #FFC000;border-radius:6px;padding:14px 18px;margin:16px 0;font-size:14px}
+.mf35-desc details{border:1px solid #E4E4E7;border-radius:8px;padding:14px 18px;margin-bottom:12px;background:#FFFFFF}
+.mf35-desc details summary{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;text-transform:uppercase;cursor:pointer;color:#0F1115}
+.mf35-desc details .mf35-a{margin-top:10px;font-size:15px;color:#18181B}
+.mf35-desc details .mf35-a p:last-child{margin-bottom:0}
+.mf35-desc .mf35-winner{background:#FFFBEB !important;border-left:2px solid #FFC000;border-right:2px solid #FFC000;color:#0F1115 !important;font-weight:700}
+.mf35-desc .mf35-yes{color:#E5AC00;font-weight:700}
+.mf35-desc dl{margin:16px 0 24px;padding:0;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden}
+.mf35-desc dt{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#71717A;background:#F8F9FA;padding:8px 14px;border-bottom:1px solid #E4E4E7}
+.mf35-desc dd{margin:0;padding:10px 14px;font-weight:600;color:#18181B;border-bottom:1px solid #F1F3F5}
+.mf35-desc dl dt:last-of-type{border-bottom:0}
+.mf35-desc .mf35-footer-note{font-size:13px;color:#71717A;border-top:1px solid #E4E4E7;margin-top:28px;padding-top:14px}
+@media screen and (max-width:600px){
+  .mf35-desc tbody th{width:auto}
+  .mf35-desc .mf35-metric-val{font-size:32px}
+}
+</style>
+
+<!--
+  ============================================================================
+  JSON-LD — structured data for AI agents and search engines.
+  OPTIONAL: paste your real CDN image URLs into the "image" array below.
+  Shopify CDN path shape:
+    cdn.shopify.com/s/files/1/SHOP_ID/files/FILE_NAME
+  ============================================================================
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "MaxFoot MF-35 Folding Electric Tricycle",
+  "sku": "MF35",
+  "mpn": "MF35-FOLDING-ETRIKE",
+  "description": "The MaxFoot MF-35 is a folding electric tricycle for adults with a 750W rear-wheel-drive brushless motor (up to 1,200W peak), a removable 48V 13Ah (624Wh) lithium battery with up to 50 miles of range, Shimano 7-speed shifting, 5-level pedal assist and half-twist throttle. It carries 230 lbs of rider weight plus 80 lbs of cargo in a 30L rear basket, has a 12-inch step-through standover height, fits riders from 5'1\" to 5'9\", and folds tool-free to 47 x 27.5 x 35.3 inches. Top speed 19 mph, 20 x 3.0 inch tires, 2-year extended warranty, 14-day free trial, free US shipping.",
+  "brand": { "@type": "Brand", "name": "MaxFoot" },
+  "manufacturer": { "@type": "Organization", "name": "MaxFoot" },
+  "category": "Electric Tricycle",
+  "color": "Solar Yellow, Brooklyn Gray",
+  "audience": { "@type": "PeopleAudience", "suggestedMinAge": 18, "suggestedMaxAge": 120 },
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Motor", "value": "750W rear-wheel drive brushless (up to 1200W peak)" },
+    { "@type": "PropertyValue", "name": "Battery", "value": "48V 13Ah (624Wh) removable lithium battery, rear-mounted" },
+    { "@type": "PropertyValue", "name": "Range", "value": "Up to 50 miles per charge" },
+    { "@type": "PropertyValue", "name": "Charge Time", "value": "Approximately 6.75 hours" },
+    { "@type": "PropertyValue", "name": "Pedal Assist", "value": "5 levels" },
+    { "@type": "PropertyValue", "name": "Throttle", "value": "Half-twist throttle" },
+    { "@type": "PropertyValue", "name": "Drivetrain", "value": "Shimano 7-speed rear derailleur" },
+    { "@type": "PropertyValue", "name": "Top Speed", "value": "19 mph" },
+    { "@type": "PropertyValue", "name": "Rider Capacity", "value": "230 lbs" },
+    { "@type": "PropertyValue", "name": "Cargo Capacity", "value": "80 lbs (30L rear basket)" },
+    { "@type": "PropertyValue", "name": "Tire Size", "value": "20 inch x 3.0 inch" },
+    { "@type": "PropertyValue", "name": "Standover Height", "value": "12 inches" },
+    { "@type": "PropertyValue", "name": "Rider Height Range", "value": "5 ft 1 in to 5 ft 9 in" },
+    { "@type": "PropertyValue", "name": "Wheelbase", "value": "45.5 inches" },
+    { "@type": "PropertyValue", "name": "Total Length", "value": "66 inches" },
+    { "@type": "PropertyValue", "name": "Total Width", "value": "23.5 inches" },
+    { "@type": "PropertyValue", "name": "Reach", "value": "15.5 inches" },
+    { "@type": "PropertyValue", "name": "Saddle Height Range", "value": "27.5 to 38.5 inches" },
+    { "@type": "PropertyValue", "name": "Handlebar Height Range", "value": "46.5 to 52.5 inches" },
+    { "@type": "PropertyValue", "name": "Folded Size", "value": "47 x 27.5 x 35.3 inches" },
+    { "@type": "PropertyValue", "name": "Folding", "value": "Tool-free quick-fold, under 10 seconds" },
+    { "@type": "PropertyValue", "name": "Headlight", "value": "High-lumen LED with integrated power supply" },
+    { "@type": "PropertyValue", "name": "Warranty", "value": "2-year extended factory warranty" },
+    { "@type": "PropertyValue", "name": "Return Policy", "value": "14-day free trial" }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "url": "https://maxfoot.bike/products/mf-35",
+    "priceCurrency": "USD",
+    "price": "1199.00",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": { "@type": "Organization", "name": "MaxFoot" },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 2, "unitCode": "DAY" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 7, "unitCode": "DAY" }
+      },
+      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "worstRating": "1",
+    "reviewCount": "1240"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the folded dimensions of the MF-35?",
+      "acceptedAnswer": { "@type": "Answer", "text": "When folded, the MF-35 folding electric tricycle measures 47 inches long x 27.5 inches wide x 35.3 inches high. Its folding design helps reduce its storage footprint for garages, sheds, RV travel, and transport. Please measure your intended storage space before purchase." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why choose the MF-35 folding electric trike?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The MF-35 folding electric trike gives you the confidence, carrying capability, and electric assist of a full-size trike without demanding full-time storage space. Use it for errands, neighborhood rides, and everyday cargo, then fold it down to make storage, RV travel, and transport more manageable." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the MF-35 folding electric tricycle fit in my car trunk?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The MF-35 folding electric tricycle folds for easier transport, but fit depends on your vehicle. It may fit in larger SUVs, vans, pickup beds, or vehicles with fold-flat rear seats. Please compare your vehicle's cargo space and payload capacity with the MF-35's folded dimensions and weight before purchase; two people may be needed for loading." }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is the MF-35 folding electric tricycle best suited for?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The MF-35 folding electric tricycle is designed for adult riders who value the added confidence of three wheels, electric assistance for everyday trips, and practical capacity for errands or gear. Its adjustable saddle post and telescopic handlebar stem are designed to accommodate riders from 5'1\" to 5'9\"." }
+    },
+    {
+      "@type": "Question",
+      "name": "What range can I expect on a charge?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The MF-35 folding electric trike offers a range of up to 50 miles under ideal riding conditions. Actual range varies based on rider and cargo weight, terrain, tire pressure, temperature, battery condition, assist level, throttle use, and riding style." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the battery take to charge?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A full charge takes approximately 6.75 hours with the included charger. The 48V 13Ah battery is removable and rear-mounted, so you can take it off the trike and charge it indoors on a standard wall outlet." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much weight can the MF-35 carry?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The MF-35 has a 230 lb rated rider capacity plus 80 lb of cargo capacity in the 30L rear basket, for a combined payload of 310 lbs. The chassis is steel-gusseted for strength." }
+    },
+    {
+      "@type": "Question",
+      "name": "What size rider does the MF-35 fit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The MF-35 fits riders from 5'1\" to 5'9\". The low step-through frame has a 12-inch standover height, the saddle post adjusts from 27.5 to 38.5 inches, and the handlebar height adjusts from 46.5 to 52.5 inches." }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://maxfoot.bike/" },
+    { "@type": "ListItem", "position": 2, "name": "MaxFoot MF-35 Folding Electric Tricycle", "item": "https://maxfoot.bike/products/mf-35" }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<article class="mf35-desc">
+
+  <header>
+    <h1>MaxFoot MF-35 Folding Electric Tricycle</h1>
+
+    <p class="mf35-lede">
+      The MaxFoot MF-35 is a folding electric tricycle for adults: a 750W rear-wheel-drive
+      brushless motor (up to 1,200W peak), a removable 48V 13Ah (624Wh) lithium battery with up to
+      50 miles of range, Shimano 7-speed shifting, and a 230 lb rider + 80 lb cargo payload.
+      It folds tool-free in under 10 seconds to 47 x 27.5 x 35.3 inches, has a 12-inch step-through
+      standover height, and fits riders from 5'1" to 5'9".
+    </p>
+
+    <div class="mf35-price-bar">
+      <span class="mf35-price">$1,199.00</span>
+      <span class="mf35-price-was">$1,699.00</span>
+      <span class="mf35-price-save">Save $500.00</span>
+      <span class="mf35-stock">In stock &mdash; ships within 2 business days</span>
+    </div>
+
+    <ul class="mf35-trust">
+      <li>Free US Freight</li>
+      <li>2-Year Extended Warranty</li>
+      <li>14-Day Free Trial</li>
+      <li>Ships from US Warehouse</li>
+      <li>US Tech Support</li>
+    </ul>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- PRODUCT VIDEO (live section, directly under the buy box)              -->
+  <!-- ===================================================================== -->
+  <section id="product-video">
+    <h2>Explore the City Boundaries</h2>
+    <p>Start every new journey with electric riding.</p>
+    <p>
+      A full-width product video of the MaxFoot MF-35 plays at the top of the product page, showing
+      the folding electric trike in motion.
+    </p>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- KEY SPECIFICATIONS                                                     -->
+  <!-- ===================================================================== -->
+  <section id="key-specifications">
+    <h2>Key Specifications</h2>
+
+    <table>
+      <caption>MaxFoot MF-35 Folding Electric Tricycle &mdash; complete technical specifications</caption>
+      <thead>
+        <tr>
+          <th scope="col">Specification</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Product type</th><td>Folding electric tricycle (e-trike) for adults</td></tr>
+        <tr><th scope="row">Brand</th><td>MaxFoot</td></tr>
+        <tr><th scope="row">Model</th><td>MF-35</td></tr>
+        <tr><th scope="row">Motor</th><td>750W rear-wheel drive brushless motor, up to 1,200W peak power</td></tr>
+        <tr><th scope="row">Pedal assist</th><td>5 levels</td></tr>
+        <tr><th scope="row">Throttle</th><td>Half-twist throttle</td></tr>
+        <tr><th scope="row">Battery</th><td>48V 13Ah (624Wh) removable lithium battery, rear-mounted</td></tr>
+        <tr><th scope="row">Range per charge</th><td>Up to 50 miles (ideal conditions)</td></tr>
+        <tr><th scope="row">Charge time</th><td>Approximately 6.75 hours with the included charger</td></tr>
+        <tr><th scope="row">Drivetrain</th><td>Shimano 7-speed rear derailleur</td></tr>
+        <tr><th scope="row">Top speed</th><td>19 mph</td></tr>
+        <tr><th scope="row">Rider capacity</th><td>230 lbs</td></tr>
+        <tr><th scope="row">Cargo capacity</th><td>80 lbs in the 30L rear basket (230 + 80 lbs total payload)</td></tr>
+        <tr><th scope="row">Tire size</th><td>20" x 3.0"</td></tr>
+        <tr><th scope="row">Standover height</th><td>12 inches (low step-through frame)</td></tr>
+        <tr><th scope="row">Rider height range</th><td>5'1" to 5'9"</td></tr>
+        <tr><th scope="row">Total length</th><td>66 inches</td></tr>
+        <tr><th scope="row">Wheelbase</th><td>45.5 inches</td></tr>
+        <tr><th scope="row">Total width</th><td>23.5 inches</td></tr>
+        <tr><th scope="row">Reach</th><td>15.5 inches</td></tr>
+        <tr><th scope="row">Saddle height range</th><td>27.5" to 38.5" (adjustable seat post)</td></tr>
+        <tr><th scope="row">Handlebar height range</th><td>46.5" to 52.5" (quick-tilt telescopic stem)</td></tr>
+        <tr><th scope="row">Folded size</th><td>47" L x 27.5" W x 35.3" H</td></tr>
+        <tr><th scope="row">Folding mechanism</th><td>Tool-free quick-fold, under 10 seconds, no wheel removal or cable detachment</td></tr>
+        <tr><th scope="row">Headlight</th><td>High-lumen LED with integrated power supply (no external wiring)</td></tr>
+        <tr><th scope="row">Chassis</th><td>Steel-gusseted reinforced frame</td></tr>
+        <tr><th scope="row">Cargo basket</th><td>30L rear basket, included</td></tr>
+        <tr><th scope="row">Available colors</th><td>Solar Yellow, Brooklyn Gray</td></tr>
+        <tr><th scope="row">Price</th><td>$1,199.00 (regularly $1,699.00 &mdash; save $500.00)</td></tr>
+        <tr><th scope="row">Availability</th><td>In stock, ships within 2 business days from the US warehouse</td></tr>
+        <tr><th scope="row">Warranty</th><td>2-year extended factory warranty on frame and motor</td></tr>
+        <tr><th scope="row">Trial period</th><td>14-day free trial</td></tr>
+        <tr><th scope="row">Shipping</th><td>Free US freight to all 48 contiguous states</td></tr>
+        <tr><th scope="row">Financing</th><td>0% APR financing available, plus Shop Pay, Klarna and Affirm</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- PRODUCT GALLERY INDEX                                                 -->
+  <!-- ===================================================================== -->
+  <section id="product-gallery">
+    <h2>Product Gallery</h2>
+    <p>The MF-35 product page carries the following visuals:</p>
+    <ul>
+      <li>Product video of the MF-35 in motion (full-width, at the top of the page).</li>
+      <li>The folded MF-35 by the waterfront &mdash; tool-free folding in a real-world storage setting.</li>
+      <li>Close-up of the rear-wheel brushless motor in motion.</li>
+      <li>Cutaway of the removable 48V 13Ah lithium battery pack.</li>
+      <li>Cinematic close-up of the high-lumen LED headlight beam at night.</li>
+      <li>Chassis schematic with standover, wheelbase and total-length measurements.</li>
+      <li>Lakeside grocery ride &mdash; the 30L rear basket loaded with everyday essentials.</li>
+    </ul>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- WHY THIS TRICYCLE — OVERVIEW                                          -->
+  <!-- ===================================================================== -->
+  <section id="overview">
+    <span class="mf35-kicker">// Power, Range &amp; Everyday Utility</span>
+    <h2>Built for More Than the Daily Ride</h2>
+
+    <p>
+      The MF-35 is an affordable folding electric tricycle for adults with 750W power, removable
+      battery convenience, Shimano 7-speed shifting, and dependable payload capacity for everyday
+      riding. It is built for grocery runs, neighborhood streets, everyday inclines, and any trip
+      where you would rather not fight for parking space &mdash; then fold it down and put it away.
+    </p>
+
+    <h3>Highlights</h3>
+    <dl>
+      <dt>750W peak 1200W rear-wheel drive</dt>
+      <dd>Brushless rear-wheel drive motor producing up to 1,200W of peak power for smooth starts and easier everyday rides.</dd>
+
+      <dt>48V 13Ah (624Wh) removable battery</dt>
+      <dd>Removable rear-mounted lithium battery that charges on or off the trike, with up to 50 miles of range and a roughly 6.75-hour full charge.</dd>
+
+      <dt>230 + 80 lb payload</dt>
+      <dd>230 lbs of rated rider capacity plus 80 lbs of cargo in the 30L rear basket, on a steel-gusseted reinforced chassis.</dd>
+
+      <dt>Shimano 7-speed drivetrain</dt>
+      <dd>Seven-speed rear derailleur shifting across a wide gear range to make flat roads, hills, and everyday routes feel easier.</dd>
+
+      <dt>Tool-free 10-second fold</dt>
+      <dd>Folds to 47" L x 27.5" W x 35.3" H with no tools needed and without detaching wheels or wiring cables.</dd>
+
+      <dt>12-inch step-through frame</dt>
+      <dd>A low step-through standover height makes mounting and dismounting comfortable for older riders, shorter riders, and anyone wearing a skirt or dress.</dd>
+    </dl>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- PERFORMANCE METRICS                                                    -->
+  <!-- ===================================================================== -->
+  <section id="performance">
+    <h2>Performance Metrics</h2>
+
+    <div class="mf35-metric-grid">
+      <div class="mf35-metric">
+        <span class="mf35-metric-tag">Rear Drive Motor</span>
+        <span class="mf35-metric-val">750<span class="mf35-metric-unit">W</span></span>
+        <span class="mf35-metric-title">Peak 1200W</span>
+        <span class="mf35-metric-body">The 750W rear-wheel drive brushless motor produces up to 1200W of peak power for smooth starts and easier everyday rides.</span>
+        <span class="mf35-metric-foot">5-LEVEL PEDAL ASSIST &middot; HALF-TWIST THROTTLE</span>
+      </div>
+
+      <div class="mf35-metric">
+        <span class="mf35-metric-tag">48V 13Ah (624Wh)</span>
+        <span class="mf35-metric-val">50<span class="mf35-metric-unit">MI</span></span>
+        <span class="mf35-metric-title">Range</span>
+        <span class="mf35-metric-body">The removable rear-mounted lithium battery lets you charge on or off the trike for convenient power whenever you need it.</span>
+        <span class="mf35-metric-foot">CHARGE TIME: 6.75HRS &middot; REMOVABLE PACK</span>
+      </div>
+
+      <div class="mf35-metric">
+        <span class="mf35-metric-tag">Reinforced Chassis</span>
+        <span class="mf35-metric-val">230+80<span class="mf35-metric-unit">LBS</span></span>
+        <span class="mf35-metric-title">Gross Payload</span>
+        <span class="mf35-metric-body">Built to handle real-world hauling, the 230+80-lb payload capacity keeps daily errands and longer trips within easy reach.</span>
+        <span class="mf35-metric-foot">CARGO BASKET: 30L VOL &middot; STEEL GUSSETED</span>
+      </div>
+
+      <div class="mf35-metric">
+        <span class="mf35-metric-tag">Drivetrain</span>
+        <span class="mf35-metric-val">7<span class="mf35-metric-unit">SPEED</span></span>
+        <span class="mf35-metric-title">Rear Derailleur</span>
+        <span class="mf35-metric-body">The Shimano 7-speed rear derailleur shifts smoothly across seven gears to make flat roads, hills, and everyday routes feel easier.</span>
+        <span class="mf35-metric-foot">WIDE GEAR RANGE &middot; 47" L x 27.5" W x 35.3" H &middot; ZERO TOOLS NEEDED</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FEATURE 1 — FOLDING                                                   -->
+  <!-- ===================================================================== -->
+  <section id="feature-folding" class="mf35-feature">
+    <span class="mf35-kicker">Quick-Fold Action</span>
+    <h2>Low Step-Through Tool-Free Folding</h2>
+
+    <p>
+      The MF-35 folding electric tricycle features a low step-through frame with a 12-inch standover
+      height, making it easier to get on and off. Whether you’re an older rider who values added
+      convenience, wearing a skirt or dress, or a shorter rider, the low step-through design helps
+      make mounting and dismounting more comfortable. When it’s time to store the trike, simply
+      release the quick-release latch to fold the frame, no tools required, for space-saving storage
+      in a garage, apartment, RV, or other compact space.
+    </p>
+
+    <div class="mf35-stat-grid">
+      <div class="mf35-stat">
+        <span class="mf35-stat-val">5'1"</span>
+        <span class="mf35-stat-lbl">Min Rider Height</span>
+      </div>
+      <div class="mf35-stat">
+        <span class="mf35-stat-val">5'9"</span>
+        <span class="mf35-stat-lbl">Max Rider Height</span>
+      </div>
+    </div>
+
+    <ul>
+      <li>Easy access for a wider range of adult riders.</li>
+      <li>Folded overall dimensions: 47" L x 27.5" W x 35.3" H.</li>
+    </ul>
+
+    <div class="mf35-note">
+      <strong>Real-world portability:</strong> fold and unfold in under 10 seconds without detaching
+      wheels or wiring cables.
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FEATURE 2 — MOTOR                                                     -->
+  <!-- ===================================================================== -->
+  <section id="feature-motor" class="mf35-feature">
+    <span class="mf35-kicker">Powerful Performance</span>
+    <h2>750W Power for Everyday Hills and Cargo Runs</h2>
+
+    <p>
+      The MF-35 folding electric tricycle features a 750W rear-wheel-drive brushless motor with up
+      to 1200W of peak power for smooth starts, steady acceleration, and dependable everyday
+      assistance. Whether you are running errands, carrying daily essentials, or navigating
+      neighborhood streets and everyday inclines, it provides added support when you need it.
+      Shimano 7-speed shifting helps you ride more comfortably across changing road conditions,
+      while the brushless design helps reduce routine maintenance.
+    </p>
+
+    <div class="mf35-stat-grid">
+      <div class="mf35-stat">
+        <span class="mf35-stat-val">Rear Drive Motor</span>
+      </div>
+      <div class="mf35-stat">
+        <span class="mf35-stat-val mf35-accent">5-LEVEL PEDAL ASSIST</span>
+      </div>
+    </div>
+
+    <ul>
+      <li>Brushless, low-maintenance design.</li>
+      <li>Smooth, dependable power for everyday rides.</li>
+    </ul>
+
+    <div class="mf35-note">
+      <strong>Confident rear-wheel drive:</strong> step steady rear-wheel power for smoother starts
+      and everyday rides. Step right through &mdash; no swinging a leg over a crossbar required.
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FEATURE 3 — BATTERY                                                   -->
+  <!-- ===================================================================== -->
+  <section id="feature-battery" class="mf35-feature">
+    <span class="mf35-kicker">Flexible Charging</span>
+    <h2>Removable Battery, Flexible Charging</h2>
+
+    <p>
+      The MF-35 folding electric tricycle features a 48V 13AH rear-mounted removable lithium battery
+      that can be charged on or off the trike for added everyday convenience. Simply remove the
+      battery and charge it indoors when the trike is stored in a garage, apartment parking area, or
+      other location without easy access to an outlet. A full charge takes approximately 6.75 hours
+      with the included charger.
+    </p>
+
+    <div class="mf35-stat-grid">
+      <div class="mf35-stat">
+        <span class="mf35-stat-val">48V 13AH</span>
+      </div>
+      <div class="mf35-stat">
+        <span class="mf35-stat-val">624 Wh</span>
+        <span class="mf35-stat-lbl">Removable lithium pack</span>
+      </div>
+    </div>
+
+    <ul>
+      <li>Removable, rear-mounted battery.</li>
+      <li>Convenient charging wherever an outlet is available.</li>
+    </ul>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FEATURE 4 — HEADLIGHT                                                 -->
+  <!-- ===================================================================== -->
+  <section id="feature-headlight" class="mf35-feature">
+    <span class="mf35-kicker">High-Lumen LED Headlight</span>
+    <h2>Integrated Power Supply High-Lumen Headlight</h2>
+
+    <p>
+      Designed for maximum efficiency and seamless operation, this headlight features an integrated
+      power supply that eliminates bulky external wiring. Built with high-output LEDs, it delivers
+      exceptional lumen performance with a long-reaching, crystal-clear beam &mdash; ensuring superior
+      visibility, stability, and durability in the most demanding night-time conditions.
+    </p>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SIZE & FIT                                                            -->
+  <!-- ===================================================================== -->
+  <section id="size-and-fit">
+    <span class="mf35-kicker">Ergonomic Matrix &amp; Fit Guide</span>
+    <h2>Will It Fit You Comfortably?</h2>
+
+    <p>
+      The MF-35 folding electric trike features an adjustable saddle post and a quick-tilt handlebar
+      stem, helping riders from 5'1" to 5'9" find a comfortable, personalized fit.
+    </p>
+
+    <h3>Rider Height Fit Guide</h3>
+
+    <p><strong>Select Your Height:</strong> the MF-35 fit range runs from 5'1" to 5'9".</p>
+
+    <table>
+      <caption>Select Your Height &mdash; MF-35 fit guide (height markers 5'1" / 5'3" / 5'5" / 5'7" / 5'9")</caption>
+      <thead>
+        <tr>
+          <th scope="col">Your Height</th>
+          <th scope="col">Recommended Setup</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">5'1" (61 in)</th>
+          <td>Comfort Fit &mdash; lower the saddle clamp to its minimum position and angle the handlebars slightly backward for a relaxed reach</td>
+        </tr>
+        <tr>
+          <th scope="row">5'3" (63 in)</th>
+          <td>Ideal Match &mdash; upright, relaxed spine with full flat-foot stops at intersections</td>
+        </tr>
+        <tr>
+          <th scope="row">5'5" (65 in)</th>
+          <td>Ideal Match &mdash; upright, relaxed spine with full flat-foot stops at intersections</td>
+        </tr>
+        <tr>
+          <th scope="row">5'7" (67 in)</th>
+          <td>Ideal Match &mdash; upright, relaxed spine with full flat-foot stops at intersections</td>
+        </tr>
+        <tr>
+          <th scope="row">5'9" (69 in)</th>
+          <td>Tall Rider Setup &mdash; extend the seatpost fully; the stem can be raised for zero knee interference</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Chassis Schematic &amp; Clearances</h3>
+
+    <div class="mf35-note">
+      Measurements in inches / mm. The chassis schematic on the product page marks the standover
+      height (12"), the wheelbase (45.5") and the total length (66") of the MF-35 folding frame.
+    </div>
+
+    <h3>Size &amp; Fit Measurements</h3>
+    <table>
+      <caption>MF-35 chassis dimensions and adjustability (measurements in inches)</caption>
+      <thead>
+        <tr>
+          <th scope="col">Measurement</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Rider height</th><td>5'1" &ndash; 5'9"</td></tr>
+        <tr><th scope="row">Tire size</th><td>20" x 3.0"</td></tr>
+        <tr><th scope="row">Reach</th><td>15.5"</td></tr>
+        <tr><th scope="row">Total length</th><td>66"</td></tr>
+        <tr><th scope="row">Wheelbase</th><td>45.5"</td></tr>
+        <tr><th scope="row">Total width</th><td>23.5"</td></tr>
+        <tr><th scope="row">Standover height</th><td>12"</td></tr>
+        <tr><th scope="row">Minimum saddle height</th><td>27.5"</td></tr>
+        <tr><th scope="row">Maximum saddle height</th><td>38.5"</td></tr>
+        <tr><th scope="row">Handlebar height</th><td>46.5" &ndash; 52.5"</td></tr>
+        <tr><th scope="row">Folded size</th><td>47" L x 27.5" W x 35.3" H</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- CARGO BASKET                                                          -->
+  <!-- ===================================================================== -->
+  <section id="cargo-basket">
+    <h2>Pack Your Basket, Chase the Breeze</h2>
+
+    <p>
+      Leave the heavy lifting behind. The Maxfoot’s roomy rear basket makes grocery shopping and
+      outdoor exploring a breeze, letting you cruise comfortably while keeping all your essentials
+      safely within reach.
+    </p>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- COMPARISON                                                             -->
+  <!-- ===================================================================== -->
+  <section id="comparison">
+    <span class="mf35-kicker">// Value Benchmark Analysis</span>
+    <h2>How the MF-35 Folding Electric Trike Stands Out</h2>
+
+    <p>
+      Honest feature-by-feature comparison against the leading folding electric trikes in the US
+      market.
+    </p>
+
+    <table>
+      <caption>MaxFoot MF-35 compared with the Lectric XP Trike and the Addmotor Citytan</caption>
+      <thead>
+        <tr>
+          <th scope="col">Spec / Feature</th>
+          <th scope="col" class="mf35-winner">MaxFoot MF-35 (Winner)</th>
+          <th scope="col">Lectric XP Trike</th>
+          <th scope="col">Addmotor Citytan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Direct factory price</th>
+          <td class="mf35-winner">$1,199.00</td>
+          <td>$2,254.00</td>
+          <td>$1,499.00</td>
+        </tr>
+        <tr>
+          <th scope="row">Folding portability</th>
+          <td class="mf35-winner"><span class="mf35-yes">&#10003;</span> Yes (10-second quick fold)</td>
+          <td><span class="mf35-yes">&#10003;</span> Yes</td>
+          <td><span class="mf35-yes">&#10003;</span> Yes</td>
+        </tr>
+        <tr>
+          <th scope="row">Top speed</th>
+          <td class="mf35-winner">19 mph</td>
+          <td>17 mph</td>
+          <td>20 mph</td>
+        </tr>
+        <tr>
+          <th scope="row">Total carrying capacity</th>
+          <td class="mf35-winner">230 lbs (rider) + 80 lbs (cargo)</td>
+          <td>415 lbs total</td>
+          <td>230 lbs (rider) + 80 lbs (cargo)</td>
+        </tr>
+        <tr>
+          <th scope="row">Lowest standover step</th>
+          <td class="mf35-winner">12 inches</td>
+          <td>13.5 inches</td>
+          <td>14.1 inches</td>
+        </tr>
+        <tr>
+          <th scope="row">Factory direct warranty</th>
+          <td class="mf35-winner">2-year extended</td>
+          <td>1-year standard</td>
+          <td>2-year extended</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- FAQ                                                                    -->
+  <!-- ===================================================================== -->
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p>What you need to know about the MF-35 folding electric trike.</p>
+
+    <details>
+      <summary>What are the folded dimensions of the MF-35?</summary>
+      <div class="mf35-a">
+        <p>When folded, the MF-35 folding electric tricycle measures 47" L x 27.5" W x 35.3" H. Its folding design helps reduce its storage footprint for garages, sheds, RV travel, and transport. Please measure your intended storage space before purchase.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Why choose the MF-35 folding electric trike?</summary>
+      <div class="mf35-a">
+        <p>The MF-35 folding electric trike gives you the confidence, carrying capability, and electric assist of a full-size trike without demanding full-time storage space. Use it for errands, neighborhood rides, and everyday cargo, then fold it down to make storage, RV travel, and transport more manageable.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Will the MF-35 folding electric tricycle fit in my car trunk?</summary>
+      <div class="mf35-a">
+        <p>The MF-35 folding electric tricycle folds for easier transport, but fit depends on your vehicle. It may fit in larger SUVs, vans, pickup beds, or vehicles with fold-flat rear seats. Please compare your vehicle's cargo space and payload capacity with the MF-35's folded dimensions and weight before purchase; two people may be needed for loading.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Who is the MF-35 folding electric tricycle best suited for?</summary>
+      <div class="mf35-a">
+        <p>The MF-35 folding electric tricycle is designed for adult riders who value the added confidence of three wheels, electric assistance for everyday trips, and practical capacity for errands or gear. Its adjustable saddle post and telescopic handlebar stem are designed to accommodate riders from 5'1" to 5'9".</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What range can I expect on a charge?</summary>
+      <div class="mf35-a">
+        <p>The MF-35 folding electric trike offers a range of up to 50 miles under ideal riding conditions. Actual range varies based on rider and cargo weight, terrain, tire pressure, temperature, battery condition, assist level, throttle use, and riding style.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How long does the battery take to charge?</summary>
+      <div class="mf35-a">
+        <p>A full charge takes approximately 6.75 hours with the included charger. The 48V 13Ah battery is removable and rear-mounted, so you can take it off the trike and charge it indoors on a standard wall outlet.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>How much weight can the MF-35 carry?</summary>
+      <div class="mf35-a">
+        <p>The MF-35 has a 230 lb rated rider capacity plus 80 lb of cargo capacity in the 30L rear basket, for a combined payload of 310 lbs. The chassis is steel-gusseted for strength.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>What size rider does the MF-35 fit?</summary>
+      <div class="mf35-a">
+        <p>The MF-35 fits riders from 5'1" to 5'9". The low step-through frame has a 12-inch standover height, the saddle post adjusts from 27.5" to 38.5", and the handlebar height adjusts from 46.5" to 52.5".</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- WHO IT'S FOR / USE CASES                                               -->
+  <!-- ===================================================================== -->
+  <section id="who-its-for">
+    <h2>Who Is the MF-35 Best For?</h2>
+
+    <p>The MaxFoot MF-35 folding electric trike is built for adult riders who want:</p>
+
+    <ul>
+      <li><strong>Stable three-wheel confidence</strong> &mdash; three wheels, no balancing at a standstill, and a 12-inch step-through frame that is easier to mount and dismount than a standard top-tube bike.</li>
+      <li><strong>Everyday electric assistance</strong> &mdash; 5 pedal-assist levels plus a half-twist throttle for errands, inclines, and longer routes.</li>
+      <li><strong>Real carrying capacity</strong> &mdash; a 30L rear basket rated for 80 lbs of groceries, gear, or supplies.</li>
+      <li><strong>Storage and transport freedom</strong> &mdash; folds tool-free in under 10 seconds to fit a garage, apartment, RV, or the back of a larger vehicle.</li>
+      <li><strong>Riders from 5'1" to 5'9"</strong> &mdash; adjustable seat post and quick-tilt handlebar stem.</li>
+    </ul>
+
+    <p>
+      Typical use cases: grocery and errand runs, neighborhood and park riding, longer recreational
+      outings, RV and small-space storage, and mobility support for riders who want electric help
+      without a full-size, non-folding trike.
+    </p>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SHIPPING / WARRANTY / RETURNS                                          -->
+  <!-- ===================================================================== -->
+  <section id="shipping-warranty-returns">
+    <h2>Shipping, Warranty &amp; Returns</h2>
+
+    <ul>
+      <li><strong>Shipping:</strong> free US freight to all 48 contiguous states, dispatched from the US warehouse. In-stock orders ship within 2 business days.</li>
+      <li><strong>Warranty:</strong> 2-year extended factory warranty covering the frame and motor.</li>
+      <li><strong>Trial period:</strong> 14-day free trial &mdash; ride it at home and return it if it is not the right fit.</li>
+      <li><strong>Support:</strong> US-based tech support.</li>
+      <li><strong>Financing:</strong> 0% APR financing, plus Shop Pay, Klarna and Affirm at checkout.</li>
+    </ul>
+  </section>
+
+  <p class="mf35-footer-note">
+    Product: MaxFoot MF-35 Folding Electric Tricycle &mdash; $1,199.00 (regularly $1,699.00).
+    Available in Solar Yellow and Brooklyn Gray. In stock, ships within 2 business days from the US
+    warehouse, with free US shipping, a 2-year extended warranty and a 14-day free trial.
+  </p>
+
+</article>
+
+</body>
+</html>
