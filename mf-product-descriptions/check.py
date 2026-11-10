@@ -131,6 +131,13 @@ def price_issues(published: str) -> list:
         row = re.sub(r"<[^>]+>", " ", row)   # drop class names like "mf35-winner"
         if re.search(r"[\d$]", row):
             out.append("a Price row carries a number")
+    # no free trial - the store does not offer one
+    for pat, label in ((r"free\s+trial", "a free-trial claim"),
+                       (r"\b14[\s-]day\b", "a 14-day claim"),
+                       (r"trial\s+period", "a trial-period claim"),
+                       (r"ride\s+it\s+at\s+home", "a trial claim")):
+        if re.search(pat, body, re.I):
+            out.append(f"{label} is present")
     for key in ('"offers"', '"priceCurrency"', '"availability"', '"priceValidUntil"',
                 '"compareAtPrice"'):
         if key in body:

@@ -20,7 +20,7 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from content import FAMILIES  # noqa: E402
+from content import FAMILIES, POLICY  # noqa: E402
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -325,8 +325,8 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
     # catalog; a stale copy in the description would contradict it.
     bits = [f"<li>{esc(k)}</li>" for k in fam.get("key_facts", [])]
 
-    trust = ["Ships from US Warehouse", fam["warranty_short"], "14-Day Free Trial",
-             "Free US Shipping", "Affirm financing"]
+    trust = ["Ships from US Warehouse", fam["warranty_short"], "Free US Shipping",
+             "Affirm financing", "US-Based Support Team"]
     if reviews:
         trust.insert(0, f"{rating:.2f}/5 from {reviews} Reviews")
 
@@ -649,12 +649,12 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
   <section id="shipping-warranty-returns">
     <h2>Shipping, Warranty &amp; Returns</h2>
     <ul>
-      <li><strong>Shipping:</strong> free US freight to all 48 contiguous states, dispatched from
-      the US warehouse. In-stock orders ship within 2 business days.</li>
-      <li><strong>Warranty:</strong> {fam['warranty']}</li>
-      <li><strong>Trial period:</strong> 14-day free trial &mdash; ride it at home and return it if
-      it is not the right fit.</li>
+      <li><strong>Shipping:</strong> {POLICY['shipping']}.</li>
+      <li><strong>Warranty:</strong> {fam['warranty']}.</li>
       <li><strong>Assembly:</strong> {fam['assurance']}</li>
+      <li><strong>Support:</strong> US-based support team &mdash; support@maxfoot.bike,
+      Monday to Friday, 10:00 am - 5:30 pm PST.</li>
+      <li><strong>Returns:</strong> {POLICY['returns']}.</li>
       <li><strong>Financing:</strong> 0% APR financing available, plus Affirm financing, Shop Pay,
       Klarna and Affirm at checkout.</li>
     </ul>
@@ -666,9 +666,8 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
 
   <p class="mf-footer-note">
     Product: {esc(fam['product_name'])} &mdash; {esc(color)}.
-    Ships from the US warehouse with free US shipping, a
-    {fam['warranty_short'].lower()} and a 14-day free trial. Current price and
-    availability are shown on the product page.
+    Ships from the US warehouse with free US shipping and a {fam['warranty_short'].lower()}.
+    Current price and availability are shown on the product page.
   </p>
 </article>
 """

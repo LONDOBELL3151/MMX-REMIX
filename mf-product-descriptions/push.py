@@ -159,7 +159,11 @@ def main():
         # no price, no stock: Shopify owns those and they change
         for pat, label in ((r"\$\s?[\d,]", "a dollar amount"),
                            (r"\b(in stock|out of stock)\b", "a stock claim"),
-                           (r"save\s+\$", "a savings claim")):
+                           (r"save\s+\$", "a savings claim"),
+                           # the store does not offer a free trial
+                           (r"free\s+trial", "a free-trial claim"),
+                           (r"\b14[\s-]day\b", "a 14-day claim"),
+                           (r"trial\s+period", "a trial-period claim")):
             if re.search(pat, got, re.I):
                 problems.append(f"the description carries {label}")
         # a "Price" row is fine as a comparison dimension, as long as its own

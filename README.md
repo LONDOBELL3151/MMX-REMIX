@@ -1661,6 +1661,13 @@ python push.py --dry-run     # 只校验不写
   - MF-30 买盒上的促销条 "Only $1699. Save $900" 也不进描述（它带价格）。
   - MF-35 对比表里的价格行改成无数值的相对表述（"Lowest of the three — sold direct by MaxFoot"）。
   - `check.py` / `push.py` 里有**守卫**：发布体里出现 `$数字`、"In stock"、"Save $"、`<th>Price</th>` 带数字、或 JSON-LD 带 `offers` → 直接报错。
+- **⚠️ 不写 14-day free trial**：MaxFoot **没有免费试用**。全站实时的政策文案在 `templates/index.json`（homepage FAQ / trust badge / why pillar）和 `sections/footer-group.json`（footer tagline，商家手工改过 —— schema default 里那句 "and 14-day free trial" 已经被删掉了）。以此为准：
+  - **保修**：2 年有限保修，覆盖 **frame / motor / battery / controller**（homepage FAQ 原文："Maxfoot provides a 2-year limited warranty on all core components, including the frame, motor, battery, and controller."）
+  - **运费**：美国本土 48 州免运费，**不含 AK / HI 和偏远地区**；从加州仓发货，2-7 个工作日送达
+  - **退换**：描述里**不写具体天数**，只指向 `https://maxfoot.bike/policies/refund-policy`（政策页会变，别写死）
+  - **支持**：US-based support team，`support@maxfoot.bike`
+  - `check.py` / `push.py` 也会拒绝任何 `free trial` / `14-day` / `trial period` 字样。
+  - ⚠️ **`templates/page.about-us.json` 里还留着实时文案 "Free shipping. 14-day trial. 2-year warranty. Nothing to lose."** —— 那是页面上真的对客户可见的错误声明，还没改。
 - **输出 = `body_html` fragment**（不带 doctype / html / head / body）。Shopify 存的时候会解码 HTML 实体并重新序列化标记，所以**不能做字节比对**——`push.py` 比的是"可见文本 + 标签序列"。
 - **走 Admin API 推送**，别用 admin 富文本编辑器（会剥掉 `<style>` 和 `<script>`，JSON-LD 就没了）。
 - **评分只在真的有评论时发** `aggregateRating`：MF-35 是 0 条评论 → 不发；MF-30 是 166 条 4.88 → 发。

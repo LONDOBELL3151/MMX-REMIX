@@ -5,8 +5,38 @@ straight out of the Shopify template by build.py, so it can never drift from
 the live page. What lives here is the editorial layer: the lede, the
 at-a-glance highlights, the "who is this for" list and the selling points
 that the templates imply but do not state outright.
+
+STORE POLICY - copy only what the live site already claims:
+  * templates/index.json (homepage FAQ): "Maxfoot provides a 2-year limited
+    warranty on all core components, including the frame, motor, battery, and
+    controller."
+  * templates/index.json (trust badge): "2-Year Warranty - Motor, battery,
+    frame. US-based support team."
+  * sections/footer-group.json (live footer tagline): "Ships from our US
+    warehouse with a 2-year warranty."  (the merchant edited the schema
+    default, which still said "and 14-day free trial" - there is NO free
+    trial.)
+  * templates/index.json (hero): "Ships from US warehouse - free 2-7 day in
+    48 states"; homepage FAQ: "FREE shipping to the contiguous United States
+    (excluding AK, HI, and remote areas)".
+
+Do NOT add a trial period, a free-trial badge, or a return window that the
+site does not already state. check.py / push.py refuse to publish one.
 """
 from __future__ import annotations
+
+# Wording shared by every description. One place, so a policy change is a
+# one-line edit here rather than twelve.
+POLICY = {
+    "warranty": "2-year limited warranty on the frame, motor, battery and controller",
+    "warranty_short": "2-Year Warranty",
+    "shipping": "free US shipping to the contiguous United States (excluding AK, HI "
+                 "and remote areas); orders are delivered in 2-7 business days from the "
+                 "California warehouse",
+    "support": "US-based support team",
+    "returns": "see the store refund policy for the current return window, approval "
+               "process and any handling fees: https://maxfoot.bike/policies/refund-policy",
+}
 
 FAMILIES = {
     "mf-30": {
@@ -63,8 +93,8 @@ FAMILIES = {
             "<strong>Off-road and all-terrain riders</strong> &mdash; 24\" x 4.0\" front and 20\" x "
             "4.0\" rear fat tires plus a rear differential keep the trike planted and stable.",
         ],
-        "warranty": "1-year MaxFoot warranty (frame, motor and battery).",
-        "warranty_short": "1-Year Warranty",
+        "warranty": POLICY["warranty"],
+        "warranty_short": POLICY["warranty_short"],
         "assurance": "Ships 85% pre-assembled; only simple components need to be fitted.",
         "key_facts": ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
                       "350 + 100 LBS PAYLOAD", "9-10 HR CHARGE"],
@@ -122,8 +152,8 @@ FAMILIES = {
             "differential keep the trike planted on gravel, grass and sand.",
             "<strong>Haulers</strong> &mdash; 350 lbs on the trike plus 100 lbs on the rear rack.",
         ],
-        "warranty": "1-year MaxFoot warranty (frame, motor and battery).",
-        "warranty_short": "1-Year Warranty",
+        "warranty": POLICY["warranty"],
+        "warranty_short": POLICY["warranty_short"],
         "assurance": "Ships 85% pre-assembled; follow the video to complete the final step.",
         "key_facts": ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
                       "350 + 100 LBS PAYLOAD", "9-10 HR CHARGE"],
@@ -179,8 +209,8 @@ FAMILIES = {
             "<strong>Errand and community runners</strong> &mdash; front and rear baskets included, "
             "85+ miles of range and a 500 lbs payload cover shopping and outings.",
         ],
-        "warranty": "1-year MaxFoot warranty (frame, motor and battery).",
-        "warranty_short": "1-Year Warranty",
+        "warranty": POLICY["warranty"],
+        "warranty_short": POLICY["warranty_short"],
         "assurance": "Ships with the battery, front basket, rear basket and seat belts included.",
         "key_facts": ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
                       "500 LBS / 3 RIDERS", "9-10 HR CHARGE"],
