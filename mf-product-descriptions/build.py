@@ -684,11 +684,13 @@ def load_products(offline: bool) -> dict:
          "images(first: 8) { edges { node { url altText width height } } } "
          "metafields(first: 30) { edges { node { namespace key type value } } } } } }") % ", ".join(
         '"gid://shopify/Product/%s"' % i for i in PRODUCTS)
+    token = (os.environ.get("SHOPIFY_ADMIN_TOKEN", "").strip()
+             or os.environ["SHOPIFY_TOKEN"])
     req = urllib.request.Request(
         f"https://{os.environ['SHOPIFY_SHOP']}.myshopify.com/admin/api/2025-01/graphql.json",
         data=json.dumps({"query": q}).encode(),
         headers={"Content-Type": "application/json",
-                 "X-Shopify-Access-Token": os.environ["SHOPIFY_TOKEN"]})
+                 "X-Shopify-Access-Token": token})
     raw = json.loads(urllib.request.urlopen(req, timeout=90).read().decode())
     if "errors" in raw:
         raise SystemExit("GraphQL errors: " + json.dumps(raw["errors"])[:600])

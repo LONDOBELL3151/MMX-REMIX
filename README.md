@@ -1653,6 +1653,14 @@ python push.py               # 推到 Shopify 并回读校验
 python push.py --dry-run     # 只校验不写
 ```
 
+**认证（两种，优先第二种）**:
+| 方式 | 来源 | 特点 |
+|---|---|---|
+| `SHOPIFY_CLIENT_ID/SECRET`（client_credentials）| Dev Dashboard 的 org app | token 只带**店铺已批准**的 scope。**店铺随时可以收回**，收回后所有 product 读写立刻 403（"requires merchant approval for read_products scope"）。client_credentials grant 不能靠请求参数要更多 scope。 |
+| `SHOPIFY_ADMIN_TOKEN`（custom app）| 后台 → Settings → Apps and sales channels → **Develop apps** → Build app → Install app → **Generate an Admin API token**（勾 `write_products`）| **不过期、不依赖 org 批准**，脚本化改商品的标准做法。**优先用这个。** |
+
+`.env` 里两个都留空位，脚本按 `SHOPIFY_ADMIN_TOKEN` → `SHOPIFY_TOKEN` 的顺序取。`push.py` 启动会先 preflight 一次商品读取，scope 不对会直接打印上面两条修复路径（而不是抛一堆 stack trace）。
+
 **设计原则**:
 - **事实来自 template**：规格表 / feature 文案 / FAQ / 指标卡全部由 `build.py` 从 `templates/product.mf-*.json` 抽取，不会跟线上页面脱节。`content.py` 只放 template 没写的编辑层（lede、highlights、适合谁）。
 - **数据来自 Admin API**：价格 / compare_at / 库存 / 变体 / 图片 / Judge.me 评分每次构建现取。

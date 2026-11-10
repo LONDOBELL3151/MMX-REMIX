@@ -48,12 +48,27 @@ def base() -> str:
     return f"https://{os.environ['SHOPIFY_SHOP']}.myshopify.com/admin/api/{API}"
 
 
+def admin_token() -> str:
+    """Prefer a static custom-app Admin API token (SHOPIFY_ADMIN_TOKEN).
+
+    The client_credentials token from the shopify-admin-token skill only
+    carries the scopes the store has approved for that org app, and the
+    store can withdraw those at any time - which silently breaks product
+    reads and writes with a 403. A custom app token (Settings > Apps and
+    sales channels > Develop apps > Build app > Install app > Generate an
+    Admin API token, scope write_products) does not expire and does not
+    depend on that approval.
+    """
+    tok = os.environ.get("SHOPIFY_ADMIN_TOKEN", "").strip()
+    return tok or os.environ["SHOPIFY_TOKEN"]
+
+
 def req(method: str, path: str, payload=None, tries: int = 4):
     data = json.dumps(payload).encode("utf-8") if payload is not None else None
     r = urllib.request.Request(
         base() + path, data=data, method=method,
         headers={"Content-Type": "application/json",
-                 "X-Shopify-Access-Token": os.environ["SHOPIFY_TOKEN"],
+                 "X-Shopify-Access-Token": admin_token(),
                  "User-Agent": "mmx-mf-desc/1.0"})
     last = None
     for attempt in range(tries):
@@ -89,12 +104,45 @@ def tags(s: str) -> list:
     return re.findall(r"<\s*([a-zA-Z][a-zA-Z0-9]*)\b", s)
 
 
+def preflight() -> bool:
+    """Fail fast with a readable message when the token cannot read products.
+
+    The client_credentials token only carries the scopes the store has
+    approved for the org app. If those are withdrawn, every product read
+    and write 403s with "requires merchant approval for read_products
+    scope" - which is not obvious from a stack trace.
+    """
+    st, body = req("GET", "/products/4630401777746.json")
+    if st == 200:
+        return True
+    text = body if isinstance(body, str) else json.dumps(body)
+    if st == 403 and "scope" in text:
+        print("ERROR: this token cannot read products (403).\n"
+              f"  {text[:160]}\n\n"
+              "The org app's scopes were withdrawn or never approved for this\n"
+              "store. Two ways to fix it:\n"
+              "  1. Approve them: Shopify admin > Settings > Apps and sales\n"
+              "     channels > [the app] > Configuration > approve read_products\n"
+              "     and write_products.\n"
+              "  2. Use a custom app token (more stable): admin > Settings >\n"
+              "     Apps and sales channels > Develop apps > Build app > Install\n"
+              "     app > Generate an Admin API token with write_products, then\n"
+              "     paste it into SHOPIFY_ADMIN_TOKEN in .env.\n"
+              "     build.py and push.py both prefer that token when it is set.")
+        return False
+    print(f"ERROR: preflight GET products returned {st}: {text[:300]}")
+    return False
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     dry = "--dry-run" in sys.argv
     names = args or list(PRODUCT_IDS)
     BACKUP.mkdir(exist_ok=True)
     failures = 0
+
+    if not preflight():
+        return 2
 
     for name in names:
         pid = PRODUCT_IDS[name]
