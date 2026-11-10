@@ -1,0 +1,4 @@
+# local API snapshot and push backups - not part of the theme
+mf3_products.json
+_backups/
+__pycache__/

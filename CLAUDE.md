@@ -127,6 +127,21 @@
 - **文案硬编码英文**（同 mf25 / mf35 / swoope 三个家族）——活动页生命周期短、US 单语市场；其他 30 种语言不翻译。
 - **类名前缀** `.bf-*`（第四个家族，与 `.mf25-*` / `.mf35-*` / `.sw-*` 互不污染）。
 
+### 5.5 商品描述生成器（智能体销售渠道，2026-11 新增）
+
+- **背景**：用户开通了 Shopify **智能体销售渠道**（agentic sales channel），AI 购物助手直接读商品目录里的 product description。主题的 PDP 视觉层**不进目录** → 规格/价格/尺寸/保修这些决策信息必须写进商品描述字段。
+- **位置**：`mf-product-descriptions/`（README §16.3 有完整说明）。
+- **架构**：`content.py`（手写编辑层：lede / highlights / 适合谁）+ `build.py`（**从 `templates/product.mf-*.json` 抽事实** + 从 Admin API 抽价格/库存/图片/评分 → 生成 HTML）+ `check.py` + `push.py`。
+- **关键约定**：
+  - **事实来自 template，编辑层来自 content.py** —— 不要手抄规格，文案改了自动跟。
+  - 输出是 **`body_html` fragment**（不带 doctype/html/head/body）。Shopify 存时会**解码 HTML 实体并重新序列化标记** → **禁止字节比对**，要比"可见文本 + 标签序列"。
+  - **走 Admin API 推送**，不要用 admin 富文本编辑器（剥 `<style>` / `<script>`，JSON-LD 全丢）。
+  - **`aggregateRating` 只在真有评论时发**：MF-35 = 0 条 → 不发；MF-30 = 166 条 @4.88 → 发。`custom.badge_1` / `keyword_2` / `keyword_3` 是主题的 SEO 关键词，已揉进 description。
+  - **每个颜色是独立商品**（独立 handle + 独立 product），所以每个 SKU 一份 HTML。
+- **已覆盖**：MF-35（Brooklyn Gray）、MF-30（5 色）、MF-33（2 色）、MF-31（2 色）、MF-32（2 色）= 12 个 SKU。
+- **注意**：商品描述**不会渲染在 PDP 上** —— `main-product.liquid` 的 schema 有 `description` block 但 liquid 里没渲染，且各模板也没挂。所以它是纯目录数据（正好是 agentic channel 要的）。要让人也看到得改主题。
+- **加新商品**：在 `build.py` 的 `PRODUCTS` 表加一行（product id → 家族 + 颜色 slug），在 `content.py` 加家族编辑层（MF-32 就是抄 MF-31 改轮径），然后 `build.py` → `check.py` → `push.py`。
+
 ## 6. README 导航速查（深度文档入口）
 
 | 想查 | README § |

@@ -150,6 +150,7 @@ C:\Users\Coulson\Desktop\
 │   │   ├── settings_schema.json        主题 settings（color_scheme / typography / favicon / social_*-link）
 │   │   └── settings_data.json          实际 settings 值
 │   ├── blocks\                         Shopify 2.0+ theme app extension blocks（暂未广泛使用）
+│   ├── mf-product-descriptions\       **商品描述生成器**（智能体销售渠道用，12 个 SKU 的 HTML + build/check/push 脚本，见 §16.3）
 │   ├── locales\                      **31 种语言**翻译（en.default.json 为默认；各语言 `.json` + `.schema.json`）
 │   ├── _debug\                         临时 debug 截图（不要 commit）
 │   └── README.md                       ← 本文件
@@ -1625,7 +1626,45 @@ python C:\Users\Coulson\AppData\Roaming\npm\validate-about-schemas.py
 - `fectch-lectric-about.js` — fetch lectric eBikes /pages/about-us HTML
 - `resolve-conflict.py` — 解决 git rebase 冲突（如 template JSON 有 `<<<<<<< HEAD` 标记）
 
-### 16.3 git 操作最佳实践
+### 16.3 商品描述生成器（智能体销售渠道）
+
+**位置**: `mf-product-descriptions/`
+
+Shopify **智能体销售渠道**（agentic sales channel）让 AI 购物助手直接读商品目录里的 product description。主题的 PDP 视觉层（section 里的文案）**不进目录**，所以规格 / 价格 / 尺寸 / 保修这些决策信息必须写进商品描述字段。
+
+**目录内容**:
+```
+mf-product-descriptions/
+├── content.py       编辑层文案（lede / highlights / who-it's-for）——手写
+├── build.py         从 template 抽事实 + 从 Admin API 抽线上数据 → 生成 HTML
+├── check.py         校验：JSON-LD 可解析 / 标签闭合 / 标题层级 / 模板文案覆盖率
+├── push.py          PUT body_html 到 Admin API，回读校验可见文本 + 标签序列
+├── mf-*.html        每个 SKU 一份（12 个）
+├── mf3_products.json  本地 API 快照（gitignore）
+└── _backups/        推送前旧描述备份（gitignore）
+```
+
+**跑**:
+```bash
+cd mf-product-descriptions
+python build.py --offline    # 用本地快照重新生成 HTML
+python check.py              # 校验 12 份文件
+python push.py               # 推到 Shopify 并回读校验
+python push.py --dry-run     # 只校验不写
+```
+
+**设计原则**:
+- **事实来自 template**：规格表 / feature 文案 / FAQ / 指标卡全部由 `build.py` 从 `templates/product.mf-*.json` 抽取，不会跟线上页面脱节。`content.py` 只放 template 没写的编辑层（lede、highlights、适合谁）。
+- **数据来自 Admin API**：价格 / compare_at / 库存 / 变体 / 图片 / Judge.me 评分每次构建现取。
+- **输出 = `body_html` fragment**（不带 doctype / html / head / body）。Shopify 存的时候会解码 HTML 实体并重新序列化标记，所以**不能做字节比对**——`push.py` 比的是"可见文本 + 标签序列"。
+- **走 Admin API 推送**，别用 admin 富文本编辑器（会剥掉 `<style>` 和 `<script>`，JSON-LD 就没了）。
+- **评分只在真的有评论时发** `aggregateRating`：MF-35 是 0 条评论 → 不发；MF-30 是 166 条 4.88 → 发。
+- **每个颜色是独立商品**：MF-30 有 5 个 SKU（5 个 handle），MF-32 两个色都缺货 → JSON-LD availability 写 `OutOfStock`。
+
+**覆盖的商品**（12 个 SKU / 5 个型号）:
+MF-35（Brooklyn Gray）、MF-30（5 色）、MF-33（2 色）、MF-31（2 色）、MF-32（2 色）。
+
+### 16.4 git 操作最佳实践
 
 ```powershell
 # 改之前先看 status 和 diff

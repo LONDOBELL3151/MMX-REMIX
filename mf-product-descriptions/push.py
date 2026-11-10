@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Push the generated product descriptions to the Shopify Admin API.
+
+For every generated HTML file:
+  1. back up the current body_html
+  2. PUT the new body_html
+  3. re-read the product and verify visible text + element sequence match
+
+Usage:
+    SHOPIFY_SHOP=... SHOPIFY_TOKEN=... python push.py            # push all
+    python push.py --dry-run                                     # verify only
+    python push.py mf-30-neptune-blue mf-33-yellow               # push some
+"""
+from __future__ import annotations
+
+import html as htmlmod
+import json
+import os
+import pathlib
+import re
+import sys
+import urllib.error
+import urllib.request
+
+HERE = pathlib.Path(__file__).resolve().parent
+API = "2025-01"
+BACKUP = HERE / "_backups"
+
+# generated file -> product id
+PRODUCT_IDS = {
+    "mf-35-brooklyn-gray": "7659321393234",
+    "mf-30-neptune-blue": "4630401777746",
+    "mf-30-candy-red": "7566492008530",
+    "mf-30-grey": "7566492074066",
+    "mf-30-dark-green": "7566492106834",
+    "mf-30-yellow": "7566492172370",
+    "mf-33-yellow": "7226488684626",
+    "mf-33-orange": "7566494203986",
+    "mf-31-picton-blue": "7284559020114",
+    "mf-31-pangea-green": "7566494761042",
+    "mf-32-pangea-green": "7284560691282",
+    "mf-32-picton-blue": "7566494433362",
+}
+
+
+def base() -> str:
+    return f"https://{os.environ['SHOPIFY_SHOP']}.myshopify.com/admin/api/{API}"
+
+
+def req(method: str, path: str, payload=None):
+    data = json.dumps(payload).encode("utf-8") if payload is not None else None
+    r = urllib.request.Request(
+        base() + path, data=data, method=method,
+        headers={"Content-Type": "application/json",
+                 "X-Shopify-Access-Token": os.environ["SHOPIFY_TOKEN"],
+                 "User-Agent": "mmx-mf-desc/1.0"})
+    try:
+        with urllib.request.urlopen(r, timeout=90) as resp:
+            return resp.status, json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "replace")
+
+
+def visible(s: str) -> str:
+    s = re.sub(r"<!--.*?-->", " ", s, flags=re.S)
+    s = re.sub(r"<script.*?</script>", " ", s, flags=re.S)
+    s = re.sub(r"<style.*?</style>", " ", s, flags=re.S)
+    s = re.sub(r"<[^>]+>", " ", s)
+    return re.sub(r"\s+", " ", htmlmod.unescape(s)).strip()
+
+
+def tags(s: str) -> list:
+    s = re.sub(r"<!--.*?-->", " ", s, flags=re.S)
+    s = re.sub(r"<script.*?</script>", " ", s, flags=re.S)
+    s = re.sub(r"<style.*?</style>", " ", s, flags=re.S)
+    return re.findall(r"<\s*([a-zA-Z][a-zA-Z0-9]*)\b", s)
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    dry = "--dry-run" in sys.argv
+    names = args or list(PRODUCT_IDS)
+    BACKUP.mkdir(exist_ok=True)
+    failures = 0
+
+    for name in names:
+        pid = PRODUCT_IDS[name]
+        src = HERE / f"{name}.html"
+        if not src.exists():
+            print(f"[SKIP] {name}: {src.name} not found")
+            failures += 1
+            continue
+        body = re.sub(r"<!--.*?-->\s*", "", src.read_text(encoding="utf-8"), flags=re.S)
+
+        # what the file claims, so we can compare with what lands
+        want_text, want_tags = visible(body), tags(body)
+        want_ld = [json.loads(b) for b in
+                   re.findall(r'<script type="application/ld\+json">(.*?)</script>', body, re.S)]
+
+        st, cur = req("GET", f"/products/{pid}.json")
+        if st != 200:
+            print(f"[FAIL] {name}: GET {st} {str(cur)[:200]}")
+            failures += 1
+            continue
+        old = cur["product"]["body_html"] or ""
+        (BACKUP / f"{name}.html").write_text(old, encoding="utf-8")
+
+        if not dry:
+            st, res = req("PUT", f"/products/{pid}.json",
+                           {"product": {"id": pid, "body_html": body}})
+            if st != 200:
+                print(f"[FAIL] {name}: PUT {st} {str(res)[:300]}")
+                failures += 1
+                continue
+            handle = res["product"]["handle"]
+        else:
+            handle = cur["product"]["handle"]
+
+        st, chk = req("GET", f"/products/{pid}.json")
+        if st != 200:
+            print(f"[FAIL] {name}: verify GET {st}")
+            failures += 1
+            continue
+        got = chk["product"]["body_html"] or ""
+
+        problems = []
+        if visible(got) != want_text:
+            problems.append("visible text differs")
+        if tags(got) != want_tags:
+            problems.append(f"element sequence differs ({len(tags(got))} vs {len(want_tags)})")
+        live_ld = [json.loads(b) for b in
+                   re.findall(r'<script type="application/ld\+json">(.*?)</script>', got, re.S)]
+        if len(live_ld) != len(want_ld):
+            problems.append(f"JSON-LD block count {len(live_ld)} != {len(want_ld)}")
+        else:
+            for a, b in zip(want_ld, live_ld):
+                if a.get("@type") != b.get("@type"):
+                    problems.append(f"JSON-LD type {a.get('@type')} != {b.get('@type')}")
+        prod = next((x for x in live_ld if x.get("@type") == "Product"), None)
+        if prod:
+            avail = prod["offers"]["availability"].rsplit("/", 1)[-1]
+            # look only at the rendered price bar - "is-out" also appears in the CSS
+            bar = re.search(r'<div class="mf-price-bar">(.*?)</div>', got, re.S)
+            oos = bool(bar and "is-out" in bar.group(1))
+            if (avail == "OutOfStock") != oos:
+                problems.append(f"availability {avail} vs page out-of-stock={oos}")
+
+        if problems:
+            print(f"[FAIL] {name} ({handle}): " + "; ".join(problems))
+            failures += 1
+        else:
+            print(f"[OK  ] {name:24} {handle:70} {len(got):>6} chars, "
+                  f"{len(live_ld)} JSON-LD, {avail if prod else '?'}")
+
+    print(("\nDRY RUN - nothing written" if dry else "\nAll products pushed.")
+          if not failures else f"\n{failures} failure(s)")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
