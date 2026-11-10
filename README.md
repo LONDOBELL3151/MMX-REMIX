@@ -1656,10 +1656,15 @@ python push.py --dry-run     # 只校验不写
 **设计原则**:
 - **事实来自 template**：规格表 / feature 文案 / FAQ / 指标卡全部由 `build.py` 从 `templates/product.mf-*.json` 抽取，不会跟线上页面脱节。`content.py` 只放 template 没写的编辑层（lede、highlights、适合谁）。
 - **数据来自 Admin API**：价格 / compare_at / 库存 / 变体 / 图片 / Judge.me 评分每次构建现取。
+- **⚠️ 描述里不写价格、不写库存**：这两项是 Shopify 的目录字段（`price` / `compare_at_price` / `available`），会变。描述里写死一份，AI 抓到的就可能和目录里的真值打架（涨价/促销/缺货时描述会说错）。价格和库存**只从目录读**——描述里只保留稳定事实：规格、尺寸、功能、适配、保修、运费政策。
+  - 所以 JSON-LD **不发 `offers` 块**（`price` / `priceCurrency` / `availability` 都不发），目录 feed 自带权威 offer。
+  - MF-30 买盒上的促销条 "Only $1699. Save $900" 也不进描述（它带价格）。
+  - MF-35 对比表里的价格行改成无数值的相对表述（"Lowest of the three — sold direct by MaxFoot"）。
+  - `check.py` / `push.py` 里有**守卫**：发布体里出现 `$数字`、"In stock"、"Save $"、`<th>Price</th>` 带数字、或 JSON-LD 带 `offers` → 直接报错。
 - **输出 = `body_html` fragment**（不带 doctype / html / head / body）。Shopify 存的时候会解码 HTML 实体并重新序列化标记，所以**不能做字节比对**——`push.py` 比的是"可见文本 + 标签序列"。
 - **走 Admin API 推送**，别用 admin 富文本编辑器（会剥掉 `<style>` 和 `<script>`，JSON-LD 就没了）。
 - **评分只在真的有评论时发** `aggregateRating`：MF-35 是 0 条评论 → 不发；MF-30 是 166 条 4.88 → 发。
-- **每个颜色是独立商品**：MF-30 有 5 个 SKU（5 个 handle），MF-32 两个色都缺货 → JSON-LD availability 写 `OutOfStock`。
+- **每个颜色是独立商品**：MF-30 有 5 个 SKU（5 个 handle），MF-32 两个色都缺货。
 
 **覆盖的商品**（12 个 SKU / 5 个型号）:
 MF-35（Brooklyn Gray）、MF-30（5 色）、MF-33（2 色）、MF-31（2 色）、MF-32（2 色）。

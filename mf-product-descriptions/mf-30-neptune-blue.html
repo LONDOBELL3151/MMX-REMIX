@@ -10,9 +10,12 @@
   model + category + colour, a lede that leads with the headline numbers,
   the template's own specification tables reproduced verbatim, real
   comparison and fit tables, details/summary FAQ, and Product / FAQPage /
-  BreadcrumbList JSON-LD carrying the offer, shipping and return policy.
+  BreadcrumbList JSON-LD.
 
-  Verified against the live store:
+  NO PRICE, NO STOCK. Price, compare-at, savings and availability are
+  Shopify catalog fields and they change; a hardcoded copy here would go
+  stale and contradict the catalog the agent reads. Verified live at build
+  time only so we can see what changed:
     price ..... $1,699.00 (was $2,599.00)
     stock ..... in stock (2 units)
     colour .... Neptune Blue (single-variant SKU; the other colours are separate products)
@@ -31,15 +34,8 @@
 .mf-desc li{margin-bottom:8px}
 .mf-desc .mf-kicker{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0F1115;background:#FFC000;padding:4px 10px;border-radius:3px;margin:0 0 10px}
 .mf-desc .mf-lede{font-size:18px;color:#18181B}
-.mf-desc .mf-price-bar{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;background:#F8F9FA;border:1px solid #E4E4E7;border-left:4px solid #FFC000;border-radius:6px;padding:16px 20px;margin:20px 0}
-.mf-desc .mf-price{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:#0F1115}
-.mf-desc .mf-price-was{font-family:'JetBrains Mono',monospace;font-size:16px;color:#71717A;text-decoration:line-through}
-.mf-desc .mf-price-save{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFC000;color:#0F1115;padding:3px 8px;border-radius:3px}
-.mf-desc .mf-stock{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#0F1115}
-.mf-desc .mf-stock:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#0284C7;margin-right:6px}
-.mf-desc .mf-stock.is-out:before{background:#DC2626}
-.mf-desc .mf-promo{background:#FFC000;color:#0F1115;border-radius:6px;padding:12px 18px;margin:0 0 18px;font-weight:600}
-.mf-desc .mf-promo span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+.mf-desc .mf-facts{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:20px 0}
+.mf-desc .mf-facts li{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0F1115;background:#FFC000;border-radius:4px;padding:8px 14px;margin:0}
 .mf-desc .mf-trust{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:18px 0 24px}
 .mf-desc .mf-trust li{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:#F1F3F5;border:1px solid #E4E4E7;border-radius:999px;padding:6px 12px;margin:0}
 .mf-desc table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px;background:#FFFFFF}
@@ -281,54 +277,6 @@
       "value": "1-year MaxFoot warranty (frame, motor and battery)."
     }
   ],
-  "offers": {
-    "@type": "Offer",
-    "url": "https://maxfoot.bike/products/maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-neptune-blue",
-    "priceCurrency": "USD",
-    "price": "1699.00",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition",
-    "seller": {
-      "@type": "Organization",
-      "name": "MaxFoot"
-    },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "US"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 2,
-          "unitCode": "DAY"
-        },
-        "transitTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 7,
-          "unitCode": "DAY"
-        }
-      },
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": "0",
-        "currency": "USD"
-      }
-    },
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "US",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-      "merchantReturnDays": 14,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/FreeReturn"
-    }
-  },
   "image": [
     "https://cdn.shopify.com/s/files/1/0081/3039/6242/files/MF-30_blue_right.jpg?v=1774929616",
     "https://cdn.shopify.com/s/files/1/0081/3039/6242/files/MF30_-1500x1500_8538d153-8d4a-4652-892c-546efc673ae3.jpg?v=1776497409",
@@ -411,8 +359,7 @@
   <header>
     <h1>MaxFoot MF-30 Electric Tricycle For Adults &mdash; Neptune Blue</h1>
     <p class="mf-lede">The MaxFoot MF-30 is a step-through electric tricycle for adults: a 750W rear-wheel drive brushless geared motor (1,400W peak, 85 N&middot;m torque), a UL-certified SAMSUNG 48V 20Ah lithium battery good for up to 85+ miles on a single charge, Shimano 7-speed shifting, and a 350 lb rider rating plus a 100 lb rear rack. It ships 85% pre-assembled with the battery, front basket and 48L waterproof rear basket bag included.</p>
-    <div class="mf-price-bar"><span class="mf-price">$1,699.00</span><span class="mf-price-was">$2,599.00</span><span class="mf-price-save">Save $900.00</span><span class="mf-stock">In stock &mdash; 2 in stock &middot; ships within 2 business days</span></div>
-  <div class="mf-promo"><span>Limited-time offer</span>Only $1699. Save $900 for a limited time. <a href="https://maxfoot.bike/products/maxfoot-mf-30-electric-assist-adult-tricycle-750w-front-suspension-neptune-blue" style="text-decoration:underline">Shop now</a></div>
+    <ul class="mf-facts"><li>85+ MI RANGE</li><li>750W REAR DRIVE</li><li>48V 20AH SAMSUNG</li><li>350 + 100 LBS PAYLOAD</li><li>9-10 HR CHARGE</li></ul>
     <ul class="mf-trust"><li>4.88/5 from 166 Reviews</li><li>Ships from US Warehouse</li><li>1-Year Warranty</li><li>14-Day Free Trial</li><li>Free US Shipping</li><li>Affirm financing</li></ul>
   </header>
 
@@ -571,8 +518,6 @@
         <tr><th scope="row">Lights</th><td>Integrated Headlight and Brake Light</td></tr>
         <tr><th scope="row">Pedal Assist</th><td>Intelligent 5 level pedal assist With an integrated speed sensor</td></tr>
         <tr><th scope="row">Colour</th><td>Neptune Blue</td></tr>
-        <tr><th scope="row">Price</th><td>$1,699.00 (regularly $2,599.00 &mdash; save $900.00)</td></tr>
-        <tr><th scope="row">Availability</th><td>In stock, ships within 2 business days from the US warehouse</td></tr>
       </tbody>
     </table>
 
@@ -733,8 +678,9 @@
   </section>
 
   <p class="mf-footer-note">
-    Product: MaxFoot MF-30 Electric Tricycle For Adults &mdash; Neptune Blue &mdash; $1,699.00 (regularly $2,599.00).
-    in stock (2 units). Ships from the US warehouse with free US shipping, a
-    1-year warranty and a 14-day free trial.
+    Product: MaxFoot MF-30 Electric Tricycle For Adults &mdash; Neptune Blue.
+    Ships from the US warehouse with free US shipping, a
+    1-year warranty and a 14-day free trial. Current price and
+    availability are shown on the product page.
   </p>
 </article>

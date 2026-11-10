@@ -134,6 +134,10 @@
 - **架构**：`content.py`（手写编辑层：lede / highlights / 适合谁）+ `build.py`（**从 `templates/product.mf-*.json` 抽事实** + 从 Admin API 抽价格/库存/图片/评分 → 生成 HTML）+ `check.py` + `push.py`。
 - **关键约定**：
   - **事实来自 template，编辑层来自 content.py** —— 不要手抄规格，文案改了自动跟。
+  - **⚠️ 描述里不写价格、不写库存**。价格 / compare_at / 库存是 Shopify 的目录字段，会变；描述里写死一份，AI 抓到的可能跟目录真值打架。**只从目录读**。
+    - JSON-LD **不发 `offers` 块**（`price` / `priceCurrency` / `availability` / `priceValidUntil` 全不发）。
+    - MF-30 买盒促销条（带 $1699 / Save $900）不进描述；MF-35 对比表价格行改成无数值的相对表述。
+    - `check.py` / `push.py` 有守卫：发布体里出现 `$数字` / "In stock" / "Save $" / 带数字的 `<th>Price</th>` / JSON-LD `offers` → 报错。
   - 输出是 **`body_html` fragment**（不带 doctype/html/head/body）。Shopify 存时会**解码 HTML 实体并重新序列化标记** → **禁止字节比对**，要比"可见文本 + 标签序列"。
   - **走 Admin API 推送**，不要用 admin 富文本编辑器（剥 `<style>` / `<script>`，JSON-LD 全丢）。
   - **`aggregateRating` 只在真有评论时发**：MF-35 = 0 条 → 不发；MF-30 = 166 条 @4.88 → 发。`custom.badge_1` / `keyword_2` / `keyword_3` 是主题的 SEO 关键词，已揉进 description。

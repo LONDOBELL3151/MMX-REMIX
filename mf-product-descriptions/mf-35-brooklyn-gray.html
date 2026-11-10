@@ -77,7 +77,11 @@
   -------------------------------------------------------
   Product ......... gid://shopify/Product/7659321393234, handle "mf-35",
                     template_suffix "mf-35-stitch", status ACTIVE
-  Price ........... $1,199.00, compare_at $1,699.00
+  Price ........... deliberately NOT stated here. Price, compare-at, savings
+                    and availability are Shopify catalog fields that change;
+                    a hardcoded copy in body_html goes stale and contradicts
+                    the catalog the AI agent reads. The catalog feed carries
+                    the authoritative offer.
   Color ........... Brooklyn Gray is the only LISTED variant. A sibling
                     product "mf-35-solar-yellow" exists but is UNLISTED,
                     so it is deliberately not advertised here.
@@ -104,12 +108,8 @@
 .mf35-desc li{margin-bottom:8px}
 .mf35-desc .mf35-kicker{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0F1115;background:#FFC000;padding:4px 10px;border-radius:3px;margin:0 0 10px}
 .mf35-desc .mf35-lede{font-size:18px;color:#18181B}
-.mf35-desc .mf35-price-bar{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;background:#F8F9FA;border:1px solid #E4E4E7;border-left:4px solid #FFC000;border-radius:6px;padding:16px 20px;margin:20px 0}
-.mf35-desc .mf35-price{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:#0F1115}
-.mf35-desc .mf35-price-was{font-family:'JetBrains Mono',monospace;font-size:16px;color:#71717A;text-decoration:line-through}
-.mf35-desc .mf35-price-save{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFC000;color:#0F1115;padding:3px 8px;border-radius:3px}
-.mf35-desc .mf35-stock{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#0F1115}
-.mf35-desc .mf35-stock::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#0284C7;margin-right:6px}
+.mf35-desc .mf35-facts{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:20px 0}
+.mf35-desc .mf35-facts li{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0F1115;background:#FFC000;border-radius:4px;padding:8px 14px;margin:0}
 .mf35-desc .mf35-trust{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:18px 0 24px}
 .mf35-desc .mf35-trust li{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:#F1F3F5;border:1px solid #E4E4E7;border-radius:999px;padding:6px 12px;margin:0}
 .mf35-desc table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px;background:#FFFFFF}
@@ -203,35 +203,7 @@
     { "@type": "PropertyValue", "name": "Headlight", "value": "High-lumen LED with integrated power supply" },
     { "@type": "PropertyValue", "name": "Warranty", "value": "2-year extended factory warranty" },
     { "@type": "PropertyValue", "name": "Return Policy", "value": "14-day free trial" }
-  ],
-  "offers": {
-    "@type": "Offer",
-    "url": "https://maxfoot.bike/products/mf-35",
-    "priceCurrency": "USD",
-    "price": "1199.00",
-    "priceValidUntil": "2026-12-31",
-    "availability": "https://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition",
-    "seller": { "@type": "Organization", "name": "MaxFoot" },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 2, "unitCode": "DAY" },
-        "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 7, "unitCode": "DAY" }
-      },
-      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" }
-    },
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "US",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-      "merchantReturnDays": 14,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/FreeReturn"
-    }
-  }
+  ]
 }
 </script>
 
@@ -307,12 +279,13 @@
       standover height, and fits riders from 5'1" to 5'9".
     </p>
 
-    <div class="mf35-price-bar">
-      <span class="mf35-price">$1,199.00</span>
-      <span class="mf35-price-was">$1,699.00</span>
-      <span class="mf35-price-save">Save $500.00</span>
-      <span class="mf35-stock">In stock &mdash; ships within 2 business days</span>
-    </div>
+    <ul class="mf35-facts">
+      <li>50 MI RANGE</li>
+      <li>750W REAR DRIVE</li>
+      <li>48V 13AH SAMSUNG</li>
+      <li>230 + 80 LBS PAYLOAD</li>
+      <li>10 SEC QUICK FOLD</li>
+    </ul>
 
     <ul class="mf35-trust">
       <li>Free US Freight</li>
@@ -378,8 +351,6 @@
         <tr><th scope="row">Chassis</th><td>Steel-gusseted reinforced frame</td></tr>
         <tr><th scope="row">Cargo basket</th><td>30L rear basket, included</td></tr>
         <tr><th scope="row">Color</th><td>Brooklyn Gray</td></tr>
-        <tr><th scope="row">Price</th><td>$1,199.00 (regularly $1,699.00 &mdash; save $500.00)</td></tr>
-        <tr><th scope="row">Availability</th><td>In stock, ships within 2 business days from the US warehouse</td></tr>
         <tr><th scope="row">Warranty</th><td>2-year extended factory warranty on frame and motor</td></tr>
         <tr><th scope="row">Trial period</th><td>14-day free trial</td></tr>
         <tr><th scope="row">Shipping</th><td>Free US freight to all 48 contiguous states</td></tr>
@@ -736,10 +707,10 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">Direct factory price</th>
-          <td class="mf35-winner">$1,199.00</td>
-          <td>$2,254.00</td>
-          <td>$1,499.00</td>
+          <th scope="row">Price</th>
+          <td class="mf35-winner">Lowest of the three &mdash; sold direct by MaxFoot</td>
+          <td>Higher</td>
+          <td>Higher</td>
         </tr>
         <tr>
           <th scope="row">Folding portability</th>
@@ -773,6 +744,10 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="mf35-note">
+      Current pricing for all three is shown on each seller's product page.
+    </div>
   </section>
 
   <!-- ===================================================================== -->
@@ -878,9 +853,9 @@
   </section>
 
   <p class="mf35-footer-note">
-    Product: MaxFoot MF-35 Folding Electric Tricycle &mdash; $1,199.00 (regularly $1,699.00).
-    Color: Brooklyn Gray. In stock, ships within 2 business days from the US warehouse, with free US
-    shipping, a 2-year extended warranty and a 14-day free trial.
+    Product: MaxFoot MF-35 Folding Electric Tricycle.
+    Color: Brooklyn Gray. Ships from the US warehouse with free US shipping, a 2-year extended
+    warranty and a 14-day free trial. Current price and availability are shown on the product page.
   </p>
 
 </article>

@@ -112,6 +112,32 @@ def present(s: str, doc_toks: list, doc_join: str) -> bool:
 
 
 fails = 0
+
+
+def price_issues(published: str) -> list:
+    """The description must not carry price or stock - Shopify owns those."""
+    out = []
+    body = re.sub(r"<!--.*?-->", " ", published, flags=re.S)
+    if re.search(r"\$\s?[\d,]", body):
+        out.append("a dollar amount is present")
+    if re.search(r"\b(in stock|out of stock|only \d+ units?)\b", body, re.I):
+        out.append("a stock claim is present")
+    if re.search(r"save\s+\$", body, re.I):
+        out.append("a savings claim is present")
+    # a "Price" row is only a problem if its own cells carry a number
+    for m in re.finditer(r"<th[^>]*>\s*price\s*</th>", body, re.I):
+        row_end = body.find("</tr>", m.end())
+        row = body[m.end():row_end if row_end > 0 else m.end() + 200]
+        row = re.sub(r"<[^>]+>", " ", row)   # drop class names like "mf35-winner"
+        if re.search(r"[\d$]", row):
+            out.append("a Price row carries a number")
+    for key in ('"offers"', '"priceCurrency"', '"availability"', '"priceValidUntil"',
+                '"compareAtPrice"'):
+        if key in body:
+            out.append(f"{key} is present in the JSON-LD")
+    return out
+
+
 for f in sorted(HERE.glob("mf-*.html")):
     fam = f.name.split("-")[0] + "-" + f.name.split("-")[1]
     doc = f.read_text(encoding="utf-8")
@@ -140,6 +166,11 @@ for f in sorted(HERE.glob("mf-*.html")):
             problems.append(f"JSON-LD parse fail: {exc}")
     if len(blocks) != 3:
         problems.append(f"expected 3 JSON-LD blocks, got {len(blocks)}")
+
+    # --- no price / no stock in what actually ships ---
+    published = re.sub(r"<!--.*?-->\s*", "", doc, flags=re.S)
+    for issue in price_issues(published):
+        problems.append(issue)
 
     # --- tag balance ---
     for t in ("article", "table", "details", "section", "dl", "ul", "script", "style", "figure"):
@@ -180,7 +211,12 @@ for f in sorted(HERE.glob("mf-*.html")):
                 "max saddle height", "batteryflexible charging",
                 "fold and unfold in under 10 seconds without detaching wheels or wiring cables unfold",
                 "step steady rear wheel power for smoother starts and everyday rides aight through",
-                "47 27 5 35 3", "yes 10 sec quick fold"))]
+                "47 27 5 35 3", "yes 10 sec quick fold",
+                # MF-30: the buy-box promo banner states a price, so it is
+                # deliberately not repeated in the description
+                "limited time offer", "only 1699 save 900 for a limited time", "shop now",
+                # MF-35: the price comparison row became a number-free row
+                "direct factory price", "1 199 00", "2 254 00", "1 499 00"))]
     if real:
         problems.append(f"{len(real)} template strings not represented")
 

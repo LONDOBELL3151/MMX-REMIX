@@ -19,6 +19,7 @@ import os
 import pathlib
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -47,18 +48,30 @@ def base() -> str:
     return f"https://{os.environ['SHOPIFY_SHOP']}.myshopify.com/admin/api/{API}"
 
 
-def req(method: str, path: str, payload=None):
+def req(method: str, path: str, payload=None, tries: int = 4):
     data = json.dumps(payload).encode("utf-8") if payload is not None else None
     r = urllib.request.Request(
         base() + path, data=data, method=method,
         headers={"Content-Type": "application/json",
                  "X-Shopify-Access-Token": os.environ["SHOPIFY_TOKEN"],
                  "User-Agent": "mmx-mf-desc/1.0"})
-    try:
-        with urllib.request.urlopen(r, timeout=90) as resp:
-            return resp.status, json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        return e.code, e.read().decode("utf-8", "replace")
+    last = None
+    for attempt in range(tries):
+        try:
+            with urllib.request.urlopen(r, timeout=90) as resp:
+                return resp.status, json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "replace")
+            if e.code in (429, 502, 503) and attempt < tries - 1:
+                time.sleep(2 * (attempt + 1))
+                continue
+            return e.code, body
+        except Exception as e:           # transient TLS / connection resets
+            last = e
+            if attempt < tries - 1:
+                time.sleep(2 * (attempt + 1))
+                continue
+    raise last
 
 
 def visible(s: str) -> str:
@@ -138,19 +151,31 @@ def main():
                     problems.append(f"JSON-LD type {a.get('@type')} != {b.get('@type')}")
         prod = next((x for x in live_ld if x.get("@type") == "Product"), None)
         if prod:
-            avail = prod["offers"]["availability"].rsplit("/", 1)[-1]
-            # look only at the rendered price bar - "is-out" also appears in the CSS
-            bar = re.search(r'<div class="mf-price-bar">(.*?)</div>', got, re.S)
-            oos = bool(bar and "is-out" in bar.group(1))
-            if (avail == "OutOfStock") != oos:
-                problems.append(f"availability {avail} vs page out-of-stock={oos}")
+            if "offers" in prod:
+                problems.append("the JSON-LD carries an offers block - price belongs to the catalog")
+            for key in ("priceCurrency", "availability", "priceValidUntil"):
+                if key in prod:
+                    problems.append(f"the JSON-LD carries {key}")
+        # no price, no stock: Shopify owns those and they change
+        for pat, label in ((r"\$\s?[\d,]", "a dollar amount"),
+                           (r"\b(in stock|out of stock)\b", "a stock claim"),
+                           (r"save\s+\$", "a savings claim")):
+            if re.search(pat, got, re.I):
+                problems.append(f"the description carries {label}")
+        # a "Price" row is fine as a comparison dimension, as long as its own
+        # cells carry no number
+        for m in re.finditer(r"<th[^>]*>\s*price\s*</th>", got, re.I):
+            row_end = got.find("</tr>", m.end())
+            row = re.sub(r"<[^>]+>", " ", got[m.end():row_end if row_end > 0 else m.end() + 200])
+            if re.search(r"[\d$]", row):
+                problems.append("the description carries a Price row with a number")
 
         if problems:
             print(f"[FAIL] {name} ({handle}): " + "; ".join(problems))
             failures += 1
         else:
             print(f"[OK  ] {name:24} {handle:70} {len(got):>6} chars, "
-                  f"{len(live_ld)} JSON-LD, {avail if prod else '?'}")
+                  f"{len(live_ld)} JSON-LD, no-price")
 
     print(("\nDRY RUN - nothing written" if dry else "\nAll products pushed.")
           if not failures else f"\n{failures} failure(s)")

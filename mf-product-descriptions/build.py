@@ -239,15 +239,8 @@ CSS = """
 .mf-desc li{margin-bottom:8px}
 .mf-desc .mf-kicker{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0F1115;background:#FFC000;padding:4px 10px;border-radius:3px;margin:0 0 10px}
 .mf-desc .mf-lede{font-size:18px;color:#18181B}
-.mf-desc .mf-price-bar{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;background:#F8F9FA;border:1px solid #E4E4E7;border-left:4px solid #FFC000;border-radius:6px;padding:16px 20px;margin:20px 0}
-.mf-desc .mf-price{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:#0F1115}
-.mf-desc .mf-price-was{font-family:'JetBrains Mono',monospace;font-size:16px;color:#71717A;text-decoration:line-through}
-.mf-desc .mf-price-save{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFC000;color:#0F1115;padding:3px 8px;border-radius:3px}
-.mf-desc .mf-stock{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#0F1115}
-.mf-desc .mf-stock:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#0284C7;margin-right:6px}
-.mf-desc .mf-stock.is-out:before{background:#DC2626}
-.mf-desc .mf-promo{background:#FFC000;color:#0F1115;border-radius:6px;padding:12px 18px;margin:0 0 18px;font-weight:600}
-.mf-desc .mf-promo span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px}
+.mf-desc .mf-facts{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:20px 0}
+.mf-desc .mf-facts li{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0F1115;background:#FFC000;border-radius:4px;padding:8px 14px;margin:0}
 .mf-desc .mf-trust{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:18px 0 24px}
 .mf-desc .mf-trust li{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:#F1F3F5;border:1px solid #E4E4E7;border-radius:999px;padding:6px 12px;margin:0}
 .mf-desc table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px;background:#FFFFFF}
@@ -326,33 +319,16 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
     images = [i["node"]["url"] for i in prod["images"]["edges"]]
     image_alts = [(i["node"]["url"], i["node"]["altText"] or "") for i in prod["images"]["edges"]]
 
-    # ---------------- price bar ----------------
-    save = (compare - price) if compare else 0
-    bits = [f'<span class="mf-price">{money(price)}</span>']
-    if compare:
-        bits.append(f'<span class="mf-price-was">{money(compare)}</span>')
-        bits.append(f'<span class="mf-price-save">Save {money(save)}</span>')
-    if available:
-        stock = ('<span class="mf-stock">In stock'
-                 + (f" &mdash; {qty} in stock" if qty is not None else "")
-                 + " &middot; ships within 2 business days</span>")
-    else:
-        stock = '<span class="mf-stock is-out">Out of stock &mdash; back in stock soon</span>'
+    # ---------------- key facts strip ----------------
+    # Price, compare-at, savings and stock are deliberately NOT here: Shopify
+    # owns those fields and they change. An AI agent reads them from the
+    # catalog; a stale copy in the description would contradict it.
+    bits = [f"<li>{esc(k)}</li>" for k in fam.get("key_facts", [])]
 
     trust = ["Ships from US Warehouse", fam["warranty_short"], "14-Day Free Trial",
              "Free US Shipping", "Affirm financing"]
     if reviews:
         trust.insert(0, f"{rating:.2f}/5 from {reviews} Reviews")
-
-    promo_html = ""
-    if copy["promo"]:
-        p = copy["promo"]
-        link = ""
-        if p.get("link_text"):
-            link = (f' <a href="{url}" style="text-decoration:underline">'
-                    f'{esc(p["link_text"])}</a>')
-        promo_html = (f'  <div class="mf-promo"><span>{esc(p["heading"])}</span>'
-                      f'{esc(p["body"])}{link}</div>\n')
 
     # ---------------- spec tables (accordion groups, verbatim) ----------------
     spec_html = ""
@@ -373,16 +349,11 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
     </table>
 """
 
-    # the commercial rows (colour / price / availability) ride along with the
-    # first spec table so the AI sees them next to the technical numbers
+    # the commercial rows ride along with the first spec table. Only Colour is
+    # safe to state here - it identifies the SKU and cannot go stale. Price and
+    # stock are catalog fields, so they are deliberately absent.
     commercial = "\n".join([
         f'        <tr><th scope="row">Colour</th><td>{esc(color)}</td></tr>',
-        f'        <tr><th scope="row">Price</th><td>{money(price)}'
-        + (f" (regularly {money(compare)} &mdash; save {money(save)})" if compare else "")
-        + "</td></tr>",
-        '        <tr><th scope="row">Availability</th><td>'
-        + ("In stock, ships within 2 business days from the US warehouse" if available
-           else "Currently out of stock") + "</td></tr>",
     ])
     if spec_html:
         spec_html = spec_html.replace("      </tbody>", commercial + "\n      </tbody>", 1)
@@ -552,34 +523,10 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
         "keywords": ", ".join(fam["keywords"]),
         "audience": {"@type": "PeopleAudience", "suggestedMinAge": 18, "suggestedMaxAge": 120},
         "additionalProperty": props,
-        "offers": {
-            "@type": "Offer",
-            "url": url,
-            "priceCurrency": "USD",
-            "price": f"{price:.2f}",
-            "priceValidUntil": "2026-12-31",
-            "availability": "https://schema.org/InStock" if available else "https://schema.org/OutOfStock",
-            "itemCondition": "https://schema.org/NewCondition",
-            "seller": {"@type": "Organization", "name": "MaxFoot"},
-            "shippingDetails": {
-                "@type": "OfferShippingDetails",
-                "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"},
-                "deliveryTime": {
-                    "@type": "ShippingDeliveryTime",
-                    "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 2, "unitCode": "DAY"},
-                    "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 7, "unitCode": "DAY"},
-                },
-                "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
-            },
-            "hasMerchantReturnPolicy": {
-                "@type": "MerchantReturnPolicy",
-                "applicableCountry": "US",
-                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-                "merchantReturnDays": 14,
-                "returnMethod": "https://schema.org/ReturnByMail",
-                "returnFees": "https://schema.org/FreeReturn",
-            },
-        },
+        # No "offers" block on purpose. Price, compare-at and availability are
+        # Shopify catalog fields that change; a hardcoded copy inside
+        # body_html would go stale and contradict the catalog the agent reads.
+        # The catalog feed carries the authoritative offer.
     }
     if images:
         ld_product["image"] = images
@@ -630,18 +577,18 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
   model + category + colour, a lede that leads with the headline numbers,
   the template's own specification tables reproduced verbatim, real
   comparison and fit tables, details/summary FAQ, and Product / FAQPage /
-  BreadcrumbList JSON-LD carrying the offer, shipping and return policy.
+  BreadcrumbList JSON-LD.
 
-  Verified against the live store:
+  NO PRICE, NO STOCK. Price, compare-at, savings and availability are
+  Shopify catalog fields and they change; a hardcoded copy here would go
+  stale and contradict the catalog the agent reads. Verified live at build
+  time only so we can see what changed:
     price ..... {price_line}
     stock ..... {stock_line}
     colour .... {color} (single-variant SKU; the other colours are separate products)
     reviews ... {rating_line}
   ============================================================
 -->"""
-
-    avail_line = ("In stock, ships within 2 business days from the US warehouse"
-                  if available else "Currently out of stock")
 
     return f"""{header}
 <style>{CSS}</style>
@@ -653,8 +600,8 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
   <header>
     <h1>{h1}</h1>
     <p class="mf-lede">{fam['lede']}</p>
-    <div class="mf-price-bar">{''.join(bits)}{stock}</div>
-{promo_html}    <ul class="mf-trust">{''.join(f'<li>{t}</li>' for t in trust)}</ul>
+    <ul class="mf-facts">{''.join(bits)}</ul>
+    <ul class="mf-trust">{''.join(f'<li>{t}</li>' for t in trust)}</ul>
   </header>
 
   <section id="overview">
@@ -718,10 +665,10 @@ def render(fam_key: str, prod: dict, copy: dict) -> str:
 {gallery}  </section>
 
   <p class="mf-footer-note">
-    Product: {esc(fam['product_name'])} &mdash; {esc(color)} &mdash; {money(price)}""" + (
-        f" (regularly {money(compare)})." if compare else ".") + f"""
-    {stock_line}. Ships from the US warehouse with free US shipping, a
-    {fam['warranty_short'].lower()} and a 14-day free trial.
+    Product: {esc(fam['product_name'])} &mdash; {esc(color)}.
+    Ships from the US warehouse with free US shipping, a
+    {fam['warranty_short'].lower()} and a 14-day free trial. Current price and
+    availability are shown on the product page.
   </p>
 </article>
 """

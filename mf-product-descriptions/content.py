@@ -66,6 +66,8 @@ FAMILIES = {
         "warranty": "1-year MaxFoot warranty (frame, motor and battery).",
         "warranty_short": "1-Year Warranty",
         "assurance": "Ships 85% pre-assembled; only simple components need to be fitted.",
+        "key_facts": ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
+                      "350 + 100 LBS PAYLOAD", "9-10 HR CHARGE"],
     },
 
     "mf-31": {
@@ -123,6 +125,8 @@ FAMILIES = {
         "warranty": "1-year MaxFoot warranty (frame, motor and battery).",
         "warranty_short": "1-Year Warranty",
         "assurance": "Ships 85% pre-assembled; follow the video to complete the final step.",
+        "key_facts": ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
+                      "350 + 100 LBS PAYLOAD", "9-10 HR CHARGE"],
     },
 
     "mf-33": {
@@ -178,6 +182,8 @@ FAMILIES = {
         "warranty": "1-year MaxFoot warranty (frame, motor and battery).",
         "warranty_short": "1-Year Warranty",
         "assurance": "Ships with the battery, front basket, rear basket and seat belts included.",
+        "key_facts": ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
+                      "500 LBS / 3 RIDERS", "9-10 HR CHARGE"],
     },
 }
 
@@ -212,3 +218,5 @@ FAMILIES["mf-32"]["metric_bodies"]["UL-Certified Battery"] = (
 FAMILIES["mf-32"]["highlights"][4] = (
     "24\" x 4.0\" fat tires", "Front 24\" x 4.0\" and rear 20\" x 4.0\" fat tires on a 50mm max "
     "travel suspension fork, with 180mm disc brakes front and rear to prevent rollover.")
+FAMILIES["mf-32"]["key_facts"] = ["85+ MI RANGE", "750W REAR DRIVE", "48V 20AH SAMSUNG",
+                                  "350 + 100 LBS PAYLOAD", "9-10 HR CHARGE"]
