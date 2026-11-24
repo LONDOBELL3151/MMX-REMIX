@@ -175,6 +175,7 @@
       "blocks": {
         "trust_01": {
           "type": "trust",
+          "disabled": true,
           "settings": {
             "title": "UL 2849",
             "subtitle": "Whole eBike certified"
