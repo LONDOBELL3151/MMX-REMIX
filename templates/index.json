@@ -9,6 +9,33 @@
  */
 {
   "sections": {
+    "179577232539460ea9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_819c74c_A8jwEy": {
+          "type": "ai_gen_block_819c74c",
+          "settings": {
+            "eyebrow": "BLACK FRIDAY EVENT",
+            "heading": "Ends in",
+            "deadline": "2026-11-28T23:59:59-08:00",
+            "note": "Shop the event before it ends.",
+            "note_link": "shopify://pages/black-friday",
+            "ended_text": "This Black Friday event has ended.",
+            "desktop_width_percent": 100,
+            "background_color": "#121212",
+            "tile_color": "#292929",
+            "text_color": "#FFFFFF",
+            "accent_color": "#F2B705",
+            "corner_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_819c74c_A8jwEy"
+      ],
+      "settings": {}
+    },
     "hero": {
       "type": "hero",
       "blocks": {
@@ -462,6 +489,7 @@
         "subheading": "",
         "cta_text": "Still have questions?",
         "cta_link": "",
+        "bg": "light",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -496,6 +524,7 @@
     }
   },
   "order": [
+    "179577232539460ea9",
     "hero",
     "trust",
     "story",
