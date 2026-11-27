@@ -24,8 +24,8 @@
             "desktop_width_percent": 100,
             "background_color": "#121212",
             "tile_color": "#292929",
-            "text_color": "#FFFFFF",
-            "accent_color": "#F2B705",
+            "text_color": "#FFC000",
+            "accent_color": "#FFFFFF",
             "corner_radius": 4
           },
           "blocks": {}
